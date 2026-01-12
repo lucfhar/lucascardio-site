@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Exames cardiológicos explicados para pacientes" />
+    <meta name="author" content="Dr. Lucas Silva" />
+
+    <title>Exames cardiológicos | Dr. Lucas Silva</title>
+
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+
+    <!-- Font Awesome -->
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
+    <!-- Google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+
+    <!-- Core theme CSS (includes Bootstrap) -->
+    <link href="css/styles.css" rel="stylesheet" />
+
+    <style>
+      /* Sidebar fixa durante a rolagem */
+      .sidebar-sticky {
+        position: sticky;
+        top: 1.25rem;
+      }
+      /* Espaço confortável no topo (sem navbar) */
+      .page-top-space {
+        padding-top: 2rem;
+      }
+      /* Melhor “âncora” ao clicar no menu (evita colar no topo) */
+      section[id] {
+        scroll-margin-top: 1rem;
+      }
+    </style>
+  </head>
+
+  <body class="bg-light">
+    <!-- Header simples (sem navbar) -->
+    <header class="bg-black">
+      <div class="container px-4 px-lg-5 py-5">
+        <div class="row align-items-center">
+          <div class="col-lg-9">
+            <h1 class="text-white mb-2">Exames cardiológicos comuns</h1>
+            <p class="text-white-50 mb-0">
+              Informações organizadas por tópicos, em linguagem clara, sem excessos e com foco em utilidade clínica.
+            </p>
+          </div>
+          <div class="col-lg-3 text-lg-end mt-3 mt-lg-0">
+            <a class="btn btn-primary" href="index.html#pacientes">
+              Voltar para “Para pacientes”
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container px-4 px-lg-5 page-top-space pb-5">
+      <div class="row g-4">
+        <!-- Menu lateral -->
+        <aside class="col-lg-3">
+          <div class="card sidebar-sticky">
+            <div class="card-body">
+              <h2 class="h6 text-uppercase mb-3" style="letter-spacing: .12rem;">Tópicos</h2>
+
+              <div class="list-group" id="pacientesMenu">
+                <a class="list-group-item list-group-item-action active" href="#ecg">Eletrocardiograma (ECG)</a>
+                <a class="list-group-item list-group-item-action" href="#holter">Holter 24h</a>
+                <a class="list-group-item list-group-item-action" href="#mapa">MAPA 24h</a>
+                <a class="list-group-item list-group-item-action" href="#eco">Ecocardiograma</a>
+                <a class="list-group-item list-group-item-action" href="#teste">Teste ergométrico</a>
+                <a class="list-group-item list-group-item-action" href="#tc">AngioTC de coronárias</a>
+                <a class="list-group-item list-group-item-action" href="#cateterismo">Cateterismo (coronariografia)</a>
+              </div>
+
+              <hr class="my-4" />
+
+              <p class="small text-black-50 mb-0">
+                Este conteúdo é informativo e não substitui consulta médica.
+              </p>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Conteúdo -->
+        <div class="col-lg-9">
+          <div class="card mb-4">
+            <div class="card-body text-justify">
+              <section id="ecg">
+                <h2 class="h4 mb-3">Eletrocardiograma (ECG)</h2>
+                <p class="text-black-50">
+                  O ECG registra a atividade elétrica do coração. É rápido, indolor e costuma ser o primeiro exame quando há sintomas como dor no peito,
+                  palpitações ou falta de ar, além de ser útil em check-ups bem indicados.
+                </p>
+                <p class="text-black-50">
+                  <strong>O que ele responde bem:</strong> arritmias em curso, sinais indiretos de isquemia/infarto (dependendo do contexto), bloqueios de condução,
+                  sobrecargas e algumas alterações metabólicas.
+                </p>
+              </section>
+            </div>
+          </div>
+
+          <div class="card mb-4">
+            <div class="card-body text-justify">
+              <section id="holter">
+                <h2 class="h4 mb-3">Holter 24h</h2>
+                <p class="text-black-50">
+                  Monitora o ritmo do coração continuamente por 24 horas (ou mais), ajudando a correlacionar sintomas (tontura, palpitações, desmaios) com arritmias.
+                </p>
+                <p class="text-black-50">
+                  <strong>Quando é mais útil:</strong> sintomas intermitentes, suspeita de pausas, taquiarritmias, extrassístoles frequentes ou avaliação pós-terapia.
+                </p>
+              </section>
+            </div>
+          </div>
+
+          <div class="card mb-4">
+            <div class="card-body text-justify">
+              <section id="mapa">
+                <h2 class="h4 mb-3">MAPA 24h</h2>
+                <p class="text-black-50">
+                  Mede a pressão arterial automaticamente ao longo do dia e da noite. É especialmente útil para confirmar hipertensão, avaliar “hipertensão do avental branco”
+                  e checar controle pressórico real com tratamento.
+                </p>
+                <p class="text-black-50">
+                  <strong>Ponto-chave:</strong> o comportamento noturno da pressão (queda esperada durante o sono) pode mudar condutas.
+                </p>
+              </section>
+            </div>
+          </div>
+
+          <div class="card mb-4">
+            <div class="card-body text-justify">
+              <section id="eco">
+                <h2 class="h4 mb-3">Ecocardiograma</h2>
+                <p class="text-black-50">
+                  É um ultrassom do coração. Avalia função do músculo cardíaco, válvulas, câmaras, pressões estimadas e pode sugerir causas de sopros, falta de ar,
+                  cardiomiopatias e outras condições estruturais.
+                </p>
+                <p class="text-black-50">
+                  <strong>Limitação importante:</strong> não é um exame “para ver entupimento” de coronárias diretamente; ele pode sugerir consequências (ex.: alteração de contratilidade),
+                  mas não substitui avaliação específica de coronárias quando indicada.
+                </p>
+              </section>
+            </div>
+          </div>
+
+          <div class="card mb-4">
+            <div class="card-body text-justify">
+              <section id="teste">
+                <h2 class="h4 mb-3">Teste ergométrico</h2>
+                <p class="text-black-50">
+                  Avalia resposta do coração ao esforço (sintomas, pressão, ECG durante o exercício). Pode ser útil em alguns cenários, mas não é “curinga” nem deve ser pedido
+                  automaticamente para todo mundo assintomático.
+                </p>
+                <p class="text-black-50">
+                  <strong>Usos comuns:</strong> avaliação de sintomas ao esforço, capacidade funcional, resposta pressórica e alguns contextos de estratificação, sempre com indicação correta.
+                </p>
+              </section>
+            </div>
+          </div>
+
+          <div class="card mb-4">
+            <div class="card-body text-justify">
+              <section id="tc">
+                <h2 class="h4 mb-3">AngioTC de coronárias</h2>
+                <p class="text-black-50">
+                  Tomografia com contraste que avalia anatomia das coronárias com alta sensibilidade para excluir doença obstrutiva em muitos cenários, especialmente em risco baixo a intermediário.
+                </p>
+                <p class="text-black-50">
+                  <strong>Pontos práticos:</strong> envolve contraste e radiação; a indicação depende do contexto clínico, frequência cardíaca, função renal e objetivo do exame.
+                </p>
+              </section>
+            </div>
+          </div>
+
+          <div class="card mb-4">
+            <div class="card-body text-justify">
+              <section id="cateterismo">
+                <h2 class="h4 mb-3">Cateterismo (coronariografia)</h2>
+                <p class="text-black-50">
+                  Exame invasivo que visualiza as coronárias por contraste diretamente. É fundamental em cenários específicos (por exemplo, suspeita forte de doença importante, síndrome coronariana aguda,
+                  ou quando um exame não invasivo indica alto risco).
+                </p>
+                <p class="text-black-50">
+                  <strong>Por que não é “check-up”:</strong> como todo procedimento invasivo, tem riscos e deve ser reservado para indicações claras, com benefício esperado.
+                </p>
+              </section>
+            </div>
+          </div>
+
+          <div class="small text-black-50">
+            Última atualização: 29/12/2025
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Bootstrap core JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core theme JS (seguro mesmo sem navbar: ele ignora #mainNav se não existir) -->
+    <script src="js/scripts.js"></script>
+
+    <!-- Ativar “item ativo” no menu conforme rolagem -->
+    <script>
+      (function () {
+        const menu = document.querySelectorAll('#pacientesMenu a');
+        const sections = Array.from(menu)
+          .map(a => document.querySelector(a.getAttribute('href')))
+          .filter(Boolean);
+
+        const setActive = (id) => {
+          menu.forEach(a => {
+            const isActive = a.getAttribute('href') === '#' + id;
+            a.classList.toggle('active', isActive);
+          });
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          const visible = entries
+            .filter(e => e.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+          if (visible && visible.target && visible.target.id) {
+            setActive(visible.target.id);
+          }
+        }, { root: null, threshold: [0.2, 0.35, 0.5] });
+
+        sections.forEach(sec => observer.observe(sec));
+
+        menu.forEach(a => {
+          a.addEventListener('click', () => {
+            const id = a.getAttribute('href').replace('#', '');
+            if (id) setActive(id);
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
