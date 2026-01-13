@@ -117,13 +117,13 @@
       <div class="container px-4 px-lg-5 py-5">
         <div class="row align-items-center">
           <div class="col-lg-9">
-            <h1 class="text-white mb-2">Exames cardiológicos comuns</h1>
+            <h1 class="text-white mb-2">Exames Cardiológicos comuns</h1>
             <p class="text-white-50 mb-0">
               Informações organizadas por tópicos, em linguagem clara, sem excessos e com foco em utilidade clínica.
             </p>
           </div>
           <div class="col-lg-3 text-lg-end mt-3 mt-lg-0">
-            <a class="btn btn-primary" href="index.html#pacientes">Voltar para “Para pacientes”</a>
+            <a class="btn btn-primary" href="index.html#pacientes">Voltar para seção de pacientes</a>
           </div>
         </div>
       </div>
@@ -153,20 +153,17 @@
                     <span class="side-caret" aria-hidden="true">›</span>
                   </button>
 
-                  <!-- Submenu: cada item vai para uma página dentro da pasta Pacientes/ -->
+                  <!-- Submenu: agora troca o painel central (single-page) -->
                   <div class="collapse side-submenu" id="submenuExames">
-                    <a class="side-sublink" href="Pacientes/ecg.html">Eletrocardiograma (ECG)</a>
-                    <a class="side-sublink" href="Pacientes/holter.html">Holter 24h</a>
-                    <a class="side-sublink" href="Pacientes/mapa.html">MAPA 24h</a>
-                    <a class="side-sublink" href="Pacientes/ecocardiograma.html">Ecocardiograma</a>
-                    <a class="side-sublink" href="Pacientes/teste-ergometrico.html">Teste ergométrico</a>
-                    <a class="side-sublink" href="Pacientes/angiotc.html">AngioTC de coronárias</a>
-                    <a class="side-sublink" href="Pacientes/cateterismo.html">Cateterismo (coronariografia)</a>
+                    <a class="side-sublink exam-link" href="#ecg" data-exam="ecg">Eletrocardiograma (ECG)</a>
+                    <a class="side-sublink exam-link" href="#holter" data-exam="holter">Holter 24h</a>
+                    <a class="side-sublink exam-link" href="#mapa" data-exam="mapa">MAPA 24h</a>
+                    <a class="side-sublink exam-link" href="#eco" data-exam="eco">Ecocardiograma</a>
+                    <a class="side-sublink exam-link" href="#teste" data-exam="teste">Teste ergométrico</a>
+                    <a class="side-sublink exam-link" href="#angiotc" data-exam="angiotc">AngioTC de coronárias</a>
+                    <a class="side-sublink exam-link" href="#cated" data-exam="cated">Cateterismo (coronariografia)</a>
                   </div>
                 </div>
-
-                <!-- Você pode adicionar outras categorias aqui depois -->
-                <!-- <a class="side-link mt-2" href="Pacientes/prevencao.html"><span>Prevenção</span><span class="side-caret">›</span></a> -->
 
                 <a class="side-link mt-2" href="index.html#pacientes">
                   <span>Voltar (Para pacientes)</span>
@@ -185,38 +182,76 @@
 
         <!-- Conteúdo (HUB) -->
         <div class="col-lg-9">
-          <div class="card mb-4">
-            <div class="card-body">
-              <h2 class="h4 mb-3">Como usar esta seção</h2>
-              <p class="text-black-50 mb-3">
-                Passe o mouse (no computador) ou toque (no celular) em <strong>Exames cardiológicos</strong> no menu lateral para abrir a lista.
-                Cada exame abre em uma página própria.
-              </p>
-              <p class="text-black-50 mb-0">
-                Atenção: a indicação de um exame depende do seu contexto clínico. Um mesmo exame pode ser excelente em um cenário e pouco útil em outro.
-              </p>
-            </div>
-          </div>
-
           <div class="card">
             <div class="card-body">
-              <h2 class="h5 mb-3">Acesso rápido</h2>
-              <div class="list-group">
-                <a class="list-group-item list-group-item-action" href="Pacientes/ecg.html">Eletrocardiograma (ECG)</a>
-                <a class="list-group-item list-group-item-action" href="Pacientes/holter.html">Holter 24h</a>
-                <a class="list-group-item list-group-item-action" href="Pacientes/mapa.html">MAPA 24h</a>
-                <a class="list-group-item list-group-item-action" href="Pacientes/ecocardiograma.html">Ecocardiograma</a>
-                <a class="list-group-item list-group-item-action" href="Pacientes/teste-ergometrico.html">Teste ergométrico</a>
-                <a class="list-group-item list-group-item-action" href="Pacientes/angiotc.html">AngioTC de coronárias</a>
-                <a class="list-group-item list-group-item-action" href="Pacientes/cateterismo.html">Cateterismo (coronariografia)</a>
+              <div id="examContent">
+
+                <!-- HOME / INSTRUÇÕES -->
+                <section class="exam-panel" data-panel="home">
+                  <h3 class="mb-3">Como usar esta seção</h3>
+                  <p class="text-muted">
+                    Passe o mouse (no computador) ou toque (no celular) em <strong>Exames cardiológicos</strong>
+                    no menu lateral para abrir a lista. Clique em um exame para ver o conteúdo aqui, sem sair da página.
+                  </p>
+                  <p class="text-muted mb-0">
+                    Atenção: a indicação de um exame depende do seu contexto clínico. Um mesmo exame pode ser excelente
+                    em um cenário e pouco útil em outro.
+                  </p>
+                </section>
+
+                <!-- ECG -->
+                <section class="exam-panel d-none" data-panel="ecg">
+                  <h3 class="mb-3">Eletrocardiograma (ECG)</h3>
+                  <p>O ECG registra a atividade elétrica do coração...</p>
+                  <p><strong>O que ele responde bem:</strong> arritmias em curso, bloqueios...</p>
+                </section>
+
+                <!-- HOLTER -->
+                <section class="exam-panel d-none" data-panel="holter">
+                  <h3 class="mb-3">Holter 24h</h3>
+                  <p>Monitora o ritmo do coração continuamente por 24 horas (ou mais)...</p>
+                </section>
+
+                <!-- MAPA -->
+                <section class="exam-panel d-none" data-panel="mapa">
+                  <h3 class="mb-3">MAPA 24h</h3>
+                  <p>Mede a pressão arterial automaticamente ao longo do dia e da noite...</p>
+                </section>
+
+                <!-- ECO -->
+                <section class="exam-panel d-none" data-panel="eco">
+                  <h3 class="mb-3">Ecocardiograma</h3>
+                  <p>É um ultrassom do coração...</p>
+                </section>
+
+                <!-- TESTE ERGOMÉTRICO -->
+                <section class="exam-panel d-none" data-panel="teste">
+                  <h3 class="mb-3">Teste ergométrico</h3>
+                  <p>Avalia resposta do coração ao esforço...</p>
+                </section>
+
+                <!-- ANGIO TC -->
+                <section class="exam-panel d-none" data-panel="angiotc">
+                  <h3 class="mb-3">AngioTC de coronárias</h3>
+                  <p>Tomografia com contraste que avalia anatomia das coronárias...</p>
+                </section>
+
+                <!-- CATETERISMO -->
+                <section class="exam-panel d-none" data-panel="cated">
+                  <h3 class="mb-3">Cateterismo (coronariografia)</h3>
+                  <p>Exame invasivo com contraste para avaliação direta das artérias coronárias...</p>
+                </section>
+
+              </div>
+
+              <div class="small text-black-50 mt-3">
+                Última atualização: 29/12/2025
               </div>
             </div>
           </div>
-
-          <div class="small text-black-50 mt-3">
-            Última atualização: 29/12/2025
-          </div>
         </div>
+        <!-- /Conteúdo (HUB) -->
+
       </div>
     </main>
 
@@ -225,5 +260,44 @@
 
     <!-- Core theme JS -->
     <script src="js/scripts.js"></script>
+
+    <!-- JS da troca de painéis (se ainda não estiver no seu js/scripts.js, copie para lá) -->
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        const panels = Array.from(document.querySelectorAll(".exam-panel"));
+        const links = Array.from(document.querySelectorAll(".exam-link"));
+
+        function showPanel(key) {
+          const exists = key && panels.some(p => p.dataset.panel === key);
+          const target = exists ? key : "home";
+
+          panels.forEach(p => p.classList.toggle("d-none", p.dataset.panel !== target));
+
+          // (opcional) marcar ativo no menu
+          links.forEach(a => {
+            const isActive = a.dataset.exam === target;
+            a.classList.toggle("active", isActive);
+            a.setAttribute("aria-current", isActive ? "true" : "false");
+          });
+        }
+
+        links.forEach(a => {
+          a.addEventListener("click", (e) => {
+            e.preventDefault();
+            const key = a.dataset.exam;
+            history.replaceState(null, "", `#${key}`);
+            showPanel(key);
+          });
+        });
+
+        const initial = (location.hash || "").replace("#", "");
+        showPanel(initial);
+
+        window.addEventListener("hashchange", () => {
+          const key = (location.hash || "").replace("#", "");
+          showPanel(key);
+        });
+      });
+    </script>
   </body>
 </html>
