@@ -85,11 +85,18 @@
         padding: .5rem .6rem;
         border-radius: .4rem;
         color: rgba(0,0,0,.65);
+        font-size: 0.9rem;
       }
 
       .side-sublink:hover {
         background: rgba(0,0,0,.04);
         color: rgba(0,0,0,.85);
+      }
+
+      .side-sublink.active {
+        background: rgba(0,0,0,.08);
+        color: rgba(0,0,0,.95);
+        font-weight: 500;
       }
 
       /* Desktop: abre submenu no hover (sem clique) */
@@ -108,6 +115,47 @@
 
         .has-submenu:focus-within > .side-submenu { display: block !important; }
       }
+
+      /* Estilos para conteúdo dos exames */
+      .exam-section {
+        margin-bottom: 2rem;
+      }
+
+      .exam-section h4 {
+        color: #333;
+        font-weight: 600;
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+        border-bottom: 2px solid #f4623a;
+        padding-bottom: 0.5rem;
+      }
+
+      .exam-section p {
+        color: #555;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+      }
+
+      .exam-section ul {
+        margin-left: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .exam-section li {
+        margin-bottom: 0.5rem;
+        color: #555;
+      }
+
+      .exam-badge {
+        display: inline-block;
+        background: #f4623a;
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 1rem;
+        font-size: 0.85rem;
+        margin-right: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
     </style>
   </head>
 
@@ -117,9 +165,9 @@
       <div class="container px-4 px-lg-5 py-5">
         <div class="row align-items-center">
           <div class="col-lg-9">
-            <h1 class="text-white mb-2">Exames Cardiológicos comuns</h1>
+            <h1 class="text-white mb-2">Exames Cardiológicos</h1>
             <p class="text-white-50 mb-0">
-              Informações organizadas por tópicos, em linguagem clara, sem excessos e com foco em utilidade clínica.
+              Guia completo com 18 exames: indicações, procedimentos, preparo e informações práticas para pacientes.
             </p>
           </div>
           <div class="col-lg-3 text-lg-end mt-3 mt-lg-0">
@@ -135,7 +183,7 @@
         <aside class="col-lg-3">
           <div class="card sidebar-sticky">
             <div class="card-body">
-              <h2 class="h6 text-uppercase mb-3" style="letter-spacing: .12rem;">Tópicos</h2>
+              <h2 class="h6 text-uppercase mb-3" style="letter-spacing: .12rem;">Exames</h2>
 
               <nav class="side-nav" aria-label="Menu lateral">
                 <!-- Categoria com submenu -->
@@ -149,19 +197,33 @@
                     aria-expanded="false"
                     aria-controls="submenuExames"
                   >
-                    <span>Exames cardiológicos</span>
+                    <span>Todos os exames</span>
                     <span class="side-caret" aria-hidden="true">›</span>
                   </button>
 
                   <!-- Submenu: agora troca o painel central (single-page) -->
                   <div class="collapse side-submenu" id="submenuExames">
-                    <a class="side-sublink exam-link" href="#ecg" data-exam="ecg">Eletrocardiograma (ECG)</a>
+                    <h6 class="px-2 py-2 text-uppercase small" style="letter-spacing: .08rem; color: #999;">Não Invasivos</h6>
+                    <a class="side-sublink exam-link" href="#ecg" data-exam="ecg">ECG</a>
+                    <a class="side-sublink exam-link" href="#teste-ergometrico" data-exam="teste-ergometrico">Teste Ergométrico</a>
+                    <a class="side-sublink exam-link" href="#teste-cardiopulmonar" data-exam="teste-cardiopulmonar">Teste Cardiopulmonar</a>
+                    <a class="side-sublink exam-link" href="#score-calcio" data-exam="score-calcio">Score de Cálcio</a>
+                    <a class="side-sublink exam-link" href="#angiotc" data-exam="angiotc">Angiotomografia Coronariana</a>
+                    <a class="side-sublink exam-link" href="#cintilografia" data-exam="cintilografia">Cintilografia Miocárdica</a>
+                    <a class="side-sublink exam-link" href="#pet" data-exam="pet">PET Miocárdico</a>
+                    <a class="side-sublink exam-link" href="#rmc" data-exam="rmc">Ressonância Magnética</a>
+                    <a class="side-sublink exam-link" href="#rmc-stress" data-exam="rmc-stress">RMC com Stress</a>
+                    <a class="side-sublink exam-link" href="#ecocardiograma" data-exam="ecocardiograma">Ecocardiograma</a>
+                    <a class="side-sublink exam-link" href="#eco-stress" data-exam="eco-stress">Ecocardiograma com Stress</a>
                     <a class="side-sublink exam-link" href="#holter" data-exam="holter">Holter 24h</a>
                     <a class="side-sublink exam-link" href="#mapa" data-exam="mapa">MAPA 24h</a>
-                    <a class="side-sublink exam-link" href="#eco" data-exam="eco">Ecocardiograma</a>
-                    <a class="side-sublink exam-link" href="#teste" data-exam="teste">Teste ergométrico</a>
-                    <a class="side-sublink exam-link" href="#angiotc" data-exam="angiotc">AngioTC de coronárias</a>
-                    <a class="side-sublink exam-link" href="#cated" data-exam="cated">Cateterismo (coronariografia)</a>
+                    <a class="side-sublink exam-link" href="#polissonografia" data-exam="polissonografia">Polissonografia</a>
+
+                    <h6 class="px-2 py-2 mt-3 text-uppercase small" style="letter-spacing: .08rem; color: #999;">Invasivos</h6>
+                    <a class="side-sublink exam-link" href="#angiografia" data-exam="angiografia">Angiografia Coronária</a>
+                    <a class="side-sublink exam-link" href="#cateterismo-direito" data-exam="cateterismo-direito">Cateterismo Direito</a>
+                    <a class="side-sublink exam-link" href="#biopsia" data-exam="biopsia">Biópsia Endomiocárdica</a>
+                    <a class="side-sublink exam-link" href="#arteriografia" data-exam="arteriografia">Arteriografia Pulmonar</a>
                   </div>
                 </div>
 
@@ -188,64 +250,1109 @@
 
                 <!-- HOME / INSTRUÇÕES -->
                 <section class="exam-panel" data-panel="home">
-                  <h3 class="mb-3">Como usar esta seção</h3>
+                  <h3 class="mb-3">Guia de Exames Cardiológicos</h3>
                   <p class="text-muted">
-                    Passe o mouse (no computador) ou toque (no celular) em <strong>Exames cardiológicos</strong>
-                    no menu lateral para abrir a lista. Clique em um exame para ver o conteúdo aqui, sem sair da página.
+                    Bem-vindo ao guia completo de exames cardiológicos. Aqui você encontrará informações detalhadas sobre 18 exames diferentes, 
+                    com explicações sobre indicações, procedimentos, preparo e outras informações práticas.
+                  </p>
+                  <p class="text-muted">
+                    <strong>Como usar:</strong> Clique em um exame no menu lateral para ver o conteúdo completo aqui. No computador, você pode 
+                    passar o mouse sobre "Todos os exames" para abrir a lista. No celular, toque em "Todos os exames" para expandir.
                   </p>
                   <p class="text-muted mb-0">
-                    Atenção: a indicação de um exame depende do seu contexto clínico. Um mesmo exame pode ser excelente
-                    em um cenário e pouco útil em outro.
+                    <strong>Importante:</strong> A indicação de um exame depende do seu contexto clínico. Um mesmo exame pode ser excelente 
+                    em um cenário e pouco útil em outro. Sempre consulte seu médico cardiologista.
                   </p>
                 </section>
 
                 <!-- ECG -->
                 <section class="exam-panel d-none" data-panel="ecg">
-                  <h3 class="mb-3">Eletrocardiograma (ECG)</h3>
-                  <p>O ECG registra a atividade elétrica do coração...</p>
-                  <p><strong>O que ele responde bem:</strong> arritmias em curso, bloqueios...</p>
+                  <h3 class="mb-4">Eletrocardiograma (ECG)</h3>
+                  
+                  <div class="exam-section">
+                    <h4>O que é</h4>
+                    <p>O eletrocardiograma é um exame não invasivo que registra a atividade elétrica do coração. Ele fornece informações cruciais sobre o ritmo cardíaco e o funcionamento do coração através de um gráfico de linhas onduladas.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Indicações</h4>
+                    <p>O ECG é indicado para investigar sintomas como dor no peito, palpitações, tonturas, desmaios e falta de ar. Também é utilizado como parte de avaliações de rotina (check-ups), antes de procedimentos cirúrgicos e para monitorar pacientes com doenças cardíacas conhecidas.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Contraindicações</h4>
+                    <p>Praticamente não existem contraindicações absolutas para o ECG de repouso. Por ser um exame não invasivo e seguro, pode ser realizado em praticamente qualquer pessoa.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Como é realizado</h4>
+                    <p>O paciente deita-se confortavelmente em uma maca com o tórax descoberto. O técnico limpa pequenas áreas da pele no peito, braços e pernas e fixa eletrodos adesivos. Os eletrodos são conectados a uma máquina que registra os impulsos elétricos do coração. O procedimento dura cerca de 5 a 10 minutos.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Preparo</h4>
+                    <ul>
+                      <li>Não praticar exercícios físicos imediatamente antes do exame</li>
+                      <li>Informar ao médico todos os medicamentos em uso</li>
+                      <li>Evitar o uso de cremes ou óleos na pele do tórax</li>
+                    </ul>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Jejum</h4>
+                    <p><span class="exam-badge">Não necessário</span> Não é necessário jejum para o ECG.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Medicações que podem interferir</h4>
+                    <p>Alguns medicamentos como anti-hipertensivos, antiarrítmicos, antidepressivos e antibióticos podem alterar o resultado. Sempre informe seu médico sobre todos os remédios que utiliza.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Mito vs Verdade</h4>
+                    <p><strong>Mito:</strong> O eletrocardiograma dá choque.<br>
+                    <strong>Verdade:</strong> O ECG apenas capta a atividade elétrica que o próprio coração produz. Os eletrodos são sensores que não emitem nenhum tipo de corrente elétrica.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Curiosidade</h4>
+                    <p>O primeiro eletrocardiograma humano foi registrado em 1887. O médico holandês Willem Einthoven aprimorou o aparelho no início do século XX, recebendo o Prêmio Nobel de Fisiologia ou Medicina em 1924 por suas contribuições.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Retorno ao trabalho</h4>
+                    <p><span class="exam-badge">Sim</span> O ECG é um exame simples e rápido que não causa efeitos colaterais. O paciente pode retornar às suas atividades normais, incluindo o trabalho, imediatamente após a realização.</p>
+                  </div>
+                </section>
+
+                <!-- TESTE ERGOMÉTRICO -->
+                <section class="exam-panel d-none" data-panel="teste-ergometrico">
+                  <h3 class="mb-4">Teste Ergométrico</h3>
+                  
+                  <div class="exam-section">
+                    <h4>O que é</h4>
+                    <p>O teste ergométrico, também conhecido como teste de esforço, é um procedimento que avalia a resposta cardiovascular durante exercício físico progressivo. É fundamental para diagnosticar e prognosticar a doença arterial coronariana.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Indicações</h4>
+                    <p>Indicado para investigar sintomas provocados por esforço como dor no peito, falta de ar e palpitações. Também é utilizado para avaliação pré-operatória, check-up de saúde em pessoas com fatores de risco e para definir estratégias de reabilitação cardíaca.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Contraindicações</h4>
+                    <p>Infarto agudo recente (até 2 dias), angina instável, arritmias não controladas, insuficiência cardíaca descompensada, estenose aórtica grave e embolia pulmonar aguda são contraindicações absolutas.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Como é realizado</h4>
+                    <p>O paciente se exercita em uma esteira ou bicicleta ergométrica com intensidade progressiva. Durante todo o exame, o eletrocardiograma, a frequência cardíaca e a pressão arterial são continuamente monitorados. O teste dura de 15 a 20 minutos.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Preparo</h4>
+                    <ul>
+                      <li>Refeição leve até 2 horas antes</li>
+                      <li>Não fumar por pelo menos 2 horas antes</li>
+                      <li>Evitar bebidas com cafeína no dia do exame</li>
+                      <li>Usar roupas e calçados confortáveis para exercício</li>
+                    </ul>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Jejum</h4>
+                    <p><span class="exam-badge">Não necessário</span> Apenas evitar refeições pesadas nas 2 horas que antecedem o exame.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Medicações que podem interferir</h4>
+                    <p>Beta-bloqueadores, alguns bloqueadores de canal de cálcio e nitratos podem alterar a resposta da frequência cardíaca. O médico solicitante orientará sobre a necessidade de suspender ou manter essas medicações.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Mito vs Verdade</h4>
+                    <p><strong>Mito:</strong> O teste ergométrico é perigoso e pode causar infarto.<br>
+                    <strong>Verdade:</strong> O risco é muito baixo (cerca de 1 para cada 10.000 exames) e o procedimento é realizado em ambiente controlado com médico presente e equipamentos de emergência disponíveis.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Curiosidade</h4>
+                    <p>A capacidade funcional do paciente, medida em METs (equivalentes metabólicos), é um dos mais importantes preditores de mortalidade. Quanto maior a capacidade de exercício, menor o risco de morte, independentemente de outros fatores de risco.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Retorno ao trabalho</h4>
+                    <p><span class="exam-badge">Sim</span> Após um breve período de repouso, o paciente é liberado. Recomenda-se evitar esforços físicos intensos no restante do dia, mas o retorno ao trabalho no dia seguinte é perfeitamente possível.</p>
+                  </div>
+                </section>
+
+                <!-- TESTE CARDIOPULMONAR -->
+                <section class="exam-panel d-none" data-panel="teste-cardiopulmonar">
+                  <h3 class="mb-4">Teste Cardiopulmonar (Ergoespirometria)</h3>
+                  
+                  <div class="exam-section">
+                    <h4>O que é</h4>
+                    <p>O teste cardiopulmonar combina um teste ergométrico convencional com análise direta dos gases expirados pelo paciente, permitindo uma avaliação integrada dos sistemas cardiovascular, respiratório e muscular.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Indicações</h4>
+                    <p>Indicado para avaliação de falta de ar de causa inexplicada, avaliação de capacidade funcional em insuficiência cardíaca, avaliação pré-operatória de cirurgias de grande porte e prescrição de exercícios para atletas.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Contraindicações</h4>
+                    <p>As mesmas do teste ergométrico convencional. Adicionalmente, pacientes que não conseguem manter a máscara facial bem vedada podem não ser bons candidatos.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Como é realizado</h4>
+                    <p>Semelhante ao teste ergométrico, mas o paciente usa uma máscara facial que mede a quantidade de oxigênio consumido e dióxido de carbono produzido a cada respiração. O teste é progressivo e leva o paciente à exaustão.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Preparo</h4>
+                    <ul>
+                      <li>Refeição leve até 2 horas antes</li>
+                      <li>Não fumar e evitar cafeína no dia do exame</li>
+                      <li>Usar roupas e calçados confortáveis</li>
+                      <li>Suspender medicamentos conforme orientação médica</li>
+                    </ul>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Jejum</h4>
+                    <p><span class="exam-badge">Não necessário</span> Apenas evitar refeições pesadas nas 2 horas que antecedem o exame.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Medicações que podem interferir</h4>
+                    <p>Medicamentos que afetam a frequência cardíaca e pressão arterial, como beta-bloqueadores, podem alterar os resultados.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Mito vs Verdade</h4>
+                    <p><strong>Mito:</strong> A máscara sufoca e dificulta a respiração.<br>
+                    <strong>Verdade:</strong> A máscara é leve e permite respiração livre. Embora possa parecer estranha no início, não oferece resistência significativa ao fluxo de ar.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Curiosidade</h4>
+                    <p>O teste consegue identificar o limiar anaeróbio, o ponto em que o corpo começa a produzir mais ácido lático do que consegue remover. Conhecer esse limiar é fundamental para prescrição de treinamento de alta performance.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Retorno ao trabalho</h4>
+                    <p><span class="exam-badge">Sim</span> Após um período de recuperação, o paciente pode retomar suas atividades diárias normalmente.</p>
+                  </div>
+                </section>
+
+                <!-- SCORE DE CÁLCIO -->
+                <section class="exam-panel d-none" data-panel="score-calcio">
+                  <h3 class="mb-4">Score de Cálcio Coronariano</h3>
+                  
+                  <div class="exam-section">
+                    <h4>O que é</h4>
+                    <p>O score de cálcio coronariano é um exame de tomografia computadorizada que detecta e quantifica a presença de placas de cálcio nas artérias coronárias. A presença de cálcio é um marcador de aterosclerose.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Indicações</h4>
+                    <p>Indicado para estratificação de risco cardiovascular em pacientes assintomáticos de risco intermediário, especialmente aqueles com hipertensão, colesterol alto, histórico familiar, diabetes ou tabagismo.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Contraindicações</h4>
+                    <p>Não é recomendado para pacientes já diagnosticados com doença coronariana, nem para gestantes. Também não é indicado de rotina para pessoas muito jovens e de baixo risco.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Como é realizado</h4>
+                    <p>O paciente deita-se em uma maca que desliza para dentro de um tomógrafo. Eletrodos de ECG são colocados para sincronizar as imagens com os batimentos cardíacos. O paciente segura a respiração por alguns segundos enquanto as imagens são adquiridas. O exame é muito rápido, durando menos de 10 minutos.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Preparo</h4>
+                    <ul>
+                      <li>Evitar cafeína e fumo por pelo menos 4 horas antes</li>
+                      <li>Usar roupas confortáveis sem partes metálicas</li>
+                    </ul>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Jejum</h4>
+                    <p><span class="exam-badge">Não necessário</span> Não é necessário jejum para o score de cálcio.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Medicações que podem interferir</h4>
+                    <p>Nenhuma medicação precisa ser suspensa. Se a frequência cardíaca estiver muito alta, o médico pode administrar um beta-bloqueador de curta ação.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Mito vs Verdade</h4>
+                    <p><strong>Mito:</strong> Um score de cálcio zero significa que não há risco de infarto.<br>
+                    <strong>Verdade:</strong> Um score zero indica muito baixo risco nos próximos 5-10 anos, mas não exclui a presença de placas moles não calcificadas que também podem se romper.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Curiosidade</h4>
+                    <p>O resultado é dado pelo Score de Agatston. Um score de 0 é ideal. De 1 a 100 é risco leve; de 101 a 400 é moderado; e acima de 400 é alto. O percentil para idade e sexo também é importante.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Retorno ao trabalho</h4>
+                    <p><span class="exam-badge">Sim</span> O exame não tem efeitos colaterais e o paciente pode retomar suas atividades normais imediatamente.</p>
+                  </div>
+                </section>
+
+                <!-- ANGIOTOMOGRAFIA CORONARIANA -->
+                <section class="exam-panel d-none" data-panel="angiotc">
+                  <h3 class="mb-4">Angiotomografia Coronariana</h3>
+                  
+                  <div class="exam-section">
+                    <h4>O que é</h4>
+                    <p>A angiotomografia coronariana é um exame de imagem não invasivo que utiliza tomografia computadorizada com contraste iodado para visualizar as artérias coronárias em detalhe, permitindo identificar placas de gordura e o grau de obstrução.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Indicações</h4>
+                    <p>Indicada principalmente para pacientes com suspeita de doença arterial coronariana, especialmente aqueles com sintomas atípicos e testes de esforço inconclusivos. Também é usada para avaliar a anatomia das coronárias antes de procedimentos e para verificar a perviedade de stents ou pontes.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Contraindicações</h4>
+                    <p>Alergia grave ao iodo, insuficiência renal significativa, gestantes e frequência cardíaca muito alta ou irregular são contraindicações relativas.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Como é realizado</h4>
+                    <p>O paciente deita-se na maca do tomógrafo com eletrodos de ECG conectados. Um acesso venoso é obtido para injeção do contraste. Durante o exame, o contraste é injetado enquanto o paciente segura a respiração por alguns segundos. O exame dura cerca de 15 a 20 minutos.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Preparo</h4>
+                    <ul>
+                      <li>Jejum de 4 horas</li>
+                      <li>Evitar cafeína, fumo e chocolate por 24 horas</li>
+                      <li>Manter boa hidratação</li>
+                      <li>Informar sobre todos os medicamentos</li>
+                    </ul>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Jejum</h4>
+                    <p><span class="exam-badge">Necessário</span> Jejum de 4 horas para evitar náuseas e vômitos.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Medicações que podem interferir</h4>
+                    <p>Metformina pode precisar ser suspensa após o exame. Sildenafila e medicamentos similares devem ser suspensos conforme orientação. Beta-bloqueadores podem ser administrados para controlar a frequência cardíaca.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Mito vs Verdade</h4>
+                    <p><strong>Mito:</strong> Angiotomografia é a mesma coisa que cateterismo.<br>
+                    <strong>Verdade:</strong> A angiotomografia é não invasiva. O cateterismo é invasivo, com um tubo inserido através de uma artéria. Enquanto a angiotomografia é primariamente diagnóstica, o cateterismo permite tratamento imediato.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Curiosidade</h4>
+                    <p>Com os tomógrafos modernos de múltiplos detectores (64 canais ou mais), é possível adquirir uma imagem completa do coração em menos de 5 segundos, equivalente a cerca de 5 batimentos cardíacos.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Retorno ao trabalho</h4>
+                    <p><span class="exam-badge">Sim</span> Após o exame, o paciente é liberado. Recomenda-se beber bastante líquido para facilitar a eliminação do contraste. Não há restrições para o trabalho no dia seguinte.</p>
+                  </div>
+                </section>
+
+                <!-- CINTILOGRAFIA MIOCÁRDICA -->
+                <section class="exam-panel d-none" data-panel="cintilografia">
+                  <h3 class="mb-4">Cintilografia Miocárdica</h3>
+                  
+                  <div class="exam-section">
+                    <h4>O que é</h4>
+                    <p>A cintilografia de perfusão miocárdica é um exame de medicina nuclear que avalia o fluxo de sangue (perfusão) para o músculo do coração, sendo excelente para detectar isquemia miocárdica.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Indicações</h4>
+                    <p>Indicada para diagnóstico de doença arterial coronariana em pacientes com suspeita de angina, para determinar a extensão e gravidade da isquemia, para verificar a eficácia de tratamentos e para avaliar a viabilidade do músculo cardíaco após infarto.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Contraindicações</h4>
+                    <p>A principal contraindicação é a gravidez. Pacientes com incapacidade de realizar estresse físico ou farmacológico também apresentam limitações.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Como é realizado</h4>
+                    <p>O exame é realizado em duas etapas: repouso e estresse. Na etapa de repouso, injeta-se um radiofármaco e após 30-60 minutos são adquiridas imagens. Na etapa de estresse, o paciente se exercita em uma esteira ou recebe medicamentos que simulam o efeito do exercício, seguido de nova injeção e imagens. O procedimento total leva de 3 a 5 horas.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Preparo</h4>
+                    <ul>
+                      <li>Jejum de 2 a 4 horas</li>
+                      <li>Suspender cafeína por 24 a 48 horas antes</li>
+                      <li>Usar roupas confortáveis para exercício</li>
+                      <li>Informar todos os medicamentos</li>
+                    </ul>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Jejum</h4>
+                    <p><span class="exam-badge">Necessário</span> Jejum de 2 a 4 horas.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Medicações que podem interferir</h4>
+                    <p>Beta-bloqueadores e alguns bloqueadores de canal de cálcio podem precisar ser suspensos para que o coração atinja a frequência alvo durante o esforço.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Mito vs Verdade</h4>
+                    <p><strong>Mito:</strong> O material radioativo é perigoso e causa câncer.<br>
+                    <strong>Verdade:</strong> A quantidade de radiação é muito pequena e segura, comparável à de outros exames. O radiofármaco é eliminado do corpo em poucas horas, principalmente pela urina.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Curiosidade</h4>
+                    <p>Após a injeção do radiofármaco, é comum pedir ao paciente para ingerir um alimento gorduroso. Isso ajuda a vesícula biliar a se contrair e eliminar o traçador que se acumula no fígado, melhorando a qualidade das imagens cardíacas.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Retorno ao trabalho</h4>
+                    <p><span class="exam-badge">Sim</span> Embora o exame seja longo, o paciente pode voltar às atividades normais no dia seguinte.</p>
+                  </div>
+                </section>
+
+                <!-- PET MIOCÁRDICO -->
+                <section class="exam-panel d-none" data-panel="pet">
+                  <h3 class="mb-4">PET Miocárdico</h3>
+                  
+                  <div class="exam-section">
+                    <h4>O que é</h4>
+                    <p>O PET miocárdico é um exame de imagem de alta complexidade que avalia o metabolismo do músculo cardíaco. Dependendo do radiofármaco utilizado, pode fornecer informações sobre fluxo sanguíneo ou consumo de glicose.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Indicações</h4>
+                    <p>Indicado para avaliar viabilidade miocárdica em pacientes que sofreram infarto, para investigação de doenças inflamatórias do coração como sarcoidose e miocardite, e para avaliação de perfusão miocárdica com alta acurácia.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Contraindicações</h4>
+                    <p>Gravidez é contraindicação absoluta. Diabetes descontrolado pode dificultar a realização do exame de viabilidade. Claustrofobia severa pode ser um impeditivo.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Como é realizado</h4>
+                    <p>O paciente deita-se na mesa de um aparelho PET/CT. Um acesso venoso é obtido para injeção do radiofármaco. Após um período de captação (que varia conforme o traçador), as imagens são adquiridas. O exame dura de 20 a 30 minutos.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Preparo</h4>
+                    <ul>
+                      <li>Jejum de 4 a 6 horas (para perfusão) ou 6 a 12 horas (para viabilidade)</li>
+                      <li>Suspender cafeína por 24 horas</li>
+                      <li>Dieta especial pode ser necessária para viabilidade</li>
+                    </ul>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Jejum</h4>
+                    <p><span class="exam-badge">Necessário</span> Jejum de 4 a 12 horas, dependendo do tipo de estudo.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Medicações que podem interferir</h4>
+                    <p>Medicamentos para diabetes como insulina e metformina podem precisar ser ajustados conforme protocolo específico.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Mito vs Verdade</h4>
+                    <p><strong>Mito:</strong> PET é um exame usado apenas para detectar câncer.<br>
+                    <strong>Verdade:</strong> PET é uma ferramenta versátil. Na cardiologia, é fundamental para avaliar saúde e metabolismo das células do coração.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Curiosidade</h4>
+                    <p>Os radiofármacos usados no PET têm meia-vida muito curta. O Flúor-18 tem meia-vida de 110 minutos, enquanto o Rubídio-82 tem apenas 76 segundos, exigindo logística complexa com produção próxima ao local do exame.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Retorno ao trabalho</h4>
+                    <p><span class="exam-badge">Sim</span> O exame não tem efeitos colaterais que impeçam o retorno às atividades normais no dia seguinte.</p>
+                  </div>
+                </section>
+
+                <!-- RESSONÂNCIA MAGNÉTICA CARDÍACA -->
+                <section class="exam-panel d-none" data-panel="rmc">
+                  <h3 class="mb-4">Ressonância Magnética Cardíaca</h3>
+                  
+                  <div class="exam-section">
+                    <h4>O que é</h4>
+                    <p>A ressonância magnética cardíaca é um exame de imagem de alta tecnologia que não utiliza radiação ionizante. Fornece imagens detalhadas da estrutura e função do coração, sendo o padrão-ouro para avaliação de cardiomiopatias.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Indicações</h4>
+                    <p>Indicada para diagnóstico de cardiomiopatias, investigação de miocardite, quantificação de fibrose miocárdica, avaliação de doenças do pericárdio, detecção de massas cardíacas e quantificação de sobrecarga de ferro.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Contraindicações</h4>
+                    <p>Contraindicações absolutas incluem dispositivos eletrônicos implantáveis não compatíveis, implantes cocleares e alguns clipes de aneurisma metálicos. Claustrofobia severa pode impedir a realização.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Como é realizado</h4>
+                    <p>O paciente deita-se em uma mesa que desliza para dentro de um tubo magnético. Eletrodos de ECG sincronizam as imagens com o ciclo cardíaco. O paciente recebe instruções sobre respiração. Um acesso venoso é puncionado para injeção de contraste. O exame dura de 45 a 90 minutos.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Preparo</h4>
+                    <ul>
+                      <li>Jejum de 4 a 6 horas</li>
+                      <li>Retirar todos os objetos metálicos</li>
+                      <li>Informar sobre qualquer implante metálico ou dispositivo</li>
+                    </ul>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Jejum</h4>
+                    <p><span class="exam-badge">Necessário</span> Jejum de 4 a 6 horas, principalmente para evitar desconforto durante o exame longo.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Medicações que podem interferir</h4>
+                    <p>Em geral, não é necessário suspender medicações. Para ressonância com estresse, a suspensão de alguns medicamentos é necessária.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Mito vs Verdade</h4>
+                    <p><strong>Mito:</strong> A ressonância magnética "puxa" o ferro do sangue e faz mal.<br>
+                    <strong>Verdade:</strong> O campo magnético não tem efeito sobre o ferro que circula no sangue ligado à hemoglobina. O exame não afeta a circulação sanguínea.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Curiosidade</h4>
+                    <p>Para obter imagens do coração em movimento, a RMC utiliza técnicas complexas de sincronização com o eletrocardiograma. O aparelho adquire pequenos segmentos de imagem ao longo de vários batimentos e depois os junta como um quebra-cabeça.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Retorno ao trabalho</h4>
+                    <p><span class="exam-badge">Sim</span> O exame não tem efeitos colaterais e o paciente pode retomar suas atividades normais imediatamente.</p>
+                  </div>
+                </section>
+
+                <!-- RESSONÂNCIA COM STRESS -->
+                <section class="exam-panel d-none" data-panel="rmc-stress">
+                  <h3 class="mb-4">Ressonância Magnética Cardíaca com Estresse</h3>
+                  
+                  <div class="exam-section">
+                    <h4>O que é</h4>
+                    <p>A ressonância magnética cardíaca com estresse combina as imagens de alta resolução da RMC com um desafio farmacológico (dobutamina ou adenosina), permitindo avaliar a presença de isquemia miocárdica sem radiação.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Indicações</h4>
+                    <p>Indicada para investigação de doença arterial coronariana em pacientes com suspeita de angina ou testes de esforço duvidosos. É uma excelente alternativa à cintilografia, especialmente em pacientes jovens e mulheres.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Contraindicações</h4>
+                    <p>As mesmas da RMC convencional, mais contraindicações específicas ao agente de estresse: arritmias graves, hipertensão descontrolada (para dobutamina), asma grave ou bloqueios cardíacos avançados (para vasodilatadores).</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Como é realizado</h4>
+                    <p>Começa com aquisição de imagens em repouso. Em seguida, inicia-se a infusão de medicamento que simula os efeitos do exercício. Novas imagens são adquiridas durante a infusão para observar como o coração se comporta sob estresse.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Preparo</h4>
+                    <ul>
+                      <li>Jejum de 4 a 6 horas</li>
+                      <li>Suspender cafeína por 24 horas</li>
+                      <li>Suspender beta-bloqueadores por 24 a 48 horas conforme orientação</li>
+                    </ul>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Jejum</h4>
+                    <p><span class="exam-badge">Necessário</span> Jejum de 4 a 6 horas.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Medicações que podem interferir</h4>
+                    <p>Cafeína e beta-bloqueadores são os principais interferentes. A suspensão deve ser orientada pelo médico solicitante.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Mito vs Verdade</h4>
+                    <p><strong>Mito:</strong> O estresse com remédio é mais perigoso que o estresse na esteira.<br>
+                    <strong>Verdade:</strong> O estresse farmacológico é muito seguro em ambiente controlado. Os medicamentos têm meia-vida curta com antídotos disponíveis para reverter os efeitos imediatamente.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Curiosidade</h4>
+                    <p>A RMC com estresse de perfusão permite análise quantitativa do fluxo de sangue em mililitros por grama de músculo por minuto, fornecendo um dado objetivo e preciso da gravidade da isquemia.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Retorno ao trabalho</h4>
+                    <p><span class="exam-badge">Sim</span> Após um curto período em observação, o paciente é liberado e pode retomar suas atividades normais no dia seguinte.</p>
+                  </div>
+                </section>
+
+                <!-- ECOCARDIOGRAMA -->
+                <section class="exam-panel d-none" data-panel="ecocardiograma">
+                  <h3 class="mb-4">Ecocardiograma</h3>
+                  
+                  <div class="exam-section">
+                    <h4>O que é</h4>
+                    <p>O ecocardiograma é um ultrassom do coração que utiliza ondas sonoras de alta frequência para criar imagens em tempo real. É um dos exames mais utilizados na cardiologia, não invasivo, indolor e sem radiação.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Indicações</h4>
+                    <p>Indicado para avaliação de sintomas como falta de ar, dor no peito e palpitações. Fundamental para diagnosticar insuficiência cardíaca, valvulopatias, cardiomiopatias, investigar sopros cardíacos e procurar por coágulos ou tumores.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Contraindicações</h4>
+                    <p>Não há contraindicações absolutas. A principal limitação é a qualidade da imagem em pacientes obesos ou com doença pulmonar obstrutiva crônica.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Como é realizado</h4>
+                    <p>O paciente deita-se com o tórax descoberto, geralmente virado para o lado esquerdo. O médico aplica gel na pele e desliza um transdutor sobre a área. O transdutor emite e capta ondas sonoras que são processadas para gerar imagens. O exame dura de 20 a 30 minutos.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Preparo</h4>
+                    <p>Para o ecocardiograma transtorácico de rotina, não é necessário nenhum preparo especial. O paciente pode comer e tomar seus medicamentos normalmente.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Jejum</h4>
+                    <p><span class="exam-badge">Não necessário</span> Não é necessário jejum para o ecocardiograma transtorácico convencional.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Medicações que podem interferir</h4>
+                    <p>Nenhuma medicação interfere diretamente na qualidade das imagens. O paciente deve tomar todos os seus remédios habituais.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Mito vs Verdade</h4>
+                    <p><strong>Mito:</strong> O ecocardiograma consegue ver as artérias coronárias e diagnosticar entupimentos.<br>
+                    <strong>Verdade:</strong> O ecocardiograma padrão não visualiza as coronárias em detalhe. Ele mostra as consequências de um entupimento, como uma área do coração que não está contraindo bem.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Curiosidade</h4>
+                    <p>O efeito Doppler, o mesmo que faz o som de uma ambulância parecer mais agudo quando se aproxima, é essencial no ecocardiograma. As cores na tela (vermelho e azul) representam sangue se aproximando ou se afastando do transdutor.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Retorno ao trabalho</h4>
+                    <p><span class="exam-badge">Sim</span> O exame não tem efeitos colaterais e o paciente pode retornar às suas atividades normais imediatamente.</p>
+                  </div>
+                </section>
+
+                <!-- ECOCARDIOGRAMA COM STRESS -->
+                <section class="exam-panel d-none" data-panel="eco-stress">
+                  <h3 class="mb-4">Ecocardiograma com Estresse</h3>
+                  
+                  <div class="exam-section">
+                    <h4>O que é</h4>
+                    <p>O ecocardiograma com estresse combina um ecocardiograma convencional com um estresse farmacológico (dobutamina) ou físico, avaliando como o coração se comporta sob esforço.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Indicações</h4>
+                    <p>Indicado para diagnóstico de doença arterial coronariana em pacientes que não podem realizar exercício físico ou que têm ECG de repouso alterado. Também é usado para avaliar gravidade de valvulopatias e pesquisar viabilidade miocárdica.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Contraindicações</h4>
+                    <p>Infarto agudo recente, angina instável, arritmias não controladas, estenose aórtica grave e hipertensão não controlada são contraindicações. Pacientes com má qualidade de imagem no repouso também não são bons candidatos.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Como é realizado</h4>
+                    <p>Primeiro realiza-se um ecocardiograma completo em repouso. Em seguida, inicia-se a infusão de dobutamina em doses crescentes. O médico adquire imagens em cada estágio do estresse. O exame é interrompido quando o paciente atinge a frequência cardíaca alvo ou apresenta alterações significativas.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Preparo</h4>
+                    <ul>
+                      <li>Jejum de 4 horas</li>
+                      <li>Suspender beta-bloqueadores por 24 a 48 horas conforme orientação</li>
+                      <li>Evitar cafeína por 24 horas</li>
+                      <li>Usar roupas confortáveis</li>
+                    </ul>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Jejum</h4>
+                    <p><span class="exam-badge">Necessário</span> Jejum de 4 horas para minimizar risco de náuseas.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Medicações que podem interferir</h4>
+                    <p>Beta-bloqueadores são a principal classe de medicamentos que interfere e devem ser suspensos. Outros medicamentos que reduzem a frequência cardíaca também podem atrapalhar.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Mito vs Verdade</h4>
+                    <p><strong>Mito:</strong> O remédio usado para estressar o coração é perigoso.<br>
+                    <strong>Verdade:</strong> A dobutamina é um medicamento seguro usado há décadas. Seus efeitos desaparecem poucos minutos após a infusão ser interrompida.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Curiosidade</h4>
+                    <p>Uma alteração na contração durante o estresse é sinal de isquemia. O coração é dividido em 17 segmentos, cada um irrigado por uma artéria coronária específica, permitindo identificar qual artéria está obstruída.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Retorno ao trabalho</h4>
+                    <p><span class="exam-badge">Sim</span> Após um período de observação, o paciente é liberado e pode retomar suas atividades normais no dia seguinte.</p>
+                  </div>
                 </section>
 
                 <!-- HOLTER -->
                 <section class="exam-panel d-none" data-panel="holter">
-                  <h3 class="mb-3">Holter 24h</h3>
-                  <p>Monitora o ritmo do coração continuamente por 24 horas (ou mais)...</p>
+                  <h3 class="mb-4">Holter 24 horas</h3>
+                  
+                  <div class="exam-section">
+                    <h4>O que é</h4>
+                    <p>O Holter é um eletrocardiograma contínuo e portátil realizado por 24 horas ou mais. Permite registrar a atividade elétrica do coração durante as atividades diárias normais, incluindo durante o sono.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Indicações</h4>
+                    <p>Indicado para investigar sintomas causados por arritmias como palpitações, tonturas e síncopes. Também é usado para quantificar arritmias conhecidas, avaliar eficácia de tratamentos antiarrítmicos e detectar arritmias silenciosas em pacientes de alto risco.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Contraindicações</h4>
+                    <p>Não há contraindicações para a realização do Holter. A única limitação é a necessidade de o paciente conseguir carregar o pequeno gravador.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Como é realizado</h4>
+                    <p>Eletrodos adesivos são fixados no tórax e conectados a um pequeno gravador do tamanho de um smartphone, preso à cintura. O paciente segue sua rotina normal e preenche um diário anotando atividades e sintomas. Após 24 horas, o equipamento é retirado e os dados são analisados.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Preparo</h4>
+                    <ul>
+                      <li>Tomar banho antes de instalar o aparelho</li>
+                      <li>Não usar cremes, óleos ou talco no tórax</li>
+                      <li>Usar roupas confortáveis de duas peças</li>
+                    </ul>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Jejum</h4>
+                    <p><span class="exam-badge">Não necessário</span> Não é necessário jejum para o Holter.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Medicações que podem interferir</h4>
+                    <p>O paciente deve tomar seus medicamentos habituais. O objetivo é avaliar o comportamento do coração no dia a dia, incluindo o efeito dos remédios.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Mito vs Verdade</h4>
+                    <p><strong>Mito:</strong> Não se pode usar celular ou micro-ondas durante o Holter.<br>
+                    <strong>Verdade:</strong> Os gravadores modernos são bem protegidos contra interferências. O uso de aparelhos eletrônicos domésticos é seguro.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Curiosidade</h4>
+                    <p>O nome "Holter" é uma homenagem ao seu inventor, o biofísico americano Norman J. Holter. Seus primeiros protótipos na década de 1950 pesavam mais de 35 quilos! A miniaturização permitiu aparelhos de hoje com menos de 100 gramas.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Retorno ao trabalho</h4>
+                    <p><span class="exam-badge">Sim</span> O paciente não só pode como deve trabalhar e realizar suas atividades rotineiras durante o exame. O objetivo é justamente registrar a atividade em um dia normal.</p>
+                  </div>
                 </section>
 
                 <!-- MAPA -->
                 <section class="exam-panel d-none" data-panel="mapa">
-                  <h3 class="mb-3">MAPA 24h</h3>
-                  <p>Mede a pressão arterial automaticamente ao longo do dia e da noite...</p>
+                  <h3 class="mb-4">MAPA (Monitorização Ambulatorial da Pressão Arterial)</h3>
+                  
+                  <div class="exam-section">
+                    <h4>O que é</h4>
+                    <p>O MAPA mede a pressão arterial de forma automática e repetida durante 24 horas, enquanto o paciente realiza suas atividades normais. Fornece um perfil completo do comportamento da pressão arterial.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Indicações</h4>
+                    <p>Indicado para suspeita de "hipertensão do avental branco" (pressão alta apenas no consultório), suspeita de "hipertensão mascarada" (pressão normal no consultório, mas alta fora dele), avaliação da eficácia do tratamento anti-hipertensivo e avaliação de sintomas relacionados a quedas de pressão.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Contraindicações</h4>
+                    <p>Não há contraindicações absolutas. O exame pode ser desconfortável para alguns pacientes, e aqueles com arritmias muito frequentes podem ter leituras imprecisas.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Como é realizado</h4>
+                    <p>Um manguito é colocado no braço não dominante e conectado a um pequeno gravador preso à cintura. O aparelho é programado para medir a pressão em intervalos regulares (a cada 20 minutos durante o dia e 30-60 minutos durante a noite). O paciente preenche um diário com suas atividades.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Preparo</h4>
+                    <ul>
+                      <li>Tomar banho antes de instalar</li>
+                      <li>Usar roupas confortáveis com mangas largas</li>
+                      <li>Manter as atividades diárias habituais</li>
+                    </ul>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Jejum</h4>
+                    <p><span class="exam-badge">Não necessário</span> Não é necessário jejum para o MAPA.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Medicações que podem interferir</h4>
+                    <p>O paciente deve tomar seus medicamentos normalmente, especialmente os anti-hipertensivos, pois um dos objetivos é avaliar a eficácia do tratamento.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Mito vs Verdade</h4>
+                    <p><strong>Mito:</strong> Durante o MAPA, não se pode mexer o braço em que está o manguito.<br>
+                    <strong>Verdade:</strong> O paciente deve manter o braço relaxado durante as medições, mas entre uma medição e outra, pode movimentar normalmente.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Curiosidade</h4>
+                    <p>Um dado importante é o "descenso noturno". Normalmente, a pressão deve cair de 10% a 20% durante o sono. A ausência desse descenso está associada a maior risco de lesões em órgãos-alvo e pior prognóstico.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Retorno ao trabalho</h4>
+                    <p><span class="exam-badge">Sim</span> O paciente deve manter sua rotina de trabalho e atividades durante o exame para que o resultado reflita seu dia a dia real.</p>
+                  </div>
                 </section>
 
-                <!-- ECO -->
-                <section class="exam-panel d-none" data-panel="eco">
-                  <h3 class="mb-3">Ecocardiograma</h3>
-                  <p>É um ultrassom do coração...</p>
+                <!-- POLISSONOGRAFIA -->
+                <section class="exam-panel d-none" data-panel="polissonografia">
+                  <h3 class="mb-4">Polissonografia</h3>
+                  
+                  <div class="exam-section">
+                    <h4>O que é</h4>
+                    <p>A polissonografia é o exame padrão-ouro para diagnóstico de distúrbios do sono. Registra múltiplas variáveis fisiológicas durante o sono para diagnosticar condições como apneia obstrutiva do sono.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Indicações</h4>
+                    <p>Indicada para suspeita de Síndrome da Apneia Obstrutiva do Sono em pacientes que roncam, têm pausas respiratórias, sonolência diurna excessiva e dor de cabeça matinal. Também para diagnóstico de narcolepsia e outros distúrbios do sono.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Contraindicações</h4>
+                    <p>Não há contraindicações absolutas. O exame pode ser mais difícil em pacientes com demência ou agitação que não permitam que os sensores permaneçam no lugar.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Como é realizado</h4>
+                    <p>O paciente passa uma noite dormindo em um laboratório do sono ou em casa, enquanto é monitorado por múltiplos sensores que registram atividade cerebral, movimento dos olhos, tônus muscular, ritmo cardíaco, fluxo aéreo, esforço respiratório, saturação de oxigênio e ronco.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Preparo</h4>
+                    <ul>
+                      <li>Evitar bebidas alcoólicas e com cafeína no dia do exame</li>
+                      <li>Evitar cochilos durante o dia</li>
+                      <li>Lavar a cabeça com shampoo neutro</li>
+                      <li>Não usar condicionador, gel ou creme</li>
+                      <li>Homens podem precisar se barbear</li>
+                    </ul>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Jejum</h4>
+                    <p><span class="exam-badge">Não necessário</span> Não é necessário jejum. O paciente pode se alimentar normalmente.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Medicações que podem interferir</h4>
+                    <p>Medicamentos sedativos ou hipnóticos podem alterar a arquitetura do sono. A decisão sobre suspender ou manter é individualizada.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Mito vs Verdade</h4>
+                    <p><strong>Mito:</strong> É impossível dormir com tantos fios e sensores colados no corpo.<br>
+                    <strong>Verdade:</strong> Embora pareça desconfortável, a maioria dos pacientes consegue dormir o suficiente para que o exame seja diagnóstico. Os técnicos são experientes em posicionar os fios para minimizar incômodo.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Curiosidade</h4>
+                    <p>Durante o sono REM (quando sonhamos), ocorre uma paralisia temporária da maioria dos músculos do corpo. A polissonografia consegue identificar essa fase através da combinação de cérebro ativo, movimentos rápidos dos olhos e queixo "silencioso".</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Retorno ao trabalho</h4>
+                    <p><span class="exam-badge">Sim</span> Após o exame, os sensores são retirados e o paciente pode tomar um banho e seguir para suas atividades normais, incluindo o trabalho.</p>
+                  </div>
                 </section>
 
-                <!-- TESTE ERGOMÉTRICO -->
-                <section class="exam-panel d-none" data-panel="teste">
-                  <h3 class="mb-3">Teste ergométrico</h3>
-                  <p>Avalia resposta do coração ao esforço...</p>
+                <!-- ANGIOGRAFIA CORONÁRIA -->
+                <section class="exam-panel d-none" data-panel="angiografia">
+                  <h3 class="mb-4">Angiografia Coronária</h3>
+                  
+                  <div class="exam-section">
+                    <h4>O que é</h4>
+                    <p>A angiografia coronária, também conhecida como cateterismo cardíaco, é um procedimento invasivo considerado o "padrão-ouro" para diagnosticar a doença arterial coronariana. Funciona como um mapa detalhado das artérias do coração.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Indicações</h4>
+                    <p>Indicada para confirmar suspeita de doença arterial coronariana em pacientes com sintomas significativos. Também é realizada de forma emergencial durante infarto agudo para identificar a artéria culpada e realizar tratamento imediato.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Contraindicações</h4>
+                    <p>Não existem contraindicações absolutas, especialmente em situações de emergência. Contraindicações relativas incluem insuficiência renal grave, alergia grave ao contraste e distúrbios de coagulação não controlados.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Como é realizado</h4>
+                    <p>Após anestesia local, um pequeno tubo (introdutor) é inserido em uma artéria, geralmente a radial (no pulso) ou femoral (na virilha). Um cateter é avançado até as artérias coronárias. O médico injeta contraste enquanto imagens de raios-X são capturadas. O procedimento dura de 30 a 60 minutos.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Preparo</h4>
+                    <ul>
+                      <li>Jejum de 4 a 8 horas</li>
+                      <li>Informar sobre todos os medicamentos</li>
+                      <li>Relatar histórico de alergia a iodo</li>
+                      <li>Exames de sangue podem ser solicitados</li>
+                    </ul>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Jejum</h4>
+                    <p><span class="exam-badge">Necessário</span> Jejum de 4 a 8 horas.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Medicações que podem interferir</h4>
+                    <p>Anticoagulantes podem precisar ser suspensos. Metformina geralmente é suspensa no dia do exame e por 48h após.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Mito vs Verdade</h4>
+                    <p><strong>Mito:</strong> Cateterismo é uma cirurgia de coração aberto.<br>
+                    <strong>Verdade:</strong> É um procedimento minimamente invasivo realizado através de uma pequena punção em uma artéria, com recuperação muito mais rápida que cirurgia cardíaca.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Curiosidade</h4>
+                    <p>A abordagem pela artéria radial (no pulso) tornou-se preferida em muitos centros, permitindo que o paciente caminhe poucas horas após o procedimento, ao contrário da abordagem femoral que exige repouso deitado.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Retorno ao trabalho</h4>
+                    <p><span class="exam-badge">Não</span> Recomenda-se repouso relativo por 24 a 48 horas. O retorno ao trabalho depende do tipo de atividade exercida.</p>
+                  </div>
                 </section>
 
-                <!-- ANGIO TC -->
-                <section class="exam-panel d-none" data-panel="angiotc">
-                  <h3 class="mb-3">AngioTC de coronárias</h3>
-                  <p>Tomografia com contraste que avalia anatomia das coronárias...</p>
+                <!-- CATETERISMO DIREITO -->
+                <section class="exam-panel d-none" data-panel="cateterismo-direito">
+                  <h3 class="mb-4">Cateterismo Cardíaco Direito</h3>
+                  
+                  <div class="exam-section">
+                    <h4>O que é</h4>
+                    <p>O cateterismo cardíaco direito mede as pressões dentro das câmaras direitas do coração e na artéria pulmonar. Fornece informações hemodinâmicas cruciais que não podem ser obtidas por exames não invasivos.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Indicações</h4>
+                    <p>A principal indicação é o diagnóstico e manejo da hipertensão pulmonar. Também é utilizado em pacientes com insuficiência cardíaca grave ou choque circulatório para otimizar medicamentos, e na avaliação de doenças cardíacas congênitas.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Contraindicações</h4>
+                    <p>As contraindicações são relativas e incluem infecção no local de acesso, distúrbios de coagulação graves e presença de trombo dentro do coração.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Como é realizado</h4>
+                    <p>Um introdutor é inserido em uma veia de grande calibre, geralmente a jugular interna (no pescoço). Um cateter especial com balão na ponta é inserido e avançado até a artéria pulmonar. O médico monitora as curvas de pressão em tempo real. O procedimento dura de 30 a 60 minutos.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Preparo</h4>
+                    <ul>
+                      <li>Jejum de 4 a 6 horas</li>
+                      <li>Informar sobre medicamentos em uso</li>
+                      <li>Exames de sangue podem ser solicitados</li>
+                    </ul>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Jejum</h4>
+                    <p><span class="exam-badge">Necessário</span> Jejum de 4 a 6 horas.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Medicações que podem interferir</h4>
+                    <p>Anticoagulantes podem aumentar o risco de sangramento e podem ser suspensos a critério médico.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Mito vs Verdade</h4>
+                    <p><strong>Mito:</strong> O cateterismo direito é tão arriscado quanto o esquerdo.<br>
+                    <strong>Verdade:</strong> O cateterismo direito é geralmente de menor risco. Como usa o sistema venoso e não envolve contraste iodado, os riscos de sangramento grave e reações alérgicas são significativamente menores.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Curiosidade</h4>
+                    <p>A "pressão de oclusão da artéria pulmonar" é uma medida importante que reflete a pressão do lado esquerdo do coração, ajudando a diferenciar causas de hipertensão pulmonar.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Retorno ao trabalho</h4>
+                    <p><span class="exam-badge">Depende</span> Se foi um procedimento ambulatorial, o paciente geralmente pode retornar às atividades leves no dia seguinte.</p>
+                  </div>
                 </section>
 
-                <!-- CATETERISMO -->
-                <section class="exam-panel d-none" data-panel="cated">
-                  <h3 class="mb-3">Cateterismo (coronariografia)</h3>
-                  <p>Exame invasivo com contraste para avaliação direta das artérias coronárias...</p>
+                <!-- BIÓPSIA ENDOMIOCÁRDICA -->
+                <section class="exam-panel d-none" data-panel="biopsia">
+                  <h3 class="mb-4">Biópsia Endomiocárdica</h3>
+                  
+                  <div class="exam-section">
+                    <h4>O que é</h4>
+                    <p>A biópsia endomiocárdica é um procedimento invasivo no qual pequenos fragmentos do músculo do coração são removidos para análise microscópica. É o único exame que permite diagnóstico definitivo de certas doenças cardíacas.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Indicações</h4>
+                    <p>A indicação mais comum é o monitoramento de rejeição celular em pacientes transplantados. Outras indicações incluem suspeita de doenças infiltrativas, miocardites e investigação de insuficiência cardíaca de início rápido não esclarecida.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Contraindicações</h4>
+                    <p>As contraindicações são relativas e incluem distúrbios de coagulação graves, infecção ativa e presença de trombos dentro do coração.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Como é realizado</h4>
+                    <p>Semelhante ao cateterismo direito, um cateter especial chamado "biótomo" é avançado até o ventrículo direito. O biótomo tem pequenas pinças na ponta que removem de 3 a 5 pequenos fragmentos de tecido. O material é enviado para análise patológica.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Preparo</h4>
+                    <ul>
+                      <li>Jejum de 4 a 6 horas</li>
+                      <li>Informar sobre medicamentos em uso</li>
+                      <li>Exames de sangue pré-procedimento</li>
+                    </ul>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Jejum</h4>
+                    <p><span class="exam-badge">Necessário</span> Jejum de 4 a 6 horas.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Medicações que podem interferir</h4>
+                    <p>Anticoagulantes podem precisar ser suspensos para diminuir o risco de sangramento.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Mito vs Verdade</h4>
+                    <p><strong>Mito:</strong> Tirar um pedaço do coração vai deixar um buraco e enfraquecer o músculo.<br>
+                    <strong>Verdade:</strong> Os fragmentos retirados são minúsculos (1 a 3 milímetros cada). A remoção não causa dano significativo à estrutura ou função do coração.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Curiosidade</h4>
+                    <p>A biópsia endomiocárdica foi desenvolvida no Japão na década de 1960. Tornou-se essencial após a popularização do transplante cardíaco na década de 1980 para diagnóstico de rejeição.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Retorno ao trabalho</h4>
+                    <p><span class="exam-badge">Depende</span> Recomenda-se repouso no dia do exame. O retorno às atividades normais costuma ser possível no dia seguinte, desde que não haja complicações.</p>
+                  </div>
+                </section>
+
+                <!-- ARTERIOGRAFIA PULMONAR -->
+                <section class="exam-panel d-none" data-panel="arteriografia">
+                  <h3 class="mb-4">Arteriografia Pulmonar</h3>
+                  
+                  <div class="exam-section">
+                    <h4>O que é</h4>
+                    <p>A arteriografia pulmonar é um exame de imagem invasivo que injeta contraste diretamente na artéria pulmonar para visualizar o fluxo sanguíneo e identificar obstruções. Historicamente foi o padrão-ouro para diagnóstico de embolia pulmonar.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Indicações</h4>
+                    <p>Atualmente indicada quando há alta suspeita clínica de embolia pulmonar, mas exames não invasivos foram inconclusivos. Sua grande vantagem é a possibilidade de realizar tratamento no mesmo procedimento, como trombólise ou trombectomia.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Contraindicações</h4>
+                    <p>Alergia grave ao contraste, insuficiência renal, hipertensão pulmonar grave, insuficiência cardíaca direita avançada e distúrbios de coagulação não controlados são contraindicações.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Como é realizado</h4>
+                    <p>Um cateter é inserido através de uma veia (geralmente na virilha) e avançado até a artéria pulmonar. O contraste iodado é injetado e imagens de raios-X são adquiridas para visualizar a árvore arterial pulmonar. O procedimento dura de 60 a 90 minutos.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Preparo</h4>
+                    <ul>
+                      <li>Jejum de 6 a 8 horas</li>
+                      <li>Informar sobre alergias (especialmente ao iodo)</li>
+                      <li>Informar sobre medicamentos em uso</li>
+                      <li>Exames de sangue para avaliar função renal e coagulação</li>
+                    </ul>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Jejum</h4>
+                    <p><span class="exam-badge">Necessário</span> Jejum de 6 a 8 horas.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Medicações que podem interferir</h4>
+                    <p>Anticoagulantes geralmente precisam ser suspensos para reduzir risco de sangramento. Metformina também deve ser suspensa.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Mito vs Verdade</h4>
+                    <p><strong>Mito:</strong> A arteriografia pulmonar é a única forma de ter certeza do diagnóstico de embolia pulmonar.<br>
+                    <strong>Verdade:</strong> A angiotomografia de tórax é um exame não invasivo, mais rápido, mais seguro e com alta acurácia, sendo o método de escolha hoje em dia.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Curiosidade</h4>
+                    <p>Durante o exame, o médico pode medir diretamente as pressões na artéria pulmonar, fornecendo informações valiosas sobre a gravidade e impacto da embolia na função do coração direito.</p>
+                  </div>
+
+                  <div class="exam-section">
+                    <h4>Retorno ao trabalho</h4>
+                    <p><span class="exam-badge">Não</span> Este é um procedimento invasivo que requer observação hospitalar e repouso. O retorno às atividades depende da condição clínica e pode levar vários dias.</p>
+                  </div>
                 </section>
 
               </div>
 
               <div class="small text-black-50 mt-3">
-                Última atualização: 29/12/2025
+                Última atualização: Fevereiro de 2026
               </div>
             </div>
           </div>

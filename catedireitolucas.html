@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Cateterismo Direito - Dr. Lucas Silva</title>
+  <link rel="stylesheet" href="catedstyle.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-content">
+      <div class="logo">
+        <svg class="heart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+        </svg>
+        <div class="logo-text">
+          <h1>Cateterismo Direito</h1>
+          <p>Dr. Lucas Silva</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+      <!-- Título -->
+      <div class="page-header">
+        <h2>Novo Cateterismo Direito</h2>
+        <p>Preencha os dados do paciente e parâmetros hemodinâmicos para cálculo automático.</p>
+      </div>
+
+      <div class="grid-layout">
+        <!-- Coluna Esquerda: Entrada de Dados -->
+        <div class="input-column">
+          
+          <!-- Dados do Paciente -->
+          <section class="card">
+            <div class="card-header">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+              <h3>Dados do Paciente</h3>
+            </div>
+            <div class="card-content">
+              <div class="form-grid-2">
+                <div class="form-group full-width">
+                  <label for="nome">Nome Completo</label>
+                  <input type="text" id="nome" placeholder="Nome do paciente">
+                </div>
+                <div class="form-group">
+                  <label for="rg">RG / Prontuário</label>
+                  <input type="text" id="rg" placeholder="Número">
+                </div>
+                <div class="form-group">
+                  <label for="sexo">Sexo</label>
+                  <select id="sexo">
+                    <option value="Masculino">Masculino</option>
+                    <option value="Feminino">Feminino</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="data">Data do Exame</label>
+                  <input type="text" id="data" placeholder="DD/MM/AAAA">
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Antropometria e Sinais Vitais -->
+          <section class="card">
+            <div class="card-header">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z"/>
+                <path d="m14.5 12.5 2-2"/>
+                <path d="m11.5 9.5 2-2"/>
+                <path d="m8.5 6.5 2-2"/>
+                <path d="m17.5 15.5 2-2"/>
+              </svg>
+              <h3>Antropometria e Sinais Vitais</h3>
+            </div>
+            <div class="card-content">
+              <div class="form-grid-5">
+                <div class="form-group">
+                  <label for="idade">Idade</label>
+                  <div class="input-with-unit">
+                    <input type="number" id="idade" placeholder="0">
+                    <span class="unit">anos</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="peso">Peso</label>
+                  <div class="input-with-unit">
+                    <input type="number" id="peso" step="0.1" placeholder="0">
+                    <span class="unit">kg</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="altura">Altura</label>
+                  <div class="input-with-unit">
+                    <input type="number" id="altura" placeholder="0">
+                    <span class="unit">cm</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="fc">Freq. Cardíaca</label>
+                  <div class="input-with-unit">
+                    <input type="number" id="fc" placeholder="0">
+                    <span class="unit">bpm</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="hb">Hemoglobina</label>
+                  <div class="input-with-unit">
+                    <input type="number" id="hb" step="0.1" placeholder="0">
+                    <span class="unit">g/dL</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Saturações -->
+          <section class="card">
+            <div class="card-header">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/>
+              </svg>
+              <h3>Saturações (%)</h3>
+            </div>
+            <div class="card-content">
+              <div class="alert alert-warning">
+                <strong>Atenção:</strong> Esses cálculos não são capazes de aferir a existência de shunts devido à ausência de coleta de gasometrias de câmaras direitas.
+              </div>
+              <div class="form-grid-3">
+                <div class="form-group">
+                  <label for="satAP">Tronco de Artéria Pulmonar (Mista)</label>
+                  <div class="input-with-unit">
+                    <input type="number" id="satAP" step="0.1" placeholder="0">
+                    <span class="unit">%</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="satVP">Veia Pulmonar = Ventrículo Esquerdo</label>
+                  <div class="input-with-unit">
+                    <input type="number" id="satVP" step="0.1" placeholder="0">
+                    <span class="unit">%</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="satAo">Aorta</label>
+                  <div class="input-with-unit">
+                    <input type="number" id="satAo" step="0.1" placeholder="0">
+                    <span class="unit">%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Pressões -->
+          <section class="card">
+            <div class="card-header">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+              </svg>
+              <h3>Pressões (mmHg)</h3>
+            </div>
+            <div class="card-content">
+              <div class="alert alert-info">
+                <strong>Nota:</strong> PCP = PD2VE só deve ser utilizado se não houver condição que leve a aumento da pressão do átrio esquerdo. Caso contrário, utilize cateter de Swan-Ganz para aferir a pressão de oclusão.
+              </div>
+              <div class="form-grid-3">
+                <div class="form-group">
+                  <label for="pAD">Átrio Direito</label>
+                  <div class="input-with-unit">
+                    <input type="number" id="pAD" placeholder="0">
+                    <span class="unit">mmHg</span>
+                  </div>
+                  <span class="reference">Ref: 2-8</span>
+                </div>
+                <div class="form-group">
+                  <label for="pAPSist">Tronco AP Sistólica</label>
+                  <div class="input-with-unit">
+                    <input type="number" id="pAPSist" placeholder="0">
+                    <span class="unit">mmHg</span>
+                  </div>
+                  <span class="reference">Ref: 15-30</span>
+                </div>
+                <div class="form-group">
+                  <label for="pAPDiast">Tronco AP Diastólica</label>
+                  <div class="input-with-unit">
+                    <input type="number" id="pAPDiast" placeholder="0">
+                    <span class="unit">mmHg</span>
+                  </div>
+                  <span class="reference">Ref: 4-12</span>
+                </div>
+                <div class="form-group">
+                  <label for="pCP">Capilar Pulmonar (PCP = PD2VE)</label>
+                  <div class="input-with-unit">
+                    <input type="number" id="pCP" placeholder="0">
+                    <span class="unit">mmHg</span>
+                  </div>
+                  <span class="reference">Ref: 6-12</span>
+                </div>
+                <div class="form-group">
+                  <label for="pAoSist">Aorta Sistólica</label>
+                  <div class="input-with-unit">
+                    <input type="number" id="pAoSist" placeholder="0">
+                    <span class="unit">mmHg</span>
+                  </div>
+                  <span class="reference">Ref: 90-140</span>
+                </div>
+                <div class="form-group">
+                  <label for="pAoDiast">Aorta Diastólica</label>
+                  <div class="input-with-unit">
+                    <input type="number" id="pAoDiast" placeholder="0">
+                    <span class="unit">mmHg</span>
+                  </div>
+                  <span class="reference">Ref: 60-90</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Teste de Reatividade Pulmonar -->
+          <section class="card">
+            <div class="card-header">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                <path d="m9 12 2 2 4-4"/>
+              </svg>
+              <h3>Teste de Reatividade Pulmonar</h3>
+            </div>
+            <div class="card-content">
+              <div class="switch-container">
+                <label class="switch">
+                  <input type="checkbox" id="testeReatividade">
+                  <span class="slider"></span>
+                </label>
+                <span>Realizar teste de reatividade</span>
+              </div>
+              
+              <div id="testeReatividadeFields" class="hidden">
+                <div class="form-grid-2" style="margin-top: 1rem;">
+                  <div class="form-group">
+                    <label for="drogaVasodilatadora">Droga Vasodilatadora</label>
+                    <select id="drogaVasodilatadora">
+                      <option value="">Selecione...</option>
+                      <option value="Óxido Nítrico">Óxido Nítrico</option>
+                      <option value="Nitroprussiato">Nitroprussiato</option>
+                      <option value="Epoprostenol">Epoprostenol</option>
+                      <option value="Adenosina">Adenosina</option>
+                      <option value="Iloprost">Iloprost</option>
+                      <option value="Sildenafil">Sildenafil</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="fcPosTeste">FC Pós-Teste</label>
+                    <div class="input-with-unit">
+                      <input type="number" id="fcPosTeste" placeholder="0">
+                      <span class="unit">bpm</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="pAPSistPos">PAP Sistólica Pós</label>
+                    <div class="input-with-unit">
+                      <input type="number" id="pAPSistPos" placeholder="0">
+                      <span class="unit">mmHg</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="pAPDiastPos">PAP Diastólica Pós</label>
+                    <div class="input-with-unit">
+                      <input type="number" id="pAPDiastPos" placeholder="0">
+                      <span class="unit">mmHg</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="pCPPos">PCP Pós-Teste</label>
+                    <div class="input-with-unit">
+                      <input type="number" id="pCPPos" placeholder="0">
+                      <span class="unit">mmHg</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="alert alert-warning" style="margin-top: 1rem;">
+                  <strong>Atenção:</strong> Risco ao usar PD2VE = PCP em pacientes com pressão de átrio esquerdo aumentada.
+                </div>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- Coluna Direita: Resultados -->
+        <div class="results-column">
+          
+          <!-- Cálculos Hemodinâmicos -->
+          <section class="card results-card">
+            <div class="card-header">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect width="16" height="20" x="4" y="2" rx="2"/>
+                <line x1="8" x2="16" y1="6" y2="6"/>
+                <line x1="8" x2="16" y1="10" y2="10"/>
+                <line x1="8" x2="16" y1="14" y2="14"/>
+                <line x1="8" x2="16" y1="18" y2="18"/>
+              </svg>
+              <h3>Cálculos Hemodinâmicos</h3>
+            </div>
+            <div class="card-content">
+              <div class="results-grid">
+                <div class="result-item">
+                  <span class="result-label">Superfície Corporal</span>
+                  <span class="result-value" id="resSC">--</span>
+                  <span class="result-unit">m²</span>
+                </div>
+                <div class="result-item">
+                  <span class="result-label">VO₂ Estimado (125 × SC)</span>
+                  <span class="result-value" id="resVO2">--</span>
+                  <span class="result-unit">mL/min</span>
+                </div>
+                <div class="result-item">
+                  <span class="result-label">Conteúdo O₂ - Tronco AP</span>
+                  <span class="result-value" id="resCaO2AP">--</span>
+                  <span class="result-unit">mL/dL</span>
+                </div>
+                <div class="result-item">
+                  <span class="result-label">Conteúdo O₂ - Veia Pulmonar</span>
+                  <span class="result-value" id="resCaO2VP">--</span>
+                  <span class="result-unit">mL/dL</span>
+                </div>
+                <div class="result-item">
+                  <span class="result-label">Conteúdo O₂ - Aorta</span>
+                  <span class="result-value" id="resCaO2Ao">--</span>
+                  <span class="result-unit">mL/dL</span>
+                </div>
+                <div class="result-item highlight">
+                  <span class="result-label">Débito Cardíaco (Fick)</span>
+                  <span class="result-value" id="resDC">--</span>
+                  <span class="result-unit">L/min</span>
+                </div>
+                <div class="result-item highlight">
+                  <span class="result-label">Índice Cardíaco</span>
+                  <span class="result-value" id="resIC">--</span>
+                  <span class="result-unit">L/min/m²</span>
+                </div>
+                <div class="result-item">
+                  <span class="result-label">PAP Média</span>
+                  <span class="result-value" id="resPAPm">--</span>
+                  <span class="result-unit">mmHg</span>
+                </div>
+                <div class="result-item">
+                  <span class="result-label">Gradiente Transpulmonar</span>
+                  <span class="result-value" id="resGTP">--</span>
+                  <span class="result-unit">mmHg</span>
+                </div>
+                <div class="result-item">
+                  <span class="result-label">Gradiente Diastólico Pulmonar</span>
+                  <span class="result-value" id="resGDP">--</span>
+                  <span class="result-unit">mmHg</span>
+                </div>
+                <div class="result-item highlight">
+                  <span class="result-label">Resistência Vascular Pulmonar</span>
+                  <span class="result-value" id="resRVP">--</span>
+                  <span class="result-unit">UW</span>
+                </div>
+                <div class="result-item">
+                  <span class="result-label">Resistência Vascular Sistêmica</span>
+                  <span class="result-value" id="resRVS">--</span>
+                  <span class="result-unit">UW</span>
+                </div>
+                <div class="result-item">
+                  <span class="result-label">Complacência Arterial Pulmonar</span>
+                  <span class="result-value" id="resCpa">--</span>
+                  <span class="result-unit">mL/mmHg</span>
+                </div>
+              </div>
+              
+              <!-- Classificação HP -->
+              <div class="classification-box" id="classificationBox">
+                <h4>Classificação de Hipertensão Pulmonar</h4>
+                <p id="classificationText">Preencha os dados para classificação</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Laudo Automático -->
+          <section class="card">
+            <div class="card-header">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" x2="8" y1="13" y2="13"/>
+                <line x1="16" x2="8" y1="17" y2="17"/>
+                <line x1="10" x2="8" y1="9" y2="9"/>
+              </svg>
+              <h3>Laudo Automático</h3>
+            </div>
+            <div class="card-content">
+              <textarea id="laudoText" rows="12" placeholder="O laudo será gerado automaticamente..."></textarea>
+              <div class="button-group">
+                <button class="btn btn-primary" onclick="gerarLaudo()">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                    <path d="M12 5v14M5 12h14"/>
+                  </svg>
+                  Gerar Laudo
+                </button>
+                <button class="btn btn-secondary" onclick="copiarLaudo()">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                    <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/>
+                    <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
+                  </svg>
+                  Copiar
+                </button>
+              </div>
+              <div class="button-group" style="margin-top: 0.5rem;">
+                <button class="btn btn-outline" onclick="baixarPDF(false)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" x2="12" y1="15" y2="3"/>
+                  </svg>
+                  PDF (Laudo)
+                </button>
+                <button class="btn btn-outline" onclick="baixarPDF(true)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" x2="12" y1="15" y2="3"/>
+                  </svg>
+                  PDF (Completo)
+                </button>
+              </div>
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2026 Dr. Lucas Silva - Cateterismo Direito</p>
+  </footer>
+
+  <script src="catedscript.js"></script>
+</body>
+</html>
