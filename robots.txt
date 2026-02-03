@@ -1,0 +1,33 @@
+# robots.txt para Dr. Lucas Silva - Cardiologia Intervencionista
+# Otimizado para melhor rastreamento do Google
+
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /pacientes-exames.html
+Allow: /css/
+Allow: /js/
+Allow: /assets/
+
+# Desabilitar rastreamento de arquivos desnecessários
+Disallow: /admin/
+Disallow: /private/
+Disallow: /temp/
+Disallow: /*.pdf$
+Disallow: /cgi-bin/
+
+# Sitemap
+Sitemap: https://www.lucascardio.com.br/sitemap.xml
+
+# Crawl delay (opcional - deixar comentado para permitir rastreamento rápido)
+# Crawl-delay: 1
+
+# Regras específicas para Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Regras específicas para Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1

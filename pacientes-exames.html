@@ -3,10 +3,39 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="Exames cardiológicos explicados para pacientes" />
-    <meta name="author" content="Dr. Lucas Silva" />
+    <meta name="description" content="Guia completo de 18 exames cardiológicos: ECG, ecocardiograma, teste ergométrico, cateterismo e mais. Indicações, procedimentos, preparo e informações práticas para pacientes." />
+    <meta name="keywords" content="exames cardiológicos, ECG, ecocardiograma, teste ergométrico, cateterismo, cardiologia, exames do coração" />
+    <meta name="author" content="Dr. Lucas Silva, Cardiologista Intervencionista" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="Portuguese" />
+    <meta name="revisit-after" content="7 days" />
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Guia Completo de Exames Cardiológicos - 18 Exames Explicados" />
+    <meta property="og:description" content="Entenda cada exame cardiológico: indicações, como é realizado, preparo necessário e informações práticas para pacientes." />
+    <meta property="og:url" content="https://www.lucascardio.com.br/pacientes-exames.html" />
+    <meta property="og:image" content="https://www.lucascardio.com.br/assets/img/og-exames.jpg" />
+    <meta property="og:locale" content="pt_BR" />
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Guia de Exames Cardiológicos" />
+    <meta name="twitter:description" content="18 exames cardiológicos explicados para pacientes." />
+    <meta name="twitter:image" content="https://www.lucascardio.com.br/assets/img/twitter-exames.jpg" />
+    
+    <!-- Mobile Meta Tags -->
+    <meta name="theme-color" content="#f4623a" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.lucascardio.com.br/pacientes-exames.html" />
+    
+    <!-- Alternate Links -->
+    <link rel="alternate" hreflang="pt-br" href="https://www.lucascardio.com.br/pacientes-exames.html" />
 
-    <title>Exames cardiológicos | Dr. Lucas Silva</title>
+    <title>Guia Completo de Exames Cardiológicos | 18 Exames Explicados | Dr. Lucas Silva</title>
 
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
 
@@ -22,6 +51,34 @@
 
     <!-- Core theme CSS (includes Bootstrap) -->
     <link href="css/styles.css" rel="stylesheet" />
+    
+    <!-- JSON-LD Structured Data - BreadcrumbSchema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.lucascardio.com.br"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Para Pacientes",
+                "item": "https://www.lucascardio.com.br/index.html#pacientes"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Exames Cardiologicos",
+                "item": "https://www.lucascardio.com.br/pacientes-exames.html"
+            }
+        ]
+    }
+    </script>
 
     <style>
       /* Sidebar fixa durante a rolagem */
@@ -161,7 +218,7 @@
 
   <body class="bg-light">
     <!-- Header simples (sem navbar) -->
-    <header class="bg-black">
+    <header class="bg-black" role="banner">
       <div class="container px-4 px-lg-5 py-5">
         <div class="row align-items-center">
           <div class="col-lg-9">
@@ -171,7 +228,7 @@
             </p>
           </div>
           <div class="col-lg-3 text-lg-end mt-3 mt-lg-0">
-            <a class="btn btn-primary" href="index.html#pacientes">Voltar para seção de pacientes</a>
+            <a class="btn btn-primary" href="index.html#pacientes" title="Voltar para a seção de pacientes">Voltar para seção de pacientes</a>
           </div>
         </div>
       </div>
@@ -204,9 +261,9 @@
                   <!-- Submenu: agora troca o painel central (single-page) -->
                   <div class="collapse side-submenu" id="submenuExames">
                     <h6 class="px-2 py-2 text-uppercase small" style="letter-spacing: .08rem; color: #999;">Não Invasivos</h6>
-                    <a class="side-sublink exam-link" href="#ecg" data-exam="ecg">ECG</a>
-                    <a class="side-sublink exam-link" href="#teste-ergometrico" data-exam="teste-ergometrico">Teste Ergométrico</a>
-                    <a class="side-sublink exam-link" href="#teste-cardiopulmonar" data-exam="teste-cardiopulmonar">Teste Cardiopulmonar</a>
+                    <a class="side-sublink exam-link" href="#ecg" data-exam="ecg" title="Saiba mais sobre Eletrocardiograma">ECG</a>
+                    <a class="side-sublink exam-link" href="#teste-ergometrico" data-exam="teste-ergometrico" title="Saiba mais sobre Teste Ergométrico">Teste Ergométrico</a>
+                    <a class="side-sublink exam-link" href="#teste-cardiopulmonar" data-exam="teste-cardiopulmonar" title="Saiba mais sobre Teste Cardiopulmonar">Teste Cardiopulmonar</a>
                     <a class="side-sublink exam-link" href="#score-calcio" data-exam="score-calcio">Score de Cálcio</a>
                     <a class="side-sublink exam-link" href="#angiotc" data-exam="angiotc">Angiotomografia Coronariana</a>
                     <a class="side-sublink exam-link" href="#cintilografia" data-exam="cintilografia">Cintilografia Miocárdica</a>

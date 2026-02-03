@@ -1,0 +1,143 @@
+# .htaccess - Otimizações de SEO e Performance para Dr. Lucas Silva
+
+# ============================================
+# 1. ATIVAR MOD_REWRITE
+# ============================================
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Remover www (opcional - descomente se quiser)
+  # RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+  # RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+  # HTTPS redirect (descomente se usar SSL)
+  # RewriteCond %{HTTPS} off
+  # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # Remover trailing slash (opcional)
+  # RewriteCond %{REQUEST_FILENAME} !-d
+  # RewriteRule ^(.+)/$ /$1 [R=301,L]
+</IfModule>
+
+# ============================================
+# 2. CACHE DO NAVEGADOR (Leverage Browser Caching)
+# ============================================
+<IfModule mod_expires.c>
+  ExpiresActive On
+  
+  # Imagens
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+  
+  # CSS e JavaScript
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType text/javascript "access plus 1 month"
+  
+  # Fonts
+  ExpiresByType font/ttf "access plus 1 year"
+  ExpiresByType font/otf "access plus 1 year"
+  ExpiresByType font/woff "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  
+  # HTML
+  ExpiresByType text/html "access plus 1 week"
+  
+  # Default
+  ExpiresDefault "access plus 2 days"
+</IfModule>
+
+# ============================================
+# 3. COMPRESSÃO GZIP
+# ============================================
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/plain
+  AddOutputFilterByType DEFLATE text/xml
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE text/javascript
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/xhtml+xml
+  AddOutputFilterByType DEFLATE application/rss+xml
+  AddOutputFilterByType DEFLATE application/atom+xml
+  AddOutputFilterByType DEFLATE image/svg+xml
+  AddOutputFilterByType DEFLATE application/x-font
+  AddOutputFilterByType DEFLATE application/x-font-truetype
+  AddOutputFilterByType DEFLATE application/x-font-ttf
+  AddOutputFilterByType DEFLATE application/x-font-otf
+  AddOutputFilterByType DEFLATE application/x-font-woff
+  AddOutputFilterByType DEFLATE application/x-font-woff2
+  AddOutputFilterByType DEFLATE font/ttf
+  AddOutputFilterByType DEFLATE font/otf
+  AddOutputFilterByType DEFLATE font/woff
+  AddOutputFilterByType DEFLATE font/woff2
+</IfModule>
+
+# ============================================
+# 4. HEADERS DE SEGURANÇA E PERFORMANCE
+# ============================================
+<IfModule mod_headers.c>
+  # Remover headers que expõem informações do servidor
+  Header always unset X-Powered-By
+  Header unset X-Powered-By
+  Header always unset Server
+  Header unset Server
+  
+  # Content Security Policy (básico)
+  Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://use.fontawesome.com https://fonts.googleapis.com https://cdn.jsdelivr.net https://cdn.startbootstrap.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https:;"
+  
+  # X-Frame-Options (previne clickjacking)
+  Header set X-Frame-Options "SAMEORIGIN"
+  
+  # X-Content-Type-Options (previne MIME sniffing)
+  Header set X-Content-Type-Options "nosniff"
+  
+  # X-XSS-Protection
+  Header set X-XSS-Protection "1; mode=block"
+  
+  # Referrer-Policy
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# ============================================
+# 5. TIPOS MIME
+# ============================================
+<IfModule mod_mime.c>
+  AddType application/javascript js
+  AddType application/json json
+  AddType image/svg+xml svg svgz
+  AddEncoding gzip svgz
+  AddType font/woff2 woff2
+  AddType font/woff woff
+</IfModule>
+
+# ============================================
+# 6. PROTEÇÃO CONTRA ACESSO DIRETO
+# ============================================
+<FilesMatch "^\.">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
+# ============================================
+# 7. DIRETÓRIOS BLOQUEADOS
+# ============================================
+<DirectoryMatch "^/\.">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</DirectoryMatch>
