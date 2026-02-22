@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calculadora de Cateterismo Direito - Lucas Ferreira Silva</title>
+  <title>Calculadora de Cateterismo Direito - Dr. Lucas Silva</title>
   <link rel="stylesheet" href="catedstyle.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
@@ -17,26 +17,8 @@
         </svg>
         <div class="logo-text">
           <h1>Cateterismo Direito</h1>
-          <p>Criada por Lucas Ferreira Silva</p>
+          <p>Dr. Lucas Silva</p>
         </div>
-      </div>
-      <div class="header-buttons">
-        <button class="btn-header" onclick="abrirModalSobre()">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="10"/>
-            <path d="M12 16v-4"/>
-            <path d="M12 8h.01"/>
-          </svg>
-          Sobre
-        </button>
-        <a href="https://lucascardio.com.br" target="_blank" class="btn-header tooltip">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
-            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
-          </svg>
-          Site do Criador
-          <span class="tooltiptext">Site do criador dessa calculadora, com mais conteúdo e conhecimento!</span>
-        </a>
       </div>
     </div>
   </header>
@@ -330,15 +312,6 @@
               <h3>Cálculos Hemodinâmicos</h3>
             </div>
             <div class="card-content">
-              <button id="btnToggleVO2" class="btn btn-toggle-method" onclick="toggleMetodoVO2()" style="width: 100%; margin-bottom: 1rem;">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" style="display: inline-block; vertical-align: middle; margin-right: 0.5rem;">
-                  <path d="M16 18l2-2 4 4"/>
-                  <circle cx="9" cy="9" r="7"/>
-                  <path d="M9 6v6l3 3"/>
-                </svg>
-                <span id="metodoTexto">Fórmula VO₂: Bergstra (1995)</span>
-                <span style="font-size: 0.75rem; opacity: 0.8; display: block; margin-top: 0.25rem;">Clique para alternar</span>
-              </button>
               <div class="results-grid">
                 <div class="result-item">
                   <span class="result-label">Superfície Corporal</span>
@@ -415,106 +388,65 @@
             </div>
           </section>
 
+          <!-- Laudo Automático -->
+          <section class="card">
+            <div class="card-header">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" x2="8" y1="13" y2="13"/>
+                <line x1="16" x2="8" y1="17" y2="17"/>
+                <line x1="10" x2="8" y1="9" y2="9"/>
+              </svg>
+              <h3>Laudo Automático</h3>
+            </div>
+            <div class="card-content">
+              <textarea id="laudoText" rows="12" placeholder="O laudo será gerado automaticamente..."></textarea>
+              <div class="button-group">
+                <button class="btn btn-primary" onclick="gerarLaudo()">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                    <path d="M12 5v14M5 12h14"/>
+                  </svg>
+                  Gerar Laudo
+                </button>
+                <button class="btn btn-secondary" onclick="copiarLaudo()">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                    <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/>
+                    <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
+                  </svg>
+                  Copiar
+                </button>
+              </div>
+              <div class="button-group" style="margin-top: 0.5rem;">
+                <button class="btn btn-outline" onclick="baixarPDF(false)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" x2="12" y1="15" y2="3"/>
+                  </svg>
+                  PDF (Laudo)
+                </button>
+                <button class="btn btn-outline" onclick="baixarPDF(true)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" x2="12" y1="15" y2="3"/>
+                  </svg>
+                  PDF (Completo)
+                </button>
+              </div>
+            </div>
+          </section>
+
         </div>
       </div>
-
-      <!-- Seção de Laudo (Largura Total) -->
-      <section class="card laudo-section">
-        <div class="card-header">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
-            <polyline points="14 2 14 8 20 8"/>
-            <line x1="16" x2="8" y1="13" y2="13"/>
-            <line x1="16" x2="8" y1="17" y2="17"/>
-            <line x1="10" x2="8" y1="9" y2="9"/>
-          </svg>
-          <h3>Laudo Automático</h3>
-        </div>
-        <div class="card-content">
-          <div class="laudo-layout">
-            <div class="laudo-textarea-container">
-              <textarea id="laudoText" rows="12" placeholder="O laudo será gerado automaticamente..."></textarea>
-            </div>
-            <div class="laudo-buttons-container">
-              <button class="btn btn-primary" onclick="gerarLaudo()" style="width: 100%;">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
-                  <path d="M12 5v14M5 12h14"/>
-                </svg>
-                Gerar Laudo
-              </button>
-              <button class="btn btn-secondary" onclick="copiarLaudo()" style="width: 100%;">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
-                  <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/>
-                  <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
-                </svg>
-                Copiar
-              </button>
-              <button class="btn btn-outline" onclick="baixarPDF(false)" style="width: 100%;">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                  <polyline points="7 10 12 15 17 10"/>
-                  <line x1="12" x2="12" y1="15" y2="3"/>
-                </svg>
-                PDF (Laudo)
-              </button>
-              <button class="btn btn-outline" onclick="baixarPDF(true)" style="width: 100%;">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                  <polyline points="7 10 12 15 17 10"/>
-                  <line x1="12" x2="12" y1="15" y2="3"/>
-                </svg>
-                PDF (Completo)
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
     </div>
   </main>
 
   <!-- Footer -->
   <footer class="footer">
-    <p>© 2026 Lucas Ferreira Silva - Calculadora de Cateterismo Direito</p>
+    <p>© 2026 Dr. Lucas Silva - Cateterismo Direito</p>
   </footer>
-
-  <!-- Modal Sobre -->
-  <div id="modalSobre" class="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3>Sobre a Calculadora</h3>
-        <span class="close" onclick="fecharModalSobre()">&times;</span>
-      </div>
-      <div class="modal-body">
-        <h4>Função da Calculadora</h4>
-        <p>Esta calculadora foi desenvolvida para auxiliar profissionais de saúde na análise de dados hemodinâmicos obtidos durante o cateterismo cardíaco direito. O sistema realiza cálculos automáticos de parâmetros essenciais e fornece classificação de hipertensão pulmonar segundo os critérios ESC/ERS 2022.</p>
-        
-        <h4>Método de Cálculo de VO₂</h4>
-        <p>O cálculo do consumo de oxigênio (VO₂) é fundamental para a determinação do débito cardíaco pelo método de Fick. Esta calculadora utiliza por padrão a <strong>Equação de Bergstra (1995)</strong>, considerada a melhor fórmula para estimativa de VO₂ assumido no método de Fick estimado (eFick).</p>
-        
-        <p><strong>Equação de Bergstra (1995):</strong></p>
-        <p><code>VO₂(ass) = (157,3 × BSA) + (10,0 × Sexo) - (10,5 × ln(Idade)) + 4,8</code></p>
-        
-        <p>Onde:</p>
-        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
-          <li><strong>BSA</strong> = Superfície Corporal (Body Surface Area) em m²</li>
-          <li><strong>Sexo</strong> = 1 para Masculino, 0 para Feminino</li>
-          <li><strong>Idade</strong> = Idade do paciente em anos</li>
-          <li><strong>ln</strong> = Logaritmo natural</li>
-        </ul>
-        
-        <p style="margin-top: 1rem;">A equação de Bergstra leva em consideração não apenas a superfície corporal, mas também o sexo e a idade do paciente, proporcionando uma estimativa mais precisa do consumo de oxigênio basal.</p>
-        
-        <p><strong>Método Alternativo:</strong> A calculadora também oferece a opção de utilizar o método simplificado (SC × 125 mL/min/m²), amplamente utilizado na prática clínica. Você pode alternar entre os métodos clicando no botão "Método" na seção de resultados.</p>
-        
-        <h4>Referências</h4>
-        <p style="font-size: 0.85rem; color: var(--text-muted);">Bergstra A, et al. Agreement between thermodilution and Fick cardiac output in patients with and without respiratory failure. Intensive Care Med. 1995;21(8):648-653.</p>
-        
-        <h4>Desenvolvedor</h4>
-        <p>Esta calculadora foi criada por <strong>Lucas Ferreira Silva</strong>, médico especializado em cardiologia. Para mais conteúdo educacional e ferramentas clínicas, visite <a href="https://lucascardio.com.br" target="_blank" style="color: var(--primary); text-decoration: underline;">lucascardio.com.br</a>.</p>
-      </div>
-    </div>
-  </div>
 
   <script src="catedscript.js"></script>
 </body>
