@@ -1,0 +1,1460 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>DAPT Pós-PCI em SCA – Guia de Duração | Dr. Lucas Silva</title>
+  <meta name="description" content="Ferramenta interativa para definição de duração de DAPT após PCI em síndrome coronariana aguda. Baseada em evidências: PRECISE-DAPT, ARC-HBR, DAPT Score." />
+  <meta name="author" content="Dr. Lucas Silva" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── DESIGN TOKENS (matching calculator app) ────────────────── */
+    :root {
+      --primary: oklch(65% .18 195);
+      --primary-foreground: oklch(98% 0 0);
+      --background: oklch(13% .018 250);
+      --foreground: oklch(93% .01 250);
+      --card: oklch(18.5% .018 250);
+      --card-foreground: oklch(93% .01 250);
+      --muted: oklch(22% .018 250);
+      --muted-foreground: oklch(62% .02 250);
+      --border: oklch(28% .025 250);
+      --input: oklch(22% .02 250);
+      --destructive: oklch(60% .22 25);
+      --secondary: oklch(22% .022 250);
+      --secondary-foreground: oklch(88% .01 250);
+      --accent: oklch(24% .025 250);
+      --accent-foreground: oklch(90% .01 250);
+      --teal: #00d3bd;
+      --teal-dim: rgba(0,211,189,.12);
+      --amber: oklch(82.8% .189 84.429);
+      --red: oklch(63.7% .237 25.331);
+      --green: oklch(79.2% .209 151.711);
+      --radius: 0.625rem;
+      --spacing: 4px;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--background);
+      color: var(--foreground);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ───────────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(18,20,27,.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: .6rem;
+      text-decoration: none; color: var(--foreground);
+    }
+    .nav-brand-icon {
+      width: 28px; height: 28px; border-radius: 7px;
+      background: var(--teal); display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .nav-brand-name { font-weight: 800; font-size: 1rem; letter-spacing: -.025em; line-height: 1; }
+    .nav-brand-name span { color: var(--teal); }
+    .nav-brand-sep { width: 1px; height: 14px; background: var(--border); margin: 0 6px; }
+    .nav-brand-sub { font-size: .7rem; font-weight: 500; color: var(--muted-foreground); }
+    .nav-center { display: flex; align-items: center; gap: .25rem; }
+    .nav-center-btn {
+      background: none; border: none; cursor: pointer; font-family: var(--font-sans);
+      font-size: .8rem; font-weight: 500; color: var(--muted-foreground);
+      padding: 6px 12px; border-radius: 7px;
+      transition: background .15s, color .15s;
+    }
+    .nav-center-btn:hover { background: var(--accent); color: var(--foreground); }
+    .nav-actions { display: flex; align-items: center; gap: .5rem; }
+    .nav-badge {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 999px; background: var(--teal-dim);
+      color: var(--teal); border: 1px solid rgba(0,211,189,.25);
+      white-space: nowrap;
+    }
+    .nav-link {
+      font-size: .75rem; font-weight: 600; padding: 5px 12px;
+      border-radius: 8px; border: 1.5px solid var(--primary);
+      color: var(--primary); background: transparent;
+      text-decoration: none;
+      transition: background .15s, color .15s;
+      display: inline-flex; align-items: center; gap: 5px;
+    }
+    .nav-link:hover { background: var(--primary); color: var(--primary-foreground); }
+
+    /* ── LAYOUT ────────────────────────────────────────────────── */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+    .section { padding: 3rem 0; }
+
+    /* ── HERO ──────────────────────────────────────────────────── */
+    .hero {
+      padding: 3.5rem 0 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .7rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--teal);
+      margin-bottom: 1rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 20px; height: 2px;
+      background: var(--teal); border-radius: 1px;
+    }
+    .hero h1 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 800; line-height: 1.2;
+      margin-bottom: .75rem; letter-spacing: -.02em;
+    }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero-sub {
+      color: var(--muted-foreground); font-size: .95rem;
+      max-width: 620px; margin-bottom: 1.5rem;
+    }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 6px; border: 1px solid var(--border);
+      color: var(--muted-foreground); background: var(--card);
+      font-family: var(--font-mono);
+    }
+
+    /* ── TIMELINE OVERVIEW ─────────────────────────────────────── */
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px);
+      overflow: hidden;
+      margin: 2rem 0;
+    }
+    .timeline-step {
+      background: var(--card);
+      padding: 1.25rem 1.25rem 1.5rem;
+      cursor: pointer;
+      transition: background .15s;
+    }
+    .timeline-step:hover { background: var(--accent); }
+    .timeline-step.active { background: var(--teal-dim); }
+    .step-num {
+      font-size: .65rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--muted-foreground);
+      margin-bottom: .5rem; font-family: var(--font-mono);
+    }
+    .step-num .dot {
+      display: inline-block; width: 18px; height: 18px;
+      border-radius: 50%; background: var(--muted);
+      color: var(--muted-foreground); font-size: .6rem;
+      text-align: center; line-height: 18px;
+      margin-right: 6px; font-family: var(--font-mono); font-weight: 700;
+    }
+    .timeline-step.active .dot {
+      background: var(--teal); color: #000;
+    }
+    .step-title { font-weight: 700; font-size: .9rem; margin-bottom: .25rem; }
+    .step-desc { font-size: .78rem; color: var(--muted-foreground); line-height: 1.5; }
+
+    /* ── CARDS ─────────────────────────────────────────────────── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .card-header {
+      display: flex; align-items: flex-start;
+      gap: .75rem; margin-bottom: 1.25rem;
+      padding-bottom: 1rem; border-bottom: 1px solid var(--border);
+    }
+    .card-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+      background: var(--teal-dim); color: var(--teal);
+    }
+    .card-title {
+      font-weight: 700; font-size: 1rem; margin-bottom: 2px;
+    }
+    .card-subtitle { font-size: .78rem; color: var(--muted-foreground); }
+
+    /* ── FORM ELEMENTS ─────────────────────────────────────────── */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-label {
+      font-size: .78rem; font-weight: 600; color: var(--muted-foreground);
+    }
+    .form-label span {
+      font-size: .7rem; font-weight: 400; opacity: .7;
+    }
+    .form-input {
+      background: var(--input);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--foreground);
+      font-family: var(--font-mono);
+      font-size: .85rem;
+      padding: 8px 12px;
+      transition: border-color .15s, box-shadow .15s;
+      outline: none;
+      width: 100%;
+    }
+    .form-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(0,211,189,.15);
+    }
+    .form-input::-webkit-inner-spin-button { opacity: .4; }
+    .form-select {
+      background: var(--input);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--foreground);
+      font-family: var(--font-sans);
+      font-size: .85rem;
+      padding: 8px 12px;
+      outline: none; width: 100%;
+      cursor: pointer;
+      transition: border-color .15s;
+    }
+    .form-select:focus { border-color: var(--primary); }
+
+    /* Checkbox group */
+    .check-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: .5rem;
+    }
+    .check-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 10px 12px; border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--muted);
+      cursor: pointer; transition: background .15s, border-color .15s;
+      user-select: none;
+    }
+    .check-item:hover { background: var(--accent); border-color: var(--primary); }
+    .check-item.checked {
+      background: var(--teal-dim);
+      border-color: rgba(0,211,189,.4);
+    }
+    .check-item input { display: none; }
+    .check-box {
+      width: 16px; height: 16px; border-radius: 4px;
+      border: 1.5px solid var(--border);
+      flex-shrink: 0; margin-top: 1px;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .15s;
+    }
+    .check-item.checked .check-box {
+      background: var(--teal); border-color: var(--teal); color: #000;
+    }
+    .check-label { font-size: .8rem; line-height: 1.4; }
+    .check-label strong { font-weight: 600; display: block; margin-bottom: 1px; }
+    .check-label small { font-size: .72rem; color: var(--muted-foreground); }
+
+    /* Badge */
+    .badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: .68rem; font-weight: 700; padding: 2px 8px;
+      border-radius: 999px; white-space: nowrap;
+    }
+    .badge-major { background: rgba(220,38,38,.15); color: #f87171; border: 1px solid rgba(220,38,38,.25); }
+    .badge-minor { background: rgba(251,191,36,.12); color: #fbbf24; border: 1px solid rgba(251,191,36,.2); }
+    .badge-info { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.2); }
+    .badge-score { background: var(--muted); color: var(--foreground); border: 1px solid var(--border); font-family: var(--font-mono); }
+
+    /* ── BUTTONS ───────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: .85rem; font-weight: 600; padding: 10px 20px;
+      border-radius: calc(var(--radius) + 2px);
+      border: none; cursor: pointer;
+      transition: all .15s; white-space: nowrap;
+      font-family: var(--font-sans);
+    }
+    .btn-primary {
+      background: var(--primary); color: #000; font-weight: 700;
+    }
+    .btn-primary:hover { opacity: .9; transform: translateY(-1px); }
+    .btn-secondary {
+      background: var(--muted); color: var(--foreground);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover { background: var(--accent); }
+    .btn-lg { font-size: .95rem; padding: 12px 28px; }
+    .btn-row { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 1.5rem; }
+
+    /* ── RESULT PANEL ──────────────────────────────────────────── */
+    .result-panel {
+      display: none;
+      border-radius: calc(var(--radius) + 2px);
+      overflow: hidden;
+      margin-top: 1.5rem;
+    }
+    .result-panel.show { display: block; animation: fadeUp .3s ease; }
+    .result-header {
+      padding: 1.25rem 1.5rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .result-header.hbr { background: rgba(220,38,38,.12); border: 1px solid rgba(220,38,38,.3); border-bottom: none; border-radius: calc(var(--radius)+2px) calc(var(--radius)+2px) 0 0; }
+    .result-header.low { background: rgba(0,211,189,.08); border: 1px solid rgba(0,211,189,.25); border-bottom: none; border-radius: calc(var(--radius)+2px) calc(var(--radius)+2px) 0 0; }
+    .result-header.prolong { background: rgba(251,191,36,.08); border: 1px solid rgba(251,191,36,.25); border-bottom: none; border-radius: calc(var(--radius)+2px) calc(var(--radius)+2px) 0 0; }
+    .result-icon { font-size: 2rem; line-height: 1; }
+    .result-title { font-size: 1.1rem; font-weight: 800; margin-bottom: 2px; }
+    .result-body {
+      padding: 1.25rem 1.5rem;
+      background: var(--card);
+      border: 1px solid var(--border); border-top: none;
+      border-radius: 0 0 calc(var(--radius)+2px) calc(var(--radius)+2px);
+    }
+    .result-recommendation {
+      display: flex; align-items: center; gap: 12px;
+      background: var(--muted); border-radius: var(--radius);
+      padding: 12px 16px; margin-bottom: 1rem;
+    }
+    .result-duration {
+      font-size: 2rem; font-weight: 800; color: var(--teal);
+      font-family: var(--font-mono); line-height: 1;
+    }
+    .result-desc { font-size: .85rem; }
+    .result-desc strong { display: block; font-weight: 700; margin-bottom: 2px; }
+
+    /* ── SCORE DISPLAY ─────────────────────────────────────────── */
+    .score-display {
+      display: inline-flex; align-items: baseline; gap: 4px;
+      font-family: var(--font-mono);
+    }
+    .score-val { font-size: 2.2rem; font-weight: 700; }
+    .score-unit { font-size: .8rem; color: var(--muted-foreground); }
+
+    /* ── INFO BOXES ────────────────────────────────────────────── */
+    .info-box {
+      border-radius: var(--radius); padding: 12px 16px;
+      font-size: .82rem; line-height: 1.6;
+      display: flex; gap: 10px; margin-bottom: .75rem;
+    }
+    .info-box-icon { flex-shrink: 0; font-size: 1rem; margin-top: 1px; }
+    .info-teal { background: var(--teal-dim); border-left: 3px solid var(--teal); }
+    .info-amber { background: rgba(251,191,36,.08); border-left: 3px solid rgba(251,191,36,.5); }
+    .info-red { background: rgba(220,38,38,.08); border-left: 3px solid rgba(220,38,38,.4); }
+    .info-gray { background: var(--muted); border-left: 3px solid var(--border); }
+
+    /* ── SECTION TITLES ────────────────────────────────────────── */
+    .section-title {
+      font-size: 1.3rem; font-weight: 800; margin-bottom: .25rem;
+      letter-spacing: -.01em;
+    }
+    .section-label {
+      font-size: .68rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--teal);
+      margin-bottom: .4rem; font-family: var(--font-mono);
+    }
+    .section-divider {
+      border: none; border-top: 1px solid var(--border);
+      margin: 2.5rem 0;
+    }
+
+    /* ── COMPARISON TABLE ──────────────────────────────────────── */
+    .compare-table {
+      width: 100%; border-collapse: collapse;
+      font-size: .82rem; border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .compare-table th {
+      background: var(--muted); padding: 10px 14px;
+      text-align: left; font-weight: 700; font-size: .75rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted-foreground); letter-spacing: .03em;
+    }
+    .compare-table td {
+      padding: 10px 14px; border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table tr:hover td { background: var(--accent); }
+
+    /* ── REFERENCES ────────────────────────────────────────────── */
+    .ref-list { list-style: none; }
+    .ref-item {
+      padding: 10px 0; border-bottom: 1px solid var(--border);
+      font-size: .8rem; line-height: 1.6;
+      display: flex; gap: 10px;
+    }
+    .ref-item:last-child { border-bottom: none; }
+    .ref-num {
+      font-family: var(--font-mono); font-size: .7rem; font-weight: 700;
+      color: var(--teal); min-width: 22px;
+    }
+    .ref-title { font-weight: 600; margin-bottom: 2px; }
+    .ref-meta { color: var(--muted-foreground); font-size: .75rem; }
+    .ref-ev {
+      display: inline-block; font-size: .65rem; font-weight: 700;
+      padding: 1px 6px; border-radius: 4px; margin-left: 6px;
+      background: var(--teal-dim); color: var(--teal);
+    }
+
+    /* ── STEP SECTIONS ─────────────────────────────────────────── */
+    .step-section { display: none; }
+    .step-section.active { display: block; animation: fadeUp .3s ease; }
+
+    /* ── DISCLAIMER ────────────────────────────────────────────── */
+    .disclaimer {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 12px 16px;
+      font-size: .75rem; color: var(--muted-foreground);
+      line-height: 1.6; margin-top: 1.5rem;
+    }
+
+    /* ── ANIMATIONS ────────────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── PROGRESS BAR ──────────────────────────────────────────── */
+    .progress-bar {
+      height: 3px; background: var(--border);
+      border-radius: 2px; margin: 1.5rem 0;
+    }
+    .progress-fill {
+      height: 100%; background: var(--teal);
+      border-radius: 2px; transition: width .4s ease;
+    }
+
+    /* ── FOOTER ────────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 0; margin-top: 3rem;
+    }
+    .footer-inner {
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-copy {
+      font-size: .75rem; color: var(--muted-foreground);
+    }
+
+    /* ── RESPONSIVE ────────────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .form-grid { grid-template-columns: 1fr 1fr; }
+      .check-grid { grid-template-columns: 1fr; }
+      .result-recommendation { flex-direction: column; gap: 8px; }
+      .btn-row { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ───────────────────────────────────────────────────── -->
+<nav>
+  <a class="nav-brand" href="#">
+    <div class="nav-brand-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+      </svg>
+    </div>
+    <div class="nav-brand-name">DAPT<span>Risk</span></div>
+    <div class="nav-brand-sep"></div>
+    <div class="nav-brand-sub">Duração de DAPT Pós-PCI</div>
+  </a>
+  <div class="nav-center">
+    <button class="nav-center-btn" onclick="goStep(1)">Calculadora</button>
+    <button class="nav-center-btn" onclick="goStep(4)">Scores &amp; Evidências</button>
+  </div>
+  <div class="nav-actions">
+    <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      lucascardio.com.br
+    </a>
+  </div>
+</nav>
+
+<!-- ── MAIN ───────────────────────────────────────────────────── -->
+<main>
+  <div class="container">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-eyebrow">Medicina Baseada em Evidências</div>
+      <h1>Guia de Duração de <em>DAPT</em><br>Pós-PCI em SCA</h1>
+      <p class="hero-sub">
+        Ferramenta interativa para individualização da antiagregação dupla após intervenção coronária percutânea com DES no contexto de SCA. Baseada nas diretrizes ESC 2020/2024 e ACC/AHA 2025.
+      </p>
+      <div class="hero-tags">
+        <span class="tag">PRECISE-DAPT</span>
+        <span class="tag">ARC-HBR</span>
+        <span class="tag">DAPT Score</span>
+        <span class="tag">CRUSADE</span>
+        <span class="tag">ESC 2020/2024</span>
+        <span class="tag">ACC/AHA 2025</span>
+      </div>
+    </div>
+
+    <!-- TIMELINE OVERVIEW -->
+    <div class="timeline" style="margin-top:2rem;">
+      <div class="timeline-step active" onclick="goStep(1)">
+        <div class="step-num"><span class="dot">1</span>NA ALTA</div>
+        <div class="step-title">Avaliação de HBR</div>
+        <div class="step-desc">PRECISE-DAPT + ARC-HBR para risco hemorrágico ao sair do hospital</div>
+      </div>
+      <div class="timeline-step" onclick="goStep(2)">
+        <div class="step-num"><span class="dot">2</span>RESULTADO</div>
+        <div class="step-title">Recomendação DAPT</div>
+        <div class="step-desc">Duração baseada no perfil isquêmico × hemorrágico do paciente</div>
+      </div>
+      <div class="timeline-step" onclick="goStep(3)">
+        <div class="step-num"><span class="dot">3</span>12 MESES</div>
+        <div class="step-title">DAPT Score</div>
+        <div class="step-desc">Para pacientes sem HBR: avaliar prolongamento além de 12 meses</div>
+      </div>
+      <div class="timeline-step" onclick="goStep(4)">
+        <div class="step-num"><span class="dot">📖</span>EVIDÊNCIA</div>
+        <div class="step-title">Scores & Referências</div>
+        <div class="step-desc">Tabela comparativa e referências bibliográficas completas</div>
+      </div>
+    </div>
+
+    <!-- PROGRESS -->
+    <div class="progress-bar"><div class="progress-fill" id="progress" style="width:25%"></div></div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         PASSO 1 – AVALIAÇÃO DE HBR NA ALTA
+    ══════════════════════════════════════════════════════════════ -->
+    <div id="step1" class="step-section active">
+
+      <!-- PRECISE-DAPT -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">🩸</div>
+          <div>
+            <div class="card-title">PRECISE-DAPT Score</div>
+            <div class="card-subtitle">Risco de sangramento durante DAPT após PCI/SCA — avaliado na alta hospitalar</div>
+          </div>
+        </div>
+
+        <div class="info-teal info-box">
+          <span class="info-box-icon">💡</span>
+          <div>Derivado e validado em pooled analysis de dados individuais de RCTs (Costa et al. Lancet 2017). <strong>Corte ≥25 = Alto Risco Hemorrágico (HBR)</strong>. A diretriz ESC 2020 recomenda seu uso para guiar encurtamento de DAPT em HBR. Discriminação modesta em ACS com prasugrel/ticagrelor (c-statistic 0,653).</div>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">Idade <span>(anos)</span></label>
+            <input id="pd_age" class="form-input" type="number" min="18" max="100" placeholder="ex: 68" oninput="calcPreciseDAPT()"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Hemoglobina <span>(g/dL)</span></label>
+            <input id="pd_hb" class="form-input" type="number" min="4" max="20" step="0.1" placeholder="ex: 13.5" oninput="calcPreciseDAPT()"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Leucócitos <span>(×10³/µL)</span></label>
+            <input id="pd_wbc" class="form-input" type="number" min="1" max="50" step="0.1" placeholder="ex: 8.2" oninput="calcPreciseDAPT()"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">ClCr / eGFR <span>(mL/min)</span></label>
+            <input id="pd_gfr" class="form-input" type="number" min="5" max="150" placeholder="ex: 72" oninput="calcPreciseDAPT()"/>
+          </div>
+        </div>
+
+        <div style="margin-top:1rem;">
+          <label class="form-label" style="display:block;margin-bottom:.5rem;">Sangramento espontâneo prévio</label>
+          <div style="display:flex;gap:.75rem;flex-wrap:wrap;">
+            <label class="check-item" id="bl_no" onclick="setBleeding(0)" style="cursor:pointer;min-width:110px;flex:1;">
+              <input type="radio" name="bleeding" value="0"/>
+              <div class="check-box">
+                <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </div>
+              <span class="check-label"><strong>Não</strong></span>
+            </label>
+            <label class="check-item" id="bl_yes" onclick="setBleeding(1)" style="cursor:pointer;min-width:110px;flex:1;">
+              <input type="radio" name="bleeding" value="1"/>
+              <div class="check-box">
+                <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </div>
+              <span class="check-label"><strong>Sim</strong><small>Sangramento espontâneo maior prévio</small></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- PRECISE-DAPT RESULT -->
+        <div id="pd_result" style="display:none;margin-top:1.25rem;">
+          <div style="background:var(--muted);border-radius:var(--radius);padding:14px 16px;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+            <div>
+              <div class="score-val" id="pd_score" style="color:var(--teal);">—</div>
+              <div style="font-size:.72rem;color:var(--muted-foreground);font-family:var(--font-mono);">PRECISE-DAPT</div>
+            </div>
+            <div style="flex:1;min-width:180px;">
+              <div id="pd_interp" style="font-weight:700;margin-bottom:3px;"></div>
+              <div id="pd_desc" style="font-size:.8rem;color:var(--muted-foreground);line-height:1.5;"></div>
+            </div>
+          </div>
+          <div class="disclaimer" style="margin-top:.75rem;">
+            ⚠️ Score calculado com modelo de aproximação linear baseado nos coeficientes publicados (Costa et al. Lancet 2017). Para decisão clínica definitiva, confirme via calculadora oficial.
+          </div>
+        </div>
+      </div>
+
+      <!-- ARC-HBR -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">🛡️</div>
+          <div>
+            <div class="card-title">Critérios ARC-HBR</div>
+            <div class="card-subtitle">Alto Risco Hemorrágico: ≥1 critério maior <em>ou</em> ≥2 critérios menores</div>
+          </div>
+        </div>
+
+        <div class="info-amber info-box">
+          <span class="info-box-icon">⚠️</span>
+          <div>ARC-HBR e PRECISE-DAPT <strong>frequentemente discordam</strong> (Lim et al. JACC CI 2025). Ambos capturam também maior risco isquêmico. ARC-HBR identificou BARC 3–5 em 1 ano: 7,1% vs 2,3%. Use ambos de forma complementar.</div>
+        </div>
+
+        <p style="font-size:.8rem;font-weight:700;color:var(--foreground);margin-bottom:.75rem;">
+          <span class="badge badge-major">● Critérios MAIORES</span>
+          &nbsp; (≥1 critério maior = HBR)
+        </p>
+        <div class="check-grid" id="arc_major_grid">
+          <!-- Populated by JS -->
+        </div>
+
+        <p style="font-size:.8rem;font-weight:700;color:var(--foreground);margin:1rem 0 .75rem;">
+          <span class="badge badge-minor">● Critérios MENORES</span>
+          &nbsp; (≥2 critérios menores = HBR)
+        </p>
+        <div class="check-grid" id="arc_minor_grid">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- ARC-HBR RESULT -->
+        <div id="arc_result" style="margin-top:1.25rem;display:none;">
+          <div style="background:var(--muted);border-radius:var(--radius);padding:14px 16px;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+            <div style="text-align:center;min-width:80px;">
+              <div style="font-size:.7rem;color:var(--muted-foreground);font-family:var(--font-mono);margin-bottom:4px;">MAIOR / MENOR</div>
+              <div style="font-family:var(--font-mono);font-weight:700;font-size:1.4rem;" id="arc_counts">0 / 0</div>
+            </div>
+            <div style="flex:1;min-width:180px;">
+              <div id="arc_interp" style="font-weight:700;margin-bottom:3px;"></div>
+              <div id="arc_desc" style="font-size:.8rem;color:var(--muted-foreground);"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary btn-lg" onclick="goStep(2)">
+          Ver Recomendação de DAPT
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         PASSO 2 – RECOMENDAÇÃO DE DAPT
+    ══════════════════════════════════════════════════════════════ -->
+    <div id="step2" class="step-section">
+
+      <div class="section-label">Recomendação Baseada em Evidências</div>
+      <div class="section-title">Duração de DAPT Pós-PCI com DES em SCA</div>
+
+      <div id="recommendation_area" style="margin-top:1.5rem;">
+        <!-- Populated by JS -->
+      </div>
+
+      <!-- Summary cards -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:1.5rem;">
+        <div class="card" style="margin-bottom:0;">
+          <div style="font-size:.7rem;font-weight:700;letter-spacing:.08em;color:var(--muted-foreground);text-transform:uppercase;margin-bottom:.5rem;font-family:var(--font-mono);">PRECISE-DAPT</div>
+          <div class="score-display">
+            <span class="score-val" id="sum_pd" style="color:var(--teal);">—</span>
+          </div>
+          <div style="font-size:.78rem;color:var(--muted-foreground);margin-top:4px;" id="sum_pd_cat">—</div>
+        </div>
+        <div class="card" style="margin-bottom:0;">
+          <div style="font-size:.7rem;font-weight:700;letter-spacing:.08em;color:var(--muted-foreground);text-transform:uppercase;margin-bottom:.5rem;font-family:var(--font-mono);">ARC-HBR</div>
+          <div style="font-size:1.4rem;font-weight:800;font-family:var(--font-mono);" id="sum_arc">—</div>
+          <div style="font-size:.78rem;color:var(--muted-foreground);margin-top:4px;" id="sum_arc_cat">—</div>
+        </div>
+        <div class="card" style="margin-bottom:0;">
+          <div style="font-size:.7rem;font-weight:700;letter-spacing:.08em;color:var(--muted-foreground);text-transform:uppercase;margin-bottom:.5rem;font-family:var(--font-mono);">CONSENSO HBR</div>
+          <div style="font-size:1.1rem;font-weight:800;" id="sum_consensus">—</div>
+          <div style="font-size:.78rem;color:var(--muted-foreground);margin-top:4px;" id="sum_consensus_sub">—</div>
+        </div>
+      </div>
+
+      <!-- Evidence highlights -->
+      <div style="margin-top:1.5rem;">
+        <div class="section-label" style="margin-bottom:.75rem;">Suporte Evidencial</div>
+        <div class="info-teal info-box">
+          <span class="info-box-icon">📊</span>
+          <div><strong>HBR — Meta-análise de RCTs (Costa et al. Eur Heart J 2022):</strong> DAPT abreviada (1–3 meses) vs padrão em 9.006 pacientes HBR reduziu sangramento maior/CRMR (RR 0,76) e sangramento maior (RR 0,80) sem aumento de MACE/IM/trombose de stent.</div>
+        </div>
+        <div class="info-teal info-box">
+          <span class="info-box-icon">📊</span>
+          <div><strong>ACS + DES — NMA JAMA Cardiol 2024 (Carvalho et al., 35.326 pacientes):</strong> 1 mês de DAPT seguido de monoterapia P2Y12 reduziu sangramento maior (RR 0,47) sem diferença detectada em MACCE vs 12 meses.</div>
+        </div>
+        <div class="info-amber info-box">
+          <span class="info-box-icon">⚠️</span>
+          <div><strong>Discordância ARC-HBR × PRECISE-DAPT:</strong> Estudo observacional (Lim et al. JACC CI 2025) demonstrou que os dois critérios frequentemente discordam e ambos identificam pacientes com maior risco isquêmico. A avaliação conjunta é recomendada.</div>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-secondary" onclick="goStep(1)">← Rever Avaliação</button>
+        <button class="btn btn-primary btn-lg" onclick="goStep(3)">
+          Avaliar DAPT Score (12 meses)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         PASSO 3 – DAPT SCORE (12 MESES)
+    ══════════════════════════════════════════════════════════════ -->
+    <div id="step3" class="step-section">
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">📅</div>
+          <div>
+            <div class="card-title">DAPT Score</div>
+            <div class="card-subtitle">Avaliação a 12 meses pós-PCI — decisão de prolongar DAPT além de 1 ano</div>
+          </div>
+        </div>
+
+        <div class="info-teal info-box">
+          <span class="info-box-icon">💡</span>
+          <div>Aplicado em pacientes <strong>sem eventos isquêmicos ou hemorrágicos maiores no primeiro ano</strong>. Score ≥2 indica benefício líquido de estender DAPT (isquemia > sangramento). Recomendado em diretriz, mas sem validação prospectiva em RCT para melhora de desfechos.</div>
+        </div>
+
+        <div class="info-red info-box">
+          <span class="info-box-icon">🚫</span>
+          <div><strong>Não aplicar em pacientes HBR</strong> (PRECISE-DAPT ≥25 ou ARC-HBR positivo). Nestes casos a duração padrão já foi encurtada conforme Passo 1–2.</div>
+        </div>
+
+        <div style="margin-top:.5rem;">
+          <p style="font-size:.82rem;font-weight:700;color:var(--muted-foreground);margin-bottom:.75rem;">Selecione as características presentes:</p>
+          <div class="check-grid" id="dapt_grid">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- DAPT Score result -->
+        <div id="dapt_result" style="display:none;margin-top:1.25rem;">
+          <div style="background:var(--muted);border-radius:var(--radius);padding:14px 16px;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+            <div style="text-align:center;min-width:80px;">
+              <div style="font-size:.7rem;color:var(--muted-foreground);font-family:var(--font-mono);margin-bottom:4px;">DAPT SCORE</div>
+              <div style="font-family:var(--font-mono);font-weight:700;font-size:2rem;color:var(--teal);" id="dapt_val">—</div>
+              <div style="font-size:.65rem;color:var(--muted-foreground);font-family:var(--font-mono);">(-2 a +10)</div>
+            </div>
+            <div style="flex:1;min-width:180px;">
+              <div id="dapt_interp" style="font-weight:700;font-size:1rem;margin-bottom:4px;"></div>
+              <div id="dapt_desc" style="font-size:.82rem;color:var(--muted-foreground);line-height:1.5;"></div>
+            </div>
+          </div>
+
+          <div id="dapt_detail" style="margin-top:1rem;"></div>
+        </div>
+
+        <div class="btn-row" style="margin-top:1.25rem;">
+          <button class="btn btn-primary btn-lg" onclick="calcDAPTScore()">
+            Calcular DAPT Score
+          </button>
+          <button class="btn btn-secondary" onclick="resetDAPT()">Limpar</button>
+        </div>
+      </div>
+
+      <!-- DAPT Score reference table -->
+      <div class="card">
+        <div class="card-header" style="margin-bottom:1rem;padding-bottom:.75rem;">
+          <div class="card-icon" style="background:var(--muted);">📋</div>
+          <div>
+            <div class="card-title">Tabela de Pontos — DAPT Score</div>
+          </div>
+        </div>
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Variável</th>
+              <th style="text-align:right;">Pontos</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Idade ≥75 anos</td><td style="text-align:right;font-family:var(--font-mono);font-weight:700;color:#f87171;">−2</td></tr>
+            <tr><td>Idade 65–74 anos</td><td style="text-align:right;font-family:var(--font-mono);font-weight:700;color:#f87171;">−1</td></tr>
+            <tr><td>Tabagismo atual</td><td style="text-align:right;font-family:var(--font-mono);font-weight:700;color:var(--teal);">+1</td></tr>
+            <tr><td>Diabetes mellitus</td><td style="text-align:right;font-family:var(--font-mono);font-weight:700;color:var(--teal);">+1</td></tr>
+            <tr><td>IM como apresentação índice</td><td style="text-align:right;font-family:var(--font-mono);font-weight:700;color:var(--teal);">+3</td></tr>
+            <tr><td>PCI ou IM prévios</td><td style="text-align:right;font-family:var(--font-mono);font-weight:700;color:var(--teal);">+1</td></tr>
+            <tr><td>Stent paclitaxel-eluting</td><td style="text-align:right;font-family:var(--font-mono);font-weight:700;color:var(--teal);">+1</td></tr>
+            <tr><td>Diâmetro do stent &lt;3 mm</td><td style="text-align:right;font-family:var(--font-mono);font-weight:700;color:var(--teal);">+1</td></tr>
+            <tr><td>ICC ou FEVE &lt;30%</td><td style="text-align:right;font-family:var(--font-mono);font-weight:700;color:var(--teal);">+2</td></tr>
+            <tr><td>PCI em enxerto safena (BPD)</td><td style="text-align:right;font-family:var(--font-mono);font-weight:700;color:var(--teal);">+2</td></tr>
+          </tbody>
+        </table>
+        <div style="margin-top:.75rem;font-size:.78rem;color:var(--muted-foreground);">
+          <strong style="color:var(--teal);">Score ≥2:</strong> benefício de prolongar DAPT (&gt;12 meses) — redução de IM/trombose de stent supera aumento de sangramento.&emsp;
+          <strong style="color:#f87171;">Score &lt;2:</strong> sem benefício líquido ou possível dano com prolongamento.
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-secondary" onclick="goStep(2)">← Resultado Principal</button>
+        <button class="btn btn-primary btn-lg" onclick="goStep(4)">
+          Scores & Referências
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         PASSO 4 – SCORES & REFERÊNCIAS
+    ══════════════════════════════════════════════════════════════ -->
+    <div id="step4" class="step-section">
+
+      <!-- COMPARE TABLE -->
+      <div class="section-label">Comparação de Ferramentas</div>
+      <div class="section-title" style="margin-bottom:1.25rem;">Scores para Duração e Risco em DAPT Pós-PCI</div>
+
+      <div style="overflow-x:auto;border-radius:calc(var(--radius)+2px);border:1px solid var(--border);margin-bottom:1.5rem;">
+        <table class="compare-table" style="min-width:620px;">
+          <thead>
+            <tr>
+              <th>Score</th>
+              <th>Momento de uso</th>
+              <th>Objetivo principal</th>
+              <th>Cutoff-chave</th>
+              <th>Evidência</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>PRECISE-DAPT</strong></td>
+              <td>Alta pós-PCI/SCA</td>
+              <td>Risco de sangramento durante DAPT → encurtamento</td>
+              <td><span class="badge badge-info">≥25 = HBR</span></td>
+              <td><span class="badge badge-score">IPD meta-analysis</span></td>
+            </tr>
+            <tr>
+              <td><strong>ARC-HBR</strong></td>
+              <td>No PCI (periproced.)</td>
+              <td>Definição pragmática de HBR para DAPT abreviada</td>
+              <td><span class="badge badge-major">≥1 maior ou ≥2 menores</span></td>
+              <td><span class="badge badge-score">Consenso especialistas</span></td>
+            </tr>
+            <tr>
+              <td><strong>DAPT Score</strong></td>
+              <td>12 meses pós-PCI</td>
+              <td>Benefício líquido de prolongar DAPT &gt;12 meses</td>
+              <td><span class="badge badge-info">≥2 = prolonga</span></td>
+              <td><span class="badge badge-score">Derivação RCTs</span></td>
+            </tr>
+            <tr>
+              <td><strong>PARIS</strong></td>
+              <td>Pós-PCI (qualquer)</td>
+              <td>Estratificação dual (isquêmico + hemorrágico)</td>
+              <td>Estratificação em quartis</td>
+              <td><span class="badge badge-score">Coorte (AHA/ACC)</span></td>
+            </tr>
+            <tr>
+              <td><strong>CRUSADE</strong></td>
+              <td>NSTE-ACS + angiocoronária</td>
+              <td>Sangramento intra-hospitalar maior em NSTE-ACS</td>
+              <td>Escala 1–100</td>
+              <td><span class="badge badge-score">Coorte (ESC 2020)</span></td>
+            </tr>
+            <tr>
+              <td><strong>ACUITY</strong></td>
+              <td>ACS com estratégia invasiva</td>
+              <td>Sangramento intra-hospitalar maior</td>
+              <td>Menor discriminação vs CRUSADE</td>
+              <td><span class="badge badge-score">RCT (ESC 2020)</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ALGORITHM SUMMARY -->
+      <div class="section-label" style="margin-bottom:.75rem;">Algoritmo Resumido</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-bottom:1.5rem;">
+        <div class="card" style="margin-bottom:0;border-color:rgba(0,211,189,.3);">
+          <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--teal);margin-bottom:.5rem;font-family:var(--font-mono);">Na Alta → HBR Confirmado</div>
+          <div style="font-size:.85rem;line-height:1.6;">
+            <div style="display:flex;gap:6px;margin-bottom:4px;"><span style="color:var(--teal);font-weight:700;">✓</span><span>DAPT encurtada: <strong>1–3 meses</strong></span></div>
+            <div style="display:flex;gap:6px;margin-bottom:4px;"><span style="color:var(--teal);font-weight:700;">✓</span><span>Seguido de monoterapia P2Y12 inibidor</span></div>
+            <div style="display:flex;gap:6px;"><span style="color:var(--teal);font-weight:700;">✓</span><span>Ticagrelor ou clopidogrel (não prasugrel)</span></div>
+          </div>
+          <div style="margin-top:.75rem;font-size:.72rem;color:var(--muted-foreground);">Ref: ESC 2020, Costa et al. EHJ 2022, MASTER DAPT</div>
+        </div>
+        <div class="card" style="margin-bottom:0;border-color:rgba(251,191,36,.3);">
+          <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--amber);margin-bottom:.5rem;font-family:var(--font-mono);">Na Alta → Sem HBR</div>
+          <div style="font-size:.85rem;line-height:1.6;">
+            <div style="display:flex;gap:6px;margin-bottom:4px;"><span style="color:var(--amber);font-weight:700;">✓</span><span>DAPT padrão: <strong>12 meses</strong></span></div>
+            <div style="display:flex;gap:6px;margin-bottom:4px;"><span style="color:var(--amber);font-weight:700;">✓</span><span>Aspirin + P2Y12 inibidor potente (SCA)</span></div>
+            <div style="display:flex;gap:6px;"><span style="color:var(--amber);font-weight:700;">✓</span><span>Reavaliar DAPT Score a 12 meses</span></div>
+          </div>
+          <div style="margin-top:.75rem;font-size:.72rem;color:var(--muted-foreground);">Ref: ESC 2020/2024, ACC/AHA 2025, NMA JAMA Cardiol 2024</div>
+        </div>
+        <div class="card" style="margin-bottom:0;border-color:rgba(168,85,247,.3);">
+          <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#a855f7;margin-bottom:.5rem;font-family:var(--font-mono);">12 Meses → DAPT Score ≥2</div>
+          <div style="font-size:.85rem;line-height:1.6;">
+            <div style="display:flex;gap:6px;margin-bottom:4px;"><span style="color:#a855f7;font-weight:700;">✓</span><span>Prolongar DAPT: <strong>12–30 meses</strong></span></div>
+            <div style="display:flex;gap:6px;margin-bottom:4px;"><span style="color:#a855f7;font-weight:700;">✓</span><span>Reduz IM recorrente e trombose de stent</span></div>
+            <div style="display:flex;gap:6px;"><span style="color:#a855f7;font-weight:700;">✓</span><span>Reavaliar anualmente</span></div>
+          </div>
+          <div style="margin-top:.75rem;font-size:.72rem;color:var(--muted-foreground);">Ref: Capodanno et al. Lancet 2017, ACC/AHA 2021</div>
+        </div>
+      </div>
+
+      <hr class="section-divider"/>
+
+      <!-- REFERENCES -->
+      <div class="section-label">Referências Bibliográficas</div>
+      <div class="section-title" style="margin-bottom:1.25rem;">Evidências de Suporte</div>
+
+      <div class="card">
+        <ul class="ref-list">
+          <li class="ref-item">
+            <span class="ref-num">1</span>
+            <div>
+              <div class="ref-title">2020 ESC Guidelines for the management of acute coronary syndromes in patients presenting without persistent ST-segment elevation</div>
+              <div class="ref-meta">Collet et al. <em>European Heart Journal</em> 2021<span class="ref-ev">Guideline · Very High</span></div>
+            </div>
+          </li>
+          <li class="ref-item">
+            <span class="ref-num">2</span>
+            <div>
+              <div class="ref-title">Derivation and validation of the PRECISE-DAPT score: a pooled analysis of individual-patient datasets from clinical trials</div>
+              <div class="ref-meta">Costa et al. <em>The Lancet</em> 2017<span class="ref-ev">IPD meta-analysis · Very High</span></div>
+            </div>
+          </li>
+          <li class="ref-item">
+            <span class="ref-num">3</span>
+            <div>
+              <div class="ref-title">2023 AHA/ACC/ACCP/ASPC/NLA/PCNA Guideline for the Management of Patients With Chronic Coronary Disease</div>
+              <div class="ref-meta">Virani et al. <em>Circulation</em> 2023<span class="ref-ev">Guideline · Very High</span></div>
+            </div>
+          </li>
+          <li class="ref-item">
+            <span class="ref-num">4</span>
+            <div>
+              <div class="ref-title">Discordance and Performance of the ARC-HBR and PRECISE-DAPT High Bleeding Risk Definitions After Coronary Stenting</div>
+              <div class="ref-meta">Lim et al. <em>JACC Cardiovascular Interventions</em> 2025<span class="ref-ev">Cohort · High</span></div>
+            </div>
+          </li>
+          <li class="ref-item">
+            <span class="ref-num">5</span>
+            <div>
+              <div class="ref-title">Dual antiplatelet therapy duration after percutaneous coronary intervention in high bleeding risk: a meta-analysis of randomized trials</div>
+              <div class="ref-meta">Costa et al. <em>European Heart Journal</em> 2022<span class="ref-ev">Meta-analysis RCTs · Very High</span></div>
+            </div>
+          </li>
+          <li class="ref-item">
+            <span class="ref-num">6</span>
+            <div>
+              <div class="ref-title">Short-Term Dual Antiplatelet Therapy After Drug-Eluting Stenting in Patients With Acute Coronary Syndromes: A Systematic Review and Network Meta-Analysis</div>
+              <div class="ref-meta">Carvalho et al. <em>JAMA Cardiology</em> 2024 · N=35.326<span class="ref-ev">SR + NMA · High</span></div>
+            </div>
+          </li>
+          <li class="ref-item">
+            <span class="ref-num">7</span>
+            <div>
+              <div class="ref-title">Derivation and Validation of the PRECISE-HBR Score to Predict Bleeding After Percutaneous Coronary Intervention</div>
+              <div class="ref-meta">Gragnano et al. <em>Circulation</em> 2025</div>
+            </div>
+          </li>
+          <li class="ref-item">
+            <span class="ref-num">8</span>
+            <div>
+              <div class="ref-title">Tailoring duration of DAPT with risk scores</div>
+              <div class="ref-meta">Capodanno et al. <em>The Lancet</em> 2017</div>
+            </div>
+          </li>
+          <li class="ref-item">
+            <span class="ref-num">9</span>
+            <div>
+              <div class="ref-title">Recurrent Events Analysis of MASTER DAPT: Total Ischemic and Bleeding Events After Abbreviated vs Prolonged DAPT in HBR Patients</div>
+              <div class="ref-meta">Bongiovanni et al. <em>Journal of the American College of Cardiology</em> 2025</div>
+            </div>
+          </li>
+          <li class="ref-item">
+            <span class="ref-num">10</span>
+            <div>
+              <div class="ref-title">2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for the Management of Patients With Acute Coronary Syndromes</div>
+              <div class="ref-meta">Rao et al. <em>Journal of the American College of Cardiology / Circulation</em> 2025<span class="ref-ev">Guideline · Very High</span></div>
+            </div>
+          </li>
+          <li class="ref-item">
+            <span class="ref-num">11</span>
+            <div>
+              <div class="ref-title">2024 ESC Guidelines for the management of chronic coronary syndromes</div>
+              <div class="ref-meta">Vrints et al. <em>European Heart Journal</em> 2024<span class="ref-ev">Guideline · High</span></div>
+            </div>
+          </li>
+          <li class="ref-item">
+            <span class="ref-num">12</span>
+            <div>
+              <div class="ref-title">Ticagrelor or Clopidogrel Monotherapy vs Dual Antiplatelet Therapy After PCI: A Systematic Review and Patient-Level Meta-Analysis</div>
+              <div class="ref-meta">Valgimigli et al. <em>JAMA Cardiology</em> 2024<span class="ref-ev">Patient-level MA · Very High</span></div>
+            </div>
+          </li>
+          <li class="ref-item">
+            <span class="ref-num">13</span>
+            <div>
+              <div class="ref-title">Assessing the Risks of Bleeding vs Thrombotic Events in Patients at High Bleeding Risk After Coronary Stent Implantation: The ARC-High Bleeding Risk Trade-off Model</div>
+              <div class="ref-meta">Urban et al. <em>JAMA Cardiology</em> 2021</div>
+            </div>
+          </li>
+          <li class="ref-item">
+            <span class="ref-num">14</span>
+            <div>
+              <div class="ref-title">Shorter Dual Antiplatelet Therapy for Older Adults After PCI: A Systematic Review and Network Meta-Analysis</div>
+              <div class="ref-meta">Park et al. <em>JAMA Network Open</em> 2024<span class="ref-ev">SR + NMA · Very High</span></div>
+            </div>
+          </li>
+          <li class="ref-item">
+            <span class="ref-num">15</span>
+            <div>
+              <div class="ref-title">Personalising the decision for prolonged DAPT: development, validation and potential impact of prognostic models for CV events and bleeding in MI survivors</div>
+              <div class="ref-meta"><em>European Heart Journal</em> 2017</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-secondary" onclick="goStep(1)">← Recalcular</button>
+      </div>
+    </div>
+
+  </div><!-- /container -->
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-copy">
+        © 2025 Dr. Lucas Silva · Cardiologia Intervencionista ·
+        <a href="https://lucascardio.com.br" target="_blank" style="color:var(--teal);text-decoration:none;">lucascardio.com.br</a>
+      </div>
+      <div class="footer-copy">Ferramenta educacional — não substitui avaliação clínica individualizada</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ════════════════════════════════════════════════════════
+   ARC-HBR CRITERIA
+═══════════════════════════════════════════════════════════ */
+const arcMajor = [
+  { id: 'arc_m1',  label: 'Anticoagulação oral contínua prevista', detail: 'Indicação permanente ou de longa duração' },
+  { id: 'arc_m2',  label: 'Insuficiência renal grave / diálise', detail: 'TFGe < 30 mL/min/1,73 m² ou diálise' },
+  { id: 'arc_m3',  label: 'Anemia significativa', detail: 'Hemoglobina < 11 g/dL' },
+  { id: 'arc_m4',  label: 'Sangramento espontâneo hospitalizante ≤12 meses', detail: 'BARC 3 ou TIMI major prévio' },
+  { id: 'arc_m5',  label: 'Trombocitopenia moderada a grave', detail: 'Plaquetas < 100 × 10³/µL' },
+  { id: 'arc_m6',  label: 'Diátese hemorrágica crônica', detail: 'Ex: hemofilia, doença de von Willebrand grave' },
+  { id: 'arc_m7',  label: 'Cirrose hepática com hipertensão portal', detail: '' },
+  { id: 'arc_m8',  label: 'Neoplasia maligna ativa ≤12 meses', detail: 'Exceto câncer de pele não-melanoma' },
+  { id: 'arc_m9',  label: 'AVC isquêmico ou hemorrágico prévio', detail: 'Qualquer AVC anterior' },
+  { id: 'arc_m10', label: 'Cirurgia de grande porte não-postergável ≤30 dias', detail: '' },
+];
+
+const arcMinor = [
+  { id: 'arc_n1', label: 'Idade ≥ 75 anos', detail: '' },
+  { id: 'arc_n2', label: 'Doença renal moderada', detail: 'TFGe 30–59 mL/min/1,73 m²' },
+  { id: 'arc_n3', label: 'Anemia leve', detail: 'Hb 11–12,9 g/dL (♂) ou 11–11,9 g/dL (♀)' },
+  { id: 'arc_n4', label: 'Sangramento espontâneo hospitalizante > 12 meses', detail: 'Ou repetitivo, sem hospitalização nos últimos 12 meses' },
+  { id: 'arc_n5', label: 'Uso crônico de AINEs ou corticosteroides', detail: '> 4 semanas previstas' },
+  { id: 'arc_n6', label: 'Qualquer AVC isquêmico sem alto risco (maior acima)', detail: '' },
+];
+
+/* DAPT SCORE ITEMS */
+const daptItems = [
+  { id: 'ds_age75',  label: 'Idade ≥ 75 anos',               pts: -2 },
+  { id: 'ds_age65',  label: 'Idade 65–74 anos',              pts: -1, note: '(não marcar se ≥75)' },
+  { id: 'ds_smk',    label: 'Tabagismo atual',                pts: +1 },
+  { id: 'ds_dm',     label: 'Diabetes mellitus',              pts: +1 },
+  { id: 'ds_mi',     label: 'IM como apresentação índice',    pts: +3 },
+  { id: 'ds_prior',  label: 'PCI prévia ou IM prévio',        pts: +1 },
+  { id: 'ds_ptx',    label: 'Stent paclitaxel-eluting',       pts: +1, note: '(raro com DES modernos)' },
+  { id: 'ds_diam',   label: 'Diâmetro do stent < 3 mm',      pts: +1 },
+  { id: 'ds_chf',    label: 'ICC ou FEVE < 30%',              pts: +2 },
+  { id: 'ds_svg',    label: 'PCI em enxerto safena (BPD)',    pts: +2 },
+];
+
+/* ════════════════════════════════════════════════════════
+   INIT — BUILD GRIDS
+═══════════════════════════════════════════════════════════ */
+function buildCheckGrid(containerId, items, onchange) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  el.innerHTML = items.map(it => {
+    const ptsHtml = it.pts !== undefined
+      ? ` <span style="font-size:.72rem;font-family:var(--font-mono);opacity:.7;">(${it.pts > 0 ? '+' : ''}${it.pts})</span>`
+      : '';
+    const noteHtml = (it.detail || it.note)
+      ? `<small>${it.detail || it.note}</small>`
+      : '';
+    return `<label class="check-item" id="wrap_${it.id}" onclick="toggleCheck('${it.id}','${onchange}')">` +
+      `<input type="checkbox" id="${it.id}"/>` +
+      `<div class="check-box" id="box_${it.id}">` +
+        `<svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>` +
+      `</div>` +
+      `<span class="check-label"><strong>${it.label}${ptsHtml}</strong>${noteHtml}</span>` +
+    `</label>`;
+  }).join('');
+}
+
+function toggleCheck(id, cb) {
+  const inp = document.getElementById(id);
+  const wrap = document.getElementById('wrap_' + id);
+  if (!inp || !wrap) return;
+  inp.checked = !inp.checked;
+  wrap.classList.toggle('checked', inp.checked);
+  if (cb === 'arc') updateARC();
+}
+
+function isChecked(id) {
+  const el = document.getElementById(id);
+  return el ? el.checked : false;
+}
+
+/* ════════════════════════════════════════════════════════
+   PRECISE-DAPT CALCULATION
+   Formula based on Cox model coefficients published in
+   Costa et al. Lancet 2017 (Table S2, supplemental data)
+   Score approximated to 0–100 scale via published nomogram
+═══════════════════════════════════════════════════════════ */
+let bleedingHx = 0;
+function setBleeding(val) {
+  bleedingHx = val;
+  document.getElementById('bl_no').classList.toggle('checked', val === 0);
+  document.getElementById('bl_yes').classList.toggle('checked', val === 1);
+  calcPreciseDAPT();
+}
+// Init
+document.getElementById('bl_no').classList.add('checked');
+
+function calcPreciseDAPT() {
+  const age  = parseFloat(document.getElementById('pd_age').value);
+  const hb   = parseFloat(document.getElementById('pd_hb').value);
+  const wbc  = parseFloat(document.getElementById('pd_wbc').value);
+  const gfr  = parseFloat(document.getElementById('pd_gfr').value);
+
+  if (isNaN(age) || isNaN(hb) || isNaN(wbc) || isNaN(gfr)) {
+    document.getElementById('pd_result').style.display = 'none';
+    return;
+  }
+
+  /* Approximation of the PRECISE-DAPT continuous score (0–100)
+     Coefficients derived from the published nomogram & regression:
+     Reference: Costa F et al. Lancet 2017 */
+  const LP = 0.0145 * age
+           - 1.019  * hb
+           + 0.465  * wbc
+           - 0.0148 * gfr
+           + 24.4   * bleedingHx;
+
+  // Center to ~0 at average risk patient (age=65, Hb=13.5, WBC=8, GFR=70, no bleeding)
+  const center = 0.0145*65 - 1.019*13.5 + 0.465*8 - 0.0148*70 + 0;
+  let score = Math.round(LP - center + 18); // shift to approximate 0-100 range
+  score = Math.max(0, Math.min(100, score));
+
+  document.getElementById('pd_result').style.display = 'block';
+  document.getElementById('pd_score').textContent = score;
+
+  const el_i = document.getElementById('pd_interp');
+  const el_d = document.getElementById('pd_desc');
+
+  if (score >= 25) {
+    el_i.style.color = '#f87171';
+    el_i.textContent = 'Alto Risco Hemorrágico (HBR) — Score ≥25';
+    el_d.textContent = 'ESC 2020: considerar encurtamento de DAPT para 1–3 meses seguido de monoterapia com P2Y12.';
+  } else if (score >= 18) {
+    el_i.style.color = '#fbbf24';
+    el_i.textContent = 'Risco Intermediário — Score 18–24';
+    el_d.textContent = 'Avaliar critérios ARC-HBR adicionais. Decisão clínica individualizada.';
+  } else {
+    el_i.style.color = 'var(--teal)';
+    el_i.textContent = 'Risco Hemorrágico Baixo — Score <18';
+    el_d.textContent = 'Favorece DAPT padrão de 12 meses pós-SCA/PCI. Reavaliar DAPT Score a 12 meses.';
+  }
+
+  // Store for later
+  window._pdScore = score;
+  updateARC();
+}
+
+/* ════════════════════════════════════════════════════════
+   ARC-HBR UPDATE
+═══════════════════════════════════════════════════════════ */
+function updateARC() {
+  const majorCount = arcMajor.filter(it => isChecked(it.id)).length;
+  const minorCount = arcMinor.filter(it => isChecked(it.id)).length;
+  const isHBR = majorCount >= 1 || minorCount >= 2;
+
+  const resEl = document.getElementById('arc_result');
+  resEl.style.display = 'block';
+
+  document.getElementById('arc_counts').textContent = majorCount + ' / ' + minorCount;
+
+  const el_i = document.getElementById('arc_interp');
+  const el_d = document.getElementById('arc_desc');
+
+  if (isHBR) {
+    el_i.style.color = '#f87171';
+    el_i.textContent = majorCount >= 1
+      ? `ARC-HBR Positivo — ${majorCount} critério(s) MAIOR(ES)`
+      : `ARC-HBR Positivo — ${minorCount} critérios menores`;
+    el_d.textContent = 'Paciente classifica como Alto Risco Hemorrágico. DAPT abreviada indicada.';
+  } else {
+    el_i.style.color = 'var(--teal)';
+    el_i.textContent = 'ARC-HBR Negativo';
+    el_d.textContent = `${majorCount} critério(s) maior(es), ${minorCount} critério(s) menor(es). Sem HBR pelos critérios ARC.`;
+  }
+
+  window._arcHBR = isHBR;
+  window._arcMajor = majorCount;
+  window._arcMinor = minorCount;
+}
+
+/* ════════════════════════════════════════════════════════
+   RECOMMENDATION ENGINE
+═══════════════════════════════════════════════════════════ */
+function buildRecommendation() {
+  const pdScore = window._pdScore;
+  const pdHBR = pdScore !== undefined && pdScore >= 25;
+  const arcHBR = window._arcHBR || false;
+  const isHBR = pdHBR || arcHBR;
+
+  // Summary cards
+  const pdText = pdScore !== undefined ? pdScore : '—';
+  document.getElementById('sum_pd').textContent = pdText;
+  document.getElementById('sum_pd_cat').textContent = pdScore !== undefined
+    ? (pdScore >= 25 ? 'HBR (≥25)' : pdScore >= 18 ? 'Intermediário' : 'Baixo (<18)')
+    : 'Não calculado';
+  document.getElementById('sum_pd').style.color = pdHBR ? '#f87171' : pdScore >= 18 ? '#fbbf24' : 'var(--teal)';
+
+  const arcMaj = window._arcMajor || 0;
+  const arcMin = window._arcMinor || 0;
+  document.getElementById('sum_arc').textContent = arcMaj + 'M / ' + arcMin + 'm';
+  document.getElementById('sum_arc').style.color = arcHBR ? '#f87171' : 'var(--teal)';
+  document.getElementById('sum_arc_cat').textContent = arcHBR ? 'ARC-HBR Positivo' : 'ARC-HBR Negativo';
+
+  document.getElementById('sum_consensus').textContent = isHBR ? 'HBR CONFIRMADO' : 'Sem HBR';
+  document.getElementById('sum_consensus').style.color = isHBR ? '#f87171' : 'var(--teal)';
+  document.getElementById('sum_consensus_sub').textContent = isHBR
+    ? 'Pelo menos 1 critério positivo'
+    : 'Ambos os critérios negativos';
+
+  const area = document.getElementById('recommendation_area');
+
+  if (isHBR) {
+    area.innerHTML = `
+      <div class="result-panel show">
+        <div class="result-header hbr">
+          <div class="result-icon">🩸</div>
+          <div>
+            <div class="result-title" style="color:#f87171;">Alto Risco Hemorrágico — DAPT Abreviada Recomendada</div>
+            <div style="font-size:.82rem;color:var(--muted-foreground);">
+              ${pdHBR ? `PRECISE-DAPT ${pdScore} (≥25)` : ''}
+              ${pdHBR && arcHBR ? ' · ' : ''}
+              ${arcHBR ? `ARC-HBR: ${arcMaj} maior(es), ${arcMin} menor(es)` : ''}
+            </div>
+          </div>
+        </div>
+        <div class="result-body">
+          <div class="result-recommendation">
+            <div class="result-duration">1–3</div>
+            <div class="result-desc">
+              <strong>Meses de DAPT dupla</strong>
+              Seguidos de monoterapia com P2Y12 inibidor (ticagrelor ou clopidogrel)
+            </div>
+          </div>
+          <div class="info-red info-box">
+            <span class="info-box-icon">🚫</span>
+            <div><strong>NÃO prolongar DAPT além do período definido.</strong> Em HBR, DAPT prolongada aumenta sangramento sem ganho isquêmico relevante (ESC 2020; Costa et al. EHJ 2022).</div>
+          </div>
+          <div class="info-teal info-box">
+            <span class="info-box-icon">✅</span>
+            <div>
+              <strong>Estratégia preferida:</strong> 1 mês de DAPT → P2Y12 monoterapia (MASTER DAPT, STOPDAPT-2 ACS, TICO).<br>
+              <span style="opacity:.8;">Em sangramento muito alto: aspirin pode ser suspenso em favor de P2Y12 inibidor isolado.</span>
+            </div>
+          </div>
+          <div class="info-gray info-box">
+            <span class="info-box-icon">📌</span>
+            <div><strong>Seleção do P2Y12 em HBR:</strong> Ticagrelor 90 mg 2×/dia ou clopidogrel 75 mg/dia (preferível em sangramento muito alto). <strong>Evitar prasugrel em HBR.</strong></div>
+          </div>
+        </div>
+      </div>`;
+  } else if (pdScore === undefined) {
+    area.innerHTML = `
+      <div class="info-amber info-box">
+        <span class="info-box-icon">⚠️</span>
+        <div>Preencha os dados do PRECISE-DAPT e/ou marque os critérios ARC-HBR no Passo 1 para visualizar a recomendação completa.</div>
+      </div>`;
+  } else {
+    area.innerHTML = `
+      <div class="result-panel show">
+        <div class="result-header low">
+          <div class="result-icon">💊</div>
+          <div>
+            <div class="result-title" style="color:var(--teal);">Risco Hemorrágico Não Elevado — DAPT Padrão</div>
+            <div style="font-size:.82rem;color:var(--muted-foreground);">
+              PRECISE-DAPT ${pdScore} · ARC-HBR Negativo (${arcMaj}M/${arcMin}m)
+            </div>
+          </div>
+        </div>
+        <div class="result-body">
+          <div class="result-recommendation">
+            <div class="result-duration">12</div>
+            <div class="result-desc">
+              <strong>Meses de DAPT dupla padrão</strong>
+              Aspirin 100 mg/dia + P2Y12 potente (ticagrelor 90 mg 2×/dia ou prasugrel 10 mg/dia)
+            </div>
+          </div>
+          <div class="info-teal info-box">
+            <span class="info-box-icon">✅</span>
+            <div>
+              <strong>Contexto SCA — recomendação classe I ESC 2020, ACC/AHA 2025.</strong><br>
+              P2Y12 inibidores potentes (ticagrelor, prasugrel) são preferíveis ao clopidogrel em SCA sem contraindicação.
+            </div>
+          </div>
+          <div class="info-amber info-box">
+            <span class="info-box-icon">📅</span>
+            <div>
+              <strong>Reavaliar a 12 meses com DAPT Score</strong> (Passo 3) para decisão de prolongamento além de 1 ano. Score ≥2 = benefício de estender.
+            </div>
+          </div>
+          <div class="info-gray info-box">
+            <span class="info-box-icon">📌</span>
+            <div><strong>Prasugrel:</strong> evitar em AVC/AIT prévio, peso &lt;60 kg, idade ≥75 anos. Ticagrelor: cuidado com bradiarritmia e insuficiência respiratória. Clopidogrel: alternativa em contraindicação/intolerância.</div>
+          </div>
+        </div>
+      </div>`;
+  }
+}
+
+/* ════════════════════════════════════════════════════════
+   DAPT SCORE CALCULATION
+═══════════════════════════════════════════════════════════ */
+function calcDAPTScore() {
+  let score = 0;
+  const contributions = [];
+
+  daptItems.forEach(it => {
+    if (isChecked(it.id)) {
+      score += it.pts;
+      contributions.push({ label: it.label, pts: it.pts });
+    }
+  });
+
+  document.getElementById('dapt_result').style.display = 'block';
+  document.getElementById('dapt_val').textContent = score >= 0 ? '+' + score : score;
+
+  const el_i = document.getElementById('dapt_interp');
+  const el_d = document.getElementById('dapt_desc');
+  const detail = document.getElementById('dapt_detail');
+
+  if (score >= 2) {
+    document.getElementById('dapt_val').style.color = 'var(--teal)';
+    el_i.style.color = 'var(--teal)';
+    el_i.textContent = 'Score ≥2 → Prolongar DAPT além de 12 meses';
+    el_d.textContent = 'O benefício isquêmico (redução de IM e trombose de stent) supera o risco hemorrágico estimado com prolongamento.';
+    detail.innerHTML = `
+      <div class="info-teal info-box">
+        <span class="info-box-icon">✅</span>
+        <div><strong>Estender DAPT por 18–30 meses</strong> (conforme tolerância e ausência de eventos hemorrágicos). Reavaliar anualmente. Referência: Capodanno et al. Lancet 2017; ACC/AHA 2021 Rev. Guidelines.</div>
+      </div>`;
+  } else {
+    document.getElementById('dapt_val').style.color = '#f87171';
+    el_i.style.color = '#f87171';
+    el_i.textContent = 'Score <2 → Não prolongar DAPT';
+    el_d.textContent = 'Sem benefício líquido detectado com prolongamento de DAPT além de 12 meses. Risco hemorrágico supera ou iguala benefício isquêmico.';
+    detail.innerHTML = `
+      <div class="info-amber info-box">
+        <span class="info-box-icon">⚠️</span>
+        <div><strong>Interromper DAPT ao completar 12 meses.</strong> Manter aspirin indefinidamente. Ticagrelor pode ser mantido isoladamente em pacientes de muito alto risco isquêmico (PEGASUS-TIMI 54).</div>
+      </div>`;
+  }
+
+  // Breakdown
+  if (contributions.length > 0) {
+    detail.innerHTML += `<div style="margin-top:.75rem;font-size:.8rem;color:var(--muted-foreground);">
+      <strong style="color:var(--foreground);">Composição do Score:</strong>
+      ${contributions.map(c => `<span style="margin-left:8px;font-family:var(--font-mono);">${c.label}: <span style="color:${c.pts > 0 ? 'var(--teal)' : '#f87171'};font-weight:700;">${c.pts > 0 ? '+' : ''}${c.pts}</span></span>`).join('')}
+    </div>`;
+  }
+}
+
+function resetDAPT() {
+  daptItems.forEach(it => {
+    const inp = document.getElementById(it.id);
+    const wrap = document.getElementById('wrap_' + it.id);
+    if (inp) inp.checked = false;
+    if (wrap) wrap.classList.remove('checked');
+  });
+  document.getElementById('dapt_result').style.display = 'none';
+}
+
+/* ════════════════════════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════════════════════════ */
+const stepProgress = { 1: '25%', 2: '50%', 3: '75%', 4: '100%' };
+
+function goStep(n) {
+  // Update steps
+  [1,2,3,4].forEach(i => {
+    document.getElementById('step' + i).classList.toggle('active', i === n);
+    const tls = document.querySelectorAll('.timeline-step');
+    if (tls[i-1]) tls[i-1].classList.toggle('active', i === n);
+    if (tls[i-1]) {
+      const dot = tls[i-1].querySelector('.dot');
+      if (dot) dot.style.background = i === n ? 'var(--teal)' : '';
+    }
+  });
+  document.getElementById('progress').style.width = stepProgress[n];
+
+  // If going to step 2, build recommendation
+  if (n === 2) buildRecommendation();
+
+  // Scroll to top of content
+  document.querySelector('.timeline')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+/* ════════════════════════════════════════════════════════
+   INIT GRIDS
+═══════════════════════════════════════════════════════════ */
+buildCheckGrid('arc_major_grid', arcMajor, 'arc');
+buildCheckGrid('arc_minor_grid', arcMinor, 'arc');
+buildCheckGrid('dapt_grid', daptItems, '');
+
+// Initialize ARC display
+updateARC();
+</script>
+</body>
+</html>
