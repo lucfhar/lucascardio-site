@@ -1,21 +1,49 @@
 # robots.txt — Dr. Lucas Silva — Cardiologia Intervencionista
 # https://www.lucascardio.com.br
 
+# Default access for all crawlers
 User-agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /private/
 Disallow: /temp/
 Disallow: /cgi-bin/
-
-Sitemap: https://www.lucascardio.com.br/sitemap.xml
+Disallow: /wp-admin/ # Block WordPress admin area
 
 # Google
 User-agent: Googlebot
 Allow: /
 Crawl-delay: 0
 
+# Google Images
+User-agent: Googlebot-Image
+Allow: /
+
 # Bing
 User-agent: Bingbot
 Allow: /
 Crawl-delay: 1
+
+# Yandex
+User-agent: Yandex
+Allow: /
+Crawl-delay: 1
+
+# Baidu
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 1
+
+# DuckDuckGo
+User-agent: DuckDuckBot
+Allow: /
+
+# Ahrefs (SEO tool)
+User-agent: AhrefsBot
+Disallow: /
+
+# SEMrush (SEO tool)
+User-agent: SEMrushBot
+Disallow: /
+
+Sitemap: https://www.lucascardio.com.br/sitemap.xml
