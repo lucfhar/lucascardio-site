@@ -1,0 +1,1492 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>Estratégia de Stent em Bifurcações – Algoritmo Decisório | Dr. Lucas Silva</title>
+  <meta name="description" content="Ferramenta interativa para seleção da estratégia de stent em bifurcações coronárias. Baseada em evidências: Classificação de Medina, Critérios DEFINITION, DKCRUSH-V, EBC MAIN." />
+  <meta name="author" content="Dr. Lucas Silva" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── DESIGN TOKENS ────────────────────────────────────────── */
+    :root {
+      --primary: oklch(65% .18 195);
+      --primary-foreground: oklch(98% 0 0);
+      --background: oklch(13% .018 250);
+      --foreground: oklch(93% .01 250);
+      --card: oklch(18.5% .018 250);
+      --card-foreground: oklch(93% .01 250);
+      --muted: oklch(22% .018 250);
+      --muted-foreground: oklch(62% .02 250);
+      --border: oklch(28% .025 250);
+      --input: oklch(22% .02 250);
+      --destructive: oklch(60% .22 25);
+      --secondary: oklch(22% .022 250);
+      --secondary-foreground: oklch(88% .01 250);
+      --accent: oklch(24% .025 250);
+      --accent-foreground: oklch(90% .01 250);
+      --teal: #00d3bd;
+      --teal-dim: rgba(0,211,189,.12);
+      --amber: oklch(82.8% .189 84.429);
+      --red: oklch(63.7% .237 25.331);
+      --green: oklch(79.2% .209 151.711);
+      --radius: 0.625rem;
+      --spacing: 4px;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--background);
+      color: var(--foreground);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ─────────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(18,20,27,.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: .6rem;
+      text-decoration: none; color: var(--foreground);
+    }
+    .nav-brand-icon {
+      width: 28px; height: 28px; border-radius: 7px;
+      background: var(--teal); display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .nav-brand-name { font-weight: 800; font-size: 1rem; letter-spacing: -.025em; line-height: 1; }
+    .nav-brand-name span { color: var(--teal); }
+    .nav-brand-sep { width: 1px; height: 14px; background: var(--border); margin: 0 6px; }
+    .nav-brand-sub { font-size: .7rem; font-weight: 500; color: var(--muted-foreground); }
+    .nav-center { display: flex; align-items: center; gap: .25rem; }
+    .nav-center-btn {
+      background: none; border: none; cursor: pointer; font-family: var(--font-sans);
+      font-size: .8rem; font-weight: 500; color: var(--muted-foreground);
+      padding: 6px 12px; border-radius: 7px;
+      transition: background .15s, color .15s;
+    }
+    .nav-center-btn:hover { background: var(--accent); color: var(--foreground); }
+    .nav-actions { display: flex; align-items: center; gap: .5rem; }
+    .nav-link {
+      font-size: .75rem; font-weight: 600; padding: 5px 12px;
+      border-radius: 8px; border: 1.5px solid var(--primary);
+      color: var(--primary); background: transparent;
+      text-decoration: none;
+      transition: background .15s, color .15s;
+      display: inline-flex; align-items: center; gap: 5px;
+    }
+    .nav-link:hover { background: var(--primary); color: var(--primary-foreground); }
+
+    /* ── LAYOUT ──────────────────────────────────────────────── */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* ── HERO ────────────────────────────────────────────────── */
+    .hero { padding: 3.5rem 0 2.5rem; border-bottom: 1px solid var(--border); }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .7rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--teal); margin-bottom: 1rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 20px; height: 2px;
+      background: var(--teal); border-radius: 1px;
+    }
+    .hero h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800; line-height: 1.2; margin-bottom: .75rem; letter-spacing: -.02em; }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero-sub { color: var(--muted-foreground); font-size: .95rem; max-width: 620px; margin-bottom: 1.5rem; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 6px; border: 1px solid var(--border);
+      color: var(--muted-foreground); background: var(--card);
+      font-family: var(--font-mono);
+    }
+
+    /* ── TIMELINE ────────────────────────────────────────────── */
+    .timeline {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border); border-radius: calc(var(--radius) + 2px);
+      overflow: hidden; margin: 2rem 0;
+    }
+    .timeline-step {
+      background: var(--card); padding: 1.25rem 1.25rem 1.5rem;
+      cursor: pointer; transition: background .15s;
+    }
+    .timeline-step:hover { background: var(--accent); }
+    .timeline-step.active { background: var(--teal-dim); }
+    .step-num {
+      font-size: .65rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--muted-foreground);
+      margin-bottom: .5rem; font-family: var(--font-mono);
+    }
+    .step-num .dot {
+      display: inline-block; width: 18px; height: 18px; border-radius: 50%;
+      background: var(--muted); color: var(--muted-foreground); font-size: .6rem;
+      text-align: center; line-height: 18px; margin-right: 6px;
+      font-family: var(--font-mono); font-weight: 700;
+    }
+    .timeline-step.active .dot { background: var(--teal); color: #000; }
+    .step-title { font-weight: 700; font-size: .9rem; margin-bottom: .25rem; }
+    .step-desc { font-size: .78rem; color: var(--muted-foreground); line-height: 1.5; }
+
+    /* ── CARDS ───────────────────────────────────────────────── */
+    .card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px); padding: 1.5rem; margin-bottom: 1.5rem;
+    }
+    .card-header {
+      display: flex; align-items: flex-start; gap: .75rem;
+      margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border);
+    }
+    .card-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+      background: var(--teal-dim); color: var(--teal);
+    }
+    .card-title { font-weight: 700; font-size: 1rem; margin-bottom: 2px; }
+    .card-subtitle { font-size: .78rem; color: var(--muted-foreground); }
+
+    /* ── FORM ELEMENTS ───────────────────────────────────────── */
+    .form-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem;
+    }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-label { font-size: .78rem; font-weight: 600; color: var(--muted-foreground); }
+    .form-label span { font-size: .7rem; font-weight: 400; opacity: .7; }
+    .form-input {
+      background: var(--input); border: 1px solid var(--border); border-radius: var(--radius);
+      color: var(--foreground); font-family: var(--font-mono); font-size: .85rem;
+      padding: 8px 12px; transition: border-color .15s, box-shadow .15s; outline: none; width: 100%;
+    }
+    .form-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(0,211,189,.15); }
+
+    /* Medina toggle */
+    .medina-grid {
+      display: flex; gap: .75rem; align-items: stretch; margin: 1rem 0;
+      flex-wrap: wrap;
+    }
+    .medina-seg {
+      flex: 1; min-width: 120px; background: var(--muted);
+      border: 1.5px solid var(--border); border-radius: calc(var(--radius) + 2px);
+      padding: .75rem; display: flex; flex-direction: column; align-items: center; gap: .5rem;
+    }
+    .medina-seg-label {
+      font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em;
+      color: var(--muted-foreground); text-align: center; font-family: var(--font-mono);
+    }
+    .medina-toggle {
+      display: flex; border-radius: 8px; overflow: hidden;
+      border: 1px solid var(--border); width: 100%;
+    }
+    .medina-btn {
+      flex: 1; padding: 8px 0; font-size: .95rem; font-weight: 800;
+      font-family: var(--font-mono); border: none; cursor: pointer;
+      background: var(--input); color: var(--muted-foreground);
+      transition: background .15s, color .15s;
+    }
+    .medina-btn.active-0 { background: rgba(220,38,38,.18); color: #f87171; }
+    .medina-btn.active-1 { background: var(--teal-dim); color: var(--teal); }
+    .medina-sep { width: 1px; background: var(--border); }
+    .medina-code {
+      font-family: var(--font-mono); font-size: 1.6rem; font-weight: 800;
+      letter-spacing: .25em; color: var(--foreground);
+      display: flex; align-items: center; gap: 2px;
+    }
+    .medina-code .mc { transition: color .2s; }
+    .medina-code .mc.v1 { color: var(--teal); }
+    .medina-code .mc.v0 { color: #f87171; }
+    .medina-dot-sep { color: var(--muted-foreground); font-size: 1.2rem; }
+    .medina-badge {
+      font-size: .78rem; font-weight: 600; padding: 4px 14px;
+      border-radius: 999px; white-space: nowrap; margin-top: .25rem;
+    }
+    .medina-badge.true-bif { background: rgba(0,211,189,.15); color: var(--teal); border: 1px solid rgba(0,211,189,.3); }
+    .medina-badge.non-true { background: rgba(251,191,36,.1); color: #fbbf24; border: 1px solid rgba(251,191,36,.25); }
+    .medina-badge.main-only { background: var(--muted); color: var(--muted-foreground); border: 1px solid var(--border); }
+
+    /* Radio rows */
+    .radio-row { display: flex; gap: .5rem; flex-wrap: wrap; }
+    .radio-item {
+      display: flex; align-items: center; gap: 8px; padding: 8px 14px;
+      border: 1px solid var(--border); border-radius: var(--radius);
+      background: var(--muted); cursor: pointer; transition: all .15s;
+      user-select: none;
+    }
+    .radio-item:hover { background: var(--accent); border-color: var(--primary); }
+    .radio-item.selected { background: var(--teal-dim); border-color: rgba(0,211,189,.4); }
+    .radio-item input { display: none; }
+    .radio-dot {
+      width: 14px; height: 14px; border-radius: 50%;
+      border: 1.5px solid var(--border); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .15s;
+    }
+    .radio-item.selected .radio-dot {
+      background: var(--teal); border-color: var(--teal);
+      box-shadow: inset 0 0 0 3px var(--card);
+    }
+    .radio-label { font-size: .82rem; font-weight: 600; line-height: 1.3; }
+    .radio-label small { display: block; font-size: .7rem; color: var(--muted-foreground); font-weight: 400; }
+
+    /* Check grid */
+    .check-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: .5rem;
+    }
+    .check-item {
+      display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px;
+      border-radius: var(--radius); border: 1px solid var(--border);
+      background: var(--muted); cursor: pointer; transition: background .15s, border-color .15s;
+      user-select: none;
+    }
+    .check-item:hover { background: var(--accent); border-color: var(--primary); }
+    .check-item.checked { background: var(--teal-dim); border-color: rgba(0,211,189,.4); }
+    .check-item input { display: none; }
+    .check-box {
+      width: 16px; height: 16px; border-radius: 4px; border: 1.5px solid var(--border);
+      flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center;
+      transition: all .15s;
+    }
+    .check-item.checked .check-box { background: var(--teal); border-color: var(--teal); color: #000; }
+    .check-label { font-size: .8rem; line-height: 1.4; }
+    .check-label strong { font-weight: 600; display: block; margin-bottom: 1px; }
+    .check-label small { font-size: .72rem; color: var(--muted-foreground); }
+
+    /* ── BUTTONS ─────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: .85rem; font-weight: 600; padding: 10px 20px;
+      border-radius: calc(var(--radius) + 2px); border: none; cursor: pointer;
+      transition: all .15s; white-space: nowrap; font-family: var(--font-sans);
+    }
+    .btn-primary { background: var(--primary); color: #000; font-weight: 700; }
+    .btn-primary:hover { opacity: .9; transform: translateY(-1px); }
+    .btn-secondary { background: var(--muted); color: var(--foreground); border: 1px solid var(--border); }
+    .btn-secondary:hover { background: var(--accent); }
+    .btn-lg { font-size: .95rem; padding: 12px 28px; }
+    .btn-row { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 1.5rem; }
+
+    /* ── RESULT PANEL ────────────────────────────────────────── */
+    .result-panel { display: none; border-radius: calc(var(--radius) + 2px); overflow: hidden; margin-top: 1.5rem; }
+    .result-panel.show { display: block; animation: fadeUp .3s ease; }
+    .result-header { padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 1rem; }
+    .result-header.prov { background: rgba(0,211,189,.08); border: 1px solid rgba(0,211,189,.25); border-bottom: none; border-radius: calc(var(--radius)+2px) calc(var(--radius)+2px) 0 0; }
+    .result-header.two  { background: rgba(251,191,36,.08); border: 1px solid rgba(251,191,36,.25); border-bottom: none; border-radius: calc(var(--radius)+2px) calc(var(--radius)+2px) 0 0; }
+    .result-header.lm   { background: rgba(124,58,237,.1); border: 1px solid rgba(124,58,237,.3); border-bottom: none; border-radius: calc(var(--radius)+2px) calc(var(--radius)+2px) 0 0; }
+    .result-header.dk   { background: rgba(0,211,189,.08); border: 1px solid rgba(0,211,189,.25); border-bottom: none; border-radius: calc(var(--radius)+2px) calc(var(--radius)+2px) 0 0; }
+    .result-icon { font-size: 2rem; line-height: 1; }
+    .result-title { font-size: 1.1rem; font-weight: 800; margin-bottom: 2px; }
+    .result-body {
+      padding: 1.25rem 1.5rem; background: var(--card);
+      border: 1px solid var(--border); border-top: none;
+      border-radius: 0 0 calc(var(--radius)+2px) calc(var(--radius)+2px);
+    }
+    .result-recommendation {
+      display: flex; align-items: center; gap: 12px;
+      background: var(--muted); border-radius: var(--radius);
+      padding: 12px 16px; margin-bottom: 1rem;
+    }
+    .result-icon-big { font-size: 2.4rem; line-height: 1; }
+    .result-desc { font-size: .85rem; }
+    .result-desc strong { display: block; font-weight: 700; margin-bottom: 2px; }
+
+    /* Technique cards grid */
+    .tech-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: .75rem;
+      margin: 1rem 0;
+    }
+    .tech-card {
+      background: var(--muted); border: 1.5px solid var(--border);
+      border-radius: calc(var(--radius) + 2px); padding: 1rem;
+      transition: border-color .15s;
+    }
+    .tech-card.preferred { border-color: rgba(0,211,189,.5); background: var(--teal-dim); }
+    .tech-card.alternative { border-color: rgba(251,191,36,.3); }
+    .tech-card.avoid { border-color: rgba(220,38,38,.3); background: rgba(220,38,38,.05); }
+    .tech-label {
+      font-size: .6rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      font-family: var(--font-mono); margin-bottom: .35rem;
+    }
+    .tech-label.pref { color: var(--teal); }
+    .tech-label.alt { color: #fbbf24; }
+    .tech-label.avoid-lbl { color: #f87171; }
+    .tech-name { font-size: .92rem; font-weight: 700; margin-bottom: .3rem; }
+    .tech-desc { font-size: .75rem; color: var(--muted-foreground); line-height: 1.5; }
+
+    /* ── INFO BOXES ──────────────────────────────────────────── */
+    .info-box {
+      border-radius: var(--radius); padding: 12px 16px;
+      font-size: .82rem; line-height: 1.6; display: flex; gap: 10px; margin-bottom: .75rem;
+    }
+    .info-box-icon { flex-shrink: 0; font-size: 1rem; margin-top: 1px; }
+    .info-teal  { background: var(--teal-dim); border-left: 3px solid var(--teal); }
+    .info-amber { background: rgba(251,191,36,.08); border-left: 3px solid rgba(251,191,36,.5); }
+    .info-red   { background: rgba(220,38,38,.08); border-left: 3px solid rgba(220,38,38,.4); }
+    .info-gray  { background: var(--muted); border-left: 3px solid var(--border); }
+    .info-purple{ background: rgba(124,58,237,.08); border-left: 3px solid rgba(124,58,237,.4); }
+
+    /* ── SECTION TITLES ──────────────────────────────────────── */
+    .section-title { font-size: 1.3rem; font-weight: 800; margin-bottom: .25rem; letter-spacing: -.01em; }
+    .section-label {
+      font-size: .68rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--teal); margin-bottom: .4rem; font-family: var(--font-mono);
+    }
+    .section-divider { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+
+    /* ── COMPARISON TABLE ────────────────────────────────────── */
+    .compare-table { width: 100%; border-collapse: collapse; font-size: .82rem; border-radius: var(--radius); overflow: hidden; }
+    .compare-table th {
+      background: var(--muted); padding: 10px 14px; text-align: left; font-weight: 700; font-size: .75rem;
+      border-bottom: 1px solid var(--border); color: var(--muted-foreground); letter-spacing: .03em;
+    }
+    .compare-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table tr:hover td { background: var(--accent); }
+
+    /* ── REFERENCES ──────────────────────────────────────────── */
+    .ref-list { list-style: none; }
+    .ref-item {
+      padding: 10px 0; border-bottom: 1px solid var(--border); font-size: .8rem;
+      line-height: 1.6; display: flex; gap: 10px;
+    }
+    .ref-item:last-child { border-bottom: none; }
+    .ref-num { font-family: var(--font-mono); font-size: .7rem; font-weight: 700; color: var(--teal); min-width: 22px; }
+    .ref-title { font-weight: 600; margin-bottom: 2px; }
+    .ref-meta { color: var(--muted-foreground); font-size: .75rem; }
+    .ref-ev {
+      display: inline-block; font-size: .65rem; font-weight: 700; padding: 1px 6px;
+      border-radius: 4px; margin-left: 6px; background: var(--teal-dim); color: var(--teal);
+    }
+
+    /* ── BADGE ───────────────────────────────────────────────── */
+    .badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: .68rem; font-weight: 700; padding: 2px 8px;
+      border-radius: 999px; white-space: nowrap;
+    }
+    .badge-teal { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.2); }
+    .badge-amber { background: rgba(251,191,36,.12); color: #fbbf24; border: 1px solid rgba(251,191,36,.2); }
+    .badge-red   { background: rgba(220,38,38,.15); color: #f87171; border: 1px solid rgba(220,38,38,.25); }
+    .badge-gray  { background: var(--muted); color: var(--foreground); border: 1px solid var(--border); font-family: var(--font-mono); }
+
+    /* ── STEP SECTIONS ───────────────────────────────────────── */
+    .step-section { display: none; }
+    .step-section.active { display: block; animation: fadeUp .3s ease; }
+
+    /* ── PROGRESS BAR ────────────────────────────────────────── */
+    .progress-bar { height: 3px; background: var(--border); border-radius: 2px; margin: 1.5rem 0; }
+    .progress-fill { height: 100%; background: var(--teal); border-radius: 2px; transition: width .4s ease; }
+
+    /* ── DISCLAIMER ──────────────────────────────────────────── */
+    .disclaimer {
+      background: var(--muted); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 12px 16px; font-size: .75rem; color: var(--muted-foreground); line-height: 1.6; margin-top: 1.5rem;
+    }
+
+    /* ── ALGORITHM FLOWCHART ─────────────────────────────────── */
+    .flow-tree {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px); padding: 1.25rem;
+      font-size: .8rem; margin: 1rem 0;
+    }
+    .flow-node {
+      display: flex; align-items: flex-start; gap: .5rem;
+      padding: .4rem .6rem; border-radius: var(--radius);
+      margin: .25rem 0; line-height: 1.4;
+    }
+    .flow-node.root { background: var(--card); border: 1px solid var(--border); font-weight: 700; }
+    .flow-node.branch-yes { margin-left: 1.5rem; border-left: 2px solid var(--teal); padding-left: .75rem; }
+    .flow-node.branch-no  { margin-left: 1.5rem; border-left: 2px solid #fbbf24; padding-left: .75rem; }
+    .flow-node.leaf-prov  { background: rgba(0,211,189,.08); border: 1px solid rgba(0,211,189,.2); font-weight: 600; }
+    .flow-node.leaf-two   { background: rgba(251,191,36,.08); border: 1px solid rgba(251,191,36,.2); font-weight: 600; }
+    .flow-node.leaf-avoid { background: rgba(220,38,38,.08); border: 1px solid rgba(220,38,38,.2); font-weight: 600; }
+    .flow-connector { color: var(--muted-foreground); font-family: var(--font-mono); font-size: .7rem; flex-shrink: 0; margin-top: 2px; }
+
+    /* ── ANIMATIONS ──────────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── FOOTER ──────────────────────────────────────────────── */
+    footer { border-top: 1px solid var(--border); padding: 2rem 0; margin-top: 3rem; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-copy { font-size: .75rem; color: var(--muted-foreground); }
+
+    /* ── RESPONSIVE ──────────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .medina-grid { flex-direction: column; }
+      .radio-row { flex-direction: column; }
+      .tech-grid { grid-template-columns: 1fr; }
+      .btn-row { flex-direction: column; }
+      .nav-center { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ───────────────────────────────────────────────────── -->
+<nav>
+  <a class="nav-brand" href="#">
+    <div class="nav-brand-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/>
+        <path d="M12 7v4M12 11L5 17M12 11l7 6"/>
+      </svg>
+    </div>
+    <div class="nav-brand-name">Bifurc<span>PCI</span></div>
+    <div class="nav-brand-sep"></div>
+    <div class="nav-brand-sub">Estratégia de Stent em Bifurcações</div>
+  </a>
+  <div class="nav-center">
+    <button class="nav-center-btn" onclick="goStep(1)">Calculadora</button>
+    <button class="nav-center-btn" onclick="goStep(4)">Evidências</button>
+  </div>
+  <div class="nav-actions">
+    <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      lucascardio.com.br
+    </a>
+  </div>
+</nav>
+
+<!-- ── MAIN ───────────────────────────────────────────────────── -->
+<main>
+  <div class="container">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-eyebrow">Medicina Baseada em Evidências</div>
+      <h1>Algoritmo de Estratégia de Stent<br>em <em>Bifurcações Coronárias</em></h1>
+      <p class="hero-sub">
+        Ferramenta interativa baseada na Classificação de Medina, Critérios DEFINITION, ensaios DKCRUSH-V e EBC MAIN, e metanálises em rede para seleção da técnica ótima de stenting em bifurcações.
+      </p>
+      <div class="hero-tags">
+        <span class="tag">Medina</span>
+        <span class="tag">DEFINITION II</span>
+        <span class="tag">DK-Crush</span>
+        <span class="tag">EBC MAIN</span>
+        <span class="tag">DKCRUSH-V</span>
+        <span class="tag">Bif-ARC</span>
+        <span class="tag">European Bifurcation Club</span>
+      </div>
+    </div>
+
+    <!-- TIMELINE OVERVIEW -->
+    <div class="timeline" style="margin-top:2rem;">
+      <div class="timeline-step active" onclick="goStep(1)">
+        <div class="step-num"><span class="dot">1</span>ANATOMIA</div>
+        <div class="step-title">Classificação da Lesão</div>
+        <div class="step-desc">Código de Medina, localização e parâmetros DEFINITION</div>
+      </div>
+      <div class="timeline-step" onclick="goStep(2)">
+        <div class="step-num"><span class="dot">2</span>ESTRATÉGIA</div>
+        <div class="step-title">Provisional vs 2 Stents</div>
+        <div class="step-desc">Recomendação baseada na complexidade anatômica</div>
+      </div>
+      <div class="timeline-step" onclick="goStep(3)">
+        <div class="step-num"><span class="dot">3</span>TÉCNICA</div>
+        <div class="step-title">Seleção da Técnica</div>
+        <div class="step-desc">DK-Crush, Culotte, T-stenting/TAP ou outra</div>
+      </div>
+      <div class="timeline-step" onclick="goStep(4)">
+        <div class="step-num"><span class="dot">📖</span>EVIDÊNCIA</div>
+        <div class="step-title">Estudos & Referências</div>
+        <div class="step-desc">Metanálises em rede e tabela comparativa</div>
+      </div>
+    </div>
+
+    <!-- PROGRESS -->
+    <div class="progress-bar"><div class="progress-fill" id="progress" style="width:25%"></div></div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         PASSO 1 – CLASSIFICAÇÃO ANATÔMICA
+    ════════════════════════════════════════════════════════════ -->
+    <div id="step1" class="step-section active">
+
+      <!-- MEDINA -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">🔱</div>
+          <div>
+            <div class="card-title">Classificação de Medina</div>
+            <div class="card-subtitle">Código de 3 dígitos (0/1): VP Proximal · VP Distal · Ramo Lateral — estenose ≥50%</div>
+          </div>
+        </div>
+
+        <div class="info-teal info-box">
+          <span class="info-box-icon">💡</span>
+          <div>Recomendada pelo Bif-ARC (Lunardi et al. JACC 2022). <strong>Bifurcação verdadeira</strong> = envolve o ramo lateral (dígito 3 = 1) e pelo menos um segmento do vaso principal (dígito 1 ou 2 = 1). Padrões: <strong>1.1.1 · 1.0.1 · 0.1.1</strong>. Ramo lateral com diâmetro ≥2,75 mm é classificado como "maior" pelo Bif-ARC.</div>
+        </div>
+
+        <div class="medina-grid">
+          <div class="medina-seg">
+            <div class="medina-seg-label">VP Proximal</div>
+            <div class="medina-toggle">
+              <button class="medina-btn active-0" id="m0_0" onclick="setMedina(0,0)">0</button>
+              <div class="medina-sep"></div>
+              <button class="medina-btn" id="m0_1" onclick="setMedina(0,1)">1</button>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;font-family:var(--font-mono);color:var(--muted-foreground);font-size:1.2rem;padding:0 .25rem;">·</div>
+          <div class="medina-seg">
+            <div class="medina-seg-label">VP Distal</div>
+            <div class="medina-toggle">
+              <button class="medina-btn active-0" id="m1_0" onclick="setMedina(1,0)">0</button>
+              <div class="medina-sep"></div>
+              <button class="medina-btn" id="m1_1" onclick="setMedina(1,1)">1</button>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;font-family:var(--font-mono);color:var(--muted-foreground);font-size:1.2rem;padding:0 .25rem;">·</div>
+          <div class="medina-seg">
+            <div class="medina-seg-label">Ramo Lateral</div>
+            <div class="medina-toggle">
+              <button class="medina-btn active-0" id="m2_0" onclick="setMedina(2,0)">0</button>
+              <div class="medina-sep"></div>
+              <button class="medina-btn" id="m2_1" onclick="setMedina(2,1)">1</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-top:.5rem;">
+          <div>
+            <div style="font-size:.65rem;color:var(--muted-foreground);text-transform:uppercase;letter-spacing:.06em;font-family:var(--font-mono);margin-bottom:.25rem;">Código de Medina</div>
+            <div class="medina-code">
+              <span class="mc v0" id="mc0">0</span>
+              <span class="medina-dot-sep">·</span>
+              <span class="mc v0" id="mc1">0</span>
+              <span class="medina-dot-sep">·</span>
+              <span class="mc v0" id="mc2">0</span>
+            </div>
+          </div>
+          <div id="medina_badge" class="medina-badge main-only">Definir código acima</div>
+        </div>
+      </div>
+
+      <!-- PARÂMETROS ANATÔMICOS -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">📐</div>
+          <div>
+            <div class="card-title">Parâmetros Anatômicos</div>
+            <div class="card-subtitle">Critérios DEFINITION e características da bifurcação — determinantes da estratégia</div>
+          </div>
+        </div>
+
+        <!-- Localização -->
+        <div class="form-group" style="margin-bottom:1.25rem;">
+          <label class="form-label">Localização da Bifurcação</label>
+          <div class="radio-row">
+            <label class="radio-item selected" id="loc_notce" onclick="selectRadio('loc','notce')">
+              <input type="radio" name="loc" value="notce" checked/>
+              <div class="radio-dot"></div>
+              <div class="radio-label">Não-TCE<small>DA/Diagonal, CX/Marginal, CD etc.</small></div>
+            </label>
+            <label class="radio-item" id="loc_tce" onclick="selectRadio('loc','tce')">
+              <input type="radio" name="loc" value="tce"/>
+              <div class="radio-dot"></div>
+              <div class="radio-label">Tronco de Coronária Esquerda<small>Bifurcação distal do TCE</small></div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Diâmetro RL -->
+        <div class="form-group" style="margin-bottom:1.25rem;">
+          <label class="form-label">Diâmetro de Referência do Ramo Lateral</label>
+          <div class="radio-row">
+            <label class="radio-item selected" id="rld_small" onclick="selectRadio('rld','small')">
+              <input type="radio" name="rld" value="small" checked/>
+              <div class="radio-dot"></div>
+              <div class="radio-label">&lt; 2,75 mm<small>Ramo "menor" — Bif-ARC</small></div>
+            </label>
+            <label class="radio-item" id="rld_large" onclick="selectRadio('rld','large')">
+              <input type="radio" name="rld" value="large"/>
+              <div class="radio-dot"></div>
+              <div class="radio-label">≥ 2,75 mm<small>Ramo "maior" — Bif-ARC</small></div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Comprimento RL -->
+        <div class="form-group" style="margin-bottom:1.25rem;">
+          <label class="form-label">Comprimento da Lesão no Ramo Lateral</label>
+          <div class="radio-row">
+            <label class="radio-item selected" id="rll_short" onclick="selectRadio('rll','short')">
+              <input type="radio" name="rll" value="short" checked/>
+              <div class="radio-dot"></div>
+              <div class="radio-label">&lt; 10 mm<small>Lesão ostial limitada</small></div>
+            </label>
+            <label class="radio-item" id="rll_long" onclick="selectRadio('rll','long')">
+              <input type="radio" name="rll" value="long"/>
+              <div class="radio-dot"></div>
+              <div class="radio-label">≥ 10 mm<small>Critério DEFINITION de complexidade</small></div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Ângulo -->
+        <div class="form-group" style="margin-bottom:1.25rem;">
+          <label class="form-label">Ângulo de Bifurcação (entre VP distal e RL)</label>
+          <div class="radio-row">
+            <label class="radio-item selected" id="ang_small" onclick="selectRadio('ang','small')">
+              <input type="radio" name="ang" value="small" checked/>
+              <div class="radio-dot"></div>
+              <div class="radio-label">&lt; 70°<small>Ângulo agudo / moderado</small></div>
+            </label>
+            <label class="radio-item" id="ang_large" onclick="selectRadio('ang','large')">
+              <input type="radio" name="ang" value="large"/>
+              <div class="radio-dot"></div>
+              <div class="radio-label">≥ 70°<small>Ângulo obtuso — impacta Culotte</small></div>
+            </label>
+            <label class="radio-item" id="ang_perp" onclick="selectRadio('ang','perp')">
+              <input type="radio" name="ang" value="perp"/>
+              <div class="radio-dot"></div>
+              <div class="radio-label">~90°<small>Perpendicular — favorece T-stenting/TAP</small></div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Diâmetros similares -->
+        <div class="form-group" style="margin-bottom:1.25rem;">
+          <label class="form-label">Diâmetros VP Distal e Ramo Lateral são similares?</label>
+          <div class="radio-row">
+            <label class="radio-item selected" id="sim_no" onclick="selectRadio('sim','no')">
+              <input type="radio" name="sim" value="no" checked/>
+              <div class="radio-dot"></div>
+              <div class="radio-label">Não<small>VP distal > RL (habitual)</small></div>
+            </label>
+            <label class="radio-item" id="sim_yes" onclick="selectRadio('sim','yes')">
+              <input type="radio" name="sim" value="yes"/>
+              <div class="radio-dot"></div>
+              <div class="radio-label">Sim<small>Diâmetros semelhantes — favorece Culotte</small></div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Imagem intravascular -->
+        <div class="form-group">
+          <label class="form-label">Imagem Intravascular Disponível (IVUS ou OCT)</label>
+          <div class="radio-row">
+            <label class="radio-item" id="img_no" onclick="selectRadio('img','no')">
+              <input type="radio" name="img" value="no"/>
+              <div class="radio-dot"></div>
+              <div class="radio-label">Não disponível<small>Apenas guia angiográfica</small></div>
+            </label>
+            <label class="radio-item selected" id="img_yes" onclick="selectRadio('img','yes')">
+              <input type="radio" name="img" value="yes"/>
+              <div class="radio-dot"></div>
+              <div class="radio-label">Sim — IVUS ou OCT<small>Fortemente recomendada em TCE e 2-stents</small></div>
+            </label>
+          </div>
+        </div>
+
+      </div><!-- /card -->
+
+      <div class="btn-row">
+        <button class="btn btn-primary btn-lg" onclick="goStep(2)">
+          Ver Estratégia Recomendada →
+        </button>
+      </div>
+
+      <div class="disclaimer">
+        ⚠️ <strong>Uso clínico:</strong> Esta ferramenta é auxiliar à decisão médica e não substitui julgamento clínico individualizado. Dados anatômicos devem ser confirmados por angiografia coronária quantitativa dedicada a bifurcações e/ou imagem intravascular. Discussão em Heart Team é mandatória para doença do TCE.
+      </div>
+
+    </div><!-- /step1 -->
+
+
+    <!-- ═══════════════════════════════════════════════════════
+         PASSO 2 – ESTRATÉGIA PRINCIPAL
+    ════════════════════════════════════════════════════════════ -->
+    <div id="step2" class="step-section">
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">🎯</div>
+          <div>
+            <div class="card-title">Estratégia de Stenting Recomendada</div>
+            <div class="card-subtitle">Baseada na classificação de Medina, critérios DEFINITION e localização</div>
+          </div>
+        </div>
+
+        <div id="strategy_result"></div>
+
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary btn-lg" onclick="goStep(3)">Ver Seleção de Técnica →</button>
+        <button class="btn btn-secondary" onclick="goStep(1)">← Rever Anatomia</button>
+      </div>
+
+    </div><!-- /step2 -->
+
+
+    <!-- ═══════════════════════════════════════════════════════
+         PASSO 3 – TÉCNICA ESPECÍFICA
+    ════════════════════════════════════════════════════════════ -->
+    <div id="step3" class="step-section">
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">🔧</div>
+          <div>
+            <div class="card-title">Seleção da Técnica de Stenting</div>
+            <div class="card-subtitle">Comparação entre técnicas e recomendação individualizada</div>
+          </div>
+        </div>
+
+        <div id="technique_result"></div>
+
+      </div>
+
+      <!-- Adjuntos técnicos -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">⚙️</div>
+          <div>
+            <div class="card-title">Adjuntos Técnicos Essenciais</div>
+            <div class="card-subtitle">Etapas obrigatórias para otimização do resultado — EBC 2024 (18º Consenso)</div>
+          </div>
+        </div>
+
+        <div class="info-teal info-box">
+          <span class="info-box-icon">🫀</span>
+          <div><strong>POT (Proximal Optimization Technique):</strong> Insuflação do stent no vaso principal com balão de curto comprimento no segmento proximal, após implante do stent no VP. Essencial para restaurar geometria normal do stent e facilitar reacesso ao ramo lateral. Repetir após kissing balloon (re-POT).</div>
+        </div>
+        <div class="info-teal info-box">
+          <span class="info-box-icon">🎈</span>
+          <div><strong>Final Kissing Balloon (FKB):</strong> Insuflação simultânea de dois balões no VP distal e RL. Considerada etapa mandatória nas técnicas de 2 stents (melhora aposição, reduz restenose). No provisional stenting, indicada conforme resultado angiográfico e funcional.</div>
+        </div>
+        <div class="info-amber info-box">
+          <span class="info-box-icon">📡</span>
+          <div><strong>FFR/iFR do Ramo Lateral:</strong> Indicada para avaliar significância hemodinâmica do comprometimento do RL após stenting do vaso principal. FFR ≤0,80 justifica escalonamento para estratégia de 2 stents. Subanálise do EBC MAIN e ESC 2023 recomendam avaliação funcional quando o resultado angiográfico é limítrofe (estenose 30–70%).</div>
+        </div>
+        <div id="ivus_box"></div>
+        <div class="info-gray info-box">
+          <span class="info-box-icon">📌</span>
+          <div><strong>QCA dedicada a bifurcações:</strong> Preferível à QCA padrão. O software de análise de bifurcações permite medição de diâmetros em VP proximal, VP distal e RL separadamente, com cálculo do ângulo de bifurcação — essencial para planejamento pré-procedimento e seleção do tamanho do stent.</div>
+        </div>
+
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary btn-lg" onclick="goStep(4)">Ver Evidências →</button>
+        <button class="btn btn-secondary" onclick="goStep(2)">← Rever Estratégia</button>
+      </div>
+
+    </div><!-- /step3 -->
+
+
+    <!-- ═══════════════════════════════════════════════════════
+         PASSO 4 – EVIDÊNCIAS & REFERÊNCIAS
+    ════════════════════════════════════════════════════════════ -->
+    <div id="step4" class="step-section">
+
+      <!-- FLUXOGRAMA RESUMO -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">📊</div>
+          <div>
+            <div class="card-title">Algoritmo Decisório Resumido</div>
+            <div class="card-subtitle">Estrutura do processo de decisão com base em evidências de nível I–II</div>
+          </div>
+        </div>
+
+        <div class="flow-tree">
+          <div class="flow-node root">🔱 Bifurcação coronária identificada — Classificação de Medina</div>
+
+          <div class="flow-node branch-no" style="margin-top:.5rem;">
+            <span class="flow-connector">→ NÃO verdadeira (0.x.0 / 0.0.1 isolado)</span>
+          </div>
+          <div class="flow-node leaf-prov" style="margin-left:3rem;">
+            ✅ Provisional stenting com stent no VP | RL 0.0.1 isolado: considerar provisional conforme morfologia
+          </div>
+
+          <div class="flow-node branch-yes" style="margin-top:.5rem;">
+            <span class="flow-connector">→ VERDADEIRA (1.1.1 · 1.0.1 · 0.1.1)</span>
+          </div>
+          <div class="flow-node root" style="margin-left:1.5rem;">🏥 TCE?</div>
+
+          <div class="flow-node branch-no" style="margin-left:3rem;">
+            <span class="flow-connector">→ NÃO-TCE · DEFINITION complexo? (RL ≥2,75mm E comprimento ≥10mm)</span>
+          </div>
+          <div class="flow-node leaf-two" style="margin-left:4.5rem;">⚡ 2 Stents — DK-Crush preferencial (DEFINITION II; HR 0,52)</div>
+          <div class="flow-node leaf-prov" style="margin-left:4.5rem;">✅ Provisional stepwise — padrão (Nairooz 2017; Meta-análise em rede)</div>
+
+          <div class="flow-node branch-yes" style="margin-left:3rem;margin-top:.25rem;">
+            <span class="flow-connector">→ SIM (TCE) · DEFINITION complexo?</span>
+          </div>
+          <div class="flow-node leaf-two" style="margin-left:4.5rem;">⚡ 2 Stents — DK-Crush (DKCRUSH-V; Heart Team)</div>
+          <div class="flow-node leaf-prov" style="margin-left:4.5rem;">✅ Provisional stepwise (EBC MAIN; Bhogal 2022)</div>
+
+          <div class="flow-node" style="margin-top:.75rem;font-size:.75rem;color:var(--muted-foreground);padding:.25rem .5rem;">
+            ⚠️ TCE → Heart Team obrigatório · IVUS/OCT fortemente recomendado · Considerar PCI vs CABG (ESC/EACTS 2022: CABG Classe I; PCI Classe IIa)
+          </div>
+        </div>
+      </div>
+
+      <!-- TABELA COMPARATIVA DE TÉCNICAS -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">📋</div>
+          <div>
+            <div class="card-title">Comparação das Técnicas de 2 Stents</div>
+            <div class="card-subtitle">Metanálises em rede e ECRs — desfechos comparativos</div>
+          </div>
+        </div>
+
+        <div style="overflow-x:auto;">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th>Técnica</th>
+                <th>MACE vs Provisional</th>
+                <th>Evidência de Suporte</th>
+                <th>Indicação Preferencial</th>
+                <th>Limitações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong style="color:var(--teal);">DK-Crush</strong> <span class="badge badge-teal">1ª LINHA</span></td>
+                <td>OR 0,39 (IC 0,26–0,55) vs provisional<br><small style="color:var(--muted-foreground);">Di Gioia et al. JCIN 2020</small></td>
+                <td>DKCRUSH-III, DKCRUSH-V, DEFINITION II; múltiplas NMAs (Di Gioia, Bujak, Elbadawi, Park, Wang)</td>
+                <td>Bifurcações complexas DEFINITION; TCE distal; qualquer ângulo</td>
+                <td>Maior complexidade técnica; curva de aprendizado</td>
+              </tr>
+              <tr>
+                <td><strong style="color:#fbbf24;">Culotte</strong> <span class="badge badge-amber">ALTERNATIVA</span></td>
+                <td>Inferior ao DK-crush (DKCRUSH-III: 6,2% vs 16,3% MACE 1 ano)</td>
+                <td>DKCRUSH-III; Pior resultados com ângulo ≥70° e SYNTAX ≥23</td>
+                <td>Diâmetros VP:RL similares; ângulo &lt;70°; experiência operador</td>
+                <td>Risco aumentado de trombose (Chiabrando: RR 3,25–4,27); pior em ângulo obtuso</td>
+              </tr>
+              <tr>
+                <td><strong>T-Stenting / TAP</strong> <span class="badge badge-gray">CONDICIONAL</span></td>
+                <td>Não superior ao provisional; inferior ao DK-crush em NMA (Park 2022)</td>
+                <td>Di Gioia 2020; Park 2022</td>
+                <td>Saída do RL próxima a 90° (perpendicular); lesão ostial RL bem definida</td>
+                <td>Não adequado para ângulos agudos; RL pode ficar descoberto proximalmente</td>
+              </tr>
+              <tr>
+                <td><strong>Mini-Culotte (DK)</strong> <span class="badge badge-gray">EMERGENTE</span></td>
+                <td>MACE 2,2% (1 ano) em série inicial sob OCT (Mukhopadhyay 2024)</td>
+                <td>Mukhopadhyay et al. AmJCardiol 2024 — série prospectiva, sem ECR</td>
+                <td>TCE distal; quando Culotte indicado com guia OCT disponível</td>
+                <td>Ausência de dados comparativos de longo prazo; série pequena</td>
+              </tr>
+              <tr>
+                <td><strong style="color:#f87171;">Crush Clássico</strong> <span class="badge badge-red">EVITAR</span></td>
+                <td>Inferior ao DK-crush; kissing balloon não realizável em ~25% dos casos</td>
+                <td>Di Gioia 2020; Chiabrando 2021</td>
+                <td>Nenhuma indicação preferencial — superado pelo DK-crush</td>
+                <td>Geometria irregular, maior trombose e restenose de stent</td>
+              </tr>
+              <tr>
+                <td><strong style="color:#f87171;">V-Stenting / KS Simultâneo</strong> <span class="badge badge-red">CONTRAINDICADO</span></td>
+                <td>Altas taxas de TLR; dificuldades de reintervenção</td>
+                <td>Teirstein & Price, JACC 2012; Rab et al. JCIN 2017</td>
+                <td>Nenhuma — não recomendado como estratégia de primeira linha</td>
+                <td>Carina longa sem cobertura; reintervenção extremamente difícil</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TABELA DE ENSAIOS PRINCIPAIS -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">🔬</div>
+          <div>
+            <div class="card-title">Ensaios Clínicos Principais e Metanálises em Rede</div>
+            <div class="card-subtitle">Evidências que sustentam o algoritmo decisório</div>
+          </div>
+        </div>
+
+        <div style="overflow-x:auto;">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th>Estudo</th>
+                <th>Design / N</th>
+                <th>Comparação</th>
+                <th>Resultado Principal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>DEFINITION II</strong> <span class="badge badge-teal">ECR</span></td>
+                <td>653 pac; bifurcações complexas (RL ≥2,75mm + ≥10mm); 2020</td>
+                <td>2 stents (77,8% DK-crush) vs provisional</td>
+                <td>TLF 1 ano: 6,1% vs 11,4% (HR 0,52; p=0,019); benefício mantido em 3 anos</td>
+              </tr>
+              <tr>
+                <td><strong>EBC MAIN</strong> <span class="badge badge-teal">ECR</span></td>
+                <td>467 pac; TCE verdadeiro; 2021–2025</td>
+                <td>Provisional escalonado vs 2 stents sistemático</td>
+                <td>MACE 1 ano: 14,7% vs 17,7% (HR 0,8; p=0,34) — TLR 3a: 8,3% vs 15,6% (p=0,013) favorece provisional</td>
+              </tr>
+              <tr>
+                <td><strong>DKCRUSH-V</strong> <span class="badge badge-teal">ECR</span></td>
+                <td>482 pac; TCE distal verdadeiro complexo (RL médio 16mm)</td>
+                <td>DK-crush vs provisional</td>
+                <td>TLF 1 ano: DK-crush superior; redução de IM vaso-alvo e TLR; benefício consistente</td>
+              </tr>
+              <tr>
+                <td><strong>DKCRUSH-III</strong> <span class="badge badge-teal">ECR</span></td>
+                <td>419 pac; TCE distal não protegido</td>
+                <td>DK-crush vs Culotte</td>
+                <td>MACE 1 ano: 6,2% (DK) vs 16,3% (Culotte); TVR: 4,3% vs 11,0%; benefício em 3 anos</td>
+              </tr>
+              <tr>
+                <td><strong>Bujak et al. NMA</strong> <span class="badge badge-gray">NMA · 24 ECR · 6.890p</span></td>
+                <td>EuroIntervention 2023</td>
+                <td>Todas as técnicas vs provisional</td>
+                <td>DK-crush melhor para TLF; benefício de 2 stents aumenta com comprimento RL &gt;11mm</td>
+              </tr>
+              <tr>
+                <td><strong>Di Gioia et al. NMA</strong> <span class="badge badge-gray">NMA · 21 ECR · 5.711p</span></td>
+                <td>JCIN 2020</td>
+                <td>Todas as técnicas</td>
+                <td>DK-crush: MACE OR 0,39 vs provisional; menor TLR (OR 0,36). Crush clássico/Culotte: risco aumentado de trombose</td>
+              </tr>
+              <tr>
+                <td><strong>Park et al. NMA</strong> <span class="badge badge-gray">NMA · 29 ECR · 8.318p</span></td>
+                <td>JAHA 2022</td>
+                <td>Todas as técnicas</td>
+                <td>DK-crush superior a todas: menor morte cardíaca (RR 0,57), MACE (RR 0,50), IM (RR 0,60), trombose (RR 0,50)</td>
+              </tr>
+              <tr>
+                <td><strong>Nairooz et al. MA</strong> <span class="badge badge-gray">MA · 8 ECR</span></td>
+                <td>Heart 2017</td>
+                <td>Provisional vs 2 stents</td>
+                <td>Provisional: menor mortalidade (RR 0,66; p=0,04); em ≥3 anos: benefício em MACE (RR 0,71) e IM (RR 0,45)</td>
+              </tr>
+              <tr>
+                <td><strong>Bhogal et al. MA</strong> <span class="badge badge-gray">MA · 12 estudos · 8.377p</span></td>
+                <td>AmJCardiol 2022 — TCE</td>
+                <td>Provisional vs 2 stents (TCE)</td>
+                <td>Provisional: MACE 3a reduzido (OR 0,64); menor TLR (OR 0,51); sem diferença em morte ou IM</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- REFERÊNCIAS -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">📚</div>
+          <div>
+            <div class="card-title">Referências Bibliográficas</div>
+            <div class="card-subtitle">28 referências indexadas — base de evidências completa</div>
+          </div>
+        </div>
+        <ul class="ref-list">
+          <li class="ref-item"><span class="ref-num">1</span><div><div class="ref-title">Definitions and Standardized Endpoints for Treatment of Coronary Bifurcations. Bif-ARC Consensus<span class="ref-ev">Bif-ARC</span></div><div class="ref-meta">Lunardi M, Louvard Y, Lefèvre T, et al. JACC. 2022;80(1):63-88.</div></div></li>
+          <li class="ref-item"><span class="ref-num">2</span><div><div class="ref-title">Comparison of Outcomes Between 1- and 2-Stent Techniques for Medina 0.0.1 Bifurcation Lesions</div><div class="ref-meta">Choi KH, Bruno F, Cho YK, et al. JACC Cardiovasc Interv. 2023;16(17):2083-2093.</div></div></li>
+          <li class="ref-item"><span class="ref-num">3</span><div><div class="ref-title">Clinical Outcomes Following Different Stenting Techniques: Systematic Review and NMA<span class="ref-ev">NMA</span></div><div class="ref-meta">Bujak K, Verardi FM, Arevalos V, et al. EuroIntervention. 2023;19(8):664-675.</div></div></li>
+          <li class="ref-item"><span class="ref-num">4</span><div><div class="ref-title">Meta-Analysis Comparing Outcomes With Bifurcation PCI Techniques<span class="ref-ev">MA</span></div><div class="ref-meta">Elbadawi A, Shnoda M, Dang A, et al. Am J Cardiol. 2022;165:37-45.</div></div></li>
+          <li class="ref-item"><span class="ref-num">5</span><div><div class="ref-title">Systematic Review and NMA Comparing Bifurcation Techniques for PCI<span class="ref-ev">NMA</span></div><div class="ref-meta">Park DY, An S, Jolly N, et al. J Am Heart Assoc. 2022. doi:10.1161/JAHA.122.025394.</div></div></li>
+          <li class="ref-item"><span class="ref-num">6</span><div><div class="ref-title">PCI for Bifurcation Coronary Lesions: 15th EBC Consensus Document<span class="ref-ev">Consenso EBC</span></div><div class="ref-meta">Burzotta F, Lassen JF, Lefèvre T, et al. EuroIntervention. 2021;16(16):1307-1317.</div></div></li>
+          <li class="ref-item"><span class="ref-num">7</span><div><div class="ref-title">DEFINITION II Trial: Two-Stent vs Provisional for Complex Bifurcation Lesions<span class="ref-ev">ECR</span></div><div class="ref-meta">Zhang JJ, Ye F, Xu K, et al. Eur Heart J. 2020;41(27):2523-2536.</div></div></li>
+          <li class="ref-item"><span class="ref-num">8</span><div><div class="ref-title">3-Year Outcomes: 2-Stent vs Provisional for Complex Bifurcations (DEFINITION Criteria)<span class="ref-ev">ECR 3a</span></div><div class="ref-meta">Kan J, Zhang JJ, Sheiban I, et al. JACC Cardiovasc Interv. 2022;15(13):1310-1320.</div></div></li>
+          <li class="ref-item"><span class="ref-num">9</span><div><div class="ref-title">Long-Term Outcomes of Provisional vs Two-Stent Strategy: Meta-Analysis of RCTs<span class="ref-ev">MA</span></div><div class="ref-meta">Nairooz R, Saad M, Elgendy IY, et al. Heart. 2017;103(18):1427-1434.</div></div></li>
+          <li class="ref-item"><span class="ref-num">10</span><div><div class="ref-title">TRYTON Trial: Dedicated Bifurcation Stent vs Provisional Stenting<span class="ref-ev">ECR</span></div><div class="ref-meta">Généreux P, Kumsars I, Lesiak M, et al. JACC. 2015;65(6):533-43.</div></div></li>
+          <li class="ref-item"><span class="ref-num">11</span><div><div class="ref-title">EBC MAIN Trial: Stepwise Provisional vs Systematic Dual Stenting for LM Bifurcation<span class="ref-ev">ECR</span></div><div class="ref-meta">Hildick-Smith D, Egred M, Banning A, et al. Eur Heart J. 2021;42(37):3829-3839.</div></div></li>
+          <li class="ref-item"><span class="ref-num">12</span><div><div class="ref-title">EBC MAIN 3-Year Follow-up: Stepwise Provisional vs Dual Stenting for True LM Bifurcations<span class="ref-ev">ECR 3a</span></div><div class="ref-meta">Arunothayaraj S, Egred M, Banning AP, et al. Circulation. 2025;151(9):612-622.</div></div></li>
+          <li class="ref-item"><span class="ref-num">13</span><div><div class="ref-title">Provisional vs Dual Stenting of LM Coronary Artery Bifurcation: Comprehensive Meta-Analysis<span class="ref-ev">MA</span></div><div class="ref-meta">Bhogal S, Zhang C, Aladin AI, Mintz GS, Waksman R. Am J Cardiol. 2022;185:10-17.</div></div></li>
+          <li class="ref-item"><span class="ref-num">14</span><div><div class="ref-title">DKCRUSH-V: Double Kissing Crush vs Provisional for LM Distal Bifurcation Lesions<span class="ref-ev">ECR</span></div><div class="ref-meta">Chen SL, Zhang JJ, Han Y, et al. JACC. 2017;70(21):2605-2617.</div></div></li>
+          <li class="ref-item"><span class="ref-num">15</span><div><div class="ref-title">Provisional Strategy for LM Bifurcation Disease: State-of-the-Art Review</div><div class="ref-meta">Paradies V, Banning A, Cao D, et al. JACC Cardiovasc Interv. 2023;16(7):743-758.</div></div></li>
+          <li class="ref-item"><span class="ref-num">16</span><div><div class="ref-title">Clinical Outcomes Following Coronary Bifurcation PCI Techniques: NMA — 5,711 Patients<span class="ref-ev">NMA</span></div><div class="ref-meta">Di Gioia G, Sonck J, Ferenc M, et al. JACC Cardiovasc Interv. 2020;13(12):1432-1444.</div></div></li>
+          <li class="ref-item"><span class="ref-num">17</span><div><div class="ref-title">Stenting Techniques for Coronary Bifurcation Disease: NMA — DK-Crush Superiority<span class="ref-ev">NMA</span></div><div class="ref-meta">Wang R, Ding Y, Yang J, et al. Clin Res Cardiol. 2022;111(7):761-775.</div></div></li>
+          <li class="ref-item"><span class="ref-num">18</span><div><div class="ref-title">Stenting Techniques for Coronary Bifurcation Lesions: NMA of RCTs<span class="ref-ev">NMA</span></div><div class="ref-meta">Chiabrando JG, Lombardi M, Vescovo GM, et al. Catheter Cardiovasc Interv. 2021;97(3):E306-E318.</div></div></li>
+          <li class="ref-item"><span class="ref-num">19</span><div><div class="ref-title">DKCRUSH-III: DK-Crush vs Culotte for Unprotected Distal LM Bifurcation<span class="ref-ev">ECR</span></div><div class="ref-meta">Chen SL, Xu B, Han YL, et al. JACC. 2013;61(14):1482-8.</div></div></li>
+          <li class="ref-item"><span class="ref-num">20</span><div><div class="ref-title">Current Interventions for the Left Main Bifurcation</div><div class="ref-meta">Rab T, Sheiban I, Louvard Y, et al. JACC Cardiovasc Interv. 2017;10(9):849-865.</div></div></li>
+          <li class="ref-item"><span class="ref-num">21</span><div><div class="ref-title">Left Main Percutaneous Coronary Intervention</div><div class="ref-meta">Teirstein PS, Price MJ. JACC. 2012;60(17):1605-13.</div></div></li>
+          <li class="ref-item"><span class="ref-num">22</span><div><div class="ref-title">DK Mini-Culotte Stenting in Unprotected Distal LM Bifurcation Under OCT Guidance</div><div class="ref-meta">Mukhopadhyay S, Yusuf J, Bansal A, et al. Am J Cardiol. 2024;229:47-55.</div></div></li>
+          <li class="ref-item"><span class="ref-num">23</span><div><div class="ref-title">PCI for Bifurcation Coronary Lesions Using Optimised Angiographic Guidance: 18th EBC Consensus<span class="ref-ev">Consenso EBC</span></div><div class="ref-meta">Burzotta F, Louvard Y, Lassen JF, et al. EuroIntervention. 2024;20(15):e915-e926.</div></div></li>
+          <li class="ref-item"><span class="ref-num">24</span><div><div class="ref-title">Bifurcation LM Stenting With or Without Intracoronary Imaging: EBC MAIN Sub-analysis</div><div class="ref-meta">Maznyczka A, Arunothayaraj S, Egred M, et al. Catheter Cardiovasc Interv. 2023;102(3):415-429.</div></div></li>
+          <li class="ref-item"><span class="ref-num">25</span><div><div class="ref-title">A Practical Approach to Left Main Coronary Artery Disease: JACC State-of-the-Art Review</div><div class="ref-meta">Davidson LJ, Cleveland JC, Welt FG, et al. JACC. 2022;80(22):2119-2134.</div></div></li>
+          <li class="ref-item"><span class="ref-num">26</span><div><div class="ref-title">2022 Joint ESC/EACTS Review: LM Revascularization in Low Surgical Risk Patients<span class="ref-ev">Diretriz ESC</span></div><div class="ref-meta">Byrne RA, Fremes S, Capodanno D, et al. Eur Heart J. 2023;44(41):4310-4320.</div></div></li>
+          <li class="ref-item"><span class="ref-num">27</span><div><div class="ref-title">SCAI Position Statement on Optimal PCI for Complex CAD<span class="ref-ev">Diretriz SCAI</span></div><div class="ref-meta">Riley RF, Henry TD, Mahmud E, et al. Catheter Cardiovasc Interv. 2020;96(2):346-362.</div></div></li>
+          <li class="ref-item"><span class="ref-num">28</span><div><div class="ref-title">2022 Joint ESC/EACTS Review: LM Revascularization — EJCTS Publication<span class="ref-ev">Diretriz</span></div><div class="ref-meta">Byrne RA, Fremes S, Capodanno D, et al. Eur J Cardiothorac Surg. 2023;64(2):ezad286.</div></div></li>
+        </ul>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="goStep(1)">← Recalcular</button>
+      </div>
+
+      <div class="disclaimer">
+        ⚠️ <strong>Aviso legal:</strong> Esta ferramenta tem finalidade educacional e de suporte à decisão clínica. Não substitui avaliação médica individualizada, julgamento do operador, análise de imagem intravascular ou discussão em Heart Team. Decisões de revascularização devem considerar comorbidades, anatomia global, preferência do paciente e experiência do centro. Todos os dados são baseados em evidências publicadas até 2025.
+      </div>
+
+    </div><!-- /step4 -->
+
+  </div><!-- /container -->
+</main>
+
+<!-- ── FOOTER ──────────────────────────────────────────────────── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-copy">
+        BifurcPCI · Desenvolvido por <strong>Dr. Lucas Silva</strong> · Cardiologia Intervencionista · Baseado em evidências até 2025
+      </div>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+        <span class="badge badge-teal">Bif-ARC 2022</span>
+        <span class="badge badge-teal">EBC 2024</span>
+        <span class="badge badge-teal">ESC/EACTS 2022</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ════════════════════════════════════════════════════════
+   STATE
+════════════════════════════════════════════════════════ */
+const medina = [0, 0, 0]; // VP proximal, VP distal, Ramo Lateral
+const params = {
+  loc: 'notce',    // notce | tce
+  rld: 'small',    // small (<2.75) | large (≥2.75)
+  rll: 'short',    // short (<10mm) | long (≥10mm)
+  ang: 'small',    // small (<70°) | large (≥70°) | perp (~90°)
+  sim: 'no',       // no | yes (diameters similar)
+  img: 'yes'       // yes | no (intravascular imaging available)
+};
+
+/* ════════════════════════════════════════════════════════
+   MEDINA LOGIC
+════════════════════════════════════════════════════════ */
+function setMedina(seg, val) {
+  medina[seg] = val;
+
+  // Update buttons
+  document.getElementById(`m${seg}_0`).className = 'medina-btn' + (val === 0 ? ' active-0' : '');
+  document.getElementById(`m${seg}_1`).className = 'medina-btn' + (val === 1 ? ' active-1' : '');
+
+  // Update display
+  ['mc0','mc1','mc2'].forEach((id, i) => {
+    const el = document.getElementById(id);
+    el.textContent = medina[i];
+    el.className = 'mc ' + (medina[i] === 1 ? 'v1' : 'v0');
+  });
+
+  // Badge
+  const badge = document.getElementById('medina_badge');
+  const trueBif = isTrueBifurcation();
+  const mainOnly = (medina[2] === 0);
+  const branchOnly = (medina[0] === 0 && medina[1] === 0 && medina[2] === 1);
+
+  if (mainOnly) {
+    badge.className = 'medina-badge main-only';
+    badge.textContent = 'Vaso principal apenas — ramo lateral sem estenose significativa';
+  } else if (trueBif) {
+    badge.className = 'medina-badge true-bif';
+    badge.textContent = '✅ Bifurcação Verdadeira — envolve VP e RL';
+  } else if (branchOnly) {
+    badge.className = 'medina-badge non-true';
+    badge.textContent = '⚡ Lesão isolada do RL (0.0.1) — considerar provisional conforme anatomia';
+  } else {
+    badge.className = 'medina-badge main-only';
+    badge.textContent = 'Código definido — vaso principal sem RL significativo';
+  }
+}
+
+function isTrueBifurcation() {
+  return medina[2] === 1 && (medina[0] === 1 || medina[1] === 1);
+}
+
+function isComplexDEFINITION() {
+  return params.rld === 'large' && params.rll === 'long';
+}
+
+function getMedinaCode() {
+  return `${medina[0]}.${medina[1]}.${medina[2]}`;
+}
+
+/* ════════════════════════════════════════════════════════
+   RADIO LOGIC
+════════════════════════════════════════════════════════ */
+function selectRadio(group, value) {
+  params[group] = value;
+  // Find all items with this group
+  document.querySelectorAll(`[id^="${group}_"]`).forEach(el => {
+    el.classList.toggle('selected', el.id === `${group}_${value}`);
+  });
+}
+
+/* ════════════════════════════════════════════════════════
+   STRATEGY BUILD (Step 2)
+════════════════════════════════════════════════════════ */
+function buildStrategy() {
+  const area = document.getElementById('strategy_result');
+  const code = getMedinaCode();
+  const trueBif = isTrueBifurcation();
+  const complex = isComplexDEFINITION();
+  const isTCE = params.loc === 'tce';
+  const branchOnly = (medina[0] === 0 && medina[1] === 0 && medina[2] === 1); // 0.0.1
+  const hasImg = params.img === 'yes';
+
+  // TCE preamble
+  const tceAlert = isTCE ? `
+    <div class="info-purple info-box">
+      <span class="info-box-icon">🏥</span>
+      <div><strong>Doença do TCE — Heart Team Obrigatório (ESC/EACTS 2022).</strong>
+      Avaliar PCI vs CABG em discussão multidisciplinar. CRM: Classe I, Nível A; PCI: Classe IIa, Nível A em anatomia adequada e risco cirúrgico aceitável. IVUS/OCT fortemente recomendados.</div>
+    </div>` : '';
+
+  if (!trueBif && !branchOnly) {
+    // Main vessel only
+    area.innerHTML = `
+      <div class="result-panel show">
+        <div class="result-header prov">
+          <div class="result-icon">✅</div>
+          <div>
+            <div class="result-title" style="color:var(--teal);">Stenting do Vaso Principal — Ramo Lateral sem Lesão Significativa</div>
+            <div style="font-size:.82rem;color:var(--muted-foreground);">Medina ${code} · RL sem estenose ≥50% · Tratamento convencional do VP</div>
+          </div>
+        </div>
+        <div class="result-body">
+          ${tceAlert}
+          <div class="result-recommendation">
+            <div class="result-icon-big">🩺</div>
+            <div class="result-desc">
+              <strong>Stenting do Vaso Principal — Sem Abordagem de Bifurcação Necessária</strong>
+              Implante de stent no VP com preservação do RL. Avaliar ramo lateral após stenting por jailing.
+            </div>
+          </div>
+          <div class="info-teal info-box">
+            <span class="info-box-icon">✅</span>
+            <div>Vaso principal proximal e/ou distal com estenose, mas ramo lateral sem lesão significativa (≥50%). Técnica padrão com atenção para preservação do óstio do RL pós-stenting.</div>
+          </div>
+          <div class="info-gray info-box">
+            <span class="info-box-icon">📌</span>
+            <div>Avaliar FFR/iFR do ramo lateral após stenting do VP se houver suspeita de comprometimento hemodinâmico por jailing. Se RL jailed com FFR ≤0,80 → considerar escalonamento.</div>
+          </div>
+        </div>
+      </div>`;
+
+  } else if (branchOnly) {
+    // 0.0.1 — branch only
+    area.innerHTML = `
+      <div class="result-panel show">
+        <div class="result-header prov">
+          <div class="result-icon">🔹</div>
+          <div>
+            <div class="result-title" style="color:var(--teal);">Lesão Ostial Isolada do Ramo Lateral (Medina 0.0.1)</div>
+            <div style="font-size:.82rem;color:var(--muted-foreground);">Medina 0.0.1 · Vaso principal sem estenose significativa</div>
+          </div>
+        </div>
+        <div class="result-body">
+          ${tceAlert}
+          <div class="result-recommendation">
+            <div class="result-icon-big">✅</div>
+            <div class="result-desc">
+              <strong>Provisional Stenting ou Abordagem Direta do RL</strong>
+              Stent no RL com técnica T ou TAP; avaliar resultado no VP após.
+            </div>
+          </div>
+          <div class="info-teal info-box">
+            <span class="info-box-icon">✅</span>
+            <div>Medina 0.0.1 — lesão ostial do ramo lateral com VP sem doença. Dados do JACC:CI 2023 (Choi et al.) sugerem que estratégia de 1 stent (no RL) é preferível à abordagem de 2 stents em Medina 0.0.1. T-stenting ou TAP são as técnicas mais adequadas.</div>
+          </div>
+          <div class="info-amber info-box">
+            <span class="info-box-icon">⚠️</span>
+            <div>Confirmar ausência de estenose do VP por QCA ou imagem intravascular antes de abordar apenas o RL. Reavaliação do VP pós-procedimento é mandatória.</div>
+          </div>
+        </div>
+      </div>`;
+
+  } else if (trueBif && !complex) {
+    // True bifurcation, non-complex
+    area.innerHTML = `
+      <div class="result-panel show">
+        <div class="result-header prov">
+          <div class="result-icon">✅</div>
+          <div>
+            <div class="result-title" style="color:var(--teal);">Provisional Stenting (Stepwise) — Estratégia Padrão</div>
+            <div style="font-size:.82rem;color:var(--muted-foreground);">
+              Medina ${code} · Bifurcação verdadeira · ${isTCE ? 'TCE · ' : ''}Critérios DEFINITION negativos (${params.rld === 'large' ? 'RL ≥2,75mm' : 'RL <2,75mm'} · ${params.rll === 'long' ? 'comprimento ≥10mm' : 'comprimento <10mm'})
+            </div>
+          </div>
+        </div>
+        <div class="result-body">
+          ${tceAlert}
+          <div class="result-recommendation">
+            <div class="result-icon-big">🩺</div>
+            <div class="result-desc">
+              <strong>Provisional Stenting Escalonado</strong>
+              Stent no vaso principal → reavaliação do RL → escalonamento seletivo apenas se necessário.
+            </div>
+          </div>
+          <div class="info-teal info-box">
+            <span class="info-box-icon">✅</span>
+            <div><strong>Evidência Classe I — padrão para bifurcações não-complexas.</strong> Nairooz et al. (Heart 2017) demonstrou menor mortalidade com provisional vs 2 stents (RR 0,66). Bhogal et al. (AJC 2022) confirmou menor MACE em 3 anos no TCE (OR 0,64). EBC MAIN: TLR em 3 anos de 8,3% vs 15,6% com 2 stents (p=0,013).</div>
+          </div>
+          <div class="info-amber info-box">
+            <span class="info-box-icon">📋</span>
+            <div><strong>Sequência técnica recomendada (EBC 18º Consenso 2024):</strong>
+              <br>① Cruzar ambos os fios no VP e RL antes do implante
+              <br>② Stent no VP com cobertura do óstio do RL (POT imediato)
+              <br>③ Avaliação funcional (FFR/iFR) e/ou angiográfica do RL
+              <br>④ Se RL comprometido (FFR ≤0,80 ou estenose &gt;75%): balão ou stent no RL → FKB + re-POT
+            </div>
+          </div>
+          <div class="info-gray info-box">
+            <span class="info-box-icon">📌</span>
+            <div>Escalonamento para 2 stents justificado se: dissecção do RL, oclusão do RL, fluxo TIMI &lt;3, FFR ≤0,80 pós-balão no RL, ou comprometimento grave do óstio por jailing. Técnica de 2 stents de resgate: DK-crush ou T-stenting/TAP.</div>
+          </div>
+          ${!hasImg ? `
+          <div class="info-red info-box">
+            <span class="info-box-icon">⚠️</span>
+            <div><strong>Imagem intravascular não disponível.</strong> Subanálise do EBC MAIN mostrou que, com apenas guia angiográfica, a estratégia de 2 stents teve piores desfechos vs provisional (OR ajustado 2,11; p=0,039). Reforça a escolha de provisional quando IVUS/OCT não disponíveis.</div>
+          </div>` : ''}
+        </div>
+      </div>`;
+
+  } else {
+    // True bifurcation, COMPLEX (DEFINITION criteria met)
+    const dkCrushEvidence = isTCE
+      ? 'DKCRUSH-V (Chen et al. JACC 2017): DK-crush superior ao provisional em TCE distal complexo (RL médio 16mm). Di Gioia NMA: OR MACE 0,39 vs provisional.'
+      : 'DEFINITION II (Zhang et al. EHJ 2020): 2 stents (DK-crush 77,8%) reduziu TLF em 1 ano de 11,4% para 6,1% (HR 0,52; p=0,019). Benefício mantido em 3 anos (Kan et al. JCIN 2022).';
+
+    area.innerHTML = `
+      <div class="result-panel show">
+        <div class="result-header two">
+          <div class="result-icon">⚡</div>
+          <div>
+            <div class="result-title" style="color:#fbbf24;">2 Stents — Estratégia Recomendada (Critérios DEFINITION)</div>
+            <div style="font-size:.82rem;color:var(--muted-foreground);">
+              Medina ${code} · Bifurcação complexa · ${isTCE ? 'TCE · ' : ''}RL ≥2,75mm + comprimento ≥10mm
+            </div>
+          </div>
+        </div>
+        <div class="result-body">
+          ${tceAlert}
+          <div class="result-recommendation">
+            <div class="result-icon-big">⚡</div>
+            <div class="result-desc">
+              <strong>Estratégia de 2 Stents — DK-Crush Preferencial</strong>
+              Técnica de dupla oposição com kissing balloon final obrigatório. Avaliar sequência técnica cuidadosamente.
+            </div>
+          </div>
+          <div class="info-amber info-box">
+            <span class="info-box-icon">🔬</span>
+            <div><strong>Base de evidências:</strong> ${dkCrushEvidence}</div>
+          </div>
+          <div class="info-teal info-box">
+            <span class="info-box-icon">✅</span>
+            <div><strong>DK-Crush é a técnica de 2 stents mais eficaz em todas as metanálises em rede:</strong> classificada como 1ª em MACE (probabilidade 100%), IM (75%), trombose de stent (83%) e TLR (100%) — Wang et al. Clin Res Cardiol 2022. Superioridade confirmada por Di Gioia (JCIN 2020), Park (JAHA 2022) e Bujak (EuroIntervention 2023).</div>
+          </div>
+          <div class="info-amber info-box">
+            <span class="info-box-icon">📋</span>
+            <div><strong>Sequência DK-Crush (EBC 2024):</strong>
+              <br>① Fio no RL → stent no RL com projeção no VP → retirar fio VP
+              <br>② Crush do stent do RL com balão no VP (1ª crush)
+              <br>③ 1º Kissing Balloon (obrigatório)
+              <br>④ Stent no VP com POT proximal
+              <br>⑤ Recruzar fio para RL → balão → 2º Kissing Balloon final + re-POT
+            </div>
+          </div>
+          ${!hasImg ? `
+          <div class="info-red info-box">
+            <span class="info-box-icon">🚨</span>
+            <div><strong>Imagem intravascular não disponível — risco aumentado.</strong> Subanálise EBC MAIN: sem imagem intravascular, estratégia de 2 stents associada a piores desfechos vs provisional (OR 2,11; p=0,039). Com imagem, tendência a melhores resultados com 2 stents (OR 0,56). <strong>Fortemente recomendado obter IVUS/OCT antes de prosseguir com 2 stents.</strong></div>
+          </div>` : `
+          <div class="info-teal info-box">
+            <span class="info-box-icon">🔍</span>
+            <div><strong>IVUS/OCT disponível — otimizar dimensionamento e aposição.</strong> Guia de imagem intravascular melhora resultados da estratégia de 2 stents (EBC MAIN sub-analysis, Maznyczka 2023). Avaliar: área mínima do stent, expansão, malaposição e integridade do óstio do RL.</div>
+          </div>`}
+          <div class="info-gray info-box">
+            <span class="info-box-icon">⚠️</span>
+            <div><strong>Meta-regressão de Bujak et al. (EuroIntervention 2023):</strong> Benefício da estratégia de 2 stents é mais pronunciado com comprimento médio do RL &gt;11 mm — exatamente o perfil desta lesão. Quanto maior o comprimento, maior a vantagem dos 2 stents sobre o provisional.</div>
+          </div>
+        </div>
+      </div>`;
+  }
+}
+
+/* ════════════════════════════════════════════════════════
+   TECHNIQUE BUILD (Step 3)
+════════════════════════════════════════════════════════ */
+function buildTechnique() {
+  const area = document.getElementById('technique_result');
+  const trueBif = isTrueBifurcation();
+  const complex = isComplexDEFINITION();
+  const isTCE = params.loc === 'tce';
+  const angLarge = params.ang === 'large';   // ≥70°
+  const angPerp  = params.ang === 'perp';    // ~90°
+  const simDiam  = params.sim === 'yes';
+  const branchOnly = (medina[0] === 0 && medina[1] === 0 && medina[2] === 1);
+
+  // IVUS box
+  document.getElementById('ivus_box').innerHTML = params.img === 'yes' ? `
+    <div class="info-teal info-box">
+      <span class="info-box-icon">🔍</span>
+      <div><strong>IVUS/OCT disponível — utilizar sistematicamente.</strong> EBC 18º Consenso 2024: imagem intravascular recomendada para otimizar dimensionamento dos stents, confirmar expansão adequada e avaliar integridade do óstio do ramo lateral. Em TCE: reduz mortalidade (subanálise EXCEL, NOBLE).</div>
+    </div>` : `
+    <div class="info-amber info-box">
+      <span class="info-box-icon">⚠️</span>
+      <div><strong>Imagem intravascular não disponível.</strong> Limiar baixo para obtenção de IVUS/OCT, especialmente em TCE e estratégia de 2 stents (EBC 2024). Guia angiográfica isolada associada a piores resultados quando 2 stents são empregados.</div>
+    </div>`;
+
+  // Determine preferred technique
+  let preferredTech, preferredReason, altTech1, altTech1Reason;
+
+  if (!trueBif || branchOnly) {
+    // No bifurcation technique needed / branch only
+    area.innerHTML = `
+      <div class="info-teal info-box">
+        <span class="info-box-icon">✅</span>
+        <div>Não se aplica técnica de bifurcação dupla. Ver recomendação de estratégia no Passo 2.</div>
+      </div>`;
+    return;
+  }
+
+  if (!complex) {
+    // Provisional — technique detail
+    area.innerHTML = `
+      <div class="info-teal info-box">
+        <span class="info-box-icon">✅</span>
+        <div><strong>Provisional Stenting — técnica escalonada.</strong> Stent no VP → avaliação do RL → escalonamento seletivo. Se necessário 2 stents de resgate, preferir DK-crush ou T-stenting/TAP conforme ângulo de bifurcação.</div>
+      </div>
+      <div class="tech-grid">
+        <div class="tech-card preferred">
+          <div class="tech-label pref">1ª Linha</div>
+          <div class="tech-name">Provisional Stepwise</div>
+          <div class="tech-desc">Stent no VP com POT → avaliação funcional e angiográfica do RL → escalonamento apenas se necessário.</div>
+        </div>
+        <div class="tech-card alternative">
+          <div class="tech-label alt">Resgate — se RL comprometido</div>
+          <div class="tech-name">${angPerp ? 'T-Stenting / TAP' : 'DK-Crush ou TAP'}</div>
+          <div class="tech-desc">${angPerp ? 'Saída perpendicular do RL favorece T-stenting ou TAP. Fio cruzado mantido antes do implante do stent no RL.' : 'DK-crush preferencial se necessário 2 stents de resgate. TAP como alternativa para RL com saída perpendicular.'}</div>
+        </div>
+      </div>
+      <div class="info-gray info-box" style="margin-top:.75rem;">
+        <span class="info-box-icon">📌</span>
+        <div>Kissing balloon final (FKB): indicar seletivamente no provisional. POT obrigatório após stent no VP. Re-POT após FKB.</div>
+      </div>`;
+    return;
+  }
+
+  // COMPLEX — 2 stents needed
+  // DK-crush is always first choice
+  // Culotte: if similar diameters AND angle <70°
+  // T/TAP: if perpendicular exit
+  const colotteOk = simDiam && !angLarge && !angPerp;
+  const tapOk = angPerp;
+
+  area.innerHTML = `
+    <div class="info-teal info-box">
+      <span class="info-box-icon">⚡</span>
+      <div><strong>Estratégia de 2 Stents Indicada — Seleção da Técnica.</strong> DK-crush é a técnica com melhor evidência para bifurcações complexas em todas as metanálises em rede. As alternativas abaixo são apresentadas com suas indicações específicas.</div>
+    </div>
+
+    <div class="tech-grid">
+      <div class="tech-card preferred">
+        <div class="tech-label pref">✓ TÉCNICA PREFERENCIAL</div>
+        <div class="tech-name">DK-Crush (Double Kissing)</div>
+        <div class="tech-desc">
+          Superior em MACE, IM, TLR e trombose de stent vs todas as outras técnicas de 2 stents (Park NMA 2022, Wang 2022). Indicado para qualquer ângulo de bifurcação.
+          <br><br><strong style="color:var(--teal);">Evidências:</strong> DKCRUSH-III, DKCRUSH-V, DEFINITION II, 5 NMAs concordantes.
+        </div>
+      </div>
+      <div class="tech-card ${colotteOk ? 'alternative' : 'avoid'}">
+        <div class="tech-label ${colotteOk ? 'alt' : 'avoid-lbl'}">${colotteOk ? 'Alternativa Aceitável' : 'Não Recomendado nestas Características'}</div>
+        <div class="tech-name">Culotte</div>
+        <div class="tech-desc">
+          ${colotteOk
+            ? 'Diâmetros similares e ângulo <70° são as condições ideais para Culotte. Manter ambos os fios. Kissing balloon final obrigatório.'
+            : angLarge
+              ? '⚠️ Ângulo ≥70°: DKCRUSH-III mostrou piores resultados com Culotte em ângulos obtusus (MACE 23,7% em 3 anos). Evitar nesta anatomia.'
+              : !simDiam
+                ? '⚠️ Diâmetros desiguais: Culotte inadequado quando VP distal >> RL. Risco de malaposição e cobertura inadequada do óstio.'
+                : 'Condições não ideais para Culotte.'}
+          <br><br><strong style="color:${colotteOk ? '#fbbf24' : '#f87171'};">⚠️ Risco aumentado de trombose</strong> vs DK-crush (Chiabrando: RR 3,25–4,27).
+        </div>
+      </div>
+      <div class="tech-card ${tapOk ? 'alternative' : ''}">
+        <div class="tech-label ${tapOk ? 'alt' : ''}">
+          ${tapOk ? 'Alternativa para Saída Perpendicular' : 'Condicional'}
+        </div>
+        <div class="tech-name">T-Stenting / TAP</div>
+        <div class="tech-desc">
+          ${tapOk
+            ? '✅ Saída perpendicular (~90°): T-stenting ou TAP são tecnicamente mais simples e adequados. TAP (T and protrusion) preferido por menor risco de espaço não coberto no óstio.'
+            : 'Aceitável apenas para ângulo de saída proximal do RL próximo a 90°. Em outros ângulos, não oferece vantagem e pode deixar óstio do RL descoberto proximalmente.'}
+          <br><br>Menor evidência de redução de TLR vs DK-crush (Park NMA 2022; Di Gioia 2020).
+        </div>
+      </div>
+      <div class="tech-card avoid">
+        <div class="tech-label avoid-lbl">🚫 EVITAR</div>
+        <div class="tech-name">Crush Clássico</div>
+        <div class="tech-desc">Impossibilidade de kissing balloon final em ~25% dos casos → geometria irregular → maior trombose e restenose. Superado pelo DK-crush em todos os desfechos (Di Gioia 2020).</div>
+      </div>
+      <div class="tech-card avoid">
+        <div class="tech-label avoid-lbl">🚫 CONTRAINDICADO</div>
+        <div class="tech-name">V-Stenting / Kissing Simultâneo</div>
+        <div class="tech-desc">Carina longa sem cobertura, reintervenção extremamente difícil. Altas taxas de TLR. Não recomendado como estratégia de primeira linha (Teirstein 2012; Rab 2017).</div>
+      </div>
+    </div>
+
+    ${isTCE ? `
+    <div class="info-purple info-box" style="margin-top:.75rem;">
+      <span class="info-box-icon">🏥</span>
+      <div><strong>TCE complexo — DK-crush é a técnica de escolha.</strong> DKCRUSH-V demonstrou superioridade do DK-crush sobre provisional em TCE distal verdadeiro complexo (RL médio 16mm). Diferença em relação ao EBC MAIN (RL mediano 5mm) explica resultados distintos. Para lesões com RL ≥10mm, DK-crush reduz significativamente TLF.</div>
+    </div>` : ''}`;
+}
+
+/* ════════════════════════════════════════════════════════
+   NAVIGATION
+════════════════════════════════════════════════════════ */
+const stepProgress = { 1: '25%', 2: '50%', 3: '75%', 4: '100%' };
+
+function goStep(n) {
+  [1,2,3,4].forEach(i => {
+    document.getElementById('step' + i).classList.toggle('active', i === n);
+    const tls = document.querySelectorAll('.timeline-step');
+    if (tls[i-1]) tls[i-1].classList.toggle('active', i === n);
+  });
+  document.getElementById('progress').style.width = stepProgress[n];
+
+  if (n === 2) buildStrategy();
+  if (n === 3) { buildStrategy(); buildTechnique(); }
+
+  document.querySelector('.timeline')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+/* ════════════════════════════════════════════════════════
+   INIT
+════════════════════════════════════════════════════════ */
+// Set initial medina display
+setMedina(0, 0);
+
+// Initialize IVUS box
+document.getElementById('ivus_box').innerHTML = `
+  <div class="info-teal info-box">
+    <span class="info-box-icon">🔍</span>
+    <div><strong>IVUS/OCT disponível — utilizar sistematicamente.</strong> EBC 18º Consenso 2024 recomenda imagem intravascular para otimizar dimensionamento dos stents e avaliar integridade do óstio do ramo lateral, especialmente em TCE e estratégia de 2 stents.</div>
+  </div>`;
+</script>
+</body>
+</html>
