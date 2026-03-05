@@ -339,12 +339,57 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    /* ── LIVE SCORE BAR ──────────────────────────────────────── */
+    .live-score {
+      display: flex; align-items: center; gap: 1rem;
+      padding: .5rem 0; margin-bottom: .25rem;
+      font-family: var(--font-mono); font-size: .75rem; font-weight: 600;
+    }
+    .live-score-item {
+      display: flex; align-items: center; gap: 5px;
+      padding: 3px 10px; border-radius: 999px;
+    }
+    .live-score-correct { background: rgba(74,222,128,.1); color: #4ade80; }
+    .live-score-incorrect { background: rgba(220,38,38,.1); color: #f87171; }
+    .live-score-remaining { color: var(--muted-foreground); }
+
+    /* ── QUESTION NAV DOTS ───────────────────────────────────── */
+    .q-nav-dots {
+      display: flex; flex-wrap: wrap; gap: 6px;
+      padding: .75rem 0; margin-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+    .q-nav-dot {
+      width: 30px; height: 30px; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-mono); font-size: .65rem; font-weight: 700;
+      border: 1.5px solid var(--border); background: var(--muted);
+      color: var(--muted-foreground); cursor: pointer;
+      transition: all .15s;
+    }
+    .q-nav-dot:hover { border-color: rgba(0,211,189,.4); }
+    .q-nav-dot.current { border-color: var(--teal); color: var(--teal); background: var(--teal-dim); }
+    .q-nav-dot.answered-correct { background: rgba(74,222,128,.12); border-color: rgba(74,222,128,.35); color: #4ade80; }
+    .q-nav-dot.answered-incorrect { background: rgba(220,38,38,.1); border-color: rgba(220,38,38,.3); color: #f87171; }
+    .q-nav-dot.unanswered { opacity: .5; }
+
+    /* ── RESUME BADGE ON THEME CARD ──────────────────────────── */
+    .theme-card-resume {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: .65rem; font-weight: 700; padding: 2px 8px;
+      border-radius: 999px; background: rgba(251,191,36,.12);
+      color: #fbbf24; border: 1px solid rgba(251,191,36,.2);
+      margin-left: .5rem;
+    }
+
     /* ── RESPONSIVE ──────────────────────────────────────────── */
     @media (max-width: 600px) {
       .theme-grid { grid-template-columns: 1fr; }
       .mode-grid { grid-template-columns: 1fr; }
       .score-stats { grid-template-columns: 1fr; }
       .btn-row { flex-direction: column; }
+      .q-nav-dots { gap: 4px; }
+      .q-nav-dot { width: 26px; height: 26px; font-size: .6rem; }
     }
   </style>
 </head>
@@ -409,7 +454,25 @@
         <p style="font-size:.88rem;color:var(--muted-foreground);" id="config-theme-desc"></p>
       </div>
 
-      <div class="card">
+      <div id="resume-card" class="card" style="display:none;">
+        <div class="info-box info-amber">
+          <span class="info-box-icon">💾</span>
+          <div>
+            <strong>Progresso salvo encontrado.</strong>
+            <span id="resume-info"></span>
+          </div>
+        </div>
+        <div class="btn-row" style="margin-top:.75rem;">
+          <button class="btn btn-primary" onclick="resumeQuiz()">
+            ▶ Continuar de onde parou
+          </button>
+          <button class="btn btn-secondary" onclick="clearSavedProgress()">
+            🗑 Recomeçar do zero
+          </button>
+        </div>
+      </div>
+
+      <div class="card" id="mode-card">
         <div class="card-header">
           <div class="card-icon">⚙️</div>
           <div>
@@ -458,12 +521,22 @@
 
       <div class="progress-bar"><div class="progress-fill" id="quiz-progress" style="width:0%"></div></div>
 
+      <!-- Live score -->
+      <div class="live-score" id="live-score">
+        <div class="live-score-item live-score-correct">✓ <span id="live-correct">0</span></div>
+        <div class="live-score-item live-score-incorrect">✗ <span id="live-incorrect">0</span></div>
+        <div class="live-score-remaining" id="live-remaining"></div>
+      </div>
+
       <div class="card" id="question-card">
         <div class="question-counter" id="question-counter"></div>
         <div class="question-text" id="question-text"></div>
         <div class="options-list" id="options-list"></div>
         <div class="feedback" id="feedback" style="display:none;"></div>
         <div class="btn-row" id="quiz-actions"></div>
+
+        <!-- Question navigation dots -->
+        <div class="q-nav-dots" id="q-nav-dots"></div>
       </div>
     </div>
 
@@ -531,7 +604,7 @@
 <footer>
   <div class="container">
     <div class="footer-inner">
-      <div class="footer-copy">© 2025 Dr. Lucas Silva · Ferramenta Educacional</div>
+      <div class="footer-copy">© 2026 Dr. Lucas Silva · Ferramenta Educacional. Todos os direitos reservados.</div>
       <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">lucascardio.com.br</a>
     </div>
   </div>
@@ -935,366 +1008,6 @@ const QUESTION_BANK = [
         answer: 1,
         comment: "Devido ao trajeto subcutâneo da agulha e do introdutor, a arteriotomia (o furo na artéria) está localizada mais proximalmente (1-2 cm acima) do que a incisão na pele. A compressão deve ser aplicada neste ponto proximal para ser eficaz, utilizando a cabeça femoral como anteparo.",
         source: "Practical Handbook of Advanced Interventional Cardiology, 2013"
-      },
-      {
-        q: "Qual é a complicação mais comum associada ao acesso radial para intervenções coronárias percutâneas?",
-        options: [
-          "a) Espasmo da artéria radial",
-          "b) Oclusão da artéria radial (OAR)",
-          "c) Perfuração da artéria radial",
-          "d) Hematoma no local de acesso"
-        ],
-        answer: 1,
-        comment: "A oclusão da artéria radial é a complicação mais frequente após o procedimento transradial, embora muitas vezes seja assintomática devido à circulação colateral da mão. A incidência pode ser reduzida com o uso de bainhas menores, anticoagulação adequada e técnica de hemostasia patente.",
-        source: "Transradial Approach for Percutaneous Interventions, 2017"
-      },
-      {
-        q: "Durante o acesso femoral, a punção ideal da artéria femoral comum (AFC) deve ser realizada em que nível anatômico para minimizar complicações?",
-        options: [
-          "a) Acima do ligamento inguinal",
-          "b) Ao nível da metade superior da cabeça femoral",
-          "c) Abaixo da bifurcação da artéria femoral",
-          "d) Diretamente sobre o ligamento inguinal"
-        ],
-        answer: 1,
-        comment: "A punção da AFC na altura da metade superior da cabeça femoral permite uma compressão eficaz contra uma estrutura óssea, reduzindo o risco de hematoma e pseudoaneurisma. Punções altas (acima do ligamento inguinal) aumentam o risco de hemorragia retroperitoneal.",
-        source: "Grossman & Baim's Cardiac Catheterization, Angiography, and Intervention, 9th Ed."
-      },
-      {
-        q: "Qual das seguintes anomalias anatômicas da artéria radial é a mais encontrada e pode dificultar a navegação do cateter?",
-        options: [
-          "a) Origem alta da artéria radial",
-          "b) Artéria radial hipoplásica",
-          "c) Alça radioulnar (loop)",
-          "d) Tortuosidade da artéria subclávia"
-        ],
-        answer: 0,
-        comment: "A origem alta da artéria radial a partir da artéria braquial ou axilar é a anomalia mais comum, ocorrendo em até 10-15% dos casos. Embora geralmente não impeça o procedimento, pode criar um ângulo agudo que dificulta a passagem do fio-guia e do cateter.",
-        source: "Transradial Approach for Percutaneous Interventions, 2017"
-      },
-      {
-        q: "O que é a 'hemostasia patente' e qual seu principal objetivo após um procedimento transradial?",
-        options: [
-          "a) Ocluir completamente a artéria radial para garantir a cessação do sangramento.",
-          "b) Aplicar pressão suficiente para parar o sangramento, mantendo o fluxo sanguíneo através da artéria ulnar.",
-          "c) Aplicar pressão suficiente para parar o sangramento no local da punção, enquanto se confirma a manutenção do fluxo anterógrado na artéria radial.",
-          "d) Utilizar um dispositivo de fechamento vascular para selar o arteriotomia."
-        ],
-        answer: 2,
-        comment: "A hemostasia patente visa reduzir a incidência de oclusão da artéria radial (OAR). A técnica envolve a aplicação de pressão no local da punção apenas o suficiente para controlar o sangramento, enquanto se verifica (geralmente com oximetria de pulso no polegar) que o fluxo sanguíneo distal na artéria radial é preservado.",
-        source: "Cardiac Catheterization Handbook, 6th Ed."
-      },
-      {
-        q: "Uma hemorragia retroperitoneal é uma complicação grave e temida de qual tipo de acesso vascular?",
-        options: [
-          "a) Acesso radial distal ('snuffbox')",
-          "b) Acesso ulnar",
-          "c) Acesso femoral com punção alta",
-          "d) Acesso braquial"
-        ],
-        answer: 2,
-        comment: "A hemorragia retroperitoneal ocorre quando a artéria femoral é puncionada acima do ligamento inguinal. O sangue extravasa para o espaço retroperitoneal, onde pode acumular-se um grande volume antes que os sinais clínicos se tornem aparentes, levando a choque hipovolêmico.",
-        source: "Grossman & Baim's Cardiac Catheterization, Angiography, and Intervention, 9th Ed."
-      },
-      {
-        q: "Qual é a principal vantagem do uso de um 'cocktail' farmacológico (geralmente contendo um vasodilatador e um anticoagulante) durante o acesso radial?",
-        options: [
-          "a) Prevenir a trombose do cateter",
-          "b) Reduzir a dor no local da punção",
-          "c) Diminuir a incidência de espasmo da artéria radial",
-          "d) Acelerar a hemostasia pós-procedimento"
-        ],
-        answer: 2,
-        comment: "O espasmo da artéria radial é uma contração súbita e dolorosa da artéria que pode impedir a manipulação do cateter. A administração intra-arterial de um cocktail, tipicamente com verapamil ou nitroglicerina, relaxa a musculatura lisa da artéria, prevenindo ou tratando o espasmo.",
-        source: "Transradial Approach for Percutaneous Interventions, 2017"
-      },
-      {
-        q: "No contexto de um Infarto Agudo do Miocárdio com Supradesnivelamento do Segmento ST (IAMCSST), por que o acesso radial é frequentemente preferido em relação ao femoral?",
-        options: [
-          "a) Permite o uso de cateteres de maior calibre.",
-          "b) Reduz significativamente o tempo porta-balão.",
-          "c) Diminui as taxas de sangramento maior e melhora a sobrevida.",
-          "d) É tecnicamente mais fácil em pacientes em choque cardiogênico."
-        ],
-        answer: 2,
-        comment: "Grandes estudos randomizados, como o MATRIX e o RIVAL, demonstraram que em pacientes com SCA, especialmente IAMCSST, o acesso radial reduz as complicações de sangramento maior e está associado a uma redução na mortalidade por todas as causas em comparação com o acesso femoral.",
-        source: "Transradial Approach for Percutaneous Interventions, 2017"
-      },
-      {
-        q: "O que é um pseudoaneurisma e qual a sua causa mais comum no acesso femoral?",
-        options: [
-          "a) Uma dilatação verdadeira de todas as camadas da parede arterial; causado por fraqueza congênita.",
-          "b) Uma coleção de sangue pulsátil contida pelos tecidos moles circundantes, comunicando-se com o lúmen arterial; causado por uma punção que não cicatriza adequadamente.",
-          "c) Uma fístula entre a artéria e a veia femoral; causado pela punção simultânea de ambos os vasos.",
-          "d) Um hematoma localizado que não tem comunicação com a artéria; causado por compressão inadequada."
-        ],
-        answer: 1,
-        comment: "Um pseudoaneurisma (ou falso aneurisma) resulta de uma laceração na parede arterial que não se fecha. O sangue vaza e forma uma cavidade nos tecidos adjacentes que permanece conectada ao lúmen arterial, criando uma massa pulsátil.",
-        source: "Cardiac Catheterization Handbook, 6th Ed."
-      },
-      {
-        q: "A técnica de acesso radial distal, na 'tabaqueira anatômica' (anatomical snuffbox), oferece qual vantagem potencial sobre o acesso radial convencional no antebraço?",
-        options: [
-          "a) Utiliza uma artéria de maior calibre, facilitando a punção.",
-          "b) Reduz o risco de isquemia da mão em caso de oclusão.",
-          "c) Preserva a artéria radial mais proximal para um futuro enxerto de bypass coronário.",
-          "d) Permite uma hemostasia mais rápida e confortável para o paciente."
-        ],
-        answer: 3,
-        comment: "O acesso na tabaqueira anatômica permite que a hemostasia seja feita sem a necessidade de um dispositivo de compressão que imobilize o punho, aumentando o conforto do paciente. Além disso, em caso de oclusão, o segmento proximal da artéria radial permanece pérvio.",
-        source: "Transradial Approach for Percutaneous Interventions, 2017"
-      },
-      {
-        q: "Qual é a finalidade do uso de ultrassom em tempo real para guiar a punção da artéria radial?",
-        options: [
-          "a) Apenas para medir o diâmetro da artéria antes do procedimento.",
-          "b) Para visualizar a agulha entrando no lúmen da artéria, aumentando a taxa de sucesso na primeira tentativa e evitando a punção da parede posterior.",
-          "c) Para avaliar a presença de fluxo colateral da artéria ulnar.",
-          "d) Para administrar o cocktail vasodilatador com mais precisão."
-        ],
-        answer: 1,
-        comment: "O ultrassom em tempo real permite a visualização direta da artéria, da agulha e das estruturas adjacentes. Isso aumenta a precisão da punção, diminui o número de tentativas, reduz o risco de hematomas e pode ser particularmente útil em artérias de pequeno calibre ou não palpáveis.",
-        source: "Transradial Approach for Percutaneous Interventions, 2017"
-      },
-      {
-        q: "Após um procedimento via femoral, o paciente se queixa de dor súbita e intensa no flanco e hipotensão. Qual complicação deve ser suspeitada imediatamente?",
-        options: [
-          "a) Pseudoaneurisma da artéria femoral",
-          "b) Trombose venosa profunda",
-          "c) Hemorragia retroperitoneal",
-          "d) Reação vagal"
-        ],
-        answer: 2,
-        comment: "Dor no flanco, hipotensão e queda do hematócrito após um acesso femoral, especialmente com punção alta, são sinais clássicos de hemorragia retroperitoneal. O diagnóstico é confirmado com uma tomografia computadorizada de abdômen e pelve sem contraste.",
-        source: "Grossman & Baim's Cardiac Catheterization, Angiography, and Intervention, 9th Ed."
-      },
-      {
-        q: "Qual das seguintes opções NÃO é uma contraindicação absoluta para o acesso radial?",
-        options: [
-          "a) Ausência de pulso radial palpável.",
-          "b) Teste de Allen anormal (resultado tipo D no Barbeau).",
-          "c) Presença de uma fístula arteriovenosa para hemodiálise no mesmo braço.",
-          "d) Necessidade de usar um dispositivo de suporte circulatório percutâneo que exige uma bainha de grande calibre (>7 Fr)."
-        ],
-        answer: 1,
-        comment: "Embora um teste de circulação colateral anormal seja uma contraindicação relativa e exija cautela, estudos como o RADIAL-CABG mostraram que o procedimento pode ser realizado com segurança em alguns casos. As outras opções são geralmente consideradas contraindicações absolutas ou de alto risco.",
-        source: "Transradial Approach for Percutaneous Interventions, 2017"
-      },
-      {
-        q: "A 'síndrome do compartimento' é uma complicação rara mas devastadora do acesso radial. Qual é o seu principal mecanismo fisiopatológico?",
-        options: [
-          "a) Reação alérgica ao contraste iodado.",
-          "b) Oclusão trombótica aguda da artéria ulnar.",
-          "c) Sangramento no antebraço que aumenta a pressão dentro de um compartimento fascial fechado, comprometendo a perfusão muscular e nervosa.",
-          "d) Embolização de ar durante a remoção da bainha."
-        ],
-        answer: 2,
-        comment: "A síndrome do compartimento ocorre quando um hematoma em expansão dentro dos compartimentos fasciais do antebraço eleva a pressão a um nível que excede a pressão de perfusão capilar, levando à isquemia e necrose de músculos e nervos. Requer diagnóstico e tratamento de emergência (fasciotomia).",
-        source: "Cardiac Catheterization Handbook, 6th Ed."
-      },
-      {
-        q: "Para intervenções coronárias complexas que podem exigir cateteres-guia de maior suporte ou o uso de dois cateteres (técnica 'ping-pong'), qual acesso é tradicionalmente preferido?",
-        options: [
-          "a) Acesso radial",
-          "b) Acesso femoral",
-          "c) Acesso ulnar",
-          "d) Acesso braquial"
-        ],
-        answer: 1,
-        comment: "O acesso femoral permite o uso de bainhas de maior diâmetro (8 Fr ou mais), que acomodam cateteres-guia maiores e mais robustos, essenciais para o suporte em angioplastias complexas, como em oclusões totais crônicas ou lesões de bifurcação. Embora técnicas 'slender' tenham expandido as capacidades do acesso radial, o femoral ainda é o padrão para suporte máximo.",
-        source: "Grossman & Baim's Cardiac Catheterization, Angiography, and Intervention, 9th Ed."
-      },
-      {
-        q: "Qual é o tratamento de primeira linha para um pseudoaneurisma femoral pequeno (< 2-3 cm) e não complicado?",
-        options: [
-          "a) Reparo cirúrgico aberto imediato.",
-          "b) Injeção de trombina guiada por ultrassom.",
-          "c) Compressão guiada por ultrassom.",
-          "d) Observação e acompanhamento seriado com ultrassom."
-        ],
-        answer: 2,
-        comment: "Para pseudoaneurismas pequenos, a compressão guiada por ultrassom é uma abordagem eficaz e menos invasiva. A pressão é aplicada diretamente sobre o colo do pseudoaneurisma para induzir a trombose. A injeção de trombina é uma alternativa, geralmente para casos em que a compressão falha ou é inadequada.",
-        source: "Cardiac Catheterization Handbook, 6th Ed."
-      },
-      {
-        q: "A perfuração da artéria radial com um fio-guia durante a canulação é geralmente uma complicação benigna. Qual é a conduta recomendada?",
-        options: [
-          "a) Interromper o procedimento imediatamente e converter para acesso femoral.",
-          "b) Retirar o fio-guia, manter a bainha no lugar e administrar protamina.",
-          "c) Retirar o fio-guia para dentro da bainha, aguardar alguns minutos e tentar avançar novamente, possivelmente com um fio-guia hidrofílico.",
-          "d) Chamar um cirurgião vascular para reparo imediato."
-        ],
-        answer: 2,
-        comment: "Pequenas perfurações por fio-guia em ramos da artéria radial raramente causam sangramento significativo ou síndrome do compartimento. A conduta expectante, com uma nova tentativa cuidadosa após um curto período, geralmente é segura e bem-sucedida.",
-        source: "Transradial Approach for Percutaneous Interventions, 2017"
-      },
-      {
-        q: "Qual fator é o preditor mais forte de falha no acesso transradial?",
-        options: [
-          "a) Sexo feminino",
-          "b) Baixo peso corporal",
-          "c) Diâmetro da artéria radial < 2.0 mm",
-          "d) Idade avançada"
-        ],
-        answer: 2,
-        comment: "Um diâmetro arterial pequeno é um dos preditores mais importantes de falha na punção e no procedimento transradial. A relação entre o diâmetro da bainha e o diâmetro da artéria (relação bainha/artéria > 1) está fortemente associada ao risco de espasmo e oclusão da artéria radial.",
-        source: "Transradial Approach for Percutaneous Interventions, 2017"
-      },
-      {
-        q: "O que é uma fístula arteriovenosa (FAV) como complicação do acesso femoral?",
-        options: [
-          "a) Uma comunicação direta entre a artéria e a veia femoral, geralmente causada pela punção simultânea de ambos os vasos.",
-          "b) Um coágulo que se forma na veia femoral após compressão prolongada da artéria.",
-          "c) Uma infecção no local de acesso que se espalha para a veia.",
-          "d) Um hematoma que comprime a veia femoral."
-        ],
-        answer: 0,
-        comment: "Uma FAV iatrogênica ocorre quando a agulha de punção atravessa tanto a artéria quanto a veia adjacente, criando um trajeto fistuloso. O diagnóstico é feito por ultrassom Doppler, que mostra um fluxo turbulento de alta velocidade da artéria para a veia.",
-        source: "Grossman & Baim's Cardiac Catheterization, Angiography, and Intervention, 9th Ed."
-      },
-      {
-        q: "Em pacientes com enxerto de artéria mamária interna esquerda (AMIE) para a artéria descendente anterior, qual acesso arterial é preferível para cateterizar o enxerto?",
-        options: [
-          "a) Acesso radial direito",
-          "b) Acesso radial esquerdo",
-          "c) Acesso femoral",
-          "d) Acesso ulnar esquerdo"
-        ],
-        answer: 1,
-        comment: "O acesso radial esquerdo oferece um trajeto mais direto e favorável para a artéria subclávia esquerda, de onde se origina a AMIE. Isso facilita a canulação seletiva do enxerto com cateteres específicos (como o cateter IMA), em comparação com o trajeto mais tortuoso vindo do acesso radial direito ou femoral.",
-        source: "Transradial Approach for Percutaneous Interventions, 2017"
-      },
-      {
-        q: "Qual é a principal desvantagem do acesso braquial em comparação com os acessos radial e femoral?",
-        options: [
-          "a) Maior risco de sangramento maior.",
-          "b) Maior risco de dano neurológico mediano e trombose arterial com isquemia grave do membro.",
-          "c) Dificuldade técnica para canular as artérias coronárias.",
-          "d) Maior exposição à radiação para o operador."
-        ],
-        answer: 1,
-        comment: "A artéria braquial está em proximidade direta com o nervo mediano, tornando-o vulnerável a lesões durante a punção ou por compressão de um hematoma. Além disso, a artéria braquial tem pouca ou nenhuma circulação colateral, de modo que uma oclusão trombótica pode levar à isquemia crítica do membro, uma complicação muito mais rara no acesso radial.",
-        source: "Cardiac Catheterization Handbook, 6th Ed."
-      },
-      {
-        q: "A embolia distal de colesterol (síndrome do dedo azul) é uma complicação potencial do acesso femoral, especialmente em pacientes com:",
-        options: [
-          "a) Doença arterial periférica aterosclerótica grave da aorta e artérias ilíacas.",
-          "b) Estenose da artéria renal.",
-          "c) Hipertensão arterial sistêmica não controlada.",
-          "d) Insuficiência cardíaca congestiva."
-        ],
-        answer: 0,
-        comment: "A manipulação de fios-guia e cateteres através de uma aorta e artérias ilíacas severamente ateroscleróticas pode desalojar debris de colesterol, que embolizam para as artérias digitais dos pés, causando isquemia e a aparência cianótica característica (dedo azul).",
-        source: "Grossman & Baim's Cardiac Catheterization, Angiography, and Intervention, 9th Ed."
-      },
-      {
-        q: "Qual é a principal razão para a menor taxa de complicações vasculares no acesso radial em comparação com o femoral em idosos?",
-        options: [
-          "a) Os idosos têm artérias radiais maiores que os jovens.",
-          "b) A artéria radial é superficial e facilmente compressível contra o osso rádio, enquanto a anatomia femoral pode ser distorcida pela obesidade e flacidez dos tecidos.",
-          "c) Os idosos recebem doses menores de anticoagulantes no acesso radial.",
-          "d) O tempo de procedimento é sempre menor via radial."
-        ],
-        answer: 1,
-        comment: "A compressibilidade da artéria radial contra uma estrutura óssea subjacente permite uma hemostasia mais controlada e eficaz. Em contraste, no acesso femoral em idosos, a localização da artéria pode ser difícil e a compressão menos eficaz, aumentando o risco de hematomas e outras complicações.",
-        source: "Cardiac Catheterization Handbook, 6th Ed."
-      },
-      {
-        q: "Em um paciente com pulso radial direito ausente e pulso ulnar presente, qual seria a abordagem de acesso preferencial para o membro superior direito?",
-        options: [
-          "a) Tentar o acesso radial direito com guia de ultrassom.",
-          "b) Proceder com o acesso ulnar direito, se a circulação colateral for adequada.",
-          "c) Desistir do membro superior direito e usar o acesso femoral.",
-          "d) Tentar o acesso na artéria interóssea."
-        ],
-        answer: 1,
-        comment: "O acesso ulnar é uma alternativa viável quando o acesso radial não é possível. A artéria ulnar é geralmente de maior calibre que a radial. No entanto, é tecnicamente mais desafiador devido à sua localização mais profunda e proximidade com o nervo ulnar. A avaliação da perviedade do arco palmar continua sendo importante.",
-        source: "Transradial Approach for Percutaneous Interventions, 2017"
-      },
-      {
-        q: "Qual dispositivo de fechamento vascular (VCD) para acesso femoral funciona criando uma sutura percutânea para aproximar as bordas da arteriotomia?",
-        options: [
-          "a) Angio-Seal",
-          "b) MynxGrip",
-          "c) Perclose ProGlide",
-          "d) StarClose"
-        ],
-        answer: 2,
-        comment: "O sistema Perclose ProGlide utiliza agulhas e um guia para passar uma sutura de polipropileno através da parede do vaso, permitindo que a arteriotomia seja fechada mecanicamente, de forma semelhante a uma sutura cirúrgica. Isso o diferencia dos VCDs baseados em âncora/colágeno ou selantes extravasculares.",
-        source: "Grossman & Baim's Cardiac Catheterization, Angiography, and Intervention, 9th Ed."
-      },
-      {
-        q: "A 'artéria subclávia lusória' é uma anomalia congênita que pode complicar o acesso radial. O que a caracteriza?",
-        options: [
-          "a) A artéria subclávia se origina diretamente do arco aórtico distal.",
-          "b) A artéria subclávia direita tem uma origem anômala como o último ramo do arco aórtico e cruza o mediastino posteriormente.",
-          "c) A artéria subclávia é extremamente tortuosa e calcificada.",
-          "d) Ausência congênita da artéria subclávia."
-        ],
-        answer: 1,
-        comment: "Em uma artéria subclávia lusória, o trajeto anômalo vindo do acesso radial direito cria uma dificuldade significativa para alcançar a aorta ascendente. Frequentemente, é necessário trocar para o acesso radial esquerdo ou femoral para completar o procedimento.",
-        source: "Transradial Approach for Percutaneous Interventions, 2017"
-      },
-      {
-        q: "Qual é a conduta inicial para um hematoma grande, mas não em expansão, no local do acesso femoral após a remoção da bainha?",
-        options: [
-          "a) Evacuação cirúrgica imediata.",
-          "b) Marcar as bordas do hematoma com uma caneta, aplicar compressão manual ou mecânica e monitorar de perto a expansão e os sinais vitais.",
-          "c) Iniciar transfusão de sangue profilática.",
-          "d) Realizar uma angiografia para identificar o ponto de sangramento."
-        ],
-        answer: 1,
-        comment: "A maioria dos hematomas não expansivos pode ser gerenciada de forma conservadora. A demarcação das bordas permite uma avaliação objetiva da progressão. A compressão ajuda a limitar o sangramento adicional. A vigilância é fundamental para detectar a expansão que pode exigir uma intervenção mais agressiva.",
-        source: "Cardiac Catheterization Handbook, 6th Ed."
-      },
-      {
-        q: "O uso de bainhas hidrofílicas no acesso radial tem como principal objetivo:",
-        options: [
-          "a) Melhorar a visualização no ultrassom.",
-          "b) Reduzir o atrito e o trauma na parede da artéria radial, diminuindo o risco de espasmo e dor.",
-          "c) Conduzir eletricidade para procedimentos de eletrofisiologia.",
-          "d) Liberar heparina localmente para prevenir trombose."
-        ],
-        answer: 1,
-        comment: "O revestimento hidrofílico, quando ativado pela água, torna a superfície da bainha extremamente lisa. Isso facilita sua passagem através da artéria radial, especialmente em vasos tortuosos ou de menor calibre, minimizando a irritação endotelial e, consequentemente, o espasmo arterial.",
-        source: "Transradial Approach for Percutaneous Interventions, 2017"
-      },
-      {
-        q: "Qual é a principal limitação dos dispositivos de fechamento vascular (VCDs) no acesso femoral?",
-        options: [
-          "a) São menos eficazes que a compressão manual para alcançar a hemostasia.",
-          "b) Aumentam o tempo de deambulação do paciente.",
-          "c) Podem ter falhas, causar infecção, embolização do dispositivo ou estenose arterial, e seu uso pode ser limitado por anatomia desfavorável (ex: punção na bifurcação).",
-          "d) São significativamente mais caros que a compressão manual, sem nenhum benefício comprovado."
-        ],
-        answer: 2,
-        comment: "Embora os VCDs possam acelerar a hemostasia e a deambulação, eles têm seu próprio espectro de complicações potenciais, incluindo falha no fechamento, infecção do local, embolização de componentes do dispositivo e lesão vascular. A seleção cuidadosa do paciente e a técnica adequada são cruciais.",
-        source: "Grossman & Baim's Cardiac Catheterization, Angiography, and Intervention, 9th Ed."
-      },
-      {
-        q: "A dor intensa durante a injeção do 'cocktail' radial pode ser atenuada por qual medida?",
-        options: [
-          "a) Injetar o cocktail o mais rápido possível.",
-          "b) Misturar o verapamil com lidocaína e injetar lentamente.",
-          "c) Usar água estéril em vez de soro fisiológico para diluir os medicamentos.",
-          "d) Evitar o uso de nitroglicerina."
-        ],
-        answer: 1,
-        comment: "O verapamil pode causar uma sensação de queimação quando injetado na artéria radial. A diluição com sangue arterial e a mistura com um anestésico local como a lidocaína, juntamente com uma injeção lenta, podem mitigar significativamente esse desconforto para o paciente.",
-        source: "Cardiac Catheterization Handbook, 6th Ed."
-      },
-      {
-        q: "Qual é a definição de 'falha do acesso' em um procedimento transradial?",
-        options: [
-          "a) Qualquer complicação vascular que ocorra durante ou após o procedimento.",
-          "b) A incapacidade de puncionar a artéria radial após 3 tentativas.",
-          "c) A incapacidade de completar o procedimento diagnóstico ou terapêutico a partir do acesso radial inicial, exigindo a conversão para um acesso alternativo (como o femoral).",
-          "d) A ocorrência de oclusão da artéria radial documentada após o procedimento."
-        ],
-        answer: 2,
-        comment: "A falha do acesso é definida pelo insucesso em finalizar o procedimento pela via de acesso escolhida. As causas podem incluir falha na punção, espasmo arterial intratável, tortuosidade severa ou outras anomalias anatômicas que impedem a navegação do cateter até as artérias coronárias.",
-        source: "Transradial Approach for Percutaneous Interventions, 2017"
       }
     ]
   }
@@ -1329,14 +1042,49 @@ const QUESTION_BANK = [
 
 
 /* ════════════════════════════════════════════════════════════
+   PERSISTENT STORAGE HELPERS
+   Uses window.storage API (artifact persistence)
+════════════════════════════════════════════════════════════ */
+const STORAGE_PREFIX = 'hemoquiz:';
+
+async function saveProgress() {
+  if (!currentTheme || !window.storage) return;
+  try {
+    const data = {
+      themeId: currentTheme.id,
+      mode: quizMode,
+      questionIndices: quizQuestions.map(q => currentTheme.questions.indexOf(q)),
+      currentIndex,
+      answers,
+      timestamp: Date.now()
+    };
+    await window.storage.set(STORAGE_PREFIX + currentTheme.id, JSON.stringify(data));
+  } catch (e) { /* silently fail */ }
+}
+
+async function loadProgress(themeId) {
+  if (!window.storage) return null;
+  try {
+    const result = await window.storage.get(STORAGE_PREFIX + themeId);
+    if (result && result.value) return JSON.parse(result.value);
+  } catch (e) { /* key not found */ }
+  return null;
+}
+
+async function deleteSavedProgress(themeId) {
+  if (!window.storage) return;
+  try { await window.storage.delete(STORAGE_PREFIX + themeId); } catch (e) {}
+}
+
+/* ════════════════════════════════════════════════════════════
    STATE
 ════════════════════════════════════════════════════════════ */
 let currentTheme = null;
 let quizMode = 'all';
 let quizQuestions = [];
 let currentIndex = 0;
-let answers = [];   // { selected, correct }
-let answered = false;
+let answers = [];     // Array sized to quizQuestions.length; null = unanswered, { selected, correct }
+let savedData = null; // loaded progress for current theme
 
 /* ════════════════════════════════════════════════════════════
    VIEW MANAGEMENT
@@ -1350,14 +1098,26 @@ function showView(id) {
 /* ════════════════════════════════════════════════════════════
    HOME — BUILD THEME GRID
 ════════════════════════════════════════════════════════════ */
-function buildHome() {
+async function buildHome() {
   const grid = document.getElementById('theme-grid');
   const tagsEl = document.getElementById('home-tags');
   grid.innerHTML = '';
   const allTags = new Set();
 
-  QUESTION_BANK.forEach(theme => {
+  for (const theme of QUESTION_BANK) {
     theme.tags.forEach(t => allTags.add(t));
+
+    // Check for saved progress
+    let resumeBadge = '';
+    const saved = await loadProgress(theme.id);
+    if (saved && saved.answers) {
+      const answeredCount = saved.answers.filter(a => a !== null).length;
+      const total = saved.questionIndices.length;
+      if (answeredCount > 0 && answeredCount < total) {
+        resumeBadge = `<span class="theme-card-resume">💾 ${answeredCount}/${total}</span>`;
+      }
+    }
+
     const card = document.createElement('div');
     card.className = 'theme-card';
     card.onclick = () => selectTheme(theme.id);
@@ -1367,10 +1127,11 @@ function buildHome() {
       <div class="theme-card-desc">${theme.description}</div>
       <div class="theme-card-meta">
         <span class="theme-card-count">${theme.questions.length} questões</span>
+        ${resumeBadge}
         <span>${theme.tags.slice(0, 3).join(' · ')}</span>
       </div>`;
     grid.appendChild(card);
-  });
+  }
 
   tagsEl.innerHTML = '';
   allTags.forEach(t => {
@@ -1381,7 +1142,7 @@ function buildHome() {
 /* ════════════════════════════════════════════════════════════
    THEME SELECTION → CONFIG
 ════════════════════════════════════════════════════════════ */
-function selectTheme(id) {
+async function selectTheme(id) {
   currentTheme = QUESTION_BANK.find(t => t.id === id);
   if (!currentTheme) return;
 
@@ -1393,11 +1154,43 @@ function selectTheme(id) {
   quizMode = 'all';
   document.querySelectorAll('.mode-card').forEach(c => c.classList.remove('selected'));
   document.getElementById('mode-all').classList.add('selected');
-
-  // Hide 10-random if < 10 questions
   document.getElementById('mode-random10').style.display = currentTheme.questions.length >= 10 ? '' : 'none';
 
+  // Check for saved progress
+  savedData = await loadProgress(id);
+  const resumeCard = document.getElementById('resume-card');
+  const modeCard = document.getElementById('mode-card');
+
+  if (savedData && savedData.answers) {
+    const answeredCount = savedData.answers.filter(a => a !== null).length;
+    const total = savedData.questionIndices.length;
+    const correctCount = savedData.answers.filter(a => a && a.correct).length;
+    if (answeredCount > 0 && answeredCount < total) {
+      document.getElementById('resume-info').textContent =
+        `${answeredCount} de ${total} respondidas (${correctCount} corretas). Última atividade: ${timeAgo(savedData.timestamp)}.`;
+      resumeCard.style.display = 'block';
+      modeCard.style.display = 'none';
+    } else {
+      resumeCard.style.display = 'none';
+      modeCard.style.display = 'block';
+    }
+  } else {
+    resumeCard.style.display = 'none';
+    modeCard.style.display = 'block';
+  }
+
   showView('config');
+}
+
+function timeAgo(ts) {
+  const diff = Date.now() - ts;
+  const mins = Math.floor(diff / 60000);
+  if (mins < 1) return 'agora';
+  if (mins < 60) return `há ${mins} min`;
+  const hrs = Math.floor(mins / 60);
+  if (hrs < 24) return `há ${hrs}h`;
+  const days = Math.floor(hrs / 24);
+  return `há ${days} dia${days > 1 ? 's' : ''}`;
 }
 
 function selectMode(mode) {
@@ -1406,10 +1199,38 @@ function selectMode(mode) {
   document.getElementById('mode-' + mode).classList.add('selected');
 }
 
+async function clearSavedProgress() {
+  if (!currentTheme) return;
+  await deleteSavedProgress(currentTheme.id);
+  savedData = null;
+  document.getElementById('resume-card').style.display = 'none';
+  document.getElementById('mode-card').style.display = 'block';
+}
+
 /* ════════════════════════════════════════════════════════════
-   START QUIZ
+   RESUME QUIZ FROM SAVED STATE
 ════════════════════════════════════════════════════════════ */
-function startQuiz() {
+function resumeQuiz() {
+  if (!savedData || !currentTheme) return;
+
+  // Reconstruct questions from saved indices
+  quizQuestions = savedData.questionIndices.map(i => currentTheme.questions[i]);
+  answers = savedData.answers;
+  quizMode = savedData.mode || 'all';
+
+  // Jump to first unanswered question
+  currentIndex = answers.findIndex(a => a === null);
+  if (currentIndex === -1) currentIndex = quizQuestions.length - 1;
+
+  document.getElementById('quiz-theme-label').textContent = currentTheme.icon + ' ' + currentTheme.title;
+  showView('quiz');
+  renderQuestion();
+}
+
+/* ════════════════════════════════════════════════════════════
+   START NEW QUIZ
+════════════════════════════════════════════════════════════ */
+async function startQuiz() {
   if (!currentTheme) return;
 
   let qs = [...currentTheme.questions];
@@ -1425,13 +1246,54 @@ function startQuiz() {
 
   quizQuestions = qs;
   currentIndex = 0;
-  answers = [];
-  answered = false;
+  answers = new Array(qs.length).fill(null);
 
   document.getElementById('quiz-theme-label').textContent = currentTheme.icon + ' ' + currentTheme.title;
 
+  await saveProgress();
   showView('quiz');
   renderQuestion();
+}
+
+/* ════════════════════════════════════════════════════════════
+   LIVE SCORE UPDATE
+════════════════════════════════════════════════════════════ */
+function updateLiveScore() {
+  const answered = answers.filter(a => a !== null);
+  const correct = answered.filter(a => a.correct).length;
+  const incorrect = answered.length - correct;
+  const remaining = quizQuestions.length - answered.length;
+
+  document.getElementById('live-correct').textContent = correct;
+  document.getElementById('live-incorrect').textContent = incorrect;
+  document.getElementById('live-remaining').textContent = `${remaining} restante${remaining !== 1 ? 's' : ''}`;
+}
+
+/* ════════════════════════════════════════════════════════════
+   NAV DOTS
+════════════════════════════════════════════════════════════ */
+function renderNavDots() {
+  const container = document.getElementById('q-nav-dots');
+  container.innerHTML = '';
+  quizQuestions.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'q-nav-dot';
+    if (i === currentIndex) dot.classList.add('current');
+    else if (answers[i] !== null) {
+      dot.classList.add(answers[i].correct ? 'answered-correct' : 'answered-incorrect');
+    } else {
+      dot.classList.add('unanswered');
+    }
+    dot.textContent = i + 1;
+    dot.onclick = () => goToQuestion(i);
+    container.appendChild(dot);
+  });
+}
+
+function goToQuestion(i) {
+  currentIndex = i;
+  renderQuestion();
+  document.getElementById('question-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 /* ════════════════════════════════════════════════════════════
@@ -1440,11 +1302,16 @@ function startQuiz() {
 function renderQuestion() {
   const q = quizQuestions[currentIndex];
   const total = quizQuestions.length;
-  answered = false;
+  const existingAnswer = answers[currentIndex];
+  const isAnswered = existingAnswer !== null;
 
   // Progress
-  const pct = ((currentIndex) / total * 100).toFixed(1);
+  const answeredCount = answers.filter(a => a !== null).length;
+  const pct = (answeredCount / total * 100).toFixed(1);
   document.getElementById('quiz-progress').style.width = pct + '%';
+
+  // Live score
+  updateLiveScore();
 
   // Counter
   document.getElementById('question-counter').innerHTML = `
@@ -1462,8 +1329,17 @@ function renderQuestion() {
     const div = document.createElement('div');
     div.className = 'option-item';
     div.dataset.index = i;
-    div.onclick = () => selectOption(i);
-    // Remove leading "a) " etc. for cleaner display
+
+    if (isAnswered) {
+      // Revisiting an answered question
+      div.classList.add('disabled');
+      if (i === q.answer) div.classList.add('correct');
+      if (i === existingAnswer.selected && !existingAnswer.correct) div.classList.add('incorrect');
+      if (i !== q.answer && i !== existingAnswer.selected) div.classList.add('faded');
+    } else {
+      div.onclick = () => selectOption(i);
+    }
+
     const cleanText = opt.replace(/^[a-d]\)\s*/i, '');
     div.innerHTML = `
       <div class="option-letter">${letters[i]}</div>
@@ -1471,29 +1347,92 @@ function renderQuestion() {
     ol.appendChild(div);
   });
 
-  // Hide feedback
-  document.getElementById('feedback').style.display = 'none';
+  // Feedback
+  const fb = document.getElementById('feedback');
+  if (isAnswered) {
+    fb.style.display = 'block';
+    fb.innerHTML = `
+      <div class="info-box ${existingAnswer.correct ? 'info-green' : 'info-red'}">
+        <span class="info-box-icon">${existingAnswer.correct ? '✅' : '❌'}</span>
+        <div>
+          <strong>${existingAnswer.correct ? 'Correto!' : 'Incorreto.'}</strong>
+          ${q.comment}
+        </div>
+      </div>
+      <div class="feedback-source">📚 ${q.source}</div>`;
+  } else {
+    fb.style.display = 'none';
+  }
 
-  // Actions
-  document.getElementById('quiz-actions').innerHTML = '';
+  // Actions — build navigation buttons
+  buildActionButtons(isAnswered);
+
+  // Nav dots
+  renderNavDots();
+}
+
+function buildActionButtons(isAnswered) {
+  const total = quizQuestions.length;
+  const allDone = answers.every(a => a !== null);
+  const isFirst = currentIndex === 0;
+  const isLast = currentIndex >= total - 1;
+
+  let html = '';
+
+  // Back button (always except first)
+  if (!isFirst) {
+    html += `<button class="btn btn-secondary" onclick="prevQuestion()">← Anterior</button>`;
+  }
+
+  if (isAnswered) {
+    if (allDone) {
+      html += `<button class="btn btn-primary" onclick="showResults()">📊 Ver Resultado</button>`;
+    } else if (!isLast) {
+      // Find next unanswered
+      let nextUnanswered = -1;
+      for (let i = currentIndex + 1; i < total; i++) {
+        if (answers[i] === null) { nextUnanswered = i; break; }
+      }
+      if (nextUnanswered === -1) {
+        for (let i = 0; i < currentIndex; i++) {
+          if (answers[i] === null) { nextUnanswered = i; break; }
+        }
+      }
+      if (nextUnanswered !== -1) {
+        html += `<button class="btn btn-primary" onclick="goToQuestion(${nextUnanswered})">Próxima sem resposta →</button>`;
+      }
+      html += `<button class="btn btn-secondary" onclick="nextQuestion()">Próxima →</button>`;
+    } else {
+      // Last question but not all done — find next unanswered
+      let nextUnanswered = -1;
+      for (let i = 0; i < total; i++) {
+        if (answers[i] === null) { nextUnanswered = i; break; }
+      }
+      if (nextUnanswered !== -1) {
+        html += `<button class="btn btn-primary" onclick="goToQuestion(${nextUnanswered})">Ir para questão ${nextUnanswered + 1} →</button>`;
+      }
+    }
+  }
+
+  document.getElementById('quiz-actions').innerHTML = html;
 }
 
 /* ════════════════════════════════════════════════════════════
-   SELECT OPTION
+   SELECT OPTION (ANSWER)
 ════════════════════════════════════════════════════════════ */
-function selectOption(idx) {
-  if (answered) return;
-  answered = true;
+async function selectOption(idx) {
+  if (answers[currentIndex] !== null) return; // already answered
 
   const q = quizQuestions[currentIndex];
   const correct = q.answer;
   const isCorrect = idx === correct;
 
-  answers.push({ selected: idx, correct: isCorrect });
+  answers[currentIndex] = { selected: idx, correct: isCorrect };
 
   // Style options
   document.querySelectorAll('.option-item').forEach((el, i) => {
     el.classList.add('disabled');
+    el.onclick = null;
     if (i === correct) el.classList.add('correct');
     if (i === idx && !isCorrect) el.classList.add('incorrect');
     if (i !== correct && i !== idx) el.classList.add('faded');
@@ -1512,34 +1451,43 @@ function selectOption(idx) {
     </div>
     <div class="feedback-source">📚 ${q.source}</div>`;
 
-  // Actions
-  const isLast = currentIndex >= quizQuestions.length - 1;
-  document.getElementById('quiz-actions').innerHTML = `
-    <button class="btn btn-primary" onclick="${isLast ? 'showResults()' : 'nextQuestion()'}">
-      ${isLast ? '📊 Ver Resultado' : 'Próxima →'}
-    </button>`;
+  // Update everything
+  updateLiveScore();
+  buildActionButtons(true);
+  renderNavDots();
 
-  // Update progress
-  const pct = ((currentIndex + 1) / quizQuestions.length * 100).toFixed(1);
-  document.getElementById('quiz-progress').style.width = pct + '%';
+  // Save progress
+  await saveProgress();
 }
 
+/* ════════════════════════════════════════════════════════════
+   NAVIGATION
+════════════════════════════════════════════════════════════ */
 function nextQuestion() {
-  currentIndex++;
-  renderQuestion();
-  document.getElementById('question-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if (currentIndex < quizQuestions.length - 1) {
+    currentIndex++;
+    renderQuestion();
+    document.getElementById('question-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+function prevQuestion() {
+  if (currentIndex > 0) {
+    currentIndex--;
+    renderQuestion();
+    document.getElementById('question-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 }
 
 /* ════════════════════════════════════════════════════════════
    RESULTS
 ════════════════════════════════════════════════════════════ */
-function showResults() {
+async function showResults() {
   const total = answers.length;
-  const correctCount = answers.filter(a => a.correct).length;
+  const correctCount = answers.filter(a => a && a.correct).length;
   const incorrectCount = total - correctCount;
   const pct = Math.round((correctCount / total) * 100);
 
-  // Title
   let title = 'Resultado do Quiz';
   if (pct >= 90) title = 'Excelente! 🏆';
   else if (pct >= 70) title = 'Bom desempenho! 👏';
@@ -1554,7 +1502,7 @@ function showResults() {
 
   // Animate ring
   const circle = document.getElementById('score-ring-circle');
-  const circumference = 2 * Math.PI * 70; // ~440
+  const circumference = 2 * Math.PI * 70;
   const offset = circumference - (circumference * pct / 100);
   setTimeout(() => { circle.style.strokeDashoffset = offset; }, 100);
 
@@ -1568,19 +1516,22 @@ function showResults() {
     item.className = 'review-item';
     item.innerHTML = `
       <div class="review-item-header" onclick="toggleReview(this)">
-        <div class="review-status ${a.correct ? 'correct' : 'incorrect'}">${a.correct ? '✓' : '✗'}</div>
+        <div class="review-status ${a && a.correct ? 'correct' : 'incorrect'}">${a && a.correct ? '✓' : '✗'}</div>
         <div class="review-q-text">${i + 1}. ${q.q.substring(0, 120)}${q.q.length > 120 ? '…' : ''}</div>
         <span style="font-size:.7rem;color:var(--muted-foreground);flex-shrink:0;">▼</span>
       </div>
       <div class="review-detail">
         <div class="review-detail-text">
-          <strong>Sua resposta:</strong> ${letters[a.selected]} ${a.correct ? '(correta)' : '— <strong style="color:#f87171;">Gabarito: ' + letters[q.answer] + '</strong>'}<br><br>
+          <strong>Sua resposta:</strong> ${a ? letters[a.selected] : '—'} ${a && a.correct ? '(correta)' : '— <strong style="color:#f87171;">Gabarito: ' + letters[q.answer] + '</strong>'}<br><br>
           ${q.comment}<br>
           <em style="font-size:.75rem;color:var(--muted-foreground);">📚 ${q.source}</em>
         </div>
       </div>`;
     rl.appendChild(item);
   });
+
+  // Clear saved progress (quiz completed)
+  await deleteSavedProgress(currentTheme.id);
 
   showView('result');
 }
@@ -1590,18 +1541,26 @@ function toggleReview(header) {
   detail.classList.toggle('open');
 }
 
-function restartSameTheme() {
-  // Reset ring
+async function restartSameTheme() {
   document.getElementById('score-ring-circle').style.strokeDashoffset = 440;
+  await deleteSavedProgress(currentTheme.id);
+  savedData = null;
   selectTheme(currentTheme.id);
 }
 
+/* ════════════════════════════════════════════════════════════
+   QUIT
+════════════════════════════════════════════════════════════ */
 let quitPending = false;
-function confirmQuit() {
+async function confirmQuit() {
   if (quitPending) {
     quitPending = false;
-    showView('home');
     document.getElementById('quit-btn').textContent = '✕ Encerrar';
+    document.getElementById('quit-btn').style.borderColor = '';
+    document.getElementById('quit-btn').style.color = '';
+    await saveProgress(); // save before leaving
+    await buildHome();    // refresh home to show progress badge
+    showView('home');
     return;
   }
   quitPending = true;
