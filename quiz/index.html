@@ -1,0 +1,894 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>Quiz de Hemodinâmica | Dr. Lucas Silva</title>
+  <meta name="description" content="Quiz interativo de múltipla escolha para cardiologistas intervencionistas. Questões baseadas em evidências com comentários detalhados." />
+  <meta name="author" content="Dr. Lucas Silva" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ══════════════════════════════════════════════════════════
+       DESIGN TOKENS
+    ══════════════════════════════════════════════════════════ */
+    :root {
+      --primary: oklch(65% .18 195);
+      --primary-foreground: oklch(98% 0 0);
+      --background: oklch(13% .018 250);
+      --foreground: oklch(93% .01 250);
+      --card: oklch(18.5% .018 250);
+      --card-foreground: oklch(93% .01 250);
+      --muted: oklch(22% .018 250);
+      --muted-foreground: oklch(62% .02 250);
+      --border: oklch(28% .025 250);
+      --input: oklch(22% .02 250);
+      --destructive: oklch(60% .22 25);
+      --secondary: oklch(22% .022 250);
+      --secondary-foreground: oklch(88% .01 250);
+      --accent: oklch(24% .025 250);
+      --accent-foreground: oklch(90% .01 250);
+      --teal: #00d3bd;
+      --teal-dim: rgba(0,211,189,.12);
+      --amber: oklch(82.8% .189 84.429);
+      --red: oklch(63.7% .237 25.331);
+      --green: oklch(79.2% .209 151.711);
+      --radius: 0.625rem;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--background);
+      color: var(--foreground);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ─────────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(18,20,27,.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--foreground); }
+    .nav-brand-icon { width: 28px; height: 28px; border-radius: 7px; background: var(--teal); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .nav-brand-name { font-weight: 800; font-size: 1rem; letter-spacing: -.025em; line-height: 1; }
+    .nav-brand-name span { color: var(--teal); }
+    .nav-brand-sep { width: 1px; height: 14px; background: var(--border); margin: 0 6px; }
+    .nav-brand-sub { font-size: .7rem; font-weight: 500; color: var(--muted-foreground); }
+    .nav-actions { display: flex; align-items: center; gap: .5rem; }
+    .nav-link {
+      font-size: .75rem; font-weight: 600; padding: 5px 12px;
+      border-radius: 8px; border: 1.5px solid var(--primary);
+      color: var(--primary); background: transparent;
+      text-decoration: none; transition: background .15s, color .15s;
+      display: inline-flex; align-items: center; gap: 5px;
+    }
+    .nav-link:hover { background: var(--primary); color: var(--primary-foreground); }
+
+    /* ── LAYOUT ──────────────────────────────────────────────── */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* ── HERO ────────────────────────────────────────────────── */
+    .hero { padding: 3.5rem 0 2.5rem; border-bottom: 1px solid var(--border); }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .7rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--teal); margin-bottom: 1rem;
+    }
+    .hero-eyebrow::before { content: ''; display: block; width: 20px; height: 2px; background: var(--teal); border-radius: 1px; }
+    h1 { font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: 800; letter-spacing: -.04em; line-height: 1.1; margin-bottom: .75rem; }
+    h1 span { color: var(--teal); }
+    .hero-sub { font-size: 1rem; color: var(--muted-foreground); max-width: 520px; margin-bottom: 1.75rem; }
+    .hero-stats { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .stat { display: flex; align-items: center; gap: 6px; font-size: .8rem; color: var(--muted-foreground); }
+    .stat-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); flex-shrink: 0; }
+
+    /* ── VIEWS ───────────────────────────────────────────────── */
+    .view { display: none; }
+    .view.active { display: block; }
+
+    /* ── HOME ────────────────────────────────────────────────── */
+    .section { padding: 2rem 0; }
+    .section-header { margin-bottom: 1.25rem; }
+    .section-title { font-size: 1rem; font-weight: 700; letter-spacing: -.02em; margin-bottom: .25rem; }
+    .section-sub { font-size: .8rem; color: var(--muted-foreground); }
+    .tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1.5rem; }
+    .tag { font-size: .7rem; font-weight: 600; padding: 3px 10px; border-radius: 20px; background: var(--muted); color: var(--muted-foreground); border: 1px solid var(--border); }
+
+    .theme-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+    .theme-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: calc(var(--radius) * 1.5);
+      padding: 1.25rem; cursor: pointer; transition: border-color .15s, transform .12s, box-shadow .15s;
+    }
+    .theme-card:hover { border-color: var(--primary); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.3); }
+    .theme-card-icon { font-size: 1.6rem; margin-bottom: .6rem; }
+    .theme-card-title { font-size: .95rem; font-weight: 700; letter-spacing: -.02em; margin-bottom: .35rem; }
+    .theme-card-desc { font-size: .78rem; color: var(--muted-foreground); line-height: 1.5; margin-bottom: .75rem; }
+    .theme-card-meta { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; font-size: .72rem; color: var(--muted-foreground); }
+    .theme-card-count { background: var(--teal-dim); color: var(--teal); padding: 2px 8px; border-radius: 10px; font-weight: 700; font-size: .7rem; }
+    .theme-card-resume { background: rgba(255,200,50,.12); color: var(--amber); padding: 2px 8px; border-radius: 10px; font-weight: 700; font-size: .7rem; }
+
+    /* ── CONFIG ──────────────────────────────────────────────── */
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: calc(var(--radius)*1.5); padding: 1.5rem; margin-bottom: 1rem; }
+    .card-header { display: flex; align-items: flex-start; gap: .75rem; margin-bottom: 1rem; }
+    .card-icon { font-size: 1.5rem; flex-shrink: 0; }
+    .card-title { font-size: 1rem; font-weight: 700; letter-spacing: -.02em; }
+    .card-subtitle { font-size: .78rem; color: var(--muted-foreground); margin-top: 2px; }
+    .mode-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+    .mode-card {
+      background: var(--secondary); border: 2px solid var(--border); border-radius: var(--radius);
+      padding: 1rem; cursor: pointer; transition: border-color .15s, background .15s;
+    }
+    .mode-card.selected, .mode-card:hover { border-color: var(--primary); background: var(--accent); }
+    .mode-card-title { font-size: .85rem; font-weight: 700; margin-bottom: .2rem; }
+    .mode-card-desc { font-size: .75rem; color: var(--muted-foreground); }
+    .resume-card {
+      background: rgba(255,200,50,.07); border: 1.5px solid rgba(255,200,50,.25);
+      border-radius: var(--radius); padding: 1rem; margin-bottom: 1rem;
+    }
+    .resume-card-title { font-size: .85rem; font-weight: 700; color: var(--amber); margin-bottom: .3rem; }
+    .resume-card-info { font-size: .78rem; color: var(--muted-foreground); margin-bottom: .75rem; }
+    .btn-row { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.25rem; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-sans); font-size: .85rem; font-weight: 700;
+      padding: .6rem 1.25rem; border-radius: var(--radius); border: none; cursor: pointer; transition: opacity .15s, transform .1s;
+    }
+    .btn:active { transform: scale(.97); }
+    .btn-primary { background: var(--primary); color: var(--primary-foreground); }
+    .btn-primary:hover { opacity: .9; }
+    .btn-secondary { background: var(--secondary); color: var(--secondary-foreground); border: 1.5px solid var(--border); }
+    .btn-secondary:hover { border-color: var(--primary); color: var(--primary); }
+    .btn-danger { background: var(--destructive); color: white; }
+    .btn-danger:hover { opacity: .85; }
+    .btn-lg { padding: .75rem 1.5rem; font-size: .9rem; }
+
+    /* ── QUIZ ────────────────────────────────────────────────── */
+    .quiz-header { padding: 1.25rem 0 1rem; border-bottom: 1px solid var(--border); margin-bottom: 1.5rem; }
+    .quiz-meta { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .5rem; margin-bottom: .75rem; }
+    .quiz-theme-badge { display: flex; align-items: center; gap: 6px; font-size: .75rem; font-weight: 700; background: var(--teal-dim); color: var(--teal); padding: 4px 12px; border-radius: 20px; }
+    .quiz-counter { font-size: .78rem; color: var(--muted-foreground); font-family: var(--font-mono); }
+    .progress-track { background: var(--muted); border-radius: 4px; height: 4px; overflow: hidden; }
+    .progress-fill { background: var(--primary); height: 100%; border-radius: 4px; transition: width .35s ease; }
+    .question-card { background: var(--card); border: 1px solid var(--border); border-radius: calc(var(--radius)*1.5); padding: 1.5rem; margin-bottom: 1rem; }
+    .question-num { font-size: .7rem; font-weight: 700; font-family: var(--font-mono); color: var(--teal); letter-spacing: .08em; text-transform: uppercase; margin-bottom: .5rem; }
+    .question-text { font-size: 1rem; font-weight: 600; line-height: 1.55; }
+    .options-list { display: flex; flex-direction: column; gap: .6rem; margin-top: 1.25rem; }
+    .option-btn {
+      background: var(--secondary); border: 1.5px solid var(--border);
+      border-radius: var(--radius); padding: .8rem 1rem;
+      text-align: left; cursor: pointer; font-family: var(--font-sans);
+      font-size: .875rem; color: var(--foreground); line-height: 1.5;
+      transition: border-color .12s, background .12s;
+    }
+    .option-btn:not([disabled]):hover { border-color: var(--primary); background: var(--accent); }
+    .option-btn.correct { border-color: var(--green); background: rgba(121,192,90,.12); color: var(--green); }
+    .option-btn.wrong { border-color: var(--red); background: rgba(218,54,51,.12); color: var(--red); }
+    .option-btn.reveal { border-color: var(--green); background: rgba(121,192,90,.07); }
+    .feedback-card {
+      border-radius: var(--radius); padding: 1rem 1.1rem; margin-top: .75rem;
+      font-size: .85rem; line-height: 1.6; border-left: 3px solid var(--border);
+    }
+    .feedback-card.correct { border-left-color: var(--green); background: rgba(121,192,90,.07); }
+    .feedback-card.wrong { border-left-color: var(--red); background: rgba(218,54,51,.07); }
+    .feedback-label { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; margin-bottom: .4rem; }
+    .feedback-label.correct { color: var(--green); }
+    .feedback-label.wrong { color: var(--red); }
+    .feedback-source { font-size: .75rem; color: var(--muted-foreground); margin-top: .5rem; font-style: italic; }
+    .quiz-nav { display: flex; align-items: center; justify-content: space-between; margin-top: .75rem; gap: .5rem; }
+    .q-img { max-width: 100%; border-radius: var(--radius); margin-top: 1rem; border: 1px solid var(--border); }
+
+    /* ── SCORE ───────────────────────────────────────────────── */
+    .score-hero { text-align: center; padding: 2.5rem 0 1.5rem; }
+    .score-ring { position: relative; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; }
+    .score-ring svg { transform: rotate(-90deg); }
+    .score-ring-text { position: absolute; text-align: center; }
+    .score-pct { font-size: 2.2rem; font-weight: 800; letter-spacing: -.04em; }
+    .score-label { font-size: .7rem; color: var(--muted-foreground); font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+    .score-msg { font-size: 1.15rem; font-weight: 700; margin-bottom: .4rem; }
+    .score-sub { font-size: .85rem; color: var(--muted-foreground); }
+    .stats-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: .75rem; margin: 1.5rem 0; }
+    .stat-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; text-align: center; }
+    .stat-card-val { font-size: 1.5rem; font-weight: 800; letter-spacing: -.03em; }
+    .stat-card-label { font-size: .72rem; color: var(--muted-foreground); margin-top: .15rem; }
+    .review-item { border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: .6rem; overflow: hidden; }
+    .review-item-header { display: flex; align-items: center; gap: .75rem; padding: .75rem 1rem; cursor: pointer; background: var(--card); transition: background .12s; }
+    .review-item-header:hover { background: var(--accent); }
+    .review-badge { width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: .65rem; font-weight: 700; }
+    .review-badge.c { background: rgba(121,192,90,.25); color: var(--green); }
+    .review-badge.w { background: rgba(218,54,51,.2); color: var(--red); }
+    .review-qtext { font-size: .82rem; flex: 1; line-height: 1.4; }
+    .review-chevron { font-size: .7rem; color: var(--muted-foreground); transition: transform .2s; }
+    .review-item.open .review-chevron { transform: rotate(90deg); }
+    .review-item-body { display: none; padding: .75rem 1rem; background: var(--secondary); border-top: 1px solid var(--border); font-size: .82rem; }
+    .review-item.open .review-item-body { display: block; }
+
+    /* ── FOOTER ──────────────────────────────────────────────── */
+    footer { border-top: 1px solid var(--border); padding: 1.25rem 0; margin-top: 4rem; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75rem; }
+    .footer-copy { font-size: .75rem; color: var(--muted-foreground); }
+
+    /* ── QUESTION NAV DOTS ───────────────────────────────────── */
+    .q-nav-dots {
+      display: flex; flex-wrap: wrap; gap: 6px;
+      padding: .85rem 0 0; margin-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+    .q-nav-dot {
+      width: 30px; height: 30px; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-mono); font-size: .65rem; font-weight: 700;
+      border: 1.5px solid var(--border); background: var(--muted);
+      color: var(--muted-foreground); cursor: pointer;
+      transition: all .15s;
+    }
+    .q-nav-dot:hover { border-color: rgba(0,211,189,.5); color: var(--teal); }
+    .q-nav-dot.current { border-color: var(--teal); color: var(--teal); background: var(--teal-dim); }
+    .q-nav-dot.answered-correct { background: rgba(74,222,128,.12); border-color: rgba(74,222,128,.35); color: #4ade80; }
+    .q-nav-dot.answered-incorrect { background: rgba(220,38,38,.1); border-color: rgba(220,38,38,.3); color: #f87171; }
+    .q-nav-dot.unanswered { opacity: .45; }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.6rem; }
+      .mode-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2,1fr); }
+      .theme-grid { grid-template-columns: 1fr; }
+      .q-nav-dots { gap: 4px; }
+      .q-nav-dot { width: 26px; height: 26px; font-size: .6rem; }
+    }
+  </style>
+</head>
+
+<body>
+<!-- ── NAV ──────────────────────────────────────────────── -->
+<nav>
+  <a class="nav-brand" href="#">
+    <div class="nav-brand-icon">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+    </div>
+    <span class="nav-brand-name">Hemo<span>Quiz</span></span>
+    <span class="nav-brand-sep"></span>
+    <span class="nav-brand-sub">Dr. Lucas Silva</span>
+  </a>
+  <div class="nav-actions">
+    <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      lucascardio.com.br
+    </a>
+  </div>
+</nav>
+
+<main>
+  <div class="container">
+
+    <!-- ── HOME VIEW ─────────────────────────────────────────── -->
+    <div id="view-home" class="view active">
+      <div class="hero">
+        <div class="hero-eyebrow">Ferramenta Educacional</div>
+        <h1>Quiz de <span>Hemodinâmica</span></h1>
+        <p class="hero-sub">Questões de múltipla escolha baseadas em evidências, com comentários didáticos e referências bibliográficas.</p>
+        <div class="hero-stats" id="hero-stats">
+          <span class="stat"><span class="stat-dot"></span><span id="stat-themes">—</span> temas</span>
+          <span class="stat"><span class="stat-dot"></span><span id="stat-questions">—</span> questões</span>
+          <span class="stat"><span class="stat-dot"></span>Comentários detalhados</span>
+          <span class="stat"><span class="stat-dot"></span>Progresso salvo</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">Escolha um tema</div>
+          <div class="section-sub">Cada bloco cobre um assunto específico com questões autorais.</div>
+        </div>
+        <div class="tags" id="home-tags"></div>
+        <div class="theme-grid" id="theme-grid"></div>
+      </div>
+    </div>
+
+    <!-- ── CONFIG VIEW ───────────────────────────────────────── -->
+    <div id="view-config" class="view">
+      <div class="section">
+        <button class="btn btn-secondary" onclick="showView('home')" style="margin-bottom:1.25rem">← Todos os temas</button>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon" id="config-theme-icon">🏥</div>
+            <div>
+              <div class="card-title" id="config-theme-title">Tema</div>
+              <div class="card-subtitle" id="config-theme-desc"></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="resume-card" class="resume-card" style="display:none">
+          <div class="resume-card-title">💾 Progresso salvo</div>
+          <div class="resume-card-info" id="resume-info"></div>
+          <div style="display:flex;gap:.6rem;flex-wrap:wrap">
+            <button class="btn btn-primary" onclick="startQuiz(true)">Continuar de onde parei</button>
+            <button class="btn btn-secondary" onclick="showModeCard()">Recomeçar</button>
+          </div>
+        </div>
+
+        <div id="mode-card" class="card">
+          <div class="card-header">
+            <div class="card-icon">⚙️</div>
+            <div>
+              <div class="card-title">Modo de estudo</div>
+              <div class="card-subtitle">Como você quer praticar?</div>
+            </div>
+          </div>
+          <div class="mode-grid">
+            <div class="mode-card selected" id="mode-all" onclick="setMode('all')">
+              <div class="mode-card-title">📋 Todas as questões</div>
+              <div class="mode-card-desc">Percorra todas em ordem sequencial.</div>
+            </div>
+            <div class="mode-card" id="mode-random10" onclick="setMode('random10')">
+              <div class="mode-card-title">🎲 10 aleatórias</div>
+              <div class="mode-card-desc">Seleção randômica para revisão rápida.</div>
+            </div>
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-primary btn-lg" onclick="startQuiz(false)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              Iniciar Quiz
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── QUIZ VIEW ─────────────────────────────────────────── -->
+    <div id="view-quiz" class="view">
+      <div class="quiz-header">
+        <div class="quiz-meta">
+          <div class="quiz-theme-badge" id="quiz-theme-badge">🏥 Tema</div>
+          <div class="quiz-counter" id="quiz-counter">1 / 30</div>
+        </div>
+        <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+      </div>
+
+      <div class="question-card" id="question-card">
+        <div class="question-num" id="question-num">Q 01</div>
+        <div class="question-text" id="question-text">Carregando...</div>
+        <div id="question-images"></div>
+        <div class="options-list" id="options-list"></div>
+        <div id="feedback-area"></div>
+        <!-- Question navigation dots -->
+        <div class="q-nav-dots" id="q-nav-dots"></div>
+      </div>
+
+      <div class="quiz-nav" id="quiz-actions">
+        <!-- built dynamically by buildActionButtons() -->
+      </div>
+    </div>
+
+    <!-- ── SCORE VIEW ────────────────────────────────────────── -->
+    <div id="view-score" class="view">
+      <div class="section">
+        <div class="score-hero">
+          <div class="score-ring">
+            <svg width="140" height="140" viewBox="0 0 140 140">
+              <circle cx="70" cy="70" r="58" fill="none" stroke="var(--muted)" stroke-width="10"/>
+              <circle id="score-arc" cx="70" cy="70" r="58" fill="none" stroke="var(--primary)" stroke-width="10" stroke-linecap="round" stroke-dasharray="364" stroke-dashoffset="364"/>
+            </svg>
+            <div class="score-ring-text">
+              <div class="score-pct" id="score-pct">0%</div>
+              <div class="score-label">Acertos</div>
+            </div>
+          </div>
+          <div class="score-msg" id="score-msg">Resultado</div>
+          <div class="score-sub" id="score-sub"></div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card"><div class="stat-card-val" id="sc-correct" style="color:var(--green)">0</div><div class="stat-card-label">Corretas</div></div>
+          <div class="stat-card"><div class="stat-card-val" id="sc-wrong" style="color:var(--red)">0</div><div class="stat-card-label">Incorretas</div></div>
+          <div class="stat-card"><div class="stat-card-val" id="sc-skip" style="color:var(--amber)">0</div><div class="stat-card-label">Puladas</div></div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">📖</div>
+            <div>
+              <div class="card-title">Revisão das Questões</div>
+              <div class="card-subtitle">Clique para expandir o comentário de cada questão</div>
+            </div>
+          </div>
+          <div id="review-list"></div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn btn-primary btn-lg" onclick="restartSameTheme()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+            Refazer Quiz
+          </button>
+          <button class="btn btn-secondary btn-lg" onclick="showView('home')">← Escolher outro tema</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- ── FOOTER ──────────────────────────────────────────────── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-copy">© 2026 Dr. Lucas Silva · Ferramenta Educacional. Todos os direitos reservados.</div>
+      <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">lucascardio.com.br</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════
+     QUESTION CHAPTER FILES — each pushes to window.QUIZ_REGISTRY
+     Order here = order in the home grid
+════════════════════════════════════════════════════════ -->
+<script src="questions/cap00-acesso-vascular.js"></script>
+<script src="questions/cap01.js"></script>
+<script src="questions/cap02.js"></script>
+<script src="questions/cap03.js"></script>
+<script src="questions/cap04.js"></script>
+<script src="questions/cap05.js"></script>
+<script src="questions/cap06.js"></script>
+<script src="questions/cap07.js"></script>
+<script src="questions/cap08.js"></script>
+<script src="questions/cap09.js"></script>
+<script src="questions/cap10.js"></script>
+<script src="questions/cap11.js"></script>
+<script src="questions/cap12.js"></script>
+<script src="questions/cap13.js"></script>
+<script src="questions/cap14.js"></script>
+<script src="questions/cap15.js"></script>
+<script src="questions/cap16.js"></script>
+<script src="questions/cap17.js"></script>
+<script src="questions/cap18.js"></script>
+<script src="questions/cap19.js"></script>
+<script src="questions/cap20.js"></script>
+<script src="questions/cap21.js"></script>
+<script src="questions/oct.js"></script>
+
+<script>
+/* ════════════════════════════════════════════════════════════
+   APP — Quiz Engine
+   QUESTION_BANK is built from window.QUIZ_REGISTRY populated
+   by each questions/capXX.js file loaded above.
+════════════════════════════════════════════════════════════ */
+const QUESTION_BANK = window.QUIZ_REGISTRY || [];
+
+/* ════════════════════════════════════════════════════════════
+   PERSISTENT STORAGE HELPERS
+════════════════════════════════════════════════════════════ */
+const STORAGE_PREFIX = 'hemoquiz:';
+
+async function saveProgress() {
+  if (!currentTheme || !window.storage) return;
+  try {
+    const data = {
+      themeId: currentTheme.id,
+      mode: quizMode,
+      questionIndices: quizQuestions.map(q => currentTheme.questions.indexOf(q)),
+      currentIndex,
+      answers,
+      timestamp: Date.now()
+    };
+    await window.storage.set(STORAGE_PREFIX + currentTheme.id, JSON.stringify(data));
+  } catch (e) {}
+}
+
+async function loadProgress(themeId) {
+  if (!window.storage) return null;
+  try {
+    const result = await window.storage.get(STORAGE_PREFIX + themeId);
+    if (result && result.value) return JSON.parse(result.value);
+  } catch (e) {}
+  return null;
+}
+
+async function deleteSavedProgress(themeId) {
+  if (!window.storage) return;
+  try { await window.storage.delete(STORAGE_PREFIX + themeId); } catch (e) {}
+}
+
+/* ════════════════════════════════════════════════════════════
+   STATE
+════════════════════════════════════════════════════════════ */
+let currentTheme = null;
+let quizMode = 'all';
+let quizQuestions = [];
+let currentIndex = 0;
+let answers = [];
+let savedData = null;
+
+/* ════════════════════════════════════════════════════════════
+   VIEW MANAGEMENT
+════════════════════════════════════════════════════════════ */
+function showView(id) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('view-' + id).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ════════════════════════════════════════════════════════════
+   HOME
+════════════════════════════════════════════════════════════ */
+async function buildHome() {
+  const grid = document.getElementById('theme-grid');
+  const tagsEl = document.getElementById('home-tags');
+  grid.innerHTML = '';
+  const allTags = new Set();
+
+  let totalQ = 0;
+  for (const theme of QUESTION_BANK) {
+    theme.tags.forEach(t => allTags.add(t));
+    totalQ += theme.questions.length;
+
+    let resumeBadge = '';
+    const saved = await loadProgress(theme.id);
+    if (saved && saved.answers) {
+      const answeredCount = saved.answers.filter(a => a !== null).length;
+      const total = saved.questionIndices.length;
+      if (answeredCount > 0 && answeredCount < total) {
+        resumeBadge = `<span class="theme-card-resume">💾 ${answeredCount}/${total}</span>`;
+      }
+    }
+
+    const card = document.createElement('div');
+    card.className = 'theme-card';
+    card.onclick = () => selectTheme(theme.id);
+    card.innerHTML = `
+      <div class="theme-card-icon">${theme.icon}</div>
+      <div class="theme-card-title">${theme.title}</div>
+      <div class="theme-card-desc">${theme.description}</div>
+      <div class="theme-card-meta">
+        <span class="theme-card-count">${theme.questions.length} questões</span>
+        ${resumeBadge}
+        <span>${theme.tags.slice(0, 3).join(' · ')}</span>
+      </div>`;
+    grid.appendChild(card);
+  }
+
+  tagsEl.innerHTML = '';
+  allTags.forEach(t => { tagsEl.innerHTML += `<span class="tag">${t}</span>`; });
+
+  document.getElementById('stat-themes').textContent = QUESTION_BANK.length;
+  document.getElementById('stat-questions').textContent = totalQ;
+}
+
+/* ════════════════════════════════════════════════════════════
+   THEME SELECTION → CONFIG
+════════════════════════════════════════════════════════════ */
+async function selectTheme(id) {
+  currentTheme = QUESTION_BANK.find(t => t.id === id);
+  if (!currentTheme) return;
+
+  document.getElementById('config-theme-icon').textContent = currentTheme.icon;
+  document.getElementById('config-theme-title').textContent = currentTheme.title;
+  document.getElementById('config-theme-desc').textContent = currentTheme.description + ` (${currentTheme.questions.length} questões)`;
+
+  quizMode = 'all';
+  document.querySelectorAll('.mode-card').forEach(c => c.classList.remove('selected'));
+  document.getElementById('mode-all').classList.add('selected');
+  document.getElementById('mode-random10').style.display = currentTheme.questions.length >= 10 ? '' : 'none';
+
+  savedData = await loadProgress(id);
+  const resumeCard = document.getElementById('resume-card');
+  const modeCard = document.getElementById('mode-card');
+
+  if (savedData && savedData.answers) {
+    const answeredCount = savedData.answers.filter(a => a !== null).length;
+    const total = savedData.questionIndices.length;
+    const correctCount = savedData.answers.filter(a => a && a.correct).length;
+    if (answeredCount > 0 && answeredCount < total) {
+      document.getElementById('resume-info').textContent =
+        `${answeredCount} de ${total} respondidas (${correctCount} corretas). Última atividade: ${timeAgo(savedData.timestamp)}.`;
+      resumeCard.style.display = 'block';
+      modeCard.style.display = 'none';
+    } else {
+      resumeCard.style.display = 'none';
+      modeCard.style.display = 'block';
+    }
+  } else {
+    resumeCard.style.display = 'none';
+    modeCard.style.display = 'block';
+  }
+
+  showView('config');
+}
+
+function timeAgo(ts) {
+  const diff = Date.now() - ts;
+  const mins = Math.floor(diff / 60000);
+  if (mins < 1) return 'agora';
+  if (mins < 60) return `há ${mins} min`;
+  const hrs = Math.floor(mins / 60);
+  if (hrs < 24) return `há ${hrs}h`;
+  return `há ${Math.floor(hrs / 24)} dias`;
+}
+
+function showModeCard() {
+  document.getElementById('resume-card').style.display = 'none';
+  document.getElementById('mode-card').style.display = 'block';
+}
+
+function setMode(mode) {
+  quizMode = mode;
+  document.querySelectorAll('.mode-card').forEach(c => c.classList.remove('selected'));
+  document.getElementById('mode-' + mode).classList.add('selected');
+}
+
+/* ════════════════════════════════════════════════════════════
+   START QUIZ
+════════════════════════════════════════════════════════════ */
+async function startQuiz(resume) {
+  if (!currentTheme) return;
+
+  if (resume && savedData && savedData.answers) {
+    quizMode = savedData.mode;
+    quizQuestions = savedData.questionIndices.map(i => currentTheme.questions[i]);
+    currentIndex = savedData.currentIndex;
+    answers = savedData.answers;
+  } else {
+    await deleteSavedProgress(currentTheme.id);
+    if (quizMode === 'random10') {
+      const shuffled = [...currentTheme.questions].sort(() => Math.random() - .5);
+      quizQuestions = shuffled.slice(0, 10);
+    } else {
+      quizQuestions = [...currentTheme.questions];
+    }
+    currentIndex = 0;
+    answers = new Array(quizQuestions.length).fill(null);
+  }
+
+  document.getElementById('quiz-theme-badge').textContent = currentTheme.icon + ' ' + currentTheme.tags[0];
+  showView('quiz');
+  renderQuestion();
+}
+
+/* ════════════════════════════════════════════════════════════
+   NAV DOTS
+════════════════════════════════════════════════════════════ */
+function renderNavDots() {
+  const container = document.getElementById('q-nav-dots');
+  container.innerHTML = '';
+  quizQuestions.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'q-nav-dot';
+    if (i === currentIndex) dot.classList.add('current');
+    else if (answers[i] !== null) {
+      dot.classList.add(answers[i].correct ? 'answered-correct' : 'answered-incorrect');
+    } else {
+      dot.classList.add('unanswered');
+    }
+    dot.textContent = i + 1;
+    dot.title = `Questão ${i + 1}`;
+    dot.onclick = () => goToQuestion(i);
+    container.appendChild(dot);
+  });
+}
+
+function goToQuestion(i) {
+  currentIndex = i;
+  saveProgress();
+  renderQuestion();
+  document.getElementById('question-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+/* ════════════════════════════════════════════════════════════
+   RENDER QUESTION
+════════════════════════════════════════════════════════════ */
+function renderQuestion() {
+  const q = quizQuestions[currentIndex];
+  const total = quizQuestions.length;
+  const answered = answers[currentIndex];
+
+  // Progress bar (by answered count, not position)
+  const answeredCount = answers.filter(a => a !== null).length;
+  document.getElementById('progress-fill').style.width = `${(answeredCount / total) * 100}%`;
+
+  document.getElementById('question-num').textContent = `Q ${String(currentIndex + 1).padStart(2, '0')}`;
+  document.getElementById('question-text').textContent = q.q;
+  document.getElementById('quiz-counter').textContent = `${currentIndex + 1} / ${total}`;
+
+  // Images
+  const imgEl = document.getElementById('question-images');
+  imgEl.innerHTML = '';
+  if (q.images && q.images.length) {
+    q.images.forEach(src => {
+      const img = document.createElement('img');
+      img.src = src; img.alt = 'Imagem da questão'; img.className = 'q-img';
+      imgEl.appendChild(img);
+    });
+  }
+
+  // Options
+  const optList = document.getElementById('options-list');
+  optList.innerHTML = '';
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.textContent = opt;
+    if (answered !== null) {
+      btn.disabled = true;
+      if (i === q.answer) btn.classList.add(answered.selected === i ? 'correct' : 'reveal');
+      else if (i === answered.selected) btn.classList.add('wrong');
+    } else {
+      btn.onclick = () => selectAnswer(i);
+    }
+    optList.appendChild(btn);
+  });
+
+  // Feedback
+  const feedbackArea = document.getElementById('feedback-area');
+  if (answered !== null) {
+    const isCorrect = answered.correct;
+    feedbackArea.innerHTML = `
+      <div class="feedback-card ${isCorrect ? 'correct' : 'wrong'}">
+        <div class="feedback-label ${isCorrect ? 'correct' : 'wrong'}">${isCorrect ? '✓ Correto!' : '✗ Incorreto'}</div>
+        <div>${q.comment || ''}</div>
+        ${q.source ? `<div class="feedback-source">📚 ${q.source}</div>` : ''}
+      </div>`;
+  } else {
+    feedbackArea.innerHTML = '';
+  }
+
+  // Nav dots
+  renderNavDots();
+
+  // Action buttons (context-aware)
+  buildActionButtons(answered !== null);
+}
+
+/* ════════════════════════════════════════════════════════════
+   CONTEXT-AWARE ACTION BUTTONS
+════════════════════════════════════════════════════════════ */
+function buildActionButtons(isAnswered) {
+  const total = quizQuestions.length;
+  const allDone = answers.every(a => a !== null);
+  const isFirst = currentIndex === 0;
+  const isLast = currentIndex >= total - 1;
+
+  let html = `<button class="btn btn-secondary" onclick="showView('home')">🏠 Início</button>`;
+
+  if (!isFirst) {
+    html = `<button class="btn btn-secondary" onclick="prevQuestion()">← Anterior</button>` + html;
+  }
+
+  if (isAnswered) {
+    if (allDone) {
+      html += `<button class="btn btn-primary" onclick="showScore()">📊 Ver Resultado</button>`;
+    } else {
+      // Find next unanswered (forward first, then wrap)
+      let nextUnanswered = -1;
+      for (let i = currentIndex + 1; i < total; i++) {
+        if (answers[i] === null) { nextUnanswered = i; break; }
+      }
+      if (nextUnanswered === -1) {
+        for (let i = 0; i < currentIndex; i++) {
+          if (answers[i] === null) { nextUnanswered = i; break; }
+        }
+      }
+      if (nextUnanswered !== -1) {
+        html += `<button class="btn btn-primary" onclick="goToQuestion(${nextUnanswered})">Próxima sem resposta →</button>`;
+      }
+      if (!isLast) {
+        html += `<button class="btn btn-secondary" onclick="nextQuestion()">Próxima →</button>`;
+      }
+    }
+  } else {
+    if (!isLast) {
+      html += `<button class="btn btn-secondary" onclick="nextQuestion()">Próxima →</button>`;
+    }
+  }
+
+  document.getElementById('quiz-actions').innerHTML = html;
+}
+
+function selectAnswer(selected) {
+  const q = quizQuestions[currentIndex];
+  const correct = selected === q.answer;
+  answers[currentIndex] = { selected, correct };
+  saveProgress();
+  renderQuestion();
+}
+
+function nextQuestion() {
+  if (currentIndex < quizQuestions.length - 1) {
+    currentIndex++;
+    saveProgress();
+    renderQuestion();
+  }
+}
+
+function prevQuestion() {
+  if (currentIndex > 0) {
+    currentIndex--;
+    renderQuestion();
+  }
+}
+
+/* ════════════════════════════════════════════════════════════
+   SCORE
+════════════════════════════════════════════════════════════ */
+function showScore() {
+  const total = quizQuestions.length;
+  const correct = answers.filter(a => a && a.correct).length;
+  const wrong = answers.filter(a => a && !a.correct).length;
+  const skip = answers.filter(a => a === null).length;
+  const pct = Math.round((correct / total) * 100);
+
+  const circumference = 2 * Math.PI * 58;
+  const offset = circumference - (pct / 100) * circumference;
+  document.getElementById('score-arc').style.strokeDashoffset = offset;
+  document.getElementById('score-arc').style.strokeDasharray = circumference;
+  document.getElementById('score-arc').style.stroke =
+    pct >= 80 ? 'var(--green)' : pct >= 60 ? 'var(--amber)' : 'var(--red)';
+
+  document.getElementById('score-pct').textContent = pct + '%';
+  document.getElementById('sc-correct').textContent = correct;
+  document.getElementById('sc-wrong').textContent = wrong;
+  document.getElementById('sc-skip').textContent = skip;
+
+  const msgs = pct >= 80
+    ? ['🏆 Excelente desempenho!', 'Domínio clínico sólido neste tema.']
+    : pct >= 60
+    ? ['👍 Bom resultado!', 'Revise os comentários das questões incorretas.']
+    : ['📚 Continue estudando!', 'Leia os comentários com atenção para fortalecer as bases.'];
+  document.getElementById('score-msg').textContent = msgs[0];
+  document.getElementById('score-sub').textContent = `${correct} de ${total} corretas. ${msgs[1]}`;
+
+  // Review list
+  const reviewList = document.getElementById('review-list');
+  reviewList.innerHTML = '';
+  quizQuestions.forEach((q, i) => {
+    const ans = answers[i];
+    const isCorrect = ans && ans.correct;
+    const isSkipped = ans === null;
+    const item = document.createElement('div');
+    item.className = 'review-item';
+    item.innerHTML = `
+      <div class="review-item-header" onclick="toggleReview(this)">
+        <div class="review-badge ${isCorrect ? 'c' : 'w'}">${isCorrect ? '✓' : '✗'}</div>
+        <div class="review-qtext">${q.q.substring(0, 90)}${q.q.length > 90 ? '…' : ''}</div>
+        <div class="review-chevron">▶</div>
+      </div>
+      <div class="review-item-body">
+        <strong>Resposta correta:</strong> ${q.options[q.answer]}<br><br>
+        ${ans && !ans.correct ? `<strong>Sua resposta:</strong> ${q.options[ans.selected]}<br><br>` : ''}
+        <strong>Comentário:</strong> ${q.comment || '—'}<br>
+        ${q.source ? `<br><em style="color:var(--muted-foreground);font-size:.8rem">📚 ${q.source}</em>` : ''}
+      </div>`;
+    reviewList.appendChild(item);
+  });
+
+  deleteSavedProgress(currentTheme.id);
+  showView('score');
+}
+
+function toggleReview(header) {
+  header.closest('.review-item').classList.toggle('open');
+}
+
+function restartSameTheme() {
+  startQuiz(false);
+}
+
+/* ════════════════════════════════════════════════════════════
+   INIT
+════════════════════════════════════════════════════════════ */
+buildHome();
+</script>
+</body>
+</html>
