@@ -1,209 +1,280 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="Guia completo de 18 exames cardiológicos: ECG, ecocardiograma, teste ergométrico, cateterismo e mais. Indicações, procedimentos, preparo e informações práticas para pacientes." />
-    <meta name="keywords" content="exames cardiológicos, ECG, ecocardiograma, teste ergométrico, cateterismo, cardiologia, exames do coração" />
-    <meta name="author" content="Dr. Lucas Silva, Cardiologista Intervencionista" />
-    <meta name="robots" content="index, follow" />
-    <meta name="language" content="Portuguese" />
-    <meta name="revisit-after" content="7 days" />
-    
-    <!-- Open Graph Tags -->
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content="Guia Completo de Exames Cardiológicos - 18 Exames Explicados" />
-    <meta property="og:description" content="Entenda cada exame cardiológico: indicações, como é realizado, preparo necessário e informações práticas para pacientes." />
-    <meta property="og:url" content="https://www.lucascardio.com.br/pacientes-exames.html" />
-    <meta property="og:image" content="https://www.lucascardio.com.br/assets/img/og-exames.jpg" />
-    <meta property="og:locale" content="pt_BR" />
-    
-    <!-- Twitter Card Tags -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Guia de Exames Cardiológicos" />
-    <meta name="twitter:description" content="18 exames cardiológicos explicados para pacientes." />
-    <meta name="twitter:image" content="https://www.lucascardio.com.br/assets/img/twitter-exames.jpg" />
-    
-    <!-- Mobile Meta Tags -->
-    <meta name="theme-color" content="#f4623a" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://www.lucascardio.com.br/pacientes-exames.html" />
-    
-    <!-- Alternate Links -->
-    <link rel="alternate" hreflang="pt-br" href="https://www.lucascardio.com.br/pacientes-exames.html" />
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>Guia de Exames Cardiológicos | Dr. Lucas Silva</title>
+  <meta name="description" content="Guia completo de 18 exames cardiológicos: ECG, ecocardiograma, teste ergométrico, cateterismo e mais. Indicações, procedimentos, preparo e informações práticas para pacientes." />
+  <meta name="author" content="Dr. Lucas Silva, Cardiologista Intervencionista" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Guia Completo de Exames Cardiológicos — Dr. Lucas Silva" />
+  <meta property="og:url" content="https://www.lucascardio.com.br/pacientes-exames.html" />
+  <link rel="canonical" href="https://www.lucascardio.com.br/pacientes-exames.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
-    <title>Guia Completo de Exames Cardiológicos | 18 Exames Explicados | Dr. Lucas Silva</title>
-
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-
-    <!-- Preconnect -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&family=Playfair+Display:wght@700&family=Varela+Round&display=swap" rel="stylesheet" />
-
-    <!-- Font Awesome -->
-    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous" defer></script>
-
-    <!-- Bootstrap 5.2.3 CSS (CDN) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
-
-    <!-- Custom Theme CSS -->
-    <link href="css/styles.css" rel="stylesheet" />
-    
-    <!-- JSON-LD Structured Data - BreadcrumbSchema -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-            {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": "https://www.lucascardio.com.br"
-            },
-            {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "Para Pacientes",
-                "item": "https://www.lucascardio.com.br/index.html#pacientes"
-            },
-            {
-                "@type": "ListItem",
-                "position": 3,
-                "name": "Exames Cardiologicos",
-                "item": "https://www.lucascardio.com.br/pacientes-exames.html"
-            }
-        ]
+  <style>
+    /* ── DESIGN TOKENS ── */
+    :root {
+      --primary: oklch(65% .18 195);
+      --background: oklch(13% .018 250);
+      --foreground: oklch(93% .01 250);
+      --card: oklch(18.5% .018 250);
+      --muted: oklch(22% .018 250);
+      --muted-foreground: oklch(62% .02 250);
+      --border: oklch(28% .025 250);
+      --accent: oklch(24% .025 250);
+      --teal: #00d3bd;
+      --teal-dim: rgba(0,211,189,.12);
+      --radius: 0.625rem;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
     }
-    </script>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--background); color: var(--foreground);
+      min-height: 100vh; display: flex; flex-direction: column;
+      line-height: 1.6; -webkit-font-smoothing: antialiased;
+    }
 
-    <style>
-      /* Page-specific: exam content reuses article styles from main CSS */
-      .exam-section { margin-bottom: 2rem; }
-      .exam-section h4 { color: #333; font-weight: 600; margin-top: 1.5rem; margin-bottom: .75rem; border-bottom: 2px solid var(--lc-primary); padding-bottom: .5rem; }
-      .exam-section p { color: #555; line-height: 1.7; margin-bottom: 1rem; }
-      .exam-section ul { margin-left: 1.5rem; margin-bottom: 1rem; }
-      .exam-section li { margin-bottom: .5rem; color: #555; }
-      .exam-badge { display: inline-block; background: var(--lc-primary); color: #fff; padding: .25rem .75rem; border-radius: 1rem; font-size: .85rem; margin-right: .5rem; margin-bottom: .5rem; }
-    </style>
-  </head>
+    /* NAV */
+    nav.top-nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(18,20,27,.85); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem; height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .side-nav {
+      display: flex; flex-direction: column; padding: .5rem;
+    }
+    .nav-brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--foreground); }
+    .nav-brand-icon {
+      width: 28px; height: 28px; border-radius: 7px; background: var(--teal);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .nav-brand-name { font-weight: 800; font-size: 1rem; letter-spacing: -.025em; line-height: 1; }
+    .nav-brand-name span { color: var(--teal); }
+    .nav-brand-sep { width: 1px; height: 14px; background: var(--border); margin: 0 6px; }
+    .nav-brand-sub { font-size: .7rem; font-weight: 500; color: var(--muted-foreground); }
+    .nav-link {
+      font-size: .75rem; font-weight: 600; padding: 5px 12px;
+      border-radius: 8px; border: 1.5px solid var(--primary);
+      color: var(--primary); background: transparent; text-decoration: none;
+      transition: background .15s, color .15s;
+      display: inline-flex; align-items: center; gap: 5px;
+    }
+    .nav-link:hover { background: var(--primary); color: #000; }
 
-  <body class="bg-light">
-    <!-- Header simples (sem navbar) -->
-    <header class="bg-black" role="banner">
-      <div class="container px-4 px-lg-5 py-5">
-        <div class="row align-items-center">
-          <div class="col-lg-9">
-            <h1 class="text-white mb-2" style="font-family:var(--ff-display);">Exames Cardiológicos</h1>
-            <p class="text-white-50 small mb-1">Elaborado por Dr. Lucas Ferreira Silva</p>
-            <p class="text-white-50 mb-0">
-              Guia completo com 18 exames: indicações, procedimentos, preparo e informações práticas para pacientes.
-            </p>
-          </div>
-          <div class="col-lg-3 text-lg-end mt-3 mt-lg-0">
-            <a class="btn btn-primary" href="index.html#pacientes" title="Voltar para a seção de pacientes">Voltar para seção de pacientes</a>
-          </div>
+    /* LAYOUT */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+    main { flex: 1; padding: 2rem 0; }
+
+    /* HERO */
+    .hero { padding: 3rem 0 2rem; border-bottom: 1px solid var(--border); }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .68rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--teal); margin-bottom: .75rem;
+    }
+    .hero-eyebrow::before { content: ''; display: block; width: 18px; height: 2px; background: var(--teal); border-radius: 1px; }
+    .hero h1 { font-size: clamp(1.5rem,4vw,2.2rem); font-weight: 800; line-height: 1.2; margin-bottom: .5rem; letter-spacing: -.02em; }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero-sub { color: var(--muted-foreground); font-size: .9rem; max-width: 600px; }
+
+    /* TWO-COLUMN LAYOUT */
+    .page-grid { display: grid; grid-template-columns: 220px 1fr; gap: 2rem; margin-top: 2rem; align-items: start; }
+    @media (max-width: 768px) { .page-grid { grid-template-columns: 1fr; } }
+
+    /* SIDEBAR */
+    .sidebar { position: sticky; top: 4rem; }
+    .sidebar-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px); overflow: hidden;
+    }
+    .sidebar-title {
+      padding: .85rem 1rem; font-size: .65rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .1em; color: var(--teal);
+      border-bottom: 1px solid var(--border);
+      font-family: var(--font-mono);
+    }
+
+    .side-section-label {
+      padding: .4rem .5rem .25rem;
+      font-size: .6rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .1em; color: var(--muted-foreground);
+      font-family: var(--font-mono); margin-top: .5rem;
+    }
+    .side-section-label:first-child { margin-top: 0; }
+    .side-link {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .45rem .75rem; border-radius: var(--radius);
+      font-size: .78rem; font-weight: 500; color: var(--muted-foreground);
+      text-decoration: none; cursor: pointer;
+      transition: background .12s, color .12s; border: none; background: none;
+      width: 100%; text-align: left;
+    }
+    .side-link:hover, .side-link.active { background: var(--teal-dim); color: var(--teal); }
+    .sidebar-divider { height: 1px; background: var(--border); margin: .5rem; }
+    .sidebar-note { padding: .75rem 1rem; font-size: .7rem; color: var(--muted-foreground); line-height: 1.5; }
+
+    /* CONTENT AREA */
+    .content-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px); padding: 2rem;
+      min-height: 400px;
+    }
+
+    /* EXAM PANELS */
+    .exam-panel { display: none; }
+    .exam-panel.active { display: block; animation: fadeUp .25s ease; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .exam-panel h3 {
+      font-size: 1.3rem; font-weight: 800; letter-spacing: -.01em;
+      margin-bottom: 1.5rem; padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .exam-section { margin-bottom: 1.5rem; }
+    .exam-section h4 {
+      font-size: .82rem; font-weight: 700; color: var(--teal);
+      text-transform: uppercase; letter-spacing: .06em;
+      margin-bottom: .5rem; font-family: var(--font-mono);
+    }
+    .exam-section p { color: var(--muted-foreground); line-height: 1.75; font-size: .9rem; margin-bottom: .75rem; }
+    .exam-section p strong { color: var(--foreground); }
+    .exam-section ul { margin-left: 1.25rem; margin-bottom: .75rem; }
+    .exam-section li { margin-bottom: .35rem; color: var(--muted-foreground); font-size: .9rem; line-height: 1.6; }
+    .exam-badge {
+      display: inline-flex; align-items: center;
+      background: var(--teal-dim); color: var(--teal);
+      border: 1px solid rgba(0,211,189,.25);
+      padding: 2px 10px; border-radius: 999px;
+      font-size: .72rem; font-weight: 700; font-family: var(--font-mono);
+      margin-right: .35rem; margin-bottom: .25rem;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border); padding: 1.5rem 0; margin-top: 2rem;
+    }
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 1.5rem;
+      font-size: .75rem; color: var(--muted-foreground); text-align: center;
+    }
+    .footer-inner a { color: var(--teal); text-decoration: none; }
+
+    @media (max-width: 768px) {
+      .sidebar { position: static; }
+      .content-card { padding: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <a class="nav-brand" href="index.html">
+    <div class="nav-brand-icon">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+    </div>
+    <div class="nav-brand-name">Lucas<span>Cardio</span></div>
+    <div class="nav-brand-sep"></div>
+    <div class="nav-brand-sub">Exames para Pacientes</div>
+  </a>
+  <div class="nav-actions">
+    <a class="nav-link" href="index.html#pacientes">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      Para Pacientes
+    </a>
+    <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      lucascardio.com.br
+    </a>
+  </div>
+</nav>
+
+<main>
+  <div class="container">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-eyebrow">Para Pacientes</div>
+      <h1>Guia de <em>Exames Cardiológicos</em></h1>
+      <p class="hero-sub">18 exames explicados — indicações, procedimentos, preparo e informações práticas. Elaborado por Dr. Lucas Ferreira Silva.</p>
+    </div>
+
+    <!-- TWO-COLUMN -->
+    <div class="page-grid">
+
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="sidebar-card">
+          <div class="sidebar-title">Exames</div>
+          <nav class="side-nav" aria-label="Menu de exames">
+            <div class="side-section-label">Não Invasivos</div>
+            <button class="side-link active" data-panel="home">Início</button>
+            <button class="side-link" data-panel="ecg">ECG</button>
+            <button class="side-link" data-panel="teste-ergometrico">Teste Ergométrico</button>
+            <button class="side-link" data-panel="teste-cardiopulmonar">Teste Cardiopulmonar</button>
+            <button class="side-link" data-panel="score-calcio">Score de Cálcio</button>
+            <button class="side-link" data-panel="angiotc">Angiotomografia</button>
+            <button class="side-link" data-panel="cintilografia">Cintilografia</button>
+            <button class="side-link" data-panel="pet">PET Miocárdico</button>
+            <button class="side-link" data-panel="rmc">Ressonância Magnética</button>
+            <button class="side-link" data-panel="rmc-stress">RMC com Stress</button>
+            <button class="side-link" data-panel="ecocardiograma">Ecocardiograma</button>
+            <button class="side-link" data-panel="eco-stress">Eco com Stress</button>
+            <button class="side-link" data-panel="holter">Holter 24h</button>
+            <button class="side-link" data-panel="mapa">MAPA 24h</button>
+            <button class="side-link" data-panel="polissonografia">Polissonografia</button>
+            <div class="side-section-label">Invasivos</div>
+            <button class="side-link" data-panel="angiografia">Angiografia Coronária</button>
+            <button class="side-link" data-panel="cateterismo-direito">Cateterismo Direito</button>
+            <button class="side-link" data-panel="biopsia">Biópsia Endomiocárdica</button>
+            <button class="side-link" data-panel="arteriografia">Arteriografia Pulmonar</button>
+            <div class="sidebar-divider"></div>
+            <a class="side-link" href="index.html#pacientes">← Para Pacientes</a>
+          </nav>
+          <div class="sidebar-note">Este conteúdo é informativo e não substitui consulta médica.</div>
         </div>
-      </div>
-    </header>
+      </aside>
 
-    <main class="container px-4 px-lg-5 page-top-space pb-5">
-      <div class="row g-4">
-        <!-- Menu lateral -->
-        <aside class="col-lg-3">
-          <div class="card sidebar-sticky">
-            <div class="card-body">
-              <h2 class="h6 text-uppercase mb-3" style="letter-spacing: .12rem;">Exames</h2>
+      <!-- CONTENT -->
+      <div class="content-card">
+        <div id="examContent">
 
-              <nav class="side-nav" aria-label="Menu lateral">
-                <!-- Categoria com submenu -->
-                <div class="side-item has-submenu">
-                  <!-- No mobile: clique abre (collapse). No desktop: hover abre. -->
-                  <button
-                    class="side-link side-link-btn collapsed"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#submenuExames"
-                    aria-expanded="false"
-                    aria-controls="submenuExames"
-                  >
-                    <span>Todos os exames</span>
-                    <span class="side-caret" aria-hidden="true">›</span>
-                  </button>
-
-                  <!-- Submenu: agora troca o painel central (single-page) -->
-                  <div class="collapse side-submenu" id="submenuExames">
-                    <h6 class="px-2 py-2 text-uppercase small" style="letter-spacing: .08rem; color: #999;">Não Invasivos</h6>
-                    <a class="side-sublink exam-link" href="#ecg" data-exam="ecg" title="Saiba mais sobre Eletrocardiograma">ECG</a>
-                    <a class="side-sublink exam-link" href="#teste-ergometrico" data-exam="teste-ergometrico" title="Saiba mais sobre Teste Ergométrico">Teste Ergométrico</a>
-                    <a class="side-sublink exam-link" href="#teste-cardiopulmonar" data-exam="teste-cardiopulmonar" title="Saiba mais sobre Teste Cardiopulmonar">Teste Cardiopulmonar</a>
-                    <a class="side-sublink exam-link" href="#score-calcio" data-exam="score-calcio">Score de Cálcio</a>
-                    <a class="side-sublink exam-link" href="#angiotc" data-exam="angiotc">Angiotomografia Coronariana</a>
-                    <a class="side-sublink exam-link" href="#cintilografia" data-exam="cintilografia">Cintilografia Miocárdica</a>
-                    <a class="side-sublink exam-link" href="#pet" data-exam="pet">PET Miocárdico</a>
-                    <a class="side-sublink exam-link" href="#rmc" data-exam="rmc">Ressonância Magnética</a>
-                    <a class="side-sublink exam-link" href="#rmc-stress" data-exam="rmc-stress">RMC com Stress</a>
-                    <a class="side-sublink exam-link" href="#ecocardiograma" data-exam="ecocardiograma">Ecocardiograma</a>
-                    <a class="side-sublink exam-link" href="#eco-stress" data-exam="eco-stress">Ecocardiograma com Stress</a>
-                    <a class="side-sublink exam-link" href="#holter" data-exam="holter">Holter 24h</a>
-                    <a class="side-sublink exam-link" href="#mapa" data-exam="mapa">MAPA 24h</a>
-                    <a class="side-sublink exam-link" href="#polissonografia" data-exam="polissonografia">Polissonografia</a>
-
-                    <h6 class="px-2 py-2 mt-3 text-uppercase small" style="letter-spacing: .08rem; color: #999;">Invasivos</h6>
-                    <a class="side-sublink exam-link" href="#angiografia" data-exam="angiografia">Angiografia Coronária</a>
-                    <a class="side-sublink exam-link" href="#cateterismo-direito" data-exam="cateterismo-direito">Cateterismo Direito</a>
-                    <a class="side-sublink exam-link" href="#biopsia" data-exam="biopsia">Biópsia Endomiocárdica</a>
-                    <a class="side-sublink exam-link" href="#arteriografia" data-exam="arteriografia">Arteriografia Pulmonar</a>
-                  </div>
-                </div>
-
-                <a class="side-link mt-2" href="index.html#pacientes">
-                  <span>Voltar (Para pacientes)</span>
-                  <span class="side-caret" aria-hidden="true">›</span>
-                </a>
-              </nav>
-
-              <hr class="my-4" />
-
-              <p class="small text-black-50 mb-0">
-                Este conteúdo é informativo e não substitui consulta médica.
-              </p>
-            </div>
-          </div>
-        </aside>
-
-        <!-- Conteúdo (HUB) -->
-        <div class="col-lg-9">
-          <div class="card">
-            <div class="card-body">
-              <div id="examContent">
 
                 <!-- HOME / INSTRUÇÕES -->
                 <section class="exam-panel" data-panel="home">
-                  <h3 class="mb-3">Guia de Exames Cardiológicos</h3>
-                  <p class="text-muted">
+                  <h3>Guia de Exames Cardiológicos</h3>
+                  <br>
+                  <p class="mb-4">
                     Bem-vindo ao guia completo de exames cardiológicos. Aqui você encontrará informações detalhadas sobre 18 exames diferentes, 
                     com explicações sobre indicações, procedimentos, preparo e outras informações práticas.
                   </p>
-                  <p class="text-muted">
+                  <br>
+                  <p class="mb-4">
                     <strong>Como usar:</strong> Clique em um exame no menu lateral para ver o conteúdo completo aqui. No computador, você pode 
                     passar o mouse sobre "Todos os exames" para abrir a lista. No celular, toque em "Todos os exames" para expandir.
                   </p>
+                  <br>
                   <p class="text-muted mb-0">
                     <strong>Importante:</strong> A indicação de um exame depende do seu contexto clínico. Um mesmo exame pode ser excelente 
                     em um cenário e pouco útil em outro. Sempre consulte seu médico cardiologista.
                   </p>
+                  <br>
                 </section>
 
                 <!-- ECG -->
-                <section class="exam-panel d-none" data-panel="ecg">
-                  <h3 class="mb-4">Eletrocardiograma (ECG)</h3>
+                <section class="exam-panel" data-panel="ecg">
+                  <h3>Eletrocardiograma (ECG)</h3>
                   
                   <div class="exam-section">
                     <h4>O que é</h4>
@@ -262,8 +333,8 @@
                 </section>
 
                 <!-- TESTE ERGOMÉTRICO -->
-                <section class="exam-panel d-none" data-panel="teste-ergometrico">
-                  <h3 class="mb-4">Teste Ergométrico</h3>
+                <section class="exam-panel" data-panel="teste-ergometrico">
+                  <h3>Teste Ergométrico</h3>
                   
                   <div class="exam-section">
                     <h4>O que é</h4>
@@ -323,8 +394,8 @@
                 </section>
 
                 <!-- TESTE CARDIOPULMONAR -->
-                <section class="exam-panel d-none" data-panel="teste-cardiopulmonar">
-                  <h3 class="mb-4">Teste Cardiopulmonar (Ergoespirometria)</h3>
+                <section class="exam-panel" data-panel="teste-cardiopulmonar">
+                  <h3>Teste Cardiopulmonar (Ergoespirometria)</h3>
                   
                   <div class="exam-section">
                     <h4>O que é</h4>
@@ -384,8 +455,8 @@
                 </section>
 
                 <!-- SCORE DE CÁLCIO -->
-                <section class="exam-panel d-none" data-panel="score-calcio">
-                  <h3 class="mb-4">Score de Cálcio Coronariano</h3>
+                <section class="exam-panel" data-panel="score-calcio">
+                  <h3>Score de Cálcio Coronariano</h3>
                   
                   <div class="exam-section">
                     <h4>O que é</h4>
@@ -443,8 +514,8 @@
                 </section>
 
                 <!-- ANGIOTOMOGRAFIA CORONARIANA -->
-                <section class="exam-panel d-none" data-panel="angiotc">
-                  <h3 class="mb-4">Angiotomografia Coronariana</h3>
+                <section class="exam-panel" data-panel="angiotc">
+                  <h3>Angiotomografia Coronariana</h3>
                   
                   <div class="exam-section">
                     <h4>O que é</h4>
@@ -504,8 +575,8 @@
                 </section>
 
                 <!-- CINTILOGRAFIA MIOCÁRDICA -->
-                <section class="exam-panel d-none" data-panel="cintilografia">
-                  <h3 class="mb-4">Cintilografia Miocárdica</h3>
+                <section class="exam-panel" data-panel="cintilografia">
+                  <h3>Cintilografia Miocárdica</h3>
                   
                   <div class="exam-section">
                     <h4>O que é</h4>
@@ -565,8 +636,8 @@
                 </section>
 
                 <!-- PET MIOCÁRDICO -->
-                <section class="exam-panel d-none" data-panel="pet">
-                  <h3 class="mb-4">PET Miocárdico</h3>
+                <section class="exam-panel" data-panel="pet">
+                  <h3>PET Miocárdico</h3>
                   
                   <div class="exam-section">
                     <h4>O que é</h4>
@@ -625,8 +696,8 @@
                 </section>
 
                 <!-- RESSONÂNCIA MAGNÉTICA CARDÍACA -->
-                <section class="exam-panel d-none" data-panel="rmc">
-                  <h3 class="mb-4">Ressonância Magnética Cardíaca</h3>
+                <section class="exam-panel" data-panel="rmc">
+                  <h3>Ressonância Magnética Cardíaca</h3>
                   
                   <div class="exam-section">
                     <h4>O que é</h4>
@@ -685,8 +756,8 @@
                 </section>
 
                 <!-- RESSONÂNCIA COM STRESS -->
-                <section class="exam-panel d-none" data-panel="rmc-stress">
-                  <h3 class="mb-4">Ressonância Magnética Cardíaca com Estresse</h3>
+                <section class="exam-panel" data-panel="rmc-stress">
+                  <h3>Ressonância Magnética Cardíaca com Estresse</h3>
                   
                   <div class="exam-section">
                     <h4>O que é</h4>
@@ -745,8 +816,8 @@
                 </section>
 
                 <!-- ECOCARDIOGRAMA -->
-                <section class="exam-panel d-none" data-panel="ecocardiograma">
-                  <h3 class="mb-4">Ecocardiograma</h3>
+                <section class="exam-panel" data-panel="ecocardiograma">
+                  <h3>Ecocardiograma</h3>
                   
                   <div class="exam-section">
                     <h4>O que é</h4>
@@ -801,8 +872,8 @@
                 </section>
 
                 <!-- ECOCARDIOGRAMA COM STRESS -->
-                <section class="exam-panel d-none" data-panel="eco-stress">
-                  <h3 class="mb-4">Ecocardiograma com Estresse</h3>
+                <section class="exam-panel" data-panel="eco-stress">
+                  <h3>Ecocardiograma com Estresse</h3>
                   
                   <div class="exam-section">
                     <h4>O que é</h4>
@@ -862,8 +933,8 @@
                 </section>
 
                 <!-- HOLTER -->
-                <section class="exam-panel d-none" data-panel="holter">
-                  <h3 class="mb-4">Holter 24 horas</h3>
+                <section class="exam-panel" data-panel="holter">
+                  <h3>Holter 24 horas</h3>
                   
                   <div class="exam-section">
                     <h4>O que é</h4>
@@ -922,8 +993,8 @@
                 </section>
 
                 <!-- MAPA -->
-                <section class="exam-panel d-none" data-panel="mapa">
-                  <h3 class="mb-4">MAPA (Monitorização Ambulatorial da Pressão Arterial)</h3>
+                <section class="exam-panel" data-panel="mapa">
+                  <h3>MAPA (Monitorização Ambulatorial da Pressão Arterial)</h3>
                   
                   <div class="exam-section">
                     <h4>O que é</h4>
@@ -982,8 +1053,8 @@
                 </section>
 
                 <!-- POLISSONOGRAFIA -->
-                <section class="exam-panel d-none" data-panel="polissonografia">
-                  <h3 class="mb-4">Polissonografia</h3>
+                <section class="exam-panel" data-panel="polissonografia">
+                  <h3>Polissonografia</h3>
                   
                   <div class="exam-section">
                     <h4>O que é</h4>
@@ -1044,8 +1115,8 @@
                 </section>
 
                 <!-- ANGIOGRAFIA CORONÁRIA -->
-                <section class="exam-panel d-none" data-panel="angiografia">
-                  <h3 class="mb-4">Angiografia Coronária</h3>
+                <section class="exam-panel" data-panel="angiografia">
+                  <h3>Angiografia Coronária</h3>
                   
                   <div class="exam-section">
                     <h4>O que é</h4>
@@ -1105,8 +1176,8 @@
                 </section>
 
                 <!-- CATETERISMO DIREITO -->
-                <section class="exam-panel d-none" data-panel="cateterismo-direito">
-                  <h3 class="mb-4">Cateterismo Cardíaco Direito</h3>
+                <section class="exam-panel" data-panel="cateterismo-direito">
+                  <h3>Cateterismo Cardíaco Direito</h3>
                   
                   <div class="exam-section">
                     <h4>O que é</h4>
@@ -1165,8 +1236,8 @@
                 </section>
 
                 <!-- BIÓPSIA ENDOMIOCÁRDICA -->
-                <section class="exam-panel d-none" data-panel="biopsia">
-                  <h3 class="mb-4">Biópsia Endomiocárdica</h3>
+                <section class="exam-panel" data-panel="biopsia">
+                  <h3>Biópsia Endomiocárdica</h3>
                   
                   <div class="exam-section">
                     <h4>O que é</h4>
@@ -1225,8 +1296,8 @@
                 </section>
 
                 <!-- ARTERIOGRAFIA PULMONAR -->
-                <section class="exam-panel d-none" data-panel="arteriografia">
-                  <h3 class="mb-4">Arteriografia Pulmonar</h3>
+                <section class="exam-panel" data-panel="arteriografia">
+                  <h3>Arteriografia Pulmonar</h3>
                   
                   <div class="exam-section">
                     <h4>O que é</h4>
@@ -1288,18 +1359,49 @@
               </div>
 
               <div class="small text-black-50 mt-3">
-                Última atualização: Fevereiro de 2026
-              </div>
-            </div>
-          </div>
+                Última atualização: Março de 2026
+              
         </div>
-        <!-- /Conteúdo (HUB) -->
-
       </div>
-    </main>
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" defer></script>
-    <script src="js/scripts.js" defer></script>
-  </body>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    © 2026 Dr. Lucas Silva — Guia de Exames Cardiológicos · <a href="https://lucascardio.com.br">lucascardio.com.br</a>
+  </div>
+</footer>
+
+<script>
+// Panel navigation
+const panels = document.querySelectorAll('.exam-panel');
+const links = document.querySelectorAll('.side-link[data-panel]');
+
+function showPanel(panelId) {
+  panels.forEach(p => p.classList.remove('active'));
+  links.forEach(l => l.classList.remove('active'));
+  const panel = document.querySelector('.exam-panel[data-panel="' + panelId + '"]');
+  const link = document.querySelector('.side-link[data-panel="' + panelId + '"]');
+  if (panel) panel.classList.add('active');
+  if (link) link.classList.add('active');
+  // On mobile, scroll to content
+  if (window.innerWidth <= 768) {
+    document.querySelector('.content-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+links.forEach(link => {
+  link.addEventListener('click', () => showPanel(link.dataset.panel));
+});
+
+// Show home by default
+showPanel('home');
+
+// Handle hash in URL
+const hash = window.location.hash.replace('#', '');
+if (hash) showPanel(hash);
+</script>
+</body>
 </html>

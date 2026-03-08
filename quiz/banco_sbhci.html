@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Banco SBHCI – Provas por Ano (com imagens via PDF)</title>
+
+  <!-- ════════════════════════════════════════════════════════════
+       BANCO DE QUESTÕES
+       COMO ADICIONAR NOVAS QUESTÕES OU TEMAS:
+
+       1) Para adicionar questões a um tema existente:
+          → Localize o objeto do tema em QUESTION_BANK
+          → Adicione um novo objeto ao array "questions" seguindo o modelo:
+            {
+              q: "Texto da pergunta",
+              options: ["A) ...", "B) ...", "C) ...", "D) ...", "E) ..."],
+              answer: 0, // índice da resposta correta (0=A, 1=B, 2=C, 3=D, 4=E)
+              comment: "Comentário explicativo.",
+              source: "Fonte bibliográfica",
+              // Opcional (para renderizar a página do PDF da prova):
+              media: { type: "pdf", file: "SBHCI-Prova-Teorica-2016.pdf", page: 8 }
+            }
+
+       2) Para criar um tema novo:
+          → Adicione um novo objeto ao array QUESTION_BANK seguindo o modelo:
+            {
+              id: "id_unico_do_tema",
+              icon: "📘",
+              title: "Título do Tema",
+              description: "Descrição breve.",
+              tags: ["Tag1", "Tag2"],
+              questions: [ ... ]
+            }
+       ════════════════════════════════════════════════════════════ -->
+
+  <style>
+    :root{
+      --bg:#0b1020;--card:#121a33;--muted:#9fb0d0;--txt:#e8efff;
+      --acc:#79a7ff;--ok:#40d18a;--bad:#ff6b6b;--line:rgba(255,255,255,.10)
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,#070b16, var(--bg));color:var(--txt)}
+    header{padding:16px 16px 10px;border-bottom:1px solid var(--line)}
+    header h1{margin:0;font-size:16px;font-weight:700}
+    header p{margin:6px 0 0;color:var(--muted);font-size:12px;line-height:1.35}
+    .wrap{display:grid;grid-template-columns:320px 1fr;gap:12px;padding:12px;max-width:1300px;margin:0 auto}
+    .card{background:rgba(18,26,51,.92);border:1px solid var(--line);border-radius:14px;box-shadow:0 10px 26px rgba(0,0,0,.25)}
+    .side{padding:12px}
+    .main{padding:12px}
+    .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .row input,.row select{
+      background:rgba(255,255,255,.05);border:1px solid var(--line);color:var(--txt);
+      border-radius:10px;padding:9px 10px;font-size:13px
+    }
+    .btn{
+      background:rgba(121,167,255,.16);border:1px solid rgba(121,167,255,.38);color:var(--txt);
+      border-radius:10px;padding:9px 11px;font-size:13px;cursor:pointer
+    }
+    .btn:hover{border-color:rgba(121,167,255,.75)}
+    .btn.secondary{background:rgba(255,255,255,.05);border-color:var(--line)}
+    .btn.ok{background:rgba(64,209,138,.12);border-color:rgba(64,209,138,.35)}
+    .btn.bad{background:rgba(255,107,107,.12);border-color:rgba(255,107,107,.35)}
+    .themes{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+    .themeBtn{
+      display:flex;align-items:flex-start;gap:10px;width:100%;text-align:left;
+      padding:10px 10px;border-radius:12px;background:rgba(255,255,255,.04);
+      border:1px solid var(--line);color:var(--txt);cursor:pointer
+    }
+    .themeBtn:hover{border-color:rgba(121,167,255,.35)}
+    .themeBtn.active{border-color:rgba(121,167,255,.75);background:rgba(121,167,255,.10)}
+    .themeMeta{flex:1}
+    .themeTitle{font-weight:700;font-size:13px;margin:0}
+    .themeDesc{font-size:12px;margin:3px 0 0;color:var(--muted)}
+    .badge{font-size:11px;color:var(--muted);margin-left:auto}
+    .qTop{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-bottom:10px}
+    .qTop .small{font-size:12px;color:var(--muted)}
+    .qText{font-size:14px;line-height:1.45;margin:0 0 10px}
+    .opts{display:flex;flex-direction:column;gap:10px;margin:10px 0 8px}
+    label.opt{display:flex;gap:10px;align-items:flex-start;padding:10px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid var(--line);cursor:pointer}
+    label.opt:hover{border-color:rgba(121,167,255,.35)}
+    label.opt input{margin-top:2px}
+    .feedback{margin-top:10px;padding:10px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.03)}
+    .feedback .k{font-weight:700}
+    .okTxt{color:var(--ok)} .badTxt{color:var(--bad)}
+    .grid2{display:grid;grid-template-columns:1fr;gap:10px}
+    .pdfBox{border:1px solid var(--line);border-radius:12px;background:rgba(0,0,0,.25);padding:10px}
+    .pdfTools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+    .pdfTools input{width:110px}
+    canvas{max-width:100%;height:auto;border-radius:10px;border:1px solid var(--line)}
+    .mini{font-size:11px;color:var(--muted);line-height:1.35}
+    @media (max-width: 980px){ .wrap{grid-template-columns:1fr} }
+  </style>
+
+  <!-- PDF.js (renderiza as páginas do PDF, incluindo IMAGENS das questões) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+  <!-- SheetJS (opcional): lê gabarito em XLSX (ex.: 2022) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+
+<body>
+<header>
+  <h1>Banco SBHCI – Provas por Ano</h1>
+  <p>
+    Este arquivo organiza as questões <b>por ano</b> e mostra o <b>enunciado/alternativas diretamente do PDF</b>,
+    garantindo que <b>todas as imagens</b> (angiogramas, curvas, tabelas, etc.) apareçam exatamente como na prova.
+    <br/>Coloque os PDFs (e gabaritos) no mesmo diretório/URL configurado em <code>FILES_BASE</code>.
+  </p>
+</header>
+
+<div class="wrap">
+  <aside class="card side">
+    <div class="row">
+      <input id="search" type="text" placeholder="Buscar (por ano, questão, tags)..." />
+      <button class="btn secondary" id="clearSearch">Limpar</button>
+    </div>
+    <div class="themes" id="themes"></div>
+    <div style="margin-top:12px" class="mini">
+      Dica: se o “auto índice” não encontrar a página da questão (PDF escaneado), use o campo “Página” manual.
+    </div>
+  </aside>
+
+  <main class="card main">
+    <div class="qTop">
+      <div class="small" id="qMeta">Selecione um ano na barra lateral.</div>
+      <div class="row">
+        <button class="btn secondary" id="prevBtn">← Anterior</button>
+        <button class="btn secondary" id="nextBtn">Próxima →</button>
+        <button class="btn" id="randBtn">Aleatória</button>
+      </div>
+    </div>
+
+    <p class="qText" id="qText"></p>
+
+    <div class="opts" id="opts"></div>
+
+    <div class="row" style="margin-top:8px">
+      <button class="btn ok" id="checkBtn">Corrigir</button>
+      <button class="btn secondary" id="showBtn">Mostrar gabarito</button>
+      <button class="btn bad" id="resetBtn">Reset (tema atual)</button>
+    </div>
+
+    <div class="feedback" id="feedback" style="display:none"></div>
+
+    <div class="grid2" style="margin-top:12px">
+      <div class="pdfBox">
+        <div class="pdfTools">
+          <span class="small">PDF:</span>
+          <span class="small" id="pdfName">—</span>
+          <span style="flex:1"></span>
+
+          <span class="small">Página:</span>
+          <input id="pageInput" type="number" min="1" step="1" />
+          <button class="btn secondary" id="pageGo">Ir</button>
+
+          <button class="btn secondary" id="autoIndexBtn">Auto-indexar</button>
+          <span class="mini" id="indexStatus"></span>
+        </div>
+        <canvas id="pdfCanvas"></canvas>
+        <div class="mini" id="pdfHint"></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+/* ============================
+   1) CONFIGURAÇÃO DE ARQUIVOS
+   ============================ */
+
+// Base URL/pasta onde você colocará os arquivos no seu site.
+// Ex.: "/assets/sbhci/" ou "./" (mesma pasta do HTML)
+const FILES_BASE = "./";
+
+// Arquivos por ano (caderno + gabarito quando existir).
+// Observação: para anos cujo gabarito você não quer embutir aqui, o sistema tenta carregar do arquivo.
+const EXAM_FILES = {
+  "2016": { pdf: "SBHCI-Prova-Teorica-2016.pdf", gabarito: "SBHCI-Prova-Teorica-2016-Gabarito.pdf" },
+  "2017": { pdf: "SBHCI-Prova-Teorica-2017.pdf", gabarito: "SBHCI-Prova-Teorica-2017-Gabarito.pdf" },
+  "2018": { pdf: "SBHCI-Prova-Teorica-2018-Adulto.pdf", gabarito: "SBHCI-Prova-Teorica-2018-Adulto-Gabarito.pdf" },
+  "2019": { pdf: "SBHCI-Prova-Teorica-2019-Adulto.pdf", gabarito: "SBHCI-Prova-Teorica-2019-Adulto-Gabarito.pdf" },
+  "2020": { pdf: "SBHCI-Prova-Teorica-2020.pdf", gabarito: "SBHCI-Prova-Teorica-2020-Gabarito.pdf" },
+  "2021": { pdf: "SBHCI-Prova-Teorica-2021.pdf", gabarito: null }, // gabarito geralmente vem no próprio PDF (primeiras páginas)
+  "2022": { pdf: "SBHCI-Prova-Teorica-2022.pdf", gabarito: "SBHCI-Prova-Teorica-2022-Gabarito.xlsx" },
+  "2023": { pdf: null, gabarito: null }, // 2023 foi enviado como DOCX; para renderizar imagem via PDF, converta para PDF e coloque aqui
+  "2024": { pdf: "SBHCI-Prova-Teorica-2024 com gabarito.pdf", gabarito: null } // já contém gabarito
+};
+
+// Tamanho padrão das provas
+const TOTAL_QUESTOES = 50;
+
+// ================================
+// 2) GABARITOS EMBUTIDOS (quando disponível)
+//    (Você pode remover se preferir ler sempre do arquivo.)
+// ================================
+
+// Converte letra A-E para índice 0-4
+const L2I = (L) => ({A:0,B:1,C:2,D:3,E:4}[L] ?? null);
+
+// 2016 (Q11 e Q32 consideradas corretas para todos) – embutido
+const KEY_2016 = [
+  "A","C","A","E","B","C","D","E","D","D", null,"D","B","A","B","E","A","C","D","D","D","B","C","E","C",
+  "A","A","C","E","D","B", null,"E","A","B","C","D","A","E","A","B","E","D","C","C","B","D","D","D","A"
+];
+
+// 2017 (Q1 e Q24 anuladas; Q41 frequentemente consta como anulada no gabarito final – deixe null se quiser aceitar qualquer) – embutido
+const KEY_2017 = [
+  null,"E","B","D","E","A","D","C","A","A","B","D","C","A","C","D","E","E","B","C","B","D","C", null,"A",
+  "E","A","B","E","B","A","C","E","D","C","A","A","E","D","B", null,"C","D","B","D","C","B","E","C","D"
+];
+
+// 2018 (Q13 e Q21 anuladas) – embutido
+const KEY_2018 = [
+  "E","D","A","E","C","E","E","C","A","E","C","B", null,"A","E","D","C","E","B","E", null,"E","C","E","C",
+  "D","E","E","D","A","D","C","E","C","D","C","A","E","A","E","E","B","D","E","C","E","D","C","E","C"
+];
+
+// 2019 – embutido
+const KEY_2019 = [
+  "D","D","E","D","B","D","A","C","C","B","C","D","A","E","C","D","D","E","B","E","B","B","A","E","A",
+  "B","A","D","B","D","A","B","D","B","C","C","D","B","D","B","D","D","D","D","E","D","C","D","E","D"
+];
+
+// 2021 – embutido (na lista há “25ª”; aqui está como A)
+const KEY_2021 = [
+  "B","A","B","D","A","D","C","C","C","A","C","C","B","B","D","A","D","A","D","B","C","B","B","C","A",
+  "B","C","B","D","A","C","C","B","D","C","C","D","B","A","D","C","B","C","A","D","D","B","D","C","C"
+];
+
+// 2024 – embutido
+const KEY_2024 = [
+  "D","B","D","C","B","B","A","A","B","B","A","B","A","C","B","B","B","A","C","B",
+  "A","D","B","C","D","A","D","B","A","C","D","C","D","D","D","C","D","D","A","A",
+  "A","B","B","B","B","B","B","C","D","B"
+];
+
+const EMBEDDED_KEYS = {
+  "2016": KEY_2016,
+  "2017": KEY_2017,
+  "2018": KEY_2018,
+  "2019": KEY_2019,
+  "2021": KEY_2021,
+  "2024": KEY_2024
+};
+
+/* =========================================================
+   3) QUESTION_BANK (por ano) – no formato que você pediu
+   Observação importante:
+   - Aqui cada questão aponta para a PÁGINA do PDF (media.type="pdf").
+   - A página é preenchida automaticamente por "auto-indexar" quando possível.
+   - Se o PDF for escaneado, você ajusta manualmente o campo Página.
+   ========================================================= */
+
+const QUESTION_BANK = [
+  makeYearTheme("2016"),
+  makeYearTheme("2017"),
+  makeYearTheme("2018"),
+  makeYearTheme("2019"),
+  makeYearTheme("2020"),
+  makeYearTheme("2021"),
+  makeYearTheme("2022"),
+  makeYearTheme("2023"),
+  makeYearTheme("2024")
+];
+
+function makeYearTheme(year){
+  const id = `sbhci_${year}`;
+  const file = EXAM_FILES[year]?.pdf ?? null;
+
+  return {
+    id,
+    icon: "📘",
+    title: `Prova de Título ${year}`,
+    description: `SBHCI – Prova Teórica (Adulto) ${year}.`,
+    tags: ["SBHCI", "Prova", year],
+    questions: generateQuestionsForYear(year, file)
+  };
+}
+
+function generateQuestionsForYear(year, pdfFile){
+  const key = EMBEDDED_KEYS[year] ?? null;
+  const arr = [];
+
+  for(let i=1;i<=TOTAL_QUESTOES;i++){
+    const letter = key ? key[i-1] : null;
+    const ansIdx = (letter===null) ? null : L2I(letter);
+
+    arr.push({
+      q: `Questão ${String(i).padStart(2,"0")}: veja o enunciado e as alternativas na página renderizada do PDF abaixo.`,
+      options: ["A)","B)","C)","D)","E)"],
+      answer: ansIdx, // null = anulada / sem gabarito carregado ainda
+      comment: (ansIdx===null)
+        ? (key ? "Questão anulada/considerada correta para todos (ou sem chave)."
+               : "Gabarito ainda não carregado (será lido do arquivo, quando disponível).")
+        : "Gabarito oficial.",
+      source: `SBHCI – Prova Teórica ${year}.`,
+      media: (pdfFile ? { type: "pdf", file: pdfFile, page: null, questionNumber: i } : null)
+    });
+  }
+  return arr;
+}
+
+/* =========================================================
+   4) APP (UI + PDF renderer + auto-index + correção)
+   ========================================================= */
+
+const $ = (id)=>document.getElementById(id);
+
+const themesEl = $("themes");
+const searchEl = $("search");
+const clearSearchBtn = $("clearSearch");
+const qMetaEl = $("qMeta");
+const qTextEl = $("qText");
+const optsEl = $("opts");
+const feedbackEl = $("feedback");
+const prevBtn = $("prevBtn");
+const nextBtn = $("nextBtn");
+const randBtn = $("randBtn");
+const checkBtn = $("checkBtn");
+const showBtn = $("showBtn");
+const resetBtn = $("resetBtn");
+
+const pdfNameEl = $("pdfName");
+const pdfCanvas = $("pdfCanvas");
+const pageInput = $("pageInput");
+const pageGo = $("pageGo");
+const autoIndexBtn = $("autoIndexBtn");
+const indexStatus = $("indexStatus");
+const pdfHint = $("pdfHint");
+
+let activeTheme = null;
+let filteredThemes = [...QUESTION_BANK];
+let qIndex = 0;
+
+let pdfDoc = null;
+let pdfUrl = null;
+let pageMap = {}; // questionNumber -> page
+let indexing = false;
+
+// pdf.js worker
+pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+renderThemeList();
+bindEvents();
+
+function bindEvents(){
+  searchEl.addEventListener("input", ()=>{applySearch(searchEl.value.trim())});
+  clearSearchBtn.addEventListener("click", ()=>{searchEl.value=""; applySearch("")});
+
+  prevBtn.addEventListener("click", ()=>move(-1));
+  nextBtn.addEventListener("click", ()=>move(1));
+  randBtn.addEventListener("click", ()=>randomQ());
+
+  checkBtn.addEventListener("click", ()=>checkAnswer(false));
+  showBtn.addEventListener("click", ()=>checkAnswer(true));
+  resetBtn.addEventListener("click", ()=>resetProgress());
+
+  pageGo.addEventListener("click", ()=>renderPageManual());
+  pageInput.addEventListener("keydown", (e)=>{ if(e.key==="Enter") renderPageManual(); });
+
+  autoIndexBtn.addEventListener("click", ()=>autoIndexPdf());
+}
+
+function renderThemeList(){
+  themesEl.innerHTML = "";
+  filteredThemes.forEach((t)=>{
+    const btn = document.createElement("button");
+    btn.className = "themeBtn" + (activeTheme?.id===t.id ? " active":"");
+    btn.innerHTML = `
+      <div style="font-size:18px;line-height:1">${t.icon}</div>
+      <div class="themeMeta">
+        <p class="themeTitle">${t.title}</p>
+        <p class="themeDesc">${t.description}</p>
+      </div>
+      <div class="badge">${t.questions.length}q</div>
+    `;
+    btn.addEventListener("click", ()=>selectTheme(t.id));
+    themesEl.appendChild(btn);
+  });
+}
+
+function applySearch(q){
+  if(!q){
+    filteredThemes = [...QUESTION_BANK];
+  }else{
+    const qq = q.toLowerCase();
+    filteredThemes = QUESTION_BANK.filter(t=>{
+      return (t.title.toLowerCase().includes(qq) ||
+              t.description.toLowerCase().includes(qq) ||
+              t.tags.join(" ").toLowerCase().includes(qq));
+    });
+  }
+  renderThemeList();
+}
+
+async function selectTheme(themeId){
+  activeTheme = QUESTION_BANK.find(t=>t.id===themeId);
+  qIndex = 0;
+  feedbackEl.style.display = "none";
+  indexStatus.textContent = "";
+  pageMap = loadPageMap(activeTheme.id) || {};
+
+  renderThemeList();
+  await loadPdfForTheme(activeTheme);
+  renderQuestion();
+}
+
+function move(delta){
+  if(!activeTheme) return;
+  qIndex = Math.max(0, Math.min(activeTheme.questions.length-1, qIndex + delta));
+  feedbackEl.style.display = "none";
+  renderQuestion();
+}
+
+function randomQ(){
+  if(!activeTheme) return;
+  qIndex = Math.floor(Math.random() * activeTheme.questions.length);
+  feedbackEl.style.display = "none";
+  renderQuestion();
+}
+
+function renderQuestion(){
+  if(!activeTheme) return;
+  const q = activeTheme.questions[qIndex];
+  qMetaEl.textContent = `${activeTheme.title} • ${qIndex+1}/${activeTheme.questions.length}`;
+
+  qTextEl.textContent = q.q;
+
+  // opções (A-E)
+  optsEl.innerHTML = "";
+  const saved = loadChoice(activeTheme.id, qIndex);
+
+  q.options.forEach((opt, idx)=>{
+    const lab = document.createElement("label");
+    lab.className = "opt";
+    lab.innerHTML = `
+      <input type="radio" name="opt" value="${idx}" ${saved===idx ? "checked":""}/>
+      <div><b>${opt}</b> <span class="mini">Selecione A–E e corrija. (O texto completo está no PDF.)</span></div>
+    `;
+    optsEl.appendChild(lab);
+  });
+
+  // PDF
+  const media = q.media;
+  if(!media || media.type!=="pdf" || !media.file){
+    pdfNameEl.textContent = "— (sem PDF configurado para este ano)";
+    pageInput.value = "";
+    pdfHint.textContent = (activeTheme.title.includes("2023"))
+      ? "2023: para renderizar com imagens, converta o DOCX para PDF e configure EXAM_FILES[\"2023\"].pdf."
+      : "Sem mídia.";
+    clearCanvas();
+    return;
+  }
+
+  pdfNameEl.textContent = media.file;
+
+  // Escolhe página: auto-index > última página usada > 1
+  const qNum = media.questionNumber;
+  const mapped = pageMap?.[qNum];
+  const last = loadLastPage(activeTheme.id, qNum);
+  const page = mapped || last || 1;
+
+  pageInput.value = page;
+  pdfHint.textContent = mapped
+    ? `Auto-index: Questão ${qNum} → página ${mapped}.`
+    : `Sem mapeamento automático para Q${qNum}. Ajuste manualmente a página se necessário.`;
+
+  renderPdfPage(page).catch(()=>{});
+}
+
+function getSelectedIdx(){
+  const el = document.querySelector("input[name='opt']:checked");
+  return el ? Number(el.value) : null;
+}
+
+function checkAnswer(forceShow){
+  if(!activeTheme) return;
+  const q = activeTheme.questions[qIndex];
+  const sel = getSelectedIdx();
+
+  // salva escolha
+  if(sel!==null) saveChoice(activeTheme.id, qIndex, sel);
+
+  // sem gabarito carregado
+  if(q.answer===null){
+    feedbackEl.style.display = "block";
+    feedbackEl.innerHTML = `
+      <div class="k">Sem gabarito embutido/carregado</div>
+      <div class="mini">${q.comment}</div>
+      <div class="mini">Se existir arquivo de gabarito para este ano, use “Auto-indexar” e/ou mantenha o gabarito disponível em <code>EXAM_FILES</code>.</div>
+    `;
+    return;
+  }
+
+  const correct = q.answer;
+  const ok = (sel === correct);
+
+  feedbackEl.style.display = "block";
+
+  if(forceShow){
+    feedbackEl.innerHTML = `
+      <div class="k">Gabarito: <span class="${ok ? "okTxt":"badTxt"}">${idxToLetter(correct)}</span></div>
+      <div class="mini">${q.comment || ""}</div>
+      <div class="mini"><b>Fonte:</b> ${q.source || ""}</div>
+    `;
+    return;
+  }
+
+  if(sel===null){
+    feedbackEl.innerHTML = `<div class="k">Selecione uma alternativa.</div>`;
+    return;
+  }
+
+  feedbackEl.innerHTML = ok
+    ? `<div class="k okTxt">Correto ✅</div><div class="mini">${q.comment || ""}</div>`
+    : `<div class="k badTxt">Incorreto</div>
+       <div class="mini">Sua resposta: <b>${idxToLetter(sel)}</b> • Correta: <b>${idxToLetter(correct)}</b></div>
+       <div class="mini">${q.comment || ""}</div>`;
+}
+
+function resetProgress(){
+  if(!activeTheme) return;
+  if(!confirm(`Resetar escolhas do tema "${activeTheme.title}"?`)) return;
+  localStorage.removeItem(storageKey(activeTheme.id, "choices"));
+  feedbackEl.style.display = "none";
+  renderQuestion();
+}
+
+/* =====================
+   PDF LOADING / RENDER
+   ===================== */
+
+async function loadPdfForTheme(theme){
+  const year = theme.title.match(/\d{4}/)?.[0] || null;
+  const file = year ? EXAM_FILES[year]?.pdf : null;
+  if(!file){
+    pdfDoc = null; pdfUrl = null;
+    clearCanvas();
+    return;
+  }
+  pdfUrl = FILES_BASE + file;
+  pdfDoc = await pdfjsLib.getDocument(pdfUrl).promise;
+}
+
+async function renderPdfPage(pageNumber){
+  if(!pdfDoc) { clearCanvas(); return; }
+  pageNumber = Math.max(1, Math.min(pdfDoc.numPages, Number(pageNumber)));
+  const page = await pdfDoc.getPage(pageNumber);
+
+  const viewport = page.getViewport({ scale: 1.35 });
+  const ctx = pdfCanvas.getContext("2d");
+  pdfCanvas.width = Math.floor(viewport.width);
+  pdfCanvas.height = Math.floor(viewport.height);
+
+  await page.render({ canvasContext: ctx, viewport }).promise;
+}
+
+function clearCanvas(){
+  const ctx = pdfCanvas.getContext("2d");
+  ctx.clearRect(0,0,pdfCanvas.width,pdfCanvas.height);
+}
+
+function renderPageManual(){
+  if(!activeTheme) return;
+  const q = activeTheme.questions[qIndex];
+  if(!q.media?.questionNumber) return;
+
+  const qNum = q.media.questionNumber;
+  const p = Number(pageInput.value || 1);
+  saveLastPage(activeTheme.id, qNum, p);
+  pdfHint.textContent = `Página ajustada manualmente para Q${qNum}: ${p}.`;
+  renderPdfPage(p).catch(()=>{});
+}
+
+/* =====================
+   AUTO-INDEX (mapear Questão -> página)
+   - Para PDFs com texto “Questão 01”, etc.
+   - Para PDFs escaneados, pode falhar (use manual).
+   ===================== */
+
+async function autoIndexPdf(){
+  if(!activeTheme || !pdfDoc || indexing) return;
+  indexing = true;
+  indexStatus.textContent = "Indexando...";
+  try{
+    const map = await buildQuestionPageMap(pdfDoc);
+    pageMap = map;
+    savePageMap(activeTheme.id, pageMap);
+    indexStatus.textContent = `OK (${Object.keys(map).length} questões mapeadas).`;
+    renderQuestion();
+  }catch(e){
+    console.error(e);
+    indexStatus.textContent = "Falhou (PDF provavelmente escaneado).";
+  }finally{
+    indexing = false;
+    setTimeout(()=>{ indexStatus.textContent = ""; }, 4000);
+  }
+}
+
+async function buildQuestionPageMap(doc){
+  const map = {};
+  const re = /Quest(?:ão|ao)\s+0?(\d{1,2})/ig;
+
+  for(let p=1;p<=doc.numPages;p++){
+    const page = await doc.getPage(p);
+    const tc = await page.getTextContent();
+    const text = tc.items.map(it=>it.str).join(" ");
+    let m;
+    while((m = re.exec(text)) !== null){
+      const qn = Number(m[1]);
+      if(qn>=1 && qn<=TOTAL_QUESTOES && !map[qn]) map[qn] = p;
+    }
+  }
+  return map;
+}
+
+/* =====================
+   STORAGE
+   ===================== */
+
+function storageKey(themeId, k){ return `SBHCI::${themeId}::${k}`; }
+
+function loadChoice(themeId, idx){
+  const raw = localStorage.getItem(storageKey(themeId,"choices"));
+  if(!raw) return null;
+  const obj = JSON.parse(raw);
+  return (obj[idx] ?? null);
+}
+function saveChoice(themeId, idx, val){
+  const raw = localStorage.getItem(storageKey(themeId,"choices"));
+  const obj = raw ? JSON.parse(raw) : {};
+  obj[idx] = val;
+  localStorage.setItem(storageKey(themeId,"choices"), JSON.stringify(obj));
+}
+
+function saveLastPage(themeId, qNum, page){
+  localStorage.setItem(storageKey(themeId,`page_q${qNum}`), String(page));
+}
+function loadLastPage(themeId, qNum){
+  const v = localStorage.getItem(storageKey(themeId,`page_q${qNum}`));
+  return v ? Number(v) : null;
+}
+
+function savePageMap(themeId, map){
+  localStorage.setItem(storageKey(themeId,"pagemap"), JSON.stringify(map));
+}
+function loadPageMap(themeId){
+  const raw = localStorage.getItem(storageKey(themeId,"pagemap"));
+  return raw ? JSON.parse(raw) : null;
+}
+
+function idxToLetter(i){ return ["A","B","C","D","E"][i] ?? "?"; }
+</script>
+</body>
+</html>

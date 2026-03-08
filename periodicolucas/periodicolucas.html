@@ -1,27 +1,1564 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exame Periódico — Calculadora USPSTF 2025 | Dr. Lucas Silva</title>
+  <meta name="description" content="Calculadora de exames periódicos baseada nas diretrizes USPSTF 2025. Recomendações individualizadas por idade, sexo e fatores de risco. Dr. Lucas Ferreira Silva, Cardiologista Intervencionista." />
+  <meta name="author" content="Dr. Lucas Ferreira Silva" />
+  <link rel="canonical" href="https://www.lucascardio.com.br/periodicolucas.html" />
 
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <title>Calculadora de Exames Periódicos</title>    
-    <!-- THIS IS THE START OF A COMMENT BLOCK, BLOCK TO BE DELETED: Google Fonts here, example:
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    THIS IS THE END OF A COMMENT BLOCK, BLOCK TO BE DELETED -->
-    <script type="module" crossorigin src="./assets/index-RRSf66jd.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-OsFl8oaB.css">
-  </head>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
-  <body>
-    <div id="root"></div>
-    <script
-      defer
-      src="https://manus-analytics.com/umami"
-      data-website-id="5ba0ed04-0e17-4793-83f1-7f985e158c77"></script>
-  </body>
+  <style>
+    /* ══════════════════════════════════════════════
+       DESIGN TOKENS — DAPT system
+    ══════════════════════════════════════════════ */
+    :root {
+      --bg:        oklch(13% .018 250);
+      --bg2:       oklch(16% .018 250);
+      --card:      oklch(18.5% .018 250);
+      --card2:     oklch(21% .02 250);
+      --border:    oklch(28% .025 250);
+      --border2:   oklch(32% .025 250);
+      --fg:        oklch(93% .01 250);
+      --fg2:       oklch(80% .012 250);
+      --muted:     oklch(60% .02 250);
+      --teal:      #00d3bd;
+      --teal-dim:  rgba(0,211,189,.12);
+      --teal-soft: rgba(0,211,189,.07);
+      --amber:     #f59e0b;
+      --amber-dim: rgba(245,158,11,.1);
+      --red:       #f87171;
+      --red-dim:   rgba(248,113,113,.1);
+      --gray-dim:  rgba(150,160,180,.08);
+      --sans:      'Plus Jakarta Sans', system-ui, sans-serif;
+      --mono:      'JetBrains Mono', monospace;
+      --r:         .5rem;
+      --r2:        .75rem;
+    }
 
+    /* ══════════════════════════════════════════════
+       RESET & BASE
+    ══════════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+    * { scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+    /* ══════════════════════════════════════════════
+       NAV
+    ══════════════════════════════════════════════ */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      height: 56px;
+      background: rgba(18,20,27,.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 1.5rem;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: .6rem;
+      text-decoration: none; color: var(--fg);
+    }
+    .nav-icon {
+      width: 28px; height: 28px; border-radius: 7px;
+      background: var(--teal); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .nav-name { font-weight: 800; font-size: .95rem; letter-spacing: -.02em; }
+    .nav-name span { color: var(--teal); }
+    .nav-sep { width: 1px; height: 14px; background: var(--border); margin: 0 8px; }
+    .nav-sub { font-size: .68rem; font-weight: 500; color: var(--muted); }
+    .nav-right { display: flex; align-items: center; gap: .5rem; }
+    .nav-badge {
+      font-size: .65rem; font-weight: 700; padding: 3px 9px;
+      border-radius: 99px; background: var(--teal-dim);
+      color: var(--teal); border: 1px solid rgba(0,211,189,.22);
+      letter-spacing: .04em; white-space: nowrap;
+      font-family: var(--mono);
+    }
+    .nav-link {
+      font-size: .72rem; font-weight: 600; padding: 5px 11px;
+      border-radius: 8px; border: 1.5px solid var(--teal);
+      color: var(--teal); background: transparent; text-decoration: none;
+      transition: background .15s, color .15s;
+      display: inline-flex; align-items: center; gap: 4px;
+    }
+    .nav-link:hover { background: var(--teal); color: #000; }
+    @media (max-width:600px) { .nav-sub,.nav-badge { display:none; } }
+
+    /* ══════════════════════════════════════════════
+       HERO
+    ══════════════════════════════════════════════ */
+    .hero {
+      padding: 3.5rem 1.5rem 2.5rem;
+      border-bottom: 1px solid var(--border);
+      max-width: 960px; margin: 0 auto;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: .65rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--teal); margin-bottom: 1rem;
+      font-family: var(--mono);
+    }
+    .hero-eyebrow::before {
+      content:''; width:18px; height:2px; background:var(--teal); border-radius:1px; flex-shrink:0;
+    }
+    .hero h1 {
+      font-size: clamp(1.7rem,4.5vw,2.5rem); font-weight: 800;
+      letter-spacing: -.025em; line-height: 1.18; margin-bottom: .75rem;
+    }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero-sub {
+      color: var(--muted); font-size: .95rem; max-width: 580px; margin-bottom: 1.5rem; line-height: 1.65;
+    }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: .45rem; }
+    .hero-tag {
+      font-family: var(--mono); font-size: .65rem; font-weight: 500; padding: 3px 10px;
+      border-radius: 5px; border: 1px solid var(--border); color: var(--muted); background: var(--card);
+    }
+
+    /* ══════════════════════════════════════════════
+       LAYOUT WRAPPER
+    ══════════════════════════════════════════════ */
+    .wrapper {
+      max-width: 960px; margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    /* ══════════════════════════════════════════════
+       CARD BASE
+    ══════════════════════════════════════════════ */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r2);
+      overflow: hidden;
+    }
+    .card-header {
+      padding: 1.1rem 1.4rem .9rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg2);
+      display: flex; align-items: center; gap: .75rem;
+    }
+    .card-header-icon {
+      width: 30px; height: 30px; border-radius: 8px;
+      background: var(--teal-dim); border: 1px solid rgba(0,211,189,.2);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .card-header-icon svg { color: var(--teal); }
+    .card-title { font-size: .95rem; font-weight: 700; color: var(--fg); letter-spacing: -.01em; }
+    .card-desc { font-size: .78rem; color: var(--muted); margin-top: 1px; }
+    .card-body { padding: 1.4rem; }
+
+    /* ══════════════════════════════════════════════
+       FORM ELEMENTS
+    ══════════════════════════════════════════════ */
+    .section-label {
+      font-family: var(--mono); font-size: .62rem; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase; color: var(--teal);
+      display: flex; align-items: center; gap: .5rem;
+      margin-bottom: 1rem; padding-bottom: .5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-label-num {
+      width: 18px; height: 18px; border-radius: 50%; flex-shrink:0;
+      background: var(--teal-dim); border: 1px solid rgba(0,211,189,.25);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .6rem; font-weight: 700; color: var(--teal);
+    }
+    .form-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+    .form-group { display: flex; flex-direction: column; gap: .35rem; }
+    .form-group.full { grid-column: 1/-1; }
+    label { font-size: .75rem; font-weight: 600; color: var(--fg2); }
+    label span { color: var(--teal); font-size: .65rem; margin-left:4px; }
+    input[type=text], input[type=number], input[type=date], select {
+      background: var(--bg2); border: 1.5px solid var(--border);
+      border-radius: var(--r); color: var(--fg);
+      font-family: var(--mono); font-size: .8rem; padding: .5rem .7rem;
+      width: 100%; transition: border-color .15s, box-shadow .15s;
+    }
+    input::placeholder { color: oklch(40% .02 250); }
+    input:focus, select:focus {
+      outline: none; border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(0,211,189,.13);
+    }
+    select option { background: var(--card); }
+
+    /* Checkbox group */
+    .check-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px,1fr)); gap: .5rem; }
+    .check-item {
+      display: flex; align-items: flex-start; gap: .55rem;
+      padding: .55rem .7rem; border-radius: var(--r);
+      border: 1px solid var(--border); background: var(--bg2);
+      cursor: pointer; transition: border-color .12s, background .12s;
+    }
+    .check-item:hover { border-color: rgba(0,211,189,.35); background: var(--teal-soft); }
+    .check-item input[type=checkbox] { width: 14px; height: 14px; margin-top: 2px; accent-color: var(--teal); flex-shrink:0; }
+    .check-item label { font-size: .75rem; color: var(--fg2); cursor: pointer; line-height: 1.4; }
+    .check-item label strong { display:block; color:var(--fg); font-size: .78rem; margin-bottom:1px; }
+
+    /* BMI tooltip */
+    .bmi-display {
+      font-family: var(--mono); font-size: .72rem; padding: .35rem .6rem;
+      border-radius: 6px; background: var(--teal-dim); color: var(--teal);
+      border: 1px solid rgba(0,211,189,.2); display: inline-block; margin-top: .3rem;
+    }
+
+    /* Submit */
+    .btn-primary {
+      background: var(--teal); color: #000; font-family: var(--sans);
+      font-size: .85rem; font-weight: 800; padding: .75rem 2rem;
+      border-radius: var(--r); border: none; cursor: pointer;
+      letter-spacing: .02em; transition: opacity .15s, transform .12s;
+      display: inline-flex; align-items: center; gap: .5rem;
+    }
+    .btn-primary:hover { opacity: .9; transform: translateY(-1px); }
+    .btn-primary:active { transform: translateY(0); }
+    .btn-sec {
+      background: transparent; color: var(--muted); font-family: var(--sans);
+      font-size: .8rem; font-weight: 600; padding: .65rem 1.2rem;
+      border-radius: var(--r); border: 1.5px solid var(--border); cursor: pointer;
+      transition: border-color .15s, color .15s;
+    }
+    .btn-sec:hover { border-color: var(--border2); color: var(--fg2); }
+
+    /* ══════════════════════════════════════════════
+       RESULTS
+    ══════════════════════════════════════════════ */
+    #results { display: none; }
+    #results.active { display: block; }
+
+    .results-header {
+      background: linear-gradient(135deg, var(--bg2) 0%, oklch(20% .025 195) 100%);
+      border: 1px solid var(--border);
+      border-radius: var(--r2);
+      padding: 1.5rem 1.4rem;
+      margin-bottom: 1.5rem;
+      display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between;
+    }
+    .results-patient-name {
+      font-size: 1.15rem; font-weight: 800; letter-spacing: -.02em; color: var(--fg);
+    }
+    .results-patient-meta {
+      font-family: var(--mono); font-size: .72rem; color: var(--muted); margin-top: .25rem;
+    }
+    .results-stats { display: flex; flex-wrap: wrap; gap: .6rem; }
+    .stat-pill {
+      font-family: var(--mono); font-size: .65rem; font-weight: 600; padding: 4px 10px;
+      border-radius: 99px; border: 1px solid var(--border); background: var(--card);
+      color: var(--fg2); display: flex; align-items: center; gap: 5px;
+    }
+    .stat-pill .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); }
+    .stat-pill.warn .dot { background: var(--amber); }
+    .stat-pill.alert .dot { background: var(--red); }
+
+    /* Category sections */
+    .cat-section { margin-bottom: 1.5rem; }
+    .cat-title {
+      font-family: var(--mono); font-size: .62rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: .75rem;
+      padding: .4rem .8rem; border-radius: 5px; background: var(--bg2);
+      border: 1px solid var(--border); display: inline-block;
+    }
+
+    /* Exam item */
+    .exam-list { display: flex; flex-direction: column; gap: .65rem; }
+    .exam-item {
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--r2);
+      overflow: hidden; transition: border-color .12s;
+    }
+    .exam-item:hover { border-color: var(--border2); }
+    .exam-item-head {
+      padding: .85rem 1.1rem; display: flex; align-items: flex-start; gap: .9rem;
+      cursor: pointer; user-select: none;
+    }
+    .grade-badge {
+      font-family: var(--mono); font-size: .65rem; font-weight: 700;
+      padding: 3px 9px; border-radius: 6px; flex-shrink: 0; margin-top: 1px;
+      letter-spacing: .04em;
+    }
+    .grade-A { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.25); }
+    .grade-B { background: rgba(99,179,237,.1); color: #63b3ed; border: 1px solid rgba(99,179,237,.2); }
+    .grade-C { background: var(--amber-dim); color: var(--amber); border: 1px solid rgba(245,158,11,.2); }
+    .grade-D { background: var(--red-dim); color: var(--red); border: 1px solid rgba(248,113,113,.2); }
+    .grade-I { background: var(--gray-dim); color: var(--muted); border: 1px solid var(--border); }
+    .exam-info { flex: 1; min-width: 0; }
+    .exam-title { font-size: .88rem; font-weight: 700; color: var(--fg); letter-spacing: -.01em; }
+    .exam-pop { font-size: .73rem; color: var(--muted); margin-top: 2px; }
+    .exam-freq {
+      font-family: var(--mono); font-size: .65rem; color: var(--teal); margin-top: 5px;
+      display: flex; align-items: center; gap: 4px;
+    }
+    .exam-chevron {
+      margin-left: auto; flex-shrink: 0; color: var(--muted); margin-top: 2px;
+      transition: transform .2s;
+    }
+    .exam-item.open .exam-chevron { transform: rotate(180deg); }
+    .exam-details {
+      max-height: 0; overflow: hidden;
+      transition: max-height .25s ease, padding .15s;
+      padding: 0 1.1rem;
+    }
+    .exam-item.open .exam-details {
+      max-height: 400px; padding: 0 1.1rem .9rem;
+    }
+    .exam-detail-inner {
+      padding: .85rem 1rem;
+      border-top: 1px solid var(--border);
+      border-radius: 0 0 var(--r) var(--r);
+      background: var(--bg2);
+      font-size: .78rem; color: var(--fg2); line-height: 1.65;
+    }
+    .exam-detail-inner strong { color: var(--fg); }
+    .detail-row { display: flex; gap: .5rem; margin-bottom: .35rem; }
+    .detail-row .dk { font-family: var(--mono); font-size: .63rem; color: var(--muted); min-width: 80px; padding-top: 2px; text-transform: uppercase; letter-spacing: .05em; }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center; padding: 2.5rem 1rem;
+      color: var(--muted); font-size: .85rem;
+    }
+    .empty-state svg { margin-bottom: .75rem; opacity: .4; }
+
+    /* Info box */
+    .info-box {
+      border-radius: var(--r); border-left: 3px solid; padding: .75rem 1rem;
+      font-size: .78rem; line-height: 1.6; margin-bottom: 1rem;
+    }
+    .info-teal { background: var(--teal-soft); border-color: var(--teal); color: var(--fg2); }
+    .info-amber { background: var(--amber-dim); border-color: var(--amber); color: var(--fg2); }
+    .info-red   { background: var(--red-dim);   border-color: var(--red);   color: var(--fg2); }
+
+    /* Disclaimer */
+    .disclaimer {
+      background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r);
+      padding: .9rem 1.1rem; font-size: .72rem; color: var(--muted); line-height: 1.6;
+      margin-top: 2rem;
+    }
+    .disclaimer strong { color: var(--fg2); }
+
+    /* ── NOT RECOMMENDED SECTION ───────────────────────────── */
+    .notreq-section { margin-top: 2rem; }
+    .notreq-header {
+      display: flex; align-items: center; gap: .75rem;
+      padding: .9rem 1.2rem; border-radius: var(--r2);
+      background: var(--bg2); border: 1px solid var(--border);
+      cursor: pointer; user-select: none; transition: border-color .15s;
+      margin-bottom: 0;
+    }
+    .notreq-header:hover { border-color: var(--border2); }
+    .notreq-header-icon {
+      width: 30px; height: 30px; border-radius: 8px; flex-shrink: 0;
+      background: var(--red-dim); border: 1px solid rgba(248,113,113,.2);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .notreq-title { font-size: .9rem; font-weight: 700; color: var(--fg); flex: 1; }
+    .notreq-sub { font-size: .72rem; color: var(--muted); margin-top: 1px; }
+    .notreq-count {
+      font-family: var(--mono); font-size: .63rem; font-weight: 700;
+      padding: 3px 9px; border-radius: 99px;
+      background: var(--red-dim); color: var(--red); border: 1px solid rgba(248,113,113,.2);
+    }
+    .notreq-chevron { color: var(--muted); transition: transform .2s; flex-shrink:0; }
+    .notreq-section.open .notreq-chevron { transform: rotate(180deg); }
+    .notreq-body {
+      max-height: 0; overflow: hidden;
+      transition: max-height .3s ease;
+      border: 1px solid var(--border); border-top: none;
+      border-radius: 0 0 var(--r2) var(--r2);
+      background: var(--card);
+    }
+    .notreq-section.open .notreq-body { max-height: 9999px; }
+    .notreq-header.open-h {
+      border-radius: var(--r2) var(--r2) 0 0;
+      border-bottom-color: transparent;
+    }
+    .notreq-inner { padding: .75rem 1rem 1rem; display: flex; flex-direction: column; gap: .5rem; }
+
+    .nr-item {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--r); padding: .7rem .9rem;
+      display: flex; gap: .75rem; align-items: flex-start;
+      transition: border-color .12s;
+    }
+    .nr-item:hover { border-color: var(--border2); }
+    .nr-badge {
+      font-family: var(--mono); font-size: .6rem; font-weight: 700;
+      padding: 2px 7px; border-radius: 5px; flex-shrink: 0; margin-top: 1px;
+      letter-spacing: .04em;
+    }
+    .nr-badge-D { background: var(--red-dim); color: var(--red); border: 1px solid rgba(248,113,113,.2); }
+    .nr-badge-I { background: var(--gray-dim); color: var(--muted); border: 1px solid var(--border); }
+    .nr-badge-NR { background: var(--amber-dim); color: var(--amber); border: 1px solid rgba(245,158,11,.2); }
+    .nr-info { flex: 1; min-width: 0; }
+    .nr-title { font-size: .83rem; font-weight: 700; color: var(--fg); }
+    .nr-reason { font-size: .72rem; color: var(--muted); margin-top: 3px; line-height: 1.55; }
+    .nr-reason strong { color: var(--fg2); }
+
+    .notreq-legend {
+      padding: .6rem .9rem; font-size: .7rem; color: var(--muted);
+      border-top: 1px solid var(--border); line-height: 1.6;
+      display: flex; flex-wrap: wrap; gap: .75rem;
+    }
+    .legend-item { display: flex; align-items: center; gap: .35rem; }
+
+    /* Print button */
+    .results-actions { display: flex; gap: .6rem; flex-wrap: wrap; margin-top: 1.2rem; }
+    .btn-print {
+      font-family: var(--sans); font-size: .75rem; font-weight: 600; padding: .5rem 1rem;
+      border-radius: var(--r); border: 1.5px solid var(--border);
+      color: var(--muted); background: transparent; cursor: pointer;
+      display: inline-flex; align-items: center; gap: .4rem; transition: all .15s;
+    }
+    .btn-print:hover { border-color: var(--teal); color: var(--teal); }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border); padding: 1.5rem;
+      text-align: center; font-size: .72rem; color: var(--muted);
+    }
+    footer a { color: var(--teal); text-decoration: none; }
+
+    /* ══════════════════════════════════════════════
+       ANIMATIONS
+    ══════════════════════════════════════════════ */
+    @keyframes fadeUp {
+      from { opacity:0; transform: translateY(12px); }
+      to   { opacity:1; transform: translateY(0); }
+    }
+    .exam-item { animation: fadeUp .22s ease backwards; }
+    .exam-item:nth-child(1)  { animation-delay: .04s; }
+    .exam-item:nth-child(2)  { animation-delay: .07s; }
+    .exam-item:nth-child(3)  { animation-delay: .10s; }
+    .exam-item:nth-child(4)  { animation-delay: .13s; }
+    .exam-item:nth-child(5)  { animation-delay: .16s; }
+    .exam-item:nth-child(6)  { animation-delay: .19s; }
+    .exam-item:nth-child(7)  { animation-delay: .22s; }
+    .exam-item:nth-child(8)  { animation-delay: .25s; }
+
+    @media print {
+      .nav, .hero, .card:not(#results .card), #form-card, .results-actions, footer { display: none !important; }
+      #results { display: block !important; }
+      body { background: white; color: black; }
+      .card { border: 1px solid #ccc; background: white; }
+      .grade-A { background: #d1fae5; color: #065f46; border-color: #a7f3d0; }
+      .grade-B { background: #dbeafe; color: #1e40af; border-color: #bfdbfe; }
+    }
+
+    @media (max-width: 600px) {
+      .hero { padding: 2rem 1rem 1.5rem; }
+      .wrapper { padding: 1.5rem 1rem 3rem; }
+      .card-body { padding: 1rem; }
+      .form-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-brand" href="index.html">
+    <div class="nav-icon">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+    </div>
+    <div class="nav-name">Exame<span>Periódico</span></div>
+    <div class="nav-sep"></div>
+    <div class="nav-sub">Calculadora USPSTF</div>
+  </a>
+  <div class="nav-right">
+    <span class="nav-badge">USPSTF 2025</span>
+    <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      lucascardio.com.br
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-eyebrow">Medicina Preventiva Baseada em Evidências</div>
+  <h1>Calculadora de <em>Exame Periódico</em></h1>
+  <p class="hero-sub">
+    Recomendações de rastreamento individualizadas pelas diretrizes <strong style="color:var(--fg)">USPSTF 2025</strong>.
+    Preencha os dados clínicos para gerar um plano personalizado baseado em graus de evidência A e B.
+  </p>
+  <div class="hero-tags">
+    <span class="hero-tag">USPSTF Graus A · B · C · D · I</span>
+    <span class="hero-tag">Rastreamento Personalizado</span>
+    <span class="hero-tag">90+ Recomendações</span>
+    <span class="hero-tag">Dr. Lucas Ferreira Silva</span>
+  </div>
+</header>
+
+<main class="wrapper">
+
+  <!-- FORM CARD -->
+  <div class="card" id="form-card">
+    <div class="card-header">
+      <div class="card-header-icon">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <div>
+        <div class="card-title">Dados Clínicos do Paciente</div>
+        <div class="card-desc">Preencha os campos para gerar recomendações individualizadas</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <form id="patient-form" onsubmit="return false;">
+
+        <!-- SEÇÃO 1: IDENTIFICAÇÃO -->
+        <div class="section-label">
+          <div class="section-label-num">1</div>
+          Identificação e Dados Demográficos
+        </div>
+        <div class="form-grid">
+          <div class="form-group full">
+            <label>Nome do Paciente</label>
+            <input type="text" id="name" placeholder="Nome completo" autocomplete="off" />
+          </div>
+          <div class="form-group">
+            <label>Data de Nascimento <span>*</span></label>
+            <input type="date" id="dob" required />
+          </div>
+          <div class="form-group">
+            <label>Sexo Biológico <span>*</span></label>
+            <select id="sex" required>
+              <option value="">Selecione...</option>
+              <option value="male">Masculino</option>
+              <option value="female">Feminino</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Raça / Etnia</label>
+            <select id="race">
+              <option value="">Não especificado</option>
+              <option value="white">Branca</option>
+              <option value="black">Negra / Parda</option>
+              <option value="asian">Asiática</option>
+              <option value="hispanic">Hispânica / Latina</option>
+              <option value="other">Outra</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- SEÇÃO 2: MEDIDAS CLÍNICAS -->
+        <div class="section-label">
+          <div class="section-label-num">2</div>
+          Medidas Clínicas
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Peso (kg)</label>
+            <input type="number" id="weight" placeholder="Ex: 72" min="30" max="300" step="0.1" oninput="calcBMI()" />
+          </div>
+          <div class="form-group">
+            <label>Altura (cm)</label>
+            <input type="number" id="height" placeholder="Ex: 170" min="100" max="250" oninput="calcBMI()" />
+          </div>
+          <div class="form-group">
+            <label>IMC calculado</label>
+            <div id="bmi-display" class="bmi-display" style="margin-top:.5rem">—</div>
+          </div>
+          <div class="form-group">
+            <label>Pressão Arterial Sistólica (mmHg)</label>
+            <input type="number" id="systolic" placeholder="Ex: 120" min="80" max="250" />
+          </div>
+          <div class="form-group">
+            <label>Glicemia de Jejum (mg/dL)</label>
+            <input type="number" id="glucose" placeholder="Ex: 95" min="40" max="600" />
+          </div>
+          <div class="form-group">
+            <label>Colesterol Total (mg/dL)</label>
+            <input type="number" id="cholesterol" placeholder="Ex: 190" min="60" max="600" />
+          </div>
+        </div>
+
+        <!-- SEÇÃO 3: TABAGISMO -->
+        <div class="section-label">
+          <div class="section-label-num">3</div>
+          Tabagismo e Rastreamento de Câncer de Pulmão
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Status Tabagismo <span>*</span></label>
+            <select id="smoking" required onchange="toggleSmoking()">
+              <option value="never">Nunca fumou</option>
+              <option value="current">Fumante ativo</option>
+              <option value="former">Ex-fumante</option>
+            </select>
+          </div>
+          <div class="form-group" id="pack-years-group" style="display:none">
+            <label>Pack-years (maços × anos)</label>
+            <input type="number" id="pack-years" placeholder="Ex: 25" min="0" max="200" />
+          </div>
+          <div class="form-group" id="quit-years-group" style="display:none">
+            <label>Anos desde a cessação</label>
+            <input type="number" id="quit-years" placeholder="Ex: 5" min="0" max="80" />
+          </div>
+        </div>
+
+        <!-- SEÇÃO 4: COMORBIDADES -->
+        <div class="section-label">
+          <div class="section-label-num">4</div>
+          Comorbidades e Fatores de Risco
+        </div>
+        <div class="check-grid">
+          <label class="check-item">
+            <input type="checkbox" id="htn" /><label for="htn"><strong>Hipertensão Arterial</strong>Em tratamento ou diagnosticada</label>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" id="dm" /><label for="dm"><strong>Diabetes Mellitus tipo 2</strong>Diagnosticado (não gestacional)</label>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" id="dyslipidemia" /><label for="dyslipidemia"><strong>Dislipidemia</strong>Diagnosticada ou em tratamento</label>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" id="obesity" /><label for="obesity"><strong>Obesidade (IMC ≥30)</strong>Ou sobrepeso com comorbidade</label>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" id="depression" /><label for="depression"><strong>Depressão / Ansiedade</strong>História prévia ou atual</label>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" id="kidney" /><label for="kidney"><strong>Doença Renal Crônica</strong>TFG &lt;60 ou proteinúria</label>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" id="osteo" /><label for="osteo"><strong>Osteoporose</strong>Diagnóstico ou risco elevado</label>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" id="cvd" /><label for="cvd"><strong>DCV estabelecida</strong>IAM, AVC, DAP prévios</label>
+          </label>
+        </div>
+
+        <!-- SEÇÃO 5: HISTÓRICO FAMILIAR -->
+        <div class="section-label" style="margin-top:1.25rem">
+          <div class="section-label-num">5</div>
+          Histórico Familiar e Risco Específico
+        </div>
+        <div class="check-grid">
+          <label class="check-item">
+            <input type="checkbox" id="fam-cvd" /><label for="fam-cvd"><strong>Hist. Familiar: DCV Prematura</strong>IAM ou AVC em familiar de 1º grau (&lt;55 anos ♂ / &lt;65 anos ♀)</label>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" id="fam-breast" /><label for="fam-breast"><strong>Hist. Familiar: Ca. de Mama</strong>Familiar de 1º grau com BRCA1/2</label>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" id="fam-colon" /><label for="fam-colon"><strong>Hist. Familiar: CCR</strong>Familiar de 1º grau &lt;60 anos</label>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" id="fam-aaa" /><label for="fam-aaa"><strong>Hist. Familiar: Aneurisma Aorta</strong>Familiar de 1º grau</label>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" id="hiv-risk" /><label for="hiv-risk"><strong>Risco elevado: HIV / IST</strong>Comportamento de risco atual</label>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" id="tb-risk" /><label for="tb-risk"><strong>Risco elevado: Tuberculose</strong>Imigrante de região endêmica ou exposição</label>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" id="alcohol" /><label for="alcohol"><strong>Uso nocivo de Álcool</strong>≥14 drinques/semana (H) ou ≥7 (M)</label>
+          </label>
+        </div>
+
+        <!-- SEÇÃO 6: HISTÓRICO GINECOLÓGICO/OBSTÉTRICO (feminino) -->
+        <div id="female-section" style="display:none">
+          <div class="section-label" style="margin-top:1.25rem">
+            <div class="section-label-num">6</div>
+            Histórico Ginecológico e Obstétrico
+          </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Situação Atual</label>
+              <select id="pregnant">
+                <option value="no">Não grávida</option>
+                <option value="yes">Grávida</option>
+                <option value="postpartum">Pós-parto (&lt;1 ano)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Último Papanicolau</label>
+              <select id="last-pap">
+                <option value="unknown">Não sabe / nunca fez</option>
+                <option value="lt3">Há menos de 3 anos</option>
+                <option value="3to5">3–5 anos atrás</option>
+                <option value="gt5">Há mais de 5 anos</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Última Mamografia</label>
+              <select id="last-mammo">
+                <option value="unknown">Não sabe / nunca fez</option>
+                <option value="lt2">Há menos de 2 anos</option>
+                <option value="gt2">Há mais de 2 anos</option>
+              </select>
+            </div>
+          </div>
+          <div class="check-grid">
+            <label class="check-item">
+              <input type="checkbox" id="planning-pregnancy" /><label for="planning-pregnancy"><strong>Planejando Gravidez</strong>Nos próximos 12 meses</label>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" id="preeclampsia-risk" /><label for="preeclampsia-risk"><strong>Risco Elevado: Pré-eclâmpsia</strong>HAS, DM, obesidade ou gestação prévia com pré-eclâmpsia</label>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" id="sexually-active" /><label for="sexually-active"><strong>Sexualmente Ativa</strong>Com múltiplos parceiros ou sem preservativo</label>
+            </label>
+          </div>
+        </div>
+
+        <!-- AÇÕES -->
+        <div style="display:flex; gap:.75rem; margin-top:1.75rem; flex-wrap:wrap; align-items:center;">
+          <button class="btn-primary" onclick="generate()">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            Gerar Recomendações
+          </button>
+          <button class="btn-sec" onclick="resetForm()">Limpar formulário</button>
+        </div>
+
+        <div id="form-error" style="display:none; color:var(--red); font-size:.78rem; margin-top:.6rem;"></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results">
+
+    <div class="results-header">
+      <div>
+        <div class="results-patient-name" id="res-name">—</div>
+        <div class="results-patient-meta" id="res-meta">—</div>
+      </div>
+      <div>
+        <div class="results-stats" id="res-stats"></div>
+        <div class="results-actions">
+          <button class="btn-print" onclick="window.print()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            Imprimir / PDF
+          </button>
+          <button class="btn-print" onclick="scrollToForm()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            Editar dados
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="results-body"></div>
+
+    <!-- NOT RECOMMENDED SECTION -->
+    <div class="notreq-section" id="notreq-section" style="display:none">
+      <div class="notreq-header" id="notreq-toggle" onclick="toggleNotReq()">
+        <div class="notreq-header-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+        </div>
+        <div>
+          <div class="notreq-title">Exames NÃO recomendados por rotina</div>
+          <div class="notreq-sub">Grau D (contraindicados) · Grau I (evidência insuficiente) · Não avaliados pela USPSTF</div>
+        </div>
+        <span class="notreq-count" id="notreq-count">0</span>
+        <svg class="notreq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="notreq-body">
+        <div class="notreq-inner" id="notreq-body"></div>
+        <div class="notreq-legend">
+          <div class="legend-item"><span class="nr-badge nr-badge-D">D</span> USPSTF recomenda contra (malefícios ≥ benefícios)</div>
+          <div class="legend-item"><span class="nr-badge nr-badge-I">I</span> Evidência insuficiente para recomendar</div>
+          <div class="legend-item"><span class="nr-badge nr-badge-NR">NR</span> Não avaliado formalmente pela USPSTF</div>
+        </div>
+      </div>
+    </div>
+      <strong>⚕ Aviso clínico:</strong> Este instrumento é baseado nas diretrizes USPSTF (2025) e tem finalidade de suporte à decisão clínica. Não substitui a avaliação médica individualizada. Recomendações devem ser discutidas com o paciente considerando preferências, comorbidades, e julgamento clínico. Criado por <strong>Dr. Lucas Ferreira Silva</strong> — Cardiologista Intervencionista.
+      <a href="https://lucascardio.com.br" target="_blank" style="color:var(--teal);"> lucascardio.com.br</a>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  © 2026 Dr. Lucas Ferreira Silva · Baseado nas diretrizes
+  <a href="https://www.uspreventiveservicestaskforce.org/" target="_blank">USPSTF 2025</a>
+  · <a href="https://lucascardio.com.br">lucascardio.com.br</a>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   USPSTF RECOMMENDATIONS DATABASE — 2025
+   Grade: A = strong, B = moderate, C = small net benefit (individualized),
+          D = recommend against, I = insufficient evidence
+═══════════════════════════════════════════════════════════════ */
+const RECS = [
+
+  // ── CARDIOVASCULAR ─────────────────────────────────────────
+  {
+    id: 'bp',
+    category: 'Cardiovascular',
+    title: 'Rastreamento de Hipertensão Arterial',
+    grade: 'A',
+    population: 'Adultos ≥18 anos',
+    frequency: 'Anual (se PA normal) · A cada consulta',
+    description: 'Medir pressão arterial em adultos ≥18 anos. Confirmar diagnóstico de HAS com medições fora do consultório (MAPA ou MRPA) antes de iniciar tratamento.',
+    modalities: 'Esfigmomanômetro calibrado; confirmar com MAPA 24h ou monitorização residencial',
+    check: (p) => p.age >= 18,
+  },
+  {
+    id: 'aaa',
+    category: 'Cardiovascular',
+    title: 'Rastreamento de Aneurisma da Aorta Abdominal (AAA)',
+    grade: 'B',
+    population: 'Homens 65–75 anos com história de tabagismo',
+    frequency: 'Uma vez na vida (ultrassonografia)',
+    description: 'Rastreamento único com ultrassonografia abdominal para homens de 65–75 anos que já fumaram (≥100 cigarros ao longo da vida). Reduz mortalidade por ruptura de AAA.',
+    modalities: 'Ultrassonografia abdominal',
+    check: (p) => p.sex === 'male' && p.age >= 65 && p.age <= 75 && (p.smoking !== 'never' || p.packYears > 0),
+  },
+  {
+    id: 'statin',
+    category: 'Cardiovascular',
+    title: 'Uso Preventivo de Estatina (DCV primária)',
+    grade: 'B',
+    population: 'Adultos 40–75 anos com risco cardiovascular ≥10% em 10 anos e ≥1 fator de risco',
+    frequency: 'Discussão com paciente; iniciar se elegível',
+    description: 'Prescrever estatina de baixa a moderada intensidade para prevenção primária de DCV em adultos 40–75 anos sem história prévia de DCV e com ≥1 fator de risco (dislipidemia, diabetes, hipertensão ou tabagismo) e risco cardiovascular estimado ≥10% em 10 anos (calculador Pooled Cohort Equations).',
+    modalities: 'Pooled Cohort Equations (PCE) · Estatina baixa/moderada intensidade',
+    check: (p) => p.age >= 40 && p.age <= 75 && !p.cvd && (p.dyslipidemia || p.dm || p.htn || p.smoking !== 'never' || p.famCVD),
+  },
+  {
+    id: 'aspirin-cvd',
+    category: 'Cardiovascular',
+    title: 'AAS para Prevenção Primária de DCV',
+    grade: 'C',
+    population: 'Adultos 40–59 anos com risco DCV ≥10% em 10 anos',
+    frequency: 'Decisão individualizada',
+    description: 'A decisão de iniciar AAS para prevenção primária de DCV em adultos 40–59 anos com risco ≥10% deve ser individualizada. O benefício líquido é pequeno; avaliar risco de sangramento GI. Não recomendado rotineiramente em adultos ≥60 anos (Grau D). História familiar de DCV prematura aumenta o risco basal estimado.',
+    modalities: 'AAS 81mg/dia (baixa dose)',
+    check: (p) => p.age >= 40 && p.age <= 59 && !p.cvd && (p.htn || p.dm || p.dyslipidemia || p.famCVD),
+  },
+  {
+    id: 'dm-screening',
+    category: 'Cardiovascular / Metabólico',
+    title: 'Rastreamento de Pré-diabetes e DM Tipo 2',
+    grade: 'B',
+    population: 'Adultos 35–70 anos com sobrepeso ou obesidade (IMC ≥25)',
+    frequency: 'A cada 3 anos se normal; anual se pré-diabetes',
+    description: 'Rastreamento para pré-diabetes e DM tipo 2 em adultos 35–70 anos com IMC ≥25 kg/m². Intervenções de estilo de vida podem prevenir progressão para diabetes em pré-diabéticos.',
+    modalities: 'Glicemia de jejum (≥126 mg/dL = DM) · HbA1c (≥6,5% = DM) · TOTG',
+    check: (p) => p.age >= 35 && p.age <= 70 && (p.bmi >= 25 || p.obesity) && !p.dm,
+  },
+  {
+    id: 'obesity',
+    category: 'Cardiovascular / Metabólico',
+    title: 'Triagem e Intervenções para Obesidade',
+    grade: 'B',
+    population: 'Todos adultos ≥18 anos',
+    frequency: 'Em toda consulta; oferecer intervenção intensiva se IMC ≥30',
+    description: 'Medir peso e calcular IMC em todos os adultos. Para adultos com IMC ≥30, oferecer ou encaminhar para intervenção comportamental intensiva e multidisciplinar visando perda de peso (≥12 sessões no 1º ano).',
+    modalities: 'IMC · Circunferência abdominal · Programas comportamentais intensivos (≥12 sessões/ano)',
+    check: (p) => p.age >= 18,
+  },
+
+  // ── ONCOLOGIA ──────────────────────────────────────────────
+  {
+    id: 'breast',
+    category: 'Oncologia',
+    title: 'Rastreamento de Câncer de Mama',
+    grade: 'B',
+    population: 'Mulheres 40–74 anos (risco médio)',
+    frequency: 'Bienal (a cada 2 anos) · Discussão anual se 40–49',
+    description: 'Mamografia de rastreamento bienal para mulheres 40–74 anos com risco médio. Para mulheres de 40–49 anos, a decisão de iniciar o rastreamento deve ser individualizada considerando preferências e valores da paciente.',
+    modalities: 'Mamografia bilateral (digital ou tomossíntese)',
+    check: (p) => p.sex === 'female' && p.age >= 40 && p.age <= 74,
+  },
+  {
+    id: 'breast-brca',
+    category: 'Oncologia',
+    title: 'Avaliação de Risco BRCA1/2 e Aconselhamento Genético',
+    grade: 'B',
+    population: 'Mulheres com história pessoal ou familiar de Ca. mama, ovário, tubas ou peritônio',
+    frequency: 'Uma vez; encaminhar para aconselhamento genético se triagem positiva',
+    description: 'Avaliar mulheres com história familiar de Ca. de mama, ovário, tubas ou peritônio com ferramenta de triagem de risco familiar. Se positivo, encaminhar para aconselhamento genético e, se indicado, teste BRCA.',
+    modalities: 'Ferramentas: Ontario Family History Assessment Tool, Manchester Scoring System ou BRCAPRO',
+    check: (p) => p.sex === 'female' && (p.famBreast || p.age >= 30),
+  },
+  {
+    id: 'cervical',
+    category: 'Oncologia',
+    title: 'Rastreamento de Câncer do Colo Uterino',
+    grade: 'A',
+    population: 'Mulheres 21–65 anos',
+    frequency: '21–29 anos: Papanicolau a cada 3 anos · 30–65 anos: Pap a cada 3 anos OU HPV-hr a cada 5 anos OU coteste a cada 5 anos',
+    description: 'Rastreamento cervical para mulheres 21–65 anos. Não iniciar antes dos 21 anos. Mulheres de 30–65 anos podem usar citologia a cada 3 anos, teste HPV de alto risco isolado a cada 5 anos ou coteste (citologia + HPV) a cada 5 anos.',
+    modalities: 'Citologia (Papanicolau) · Teste HPV de alto risco (hrHPV) · Coteste',
+    check: (p) => p.sex === 'female' && p.age >= 21 && p.age <= 65,
+  },
+  {
+    id: 'colorectal',
+    category: 'Oncologia',
+    title: 'Rastreamento de Câncer Colorretal (CCR)',
+    grade: 'A/B',
+    population: 'Adultos 45–75 anos',
+    frequency: 'Depende da modalidade escolhida',
+    description: 'Rastreamento de CCR em adultos 45–75 anos (Grau A: 50–75; Grau B: 45–49). Modalidades aprovadas: colonoscopia a cada 10 anos, FIT anual, Cologuard a cada 3 anos, sigmoidoscopia a cada 5 anos. Decisão baseada em preferência do paciente, risco e disponibilidade.',
+    modalities: 'Colonoscopia (10 anos) · FIT anual · Cologuard (3 anos) · CT colonografia (5 anos) · Sangue oculto anual',
+    check: (p) => p.age >= 45 && p.age <= 75,
+  },
+  {
+    id: 'lung',
+    category: 'Oncologia',
+    title: 'Rastreamento de Câncer de Pulmão (LDCT)',
+    grade: 'B',
+    population: 'Adultos 50–80 anos, ≥20 pack-years, fumante ativo ou cessação há <15 anos',
+    frequency: 'Anual com LDCT',
+    description: 'Rastreamento anual com tomografia de tórax de baixa dose (LDCT) para adultos 50–80 anos com história de ≥20 pack-years que fumam atualmente ou pararam há menos de 15 anos. Descontinuar se abstinência ≥15 anos ou comorbidades limitantes.',
+    modalities: 'LDCT (low-dose CT) anual do tórax',
+    check: (p) => p.age >= 50 && p.age <= 80 && p.packYears >= 20 && (p.smoking === 'current' || (p.smoking === 'former' && p.quitYears < 15)),
+  },
+
+  // ── DOENÇAS INFECCIOSAS ────────────────────────────────────
+  {
+    id: 'hiv',
+    category: 'Doenças Infecciosas',
+    title: 'Rastreamento de HIV',
+    grade: 'A',
+    population: 'Adolescentes e adultos 15–65 anos (e fora desta faixa se alto risco)',
+    frequency: 'Uma vez na vida (risco médio) · Anual (alto risco)',
+    description: 'Rastrear HIV em todos os adolescentes e adultos de 15–65 anos. Rastreamento mais frequente (anual) em pessoas de alto risco: HSH, usuários de drogas IV, múltiplos parceiros, histórico de IST.',
+    modalities: 'Teste rápido HIV / ELISA de 4ª geração / Western Blot confirmatório',
+    check: (p) => p.age >= 15 && p.age <= 65,
+  },
+  {
+    id: 'hcv',
+    category: 'Doenças Infecciosas',
+    title: 'Rastreamento de Hepatite C (HCV)',
+    grade: 'B',
+    population: 'Adultos 18–79 anos',
+    frequency: 'Uma vez na vida (risco médio) · Periódico (alto risco)',
+    description: 'Rastreamento para infecção por HCV em todos os adultos 18–79 anos. Rastreamento periódico em pessoas com risco contínuo (usuários de drogas, hemofílicos expostos antes de 1992).',
+    modalities: 'Anti-HCV (ELISA) · RNA HCV quantitativo confirmatório',
+    check: (p) => p.age >= 18 && p.age <= 79,
+  },
+  {
+    id: 'hbv',
+    category: 'Doenças Infecciosas',
+    title: 'Rastreamento de Hepatite B (HBV)',
+    grade: 'B',
+    population: 'Adultos em risco elevado (imigrantes de regiões endêmicas, parceiros de portadores, HSH)',
+    frequency: 'Conforme risco individual',
+    description: 'Rastreamento de HBV em adolescentes e adultos com risco elevado: nascidos em regiões com HBsAg ≥2% (Ásia, África sub-saariana, Pacífico), parceiros sexuais de portadores, HSH, usuários de drogas IV.',
+    modalities: 'HBsAg · Anti-HBc total · Anti-HBs',
+    check: (p) => p.age >= 15 && p.hivRisk,
+  },
+  {
+    id: 'prep',
+    category: 'Doenças Infecciosas',
+    title: 'Profilaxia Pré-Exposição ao HIV (PrEP)',
+    grade: 'A',
+    population: 'Pessoas com risco substancialmente elevado de adquirir HIV',
+    frequency: 'Avaliar elegibilidade; prescrever se indicado',
+    description: 'Prescrever PrEP com terapia antirretroviral eficaz (TDF/FTC ou TAF/FTC) para pessoas com risco elevado de HIV. Inclui HSH ativos, casais sorodiscordantes, heterossexuais com múltiplos parceiros de alto risco, usuários de drogas IV.',
+    modalities: 'TDF/FTC 300/200mg (Truvada) · TAF/FTC (Descovy)',
+    check: (p) => p.hivRisk,
+  },
+  {
+    id: 'syphilis',
+    category: 'Doenças Infecciosas',
+    title: 'Rastreamento de Sífilis',
+    grade: 'A',
+    population: 'Adultos e adolescentes em risco elevado para sífilis',
+    frequency: 'Anual (ou mais frequente se alto risco)',
+    description: 'Rastreamento para sífilis em pessoas assintomáticas com risco elevado: HSH, pessoas com múltiplos parceiros, trabalhadores sexuais, usuários de drogas IV, pessoas privadas de liberdade.',
+    modalities: 'VDRL / RPR (triagem) · FTA-ABS ou TPHA (confirmatório)',
+    check: (p) => p.hivRisk || p.age <= 24,
+  },
+  {
+    id: 'clamydia',
+    category: 'Doenças Infecciosas',
+    title: 'Rastreamento de Clamídia e Gonorreia',
+    grade: 'B',
+    population: 'Mulheres sexualmente ativas ≤24 anos e mulheres ≥25 anos em risco elevado',
+    frequency: 'Anual',
+    description: 'Rastrear clamídia e gonorreia em todas as mulheres sexualmente ativas ≤24 anos e em mulheres ≥25 anos com risco elevado (novas/múltiplas parcerias, uso inconsistente de preservativo, histórico de IST).',
+    modalities: 'NAAT (PCR) para Chlamydia trachomatis e Neisseria gonorrhoeae na urina ou swab cervical',
+    check: (p) => p.sex === 'female' && ((p.age <= 24 && p.sexuallyActive) || (p.age >= 25 && p.hivRisk)),
+  },
+  {
+    id: 'tb',
+    category: 'Doenças Infecciosas',
+    title: 'Rastreamento de Tuberculose Latente (ILTB)',
+    grade: 'B',
+    population: 'Adultos ≥18 anos com risco elevado',
+    frequency: 'Uma vez; repetir em exposição contínua',
+    description: 'Rastrear ILTB em adultos com risco elevado: imigrantes de países com alta prevalência, contatos de casos bacilíferos, pessoas HIV+, imunossuprimidos, populações vulneráveis (moradores de rua, privados de liberdade).',
+    modalities: 'IGRA (QuantiFERON-TB Gold Plus) — preferido em vacinados com BCG · TST (PPD)',
+    check: (p) => p.tbRisk || (p.hivRisk && p.age >= 18),
+  },
+
+  // ── SAÚDE MENTAL ───────────────────────────────────────────
+  {
+    id: 'depression',
+    category: 'Saúde Mental',
+    title: 'Rastreamento de Depressão',
+    grade: 'B',
+    population: 'Adultos ≥19 anos (incluindo gestantes e puérperas)',
+    frequency: 'Anual (ou em toda consulta de rotina)',
+    description: 'Rastreamento para transtorno depressivo maior em todos os adultos ≥18 anos, incluindo gestantes e puérperas. Instrumentos validados: PHQ-2 seguido de PHQ-9 se positivo.',
+    modalities: 'PHQ-2 (triagem) → PHQ-9 (confirmação) · EPDS (pós-parto)',
+    check: (p) => p.age >= 19,
+  },
+  {
+    id: 'anxiety',
+    category: 'Saúde Mental',
+    title: 'Rastreamento de Transtornos de Ansiedade',
+    grade: 'B',
+    population: 'Adultos ≤64 anos (incluindo gestantes e puérperas)',
+    frequency: 'Periodicidade não definida; incluir em consultas de rotina',
+    description: 'Rastreamento para transtornos de ansiedade em adultos ≤64 anos, incluindo gestantes e puérperas. Instrumentos validados: GAD-2/GAD-7, GAD-7 Perinatal.',
+    modalities: 'GAD-2 (triagem) → GAD-7 (confirmação) · STAI',
+    check: (p) => p.age >= 18 && p.age <= 64,
+  },
+  {
+    id: 'alcohol',
+    category: 'Saúde Mental',
+    title: 'Rastreamento de Uso Nocivo de Álcool',
+    grade: 'B',
+    population: 'Adultos ≥18 anos (incluindo gestantes)',
+    frequency: 'Anual',
+    description: 'Rastreamento para uso nocivo de álcool em adultos ≥18 anos com intervenção breve para redução. Instrumentos: AUDIT-C (triagem) e AUDIT completo se positivo.',
+    modalities: 'AUDIT-C (3 perguntas) · AUDIT-10 · Intervenção breve (IB) e encaminhamento para tratamento',
+    check: (p) => p.age >= 18 || p.alcoholRisk,
+  },
+
+  // ── RASTREAMENTOS ESPECÍFICOS (MULHER) ────────────────────
+  {
+    id: 'osteoporosis',
+    category: 'Saúde da Mulher',
+    title: 'Rastreamento de Osteoporose',
+    grade: 'B',
+    population: 'Mulheres ≥65 anos; mulheres pós-menopáusicas <65 anos com risco aumentado',
+    frequency: 'Uma vez após 65 anos; repetir conforme FRAX',
+    description: 'Rastreamento para osteoporose com densitometria óssea (DXA) em mulheres ≥65 anos. Para mulheres pós-menopáusicas <65 anos, usar ferramenta FRAX para estimar risco de fratura; realizar DXA se risco equivalente ou maior que mulher branca de 65 anos sem fatores de risco.',
+    modalities: 'Densitometria óssea DXA (coluna lombar e fêmur) · FRAX (calculador de risco)',
+    check: (p) => p.sex === 'female' && (p.age >= 65 || (p.age >= 50 && p.osteo)),
+  },
+  {
+    id: 'preeclampsia-asp',
+    category: 'Saúde da Mulher / Gestação',
+    title: 'AAS para Prevenção de Pré-eclâmpsia',
+    grade: 'B',
+    population: 'Gestantes com risco elevado de pré-eclâmpsia após 12 semanas',
+    frequency: 'Iniciar entre 12–28 semanas (idealmente antes de 16 semanas)',
+    description: 'Prescrever AAS 81 mg/dia a partir de 12 semanas de gestação para prevenção de pré-eclâmpsia em gestantes com ≥1 fator de risco elevado: história de pré-eclâmpsia em gestação anterior, gestação múltipla, HAS crônica, DM tipo 1 ou 2, DRC, doenças autoimunes (LAE, SAF), IMC ≥30 na primeira gestação.',
+    modalities: 'AAS 81 mg/dia VO à noite a partir de 12–16 semanas',
+    check: (p) => p.sex === 'female' && p.pregnant === 'yes' && p.preeclampsiaRisk,
+  },
+  {
+    id: 'gestational-dm',
+    category: 'Saúde da Mulher / Gestação',
+    title: 'Rastreamento de Diabetes Gestacional',
+    grade: 'B',
+    population: 'Gestantes assintomáticas após 24 semanas de gestação',
+    frequency: 'Entre 24–28 semanas (ou na 1ª consulta pré-natal se fatores de risco)',
+    description: 'Rastreamento universal para diabetes gestacional após 24 semanas de gestação. Gestantes com fatores de risco (obesidade, história familiar DM, etnia asiática, SOP, pré-diabetes) devem ser rastreadas no 1º trimestre.',
+    modalities: 'TOTG 75g (critérios IADPSG) ou GJ + TOTG protocolo 2 etapas',
+    check: (p) => p.sex === 'female' && p.pregnant === 'yes',
+  },
+  {
+    id: 'folic-acid',
+    category: 'Saúde da Mulher / Gestação',
+    title: 'Suplementação de Ácido Fólico',
+    grade: 'A',
+    population: 'Pessoas com capacidade de engravidar',
+    frequency: 'Iniciar pelo menos 1 mês antes da concepção; manter até 12 semanas de gestação',
+    description: 'Todas as pessoas em idade fértil planejando engravidar devem suplementar com 0,4–0,8 mg de ácido fólico diariamente para prevenção de defeitos do tubo neural. Iniciar ao menos 1 mês antes da concepção.',
+    modalities: 'Ácido fólico 0,4–0,8 mg/dia VO (5 mg/dia se alto risco: gestação anterior com DTN, antiepilépticos)',
+    check: (p) => p.sex === 'female' && (p.planningPregnancy || p.pregnant === 'yes') && p.age <= 45,
+  },
+  {
+    id: 'ipv',
+    category: 'Saúde da Mulher',
+    title: 'Rastreamento de Violência por Parceiro Íntimo (VPI)',
+    grade: 'B',
+    population: 'Mulheres em idade reprodutiva (18–64 anos)',
+    frequency: 'Em consultas de rotina; oferecer encaminhamento se positivo',
+    description: 'Rastrear violência por parceiro íntimo (física, sexual, psicológica) em mulheres em idade reprodutiva com instrumentos validados. Oferecer encaminhamento para serviços de apoio se triagem positiva.',
+    modalities: 'HITS · HARK · PVS · AAS Screening Tool',
+    check: (p) => p.sex === 'female' && p.age >= 18 && p.age <= 64,
+  },
+
+  // ── SAÚDE PREVENTIVA GERAL ─────────────────────────────────
+  {
+    id: 'tobacco',
+    category: 'Saúde Preventiva',
+    title: 'Intervenção para Cessação do Tabagismo',
+    grade: 'A',
+    population: 'Adultos fumantes (incluindo gestantes)',
+    frequency: 'Em toda consulta; oferecer intervenção 5As',
+    description: 'Identificar todos os adultos que fumam e oferecer intervenção intensiva para cessação: aconselhamento comportamental + farmacoterapia de primeira linha (vareniclina, bupropiona, reposição de nicotina). Método 5As (Ask, Advise, Assess, Assist, Arrange).',
+    modalities: 'Vareniclina (1ª linha) · Bupropiona · TRN (adesivo, goma, pastilha, spray) · Nortriptilina',
+    check: (p) => p.smoking === 'current',
+  },
+  {
+    id: 'skin-cancer',
+    category: 'Saúde Preventiva',
+    title: 'Aconselhamento para Prevenção do Câncer de Pele (UV)',
+    grade: 'B',
+    population: 'Crianças, adolescentes e adultos jovens de 6 meses a 24 anos com pele clara',
+    frequency: 'Conforme consultas pediátricas e de jovens adultos',
+    description: 'Orientar sobre minimização da exposição à radiação UV (evitar sol no horário de pico, usar protetor solar FPS ≥30, evitar câmaras de bronzeamento) para prevenção de câncer de pele em pessoas de 6 meses a 24 anos com fotótipos I–III.',
+    modalities: 'Aconselhamento sobre uso de protetor solar · Roupas protetoras · Evitar exposição solar entre 10–16h',
+    check: (p) => p.age <= 24,
+  },
+];
+
+/* ═══════════════════════════════════════════════════════════════
+   NOT RECOMMENDED / INSUFFICIENT EVIDENCE DATABASE — USPSTF 2025
+   Sources: uspreventiveservicestaskforce.org
+   grade: 'D' = recommends against | 'I' = insufficient evidence | 'NR' = not evaluated
+═══════════════════════════════════════════════════════════════ */
+const NOT_RECS = [
+
+  // ── GRAU D — USPSTF RECOMENDA CONTRA ──────────────────────
+  {
+    id: 'nr-carotid',
+    grade: 'D',
+    title: 'Rastreamento de Estenose de Carótida Assintomática',
+    reason: 'USPSTF 2021: harms outweigh benefits na população geral assintomática. Falsos-positivos levam a endarterectomia desnecessária (risco de AVC perioperatório). Prevalência baixa na população geral; benefício da revascularização ≤ benefício do tratamento clínico isolado.',
+    check: (p) => p.age >= 40,
+  },
+  {
+    id: 'nr-ekg',
+    grade: 'D',
+    title: 'ECG de Repouso para Rastreamento de DCV',
+    reason: 'USPSTF 2012: não recomendado em adultos assintomáticos de baixo risco. Alto índice de falsos-positivos; cascata diagnóstica desnecessária. Para adultos de risco intermediário/alto, evidência insuficiente (Grau I). O ECG serve para diagnóstico de sintomáticos, não para rastreamento.',
+    check: (p) => p.age >= 18 && !p.cvd,
+  },
+  {
+    id: 'nr-thyroid-ca',
+    grade: 'D',
+    title: 'Rastreamento de Câncer de Tireoide (Palpação ou USG)',
+    reason: 'USPSTF 2017: malefícios superam benefícios. Sobrediagnóstico e sobretratamento significativos — maioria dos cânceres detectados por USG são papilares de baixo risco, sem impacto em mortalidade. Introdução do rastreamento populacinal na Coreia do Sul aumentou incidência 15x sem redução na mortalidade.',
+    check: (p) => p.age >= 18,
+  },
+  {
+    id: 'nr-pancreas',
+    grade: 'D',
+    title: 'Rastreamento de Câncer de Pâncreas (CA 19-9, USG, EUS)',
+    reason: 'USPSTF 2019 (reafirmado): doença rara, sem teste de rastreamento com acurácia adequada, e mesmo detecção precoce não melhora prognóstico de forma demonstrável na população geral. Falsos-positivos levam a procedimentos invasivos de alto risco.',
+    check: (p) => p.age >= 40,
+  },
+  {
+    id: 'nr-ovarian',
+    grade: 'D',
+    title: 'Rastreamento de Câncer de Ovário (CA-125, USG transvaginal)',
+    reason: 'USPSTF 2018: recomendado CONTRA em mulheres assintomáticas sem mutação BRCA ou síndrome hereditária. Rastreamento com CA-125 + USG não reduz mortalidade e aumenta taxa de cirurgias desnecessárias com complicações graves (5% de complicações sérias em ovariotomias por tumores benignos).',
+    check: (p) => p.sex === 'female',
+  },
+  {
+    id: 'nr-bladder',
+    grade: 'D',
+    title: 'Rastreamento de Câncer de Bexiga (citologia urinária, NMP22)',
+    reason: 'USPSTF 2021: recomendado CONTRA na população assintomática geral. Baixa prevalência, alta taxa de falsos-positivos, e evidência insuficiente de que detecção precoce melhora desfechos. Rastreamento deve ser reservado a pacientes de alto risco sintomáticos.',
+    check: (p) => p.age >= 18,
+  },
+  {
+    id: 'nr-testicular',
+    grade: 'D',
+    title: 'Rastreamento de Câncer de Testículo',
+    reason: 'USPSTF: recomendado CONTRA em adolescentes e adultos assintomáticos. Câncer de testículo é altamente tratável mesmo quando sintomático; rastreamento tem alto índice de falsos-positivos e leva a intervenções desnecessárias.',
+    check: (p) => p.sex === 'male',
+  },
+  {
+    id: 'nr-aspirin-60',
+    grade: 'D',
+    title: 'AAS para Prevenção Primária em ≥60 anos',
+    reason: 'USPSTF 2022: recomendado CONTRA em adultos ≥60 anos sem DCV estabelecida. O risco de sangramento gastrointestinal grave e hemorrágico intracraniano nesta faixa etária supera o pequeno benefício cardiovascular esperado.',
+    check: (p) => p.age >= 60 && !p.cvd,
+  },
+  {
+    id: 'nr-vitamins',
+    grade: 'D',
+    title: 'Vitamina E e Beta-Caroteno para Prevenção de DCV/Câncer',
+    reason: 'USPSTF 2022: recomendado CONTRA suplementação com vitamina E ou beta-caroteno para prevenção de DCV ou câncer. Beta-caroteno aumenta risco de câncer de pulmão em fumantes. Vitamina E sem evidência de benefício.',
+    check: (p) => p.age >= 18,
+  },
+
+  // ── GRAU I — EVIDÊNCIA INSUFICIENTE ───────────────────────
+  {
+    id: 'nr-tsh',
+    grade: 'I',
+    title: 'Rastreamento de Disfunção Tireoidiana (TSH) em Assintomáticos',
+    reason: 'USPSTF: evidência insuficiente. O TSH detecta disfunção subclínica, mas não há evidência robusta de que tratar disfunção tireoidiana subclínica assintomática melhore desfechos clínicos relevantes. Tratamento de hipotiroidismo subclínico está associado a sobretratamento significativo com levotiroxina.',
+    check: (p) => p.age >= 18,
+  },
+  {
+    id: 'nr-vitd',
+    grade: 'I',
+    title: 'Rastreamento de Deficiência de Vitamina D em Assintomáticos',
+    reason: 'USPSTF 2021: evidência insuficiente para rastreamento em adultos assintomáticos. Ensaios clínicos (VITAL trial, D-HEALTH) não demonstraram benefício da suplementação em indivíduos sem deficiência sintomática ou risco específico. Dosagemrotineira do 25(OH)D gera resultados falso-positivos e intervenções de valor incerto.',
+    check: (p) => p.age >= 18,
+  },
+  {
+    id: 'nr-cac',
+    grade: 'I',
+    title: 'Escore de Cálcio Coronariano (CAC) como Rastreamento Primário',
+    reason: 'USPSTF não avaliou formalmente o CAC como ferramenta de rastreamento isolada. Estudos observacionais mostram reclassificação de risco, mas ensaios clínicos randomizados demonstrando melhora de desfechos por sua adição às calculadoras de risco convencionais (PCE) são insuficientes. ACC/AHA 2019 o lista como modificador opcional.',
+    check: (p) => p.age >= 40 && !p.cvd,
+  },
+  {
+    id: 'nr-psa-5569',
+    grade: 'I',
+    title: 'PSA para Ca. de Próstata (55–69 anos) — Decisão Compartilhada',
+    reason: 'USPSTF 2018: Grau C (55–69 anos) — decisão individualizada após discussão informada sobre benefícios e riscos. Pequena redução de mortalidade (1–2 mortes evitadas por 1.000 rastreados) versus sobrediagnóstico expressivo (≈30–40%), com consequências do tratamento: disfunção erétil, incontinência, toxicidade intestinal. Para ≥70 anos: Grau D (não recomendado).',
+    check: (p) => p.sex === 'male' && p.age >= 55,
+  },
+
+  // ── NÃO AVALIADO (NR) ─────────────────────────────────────
+  {
+    id: 'nr-eas',
+    grade: 'NR',
+    title: 'Exame de Urina (EAS/EQU) de Rotina em Assintomáticos',
+    reason: 'Não avaliado formalmente pela USPSTF como ferramenta de rastreamento de rotina em adultos assintomáticos. Sociedades de medicina interna e medicina de família não recomendam o EAS universal; baixo valor preditivo positivo para doença renal ou infecções assintomáticas tratáveis. Indicado para rastreamento de bacteriúria apenas em gestantes (Grau B).',
+    check: (p) => p.age >= 18,
+  },
+  {
+    id: 'nr-b12',
+    grade: 'NR',
+    title: 'Vitamina B12 Sérica de Rotina em Assintomáticos',
+    reason: 'Não avaliado pela USPSTF. Deficiência de B12 é prevalente em idosos e vegetarianos, mas o rastreamento universal em assintomáticos sem fatores de risco não tem evidência robusta de custo-efetividade. Investigar apenas na presença de sintomas neurológicos, fatores de risco (gastrectomia, DM em uso de metformina, dieta vegana, >65 anos com baixa ingesta).',
+    check: (p) => p.age >= 18,
+  },
+  {
+    id: 'nr-liver',
+    grade: 'NR',
+    title: 'Enzimas Hepáticas (ALT, AST, GGT) de Rotina em Assintomáticos',
+    reason: 'Não avaliado pela USPSTF para rastreamento de doença hepática em assintomáticos sem fatores de risco. Elevação de transaminases tem causas múltiplas (esteatose, medicamentos, álcool, DM), baixa especificidade para patologia hepática grave. Em pacientes com fatores de risco (HCV, HBV, DM, obesidade, álcool), investigação pode ser justificada clinicamente.',
+    check: (p) => p.age >= 18,
+  },
+  {
+    id: 'nr-hemogram',
+    grade: 'NR',
+    title: 'Hemograma Completo de Rotina em Assintomáticos',
+    reason: 'Não avaliado pela USPSTF como rastreamento universal. Baixo rendimento diagnóstico em adultos assintomáticos sem indicação clínica específica. Pode gerar cascata diagnóstica por variações normais e falsos-positivos. Indicado quando há sintomas, fatores de risco para anemia (menstruação intensa, má absorção, ferropenia), ou monitorização de comorbidades.',
+    check: (p) => p.age >= 18,
+  },
+  {
+    id: 'nr-uricacid',
+    grade: 'NR',
+    title: 'Ácido Úrico Sérico de Rotina em Assintomáticos',
+    reason: 'Não avaliado pela USPSTF. Hiperuricemia assintomática não requer tratamento farmacológico de rotina — ensaios clínicos não demonstraram benefício do tratamento da hiperuricemia assintomática sobre desfechos cardiovasculares ou renais. Dosagem indicada na investigação de gota sintomática, litíase renal ou em pacientes em uso de medicamentos uricosúricos.',
+    check: (p) => p.age >= 18,
+  },
+  {
+    id: 'nr-ferritin',
+    grade: 'NR',
+    title: 'Ferritina / Ferro Sérico de Rotina em Assintomáticos',
+    reason: 'Não avaliado pela USPSTF para rastreamento universal. Rastreamento de hemocromatose hereditária: USPSTF concluiu evidência insuficiente (Grau I). Investigar deficiência de ferro apenas na presença de sintomas (fadiga, palidez) ou fatores de risco (menstruação intensa, gestação, gastrectomia, doença inflamatória intestinal).',
+    check: (p) => p.age >= 18,
+  },
+];
+
+/* ═══════════════════════════════════════════════════════════════
+   UTILITY FUNCTIONS
+═══════════════════════════════════════════════════════════════ */
+function calcAge(dob) {
+  const b = new Date(dob), today = new Date();
+  let age = today.getFullYear() - b.getFullYear();
+  const m = today.getMonth() - b.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < b.getDate())) age--;
+  return age;
+}
+
+function calcBMI() {
+  const w = parseFloat(document.getElementById('weight').value);
+  const h = parseFloat(document.getElementById('height').value) / 100;
+  const el = document.getElementById('bmi-display');
+  if (w > 0 && h > 0) {
+    const bmi = (w / (h * h)).toFixed(1);
+    let cat = bmi < 18.5 ? 'Abaixo do peso' : bmi < 25 ? 'Peso normal' : bmi < 30 ? 'Sobrepeso' : 'Obesidade';
+    el.textContent = `IMC ${bmi} — ${cat}`;
+    el.style.color = bmi >= 30 ? 'var(--amber)' : bmi >= 25 ? 'var(--fg2)' : 'var(--teal)';
+    el.style.background = bmi >= 30 ? 'var(--amber-dim)' : bmi >= 25 ? 'var(--gray-dim)' : 'var(--teal-dim)';
+    el.style.borderColor = bmi >= 30 ? 'rgba(245,158,11,.2)' : bmi >= 25 ? 'var(--border)' : 'rgba(0,211,189,.2)';
+  } else {
+    el.textContent = '—';
+    el.style.color = el.style.background = el.style.borderColor = '';
+  }
+}
+
+function toggleSmoking() {
+  const v = document.getElementById('smoking').value;
+  document.getElementById('pack-years-group').style.display = v !== 'never' ? '' : 'none';
+  document.getElementById('quit-years-group').style.display = v === 'former' ? '' : 'none';
+}
+
+// Show/hide female-specific section
+document.getElementById('sex').addEventListener('change', function() {
+  document.getElementById('female-section').style.display = this.value === 'female' ? '' : 'none';
+});
+
+function resetForm() {
+  document.getElementById('patient-form').reset();
+  document.getElementById('female-section').style.display = 'none';
+  document.getElementById('pack-years-group').style.display = 'none';
+  document.getElementById('quit-years-group').style.display = 'none';
+  document.getElementById('bmi-display').textContent = '—';
+  document.getElementById('results').classList.remove('active');
+  document.getElementById('form-error').style.display = 'none';
+}
+
+function scrollToForm() {
+  document.getElementById('form-card').scrollIntoView({ behavior: 'smooth' });
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MAIN GENERATION LOGIC
+═══════════════════════════════════════════════════════════════ */
+function generate() {
+  const errEl = document.getElementById('form-error');
+  errEl.style.display = 'none';
+
+  const dob = document.getElementById('dob').value;
+  const sex = document.getElementById('sex').value;
+  if (!dob || !sex) {
+    errEl.textContent = '⚠ Preencha ao menos a data de nascimento e o sexo biológico para gerar recomendações.';
+    errEl.style.display = 'block';
+    return;
+  }
+
+  const age = calcAge(dob);
+  if (age < 0 || age > 130) {
+    errEl.textContent = '⚠ Data de nascimento inválida.';
+    errEl.style.display = 'block';
+    return;
+  }
+
+  const w = parseFloat(document.getElementById('weight').value) || 0;
+  const h = parseFloat(document.getElementById('height').value) / 100 || 0;
+  const bmi = (w > 0 && h > 0) ? w / (h * h) : 0;
+
+  const smoking = document.getElementById('smoking').value;
+  const packYears = parseFloat(document.getElementById('pack-years').value) || 0;
+  const quitYears = parseFloat(document.getElementById('quit-years').value) || 0;
+
+  const p = {
+    name: document.getElementById('name').value || 'Paciente',
+    dob, age, sex, bmi,
+    smoking, packYears, quitYears,
+    systolic: parseFloat(document.getElementById('systolic').value) || 0,
+    glucose: parseFloat(document.getElementById('glucose').value) || 0,
+    cholesterol: parseFloat(document.getElementById('cholesterol').value) || 0,
+    htn: document.getElementById('htn').checked,
+    dm: document.getElementById('dm').checked,
+    dyslipidemia: document.getElementById('dyslipidemia').checked,
+    obesity: document.getElementById('obesity').checked || bmi >= 30,
+    depression: document.getElementById('depression').checked,
+    kidney: document.getElementById('kidney').checked,
+    osteo: document.getElementById('osteo').checked,
+    cvd: document.getElementById('cvd').checked,
+    famBreast: document.getElementById('fam-breast').checked,
+    famColon: document.getElementById('fam-colon').checked,
+    famAAA: document.getElementById('fam-aaa').checked,
+    famCVD: document.getElementById('fam-cvd').checked,
+    hivRisk: document.getElementById('hiv-risk').checked,
+    tbRisk: document.getElementById('tb-risk').checked,
+    alcoholRisk: document.getElementById('alcohol').checked,
+    // Female-specific
+    pregnant: sex === 'female' ? document.getElementById('pregnant').value : 'no',
+    planningPregnancy: sex === 'female' ? document.getElementById('planning-pregnancy').checked : false,
+    preeclampsiaRisk: sex === 'female' ? document.getElementById('preeclampsia-risk').checked : false,
+    sexuallyActive: sex === 'female' ? document.getElementById('sexually-active').checked : false,
+    lastPap: sex === 'female' ? document.getElementById('last-pap').value : 'lt3',
+    lastMammo: sex === 'female' ? document.getElementById('last-mammo').value : 'lt2',
+  };
+
+  // Run rules
+  const matched = RECS.filter(r => r.check(p));
+  const notMatched = NOT_RECS.filter(r => r.check(p));
+
+  // Group by category
+  const byCategory = {};
+  matched.forEach(r => {
+    if (!byCategory[r.category]) byCategory[r.category] = [];
+    byCategory[r.category].push(r);
+  });
+
+  renderResults(p, byCategory, matched.length);
+  renderNotRecs(p, notMatched);
+
+  document.getElementById('results').classList.add('active');
+  setTimeout(() => document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RENDER RESULTS
+═══════════════════════════════════════════════════════════════ */
+function renderResults(p, byCategory, total) {
+  // Header
+  document.getElementById('res-name').textContent = p.name;
+  document.getElementById('res-meta').textContent =
+    `${p.age} anos · ${p.sex === 'female' ? 'Feminino' : 'Masculino'} · ${new Date().toLocaleDateString('pt-BR', { dateStyle: 'full' })}`;
+
+  // Stats pills
+  const statsEl = document.getElementById('res-stats');
+  const pills = [
+    { label: `${total} recomendações`, cls: '' },
+  ];
+  if (p.bmi > 0) pills.push({ label: `IMC ${p.bmi.toFixed(1)}`, cls: p.bmi >= 30 ? 'warn' : '' });
+  if (p.smoking === 'current') pills.push({ label: 'Fumante ativo', cls: 'alert' });
+  if (p.smoking === 'former') pills.push({ label: 'Ex-fumante', cls: 'warn' });
+  if (p.htn) pills.push({ label: 'HAS', cls: 'warn' });
+  if (p.dm) pills.push({ label: 'DM2', cls: 'warn' });
+  if (p.cvd) pills.push({ label: 'DCV prévia', cls: 'alert' });
+  if (p.famCVD) pills.push({ label: 'HF DCV prematura', cls: 'warn' });
+  if (p.pregnant === 'yes') pills.push({ label: 'Gestante', cls: '' });
+
+  statsEl.innerHTML = pills.map(pill =>
+    `<div class="stat-pill ${pill.cls}"><div class="dot"></div>${pill.label}</div>`
+  ).join('');
+
+  // Body
+  const bodyEl = document.getElementById('results-body');
+  if (total === 0) {
+    bodyEl.innerHTML = `
+      <div class="empty-state">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <div>Nenhuma recomendação específica encontrada para este perfil.</div>
+      </div>`;
+    return;
+  }
+
+  let html = '';
+  const catOrder = ['Cardiovascular','Cardiovascular / Metabólico','Oncologia','Doenças Infecciosas','Saúde Mental','Saúde da Mulher','Saúde da Mulher / Gestação','Saúde Preventiva'];
+  const cats = catOrder.filter(c => byCategory[c]);
+  // Add any remaining categories not in order
+  Object.keys(byCategory).forEach(c => { if (!cats.includes(c)) cats.push(c); });
+
+  cats.forEach(cat => {
+    const recs = byCategory[cat];
+    if (!recs) return;
+    html += `<div class="cat-section"><div class="cat-title">${getCatIcon(cat)} ${cat}</div>`;
+    html += `<div class="exam-list">`;
+    recs.forEach((rec, i) => {
+      html += `
+        <div class="exam-item" id="ei-${rec.id}">
+          <div class="exam-item-head" onclick="toggleItem('${rec.id}')">
+            <span class="grade-badge grade-${rec.grade}">${rec.grade}</span>
+            <div class="exam-info">
+              <div class="exam-title">${rec.title}</div>
+              <div class="exam-pop">${rec.population}</div>
+              <div class="exam-freq">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                ${rec.frequency}
+              </div>
+            </div>
+            <svg class="exam-chevron" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="exam-details">
+            <div class="exam-detail-inner">
+              <div class="detail-row">
+                <span class="dk">Indicação</span>
+                <span>${rec.description}</span>
+              </div>
+              <div class="detail-row" style="margin-top:.5rem">
+                <span class="dk">Modalidade</span>
+                <span><strong>${rec.modalities}</strong></span>
+              </div>
+              <div class="detail-row" style="margin-top:.5rem">
+                <span class="dk">Grau USPSTF</span>
+                <span>${gradeDescription(rec.grade)}</span>
+              </div>
+            </div>
+          </div>
+        </div>`;
+    });
+    html += `</div></div>`;
+  });
+
+  bodyEl.innerHTML = html;
+}
+
+function toggleItem(id) {
+  const el = document.getElementById('ei-' + id);
+  el.classList.toggle('open');
+}
+
+function getCatIcon(cat) {
+  const icons = {
+    'Cardiovascular': '❤',
+    'Cardiovascular / Metabólico': '🫀',
+    'Oncologia': '🔬',
+    'Doenças Infecciosas': '🧫',
+    'Saúde Mental': '🧠',
+    'Saúde da Mulher': '♀',
+    'Saúde da Mulher / Gestação': '🤰',
+    'Saúde Preventiva': '🛡',
+  };
+  return icons[cat] || '📋';
+}
+
+function gradeDescription(g) {
+  const d = {
+    'A': '<strong style="color:var(--teal)">Grau A</strong> — USPSTF recomenda fortemente. Alta certeza de benefício substancial.',
+    'B': '<strong style="color:#63b3ed">Grau B</strong> — USPSTF recomenda. Alta certeza de benefício moderado ou moderada certeza de benefício substancial.',
+    'C': '<strong style="color:var(--amber)">Grau C</strong> — USPSTF recomenda oferecer seletivamente. Benefício líquido pequeno; decisão individualizada.',
+    'D': '<strong style="color:var(--red)">Grau D</strong> — USPSTF recomenda contra. Evidência de ausência de benefício líquido ou malefício.',
+    'I': '<strong style="color:var(--muted)">Grau I</strong> — Evidência insuficiente para recomendar a favor ou contra.',
+    'A/B': '<strong style="color:var(--teal)">Grau A</strong> (50–75 anos) / <strong style="color:#63b3ed">Grau B</strong> (45–49 anos).',
+  };
+  return d[g] || g;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RENDER NOT-RECOMMENDED SECTION
+═══════════════════════════════════════════════════════════════ */
+function renderNotRecs(p, items) {
+  const sec = document.getElementById('notreq-section');
+  const body = document.getElementById('notreq-body');
+  const count = document.getElementById('notreq-count');
+
+  if (!items.length) { sec.style.display = 'none'; return; }
+  sec.style.display = '';
+  count.textContent = items.length;
+
+  // Sort: D first, then I, then NR
+  const order = { D: 0, I: 1, NR: 2 };
+  items.sort((a, b) => (order[a.grade] || 9) - (order[b.grade] || 9));
+
+  body.innerHTML = items.map(item => `
+    <div class="nr-item">
+      <span class="nr-badge nr-badge-${item.grade}">${item.grade === 'NR' ? 'NR' : item.grade}</span>
+      <div class="nr-info">
+        <div class="nr-title">${item.title}</div>
+        <div class="nr-reason">${item.reason}</div>
+      </div>
+    </div>`).join('');
+}
+
+function toggleNotReq() {
+  const sec = document.getElementById('notreq-section');
+  const hdr = document.getElementById('notreq-toggle');
+  sec.classList.toggle('open');
+  hdr.classList.toggle('open-h');
+}
+</script>
+
+<!-- Analytics (preserve original) -->
+<script defer src="https://manus-analytics.com/umami" data-website-id="5ba0ed04-0e17-4793-83f1-7f985e158c77"></script>
+</body>
 </html>

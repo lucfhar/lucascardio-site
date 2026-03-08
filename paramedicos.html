@@ -1,151 +1,198 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
-    <!-- SEO -->
-    <meta name="description" content="Artigos de cardiologia intervencionista para médicos: acesso vascular pós-CABG, análises de ensaios clínicos e discussões baseadas em evidências científicas." />
-    <meta name="keywords" content="cardiologia intervencionista, cateterismo, revascularização, CABG, acesso radial, acesso femoral, RADIAL-CABG, artigos médicos" />
-    <meta name="author" content="Dr. Lucas Silva — Cardiologista Intervencionista" />
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
-
-    <!-- Open Graph -->
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content="Para Médicos — Artigos de Cardiologia Intervencionista | Dr. Lucas Silva" />
-    <meta property="og:description" content="Artigos técnicos e discussões sobre cardiologia intervencionista para médicos e profissionais de saúde." />
-    <meta property="og:url" content="https://www.lucascardio.com.br/paramedicos.html" />
-    <meta property="og:image" content="https://www.lucascardio.com.br/assets/img/og-image.jpg" />
-    <meta property="og:locale" content="pt_BR" />
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Para Médicos — Cardiologia Intervencionista" />
-    <meta name="twitter:description" content="Artigos técnicos sobre cardiologia intervencionista." />
-    <meta name="twitter:image" content="https://www.lucascardio.com.br/assets/img/og-image.jpg" />
-
-    <!-- Mobile -->
-    <meta name="theme-color" content="#64a19d" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-
-    <!-- Canonical -->
-    <link rel="canonical" href="https://www.lucascardio.com.br/paramedicos.html" />
-
-    <title>Para Médicos | Artigos de Cardiologia Intervencionista | Dr. Lucas Silva</title>
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-
-    <!-- Preconnect -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&family=Playfair+Display:wght@700&family=Varela+Round&display=swap" rel="stylesheet" />
-
-    <!-- Font Awesome -->
-    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous" defer></script>
-
-    <!-- Bootstrap 5.2.3 CSS (CDN) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
-
-    <!-- Custom CSS -->
-    <link href="css/styles.css" rel="stylesheet" />
-
-    <!-- JSON-LD: Breadcrumb -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-            {"@type":"ListItem","position":1,"name":"Home","item":"https://www.lucascardio.com.br"},
-            {"@type":"ListItem","position":2,"name":"Para Médicos","item":"https://www.lucascardio.com.br/paramedicos.html"}
-        ]
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>Para Médicos | Cardiologia Intervencionista | Dr. Lucas Silva</title>
+  <meta name="description" content="Artigos de cardiologia intervencionista para médicos: acesso vascular pós-CABG, análises de ensaios clínicos e discussões baseadas em evidências científicas." />
+  <meta name="author" content="Dr. Lucas Silva — Cardiologista Intervencionista" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Para Médicos — Cardiologia Intervencionista | Dr. Lucas Silva" />
+  <meta property="og:url" content="https://www.lucascardio.com.br/paramedicos.html" />
+  <link rel="canonical" href="https://www.lucascardio.com.br/paramedicos.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: oklch(65% .18 195);
+      --background: oklch(13% .018 250);
+      --foreground: oklch(93% .01 250);
+      --card: oklch(18.5% .018 250);
+      --muted: oklch(22% .018 250);
+      --muted-foreground: oklch(62% .02 250);
+      --border: oklch(28% .025 250);
+      --accent: oklch(24% .025 250);
+      --teal: #00d3bd;
+      --teal-dim: rgba(0,211,189,.12);
+      --radius: 0.625rem;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
     }
-    </script>
-
-    <!-- JSON-LD: MedicalWebPage -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "MedicalWebPage",
-        "name": "Artigos de Cardiologia Intervencionista para Médicos",
-        "description": "Artigos técnicos e discussões baseadas em evidências sobre cardiologia intervencionista.",
-        "url": "https://www.lucascardio.com.br/paramedicos.html",
-        "author": {"@type":"Physician","name":"Dr. Lucas Silva"},
-        "medicalAudience": {"@type":"MedicalAudience","audienceType":"Clinician"}
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--background); color: var(--foreground);
+      min-height: 100vh; display: flex; flex-direction: column;
+      line-height: 1.6; -webkit-font-smoothing: antialiased;
     }
-    </script>
+    nav.top-nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(18,20,27,.85); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem; height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--foreground); }
+    .nav-brand-icon {
+      width: 28px; height: 28px; border-radius: 7px; background: var(--teal);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .nav-brand-name { font-weight: 800; font-size: 1rem; letter-spacing: -.025em; line-height: 1; }
+    .nav-brand-name span { color: var(--teal); }
+    .nav-brand-sep { width: 1px; height: 14px; background: var(--border); margin: 0 6px; }
+    .nav-brand-sub { font-size: .7rem; font-weight: 500; color: var(--muted-foreground); }
+    .nav-actions { display: flex; align-items: center; gap: .5rem; }
+    .nav-link {
+      font-size: .75rem; font-weight: 600; padding: 5px 12px;
+      border-radius: 8px; border: 1.5px solid var(--primary);
+      color: var(--primary); background: transparent; text-decoration: none;
+      transition: background .15s, color .15s;
+      display: inline-flex; align-items: center; gap: 5px;
+    }
+    .nav-link:hover { background: var(--primary); color: #000; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+    main { flex: 1; padding: 2rem 0; }
+    .hero { padding: 3rem 0 2rem; border-bottom: 1px solid var(--border); }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .68rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--teal); margin-bottom: .75rem;
+    }
+    .hero-eyebrow::before { content: ''; display: block; width: 18px; height: 2px; background: var(--teal); border-radius: 1px; }
+    .hero h1 { font-size: clamp(1.5rem,4vw,2.2rem); font-weight: 800; line-height: 1.2; margin-bottom: .5rem; letter-spacing: -.02em; }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero-sub { color: var(--muted-foreground); font-size: .9rem; max-width: 600px; }
+    .page-grid { display: grid; grid-template-columns: 220px 1fr; gap: 2rem; margin-top: 2rem; align-items: start; }
+    @media (max-width: 768px) { .page-grid { grid-template-columns: 1fr; } }
+    .sidebar { position: sticky; top: 4rem; }
+    .sidebar-card { background: var(--card); border: 1px solid var(--border); border-radius: calc(var(--radius) + 2px); overflow: hidden; }
+    .sidebar-title { padding: .85rem 1rem; font-size: .65rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--teal); border-bottom: 1px solid var(--border); font-family: var(--font-mono); }
+    .side-nav { display: flex; flex-direction: column; padding: .5rem; }
+    .side-section-label { padding: .4rem .5rem .25rem; font-size: .6rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--muted-foreground); font-family: var(--font-mono); margin-top: .5rem; }
+    .side-link {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .45rem .75rem; border-radius: var(--radius);
+      font-size: .78rem; font-weight: 500; color: var(--muted-foreground);
+      text-decoration: none; cursor: pointer;
+      transition: background .12s, color .12s; border: none; background: none;
+      width: 100%; text-align: left;
+    }
+    .side-link:hover, .side-link.active { background: var(--teal-dim); color: var(--teal); }
+    .sidebar-divider { height: 1px; background: var(--border); margin: .5rem; }
+    .sidebar-note { padding: .75rem 1rem; font-size: .7rem; color: var(--muted-foreground); line-height: 1.5; }
+    .content-card { background: var(--card); border: 1px solid var(--border); border-radius: calc(var(--radius) + 2px); padding: 2rem; min-height: 400px; }
+    .article-panel { display: none; }
+    .article-panel.active { display: block; animation: fadeUp .25s ease; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .article-panel h3 { font-size: 1.3rem; font-weight: 800; letter-spacing: -.01em; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+    .article-panel h4 { font-size: .85rem; font-weight: 700; color: var(--teal); margin-bottom: .6rem; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: .05em; }
+    .article-panel h5 { font-size: .9rem; font-weight: 700; margin-bottom: .5rem; color: var(--foreground); }
+    .article-section { margin-bottom: 1.5rem; }
+    .article-section p { color: var(--muted-foreground); line-height: 1.75; font-size: .9rem; margin-bottom: .75rem; }
+    .article-section p strong { color: var(--foreground); }
+    .article-section ul { margin-left: 1.25rem; margin-bottom: .75rem; }
+    .article-section li { margin-bottom: .35rem; color: var(--muted-foreground); font-size: .9rem; line-height: 1.6; }
+    .article-highlight {
+      background: var(--teal-dim); border-left: 3px solid var(--teal);
+      border-radius: var(--radius); padding: 1rem 1.25rem; margin-bottom: 1.5rem;
+    }
+    .article-highlight h5 { color: var(--teal); font-size: .85rem; font-weight: 700; margin-bottom: .5rem; text-transform: uppercase; letter-spacing: .04em; font-family: var(--font-mono); }
+    .article-highlight p { color: var(--foreground); font-size: .875rem; margin-bottom: 0; }
+    .article-badge {
+      display: inline-flex; align-items: center;
+      background: var(--teal-dim); color: var(--teal);
+      border: 1px solid rgba(0,211,189,.25);
+      padding: 2px 10px; border-radius: 999px;
+      font-size: .7rem; font-weight: 700; font-family: var(--font-mono);
+      margin-right: .35rem; margin-bottom: .5rem;
+    }
+    .article-reference {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1rem;
+    }
+    .article-reference p { color: var(--muted-foreground); font-size: .8rem; line-height: 1.7; margin: 0; }
+    .article-reference p strong { color: var(--foreground); }
+    .article-reference p em { font-style: italic; color: var(--teal); }
+    footer { border-top: 1px solid var(--border); padding: 1.5rem 0; margin-top: 2rem; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; font-size: .75rem; color: var(--muted-foreground); text-align: center; }
+    .footer-inner a { color: var(--teal); text-decoration: none; }
+    @media (max-width: 768px) { .sidebar { position: static; } .content-card { padding: 1.25rem; } }
+  </style>
 </head>
+<body>
 
-<body class="bg-light">
-
-<!-- Header -->
-<header class="bg-black" role="banner">
-    <div class="container px-4 px-lg-5 py-5">
-        <div class="row align-items-center">
-            <div class="col-lg-9">
-                <h1 class="text-white mb-2" style="font-family:var(--ff-display);">Para Médicos</h1>
-                <p class="text-white-50 mb-0">Artigos e discussões sobre cardiologia intervencionista. Conteúdo técnico baseado em evidências científicas.</p>
-            </div>
-            <div class="col-lg-3 text-lg-end mt-3 mt-lg-0">
-                <a class="btn btn-primary" href="index.html" title="Voltar para Home">
-                    <i class="fas fa-arrow-left me-1"></i> Home
-                </a>
-            </div>
-        </div>
+<nav class="top-nav">
+  <a class="nav-brand" href="index.html">
+    <div class="nav-brand-icon">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
     </div>
-</header>
+    <div class="nav-brand-name">Lucas<span>Cardio</span></div>
+    <div class="nav-brand-sep"></div>
+    <div class="nav-brand-sub">Para Médicos</div>
+  </a>
+  <div class="nav-actions">
+    <a class="nav-link" href="index.html">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      Home
+    </a>
+    <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      lucascardio.com.br
+    </a>
+  </div>
+</nav>
 
-<main class="container px-4 px-lg-5 page-top-space pb-5">
-    <div class="row g-4">
+<main>
+  <div class="container">
+    <div class="hero">
+      <div class="hero-eyebrow">Para Médicos</div>
+      <h1>Artigos de <em>Cardiologia Intervencionista</em></h1>
+      <p class="hero-sub">Conteúdo técnico baseado em evidências científicas, destinado a médicos e profissionais de saúde. Dr. Lucas Ferreira Silva.</p>
+    </div>
 
-        <!-- Sidebar -->
-        <aside class="col-lg-3">
-            <div class="card sidebar-sticky" style="border:0;border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,.04);">
-                <div class="card-body">
-                    <h2 class="h6 text-uppercase mb-3" style="letter-spacing:.12rem;font-family:var(--ff-ui);">Artigos</h2>
+    <div class="page-grid">
+      <aside class="sidebar">
+        <div class="sidebar-card">
+          <div class="sidebar-title">Artigos</div>
+          <nav class="side-nav" aria-label="Menu de artigos">
+            <div class="side-section-label">Cardiologia Intervencionista</div>
+            <button class="side-link active" data-panel="home">Início</button>
+            <button class="side-link" data-panel="acesso-pos-cabg">Acesso Pós-CABG</button>
+            <div class="sidebar-divider"></div>
+            <a class="side-link" href="index.html">← Home</a>
+          </nav>
+          <div class="sidebar-note">Conteúdo destinado exclusivamente a profissionais de saúde.</div>
+        </div>
+      </aside>
 
-                    <nav class="side-nav" aria-label="Menu lateral de artigos">
-                        <div class="side-item has-submenu">
-                            <button class="side-link side-link-btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#submenuArtigos" aria-expanded="false" aria-controls="submenuArtigos">
-                                <span>Todos os artigos</span>
-                                <span class="side-caret" aria-hidden="true">›</span>
-                            </button>
-                            <div class="collapse side-submenu" id="submenuArtigos">
-                                <h6 class="px-2 py-2 text-uppercase small" style="letter-spacing:.08rem;color:#999;">Cardiologia Intervencionista</h6>
-                                <a class="side-sublink article-link" href="#acesso-pos-cabg" data-article="acesso-pos-cabg" title="Acesso vascular após CABG">Acesso Vascular Pós-CABG</a>
-                            </div>
-                        </div>
+      <div class="content-card">
+        <div id="articleContent">
 
-                        <a class="side-link mt-2" href="index.html">
-                            <span>Voltar (Home)</span>
-                            <span class="side-caret" aria-hidden="true">›</span>
-                        </a>
-                    </nav>
-
-                    <hr class="my-4" />
-                    <p class="small text-black-50 mb-0">Conteúdo destinado exclusivamente a profissionais de saúde.</p>
-                </div>
-            </div>
-        </aside>
-
-        <!-- Content -->
-        <div class="col-lg-9">
-            <div class="card" style="border:0;border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,.04);">
-                <div class="card-body">
-                    <div id="articleContent">
 
                         <!-- HOME -->
                         <section class="article-panel" data-panel="home">
-                            <h3 class="mb-3">Artigos de Cardiologia</h3>
-                            <p class="text-muted">Bem-vindo à seção dedicada a médicos e profissionais de saúde. Aqui você encontrará artigos técnicos, discussões baseadas em evidências e análises de estudos relevantes para a prática clínica em cardiologia.</p>
-                            <p class="text-muted"><strong>Como usar:</strong> Clique em um artigo no menu lateral para ver o conteúdo completo aqui. No computador, passe o mouse sobre "Todos os artigos" para abrir a lista. No celular, toque para expandir.</p>
+                            <h3>Artigos de Cardiologia</h3>
+                            <p>Bem-vindo à seção dedicada a médicos e profissionais de saúde. Aqui você encontrará artigos técnicos, discussões baseadas em evidências e análises de estudos relevantes para a prática clínica em cardiologia.</p>
+                            <p><strong>Como usar:</strong> Clique em um artigo no menu lateral para ver o conteúdo completo aqui. No computador, passe o mouse sobre "Todos os artigos" para abrir a lista. No celular, toque para expandir.</p>
                             <p class="text-muted mb-0"><strong>Nota:</strong> Este conteúdo é destinado exclusivamente a profissionais de saúde e tem caráter educacional. As decisões clínicas devem sempre considerar o contexto individual de cada paciente.</p>
                         </section>
 
                         <!-- ARTIGO 1: Acesso Vascular Pós-CABG -->
-                        <section class="article-panel d-none" data-panel="acesso-pos-cabg">
-                            <h3 class="mb-4">Acesso Vascular Após Revascularização Miocárdica Cirúrgica</h3>
+                        <section class="article-panel" data-panel="acesso-pos-cabg">
+                            <h3>Acesso Vascular Após Revascularização Miocárdica Cirúrgica</h3>
 
                             <div class="article-section">
                                 <span class="article-badge">Cardiologia Intervencionista</span>
@@ -217,19 +264,38 @@
                             </div>
                         </section>
 
-                    </div>
-
-                    <div class="small text-black-50 mt-3">Última atualização: Fevereiro de 2026</div>
-                </div>
-            </div>
+                    
         </div>
-
+        <div style="font-size:.72rem;color:var(--muted-foreground);margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border);">Última atualização: Fevereiro de 2026</div>
+      </div>
     </div>
+  </div>
 </main>
 
-<!-- Scripts -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" defer></script>
-<script src="js/scripts.js" defer></script>
+<footer>
+  <div class="footer-inner">
+    © 2026 Dr. Lucas Silva — Cardiologia Intervencionista · <a href="https://lucascardio.com.br">lucascardio.com.br</a>
+  </div>
+</footer>
 
+<script>
+const panels = document.querySelectorAll('.article-panel');
+const links = document.querySelectorAll('.side-link[data-panel]');
+
+function showPanel(panelId) {
+  panels.forEach(p => p.classList.remove('active'));
+  links.forEach(l => l.classList.remove('active'));
+  const panel = document.querySelector(`.article-panel[data-panel="${panelId}"]`);
+  const link = document.querySelector(`.side-link[data-panel="${panelId}"]`);
+  if (panel) panel.classList.add('active');
+  if (link) link.classList.add('active');
+}
+
+links.forEach(link => {
+  link.addEventListener('click', () => showPanel(link.dataset.panel));
+});
+
+showPanel('home');
+</script>
 </body>
 </html>
