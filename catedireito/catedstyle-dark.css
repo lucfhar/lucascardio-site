@@ -272,7 +272,6 @@ textarea:focus {
 }
 
 /* ── LAUDO ───────────────────────────────────────────────── */
-.laudo-section {}
 .laudo-layout { display: flex; gap: 1rem; flex-wrap: wrap; }
 .laudo-textarea-container { flex: 1; min-width: 200px; }
 .laudo-buttons-container { display: flex; flex-direction: column; gap: .5rem; min-width: 140px; }
