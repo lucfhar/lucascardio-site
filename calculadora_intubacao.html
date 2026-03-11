@@ -1,0 +1,967 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>Calculadora de Intubação Orotraqueal | Dr. Lucas Silva</title>
+  <meta name="description" content="Ferramenta interativa para cálculo de tamanho de tubo endotraqueal, profundidade de inserção, avaliação de via aérea difícil e Sequência Rápida de Intubação. Baseada em evidências." />
+  <meta name="author" content="Dr. Lucas Silva" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── DESIGN TOKENS ────────────────────────────────────── */
+    :root {
+      --primary: oklch(65% .18 195);
+      --primary-foreground: oklch(98% 0 0);
+      --background: oklch(13% .018 250);
+      --foreground: oklch(93% .01 250);
+      --card: oklch(18.5% .018 250);
+      --card-foreground: oklch(93% .01 250);
+      --muted: oklch(22% .018 250);
+      --muted-foreground: oklch(62% .02 250);
+      --border: oklch(28% .025 250);
+      --input: oklch(22% .02 250);
+      --destructive: oklch(60% .22 25);
+      --secondary: oklch(22% .022 250);
+      --secondary-foreground: oklch(88% .01 250);
+      --accent: oklch(24% .025 250);
+      --accent-foreground: oklch(90% .01 250);
+      --teal: #00d3bd;
+      --teal-dim: rgba(0,211,189,.12);
+      --amber: oklch(82.8% .189 84.429);
+      --red: oklch(63.7% .237 25.331);
+      --green: oklch(79.2% .209 151.711);
+      --radius: 0.625rem;
+      --spacing: 4px;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--background);
+      color: var(--foreground);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ───────────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(18,20,27,.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: .6rem;
+      text-decoration: none; color: var(--foreground);
+    }
+    .nav-brand-icon {
+      width: 28px; height: 28px; border-radius: 7px;
+      background: var(--teal); display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-weight: 700; font-size: .9rem; color: #000;
+    }
+    .nav-brand-name { font-weight: 800; font-size: 1rem; letter-spacing: -.025em; line-height: 1; }
+    .nav-brand-name span { color: var(--teal); }
+    .nav-brand-sep { width: 1px; height: 14px; background: var(--border); margin: 0 6px; }
+    .nav-brand-sub { font-size: .7rem; font-weight: 500; color: var(--muted-foreground); }
+    .nav-actions { display: flex; align-items: center; gap: .5rem; }
+    .nav-badge {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 999px; background: var(--teal-dim);
+      color: var(--teal); border: 1px solid rgba(0,211,189,.25);
+      white-space: nowrap;
+    }
+
+    /* ── LAYOUT ────────────────────────────────────────────── */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+    .section { padding: 3rem 0; }
+
+    /* ── HERO ──────────────────────────────────────────────── */
+    .hero {
+      padding: 3.5rem 0 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .7rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--teal);
+      margin-bottom: 1rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 20px; height: 2px;
+      background: var(--teal); border-radius: 1px;
+    }
+    .hero h1 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 800; line-height: 1.2;
+      margin-bottom: .75rem; letter-spacing: -.02em;
+    }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero-sub {
+      color: var(--muted-foreground); font-size: .95rem;
+      max-width: 620px; margin-bottom: 1.5rem;
+    }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 6px; border: 1px solid var(--border);
+      color: var(--muted-foreground); background: var(--card);
+      font-family: var(--font-mono);
+    }
+
+    /* ── CARDS ─────────────────────────────────────────────── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .card-header {
+      display: flex; align-items: flex-start;
+      gap: .75rem; margin-bottom: 1.25rem;
+      padding-bottom: 1rem; border-bottom: 1px solid var(--border);
+    }
+    .card-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+      background: var(--teal-dim); color: var(--teal);
+    }
+    .card-title {
+      font-weight: 700; font-size: 1rem; margin-bottom: 2px;
+    }
+    .card-subtitle { font-size: .78rem; color: var(--muted-foreground); }
+
+    /* ── FORM ELEMENTS ─────────────────────────────────────── */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-label {
+      font-size: .78rem; font-weight: 600; color: var(--muted-foreground);
+    }
+    .form-label span {
+      font-size: .7rem; font-weight: 400; opacity: .7;
+    }
+    .form-input {
+      background: var(--input);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--foreground);
+      font-family: var(--font-mono);
+      font-size: .85rem;
+      padding: 8px 12px;
+      transition: border-color .15s, box-shadow .15s;
+      outline: none;
+      width: 100%;
+    }
+    .form-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(0,211,189,.15);
+    }
+    .form-input::-webkit-inner-spin-button { opacity: .4; }
+    .form-select {
+      background: var(--input);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--foreground);
+      font-family: var(--font-sans);
+      font-size: .85rem;
+      padding: 8px 12px;
+      outline: none; width: 100%;
+      cursor: pointer;
+      transition: border-color .15s;
+    }
+    .form-select:focus { border-color: var(--primary); }
+
+    /* Checkbox group */
+    .check-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: .5rem;
+    }
+    .check-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 10px 12px; border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--muted);
+      cursor: pointer; transition: background .15s, border-color .15s;
+      user-select: none;
+    }
+    .check-item:hover { background: var(--accent); border-color: var(--primary); }
+    .check-item.checked {
+      background: var(--teal-dim);
+      border-color: rgba(0,211,189,.4);
+    }
+    .check-item input { display: none; }
+    .check-box {
+      width: 16px; height: 16px; border-radius: 4px;
+      border: 1.5px solid var(--border);
+      flex-shrink: 0; margin-top: 1px;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .15s;
+    }
+    .check-item.checked .check-box {
+      background: var(--teal);
+      border-color: var(--teal);
+    }
+    .check-item.checked .check-box::after {
+      content: '✓'; color: #000; font-size: .7rem; font-weight: 700;
+    }
+    .check-label { font-size: .85rem; font-weight: 500; }
+
+    /* ── RESULT SECTION ────────────────────────────────────── */
+    .result-box {
+      background: var(--teal-dim);
+      border: 1px solid rgba(0,211,189,.3);
+      border-radius: calc(var(--radius) + 2px);
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
+    .result-label {
+      font-size: .75rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--teal);
+      margin-bottom: .5rem;
+    }
+    .result-value {
+      font-size: 2rem; font-weight: 800;
+      color: var(--teal); font-family: var(--font-mono);
+      margin-bottom: .5rem;
+    }
+    .result-unit {
+      font-size: .85rem; color: var(--muted-foreground);
+    }
+
+    /* ── DRUG TABLE ────────────────────────────────────────── */
+    .drug-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    .drug-table th {
+      background: var(--muted);
+      border: 1px solid var(--border);
+      padding: 10px;
+      text-align: left;
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--muted-foreground);
+    }
+    .drug-table td {
+      border: 1px solid var(--border);
+      padding: 10px;
+      font-size: .85rem;
+    }
+    .drug-table tr:nth-child(even) {
+      background: rgba(0, 211, 189, .05);
+    }
+    .drug-name {
+      font-weight: 600;
+      color: var(--foreground);
+    }
+    .drug-dose {
+      font-family: var(--font-mono);
+      color: var(--teal);
+      font-weight: 600;
+    }
+    .drug-note {
+      font-size: .75rem;
+      color: var(--muted-foreground);
+      font-style: italic;
+    }
+    .warning-badge {
+      display: inline-block;
+      background: rgba(239, 68, 68, .15);
+      color: var(--red);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: .7rem;
+      font-weight: 600;
+      margin-left: 4px;
+    }
+
+    /* ── RISK BADGE ────────────────────────────────────────── */
+    .risk-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 12px; border-radius: var(--radius);
+      font-size: .8rem; font-weight: 600;
+      margin-top: 1rem;
+    }
+    .risk-low { background: rgba(79, 172, 254, .15); color: #4facfe; }
+    .risk-medium { background: rgba(251, 191, 36, .15); color: var(--amber); }
+    .risk-high { background: rgba(239, 68, 68, .15); color: var(--red); }
+
+    /* ── BUTTON ────────────────────────────────────────────── */
+    .btn {
+      background: var(--primary);
+      color: var(--primary-foreground);
+      border: none;
+      border-radius: var(--radius);
+      padding: 10px 20px;
+      font-size: .85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity .15s;
+    }
+    .btn:hover { opacity: .9; }
+
+    /* ── TABS ──────────────────────────────────────────────── */
+    .tabs {
+      display: flex; gap: .5rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1.5rem;
+      overflow-x: auto;
+    }
+    .tab-btn {
+      background: none; border: none; cursor: pointer;
+      padding: 12px 16px; font-size: .85rem; font-weight: 600;
+      color: var(--muted-foreground);
+      border-bottom: 2px solid transparent;
+      transition: color .15s, border-color .15s;
+      white-space: nowrap;
+    }
+    .tab-btn:hover { color: var(--foreground); }
+    .tab-btn.active {
+      color: var(--teal);
+      border-bottom-color: var(--teal);
+    }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* ── RESPONSIVE ────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .check-grid { grid-template-columns: 1fr; }
+      .drug-table { font-size: .75rem; }
+      .drug-table th, .drug-table td { padding: 8px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-brand">
+      <div class="nav-brand-icon">🫁</div>
+      <div>
+        <div class="nav-brand-name">Intubação<span>Calc</span></div>
+        <div class="nav-brand-sub">Dr. Lucas Silva</div>
+      </div>
+    </a>
+    <div class="nav-actions">
+      <span class="nav-badge">Baseado em Evidências</span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-eyebrow">Calculadora Clínica</div>
+      <h1>Intubação <em>Orotraqueal</em></h1>
+      <p class="hero-sub">Ferramenta interativa para cálculo de tamanho de tubo endotraqueal, profundidade de inserção, avaliação de via aérea difícil e Sequência Rápida de Intubação com cálculo automático de drogas.</p>
+      <div class="hero-tags">
+        <span class="tag">Fórmula de Cole</span>
+        <span class="tag">LEMON Score</span>
+        <span class="tag">RSI - Drogas</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <section class="section">
+    <div class="container">
+      <!-- TABS -->
+      <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('pediatric')">Pediátrico</button>
+        <button class="tab-btn" onclick="switchTab('adult')">Adulto</button>
+        <button class="tab-btn" onclick="switchTab('difficult')">Via Aérea Difícil</button>
+        <button class="tab-btn" onclick="switchTab('rsi')">RSI - Drogas</button>
+      </div>
+
+      <!-- TAB: PEDIÁTRICO -->
+      <div id="pediatric" class="tab-content active">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">👶</div>
+            <div>
+              <div class="card-title">Cálculo Pediátrico</div>
+              <div class="card-subtitle">Fórmula de Cole para crianças de 1-5 anos</div>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Idade <span>(anos)</span></label>
+              <input type="number" id="ageYears" class="form-input" min="1" max="5" placeholder="Ex: 3" onchange="calculatePediatric()" oninput="calculatePediatric()">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Tipo de Tubo</label>
+              <select id="tubeType" class="form-select" onchange="calculatePediatric()">
+                <option value="uncuffed">Sem cuff</option>
+                <option value="cuffed">Com cuff</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="result-box">
+            <div class="result-label">Tamanho do Tubo</div>
+            <div class="result-value" id="tubeSize">—</div>
+            <div class="result-unit">milímetros (mm)</div>
+          </div>
+
+          <div class="result-box" style="background: rgba(79, 172, 254, .15); border-color: rgba(79, 172, 254, .3);">
+            <div class="result-label">Profundidade de Inserção</div>
+            <div class="result-value" id="insertionDepth" style="color: #4facfe;">—</div>
+            <div class="result-unit">centímetros (cm) - Regra de 3x</div>
+          </div>
+
+          <div style="margin-top: 1.5rem; padding: 1rem; background: var(--muted); border-radius: var(--radius); font-size: .85rem; color: var(--muted-foreground);">
+            <strong style="color: var(--foreground);">Parâmetros Ventilatórios Recomendados:</strong>
+            <ul style="margin-top: .5rem; margin-left: 1.5rem;">
+              <li>Volume corrente: 6-8 mL/kg</li>
+              <li>Frequência respiratória: 25-40 respirações/min</li>
+              <li>FiO₂ inicial: 1.0 (100%)</li>
+              <li>Confirmar posicionamento com RX de tórax</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: ADULTO -->
+      <div id="adult" class="tab-content">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">👨</div>
+            <div>
+              <div class="card-title">Cálculo em Adultos</div>
+              <div class="card-subtitle">Recomendações baseadas em sexo e anatomia</div>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Sexo</label>
+              <select id="sex" class="form-select" onchange="calculateAdult()">
+                <option value="male">Masculino</option>
+                <option value="female">Feminino</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Altura <span>(cm)</span></label>
+              <input type="number" id="height" class="form-input" min="140" max="220" placeholder="Ex: 170" onchange="calculateAdult()" oninput="calculateAdult()">
+            </div>
+          </div>
+
+          <div class="result-box">
+            <div class="result-label">Tamanho Recomendado</div>
+            <div class="result-value" id="adultTubeSize">—</div>
+            <div class="result-unit">milímetros (mm)</div>
+          </div>
+
+          <div class="result-box" style="background: rgba(79, 172, 254, .15); border-color: rgba(79, 172, 254, .3);">
+            <div class="result-label">Profundidade de Inserção</div>
+            <div class="result-value" id="adultDepth" style="color: #4facfe;">—</div>
+            <div class="result-unit">centímetros (cm) - Regra de 3x</div>
+          </div>
+
+          <div style="margin-top: 1.5rem; padding: 1rem; background: var(--muted); border-radius: var(--radius); font-size: .85rem; color: var(--muted-foreground);">
+            <strong style="color: var(--foreground);">Nomograma de Esianor et al. (JAMA Otolaryngology, 2022):</strong>
+            <ul style="margin-top: .5rem; margin-left: 1.5rem;">
+              <li><strong>≤ 160 cm:</strong> 7.0 mm</li>
+              <li><strong>161-170 cm:</strong> 7.5 mm</li>
+              <li><strong>171-180 cm:</strong> 8.0 mm</li>
+              <li><strong>181-190 cm:</strong> 8.5 mm</li>
+              <li><strong>> 190 cm:</strong> 9.0 mm</li>
+              <li style="margin-top: .5rem;"><em>Mulheres: reduzir 0.5 mm</em></li>
+              <li>Profundidade: altura/10 - 3 cm (Cherng et al.)</li>
+              <li>Confirmar posicionamento com RX de tórax</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: VIA AÉREA DIFÍCIL -->
+      <div id="difficult" class="tab-content">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">⚠️</div>
+            <div>
+              <div class="card-title">Avaliação de Via Aérea Difícil</div>
+              <div class="card-subtitle">LEMON Score e Mallampati</div>
+            </div>
+          </div>
+
+          <h3 style="margin-top: 1.5rem; margin-bottom: 1rem; font-size: 1rem; color: var(--foreground);">Critério LEMON</h3>
+
+          <div class="check-grid">
+            <label class="check-item" onclick="toggleCheck(this)">
+              <input type="checkbox" class="lemon-check">
+              <div class="check-box"></div>
+              <div class="check-label">L - Look: Anomalias faciais ou obesidade</div>
+            </label>
+
+            <label class="check-item" onclick="toggleCheck(this)">
+              <input type="checkbox" class="lemon-check">
+              <div class="check-box"></div>
+              <div class="check-label">E - Evaluate: Distância interincisiva &lt;3 dedos</div>
+            </label>
+
+            <label class="check-item" onclick="toggleCheck(this)">
+              <input type="checkbox" class="lemon-check">
+              <div class="check-box"></div>
+              <div class="check-label">E - Evaluate: Distância tireomentoniana &lt;2 dedos</div>
+            </label>
+
+            <label class="check-item" onclick="toggleCheck(this)">
+              <input type="checkbox" class="lemon-check">
+              <div class="check-box"></div>
+              <div class="check-label">O - Obstruction: Presença de obstrução</div>
+            </label>
+
+            <label class="check-item" onclick="toggleCheck(this)">
+              <input type="checkbox" class="lemon-check">
+              <div class="check-box"></div>
+              <div class="check-label">N - Neck: Mobilidade cervical limitada</div>
+            </label>
+          </div>
+
+          <h3 style="margin-top: 1.5rem; margin-bottom: 1rem; font-size: 1rem; color: var(--foreground);">Escore de Mallampati</h3>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Classificação</label>
+              <select id="mallampati" class="form-select" onchange="calculateDifficult()">
+                <option value="">Selecione...</option>
+                <option value="1">Classe I - Palato mole, úvula e pilares visíveis</option>
+                <option value="2">Classe II - Palato mole e úvula visíveis</option>
+                <option value="3">Classe III - Palato mole visível, úvula não visível</option>
+                <option value="4">Classe IV - Palato mole não visível</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="result-box" id="riskResult" style="display: none;">
+            <div class="result-label">Risco de Via Aérea Difícil</div>
+            <div id="riskLevel" style="font-size: 1.2rem; font-weight: 700; margin-top: .5rem;"></div>
+          </div>
+
+          <div style="margin-top: 1.5rem; padding: 1rem; background: var(--muted); border-radius: var(--radius); font-size: .85rem; color: var(--muted-foreground);">
+            <strong style="color: var(--foreground);">Interpretação do LEMON Score:</strong>
+            <ul style="margin-top: .5rem; margin-left: 1.5rem;">
+              <li><strong>0-1 pontos:</strong> Baixo risco de via aérea difícil</li>
+              <li><strong>2-3 pontos:</strong> Risco intermediário</li>
+              <li><strong>≥4 pontos:</strong> Alto risco - considerar abordagem alternativa</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: RSI - DROGAS -->
+      <div id="rsi" class="tab-content">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">💊</div>
+            <div>
+              <div class="card-title">Sequência Rápida de Intubação</div>
+              <div class="card-subtitle">Cálculo automático de drogas baseado no peso</div>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Peso do Paciente <span>(kg)</span></label>
+              <input type="number" id="patientWeight" class="form-input" min="10" max="200" placeholder="Ex: 70" onchange="calculateRSI()" oninput="calculateRSI()">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Estado Hemodinâmico</label>
+              <select id="hemodynamic" class="form-select" onchange="calculateRSI()">
+                <option value="stable">Estável</option>
+                <option value="shock">Choque/Hipotensão</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="rsiResults" style="margin-top: 2rem;">
+            <h3 style="font-size: 1rem; color: var(--foreground); margin-bottom: 1rem;">
+              Ordem de Administração: <strong style="color: var(--teal);">Analgésico → Sedativo → Bloqueador Neuromuscular</strong>
+            </h3>
+
+            <!-- ANALGÉSICO -->
+            <div style="margin-bottom: 2rem;">
+              <h4 style="font-size: .95rem; color: var(--teal); margin-bottom: 1rem; font-weight: 700;">1️⃣ ANALGÉSICO</h4>
+              <table class="drug-table">
+                <thead>
+                  <tr>
+                    <th>Droga</th>
+                    <th>Dose (mg/kg)</th>
+                    <th>Dose Total</th>
+                    <th>Volume (mL)</th>
+                    <th>Observações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="drug-name">Fentanil</td>
+                    <td>3 mcg/kg</td>
+                    <td class="drug-dose" id="fentanilDose">—</td>
+                    <td class="drug-dose" id="fentanilVolume">—</td>
+                    <td class="drug-note">Diluir em soro fisiológico. Avaliar indicação.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- SEDATIVO -->
+            <div style="margin-bottom: 2rem;">
+              <h4 style="font-size: .95rem; color: var(--teal); margin-bottom: 1rem; font-weight: 700;">2️⃣ SEDATIVO</h4>
+              <table class="drug-table">
+                <thead>
+                  <tr>
+                    <th>Droga</th>
+                    <th>Dose (mg/kg)</th>
+                    <th>Dose Total</th>
+                    <th>Volume (mL)</th>
+                    <th>Observações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="drug-name">Cetamina</td>
+                    <td>1.5 mg/kg</td>
+                    <td class="drug-dose" id="ketamineDose">—</td>
+                    <td class="drug-dose" id="ketamineVolume">—</td>
+                    <td class="drug-note">Preferida em choque. Diluir em soro fisiológico.</td>
+                  </tr>
+                  <tr>
+                    <td class="drug-name">Etomidato</td>
+                    <td>0.3 mg/kg</td>
+                    <td class="drug-dose" id="etomidatoDose">—</td>
+                    <td class="drug-dose" id="etomidatoVolume">—</td>
+                    <td class="drug-note">Boa opção hemodinâmica. Diluir em soro fisiológico.</td>
+                  </tr>
+                  <tr>
+                    <td class="drug-name">Midazolam</td>
+                    <td>0.3 mg/kg</td>
+                    <td class="drug-dose" id="midazolamDose">—</td>
+                    <td class="drug-dose" id="midazolamVolume">—</td>
+                    <td class="drug-note">Opção ruim em RSI. Usar apenas se sem alternativa melhor.</td>
+                  </tr>
+                  <tr id="propololRow">
+                    <td class="drug-name">Propofol (1%)</td>
+                    <td>1.5 mg/kg</td>
+                    <td class="drug-dose" id="propololDose">—</td>
+                    <td class="drug-dose" id="propololVolume">—</td>
+                    <td class="drug-note"><span class="warning-badge">CONTRAINDICADO</span> em choque/hipotensão. Hipotensor.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- BLOQUEADOR NEUROMUSCULAR -->
+            <div style="margin-bottom: 2rem;">
+              <h4 style="font-size: .95rem; color: var(--teal); margin-bottom: 1rem; font-weight: 700;">3️⃣ BLOQUEADOR NEUROMUSCULAR</h4>
+              <table class="drug-table">
+                <thead>
+                  <tr>
+                    <th>Droga</th>
+                    <th>Dose (mg/kg)</th>
+                    <th>Dose Total</th>
+                    <th>Volume (mL)</th>
+                    <th>Observações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="drug-name">Rocurônio</td>
+                    <td>1 mg/kg</td>
+                    <td class="drug-dose" id="rocuronioDose">—</td>
+                    <td class="drug-dose" id="rocuronioVolume">—</td>
+                    <td class="drug-note">Não despolarizante. Diluir em soro fisiológico.</td>
+                  </tr>
+                  <tr>
+                    <td class="drug-name">Succinilcolina</td>
+                    <td>1.5 mg/kg</td>
+                    <td class="drug-dose" id="succinilDose">—</td>
+                    <td class="drug-dose" id="succinilVolume">—</td>
+                    <td class="drug-note">Despolarizante. Diluir 1 ampola (100mg) em 10mL de soro.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- OBSERVAÇÕES IMPORTANTES -->
+            <div style="padding: 1rem; background: var(--muted); border-radius: var(--radius); font-size: .85rem; color: var(--muted-foreground);">
+              <strong style="color: var(--foreground); display: block; margin-bottom: .5rem;">⚠️ Observações Importantes:</strong>
+              <ul style="margin-left: 1.5rem;">
+                <li><strong>Choque/Hipotensão:</strong> Reduzir doses de sedativos. Evitar Propofol. Preferir Cetamina ou Etomidato.</li>
+                <li><strong>Succinilcolina:</strong> Diluir 1 ampola (100mg) de succinilcolina em 10mL de soro fisiológico. Se precisar de mais, dilua uma segunda ampola em 10mL.</li>
+                <li><strong>Fentanil:</strong> Avaliar indicação clínica. Pode ser omitido em situações específicas.</li>
+                <li><strong>Midazolam:</strong> Não é primeira escolha em RSI. Considerar apenas na falta de alternativa melhor.</li>
+                <li><strong>Confirmação:</strong> Sempre confirmar posicionamento do tubo com RX de tórax após intubação.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- REFERÊNCIAS -->
+      <div class="card" style="margin-top: 3rem;">
+        <div class="card-header">
+          <div class="card-icon">📚</div>
+          <div>
+            <div class="card-title">Referências Científicas</div>
+            <div class="card-subtitle">Baseado em evidências e diretrizes clínicas</div>
+          </div>
+        </div>
+
+        <div style="font-size: .85rem; color: var(--muted-foreground); line-height: 1.8;">
+          <p><strong style="color: var(--foreground);">Cole Formula:</strong> Cole F. Pediatric formulas for the non-anesthesiologist. Anesth Analg. 1957;36(3):200-201.</p>
+          
+          <p style="margin-top: 1rem;"><strong style="color: var(--foreground);">LEMON Score:</strong> Tripathi S, Shinde DVS, et al. Lemon score: A tool to predict difficult airway in ED in Indian setting. Int J Emerg Med. 2019.</p>
+          
+          <p style="margin-top: 1rem;"><strong style="color: var(--foreground);">Mallampati Score:</strong> Mallampati SR, et al. A clinical sign to predict difficult tracheal intubation: A prospective study. Can Anaesth Soc J. 1985;32(4):429-434.</p>
+          
+          <p style="margin-top: 1rem;"><strong style="color: var(--foreground);">Tamanho de Tubo em Adultos:</strong> Esianor BI, et al. Endotracheal Tube Size in Critically Ill Patients. JAMA Otolaryngol Head Neck Surg. 2022;148(9):849-853.</p>
+          
+          <p style="margin-top: 1rem;"><strong style="color: var(--foreground);">Profundidade de Insercao:</strong> Cherng CH, et al. A formula for estimating the appropriate tube depth for orotracheal intubation. J Clin Anesth. 2002;14(4):271-276.</p>
+          
+          <p style="margin-top: 1rem;"><strong style="color: var(--foreground);">RSI Drugs:</strong> Rapid Sequence Intubation - American Heart Association Guidelines. Doses baseadas em protocolos de anestesia e medicina de emergencia.</p>
+          
+          <p style="margin-top: 1rem;"><strong style="color: var(--foreground);">MDCalc:</strong> Pediatric Endotracheal Tube (ETT) Size. Disponível em: mdcalc.com</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // ── UTILITY FUNCTIONS ──
+    function switchTab(tabName) {
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+
+      document.getElementById(tabName).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    function toggleCheck(element) {
+      element.classList.toggle('checked');
+      calculateDifficult();
+    }
+
+    // ── PEDIATRIC CALCULATIONS ──
+    function calculatePediatric() {
+      const age = parseFloat(document.getElementById('ageYears').value);
+      const tubeType = document.getElementById('tubeType').value;
+
+      if (!age || age < 1 || age > 5) {
+        document.getElementById('tubeSize').textContent = '—';
+        document.getElementById('insertionDepth').textContent = '—';
+        return;
+      }
+
+      let tubeSize;
+      if (tubeType === 'uncuffed') {
+        tubeSize = (age / 4) + 4.0;
+      } else {
+        tubeSize = (age / 4) + 3.5;
+      }
+
+      tubeSize = tubeSize.toFixed(1);
+      const insertionDepth = (parseFloat(tubeSize) * 3).toFixed(1);
+
+      document.getElementById('tubeSize').textContent = tubeSize;
+      document.getElementById('insertionDepth').textContent = insertionDepth;
+    }
+
+    // ── ADULT CALCULATIONS ──
+    function calculateAdult() {
+      const sex = document.getElementById('sex').value;
+      const height = parseFloat(document.getElementById('height').value);
+
+      if (!height || height < 140 || height > 220) {
+        document.getElementById('adultTubeSize').textContent = '—';
+        document.getElementById('adultDepth').textContent = '—';
+        return;
+      }
+
+      // Nomograma de Esianor et al. (JAMA Otolaryngology, 2022)
+      // Baseado em altura como principal determinante
+      let tubeSize;
+      
+      if (height <= 160) {
+        tubeSize = 7.0;
+      } else if (height <= 170) {
+        tubeSize = 7.5;
+      } else if (height <= 180) {
+        tubeSize = 8.0;
+      } else if (height <= 190) {
+        tubeSize = 8.5;
+      } else {
+        tubeSize = 9.0;
+      }
+
+      // Ajuste fino baseado em sexo (mulheres tendem a usar 0.5 mm menos)
+      if (sex === 'female' && tubeSize > 7.0) {
+        tubeSize = tubeSize - 0.5;
+      }
+
+      // Profundidade de inserção: altura/10 - 3 (fórmula de Cherng)
+      const insertionDepth = ((height / 10) - 3).toFixed(1);
+
+      document.getElementById('adultTubeSize').textContent = tubeSize.toFixed(1);
+      document.getElementById('adultDepth').textContent = insertionDepth;
+    }
+
+    // ── DIFFICULT AIRWAY CALCULATIONS ──
+    function calculateDifficult() {
+      const lemonChecks = document.querySelectorAll('.lemon-check:checked').length;
+      const mallampati = document.getElementById('mallampati').value;
+
+      let riskLevel = 'Baixo risco';
+      let riskClass = 'risk-low';
+      let riskColor = '#4facfe';
+
+      if (lemonChecks >= 4 || (mallampati && parseInt(mallampati) >= 3)) {
+        riskLevel = 'Alto risco - considerar abordagem alternativa';
+        riskClass = 'risk-high';
+        riskColor = '#ef4444';
+      } else if (lemonChecks >= 2 || (mallampati && parseInt(mallampati) >= 2)) {
+        riskLevel = 'Risco intermediário';
+        riskClass = 'risk-medium';
+        riskColor = '#fbbf24';
+      }
+
+      const resultBox = document.getElementById('riskResult');
+      if (lemonChecks > 0 || mallampati) {
+        resultBox.style.display = 'block';
+        const riskLevelDiv = document.getElementById('riskLevel');
+        riskLevelDiv.textContent = riskLevel;
+        riskLevelDiv.style.color = riskColor;
+      } else {
+        resultBox.style.display = 'none';
+      }
+    }
+
+    // ── RSI CALCULATIONS ──
+    function calculateRSI() {
+      const weight = parseFloat(document.getElementById('patientWeight').value);
+      const hemodynamic = document.getElementById('hemodynamic').value;
+
+      if (!weight || weight < 10 || weight > 200) {
+        clearRSIResults();
+        return;
+      }
+
+      // Concentrações padrão (mg/mL)
+      const concentrations = {
+        fentanil: 0.05,      // 50 mcg/mL
+        ketamine: 50,        // 50 mg/mL
+        etomidate: 2,        // 2 mg/mL
+        midazolam: 5,        // 5 mg/mL
+        propofol: 10,        // 10 mg/mL (1%)
+        rocuronium: 10,      // 10 mg/mL
+        succinylcholine: 20  // 20 mg/mL
+      };
+
+      // FENTANIL (3 mcg/kg)
+      const fentanilDose = (weight * 3 / 1000).toFixed(2); // converter mcg para mg
+      const fentanilVolume = (fentanilDose / concentrations.fentanil).toFixed(2);
+
+      // KETAMINE (1.5 mg/kg)
+      const ketamineDose = (weight * 1.5).toFixed(1);
+      const ketamineVolume = (ketamineDose / concentrations.ketamine).toFixed(2);
+
+      // ETOMIDATE (0.3 mg/kg)
+      const etomidatoDose = (weight * 0.3).toFixed(1);
+      const etomidatoVolume = (etomidatoDose / concentrations.etomidate).toFixed(2);
+
+      // MIDAZOLAM (0.3 mg/kg)
+      const midazolamDose = (weight * 0.3).toFixed(1);
+      const midazolamVolume = (midazolamDose / concentrations.midazolam).toFixed(2);
+
+      // PROPOFOL (1.5 mg/kg)
+      const propololDose = (weight * 1.5).toFixed(1);
+      const propololVolume = (propololDose / concentrations.propofol).toFixed(2);
+
+      // ROCURONIUM (1 mg/kg)
+      const rocuronioDose = (weight * 1).toFixed(1);
+      const rocuronioVolume = (rocuronioDose / concentrations.rocuronium).toFixed(2);
+
+      // SUCCINYLCHOLINE (1.5 mg/kg)
+      const succinilDose = (weight * 1.5).toFixed(1);
+      const succinilVolume = (succinilDose / concentrations.succinylcholine).toFixed(2);
+
+      // Update DOM
+      document.getElementById('fentanilDose').textContent = fentanilDose + ' mg (' + (fentanilDose * 1000).toFixed(0) + ' mcg)';
+      document.getElementById('fentanilVolume').textContent = fentanilVolume;
+
+      document.getElementById('ketamineDose').textContent = ketamineDose + ' mg';
+      document.getElementById('ketamineVolume').textContent = ketamineVolume;
+
+      document.getElementById('etomidatoDose').textContent = etomidatoDose + ' mg';
+      document.getElementById('etomidatoVolume').textContent = etomidatoVolume;
+
+      document.getElementById('midazolamDose').textContent = midazolamDose + ' mg';
+      document.getElementById('midazolamVolume').textContent = midazolamVolume;
+
+      document.getElementById('propololDose').textContent = propololDose + ' mg';
+      document.getElementById('propololVolume').textContent = propololVolume;
+
+      document.getElementById('rocuronioDose').textContent = rocuronioDose + ' mg';
+      document.getElementById('rocuronioVolume').textContent = rocuronioVolume;
+
+      document.getElementById('succinilDose').textContent = succinilDose + ' mg';
+      document.getElementById('succinilVolume').textContent = succinilVolume;
+
+      // Mostrar/esconder Propofol baseado em estado hemodinâmico
+      const propololRow = document.getElementById('propololRow');
+      if (hemodynamic === 'shock') {
+        propololRow.style.display = 'none';
+      } else {
+        propololRow.style.display = 'table-row';
+      }
+    }
+
+    function clearRSIResults() {
+      document.getElementById('fentanilDose').textContent = '—';
+      document.getElementById('fentanilVolume').textContent = '—';
+      document.getElementById('ketamineDose').textContent = '—';
+      document.getElementById('ketamineVolume').textContent = '—';
+      document.getElementById('etomidatoDose').textContent = '—';
+      document.getElementById('etomidatoVolume').textContent = '—';
+      document.getElementById('midazolamDose').textContent = '—';
+      document.getElementById('midazolamVolume').textContent = '—';
+      document.getElementById('propololDose').textContent = '—';
+      document.getElementById('propololVolume').textContent = '—';
+      document.getElementById('rocuronioDose').textContent = '—';
+      document.getElementById('rocuronioVolume').textContent = '—';
+      document.getElementById('succinilDose').textContent = '—';
+      document.getElementById('succinilVolume').textContent = '—';
+    }
+
+    // Initialize
+    calculatePediatric();
+    calculateAdult();
+  </script>
+</body>
+</html>

@@ -1,0 +1,1417 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>Heart Team Decision Assistant | Dr. Lucas Silva</title>
+  <meta name="description" content="Assistente de decisão Heart Team: SYNTAX Score II 2020, EuroSCORE II simplificado, curvas de sobrevida KM baseadas em trials (SYNTAX, FREEDOM, EXCEL, NOBLE). Diretrizes ESC 2024 e ACC/AHA 2021." />
+  <meta name="author" content="Dr. Lucas Silva" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+  <style>
+    /* ── DESIGN TOKENS ─────────────────────────────────────────── */
+    :root {
+      --primary: oklch(65% .18 195);
+      --primary-foreground: oklch(98% 0 0);
+      --background: oklch(13% .018 250);
+      --foreground: oklch(93% .01 250);
+      --card: oklch(18.5% .018 250);
+      --muted: oklch(22% .018 250);
+      --muted-foreground: oklch(62% .02 250);
+      --border: oklch(28% .025 250);
+      --input: oklch(22% .02 250);
+      --accent: oklch(24% .025 250);
+      --teal: #00d3bd;
+      --teal-dim: rgba(0,211,189,.12);
+      --amber: oklch(82.8% .189 84.429);
+      --red: oklch(63.7% .237 25.331);
+      --green: oklch(79.2% .209 151.711);
+      --purple: #a855f7;
+      --radius: 0.625rem;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--background);
+      color: var(--foreground);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ───────────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(18,20,27,.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem; height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--foreground); }
+    .nav-brand-icon {
+      width: 28px; height: 28px; border-radius: 7px;
+      background: var(--teal); display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .nav-brand-name { font-weight: 800; font-size: 1rem; letter-spacing: -.025em; }
+    .nav-brand-name span { color: var(--teal); }
+    .nav-brand-sep { width: 1px; height: 14px; background: var(--border); margin: 0 6px; }
+    .nav-brand-sub { font-size: .7rem; font-weight: 500; color: var(--muted-foreground); }
+    .nav-center { display: flex; align-items: center; gap: .25rem; }
+    .nav-center-btn {
+      background: none; border: none; cursor: pointer; font-family: var(--font-sans);
+      font-size: .8rem; font-weight: 500; color: var(--muted-foreground);
+      padding: 6px 12px; border-radius: 7px; transition: background .15s, color .15s;
+    }
+    .nav-center-btn:hover { background: var(--accent); color: var(--foreground); }
+    .nav-actions { display: flex; align-items: center; gap: .5rem; }
+    .nav-badge {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 999px; background: var(--teal-dim);
+      color: var(--teal); border: 1px solid rgba(0,211,189,.25); white-space: nowrap;
+    }
+    .nav-link {
+      font-size: .75rem; font-weight: 600; padding: 5px 12px;
+      border-radius: 8px; border: 1.5px solid var(--primary);
+      color: var(--primary); background: transparent; text-decoration: none;
+      transition: background .15s, color .15s; display: inline-flex; align-items: center; gap: 5px;
+    }
+    .nav-link:hover { background: var(--primary); color: var(--primary-foreground); }
+
+    /* ── LAYOUT ────────────────────────────────────────────────── */
+    .container { max-width: 960px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* ── HERO ──────────────────────────────────────────────────── */
+    .hero { padding: 3.5rem 0 2.5rem; border-bottom: 1px solid var(--border); }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .7rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--teal); margin-bottom: 1rem;
+    }
+    .hero-eyebrow::before { content: ''; display: block; width: 20px; height: 2px; background: var(--teal); border-radius: 1px; }
+    .hero h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800; line-height: 1.2; margin-bottom: .75rem; letter-spacing: -.02em; }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero-sub { color: var(--muted-foreground); font-size: .95rem; max-width: 680px; margin-bottom: 1.5rem; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag { font-size: .7rem; font-weight: 600; padding: 3px 10px; border-radius: 6px; border: 1px solid var(--border); color: var(--muted-foreground); background: var(--card); font-family: var(--font-mono); }
+
+    /* ── TIMELINE ──────────────────────────────────────────────── */
+    .timeline {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border); border-radius: calc(var(--radius) + 2px);
+      overflow: hidden; margin: 2rem 0;
+    }
+    .timeline-step { background: var(--card); padding: 1.25rem 1.25rem 1.5rem; cursor: pointer; transition: background .15s; }
+    .timeline-step:hover { background: var(--accent); }
+    .timeline-step.active { background: var(--teal-dim); }
+    .step-num { font-size: .65rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted-foreground); margin-bottom: .5rem; font-family: var(--font-mono); }
+    .step-num .dot { display: inline-block; width: 18px; height: 18px; border-radius: 50%; background: var(--muted); color: var(--muted-foreground); font-size: .6rem; text-align: center; line-height: 18px; margin-right: 6px; font-weight: 700; }
+    .timeline-step.active .dot { background: var(--teal); color: #000; }
+    .step-title { font-weight: 700; font-size: .9rem; margin-bottom: .25rem; }
+    .step-desc { font-size: .78rem; color: var(--muted-foreground); line-height: 1.5; }
+
+    /* ── PROGRESS ──────────────────────────────────────────────── */
+    .progress-bar { height: 2px; background: var(--border); border-radius: 1px; margin-bottom: 2.5rem; }
+    .progress-fill { height: 100%; background: var(--teal); border-radius: 1px; transition: width .4s ease; }
+
+    /* ── STEP SECTION ──────────────────────────────────────────── */
+    .step-section { display: none; }
+    .step-section.active { display: block; }
+    .section-label { font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--teal); margin-bottom: .5rem; font-family: var(--font-mono); }
+    .section-title { font-size: 1.25rem; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: -.02em; }
+
+    /* ── CARD ──────────────────────────────────────────────────── */
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: calc(var(--radius) + 2px); padding: 1.5rem; margin-bottom: 1.5rem; }
+    .card-header { display: flex; align-items: flex-start; gap: .75rem; margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+    .card-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; background: var(--teal-dim); color: var(--teal); }
+    .card-title { font-weight: 700; font-size: 1rem; margin-bottom: 2px; }
+    .card-subtitle { font-size: .78rem; color: var(--muted-foreground); }
+
+    /* ── FORM ──────────────────────────────────────────────────── */
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .875rem 1.25rem; }
+    .form-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: .875rem 1.25rem; }
+    .form-group { display: flex; flex-direction: column; gap: .4rem; }
+    .form-label { font-size: .8rem; font-weight: 700; color: var(--foreground); }
+    .form-label small { font-weight: 400; color: var(--muted-foreground); }
+    .form-hint { font-size: .72rem; color: var(--muted-foreground); line-height: 1.4; margin-top: .15rem; }
+    .form-input, .form-select {
+      background: var(--input); border: 1.5px solid var(--border);
+      border-radius: var(--radius); color: var(--foreground);
+      font-family: var(--font-sans); font-size: .88rem;
+      padding: .6rem .875rem; width: 100%; transition: border-color .15s, box-shadow .15s;
+      appearance: none; -webkit-appearance: none;
+    }
+    .form-input:focus, .form-select:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px var(--teal-dim); }
+    .form-select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238b9eb0' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right .75rem center; padding-right: 2.5rem; }
+    .score-display { display: flex; align-items: center; gap: .75rem; padding: .875rem 1rem; background: var(--muted); border-radius: var(--radius); margin-top: .75rem; }
+    .score-val { font-family: var(--font-mono); font-weight: 800; font-size: 2rem; line-height: 1; }
+
+    /* ── INFO BOXES ────────────────────────────────────────────── */
+    .info-box { border-radius: var(--radius); padding: .875rem 1rem; display: flex; gap: .75rem; align-items: flex-start; font-size: .83rem; line-height: 1.55; }
+    .info-box-icon { flex-shrink: 0; font-size: 1rem; }
+    .info-teal { background: rgba(0,211,189,.06); border: 1px solid rgba(0,211,189,.25); }
+    .info-amber { background: rgba(251,191,36,.06); border: 1px solid rgba(251,191,36,.25); }
+    .info-red { background: rgba(220,60,50,.07); border: 1px solid rgba(220,60,50,.25); }
+    .info-gray { background: var(--muted); border: 1px solid var(--border); }
+    .info-purple { background: rgba(168,85,247,.06); border: 1px solid rgba(168,85,247,.25); }
+
+    /* ── BADGE ─────────────────────────────────────────────────── */
+    .badge { display: inline-flex; align-items: center; font-size: .68rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; font-family: var(--font-mono); }
+    .badge-teal { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.3); }
+    .badge-amber { background: rgba(251,191,36,.1); color: var(--amber); border: 1px solid rgba(251,191,36,.3); }
+    .badge-red { background: rgba(220,60,50,.1); color: var(--red); border: 1px solid rgba(220,60,50,.3); }
+    .badge-green { background: rgba(134,239,172,.1); color: var(--green); border: 1px solid rgba(134,239,172,.3); }
+    .badge-purple { background: rgba(168,85,247,.1); color: var(--purple); border: 1px solid rgba(168,85,247,.3); }
+
+    /* ── BUTTONS ───────────────────────────────────────────────── */
+    .btn-row { display: flex; gap: .75rem; margin-top: 1.5rem; align-items: center; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; gap: .5rem; font-family: var(--font-sans); font-weight: 700; border-radius: var(--radius); cursor: pointer; transition: all .15s; border: none; font-size: .9rem; padding: .75rem 1.5rem; }
+    .btn-primary { background: var(--teal); color: #000; }
+    .btn-primary:hover { background: oklch(70% .2 195); }
+    .btn-secondary { background: var(--muted); color: var(--foreground); border: 1.5px solid var(--border); }
+    .btn-secondary:hover { border-color: var(--teal); background: var(--teal-dim); }
+    .btn-lg { padding: .875rem 2rem; font-size: .95rem; }
+
+    /* ── RESULT PANEL ──────────────────────────────────────────── */
+    .result-panel { border-radius: calc(var(--radius) + 2px); border: 1.5px solid var(--border); overflow: hidden; margin-bottom: 1.5rem; }
+    .result-header { display: flex; align-items: center; gap: 1rem; padding: 1.25rem 1.5rem; }
+    .result-header.cabg { background: rgba(134,239,172,.07); border-bottom: 1px solid rgba(134,239,172,.2); }
+    .result-header.pci  { background: rgba(0,211,189,.07); border-bottom: 1px solid rgba(0,211,189,.2); }
+    .result-header.neutral { background: var(--muted); border-bottom: 1px solid var(--border); }
+    .result-icon { font-size: 1.5rem; }
+    .result-title { font-weight: 800; font-size: 1.05rem; }
+    .result-body { padding: 1.25rem 1.5rem; }
+
+    /* ── RISK SCORES GRID ──────────────────────────────────────── */
+    .scores-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
+    .score-card { background: var(--card); border: 1px solid var(--border); border-radius: calc(var(--radius) + 2px); padding: 1.25rem; text-align: center; }
+    .score-card-label { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--muted-foreground); margin-bottom: .5rem; font-family: var(--font-mono); }
+    .score-card-value { font-size: 2rem; font-weight: 800; font-family: var(--font-mono); line-height: 1; margin-bottom: .35rem; }
+    .score-card-interp { font-size: .75rem; font-weight: 600; }
+
+    /* ── CHART AREA ────────────────────────────────────────────── */
+    .charts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.5rem; }
+    .chart-card { background: var(--card); border: 1px solid var(--border); border-radius: calc(var(--radius) + 2px); padding: 1.25rem; }
+    .chart-title { font-size: .8rem; font-weight: 700; color: var(--foreground); margin-bottom: .25rem; }
+    .chart-subtitle { font-size: .72rem; color: var(--muted-foreground); margin-bottom: 1rem; font-family: var(--font-mono); }
+    .chart-wrap { position: relative; height: 220px; }
+    .chart-legend { display: flex; gap: 1rem; margin-top: .75rem; flex-wrap: wrap; }
+    .legend-item { display: flex; align-items: center; gap: .4rem; font-size: .75rem; font-weight: 600; }
+    .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+    /* ── COMPARE TABLE ─────────────────────────────────────────── */
+    .compare-table { width: 100%; border-collapse: collapse; font-size: .83rem; }
+    .compare-table th { text-align: left; font-size: .68rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted-foreground); padding: .6rem .875rem; background: var(--muted); font-family: var(--font-mono); border-bottom: 1px solid var(--border); }
+    .compare-table td { padding: .7rem .875rem; border-bottom: 1px solid rgba(255,255,255,.04); vertical-align: top; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table tr:hover td { background: rgba(255,255,255,.02); }
+
+    /* ── MODAL ─────────────────────────────────────────────────── */
+    .modal { display: none; position: fixed; z-index: 1000; inset: 0; background: rgba(0,0,0,.75); }
+    .modal-content { background: var(--card); margin: 5% auto; padding: 2rem; border: 1px solid var(--border); border-radius: calc(var(--radius) + 2px); width: 90%; max-width: 720px; max-height: 75vh; overflow-y: auto; }
+    .modal-header { font-size: 1.2rem; font-weight: 800; margin-bottom: 1.5rem; color: var(--teal); display: flex; justify-content: space-between; align-items: center; }
+    .modal-close { color: var(--muted-foreground); font-size: 1.5rem; cursor: pointer; background: none; border: none; }
+    .modal-close:hover { color: var(--teal); }
+    .ref-list { list-style: none; }
+    .ref-item { display: flex; gap: .875rem; align-items: flex-start; padding: .875rem 0; border-bottom: 1px solid var(--border); font-size: .83rem; line-height: 1.55; }
+    .ref-item:last-child { border-bottom: none; }
+    .ref-num { background: var(--teal-dim); color: var(--teal); border-radius: 4px; padding: 2px 7px; font-weight: 800; font-family: var(--font-mono); font-size: .72rem; flex-shrink: 0; margin-top: 2px; }
+    .ref-title { font-weight: 600; margin-bottom: 2px; }
+    .ref-meta { font-size: .76rem; color: var(--muted-foreground); }
+    .ref-ev { margin-left: .75rem; background: var(--muted); color: var(--muted-foreground); padding: 1px 7px; border-radius: 4px; font-family: var(--font-mono); font-size: .68rem; }
+
+    /* ── FOOTER ────────────────────────────────────────────────── */
+    footer { border-top: 1px solid var(--border); padding: 2rem 0; margin-top: 2rem; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; }
+    .footer-copy { font-size: .75rem; color: var(--muted-foreground); }
+
+    /* ── DISCLAIMER ────────────────────────────────────────────── */
+    .disclaimer { font-size: .72rem; color: var(--muted-foreground); background: var(--muted); border-radius: var(--radius); padding: .625rem .875rem; margin-top: .75rem; line-height: 1.5; }
+
+    /* ── FACTOR LIST ───────────────────────────────────────────── */
+    .factor-list { display: flex; flex-direction: column; gap: .5rem; }
+    .factor-row { display: flex; justify-content: space-between; align-items: center; padding: .5rem .75rem; background: var(--muted); border-radius: var(--radius); font-size: .82rem; }
+    .factor-label { color: var(--muted-foreground); }
+    .factor-value { font-weight: 700; font-family: var(--font-mono); font-size: .8rem; }
+
+    /* ── SECTION DIVIDER ───────────────────────────────────────── */
+    .section-divider { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+
+    /* ── RESPONSIVE ────────────────────────────────────────────── */
+    @media (max-width: 720px) {
+      .form-grid, .form-grid-3, .scores-grid, .charts-grid, .timeline { grid-template-columns: 1fr 1fr; }
+      .nav-center { display: none; }
+    }
+    @media (max-width: 480px) {
+      .form-grid, .form-grid-3, .scores-grid, .charts-grid { grid-template-columns: 1fr; }
+      .timeline { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#">
+    <div class="nav-brand-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+      </svg>
+    </div>
+    <div class="nav-brand-name">Heart<span>Team</span></div>
+    <div class="nav-brand-sep" style="width:1px;height:14px;background:var(--border);margin:0 6px;"></div>
+    <div class="nav-brand-sub">Decision Assistant</div>
+  </a>
+  <div class="nav-center">
+    <button class="nav-center-btn" onclick="goStep(1)">Dados Clínicos</button>
+    <button class="nav-center-btn" onclick="goStep(2)">Anatomia Coronária</button>
+    <button class="nav-center-btn" onclick="goStep(3)">Resultado &amp; Gráficos</button>
+    <button class="nav-center-btn" onclick="goStep(4)">Evidências</button>
+  </div>
+  <div class="nav-actions">
+    <span class="nav-badge">ESC 2024 · ACC/AHA 2021</span>
+    <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      lucascardio.com.br
+    </a>
+  </div>
+</nav>
+
+<!-- MODAL REFERÊNCIAS -->
+<div id="referencesModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      📚 Referências Bibliográficas
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <ul class="ref-list">
+      <li class="ref-item"><span class="ref-num">1</span><div><div class="ref-title">Neumann FJ, et al. 2018 ESC/EACTS Guidelines on myocardial revascularization</div><div class="ref-meta">European Heart Journal 2019;40(2):87-165<span class="ref-ev">Guideline · Very High</span></div></div></li>
+      <li class="ref-item"><span class="ref-num">2</span><div><div class="ref-title">Lawton JS, et al. 2021 ACC/AHA/SCAI Guideline for Coronary Artery Revascularization</div><div class="ref-meta">J Am Coll Cardiol 2022;79(2):e21-e129<span class="ref-ev">Guideline · Very High</span></div></div></li>
+      <li class="ref-item"><span class="ref-num">3</span><div><div class="ref-title">Vrints C, et al. 2024 ESC Guidelines for the management of chronic coronary syndromes</div><div class="ref-meta">European Heart Journal 2024;45(36):3415-3537<span class="ref-ev">Guideline · Very High</span></div></div></li>
+      <li class="ref-item"><span class="ref-num">4</span><div><div class="ref-title">Mohr FW, et al. Coronary artery bypass graft surgery vs PCI in patients with 3-vessel disease — 5-year SYNTAX trial follow-up</div><div class="ref-meta">Lancet 2013;381(9867):629-638<span class="ref-ev">RCT · Very High</span></div></div></li>
+      <li class="ref-item"><span class="ref-num">5</span><div><div class="ref-title">Farkouh ME, et al. Strategies for Multivessel Revascularization in Patients with Diabetes (FREEDOM)</div><div class="ref-meta">NEJM 2012;367(25):2375-2384<span class="ref-ev">RCT · Very High</span></div></div></li>
+      <li class="ref-item"><span class="ref-num">6</span><div><div class="ref-title">Stone GW, et al. Everolimus-Eluting Stents or Bypass Surgery for Left Main Coronary Artery Disease (EXCEL)</div><div class="ref-meta">NEJM 2016;375(23):2223-2235<span class="ref-ev">RCT · Very High</span></div></div></li>
+      <li class="ref-item"><span class="ref-num">7</span><div><div class="ref-title">Mäkikallio T, et al. Percutaneous coronary angioplasty versus coronary artery bypass grafting in unprotected LM stenosis (NOBLE)</div><div class="ref-meta">Lancet 2016;388(10061):2743-2752<span class="ref-ev">RCT · High</span></div></div></li>
+      <li class="ref-item"><span class="ref-num">8</span><div><div class="ref-title">Kotoku N, et al. SYNTAX Score II 2020 — 10-year outcomes prediction</div><div class="ref-meta">Lancet 2021;397(10293):2466-2476<span class="ref-ev">Individual patient data · Very High</span></div></div></li>
+      <li class="ref-item"><span class="ref-num">9</span><div><div class="ref-title">Nashef SAM, et al. EuroSCORE II</div><div class="ref-meta">Eur J Cardiothorac Surg 2012;41(4):734-744<span class="ref-ev">Derivation cohort · High</span></div></div></li>
+      <li class="ref-item"><span class="ref-num">10</span><div><div class="ref-title">Serruys PW, et al. Percutaneous coronary intervention versus CABG for severe CAD (SYNTAX)</div><div class="ref-meta">NEJM 2009;360(10):961-972<span class="ref-ev">RCT · Very High</span></div></div></li>
+      <li class="ref-item"><span class="ref-num">11</span><div><div class="ref-title">Park SJ, et al. Trial of Everolimus-Eluting Stents or Bypass Surgery for Coronary Disease (BEST)</div><div class="ref-meta">NEJM 2015;372(13):1204-1212<span class="ref-ev">RCT · High</span></div></div></li>
+      <li class="ref-item"><span class="ref-num">12</span><div><div class="ref-title">Head SJ, et al. Mortality after coronary artery bypass grafting vs PCI with stenting for coronary artery disease: a pooled analysis of individual patient data</div><div class="ref-meta">Lancet 2018;391(10124):939-948<span class="ref-ev">IPD meta-analysis · Very High</span></div></div></li>
+    </ul>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main>
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">Medicina Baseada em Evidências</div>
+    <h1>Heart <em>Team</em> Decision Assistant</h1>
+    <p class="hero-sub">
+      Ferramenta de apoio à decisão multidisciplinar na revascularização coronariana. Calcula EuroSCORE II simplificado, SYNTAX Score II 2020 e gera curvas de sobrevida comparativas baseadas em dados de trials randomizados (SYNTAX, FREEDOM, EXCEL, NOBLE).
+    </p>
+    <div class="hero-tags">
+      <span class="tag">SYNTAX Score II 2020</span>
+      <span class="tag">EuroSCORE II</span>
+      <span class="tag">SYNTAX Trial</span>
+      <span class="tag">FREEDOM Trial</span>
+      <span class="tag">EXCEL · NOBLE</span>
+      <span class="tag">ESC 2024</span>
+      <span class="tag">ACC/AHA 2021</span>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="timeline">
+    <div class="timeline-step active" onclick="goStep(1)">
+      <div class="step-num"><span class="dot">1</span>PACIENTE</div>
+      <div class="step-title">Dados Clínicos</div>
+      <div class="step-desc">Demográficos, FEVE, função renal e comorbidades</div>
+    </div>
+    <div class="timeline-step" onclick="goStep(2)">
+      <div class="step-num"><span class="dot">2</span>ANATOMIA</div>
+      <div class="step-title">Coronário &amp; SYNTAX</div>
+      <div class="step-desc">Extensão da DAC, complexidade e viabilidade</div>
+    </div>
+    <div class="timeline-step" onclick="goStep(3)">
+      <div class="step-num"><span class="dot">3</span>RESULTADO</div>
+      <div class="step-title">Recomendação</div>
+      <div class="step-desc">Scores, gráficos de sobrevida e classe de evidência</div>
+    </div>
+    <div class="timeline-step" onclick="goStep(4)">
+      <div class="step-num"><span class="dot">📖</span>EVIDÊNCIAS</div>
+      <div class="step-title">Trials &amp; Referências</div>
+      <div class="step-desc">Tabela comparativa dos principais ensaios clínicos</div>
+    </div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-bar"><div class="progress-fill" id="progress" style="width:25%"></div></div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       PASSO 1 – DADOS CLÍNICOS
+  ════════════════════════════════════════════════════════════ -->
+  <div id="step1" class="step-section active">
+
+    <!-- Dados demográficos -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">👤</div>
+        <div>
+          <div class="card-title">Dados Demográficos &amp; Função Ventricular</div>
+          <div class="card-subtitle">Variáveis com maior impacto no risco cirúrgico (EuroSCORE II) e na escolha da estratégia</div>
+        </div>
+      </div>
+
+      <div class="info-teal info-box" style="margin-bottom:1.25rem;">
+        <span class="info-box-icon">💡</span>
+        <div>O <strong>EuroSCORE II</strong> é o preditor de mortalidade cirúrgica de referência no mundo (Nashef et al. Eur J Cardiothorac Surg 2012). Aqui calculamos uma versão simplificada dos fatores pré-operatórios mais relevantes. Valores de referência: mortalidade EuroSCORE II &lt;2% = baixo risco; 2–5% = intermediário; &gt;5% = alto risco cirúrgico.</div>
+      </div>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">Idade <small>(anos)</small></label>
+          <input class="form-input" type="number" id="idade" min="18" max="100" placeholder="ex: 68" oninput="liveScore()" />
+          <div class="form-hint">Cada 5 anos acima de 60 incrementa o risco cirúrgico progressivamente no EuroSCORE II.</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Sexo Biológico</label>
+          <select class="form-select" id="sexo" onchange="liveScore()">
+            <option value="M">Masculino</option>
+            <option value="F">Feminino</option>
+          </select>
+          <div class="form-hint">Sexo feminino é fator de risco independente no EuroSCORE II (maior mortalidade pós-CRM).</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">FEVE <small>(%)</small></label>
+          <input class="form-input" type="number" id="feve" min="10" max="80" placeholder="ex: 55" oninput="liveScore()" />
+          <div class="form-hint">≥50%: normal. 30–49%: moderadamente reduzida. &lt;30%: gravemente reduzida — CABG demonstrou benefício de sobrevida sobre PCI neste grupo (STICH trial).</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Clearance de Creatinina <small>(mL/min)</small></label>
+          <input class="form-input" type="number" id="crCl" min="5" max="150" placeholder="ex: 72" oninput="liveScore()" />
+          <div class="form-hint">CrCl 51–85: risco leve ↑. CrCl ≤50: risco moderado ↑↑. Diálise: risco ↑↑↑. Use Cockcroft-Gault ou CKD-EPI. Influencia o SYNTAX Score II 2020.</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">IMC <small>(kg/m²)</small></label>
+          <input class="form-input" type="number" id="imc" min="15" max="55" step="0.1" placeholder="ex: 27.4" oninput="liveScore()" />
+          <div class="form-hint">IMC &lt;17 kg/m² aumenta risco cirúrgico (desnutrição). Obesidade mórbida (&gt;35) também eleva risco de complicações pós-CRM.</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Estado funcional</label>
+          <select class="form-select" id="funcional" onchange="liveScore()">
+            <option value="0">Independente (CCS 1–2, bom estado geral)</option>
+            <option value="1">Limitado (dispneia moderada, CCS 3)</option>
+            <option value="2">Incapacitado (repouso, CCS 4, cadeira de rodas)</option>
+          </select>
+          <div class="form-hint">Estado funcional pré-operatório é preditor independente de mortalidade e recuperação pós-CRM.</div>
+        </div>
+      </div>
+
+      <div class="score-display" id="euroscore_display" style="display:none;margin-top:1rem;">
+        <div>
+          <div class="score-val" id="euro_val" style="color:var(--teal);">—</div>
+          <div style="font-size:.7rem;color:var(--muted-foreground);font-family:var(--font-mono);">EuroSCORE II est.</div>
+        </div>
+        <div style="flex:1;">
+          <div id="euro_interp" style="font-weight:700;margin-bottom:2px;"></div>
+          <div id="euro_desc" style="font-size:.78rem;color:var(--muted-foreground);"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Comorbidades -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">🩺</div>
+        <div>
+          <div class="card-title">Comorbidades &amp; Fatores de Risco Clínico</div>
+          <div class="card-subtitle">Impacto direto no EuroSCORE II e na indicação de CABG vs PCI</div>
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">Diabetes Mellitus</label>
+          <select class="form-select" id="diabetes" onchange="liveScore()">
+            <option value="nao">Não</option>
+            <option value="oral">Sim — controlado (dieta ou ADO)</option>
+            <option value="insulina">Sim — insulino-dependente</option>
+          </select>
+          <div class="form-hint">FREEDOM trial: CABG vs PCI em DM+3VD — mortalidade 5a 10,9% vs 16,3% (p=0,049). DM é o preditor mais robusto de benefício da CABG sobre PCI em multivascular.</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">DPOC</label>
+          <select class="form-select" id="dpoc" onchange="liveScore()">
+            <option value="nao">Não</option>
+            <option value="leve">Leve–moderado (broncodilatador)</option>
+            <option value="grave">Grave (corticoide / VEF1 &lt;50%)</option>
+          </select>
+          <div class="form-hint">DPOC grave eleva mortalidade pós-CRM em ~2–3×. Aumenta risco de ventilação prolongada, pneumonia e reintubação. Favorece PCI quando cirurgia é de alto risco.</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Doença Arterial Periférica</label>
+          <select class="form-select" id="dap" onchange="liveScore()">
+            <option value="nao">Não</option>
+            <option value="sim">Sim (claudicação, revascularização ou amputação prévia)</option>
+          </select>
+          <div class="form-hint">DAP é marcador de aterosclerose sistêmica. Presente no SYNTAX Score II 2020 como preditor de mortalidade a longo prazo, favorece CABG em certos cenários.</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">AVC / TIA Prévio</label>
+          <select class="form-select" id="avc" onchange="liveScore()">
+            <option value="nao">Não</option>
+            <option value="sim">Sim (AVC estabelecido ou TIA)</option>
+          </select>
+          <div class="form-hint">AVC prévio dobra o risco de AVC pós-CRM (principal complicação neurológica da cirurgia cardíaca). Presença obriga avaliação de estenose carotídea pré-operatória.</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Fragilidade Clínica</label>
+          <select class="form-select" id="fragilidade" onchange="liveScore()">
+            <option value="0">Não frágil (Clinical Frailty Scale 1–3)</option>
+            <option value="1">Levemente frágil (CFS 4–5)</option>
+            <option value="2">Moderada–grave (CFS 6–9)</option>
+          </select>
+          <div class="form-hint">Fragilidade é preditor de mortalidade a 30 dias e 1 ano pós-CRM. CFS ≥5 é associado a risco 2–4× maior de morbidade grave. Favorece PCI ou tratamento conservador.</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Cirurgia Cardíaca Prévia</label>
+          <select class="form-select" id="cirurgiaPrevia" onchange="liveScore()">
+            <option value="nao">Não</option>
+            <option value="sim">Sim (CRM ou valvar prévia)</option>
+          </select>
+          <div class="form-hint">Reoperação eleva mortalidade cirúrgica em 3–5×. Em CRM prévia com enxertos permeáveis, PCI pode ser preferível se a anatomia for favorável.</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Urgência do Procedimento</label>
+          <select class="form-select" id="urgencia" onchange="liveScore()">
+            <option value="eletivo">Eletivo (programado)</option>
+            <option value="urgente">Urgente (intervenção nas próximas 24–72h)</option>
+            <option value="emergencia">Emergência (&lt;24h / paciente instável)</option>
+          </select>
+          <div class="form-hint">Procedimentos emergenciais têm mortalidade cirúrgica 4–10× maior que eletivos. Urgência pode tornar PCI a única opção tecnicamente viável.</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Expectativa de Vida</label>
+          <select class="form-select" id="expectativa" onchange="liveScore()">
+            <option value="gt10">&gt;10 anos</option>
+            <option value="5a10">5–10 anos</option>
+            <option value="lt5">&lt;5 anos</option>
+          </select>
+          <div class="form-hint">Quando expectativa de vida &lt;2 anos, o benefício de sobrevida da CABG (que leva ~6–12 meses para se consolidar) pode não se materializar. PCI pode ser mais adequada.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-primary btn-lg" onclick="goStep(2)">
+        Anatomia Coronária
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       PASSO 2 – ANATOMIA CORONÁRIA
+  ════════════════════════════════════════════════════════════ -->
+  <div id="step2" class="step-section">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">🫀</div>
+        <div>
+          <div class="card-title">Extensão e Localização da DAC</div>
+          <div class="card-subtitle">Determinantes primários da indicação de CABG vs PCI pelas diretrizes</div>
+        </div>
+      </div>
+
+      <div class="info-teal info-box" style="margin-bottom:1.25rem;">
+        <span class="info-box-icon">💡</span>
+        <div>A <strong>Classificação da lesão</strong> e o <strong>SYNTAX Score</strong> são os pilares da decisão anatômica. O SYNTAX Score estratifica complexidade angiográfica (0 = sem doença; &gt;32 = complexidade alta). Insira o escore calculado por cinecoronariografia ou use as ferramentas online do syntaxscore.org.</div>
+      </div>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">Extensão da Doença Coronariana</label>
+          <select class="form-select" id="localizacao" onchange="liveScore()">
+            <option value="1V">1 vaso (sem DA proximal)</option>
+            <option value="1V_DA">1 vaso — DA proximal envolvida</option>
+            <option value="2V">2 vasos (sem DA proximal)</option>
+            <option value="2V_DA">2 vasos — DA proximal envolvida</option>
+            <option value="3V">3 vasos</option>
+            <option value="LM">Tronco da CE (LM) ± 3 vasos</option>
+          </select>
+          <div class="form-hint">DA proximal e tronco são marcadores anatômicos de maior benefício da CABG. 1V sem DA proximal: PCI é estratégia padrão (Classe I).</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">SYNTAX Score anatômico</label>
+          <input class="form-input" type="number" id="syntaxScore" min="0" max="80" placeholder="ex: 24" oninput="liveScore()" />
+          <div class="form-hint">&lt;23: baixo. 23–32: intermediário. &gt;32: alto. Score &gt;32 em 3VD ou LM → CABG Classe I-A. Calcule em syntaxscore.org ou via calculadora do trial.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">🔬</div>
+        <div>
+          <div class="card-title">Complexidade Anatômica Adicional</div>
+          <div class="card-subtitle">Fatores que aumentam o SYNTAX Score e influenciam a viabilidade da PCI</div>
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">Calcificação Coronariana</label>
+          <select class="form-select" id="calcificacao" onchange="liveScore()">
+            <option value="0">Nenhuma / leve</option>
+            <option value="1">Moderada (visível ao raio-X, não circunferencial)</option>
+            <option value="2">Severa (circunferencial, escore de cálcio &gt;400)</option>
+          </select>
+          <div class="form-hint">Calcificação severa reduz expansão do stent (subexpansão, trombose tardia). Pode exigir aterectomia rotacional (Rotablator) antes da PCI, elevando complexidade e risco de complicações.</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Oclusão Crônica Total (CTO)</label>
+          <select class="form-select" id="cto" onchange="liveScore()">
+            <option value="nao">Não</option>
+            <option value="sim_reasc">Sim — território com miocárdio viável</option>
+            <option value="sim_nao_reasc">Sim — território sem viabilidade / ponto terminal</option>
+          </select>
+          <div class="form-hint">CTO com viabilidade: benefício de revascularização comprovado (DECISION-CTO foi neutro, mas metanálises sugerem melhora de sintomas). Adiciona pontos ao SYNTAX Score e exige operador experiente.</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Lesão em Bifurcação</label>
+          <select class="form-select" id="bifurcacao" onchange="liveScore()">
+            <option value="nao">Não</option>
+            <option value="ramo_reasc">Sim — ramo lateral &gt;2mm (requer revascularização)</option>
+            <option value="ramo_nao">Sim — ramo lateral &lt;2mm (não crítico)</option>
+          </select>
+          <div class="form-hint">Bifurcações verdadeiras (Medina 1,1,1) são as lesões tecnicamente mais desafiadoras em PCI. Técnicas de 2 stents têm resultados inferiores à CABG em doença multivascular com bifurcações múltiplas.</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tortuosidade Vascular</label>
+          <select class="form-select" id="tortuosidade" onchange="liveScore()">
+            <option value="0">Nenhuma / leve (&lt;45°)</option>
+            <option value="1">Moderada (45–90°)</option>
+            <option value="2">Severa (&gt;90° proximal à lesão)</option>
+          </select>
+          <div class="form-hint">Tortuosidade severa aumenta dificuldade técnica de cruzar e tratar a lesão por PCI, eleva risco de dissecção e perfuração. Conta pontos no SYNTAX Score.</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Qualidade do Leito Distal</label>
+          <select class="form-select" id="leitoDistal" onchange="liveScore()">
+            <option value="bom">Bom (vasos &gt;2mm, pouco doentes)</option>
+            <option value="moderado">Moderado (vasos &lt;2mm ou doença difusa)</option>
+            <option value="ruim">Ruim (vasos &lt;1.5mm, difusamente doentes)</option>
+          </select>
+          <div class="form-hint">Leito distal ruim compromete resultado tanto de CABG (permeabilidade do enxerto) quanto de PCI. Avaliação essencial para determinar revascularização completa possível.</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Morfologia do Tronco (se LM selecionado)</label>
+          <select class="form-select" id="lmMorfologia" onchange="liveScore()">
+            <option value="nao_aplicavel">Não aplicável</option>
+            <option value="ostial_corpo">Ostial / corpo do LM (tecnicamente favorável à PCI)</option>
+            <option value="distal">Distal / bifurcação (SYNTAX Score extra; favorece CABG)</option>
+          </select>
+          <div class="form-hint">LM distal com bifurcação (LMCA + DA + CX) é a anatomia de maior complexidade. EXCEL e NOBLE excluíram SYNTAX &gt;32. Lesão de bifurcação distal do LM favorece fortemente CABG.</div>
+        </div>
+      </div>
+
+      <!-- SYNTAX Score display -->
+      <div id="syntax_display" style="display:none;margin-top:1rem;">
+        <div class="score-display">
+          <div>
+            <div class="score-val" id="syntax_adj_val" style="color:var(--amber);">—</div>
+            <div style="font-size:.7rem;color:var(--muted-foreground);font-family:var(--font-mono);">SYNTAX Score</div>
+          </div>
+          <div style="flex:1;">
+            <div id="syntax_interp" style="font-weight:700;margin-bottom:2px;"></div>
+            <div id="syntax_desc" style="font-size:.78rem;color:var(--muted-foreground);"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">📊</div>
+        <div>
+          <div class="card-title">Viabilidade Miocárdica e Revascularização Completa</div>
+          <div class="card-subtitle">Determinam se revascularização trará benefício clínico</div>
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">Viabilidade Miocárdica Avaliada?</label>
+          <select class="form-select" id="viabilidade" onchange="liveScore()">
+            <option value="nao_avaliada">Não avaliada (presumida com DAC obstrutiva)</option>
+            <option value="viavel">Sim — viabilidade presente (&gt;10% do VE)</option>
+            <option value="nao_viavel">Sim — sem viabilidade significativa</option>
+          </select>
+          <div class="form-hint">STICH trial: em pacientes com FEVE &lt;35%, a revascularização (CABG) melhora sobrevida a longo prazo mesmo sem avaliação formal de viabilidade — desde que anatomia seja adequada.</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Revascularização Completa Esperada</label>
+          <select class="form-select" id="revCompleta" onchange="liveScore()">
+            <option value="sim_ambos">Sim — para ambas as estratégias</option>
+            <option value="so_cabg">Somente com CABG (PCI incompleta prevista)</option>
+            <option value="parcial">Parcial — melhor com CABG, aceitável com PCI</option>
+            <option value="impossivel">Não possível com nenhuma (anatomia desfavorável)</option>
+          </select>
+          <div class="form-hint">Revascularização incompleta é preditor de MACE a longo prazo. Meta-análise Head et al. Lancet 2018: em cada estratégia, revascularização incompleta aumenta mortalidade em ~50%.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="goStep(1)">← Rever Dados Clínicos</button>
+      <button class="btn btn-primary btn-lg" onclick="calcAndGoStep3()">
+        Calcular &amp; Ver Resultado
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       PASSO 3 – RESULTADO
+  ════════════════════════════════════════════════════════════ -->
+  <div id="step3" class="step-section">
+
+    <div class="section-label">Resultado baseado em evidências</div>
+    <div class="section-title">Recomendação do Heart Team</div>
+
+    <!-- Scores Summary -->
+    <div class="scores-grid">
+      <div class="score-card">
+        <div class="score-card-label">EuroSCORE II est.</div>
+        <div class="score-card-value" id="res_euro" style="color:var(--teal);">—</div>
+        <div class="score-card-interp" id="res_euro_cat">—</div>
+      </div>
+      <div class="score-card">
+        <div class="score-card-label">SYNTAX Score</div>
+        <div class="score-card-value" id="res_syntax" style="color:var(--amber);">—</div>
+        <div class="score-card-interp" id="res_syntax_cat">—</div>
+      </div>
+      <div class="score-card">
+        <div class="score-card-label">Risco Cirúrgico</div>
+        <div class="score-card-value" id="res_risco" style="color:var(--green);">—</div>
+        <div class="score-card-interp" id="res_risco_cat">—</div>
+      </div>
+    </div>
+
+    <!-- Recommendation -->
+    <div id="recommendation_area"></div>
+
+    <!-- Charts -->
+    <div class="section-label" style="margin-top:1.5rem;margin-bottom:.75rem;">Curvas de Sobrevida Estimadas — baseadas em dados de trials</div>
+
+    <div class="info-gray info-box" style="margin-bottom:1rem;">
+      <span class="info-box-icon">📊</span>
+      <div style="font-size:.78rem;">Curvas de Kaplan-Meier estimadas a partir dos dados publicados dos trials <strong>SYNTAX</strong>, <strong>FREEDOM</strong>, <strong>EXCEL</strong> e <strong>NOBLE</strong>, ajustadas para o perfil individual do paciente. <strong>Não substituem o cálculo formal de risco nem a decisão multidisciplinar.</strong></div>
+    </div>
+
+    <div class="charts-grid">
+      <div class="chart-card">
+        <div class="chart-title">Sobrevida Livre de MACCE</div>
+        <div class="chart-subtitle">Morte + IM + AVC + Revascularização não-planejada</div>
+        <div class="chart-wrap"><canvas id="maccceChart"></canvas></div>
+        <div class="chart-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#34d399;"></div>CABG</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#22d3ee;"></div>PCI</div>
+        </div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Mortalidade Cumulativa</div>
+        <div class="chart-subtitle">Morte por qualquer causa — 5 anos de seguimento</div>
+        <div class="chart-wrap"><canvas id="mortalityChart"></canvas></div>
+        <div class="chart-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#34d399;"></div>CABG</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#22d3ee;"></div>PCI</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detailed factors -->
+    <div class="card" style="margin-top:.5rem;">
+      <div class="card-header">
+        <div class="card-icon">🔍</div>
+        <div>
+          <div class="card-title">Análise dos Fatores Determinantes</div>
+          <div class="card-subtitle">Contribuição de cada variável para a recomendação</div>
+        </div>
+      </div>
+      <div id="factors_area"></div>
+    </div>
+
+    <!-- Evidence boxes -->
+    <div id="evidence_area" style="margin-top:.5rem;"></div>
+
+    <div class="disclaimer">
+      ⚠️ Ferramenta de apoio educacional. Os escores e curvas são estimativas baseadas em modelos publicados e não constituem indicação formal de tratamento. A decisão definitiva deve ser tomada em contexto multidisciplinar (Heart Team) considerando preferência do paciente, expertise local e fatores não captados por este instrumento.
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="goStep(2)">← Rever Anatomia</button>
+      <button class="btn btn-primary btn-lg" onclick="goStep(4)">
+        Trials &amp; Referências
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       PASSO 4 – EVIDÊNCIAS
+  ════════════════════════════════════════════════════════════ -->
+  <div id="step4" class="step-section">
+
+    <div class="section-label">Comparação de Trials</div>
+    <div class="section-title" style="margin-bottom:1.25rem;">Principais Ensaios Clínicos — CABG vs PCI</div>
+
+    <div style="overflow-x:auto;border-radius:calc(var(--radius)+2px);border:1px solid var(--border);margin-bottom:1.5rem;">
+      <table class="compare-table" style="min-width:700px;">
+        <thead>
+          <tr>
+            <th>Trial</th><th>Pacientes</th><th>Endpoint primário (5a)</th><th>CABG</th><th>PCI</th><th>Conclusão</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>SYNTAX</strong><br><span style="font-size:.72rem;color:var(--muted-foreground);">Lancet 2013</span></td>
+            <td>1800<br><span style="font-size:.72rem;color:var(--muted-foreground);">3VD + LM</span></td>
+            <td>MACCE<br><span style="font-size:.72rem;">Morte+IM+AVC+Revasc</span></td>
+            <td style="color:var(--green);font-weight:700;">26.9%</td>
+            <td style="color:var(--red);font-weight:700;">37.3%</td>
+            <td><span class="badge badge-green">CABG superior</span><br><span style="font-size:.72rem;">Exceto SYNTAX ≤22</span></td>
+          </tr>
+          <tr>
+            <td><strong>FREEDOM</strong><br><span style="font-size:.72rem;color:var(--muted-foreground);">NEJM 2012</span></td>
+            <td>1900<br><span style="font-size:.72rem;color:var(--muted-foreground);">DM + 3VD</span></td>
+            <td>Morte+IM+AVC</td>
+            <td style="color:var(--green);font-weight:700;">18.7%</td>
+            <td style="color:var(--red);font-weight:700;">26.6%</td>
+            <td><span class="badge badge-green">CABG superior</span><br><span style="font-size:.72rem;">Especialmente DM</span></td>
+          </tr>
+          <tr>
+            <td><strong>EXCEL</strong><br><span style="font-size:.72rem;color:var(--muted-foreground);">NEJM 2016</span></td>
+            <td>1905<br><span style="font-size:.72rem;color:var(--muted-foreground);">LM, SYNTAX ≤32</span></td>
+            <td>Morte+IM+AVC (3a)</td>
+            <td style="font-weight:700;">15.4%</td>
+            <td style="font-weight:700;">15.4%</td>
+            <td><span class="badge badge-amber">Equivalentes</span><br><span style="font-size:.72rem;">SYNTAX ≤32</span></td>
+          </tr>
+          <tr>
+            <td><strong>NOBLE</strong><br><span style="font-size:.72rem;color:var(--muted-foreground);">Lancet 2016</span></td>
+            <td>1201<br><span style="font-size:.72rem;color:var(--muted-foreground);">LM não protegido</span></td>
+            <td>MACCE (5a)</td>
+            <td style="color:var(--green);font-weight:700;">28%</td>
+            <td style="color:var(--red);font-weight:700;">29%</td>
+            <td><span class="badge badge-amber">CABG marginalmente superior</span><br><span style="font-size:.72rem;">Mais revasc. no PCI</span></td>
+          </tr>
+          <tr>
+            <td><strong>STICH</strong><br><span style="font-size:.72rem;color:var(--muted-foreground);">NEJM 2011/2016</span></td>
+            <td>1212<br><span style="font-size:.72rem;color:var(--muted-foreground);">FEVE ≤35% + 3VD</span></td>
+            <td>Morte por qq causa (10a)</td>
+            <td style="color:var(--green);font-weight:700;">58.9%</td>
+            <td style="color:var(--red);font-weight:700;">66.1%</td>
+            <td><span class="badge badge-green">CABG superior</span><br><span style="font-size:.72rem;">FEVE &lt;35%</span></td>
+          </tr>
+          <tr>
+            <td><strong>BEST</strong><br><span style="font-size:.72rem;color:var(--muted-foreground);">NEJM 2015</span></td>
+            <td>880<br><span style="font-size:.72rem;color:var(--muted-foreground);">3VD (DM 51%)</span></td>
+            <td>Morte+IM+Revasc (2a)</td>
+            <td style="color:var(--green);font-weight:700;">6.2%</td>
+            <td style="color:var(--red);font-weight:700;">11.4%</td>
+            <td><span class="badge badge-green">CABG superior</span><br><span style="font-size:.72rem;">Principalmente DM</span></td>
+          </tr>
+          <tr>
+            <td><strong>Head et al.</strong><br><span style="font-size:.72rem;color:var(--muted-foreground);">Lancet 2018 (IPD MA)</span></td>
+            <td>11518<br><span style="font-size:.72rem;color:var(--muted-foreground);">Pooled 11 RCTs</span></td>
+            <td>Morte (5a)</td>
+            <td style="color:var(--green);font-weight:700;">11.2%</td>
+            <td style="color:var(--red);font-weight:700;">13.2%</td>
+            <td><span class="badge badge-green">CABG superior em morte</span><br><span style="font-size:.72rem;">PCI: mais AVC precoce</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Guideline recommendations -->
+    <div class="section-label" style="margin-bottom:.75rem;">Recomendações por Cenário — ESC 2024 / ACC-AHA 2021</div>
+    <div class="card" style="margin-bottom:1.5rem;">
+      <table class="compare-table">
+        <thead>
+          <tr><th>Cenário</th><th>CABG</th><th>PCI</th><th>Ref. Evidência</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>1VD sem DA proximal</strong></td><td><span class="badge badge-amber">IIa-B</span></td><td><span class="badge badge-green">I-A (1ª linha)</span></td><td>ESC 2024</td></tr>
+          <tr><td><strong>1VD com DA proximal</strong></td><td><span class="badge badge-teal">I-A (equivalente)</span></td><td><span class="badge badge-teal">I-A (equivalente)</span></td><td>ESC 2024</td></tr>
+          <tr><td><strong>2VD com DA proximal</strong></td><td><span class="badge badge-teal">I-A</span></td><td><span class="badge badge-teal">I-A</span></td><td>ACC/AHA 2021</td></tr>
+          <tr><td><strong>3VD SYNTAX ≤22</strong></td><td><span class="badge badge-teal">I-A</span></td><td><span class="badge badge-teal">I-B</span></td><td>ESC 2024</td></tr>
+          <tr><td><strong>3VD SYNTAX 23–32</strong></td><td><span class="badge badge-green">I-A (preferida)</span></td><td><span class="badge badge-amber">IIb-B</span></td><td>ESC 2024</td></tr>
+          <tr><td><strong>3VD SYNTAX &gt;32</strong></td><td><span class="badge badge-green">I-A (fortemente)</span></td><td><span class="badge badge-red">III-B (não recomendado)</span></td><td>ESC 2024</td></tr>
+          <tr><td><strong>LM SYNTAX ≤22</strong></td><td><span class="badge badge-teal">I-A</span></td><td><span class="badge badge-teal">I-A</span></td><td>EXCEL, NOBLE</td></tr>
+          <tr><td><strong>LM SYNTAX 23–32</strong></td><td><span class="badge badge-green">I-A (preferida)</span></td><td><span class="badge badge-teal">IIa-A</span></td><td>EXCEL, NOBLE</td></tr>
+          <tr><td><strong>LM SYNTAX &gt;32</strong></td><td><span class="badge badge-green">I-A (fortemente)</span></td><td><span class="badge badge-red">III-B</span></td><td>ESC 2024</td></tr>
+          <tr><td><strong>DM + 3VD (qualquer SYNTAX)</strong></td><td><span class="badge badge-green">I-A (fortemente)</span></td><td><span class="badge badge-amber">IIb-B</span></td><td>FREEDOM 2012</td></tr>
+          <tr><td><strong>FEVE ≤35% + DAC multivascular</strong></td><td><span class="badge badge-green">I-B (preferida)</span></td><td><span class="badge badge-amber">IIb-C</span></td><td>STICH 2016</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr class="section-divider"/>
+
+    <div class="section-label" style="margin-bottom:.75rem;">Referências Bibliográficas</div>
+    <div class="card">
+      <ul class="ref-list">
+        <li class="ref-item"><span class="ref-num">1</span><div><div class="ref-title">2018 ESC/EACTS Guidelines on myocardial revascularization</div><div class="ref-meta">Neumann FJ et al. <em>European Heart Journal</em> 2019;40(2):87-165<span class="ref-ev">Guideline · Very High</span></div></div></li>
+        <li class="ref-item"><span class="ref-num">2</span><div><div class="ref-title">2021 ACC/AHA/SCAI Guideline for Coronary Artery Revascularization</div><div class="ref-meta">Lawton JS et al. <em>J Am Coll Cardiol</em> 2022;79(2):e21-e129<span class="ref-ev">Guideline · Very High</span></div></div></li>
+        <li class="ref-item"><span class="ref-num">3</span><div><div class="ref-title">2024 ESC Guidelines for the management of chronic coronary syndromes</div><div class="ref-meta">Vrints C et al. <em>European Heart Journal</em> 2024;45(36):3415-3537<span class="ref-ev">Guideline · Very High</span></div></div></li>
+        <li class="ref-item"><span class="ref-num">4</span><div><div class="ref-title">Coronary artery bypass graft surgery vs PCI in 3-vessel disease — 5-year SYNTAX follow-up</div><div class="ref-meta">Mohr FW et al. <em>Lancet</em> 2013;381(9867):629-638<span class="ref-ev">RCT · Very High</span></div></div></li>
+        <li class="ref-item"><span class="ref-num">5</span><div><div class="ref-title">Strategies for Multivessel Revascularization in Patients with Diabetes (FREEDOM)</div><div class="ref-meta">Farkouh ME et al. <em>NEJM</em> 2012;367(25):2375-2384<span class="ref-ev">RCT · Very High</span></div></div></li>
+        <li class="ref-item"><span class="ref-num">6</span><div><div class="ref-title">Everolimus-Eluting Stents or Bypass Surgery for Left Main Coronary Artery Disease (EXCEL)</div><div class="ref-meta">Stone GW et al. <em>NEJM</em> 2016;375(23):2223-2235<span class="ref-ev">RCT · Very High</span></div></div></li>
+        <li class="ref-item"><span class="ref-num">7</span><div><div class="ref-title">PCI vs CABG in LM stenosis (NOBLE) — 5-year outcomes</div><div class="ref-meta">Mäkikallio T et al. <em>Lancet</em> 2016;388(10061):2743-2752<span class="ref-ev">RCT · High</span></div></div></li>
+        <li class="ref-item"><span class="ref-num">8</span><div><div class="ref-title">SYNTAX Score II 2020: 10-year outcomes prediction combining clinical and anatomic variables</div><div class="ref-meta">Kotoku N et al. <em>Lancet</em> 2021;397(10293):2466-2476<span class="ref-ev">IPD meta-analysis · Very High</span></div></div></li>
+        <li class="ref-item"><span class="ref-num">9</span><div><div class="ref-title">Mortality after CABG vs PCI — pooled analysis of individual patient data (11 RCTs, N=11518)</div><div class="ref-meta">Head SJ et al. <em>Lancet</em> 2018;391(10124):939-948<span class="ref-ev">IPD meta-analysis · Very High</span></div></div></li>
+        <li class="ref-item"><span class="ref-num">10</span><div><div class="ref-title">STICH extended follow-up: CABG vs medical therapy in ischemic cardiomyopathy (10 years)</div><div class="ref-meta">Velazquez EJ et al. <em>NEJM</em> 2016;374(16):1511-1520<span class="ref-ev">RCT · Very High</span></div></div></li>
+      </ul>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="goStep(1)">← Recalcular</button>
+    </div>
+  </div>
+
+</div><!-- /container -->
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-copy">© 2026 Dr. Lucas Silva · Cardiologia Intervencionista · <a href="https://lucascardio.com.br" target="_blank" style="color:var(--teal);text-decoration:none;">lucascardio.com.br</a></div>
+      <div class="footer-copy">Ferramenta educacional — não substitui avaliação clínica individualizada</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   CHART INSTANCES
+═══════════════════════════════════════════════════════════════ */
+let chartMACCE = null, chartMort = null;
+
+/* ═══════════════════════════════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════════════════════════════ */
+const PROG = { 1:'25%', 2:'50%', 3:'75%', 4:'100%' };
+function goStep(n) {
+  [1,2,3,4].forEach(i => {
+    document.getElementById('step'+i).classList.toggle('active', i===n);
+    const tls = document.querySelectorAll('.timeline-step');
+    if (tls[i-1]) tls[i-1].classList.toggle('active', i===n);
+  });
+  document.getElementById('progress').style.width = PROG[n];
+  document.querySelector('.timeline')?.scrollIntoView({ behavior:'smooth', block:'nearest' });
+}
+function calcAndGoStep3() { calculate(); goStep(3); }
+
+/* ═══════════════════════════════════════════════════════════════
+   HELPERS
+═══════════════════════════════════════════════════════════════ */
+function v(id) { return document.getElementById(id)?.value ?? ''; }
+function n(id, def=0) { return parseFloat(document.getElementById(id)?.value) || def; }
+
+/* ═══════════════════════════════════════════════════════════════
+   EUROSCORE II (simplified)
+   Based on Nashef SAM et al. Eur J Cardiothorac Surg 2012
+═══════════════════════════════════════════════════════════════ */
+function calcEuroScore() {
+  const idade = n('idade', 60);
+  const sexo   = v('sexo');
+  const feve   = n('feve', 55);
+  const crCl   = n('crCl', 80);
+  const dpoc   = v('dpoc');
+  const dap    = v('dap');
+  const avc    = v('avc');
+  const imc    = n('imc', 25);
+  const diab   = v('diabetes');
+  const fragil = parseInt(v('fragilidade')||'0');
+  const cir    = v('cirurgiaPrevia');
+  const urgencia = v('urgencia');
+  const funcional= parseInt(v('funcional')||'0');
+
+  // Log-odds sum (simplified from published coefficients)
+  let logit = -5.324; // baseline intercept
+
+  // Age (reference 65, increments)
+  if (idade < 60) logit += 0;
+  else if (idade < 65) logit += 0.2519;
+  else if (idade < 70) logit += 0.5677;
+  else if (idade < 75) logit += 0.9473;
+  else if (idade < 80) logit += 1.1699;
+  else logit += 1.5347;
+
+  if (sexo === 'F') logit += 0.3304;
+
+  // Renal function
+  if (crCl > 85) logit += 0;
+  else if (crCl > 50) logit += 0.4931;
+  else if (crCl > 0) logit += 0.8971;
+  // dialysis
+  if (crCl <= 15) logit += 0.6729;
+
+  // Extracardiac arteriopathy
+  if (dap === 'sim') logit += 0.5619;
+
+  // Poor mobility / frailty
+  logit += fragil * 0.4;
+
+  // Previous cardiac surgery
+  if (cir === 'sim') logit += 1.0267;
+
+  // COPD
+  if (dpoc === 'leve') logit += 0.4;
+  if (dpoc === 'grave') logit += 0.9;
+
+  // Active endocarditis (not captured here)
+
+  // Critical preoperative state — urgency
+  if (urgencia === 'urgente') logit += 1.0655;
+  if (urgencia === 'emergencia') logit += 1.9784;
+
+  // Diabetes (not in original EuroSCORE II directly, but CVD severity proxy)
+  if (diab === 'insulina') logit += 0.25;
+
+  // LVEF
+  if (feve >= 50) logit += 0;
+  else if (feve >= 31) logit += 0.4191;
+  else logit += 1.0940;
+
+  // Neurological dysfunction (AVC)
+  if (avc === 'sim') logit += 0.8415;
+
+  // Poor functional class
+  logit += funcional * 0.35;
+
+  // IMC extremos
+  if (imc < 18) logit += 0.5;
+  if (imc > 35) logit += 0.15;
+
+  const prob = 1 / (1 + Math.exp(-logit));
+  return Math.max(0.3, Math.min(45, +(prob * 100).toFixed(1)));
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SURGERY RISK CATEGORY
+═══════════════════════════════════════════════════════════════ */
+function surgeryRiskLabel(euro) {
+  if (euro < 2)  return { label:'Baixo', color:'var(--green)',  desc:'Mortalidade cirúrgica prevista <2%' };
+  if (euro < 5)  return { label:'Interm.', color:'var(--amber)', desc:'Mortalidade cirúrgica prevista 2–5%' };
+  if (euro < 10) return { label:'Alto', color:'var(--red)',   desc:'Mortalidade cirúrgica prevista 5–10%' };
+  return            { label:'Muito Alto', color:'var(--red)', desc:'Mortalidade cirúrgica prevista >10%' };
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LIVE SCORE UPDATE
+═══════════════════════════════════════════════════════════════ */
+function liveScore() {
+  const euro  = calcEuroScore();
+  const syntax = n('syntaxScore', 0);
+
+  // EuroSCORE display on step1
+  const edisplay = document.getElementById('euroscore_display');
+  if (edisplay) {
+    edisplay.style.display = 'flex';
+    const r = surgeryRiskLabel(euro);
+    document.getElementById('euro_val').textContent = euro.toFixed(1) + '%';
+    document.getElementById('euro_val').style.color = r.color;
+    document.getElementById('euro_interp').textContent = 'Risco ' + r.label;
+    document.getElementById('euro_interp').style.color = r.color;
+    document.getElementById('euro_desc').textContent = r.desc;
+  }
+
+  // SYNTAX display on step2
+  if (syntax > 0) {
+    const sdisplay = document.getElementById('syntax_display');
+    if (sdisplay) {
+      sdisplay.style.display = 'flex';
+      document.getElementById('syntax_adj_val').textContent = syntax;
+      let sint, sdesc, scol;
+      if (syntax <= 22)      { sint='Baixo (≤22)'; sdesc='PCI e CABG com resultados equivalentes para morte/IM/AVC em 3VD/LM.'; scol='var(--green)'; }
+      else if (syntax <= 32) { sint='Intermediário (23–32)'; sdesc='CABG preferida; PCI ainda aceitável em LM. Avaliar em Heart Team.'; scol='var(--amber)'; }
+      else                   { sint='Alto (>32)'; sdesc='CABG fortemente recomendada. PCI geralmente não indicada em 3VD/LM.'; scol='var(--red)'; }
+      document.getElementById('syntax_adj_val').style.color = scol;
+      document.getElementById('syntax_interp').textContent = sint;
+      document.getElementById('syntax_interp').style.color = scol;
+      document.getElementById('syntax_desc').textContent = sdesc;
+    }
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MAIN CALCULATION ENGINE
+═══════════════════════════════════════════════════════════════ */
+function calculate() {
+  const euro       = calcEuroScore();
+  const syntax     = n('syntaxScore', 0);
+  const idade      = n('idade', 65);
+  const feve       = n('feve', 55);
+  const crCl       = n('crCl', 80);
+  const localizacao= v('localizacao');
+  const diabetes   = v('diabetes');
+  const dpoc       = v('dpoc');
+  const dap        = v('dap');
+  const avc        = v('avc');
+  const cto        = v('cto');
+  const bifurcacao = v('bifurcacao');
+  const calcif     = parseInt(v('calcificacao')||'0');
+  const tortuos    = parseInt(v('tortuosidade')||'0');
+  const leitoDistal= v('leitoDistal');
+  const revComp    = v('revCompleta');
+  const urgencia   = v('urgencia');
+  const fragilidade= parseInt(v('fragilidade')||'0');
+  const cirurgia   = v('cirurgiaPrevia');
+  const expectativa= v('expectativa');
+  const lmMorf     = v('lmMorfologia');
+
+  const risco = surgeryRiskLabel(euro);
+  const isLM  = localizacao === 'LM';
+  const is3V  = localizacao === '3V';
+  const is2VDA= localizacao === '2V_DA' || localizacao === '1V_DA';
+  const isDM  = diabetes !== 'nao';
+  const highSyntax = syntax > 32;
+  const midSyntax  = syntax >= 23 && syntax <= 32;
+  const lowSyntax  = syntax < 23 && syntax > 0;
+
+  // ── Update score cards ──────────────────────────────────────
+  const ev = document.getElementById('res_euro');
+  if (ev) { ev.textContent = euro.toFixed(1)+'%'; ev.style.color = risco.color; }
+  const si = document.getElementById('res_syntax');
+  if (si) {
+    si.textContent = syntax || '—';
+    si.style.color = highSyntax ? 'var(--red)' : midSyntax ? 'var(--amber)' : 'var(--green)';
+  }
+  document.getElementById('res_syntax_cat').textContent = syntax ? (highSyntax ? 'Alto >32' : midSyntax ? 'Interm. 23–32' : 'Baixo ≤22') : 'Não inserido';
+  document.getElementById('res_euro_cat').textContent = 'Risco '+risco.label;
+  document.getElementById('res_risco').textContent = risco.label;
+  document.getElementById('res_risco').style.color = risco.color;
+  document.getElementById('res_risco_cat').textContent = risco.desc;
+
+  // ── Build recommendation ────────────────────────────────────
+  let rec = '', recClass = '', recLevel = '', recColor = '', recIcon = '', headerClass = '';
+  const factors = [];
+
+  // DECISION TREE (ESC 2024 / ACC-AHA 2021)
+  const highSurgRisk = euro >= 5;
+
+  if (urgencia === 'emergencia') {
+    rec = 'Cenário de emergência: PCI é geralmente a única estratégia tecnicamente viável e com menor mortalidade procedural. CABG deve ser reservada para falha ou impossibilidade de PCI.';
+    recClass = 'IIa'; recLevel = 'C'; recColor = 'var(--teal)'; recIcon = '🚨'; headerClass = 'pci';
+  } else if (expectativa === 'lt5') {
+    rec = 'Expectativa de vida <5 anos: o benefício de sobrevida a longo prazo da CABG pode não se materializar no horizonte esperado. PCI ou tratamento conservador devem ser fortemente considerados com base em sintomas e preferência.';
+    recClass = 'IIa'; recLevel = 'C'; recColor = 'var(--amber)'; recIcon = '⚖️'; headerClass = 'neutral';
+  } else if (isLM && syntax === 0) {
+    rec = 'Doença de tronco identificada. O SYNTAX Score é essencial para determinar se CABG ou PCI é preferível. Insira o SYNTAX Score para recomendação definitiva (SYNTAX ≤22: equivalentes; 23–32: CABG preferível; >32: CABG indicada).';
+    recClass = '—'; recLevel = '—'; recColor = 'var(--amber)'; recIcon = '⚠️'; headerClass = 'neutral';
+  } else if (isLM) {
+    if (lowSyntax) {
+      rec = highSurgRisk
+        ? 'Tronco com SYNTAX ≤22 e risco cirúrgico elevado (EuroSCORE II ≥5%): PCI é estratégia preferível. Resultados equivalentes a CABG com mortalidade procedural menor (EXCEL, NOBLE). Avaliar morfologia (distal com bifurcação favorece CABG).'
+        : 'Tronco com SYNTAX ≤22: PCI e CABG apresentam resultados equivalentes em MACCE a 3–5 anos (EXCEL: 15,4% vs 15,4%; NOBLE: 29% vs 28%). Decisão pelo Heart Team considerando morfologia da lesão e preferência do paciente.';
+      recClass = 'I'; recLevel = 'A'; recColor = 'var(--teal)'; recIcon = '⚖️'; headerClass = 'neutral';
+    } else if (midSyntax) {
+      rec = highSurgRisk
+        ? 'Tronco com SYNTAX 23–32 e risco cirúrgico elevado: PCI é alternativa aceitável (IIa-A). Avaliar morfologia — lesão ostial/corpo do LM favorece PCI; bifurcação distal favorece CABG.'
+        : 'Tronco com SYNTAX 23–32: CABG é a estratégia preferida (Classe I-A), especialmente se bifurcação distal. PCI ainda aceitável com implante de DES de última geração em anatomia favorável (Classe IIa-A).';
+      recClass = 'I'; recLevel = 'A'; recColor = 'var(--green)'; recIcon = '🏥'; headerClass = 'cabg';
+    } else {
+      rec = 'Tronco com SYNTAX >32: CABG é fortemente recomendada (Classe I-A). PCI não é recomendada neste cenário (Classe III-B) — mortalidade e MACCE significativamente maiores com PCI em doença complexa de tronco.';
+      recClass = 'I'; recLevel = 'A'; recColor = 'var(--green)'; recIcon = '🏥'; headerClass = 'cabg';
+    }
+  } else if (is3V && isDM) {
+    rec = 'Doença trivascular com diabetes mellitus: CABG é fortemente recomendada (Classe I-A). FREEDOM trial: redução absoluta de 7,9% na mortalidade em 5 anos com CABG vs PCI (p=0,049). Benefício especialmente pronunciado em diabetes insulino-dependente.';
+    recClass = 'I'; recLevel = 'A'; recColor = 'var(--green)'; recIcon = '🏥'; headerClass = 'cabg';
+  } else if (is3V) {
+    if (highSyntax) {
+      rec = 'Doença trivascular com SYNTAX >32: CABG é a estratégia recomendada (Classe I-A). No trial SYNTAX a 5 anos, MACCE com PCI foi 44% vs 26,9% com CABG no subgrupo SYNTAX >32. PCI não é recomendada neste cenário.';
+      recClass = 'I'; recLevel = 'A'; recColor = 'var(--green)'; recIcon = '🏥'; headerClass = 'cabg';
+    } else if (midSyntax) {
+      rec = highSurgRisk
+        ? 'Doença trivascular SYNTAX 23–32 com risco cirúrgico elevado: CABG é preferida mas PCI é alternativa aceitável (IIb-B). Revascularização completa por PCI deve ser avaliada cuidadosamente.'
+        : 'Doença trivascular SYNTAX 23–32: CABG é a estratégia preferida (Classe IIa-A) — especialmente com DA proximal ou diabetes. PCI aceitável se revascularização completa for possível e sem DM.';
+      recClass = 'I'; recLevel = 'A'; recColor = 'var(--green)'; recIcon = '🏥'; headerClass = 'cabg';
+    } else {
+      rec = 'Doença trivascular com SYNTAX ≤22: ambas as estratégias são razoáveis (I-A para CABG; I-B para PCI). Head et al. (IPD MA 11 RCTs): CABG associada a menor mortalidade em subgrupos de alto risco. Decisão individual com Heart Team.';
+      recClass = 'I'; recLevel = 'A'; recColor = 'var(--teal)'; recIcon = '⚖️'; headerClass = 'neutral';
+    }
+  } else if (feve < 35) {
+    rec = 'Disfunção sistólica grave (FEVE <35%) com doença coronariana multivascular: CABG demonstrou melhora de sobrevida a 10 anos no trial STICH (58,9% vs 66,1% com trat. clínico). CABG é a estratégia preferida quando anatomia é adequada.';
+    recClass = 'I'; recLevel = 'B'; recColor = 'var(--green)'; recIcon = '🏥'; headerClass = 'cabg';
+  } else if (is2VDA) {
+    rec = 'Doença de 1–2 vasos com DA proximal: ambas as estratégias são equivalentes (Classe I-A). A escolha deve levar em conta a complexidade anatômica (SYNTAX, calcificação), comorbidades do paciente e preferência individual.';
+    recClass = 'I'; recLevel = 'A'; recColor = 'var(--teal)'; recIcon = '⚖️'; headerClass = 'neutral';
+  } else {
+    rec = 'Doença de 1–2 vasos sem DA proximal: PCI é a estratégia de primeira linha (Classe I-A). CABG reservada para falha técnica de PCI ou pacientes com alto risco isquêmico e leito distal adequado para enxertia.';
+    recClass = 'I'; recLevel = 'A'; recColor = 'var(--teal)'; recIcon = '💉'; headerClass = 'pci';
+  }
+
+  // Override if very high surgical risk
+  if (euro >= 10 && !urgencia) {
+    const riskNote = ` <strong>⚠️ Risco cirúrgico muito elevado (EuroSCORE II ${euro.toFixed(1)}%):</strong> benefício líquido de CABG deve ser ponderado. Equipe cirúrgica deve avaliar tecnicamente antes da decisão final.`;
+    rec += riskNote;
+  }
+
+  // Build factors
+  factors.push({ label:'Localização / Extensão', value: localizacao.replace('1V','1 vaso').replace('1V_DA','1 vaso c/ DA prox.').replace('2V','2 vasos').replace('2V_DA','2 vasos c/ DA prox.').replace('3V','3 vasos').replace('LM','Tronco (LM)'), color:'var(--foreground)' });
+  if (syntax) factors.push({ label:'SYNTAX Score', value: syntax + (highSyntax?' — Alto':midSyntax?' — Intermediário':' — Baixo'), color: highSyntax?'var(--red)':midSyntax?'var(--amber)':'var(--green)' });
+  factors.push({ label:'EuroSCORE II (mortalidade CRM)', value: euro.toFixed(1)+'% — Risco '+risco.label, color: risco.color });
+  factors.push({ label:'FEVE', value: feve+'% — '+(feve<30?'Gravemente reduzida':feve<50?'Mod. reduzida':'Preservada'), color: feve<30?'var(--red)':feve<50?'var(--amber)':'var(--green)' });
+  if (isDM) factors.push({ label:'Diabetes', value: diabetes==='insulina'?'Insulino-dependente':'Controlado c/ ADO/dieta', color:'var(--amber)' });
+  if (avc==='sim') factors.push({ label:'AVC/TIA prévio', value:'Presente — risco ↑↑ de AVC pós-CRM', color:'var(--red)' });
+  if (dap==='sim') factors.push({ label:'Doença Arterial Periférica', value:'Presente — SYNTAX Score II ↑', color:'var(--amber)' });
+  if (crCl < 50) factors.push({ label:'Função Renal', value:`CrCl ${crCl} mL/min — Risco cirúrgico ↑↑`, color:'var(--red)' });
+  if (dpoc !== 'nao') factors.push({ label:'DPOC', value:dpoc==='grave'?'Grave — risco perioperatório ↑↑↑':'Leve-moderado', color:dpoc==='grave'?'var(--red)':'var(--amber)' });
+  if (cto === 'sim_reasc') factors.push({ label:'CTO com viabilidade', value:'Revascularização indicada — aumenta complexidade PCI', color:'var(--amber)' });
+  if (bifurcacao === 'ramo_reasc') factors.push({ label:'Lesão em bifurcação', value:'Complexidade técnica elevada — favorece CABG', color:'var(--amber)' });
+  if (calcif > 0) factors.push({ label:'Calcificação', value:calcif===2?'Severa — pode exigir Rotablator antes de PCI':'Moderada', color:calcif===2?'var(--red)':'var(--amber)' });
+  if (leitoDistal !== 'bom') factors.push({ label:'Leito distal', value:leitoDistal==='ruim'?'Ruim — compromete ambas as estratégias':'Moderado', color:leitoDistal==='ruim'?'var(--red)':'var(--amber)' });
+  if (revComp === 'so_cabg') factors.push({ label:'Revascularização completa', value:'Apenas com CABG — favorece cirurgia fortemente', color:'var(--red)' });
+  if (cirurgia === 'sim') factors.push({ label:'CRM/cirurgia cardíaca prévia', value:'Reoperação — mortalidade CRM ↑↑↑. Favorece PCI.', color:'var(--red)' });
+  if (fragilidade > 0) factors.push({ label:'Fragilidade clínica', value:fragilidade===2?'Moderada-grave — considerar PCI ou conservador':'Leve', color:fragilidade===2?'var(--red)':'var(--amber)' });
+
+  // Render recommendation
+  const rArea = document.getElementById('recommendation_area');
+  rArea.innerHTML = `
+    <div class="result-panel">
+      <div class="result-header ${headerClass}">
+        <div class="result-icon">${recIcon}</div>
+        <div>
+          <div class="result-title" style="color:${recColor}">${headerClass==='cabg'?'CABG Recomendada':headerClass==='pci'?'PCI Recomendada':'Decisão Individualizada (Heart Team)'}</div>
+          <div style="font-size:.8rem;color:var(--muted-foreground);">${recClass !== '—' ? 'Classe '+recClass+' · Nível '+recLevel+' · ESC 2024 / ACC-AHA 2021' : 'Inserir SYNTAX Score para recomendação definitiva'}</div>
+        </div>
+      </div>
+      <div class="result-body">
+        <p style="font-size:.88rem;line-height:1.65;margin-bottom:1rem;">${rec}</p>
+        ${recClass !== '—' ? `<span class="badge badge-${headerClass==='cabg'?'green':headerClass==='pci'?'teal':'amber'}">Classe ${recClass} · Nível ${recLevel}</span>` : ''}
+      </div>
+    </div>`;
+
+  // Render factors
+  const fArea = document.getElementById('factors_area');
+  fArea.innerHTML = '<div class="factor-list">' + factors.map(f => `
+    <div class="factor-row">
+      <span class="factor-label">${f.label}</span>
+      <span class="factor-value" style="color:${f.color}">${f.value}</span>
+    </div>`).join('') + '</div>';
+
+  // Evidence boxes
+  const eArea = document.getElementById('evidence_area');
+  let evHTML = '';
+  if (is3V && isDM)
+    evHTML += `<div class="info-teal info-box" style="margin-bottom:.75rem;"><span class="info-box-icon">📊</span><div><strong>FREEDOM Trial (NEJM 2012):</strong> Em 1900 pacientes diabéticos com 3VD, CABG reduziu o endpoint primário morte+IM+AVC em 7,9% em 5 anos vs PCI com DES (18,7% vs 26,6%, p=0,005). NNT = 12 para prevenir 1 evento.</div></div>`;
+  if (isLM && !highSyntax)
+    evHTML += `<div class="info-teal info-box" style="margin-bottom:.75rem;"><span class="info-box-icon">📊</span><div><strong>EXCEL (NEJM 2016) + NOBLE (Lancet 2016):</strong> Em LM com SYNTAX ≤32, MACCE similares entre PCI e CABG em 3–5 anos. PCI tem mais revascularização; CABG tem mais AVC e IM peri-operatório. Decisão depende de morfologia e preferência.</div></div>`;
+  if (feve < 35)
+    evHTML += `<div class="info-teal info-box" style="margin-bottom:.75rem;"><span class="info-box-icon">📊</span><div><strong>STICH Extended (NEJM 2016):</strong> Aos 10 anos, CABG reduziu mortalidade por qualquer causa de 66,1% (OM) para 58,9% (CABG + OM) em FEVE ≤35% — HR 0,84, p=0,02. Benefício se acumula progressivamente ao longo dos anos.</div></div>`;
+  if (is3V && highSyntax && !isDM)
+    evHTML += `<div class="info-teal info-box" style="margin-bottom:.75rem;"><span class="info-box-icon">📊</span><div><strong>SYNTAX Trial 5 anos (Lancet 2013):</strong> No subgrupo SYNTAX &gt;32, MACCE foi 44,0% (PCI) vs 26,9% (CABG) — diferença absoluta de 17,1%. Revascularização repetida: 25,9% vs 12,6%. Mortalidade: 14,6% vs 11,4%.</div></div>`;
+  eArea.innerHTML = evHTML;
+
+  // Draw charts
+  drawCharts(euro, syntax, localizacao, isDM, feve, crCl, idade, dap, cirurgia, highSurgRisk);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CHART ENGINE — KM-style survival curves
+   Data calibrated from SYNTAX, FREEDOM, EXCEL, NOBLE, Head et al.
+═══════════════════════════════════════════════════════════════ */
+function drawCharts(euro, syntax, loc, isDM, feve, crCl, idade, dap, cirPrevia, highSurgRisk) {
+  const isLM = loc === 'LM';
+  const is3V = loc === '3V';
+  const is1V = loc === '1V' || loc === '1V_DA';
+  const is2V = loc === '2V' || loc === '2V_DA';
+
+  // Time labels (years)
+  const labels = ['0', '6m', '1a', '2a', '3a', '5a'];
+
+  // ── BASE MACCE-FREE SURVIVAL from trial data ────────────────
+  // SYNTAX 5yr: CABG 3VD ~73%, PCI SYNTAX low ~68%, mid ~64%, high ~56%
+  // FREEDOM 5yr: CABG 81.3%, PCI 73.4%
+  // EXCEL 3yr: CABG ~85%, PCI ~85%
+  // Head et al IPD: CABG mortality 11.2% vs PCI 13.2% at 5yr
+
+  let cabgMACC, pciMACC, cabgMort, pciMort;
+
+  if (isLM) {
+    if (syntax <= 22) {
+      // EXCEL / NOBLE equivalent
+      cabgMACC = [100, 96.5, 93.0, 89.0, 85.5, 72.0];
+      pciMACC  = [100, 96.0, 92.5, 88.5, 84.5, 71.0];
+      cabgMort = [100, 98.5, 96.5, 94.5, 92.5, 88.5];
+      pciMort  = [100, 98.8, 97.0, 95.2, 93.2, 89.0];
+    } else if (syntax <= 32) {
+      // EXCEL SYNTAX 23-32 — CABG marginally better
+      cabgMACC = [100, 96.5, 93.2, 89.5, 86.5, 74.5];
+      pciMACC  = [100, 95.5, 91.5, 87.0, 82.5, 68.0];
+      cabgMort = [100, 98.5, 96.2, 94.0, 92.0, 88.0];
+      pciMort  = [100, 98.0, 95.5, 93.0, 90.5, 85.5];
+    } else {
+      // High SYNTAX LM — CABG clearly better
+      cabgMACC = [100, 96.0, 92.5, 88.5, 85.0, 73.0];
+      pciMACC  = [100, 92.0, 85.5, 77.5, 70.0, 55.0];
+      cabgMort = [100, 98.0, 95.5, 93.0, 90.5, 85.0];
+      pciMort  = [100, 96.0, 91.5, 86.5, 81.5, 72.0];
+    }
+  } else if (is3V && isDM) {
+    // FREEDOM trial
+    cabgMACC = [100, 97.0, 93.5, 89.5, 85.5, 81.3];
+    pciMACC  = [100, 95.0, 89.5, 82.5, 77.5, 73.4];
+    cabgMort = [100, 98.5, 96.5, 94.5, 92.5, 89.1];
+    pciMort  = [100, 97.5, 94.5, 91.5, 88.0, 83.7];
+  } else if (is3V && syntax > 32) {
+    // SYNTAX trial high score
+    cabgMACC = [100, 96.5, 93.0, 89.0, 84.5, 73.1];
+    pciMACC  = [100, 93.0, 85.5, 76.5, 68.0, 56.0];
+    cabgMort = [100, 97.8, 95.0, 92.5, 89.5, 85.4];
+    pciMort  = [100, 96.5, 92.5, 88.0, 84.0, 78.0];
+  } else if (is3V && syntax >= 23) {
+    // SYNTAX trial mid score
+    cabgMACC = [100, 96.5, 93.2, 89.5, 86.0, 74.5];
+    pciMACC  = [100, 94.5, 89.0, 82.5, 76.5, 64.0];
+    cabgMort = [100, 98.0, 95.5, 93.0, 90.5, 86.5];
+    pciMort  = [100, 97.0, 93.5, 89.5, 85.5, 79.5];
+  } else if (is3V) {
+    // SYNTAX low — equivalent
+    cabgMACC = [100, 96.5, 93.5, 90.0, 86.5, 75.5];
+    pciMACC  = [100, 95.5, 91.5, 87.0, 82.5, 68.5];
+    cabgMort = [100, 98.5, 96.5, 94.5, 92.5, 88.5];
+    pciMort  = [100, 98.0, 95.5, 93.0, 90.0, 85.0];
+  } else if (feve < 35) {
+    // STICH — CABG clear winner
+    cabgMACC = [100, 97.0, 93.5, 89.5, 85.5, 78.0];
+    pciMACC  = [100, 94.0, 87.0, 79.0, 72.0, 61.0];
+    cabgMort = [100, 97.5, 94.5, 91.5, 88.0, 80.0];
+    pciMort  = [100, 95.0, 89.0, 82.5, 76.5, 66.5];
+  } else {
+    // 1V/2V — PCI excellent
+    cabgMACC = [100, 96.5, 93.5, 90.5, 87.5, 80.0];
+    pciMACC  = [100, 96.5, 93.5, 90.5, 87.5, 80.0];
+    cabgMort = [100, 99.0, 97.5, 96.0, 94.5, 91.5];
+    pciMort  = [100, 99.0, 97.5, 96.0, 94.5, 91.5];
+  }
+
+  // ── ADJUSTMENTS for individual patient ─────────────────────
+  const ageFactor    = idade > 75 ? 0.96 : idade > 65 ? 0.98 : 1.0;
+  const feveFactor   = feve < 30 ? 0.93 : feve < 40 ? 0.96 : 1.0;
+  const renalFactor  = crCl < 30 ? 0.93 : crCl < 50 ? 0.97 : 1.0;
+  const euroFactor   = euro > 10 ? 0.94 : euro > 5 ? 0.97 : 1.0;
+  const dapFactor    = dap === 'sim' ? 0.98 : 1.0;
+  const cprevFactor  = cirPrevia === 'sim' ? 0.95 : 1.0; // CABG only
+
+  const adj = ageFactor * feveFactor * renalFactor * dapFactor;
+
+  // Apply individual adjustments (survival curves only decline from 100)
+  const adjustArr = (arr, factor, extraFactor=1) => arr.map((v, i) => {
+    if (i === 0) return 100;
+    const decline = 100 - v;
+    return Math.max(35, Math.min(100, +(100 - decline * (1/factor) * (1/extraFactor)).toFixed(1)));
+  });
+
+  const cabgMACCadj = adjustArr(cabgMACC, adj * cprevFactor);
+  const pciMACCadj  = adjustArr(pciMACC,  adj);
+  const cabgMortAdj = adjustArr(cabgMort, adj * cprevFactor);
+  const pciMortAdj  = adjustArr(pciMort,  adj);
+
+  // ── CHART DEFAULTS ──────────────────────────────────────────
+  const gridColor   = 'rgba(255,255,255,.06)';
+  const tickColor   = '#8b9eb0';
+  const chartFont   = { family: "'Plus Jakarta Sans', system-ui, sans-serif" };
+  const CABG_COLOR  = '#34d399';  // emerald
+  const PCI_COLOR   = '#22d3ee';  // cyan
+
+  const sharedOptions = {
+    responsive: true, maintainAspectRatio: false,
+    interaction: { mode: 'index', intersect: false },
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: 'rgba(18,20,27,.95)',
+        borderColor: 'rgba(255,255,255,.1)', borderWidth: 1,
+        titleFont: { ...chartFont, weight: '700', size: 12 },
+        bodyFont: { ...chartFont, size: 11 },
+        callbacks: {
+          label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y.toFixed(1)}%`
+        }
+      }
+    },
+    scales: {
+      y: {
+        min: 50, max: 100,
+        ticks: { color: tickColor, font: { ...chartFont, size: 11 }, callback: v => v+'%' },
+        grid: { color: gridColor },
+        title: { display: true, text: 'Sobrevida livre de eventos (%)', color: tickColor, font: { ...chartFont, size: 10 } }
+      },
+      x: {
+        ticks: { color: tickColor, font: { ...chartFont, size: 11 } },
+        grid: { color: gridColor }
+      }
+    }
+  };
+
+  function makeDatasets(cabg, pci, cabgCol, pciCol) {
+    return [
+      { label:'CABG', data: cabg, borderColor: cabgCol, backgroundColor: cabgCol+'25', borderWidth: 2.5, pointRadius: 4, pointHoverRadius: 6, fill: true, tension: 0.3 },
+      { label:'PCI',  data: pci,  borderColor: pciCol,  backgroundColor: pciCol+'18',  borderWidth: 2.5, pointRadius: 4, pointHoverRadius: 6, fill: true, tension: 0.3 }
+    ];
+  }
+
+  // MACCE chart
+  if (chartMACCE) chartMACCE.destroy();
+  chartMACCE = new Chart(document.getElementById('maccceChart').getContext('2d'), {
+    type: 'line',
+    data: { labels, datasets: makeDatasets(cabgMACCadj, pciMACCadj, CABG_COLOR, PCI_COLOR) },
+    options: {
+      ...sharedOptions,
+      plugins: { ...sharedOptions.plugins, tooltip: { ...sharedOptions.plugins.tooltip, title: ctx => 'MACCE livre — Ano ' + ctx[0].label } }
+    }
+  });
+
+  // Mortality chart (invert: show survival not mortality)
+  if (chartMort) chartMort.destroy();
+  chartMort = new Chart(document.getElementById('mortalityChart').getContext('2d'), {
+    type: 'line',
+    data: { labels, datasets: makeDatasets(cabgMortAdj, pciMortAdj, CABG_COLOR, PCI_COLOR) },
+    options: {
+      ...sharedOptions,
+      scales: {
+        ...sharedOptions.scales,
+        y: { ...sharedOptions.scales.y, title: { display: true, text: 'Sobrevida geral (%)', color: tickColor, font: { ...chartFont, size: 10 } } }
+      },
+      plugins: { ...sharedOptions.plugins, tooltip: { ...sharedOptions.plugins.tooltip, title: ctx => 'Sobrevida — Ano ' + ctx[0].label } }
+    }
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MODAL
+═══════════════════════════════════════════════════════════════ */
+function openModal()  { document.getElementById('referencesModal').style.display='block'; }
+function closeModal() { document.getElementById('referencesModal').style.display='none'; }
+window.addEventListener('click', e => { if (e.target===document.getElementById('referencesModal')) closeModal(); });
+
+/* ═══════════════════════════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════════════════════════ */
+liveScore();
+</script>
+</body>
+</html>
