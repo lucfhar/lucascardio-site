@@ -1,106 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- Home -->
+  <!-- PÁGINAS PRINCIPAIS -->
   <url>
     <loc>https://www.lucascardio.com.br/</loc>
-    <lastmod>2026-03-03</lastmod>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.00</priority>
   </url>
-
-  <!-- Pacientes: Exames Cardiológicos -->
   <url>
-    <loc>https://www.lucascardio.com.br/pacientes-exames.html</loc>
-    <lastmod>2026-03-03</lastmod>
+    <loc>https://www.lucascardio.com.br/sobre-mim.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://www.lucascardio.com.br/projetos.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://www.lucascardio.com.br/contato.html</loc>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.90</priority>
   </url>
 
-  <!-- Para Médicos -->
+  <!-- SEÇÃO PARA PACIENTES -->
   <url>
-    <loc>https://www.lucascardio.com.br/paramedicos.html</loc>
-    <lastmod>2026-03-03</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://www.lucascardio.com.br/pacientes-exames.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.90</priority>
   </url>
-
-  <!-- Manual de Hemodinâmica -->
   <url>
-    <loc>https://www.lucascardio.com.br/manual_hemodinamica.html</loc>
-    <lastmod>2026-03-03</lastmod>
+    <loc>https://www.lucascardio.com.br/cateinfo/cateterismo-info.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.lucascardio.com.br/faq/hemodinamica-faq.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.lucascardio.com.br/periodicolucas/periodicolucas.html</loc>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
 
-  <!-- Cateterismo Direito Calculadora -->
+  <!-- SEÇÃO PARA MÉDICOS -->
   <url>
-    <loc>https://www.lucascardio.com.br/catedireito/catedireitolucas.html</loc>
-    <lastmod>2026-03-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <loc>https://www.lucascardio.com.br/paramedicos.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
   </url>
-
-  <!-- Calculadora de Choque -->
   <url>
-    <loc>https://www.lucascardio.com.br/calculadorachoque/hemodynamic_choque.html</loc>
-    <lastmod>2026-03-03</lastmod>
+    <loc>https://www.lucascardio.com.br/manual_hemodinamica.html</loc>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.85</priority>
   </url>
-
-  <!-- Exame Periódico Baseado em Evidência -->
-  <url>
-    <loc>https://www.lucascardio.com.br/periodicolucas/periodicolucas.html</loc>
-    <lastmod>2026-03-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-
-  <!-- Cateterismo Info (Pacientes) -->
-  <url>
-    <loc>https://www.lucascardio.com.br/cateinfo/cateterismo-info.html</loc>
-    <lastmod>2026-03-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-
-  <!-- FAQ Hemodinâmica -->
-  <url>
-    <loc>https://www.lucascardio.com.br/faq/hemodinamica-faq.html</loc>
-    <lastmod>2026-03-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-
-  <!-- Calculadora de Risco Cardiovascular -->
-  <url>
-    <loc>https://www.lucascardio.com.br/calculadora-risco-cv/index.html</loc>
-    <lastmod>2026-03-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-
-  <!-- Calculadora de DAPT -->
-  <url>
-    <loc>https://www.lucascardio.com.br/dapt-pos-pci-sca.html</loc>
-    <lastmod>2026-03-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-
-  <!-- Algoritmo de Bifurcação -->
-  <url>
-    <loc>https://www.lucascardio.com.br/bifurcacao-stent.html</loc>
-    <lastmod>2026-03-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-
-  <!-- QUIZ -->
   <url>
     <loc>https://www.lucascardio.com.br/quiz-hemodinamica.html</loc>
-    <lastmod>2026-03-03</lastmod>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- CALCULADORAS E FERRAMENTAS -->
+  <url>
+    <loc>https://www.lucascardio.com.br/catedireito/catedireitolucas.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.lucascardio.com.br/calculadorachoque/hemodynamic_choque.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.lucascardio.com.br/calculadora-risco-cv/index.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.lucascardio.com.br/dapt-pos-pci-sca.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.lucascardio.com.br/bifurcacao-stent.html</loc>
+    <lastmod>2026-03-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
