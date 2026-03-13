@@ -1735,6 +1735,11 @@
 </div>
 </main>
 
+<!-- BOTÃO VOLTAR AO TOPO -->
+<div style="text-align:center;padding:2rem 0;">
+  <button onclick="scrollToTop()" style="background:var(--primary);color:#000;border:none;padding:12px 24px;border-radius:8px;font-weight:700;cursor:pointer;font-size:.9rem;transition:opacity .2s;">↑ Voltar ao Topo</button>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <div class="container">
@@ -1755,13 +1760,35 @@
 <script>
   /* ── TAB NAVIGATION ─────────────────────────────────────────── */
   function goTab(n) {
+    // Remove active class from all sections and steps
     document.querySelectorAll('.step-section').forEach(s => s.classList.remove('active'));
     document.querySelectorAll('.timeline-step').forEach(s => s.classList.remove('active'));
+    
+    // Activate the selected tab section
     const el = document.getElementById('tab' + n);
-    if (el) { el.classList.add('active'); el.style.animation = 'none'; el.offsetHeight; el.style.animation = ''; el.style.display = 'block'; }
-    document.querySelectorAll('.timeline-step')[n - 1]?.classList.add('active');
-    document.getElementById('progress').style.width = (n / 6 * 100) + '%';
-    window.scrollTo({ top: document.getElementById('tabNav').offsetTop - 70, behavior: 'smooth' });
+    if (el) { 
+      el.classList.add('active'); 
+    }
+    
+    // Activate the corresponding timeline step
+    const steps = document.querySelectorAll('.timeline-step');
+    if (steps[n - 1]) {
+      steps[n - 1].classList.add('active');
+    }
+    
+    // Update progress bar
+    const progress = document.getElementById('progress');
+    if (progress) {
+      progress.style.width = (n / 6 * 100) + '%';
+    }
+    
+    // Scroll para o topo da página
+    window.scrollTo(0, 0);
+  }
+  
+  /* ── SCROLL TO TOP ─────────────────────────────────────────── */
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   /* ── ACTIVITY ACCORDION ─────────────────────────────────────── */
