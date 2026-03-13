@@ -1,0 +1,1785 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guia de Condições Cardíacas para Pacientes | Dr. Lucas Silva</title>
+  <meta name="description" content="Guia completo sobre as principais condições cardíacas: sintomas, diagnóstico e tratamento baseado em evidências. Para pacientes, com linguagem acessível e profundidade real." />
+  <meta name="author" content="Dr. Lucas Silva" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── DESIGN TOKENS ───────────────────────────────────────────── */
+    :root {
+      --primary: oklch(65% .18 195);
+      --primary-foreground: oklch(98% 0 0);
+      --background: oklch(13% .018 250);
+      --foreground: oklch(93% .01 250);
+      --card: oklch(18.5% .018 250);
+      --card-foreground: oklch(93% .01 250);
+      --muted: oklch(22% .018 250);
+      --muted-foreground: oklch(62% .02 250);
+      --border: oklch(28% .025 250);
+      --input: oklch(22% .02 250);
+      --destructive: oklch(60% .22 25);
+      --secondary: oklch(22% .022 250);
+      --teal: #00d3bd;
+      --teal-dim: rgba(0,211,189,.12);
+      --amber: oklch(82.8% .189 84.429);
+      --red: oklch(63.7% .237 25.331);
+      --green: oklch(79.2% .209 151.711);
+      --radius: 0.625rem;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--background);
+      color: var(--foreground);
+      min-height: 100vh;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ─────────────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(18,20,27,.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--foreground); }
+    .nav-brand-icon {
+      width: 28px; height: 28px; border-radius: 7px;
+      background: var(--teal); display: flex; align-items: center; justify-content: center;
+    }
+    .nav-brand-name { font-weight: 800; font-size: 1rem; letter-spacing: -.025em; }
+    .nav-brand-name span { color: var(--teal); }
+    .nav-brand-sep { width: 1px; height: 14px; background: var(--border); margin: 0 8px; }
+    .nav-brand-sub { font-size: .7rem; font-weight: 500; color: var(--muted-foreground); }
+    .nav-link {
+      font-size: .75rem; font-weight: 600; padding: 5px 12px;
+      border-radius: 8px; border: 1.5px solid var(--primary);
+      color: var(--primary); background: transparent;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 5px;
+      transition: background .15s, color .15s;
+    }
+    .nav-link:hover { background: var(--primary); color: #000; }
+
+    /* ── LAYOUT ─────────────────────────────────────────────────── */
+    .page-wrapper { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* ── HERO ────────────────────────────────────────────────────── */
+    .hero {
+      padding: 3rem 0 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .7rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--teal); margin-bottom: 1rem;
+    }
+    .hero-eyebrow::before { content: ''; display: block; width: 20px; height: 2px; background: var(--teal); border-radius: 1px; }
+    .hero h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800; line-height: 1.2; margin-bottom: .75rem; letter-spacing: -.02em; }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero-sub { color: var(--muted-foreground); font-size: .95rem; max-width: 700px; margin-bottom: 1.5rem; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 6px; border: 1px solid var(--border);
+      color: var(--muted-foreground); background: var(--card);
+      font-family: var(--font-mono);
+    }
+
+    /* ── MAIN GRID ───────────────────────────────────────────────── */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 2rem;
+      margin-top: 2rem;
+      align-items: start;
+    }
+
+    /* ── SIDEBAR ─────────────────────────────────────────────────── */
+    .sidebar { position: sticky; top: 72px; }
+    .sidebar-title {
+      font-size: .65rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--muted-foreground);
+      padding: 0 .75rem; margin-bottom: .5rem;
+      font-family: var(--font-mono);
+    }
+    .sidebar-list { list-style: none; }
+    .sidebar-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: .6rem .75rem; border-radius: var(--radius);
+      cursor: pointer; font-size: .82rem; font-weight: 500;
+      color: var(--muted-foreground); border: 1px solid transparent;
+      transition: all .15s; margin-bottom: 2px;
+    }
+    .sidebar-item:hover { background: var(--muted); color: var(--foreground); }
+    .sidebar-item.active { background: var(--teal-dim); color: var(--teal); border-color: rgba(0,211,189,.25); font-weight: 700; }
+    .sidebar-icon { font-size: 1rem; flex-shrink: 0; width: 20px; text-align: center; }
+    .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: .75rem 0; }
+
+    /* ── CONTENT PANELS ──────────────────────────────────────────── */
+    .condition-panel { display: none; animation: fadeUp .3s ease; }
+    .condition-panel.active { display: block; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── CARD ────────────────────────────────────────────────────── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px);
+      padding: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .card-header {
+      display: flex; align-items: flex-start; gap: .75rem;
+      margin-bottom: 1.25rem; padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .card-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; flex-shrink: 0;
+      background: var(--teal-dim);
+    }
+    .card-title { font-weight: 700; font-size: 1rem; margin-bottom: 2px; }
+    .card-subtitle { font-size: .78rem; color: var(--muted-foreground); }
+
+    /* ── CONDITION HEADER ────────────────────────────────────────── */
+    .cond-header { margin-bottom: 1.5rem; }
+    .cond-eyebrow {
+      font-size: .65rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--teal);
+      margin-bottom: .5rem; font-family: var(--font-mono);
+    }
+    .cond-title { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 800; line-height: 1.2; letter-spacing: -.02em; margin-bottom: .5rem; }
+    .cond-title em { font-style: normal; color: var(--teal); }
+    .cond-desc { color: var(--muted-foreground); font-size: .92rem; max-width: 680px; }
+
+    /* ── INFO BOXES ──────────────────────────────────────────────── */
+    .info-box {
+      border-radius: var(--radius); padding: 12px 16px;
+      font-size: .83rem; line-height: 1.65;
+      display: flex; gap: 10px; margin-bottom: .75rem;
+    }
+    .info-box-icon { flex-shrink: 0; margin-top: 1px; }
+    .info-teal { background: var(--teal-dim); border-left: 3px solid var(--teal); }
+    .info-amber { background: rgba(251,191,36,.08); border-left: 3px solid rgba(251,191,36,.5); }
+    .info-red { background: rgba(220,38,38,.08); border-left: 3px solid rgba(220,38,38,.4); }
+    .info-gray { background: var(--muted); border-left: 3px solid var(--border); }
+    .info-green { background: rgba(34,197,94,.08); border-left: 3px solid rgba(34,197,94,.4); }
+
+    /* ── SECTION LABELS ──────────────────────────────────────────── */
+    .section-label {
+      font-size: .65rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--teal);
+      margin-bottom: .5rem; font-family: var(--font-mono);
+    }
+    .section-title-sm { font-size: 1rem; font-weight: 700; margin-bottom: .75rem; }
+
+    /* ── ACCORDION ───────────────────────────────────────────────── */
+    .accordion { margin-bottom: 1.25rem; }
+    .accordion-item { border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 4px; overflow: hidden; }
+    .accordion-btn {
+      width: 100%; padding: .9rem 1.1rem;
+      display: flex; align-items: center; justify-content: space-between;
+      background: var(--card); border: none; cursor: pointer;
+      color: var(--foreground); font-family: var(--font-sans);
+      font-size: .85rem; font-weight: 700; text-align: left;
+      transition: background .15s;
+    }
+    .accordion-btn:hover { background: var(--muted); }
+    .accordion-btn.open { background: var(--teal-dim); color: var(--teal); }
+    .accordion-btn .acc-icon { font-size: .9rem; transition: transform .2s; flex-shrink: 0; margin-left: .5rem; }
+    .accordion-btn.open .acc-icon { transform: rotate(180deg); }
+    .accordion-body {
+      display: none; padding: 1rem 1.1rem 1.2rem;
+      background: var(--card); font-size: .84rem; line-height: 1.7;
+      border-top: 1px solid var(--border);
+    }
+    .accordion-body.open { display: block; animation: fadeUp .2s ease; }
+    .accordion-label {
+      font-size: .62rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--teal);
+      margin: .2rem 0 .1rem; font-family: var(--font-mono);
+    }
+
+    /* ── SYMPTOM GRID ────────────────────────────────────────────── */
+    .symptom-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: .5rem; margin: .75rem 0;
+    }
+    .symptom-item {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: .6rem .9rem;
+      display: flex; align-items: flex-start; gap: 8px; font-size: .8rem;
+    }
+    .symptom-item .s-icon { font-size: 1.1rem; flex-shrink: 0; }
+
+    /* ── BADGE ───────────────────────────────────────────────────── */
+    .badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: .68rem; font-weight: 700; padding: 2px 8px;
+      border-radius: 999px; white-space: nowrap;
+    }
+    .badge-teal { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.25); }
+    .badge-amber { background: rgba(251,191,36,.12); color: #fbbf24; border: 1px solid rgba(251,191,36,.2); }
+    .badge-red { background: rgba(220,38,38,.15); color: #f87171; border: 1px solid rgba(220,38,38,.25); }
+    .badge-green { background: rgba(34,197,94,.12); color: #4ade80; border: 1px solid rgba(34,197,94,.2); }
+
+    /* ── PILL LIST ───────────────────────────────────────────────── */
+    .pill-list { display: flex; flex-wrap: wrap; gap: .4rem; margin: .5rem 0 1rem; }
+    .pill {
+      font-size: .75rem; font-weight: 600; padding: 4px 12px;
+      border-radius: 999px; background: var(--muted);
+      border: 1px solid var(--border); color: var(--muted-foreground);
+    }
+
+    /* ── STAT HIGHLIGHT ──────────────────────────────────────────── */
+    .stat-row { display: flex; flex-wrap: wrap; gap: .75rem; margin: 1rem 0; }
+    .stat-card {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: .75rem 1rem;
+      flex: 1; min-width: 120px; text-align: center;
+    }
+    .stat-val { font-size: 1.8rem; font-weight: 800; font-family: var(--font-mono); color: var(--teal); line-height: 1; }
+    .stat-label { font-size: .72rem; color: var(--muted-foreground); margin-top: 4px; line-height: 1.4; }
+
+    /* ── TABLE ───────────────────────────────────────────────────── */
+    .data-table { width: 100%; border-collapse: collapse; font-size: .82rem; margin: .75rem 0; }
+    .data-table th { background: var(--muted); padding: 9px 12px; text-align: left; font-weight: 700; font-size: .75rem; border-bottom: 1px solid var(--border); color: var(--muted-foreground); }
+    .data-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:hover td { background: rgba(255,255,255,.02); }
+
+    /* ── ALARM BOX ───────────────────────────────────────────────── */
+    .alarm-box {
+      background: rgba(220,38,38,.08); border: 1px solid rgba(220,38,38,.3);
+      border-radius: calc(var(--radius) + 2px); padding: 1.1rem 1.25rem;
+      margin: 1rem 0;
+    }
+    .alarm-box-title { font-weight: 800; font-size: .9rem; color: #f87171; margin-bottom: .5rem; display: flex; align-items: center; gap: 6px; }
+    .alarm-box ul { list-style: none; }
+    .alarm-box li { font-size: .82rem; padding: 3px 0; display: flex; gap: 8px; }
+    .alarm-box li::before { content: '→'; color: #f87171; flex-shrink: 0; }
+
+    /* ── HIGHLIGHT QUOTE ─────────────────────────────────────────── */
+    .highlight-quote {
+      border-left: 3px solid var(--teal); padding: .75rem 1.1rem;
+      background: var(--teal-dim); border-radius: 0 var(--radius) var(--radius) 0;
+      font-style: italic; font-size: .88rem; color: var(--foreground);
+      margin: 1rem 0;
+    }
+
+    /* ── STEP NUMBERS ────────────────────────────────────────────── */
+    .steps-list { list-style: none; }
+    .steps-list li {
+      display: flex; gap: 1rem; padding: .7rem 0;
+      border-bottom: 1px solid var(--border); font-size: .84rem;
+    }
+    .steps-list li:last-child { border-bottom: none; }
+    .step-num {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--teal); color: #000; font-weight: 800;
+      font-size: .75rem; display: flex; align-items: center;
+      justify-content: center; flex-shrink: 0; margin-top: 1px;
+    }
+    .step-body strong { display: block; font-weight: 700; margin-bottom: 2px; }
+
+    /* ── DISCLAIMER ──────────────────────────────────────────────── */
+    .disclaimer {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 12px 16px;
+      font-size: .75rem; color: var(--muted-foreground);
+      line-height: 1.6; margin-top: 2rem;
+    }
+
+    /* ── FOOTER ──────────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 0; margin-top: 3rem;
+    }
+    .footer-inner {
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-copy { font-size: .75rem; color: var(--muted-foreground); }
+
+    /* ── MOBILE CONDITION SELECTOR ───────────────────────────────── */
+    .mobile-selector { display: none; margin-bottom: 1rem; }
+    .mobile-select {
+      width: 100%; background: var(--input); border: 1px solid var(--border);
+      border-radius: var(--radius); color: var(--foreground);
+      font-family: var(--font-sans); font-size: .9rem;
+      padding: 10px 14px; outline: none; cursor: pointer;
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .main-grid { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .mobile-selector { display: block; }
+      .stat-card { min-width: 80px; }
+    }
+    @media (max-width: 480px) {
+      .symptom-grid { grid-template-columns: 1fr 1fr; }
+      .stat-row { gap: .5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ────────────────────────────────────────────────────── -->
+<nav>
+  <a class="nav-brand" href="https://lucascardio.com.br">
+    <div class="nav-brand-icon">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+    </div>
+    <div class="nav-brand-name">Lucas<span>Cardio</span></div>
+    <div class="nav-brand-sep"></div>
+    <div class="nav-brand-sub">Guia de Condições Cardíacas</div>
+  </a>
+  <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+    lucascardio.com.br
+  </a>
+</nav>
+
+<!-- ── MAIN ────────────────────────────────────────────────────── -->
+<div class="page-wrapper">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">Para Pacientes — Dr. Lucas Silva</div>
+    <h1>Guia de <em>Condições Cardíacas</em></h1>
+    <p class="hero-sub">
+      Explicações detalhadas e baseadas em evidências sobre as principais doenças do coração.
+      Linguagem acessível — sem ser superficial. Para você entender sua condição de verdade.
+    </p>
+    <div class="hero-tags">
+      <span class="tag">DAC</span>
+      <span class="tag">Infarto</span>
+      <span class="tag">Insuficiência Cardíaca</span>
+      <span class="tag">Fibrilação Atrial</span>
+      <span class="tag">Hipertensão</span>
+      <span class="tag">Valvulopatias</span>
+      <span class="tag">Amiloidose</span>
+      <span class="tag">Bloqueio AV</span>
+    </div>
+  </div>
+
+  <div class="main-grid">
+
+    <!-- ── SIDEBAR ──────────────────────────────────────────────── -->
+    <aside class="sidebar">
+      <div class="sidebar-title">Condições</div>
+      <ul class="sidebar-list">
+        <li class="sidebar-item active" onclick="showCondition('dac')">
+          <span class="sidebar-icon">🩺</span> Doença Arterial Coronariana
+        </li>
+        <li class="sidebar-item" onclick="showCondition('iamm')">
+          <span class="sidebar-icon">⚡</span> Infarto Agudo do Miocárdio
+        </li>
+        <li class="sidebar-item" onclick="showCondition('dce')">
+          <span class="sidebar-icon">📊</span> Doença Coronariana Estável
+        </li>
+        <hr class="sidebar-divider">
+        <li class="sidebar-item" onclick="showCondition('ic')">
+          <span class="sidebar-icon">💔</span> Insuficiência Cardíaca
+        </li>
+        <li class="sidebar-item" onclick="showCondition('fa')">
+          <span class="sidebar-icon">〰️</span> Fibrilação Atrial e Flutter
+        </li>
+        <li class="sidebar-item" onclick="showCondition('has')">
+          <span class="sidebar-icon">📈</span> Hipertensão Arterial
+        </li>
+        <hr class="sidebar-divider">
+        <li class="sidebar-item" onclick="showCondition('valv')">
+          <span class="sidebar-icon">🔬</span> Valvulopatias
+        </li>
+        <li class="sidebar-item" onclick="showCondition('amil')">
+          <span class="sidebar-icon">🧬</span> Amiloidose Cardíaca
+        </li>
+        <li class="sidebar-item" onclick="showCondition('bav')">
+          <span class="sidebar-icon">🔌</span> Bloqueio Átrio-Ventricular
+        </li>
+      </ul>
+    </aside>
+
+    <!-- ── CONTENT AREA ─────────────────────────────────────────── -->
+    <main>
+
+      <!-- MOBILE SELECTOR -->
+      <div class="mobile-selector">
+        <select class="mobile-select" onchange="showCondition(this.value)">
+          <option value="dac">🩺 Doença Arterial Coronariana</option>
+          <option value="iamm">⚡ Infarto Agudo do Miocárdio</option>
+          <option value="dce">📊 Doença Coronariana Estável</option>
+          <option value="ic">💔 Insuficiência Cardíaca</option>
+          <option value="fa">〰️ Fibrilação Atrial e Flutter</option>
+          <option value="has">📈 Hipertensão Arterial</option>
+          <option value="valv">🔬 Valvulopatias</option>
+          <option value="amil">🧬 Amiloidose Cardíaca</option>
+          <option value="bav">🔌 Bloqueio Átrio-Ventricular</option>
+        </select>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════════════
+           1. DOENÇA ARTERIAL CORONARIANA
+      ══════════════════════════════════════════════════════════════ -->
+      <div id="cond-dac" class="condition-panel active">
+
+        <div class="cond-header">
+          <div class="cond-eyebrow">Condição Cardíaca</div>
+          <div class="cond-title">Doença Arterial <em>Coronariana</em></div>
+          <div class="cond-desc">A causa mais comum de morte no mundo. Resulta do acúmulo progressivo de placas nas artérias que alimentam o coração — um processo que começa décadas antes dos sintomas.</div>
+        </div>
+
+        <div class="accordion">
+
+          <div class="accordion-item">
+            <button class="accordion-btn open" onclick="toggleAcc(this)">
+              🔬 O que é e como acontece?
+              <span class="acc-icon">▾</span>
+            </button>
+            <div class="accordion-body open">
+              <p>As artérias coronárias são os vasos que levam sangue — e portanto oxigênio e nutrientes — para o próprio músculo cardíaco. A doença arterial coronariana (DAC) ocorre quando essas artérias ficam estreitadas ou obstruídas por <strong>placas ateroscleróticas</strong>.</p>
+              <br>
+              <p>Uma placa aterosclerótica é um acúmulo de colesterol (especialmente o LDL oxidado), células inflamatórias e tecido fibroso dentro da parede do vaso. Esse processo começa silenciosamente já na segunda e terceira décadas de vida — muito antes de qualquer sintoma aparecer.</p>
+              <br>
+              <div class="info-teal info-box">
+                <span class="info-box-icon">💡</span>
+                <div><strong>A placa não é simplesmente "gordura entupindo um cano".</strong> É uma doença inflamatória crônica da parede arterial. O LDL elevado, a hipertensão, o tabagismo e o diabetes criam um ambiente que lesiona o endotélio (a camada interna do vaso), desencadeando uma resposta inflamatória que alimenta o crescimento da placa ao longo de anos e décadas.</div>
+              </div>
+              <p>Com o tempo, a placa pode crescer e estreitar a artéria gradualmente — causando <strong>angina de esforço</strong> — ou pode se romper subitamente, formando um coágulo que obstrui o fluxo de forma aguda, causando um <strong>infarto</strong>.</p>
+              <br>
+              <p>Um dado contraintuitivo e clinicamente importante: placas que causam obstruções menores (40–60%) são frequentemente as mais perigosas, porque tendem a ser instáveis e mais propensas à ruptura do que placas grandes e calcificadas que já causam estenoses severas.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-btn" onclick="toggleAcc(this)">
+              ⚠️ Fatores de risco — o que aumenta as chances?
+              <span class="acc-icon">▾</span>
+            </button>
+            <div class="accordion-body">
+              <div class="info-box info-amber">
+                <span class="info-box-icon">⚠️</span>
+                <div>Os fatores de risco não se somam — eles se <strong>multiplicam</strong>. Uma pessoa com hipertensão, diabetes e tabagismo simultâneos tem um risco muito maior do que a soma dos três isolados.</div>
+              </div>
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Modificáveis</th>
+                    <th>Não modificáveis</th>
+                    <th>Emergentes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Hipertensão arterial</td>
+                    <td>Idade (♂ ≥45, ♀ ≥55 anos)</td>
+                    <td>Inflamação crônica (PCR-us)</td>
+                  </tr>
+                  <tr>
+                    <td>Dislipidemia (LDL ↑, HDL ↓)</td>
+                    <td>Sexo masculino</td>
+                    <td>Doença renal crônica</td>
+                  </tr>
+                  <tr>
+                    <td>Tabagismo</td>
+                    <td>História familiar (parente 1º grau com evento precoce)</td>
+                    <td>Apneia do sono</td>
+                  </tr>
+                  <tr>
+                    <td>Diabetes mellitus</td>
+                    <td>Genética/etnia</td>
+                    <td>Doença autoimune</td>
+                  </tr>
+                  <tr>
+                    <td>Sedentarismo, obesidade</td>
+                    <td></td>
+                    <td>Pré-eclâmpsia (mulheres)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-btn" onclick="toggleAcc(this)">
+              🫀 Sintomas — o que o paciente sente?
+              <span class="acc-icon">▾</span>
+            </button>
+            <div class="accordion-body">
+              <p>O sintoma clássico é a <strong>angina</strong> — uma pressão, aperto ou peso no centro do peito que surge ao esforço e melhora com repouso em 5–10 minutos.</p>
+              <br>
+              <div class="symptom-grid">
+                <div class="symptom-item"><span class="s-icon">💪</span><div><strong>Pressão no peito</strong><br><span style="color:var(--muted-foreground);font-size:.75rem;">Sensação de aperto, peso ou queimação</span></div></div>
+                <div class="symptom-item"><span class="s-icon">💪</span><div><strong>Irradiação</strong><br><span style="color:var(--muted-foreground);font-size:.75rem;">Para braço esquerdo, mandíbula ou costas</span></div></div>
+                <div class="symptom-item"><span class="s-icon">😮‍💨</span><div><strong>Falta de ar</strong><br><span style="color:var(--muted-foreground);font-size:.75rem;">Especialmente ao esforço</span></div></div>
+                <div class="symptom-item"><span class="s-icon">😰</span><div><strong>Suor frio</strong><br><span style="color:var(--muted-foreground);font-size:.75rem;">Acompanhando o desconforto</span></div></div>
+                <div class="symptom-item"><span class="s-icon">🤢</span><div><strong>Náusea</strong><br><span style="color:var(--muted-foreground);font-size:.75rem;">Mais comum em mulheres e diabéticos</span></div></div>
+                <div class="symptom-item"><span class="s-icon">😴</span><div><strong>Fadiga desproporcional</strong><br><span style="color:var(--muted-foreground);font-size:.75rem;">Especialmente com esforços habituais</span></div></div>
+              </div>
+              <br>
+              <div class="info-amber info-box">
+                <span class="info-box-icon">⚠️</span>
+                <div><strong>Apresentações atípicas são comuns</strong>, especialmente em mulheres, idosos e diabéticos. Nesses grupos, a angina pode se manifestar como fadiga inexplicada, náusea, epigastralgia ou simplesmente falta de ar — sem qualquer dor torácica.</div>
+              </div>
+              <div class="info-gray info-box">
+                <span class="info-box-icon">ℹ️</span>
+                <div><strong>Angina estável vs. instável:</strong> Angina estável ocorre de forma previsível, em um limiar de esforço consistente, e melhora com repouso ou nitrato. Angina instável é imprevisível — surge em repouso, com esforços mínimos ou é de início recente. Angina instável é uma emergência médica.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-btn" onclick="toggleAcc(this)">
+              🔍 Como é feito o diagnóstico?
+              <span class="acc-icon">▾</span>
+            </button>
+            <div class="accordion-body">
+              <p>O diagnóstico começa com a <strong>história clínica e o exame físico</strong> — que já permitem ao cardiologista estimar a probabilidade pré-teste de doença coronariana. A partir disso, os exames são escolhidos de forma individualizada.</p>
+              <br>
+              <ul class="steps-list">
+                <li>
+                  <span class="step-num">1</span>
+                  <div class="step-body"><strong>Eletrocardiograma (ECG)</strong> — pode mostrar alterações de isquemia, mas é frequentemente normal entre os episódios de angina.</div>
+                </li>
+                <li>
+                  <span class="step-num">2</span>
+                  <div class="step-body"><strong>Teste ergométrico</strong> — avalia a resposta cardíaca ao esforço. Menos preciso que os outros métodos de imagem, mas útil como triagem inicial.</div>
+                </li>
+                <li>
+                  <span class="step-num">3</span>
+                  <div class="step-body"><strong>Score de cálcio coronariano</strong> — tomografia sem contraste que quantifica aterosclerose calcificada. Excelente para estratificação de risco em assintomáticos.</div>
+                </li>
+                <li>
+                  <span class="step-num">4</span>
+                  <div class="step-body"><strong>Angiotomografia coronariana</strong> — imagens das artérias coronárias sem procedimento invasivo. Tem alta acurácia para excluir doença coronariana significativa.</div>
+                </li>
+                <li>
+                  <span class="step-num">5</span>
+                  <div class="step-body"><strong>Cintilografia ou RMC com estresse</strong> — avaliam se há isquemia (músculo sofrendo por falta de fluxo). Úteis quando a angiotomografia não é conclusiva.</div>
+                </li>
+                <li>
+                  <span class="step-num">6</span>
+                  <div class="step-body"><strong>Cateterismo cardíaco (angiografia coronariana)</strong> — padrão-ouro para visualizar as coronárias. Permite tratar no mesmo procedimento (angioplastia).</div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-btn" onclick="toggleAcc(this)">
+              💊 Como é tratada?
+              <span class="acc-icon">▾</span>
+            </button>
+            <div class="accordion-body">
+              <p>O tratamento tem três pilares que não são excludentes — geralmente todos os três são utilizados juntos.</p>
+              <br>
+              <div class="info-teal info-box">
+                <span class="info-box-icon">🏆</span>
+                <div><strong>Modificação do estilo de vida e controle de fatores de risco</strong> — é o pilar mais subestimado e mais impactante a longo prazo. Cessar tabagismo, controlar pressão e colesterol, praticar exercícios e manter peso adequado reduzem significativamente o risco de eventos futuros e podem desacelerar ou mesmo reverter a progressão da aterosclerose.</div>
+              </div>
+              <br>
+              <p><strong>Medicamentos essenciais na DAC:</strong></p>
+              <div class="pill-list">
+                <span class="pill">Estatinas (LDL ↓)</span>
+                <span class="pill">AAS (antiagregação)</span>
+                <span class="pill">Beta-bloqueadores</span>
+                <span class="pill">IECA/BRA</span>
+                <span class="pill">Nitratos (sintomático)</span>
+                <span class="pill">Ranolazina</span>
+              </div>
+              <br>
+              <p><strong>Revascularização:</strong></p>
+              <div class="info-gray info-box">
+                <span class="info-box-icon">🔧</span>
+                <div>A <strong>angioplastia com stent</strong> abre o vaso obstruído mecanicamente e alivia os sintomas de forma eficaz. A <strong>cirurgia de bypass (revascularização cirúrgica)</strong> cria novos caminhos para o sangue chegar ao coração. A escolha entre as estratégias depende da anatomia coronariana, da função cardíaca, das comorbidades e da preferência do paciente — sempre discutida em equipe (Heart Team).</div>
+              </div>
+              <div class="info-amber info-box">
+                <span class="info-box-icon">⚠️</span>
+                <div>Em doença coronariana estável, os grandes ensaios clínicos — incluindo o ISCHEMIA (2019) — demonstraram que a angioplastia <strong>não reduz mortalidade</strong> em relação ao tratamento clínico otimizado em pacientes estáveis. Ela alivia sintomas, o que é muito relevante para a qualidade de vida — mas não é uma "cura" da doença de base.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-btn" onclick="toggleAcc(this)">
+              🚨 Quando procurar o pronto-socorro?
+              <span class="acc-icon">▾</span>
+            </button>
+            <div class="accordion-body">
+              <div class="alarm-box">
+                <div class="alarm-box-title">🚨 Sinais de alarme — ligue 192 ou vá ao pronto-socorro</div>
+                <ul>
+                  <li>Dor ou pressão no peito em repouso com duração > 20 minutos</li>
+                  <li>Dor no peito com irradiação para braço, mandíbula ou costas</li>
+                  <li>Angina que antes era estável e mudou de padrão (mais frequente, com menos esforço)</li>
+                  <li>Dor acompanhada de suor frio, palidez, náusea ou desmaio</li>
+                  <li>Falta de ar súbita e intensa sem causa aparente</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /accordion -->
+      </div><!-- /dac -->
+
+
+      <!-- ══════════════════════════════════════════════════════════
+           2. INFARTO AGUDO DO MIOCÁRDIO
+      ══════════════════════════════════════════════════════════════ -->
+      <div id="cond-iamm" class="condition-panel">
+
+        <div class="cond-header">
+          <div class="cond-eyebrow">Condição Cardíaca</div>
+          <div class="cond-title">Infarto Agudo do <em>Miocárdio</em></div>
+          <div class="cond-desc">Quando o fluxo de sangue para uma região do coração é interrompido de forma aguda. Cada minuto importa. Mas a vida após o infarto pode ser longa e plena.</div>
+        </div>
+
+        <div class="accordion">
+
+          <div class="accordion-item">
+            <button class="accordion-btn open" onclick="toggleAcc(this)">
+              ⚡ O que acontece durante um infarto?
+              <span class="acc-icon">▾</span>
+            </button>
+            <div class="accordion-body open">
+              <p>O infarto — tecnicamente chamado de <strong>Infarto Agudo do Miocárdio (IAM)</strong> — ocorre quando uma placa aterosclerótica dentro de uma artéria coronária se <strong>rompe</strong>. Esse rompimento desencadeia imediatamente a formação de um coágulo de sangue (trombo) que obstrui o vaso.</p>
+              <br>
+              <p>Com o fluxo interrompido, a região do coração abastecida por aquela artéria começa a sofrer isquemia. Sem oxigênio, as células do músculo cardíaco (miócitos) entram em disfunção em minutos — e se a obstrução durar tempo suficiente, começam a morrer irreversivelmente. Esse processo de morte celular é o que chamamos de <strong>necrose miocárdica</strong>.</p>
+              <br>
+              <div class="stat-row">
+                <div class="stat-card">
+                  <div class="stat-val">~20</div>
+                  <div class="stat-label">minutos para início da necrose irreversível sem fluxo</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-val">1,8M</div>
+                  <div class="stat-label">células musculares mortas por minuto de isquemia</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-val">90</div>
+                  <div class="stat-label">minutos é o tempo-alvo do sintoma ao balão (door-to-balloon)</div>
+                </div>
+              </div>
+              <br>
+              <div class="info-teal info-box">
+                <span class="info-box-icon">💡</span>
+                <div><strong>"Time is muscle"</strong> — cada minuto sem fluxo representa mais músculo cardíaco perdido permanentemente. Por isso o tratamento do infarto é uma emergência absoluta, e a velocidade com que o paciente chega ao laboratório de hemodinâmica é um dos mais importantes determinantes do prognóstico.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-btn" onclick="toggleAcc(this)">
+              📋 STEMI vs. NSTEMI — qual a diferença?
+              <span class="acc-icon">▾</span>
+            </button>
+            <div class="accordion-body">
+              <p>Os infartos são classificados principalmente pelo padrão do eletrocardiograma (ECG), o que tem implicações diretas na urgência e estratégia de tratamento.</p>
+              <br>
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>STEMI</th>
+                    <th>NSTEMI</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>ECG</strong></td>
+                    <td>Elevação do segmento ST</td>
+                    <td>Sem elevação (pode ter depressão ou ser normal)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Mecanismo</strong></td>
+                    <td>Oclusão total da artéria</td>
+                    <td>Oclusão parcial ou oclusão total com circulação colateral</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Urgência</strong></td>
+                    <td>Emergência máxima — cateterismo em &lt;90 min</td>
+                    <td>Urgente — cateterismo em 2–24h dependendo do risco</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Marcadores</strong></td>
+                    <td>Troponina elevada</td>
+                    <td>Troponina elevada</td>
+                  </tr>
+                </tbody>
+              </table>
+              <br>
+              <div class="info-amber info-box">
+                <span class="info-box-icon">⚠️</span>
+                <div>Um NSTEMI não é "menos grave" — em muitos casos, os pacientes com NSTEMI têm doença coronariana mais extensa e podem ter prognóstico igualmente sério a longo prazo. A urgência é diferente, não a gravidade.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-btn" onclick="toggleAcc(this)">
+              🏥 O que acontece no tratamento?
+              <span class="acc-icon">▾</span>
+            </button>
+            <div class="accordion-body">
+              <ul class="steps-list">
+                <li>
+                  <span class="step-num">1</span>
+                  <div class="step-body"><strong>Chegada ao pronto-socorro</strong> — ECG deve ser feito em até 10 minutos da chegada. O diagnóstico de STEMI aciona imediatamente o laboratório de hemodinâmica.</div>
+                </li>
+                <li>
+                  <span class="step-num">2</span>
+                  <div class="step-body"><strong>Antiagregação dupla</strong> — AAS + inibidor P2Y12 (ticagrelor ou clopidogrel) são administrados imediatamente para impedir crescimento do coágulo.</div>
+                </li>
+                <li>
+                  <span class="step-num">3</span>
+                  <div class="step-body"><strong>Cateterismo e angioplastia primária</strong> — o cardiologista intervencionista localiza a artéria obstruída, abre o coágulo com balão e implanta um stent para manter o vaso aberto. É o tratamento definitivo da fase aguda.</div>
+                </li>
+                <li>
+                  <span class="step-num">4</span>
+                  <div class="step-body"><strong>Internação em UTI cardiológica</strong> — monitorização contínua nas primeiras 24–48h para detectar arritmias e complicações.</div>
+                </li>
+                <li>
+                  <span class="step-num">5</span>
+                  <div class="step-body"><strong>Tratamento clínico intensivo</strong> — beta-bloqueadores, IECA/BRA, estatina de alta intensidade e antiagregação dupla são iniciados ainda na internação.</div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-btn" onclick="toggleAcc(this)">
+              🔄 A vida após o infarto — o que muda?
+              <span class="acc-icon">▾</span>
+            </button>
+            <div class="accordion-body">
+              <p>O infarto deixa uma cicatriz no músculo cardíaco — tecido que não volta a funcionar como músculo. Mas o coração tem uma capacidade surpreendente de compensação, e a região não afetada pode trabalhar mais para manter a função cardíaca.</p>
+              <br>
+              <div class="info-teal info-box">
+                <span class="info-box-icon">🏃</span>
+                <div><strong>Reabilitação cardíaca</strong> — programa estruturado de exercícios e suporte é uma das intervenções com maior nível de evidência pós-infarto. Reduz mortalidade, melhora capacidade funcional e qualidade de vida. Infelizmente ainda é subutilizado no Brasil.</div>
+              </div>
+              <br>
+              <p><strong>Medicamentos por tempo prolongado (geralmente vida toda):</strong></p>
+              <div class="pill-list">
+                <span class="pill">AAS</span>
+                <span class="pill">Inibidor P2Y12 (1–12 meses, às vezes mais)</span>
+                <span class="pill">Estatina alta intensidade</span>
+                <span class="pill">Beta-bloqueador</span>
+                <span class="pill">IECA ou BRA</span>
+                <span class="pill">Antagonista da aldosterona (se FE↓)</span>
+              </div>
+              <br>
+              <div class="info-gray info-box">
+                <span class="info-box-icon">📅</span>
+                <div><strong>Retorno às atividades:</strong> Atividade sexual pode ser retomada em ~2 semanas após infarto não complicado. Dirigir em 1 semana (veículos comuns). Trabalho em 1–4 semanas, dependendo da função cardíaca e do tipo de trabalho. Exercícios aeróbios moderados são encorajados — não evitados.</div>
+              </div>
+              <div class="info-amber info-box">
+                <span class="info-box-icon">⚠️</span>
+                <div><strong>Não interrompa os medicamentos sem conversar com seu cardiologista</strong>. Especialmente o inibidor P2Y12 (clopidogrel, ticagrelor) — interromper precocemente aumenta drasticamente o risco de trombose do stent, que é um segundo infarto potencialmente fatal.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-btn" onclick="toggleAcc(this)">
+              🚨 Reconhecendo um infarto
+              <span class="acc-icon">▾</span>
+            </button>
+            <div class="accordion-body">
+              <div class="alarm-box">
+                <div class="alarm-box-title">🚨 Suspeita de infarto — chame 192 imediatamente</div>
+                <ul>
+                  <li>Dor, pressão ou aperto no centro do peito por mais de 20 minutos</li>
+                  <li>Dor que vai para o braço esquerdo, pescoço, mandíbula ou costas</li>
+                  <li>Suor frio, palidez e sensação de morte iminente</li>
+                  <li>Falta de ar súbita, náusea ou vômito junto com dor no peito</li>
+                  <li>Dor epigástrica (boca do estômago) intensa — especialmente em diabéticos</li>
+                  <li>Qualquer dor no peito em paciente com infarto prévio ou stent</li>
+                </ul>
+              </div>
+              <div class="info-red info-box" style="margin-top:.5rem;">
+                <span class="info-box-icon">🚫</span>
+                <div><strong>Não dirija até o hospital sozinho.</strong> O risco de arritmia fatal nos primeiros minutos do infarto é máximo. Chame o SAMU (192) ou peça para alguém levá-lo. Tome AAS (500mg mastigado) se não tiver alergia e não estiver tomando anticoagulante.</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- /iamm -->
+
+
+      <!-- ══════════════════════════════════════════════════════════
+           3. DOENÇA CORONARIANA ESTÁVEL
+      ══════════════════════════════════════════════════════════════ -->
+      <div id="cond-dce" class="condition-panel">
+
+        <div class="cond-header">
+          <div class="cond-eyebrow">Condição Cardíaca</div>
+          <div class="cond-title">Doença Coronariana <em>Estável</em></div>
+          <div class="cond-desc">Quando as artérias coronárias têm obstruções significativas, mas sem rompimento de placa ou coágulo agudo. Uma condição crônica que exige manejo cuidadoso e individualizado.</div>
+        </div>
+
+        <div class="accordion">
+
+          <div class="accordion-item">
+            <button class="accordion-btn open" onclick="toggleAcc(this)">
+              📊 O que significa "estável"?
+              <span class="acc-icon">▾</span>
+            </button>
+            <div class="accordion-body open">
+              <p>"Estável" não significa sem risco ou sem importância. Significa que a doença não está em fase aguda — não há coágulo se formando naquele momento. O paciente pode ter obstruções importantes nas coronárias, mas que causam sintomas previsíveis com esforço e que melhoram com repouso.</p>
+              <br>
+              <p>A doença coronariana estável é um espectro que vai desde pacientes com <strong>angina controlada com medicamentos</strong> até aqueles com <strong>isquemia silenciosa</strong> — sem sintomas, mas com evidência de sofrimento cardíaco aos exames.</p>
+              <br>
+              <div class="info-teal info-box">
+                <span class="info-box-icon">💡</span>
+                <div>Isquemia silenciosa é mais comum em diabéticos (por neuropatia autonômica) e em idosos. Um paciente com diabetes pode ter uma obstrução significativa em uma coronária e não sentir <em>nenhuma</em> dor. Por isso o rastreamento periódico é tão importante nessa população.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-btn" onclick="toggleAcc(this)">
+              🔧 Tratar com medicamentos ou angioplastia?
+              <span class="acc-icon">▾</span>
+            </button>
+            <div class="accordion-body">
+              <p>Essa é uma das questões mais importantes e debatidas da cardiologia contemporânea. A resposta curta: <strong>depende</strong>. E a evidência mudou bastante nos últimos anos.</p>
+              <br>
+              <div class="info-amber info-box">
+                <span class="info-box-icon">📊</span>
+                <div><strong>Estudo ISCHEMIA (NEJM, 2020):</strong> Em 5.179 pacientes com doença coronariana estável e isquemia moderada a grave, a estratégia invasiva (cateterismo + revascularização) não reduziu mortalidade nem infarto em relação ao tratamento clínico otimizado. Reduziu, porém, a angina — benefício importante para qualidade de vida.</div>
+              </div>
+              <br>
+              <p>Isso não significa que a angioplastia nunca é indicada em doença estável. Indica que ela não deve ser realizada apenas por haver uma obstrução visível no exame — mas sim com base no <strong>impacto funcional</strong> da lesão e nos <strong>sintomas</strong> do paciente.</p>
+              <br>
+              <table class="data-table">
+                <thead>
+                  <tr><th>Situação</th><th>Tendência de conduta</th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Angina bem controlada, baixo risco</td>
+                    <td>Tratamento clínico otimizado</td>
+                  </tr>
+                  <tr>
+                    <td>Angina refratária a medicamentos</td>
+                    <td>Revascularização (angioplastia ou cirurgia)</td>
+                  </tr>
+                  <tr>
+                    <td>Lesão do tronco da coronária esquerda</td>
+                    <td>Revascularização independente de sintomas</td>
+                  </tr>
+                  <tr>
+                    <td>Doença triarterial + função cardíaca reduzida</td>
+                    <td>Cirurgia de revascularização (bypass)</td>
+                  </tr>
+                  <tr>
+                    <td>Isquemia em grande área com lesão funcional significativa</td>
+                    <td>Revascularização guiada por FFR/iFR</td>
+                  </tr>
+                </tbody>
+              </table>
+              <br>
+              <div class="info-teal info-box">
+                <span class="info-box-icon">🔬</span>
+                <div><strong>FFR e iFR</strong> (reserva de fluxo fracional e índice instantâneo de onda-livre) são medidas hemodinâmicas realizadas durante o cateterismo que avaliam se a obstrução realmente está comprometendo o fluxo de sangue. Uma lesão que parece grave na imagem pode ter FFR normal — e não precisar de stent.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-btn" onclick="toggleAcc(this)">
+              💊 Tratamento clínico otimizado — o que significa?
+              <span class="acc-icon">▾</span>
+            </button>
+            <div class="accordion-body">
+              <p>O "tratamento clínico otimizado" não é simplesmente "tomar os remédios". É um conjunto integrado de intervenções, cada uma com evidência sólida:</p>
+              <br>
+              <ul class="steps-list">
+                <li>
+                  <span class="step-num">1</span>
+                  <div class="step-body"><strong>Estatina de alta intensidade</strong> — alvo de LDL &lt;55 mg/dL na DAC estabelecida. Não apenas reduz LDL: estabiliza a placa, reduz inflamação e diminui eventos cardiovasculares independentemente dos sintomas.</div>
+                </li>
+                <li>
+                  <span class="step-num">2</span>
+                  <div class="step-body"><strong>AAS</strong> — antiagregante plaquetário que reduz o risco de coágulo sobre a placa aterosclerótica.</div>
+                </li>
+                <li>
+                  <span class="step-num">3</span>
+                  <div class="step-body"><strong>Beta-bloqueador</strong> — reduz frequência cardíaca, diminui o consumo de oxigênio pelo coração e tem propriedades antianginosas.</div>
+                </li>
+                <li>
+                  <span class="step-num">4</span>
+                  <div class="step-body"><strong>IECA ou BRA</strong> — especialmente se houver hipertensão, diabetes ou disfunção do ventrículo esquerdo.</div>
+                </li>
+                <li>
+                  <span class="step-num">5</span>
+                  <div class="step-body"><strong>Modificação do estilo de vida</strong> — cessação do tabagismo, dieta mediterrânea, exercício aeróbico regular (≥150 min/semana), controle de peso e diabetes.</div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- /dce -->
+
+
+      <!-- ══════════════════════════════════════════════════════════
+           4. INSUFICIÊNCIA CARDÍACA
+      ══════════════════════════════════════════════════════════════ -->
+      <div id="cond-ic" class="condition-panel">
+
+        <div class="cond-header">
+          <div class="cond-eyebrow">Condição Cardíaca</div>
+          <div class="cond-title">Insuficiência <em>Cardíaca</em></div>
+          <div class="cond-desc">Quando o coração não consegue bombear sangue de forma eficiente para atender às necessidades do organismo. Uma síndrome complexa — não uma doença única. O tratamento moderno transformou completamente o prognóstico.</div>
+        </div>
+
+        <div class="accordion">
+
+          <div class="accordion-item">
+            <button class="accordion-btn open" onclick="toggleAcc(this)">
+              💔 O que é e por que acontece?
+              <span class="acc-icon">▾</span>
+            </button>
+            <div class="accordion-body open">
+              <p>A insuficiência cardíaca (IC) não é um diagnóstico isolado — é uma síndrome clínica que resulta de várias doenças que prejudicam a capacidade do coração de encher ou ejetar sangue adequadamente.</p>
+              <br>
+              <p>As causas mais comuns são a doença arterial coronariana (sequela de infarto), a hipertensão arterial prolongada e as cardiomiopatias dilatadas. Mas muitas outras condições podem levar à IC: valvulopatias, arritmias, quimioterapia, doenças infecciosas (como a doença de Chagas, causa importantíssima no Brasil).</p>
+              <br>
+              <div class="info-teal info-box">
+                <span class="info-box-icon">💡</span>
+                <div>A <strong>fração de ejeção (FE)</strong> é a porcentagem de sangue que o coração ejeta a cada batimento. Normalmente é ≥55%. Ela é o principal parâmetro para classificar a insuficiência cardíaca — e determina o tratamento.</div>
+              </div>
+              <br>
+              <table class="data-table">
+                <thead>
+                  <tr><th>Tipo</th><th>FE</th><th>Características</th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>IC com FE reduzida (ICFEr)</strong></td>
+                    <td>&lt;40%</td>
+                    <td>Coração "fraco", dilata. Tratamento com maior arsenal de evidência.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>IC com FE ligeiramente reduzida (ICFElr)</strong></td>
+                    <td>40–49%</td>
+                    <td>Zona cinzenta, prognóstico intermediário.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>IC com FE preservada (ICFEp)</strong></td>
+                    <td>≥50%</td>
+                    <td>Coração "rígido", não relaxa bem. Mais comum em idosas e hipertensas. Tratamento ainda menos estabelecido.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-btn" onclick="toggleAcc(this)">
+              😮‍💨 Sintomas — como o paciente se sente?
+              <span class="acc-icon">▾</span>
+            </button>
+            <div class="accordion-body">
+              <div class="symptom-grid">
+                <div class="symptom-item"><span class="s-icon">😮‍💨</span><div><strong>Dispneia ao esforço</strong><br><span style="color:var(--muted-foreground);font-size:.75rem;">Falta de ar progressiva</span></div></div>
+                <div class="symptom-item"><span class="s-icon">🛏️</span><div><strong>Ortopneia</strong><br><span style="color:var(--muted-foreground);font-size:.75rem;">Falta de ar ao deitar — precisa de travesseiros</span></div></div>
+                <div class="symptom-item"><span class="s-icon">🌙</span><div><strong>DPN</strong><br><span style="color:var(--muted-foreground);font-size:.75rem;">Acorda à noite com falta de ar súbita</span></div></div>
+                <div class="symptom-item"><span class="s-icon">🦵</span><div><strong>Edema</strong><br><span style="color:var(--muted-foreground);font-size:.75rem;">Inchaço nos tornozelos e pernas</span></div></div>
+                <div class="symptom-item"><span class="s-icon">😴</span><div><strong>Fadiga</strong><br><span style="color:var(--muted-foreground);font-size:.75rem;">Cansaço desproporcional ao esforço</span></div></div>
+                <div class="symptom-item"><span class="s-icon">🏋️</span><div><strong>Intolerância ao exercício</strong><br><span style="color:var(--muted-foreground);font-size:.75rem;">Piora progressiva da capacidade funcional</span></div></div>
+              </div>
+              <br>
+              <div class="info-gray info-box">
+                <span class="info-box-icon">ℹ️</span>
+                <div><strong>Classificação NYHA:</strong> A capacidade funcional é categorizada de I a IV. Classe I = sem sintomas com qualquer atividade. Classe IV = sintomas em repouso. Essa classificação orienta o tratamento e o prognóstico.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-btn" onclick="toggleAcc(this)">
+              💊 Tratamento — a revolução das últimas décadas
+              <span class="acc-icon">▾</span>
+            </button>
+            <div class="accordion-body">
+              <p>O tratamento da ICFEr mudou radicalmente. Hoje falamos em <strong>"quatro pilares" ou "fantástico quádruplo"</strong> — quatro classes de medicamentos com eficácia comprovada em reduzir mortalidade e hospitalização.</p>
+              <br>
+              <div class="info-teal info-box">
+                <span class="info-box-icon">🏆</span>
+                <div><strong>Os 4 pilares farmacológicos da ICFEr (ESC 2021):</strong><br>
+                1. <strong>IECA/BRA/ARNI</strong> (sacubitril-valsartan) — bloqueio do sistema renina-angiotensina<br>
+                2. <strong>Beta-bloqueador</strong> (carvedilol, bisoprolol, metoprolol succinato)<br>
+                3. <strong>Antagonista da aldosterona/MRA</strong> (espironolactona, eplerenona)<br>
+                4. <strong>iSGLT2</strong> (empagliflozina, dapagliflozina) — originalmente desenvolvidos para diabetes, mostraram benefício impressionante na IC
+                </div>
+              </div>
+              <br>
+              <p>Quando todos os quatro pilares são usados nas doses máximas toleradas, a mortalidade da ICFEr é reduzida em <strong>mais de 70%</strong> em relação a não tratar — uma das maiores reduções de risco da cardiologia moderna.</p>
+              <br>
+              <div class="info-amber info-box">
+                <span class="info-box-icon">⚠️</span>
+                <div>Para ICFEp, a evidência é mais limitada. Os iSGLT2 são até agora a classe com maior benefício demonstrado (EMPEROR-Preserved, 2021). O tratamento foca principalmente em controlar sintomas, tratar causas e controlar fatores de risco.</div>
+              </div>
+              <br>
+              <p><strong>Dispositivos:</strong> Alguns pacientes se beneficiam de ressincronizador cardíaco (CRT) ou cardiodesfibrilador implantável (CDI) — decisões tomadas com base na FE, no traçado do ECG e no contexto clínico.</p>
+              <br>
+              <div class="info-gray info-box">
+                <span class="info-box-icon">⚖️</span>
+                <div><strong>Automonitoramento é fundamental:</strong> Pesar-se todo dia pela manhã, em jejum, após urinar. Ganho de mais de 2 kg em 2–3 dias é sinal de retenção de líquido e deve ser comunicado ao médico — geralmente antes de qualquer sintoma aparecer.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-btn" onclick="toggleAcc(this)">
+              🚨 Sinais de descompensação — quando ir ao pronto-socorro?
+              <span class="acc-icon">▾</span>
+            </button>
+            <div class="accordion-body">
+              <div class="alarm-box">
+                <div class="alarm-box-title">🚨 Procure atendimento de urgência se:</div>
+                <ul>
+                  <li>Falta de ar intensa, mesmo em repouso ou com esforços mínimos</li>
+                  <li>Acorda à noite com sensação de afogamento (dispneia paroxística noturna)</li>
+                  <li>Ganho de mais de 2 kg em 2–3 dias</li>
+                  <li>Inchaço nas pernas que aumenta rapidamente</li>
+                  <li>Pressão arterial muito baixa, tontura ou desmaio</li>
+                  <li>Palpitações rápidas e sustentadas com piora da falta de ar</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- /ic -->
+
+
+      <!-- ══════════════════════════════════════════════════════════
+           5. FIBRILAÇÃO ATRIAL E FLUTTER
+      ══════════════════════════════════════════════════════════════ -->
+      <div id="cond-fa" class="condition-panel">
+
+        <div class="cond-header">
+          <div class="cond-eyebrow">Condição Cardíaca</div>
+          <div class="cond-title">Fibrilação Atrial <em>e Flutter</em></div>
+          <div class="cond-desc">A arritmia sustentada mais comum no mundo. Afeta o ritmo cardíaco, aumenta o risco de AVC e pode comprometer a função cardíaca — mas tem tratamento eficaz quando bem manejada.</div>
+        </div>
+
+        <div class="accordion">
+
+          <div class="accordion-item">
+            <button class="accordion-btn open" onclick="toggleAcc(this)">
+              〰️ O que acontece no coração?
+              <span class="acc-icon">▾</span>
+            </button>
+            <div class="accordion-body open">
+              <p>O coração bate de forma coordenada graças a um sistema elétrico preciso. Na fibrilação atrial (FA), os átrios — as câmaras superiores do coração — perdem essa coordenação e passam a "vibrar" de forma caótica, com impulsos elétricos desorganizados chegando a 350–600 por minuto.</p>
+              <br>
+              <p>Os ventrículos (câmaras inferiores, responsáveis por bombear sangue) não conseguem responder a tantos impulsos — filtrados pelo nó AV, respondem de forma <strong>irregular e frequentemente rápida</strong>. É essa irregularidade que o paciente sente como palpitações.</p>
+              <br>
+              <div class="info-red info-box">
+                <span class="info-box-icon">🧠</span>
+                <div><strong>O risco mais grave da FA é o AVC.</strong> Quando os átrios não se contraem adequadamente, o sangue pode "estagnar" dentro deles — especialmente em uma estrutura chamada apêndice atrial esquerdo — e formar coágulos. Esses coágulos podem se desprender e ir para o cérebro, causando AVC. Pacientes com FA têm risco de AVC 5 vezes maior que a população geral.</div>
+              </div>
+              <br>
+              <p>O <strong>flutter atrial</strong> é semelhante mas mais organizado — os átrios batem de forma rápida (geralmente ~300/min) mas regular, em um circuito elétrico que dá voltas dentro do átrio direito. Frequentemente coexiste com a FA ou evolui para ela.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-btn" onclick="toggleAcc(this)">
+              📋 Tipos de fibrilação atrial
+              <span class="acc-icon">▾</span>
+            </button>
+            <div class="accordion-body">
+              <table class="data-table">
+                <thead><tr><th>Tipo</th><th>Duração</th><th>Característica</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Paroxística</strong></td><td>&lt;7 dias</td><td>Converte espontaneamente para ritmo sinusal. Pode ser sintomática ou silenciosa.</td></tr>
+                  <tr><td><strong>Persistente</strong></td><td>>7 dias</td><td>Não converte sozinha — precisa de cardioversão.</td></tr>
+                  <tr><td><strong>Persistente de longa duração</strong></td><td>>12 meses</td><td>Conversão menos provável, remodelamento atrial avançado.</td></tr>
+                  <tr><td><strong>Permanente</strong></td><td>Indefinida</td><td>Decisão de não tentar manter ritmo sinusal. Foco em controle da frequência.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-btn" onclick="toggleAcc(this)">
+              💊 Anticoagulação — por que é tão importante?
+              <span class="acc-icon">▾</span>
+            </button>
+            <div class="accordion-body">
+              <p>A decisão de anticoagular é baseada no risco de AVC, calculado principalmente pelo escore <strong>CHA₂DS₂-VASc</strong>. Cada letra representa um fator de risco (Insuficiência Cardíaca, Hipertensão, Idade, Diabetes, AVC prévio, Doença vascular, Sexo feminino).</p>
+              <br>
+              <div class="info-teal info-box">
+                <span class="info-box-icon">💡</span>
+                <div>Os <strong>anticoagulantes orais diretos (DOACs)</strong> — rivaroxabana, apixabana, dabigatrana, edoxabana — são hoje a primeira escolha. São mais eficazes e seguros que a warfarina (Marevan) para a maioria dos pacientes com FA. Não precisam de exames de controle regulares para ajuste de dose.</div>
+              </div>
+              <br>
+              <div class="info-amber info-box">
+                <span class="info-box-icon">⚠️</span>
+                <div><strong>Um equívoco muito comum:</strong> Muitos pacientes acham que "se voltei ao ritmo normal, posso parar o anticoagulante". <strong>Errado.</strong> O risco de AVC na FA é contínuo — inclusive no período após cardioversão, quando é até maior. A decisão de anticoagular é baseada no risco de AVC individual, não no ritmo atual.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-btn" onclick="toggleAcc(this)">
+              🔄 Controle de ritmo vs. controle de frequência
+              <span class="acc-icon">▾</span>
+            </button>
+            <div class="accordion-body">
+              <p>Existem duas estratégias principais no manejo da FA:</p>
+              <br>
+              <table class="data-table">
+                <thead><tr><th></th><th>Controle de Ritmo</th><th>Controle de Frequência</th></tr></thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Objetivo</strong></td>
+                    <td>Restaurar e manter o ritmo sinusal normal</td>
+                    <td>Aceitar a FA, mas controlar a frequência cardíaca</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Métodos</strong></td>
+                    <td>Cardioversão elétrica, antiarrítmicos (amiodarona, propafenona, dronedarona), ablação por cateter</td>
+                    <td>Beta-bloqueadores, diltiazem, digoxina</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Quando preferir</strong></td>
+                    <td>FA recente, pacientes sintomáticos, jovens, IC com FE reduzida</td>
+                    <td>FA permanente, idosos assintomáticos, múltiplas cardioversões prévias</td>
+                  </tr>
+                </tbody>
+              </table>
+              <br>
+              <div class="info-teal info-box">
+                <span class="info-box-icon">🔬</span>
+                <div><strong>Ablação por cateter</strong> é um procedimento que "queima" as regiões do coração responsáveis por iniciar a FA (geralmente ao redor das veias pulmonares no átrio esquerdo). É a estratégia mais eficaz para manter o ritmo sinusal em longo prazo, com evidência crescente de benefício em pacientes com IC.</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- /fa -->
+
+
+      <!-- ══════════════════════════════════════════════════════════
+           6. HIPERTENSÃO ARTERIAL
+      ══════════════════════════════════════════════════════════════ -->
+      <div id="cond-has" class="condition-panel">
+
+        <div class="cond-header">
+          <div class="cond-eyebrow">Condição Cardíaca</div>
+          <div class="cond-title">Hipertensão <em>Arterial</em></div>
+          <div class="cond-desc">A doença cardiovascular mais prevalente do mundo. Silenciosa, traiçoeira e — quando não tratada — destrutiva. O maior problema não é a pressão em si, mas o dano que ela causa silenciosamente por anos a fio.</div>
+        </div>
+
+        <div class="accordion">
+
+          <div class="accordion-item">
+            <button class="accordion-btn open" onclick="toggleAcc(this)">
+              📈 "Mas eu não sinto nada" — por que tratar?
+              <span class="acc-icon">▾</span>
+            </button>
+            <div class="accordion-body open">
+              <div class="highlight-quote">
+                "A hipertensão é silenciosa — mas o infarto e o AVC que ela causa não são."
+              </div>
+              <p>A pressão arterial elevada crônica funciona como uma pressão constante nas paredes das artérias. Com o tempo, isso causa danos progressivos e irreversíveis em órgãos-alvo — que por anos não geram nenhum sintoma.</p>
+              <br>
+              <div class="symptom-grid">
+                <div class="symptom-item"><span class="s-icon">🧠</span><div><strong>Cérebro</strong><br><span style="color:var(--muted-foreground);font-size:.75rem;">AVC isquêmico ou hemorrágico, demência</span></div></div>
+                <div class="symptom-item"><span class="s-icon">❤️</span><div><strong>Coração</strong><br><span style="color:var(--muted-foreground);font-size:.75rem;">Hipertrofia do VE, IC, infarto, FA</span></div></div>
+                <div class="symptom-item"><span class="s-icon">🫘</span><div><strong>Rins</strong><br><span style="color:var(--muted-foreground);font-size:.75rem;">Doença renal crônica, proteinúria</span></div></div>
+                <div class="symptom-item"><span class="s-icon">👁️</span><div><strong>Olhos</strong><br><span style="color:var(--muted-foreground);font-size:.75rem;">Retinopatia hipertensiva, perda visual</span></div></div>
+                <div class="symptom-item"><span class="s-icon">🦵</span><div><strong>Artérias</strong><br><span style="color:var(--muted-foreground);font-size:.75rem;">Aterosclerose acelerada, aneurismas</span></div></div>
+              </div>
+              <br>
+              <div class="info-teal info-box">
+                <span class="info-box-icon">📊</span>
+                <div>Para cada redução de 10 mmHg na pressão sistólica, o risco de eventos cardiovasculares maiores cai cerca de <strong>20%</strong>, AVC cai <strong>27%</strong> e insuficiência cardíaca cai <strong>28%</strong> (Blood Pressure Lowering Treatment Trialists Collaboration, Lancet 2021 — metanálise de 344.716 pacientes).</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-btn" onclick="toggleAcc(this)">
+              🎯 Qual é a meta de pressão?
+              <span class="acc-icon">▾</span>
+            </button>
+            <div class="accordion-body">
+              <p>A meta de pressão não é a mesma para todos — depende da idade, das comorbidades e do risco cardiovascular individual.</p>
+              <br>
+              <table class="data-table">
+                <thead><tr><th>Situação</th><th>Meta recomendada</th></tr></thead>
+                <tbody>
+                  <tr><td>Adultos em geral (&lt;65 anos)</td><td>&lt;130/80 mmHg</td></tr>
+                  <tr><td>Idosos (≥65 anos)</td><td>&lt;140/90 mmHg (individualizar)</td></tr>
+                  <tr><td>Diabetes</td><td>&lt;130/80 mmHg</td></tr>
+                  <tr><td>Doença renal crônica com proteinúria</td><td>&lt;130/80 mmHg</td></tr>
+                  <tr><td>Insuficiência cardíaca</td><td>&lt;130/80 mmHg</td></tr>
+                  <tr><td>AVC/AIT prévio</td><td>&lt;130/80 mmHg</td></tr>
+                </tbody>
+              </table>
+              <br>
+              <div class="info-gray info-box">
+                <span class="info-box-icon">ℹ️</span>
+                <div><strong>Hipertensão do avental branco:</strong> Pressão elevada apenas no consultório, normal em outros ambientes. Não é benigna — associa-se a maior risco cardiovascular que pressão normal em todos os contextos. O MAPA (monitorização ambulatorial) é fundamental para identificar esse padrão.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-btn" onclick="toggleAcc(this)">
+              🌿 Mudança de estilo de vida — quanto faz diferença?
+              <span class="acc-icon">▾</span>
+            </button>
+            <div class="accordion-body">
+              <p>Mais do que se imagina. A mudança de estilo de vida pode ser tão eficaz quanto um medicamento anti-hipertensivo em casos leves a moderados.</p>
+              <br>
+              <table class="data-table">
+                <thead><tr><th>Intervenção</th><th>Redução estimada na PA sistólica</th></tr></thead>
+                <tbody>
+                  <tr><td>Redução de peso (por 5 kg)</td><td>~4 mmHg</td></tr>
+                  <tr><td>Dieta DASH</td><td>8–14 mmHg</td></tr>
+                  <tr><td>Redução de sódio (&lt;2g/dia)</td><td>4–8 mmHg</td></tr>
+                  <tr><td>Exercício aeróbico regular</td><td>4–9 mmHg</td></tr>
+                  <tr><td>Moderação de álcool</td><td>2–4 mmHg</td></tr>
+                  <tr><td>Cessação do tabagismo (efeito direto)</td><td>3–5 mmHg</td></tr>
+                </tbody>
+              </table>
+              <br>
+              <div class="info-amber info-box">
+                <span class="info-box-icon">⚠️</span>
+                <div><strong>Medicamento não é fraqueza — é ciência.</strong> Muitos pacientes resistem ao tratamento farmacológico por achar que é "vício" ou que significa "desistir" do controle com dieta. Na verdade, as evidências mostram que a combinação de medicamento + estilo de vida é sempre mais eficaz que qualquer um isolado. E hipertensão não tratada causa danos silenciosos que nenhuma dieta recupera depois.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-btn" onclick="toggleAcc(this)">
+              💊 Os principais medicamentos
+              <span class="acc-icon">▾</span>
+            </button>
+            <div class="accordion-body">
+              <p>Existem cinco classes principais de anti-hipertensivos com evidência sólida de redução de eventos cardiovasculares:</p>
+              <div class="pill-list">
+                <span class="pill">IECA (enalapril, ramipril)</span>
+                <span class="pill">BRA (losartan, valsartan)</span>
+                <span class="pill">Bloqueadores de canal de cálcio (anlodipino)</span>
+                <span class="pill">Diuréticos tiazídicos (hidroclorotiazida, clortalidona)</span>
+                <span class="pill">Beta-bloqueadores</span>
+              </div>
+              <br>
+              <div class="info-teal info-box">
+                <span class="info-box-icon">💡</span>
+                <div>A maioria dos pacientes precisa de <strong>2 ou mais medicamentos</strong> para atingir a meta. Isso não é falha de tratamento — é a natureza da doença. Combinações em dose única são preferíveis para melhorar a adesão. <strong>Não ajuste nem interrompa o medicamento sem orientação médica</strong> — variações bruscas de pressão podem ser perigosas.</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- /has -->
+
+
+      <!-- ══════════════════════════════════════════════════════════
+           7. VALVULOPATIAS
+      ══════════════════════════════════════════════════════════════ -->
+      <div id="cond-valv" class="condition-panel">
+
+        <div class="cond-header">
+          <div class="cond-eyebrow">Condição Cardíaca</div>
+          <div class="cond-title"><em>Valvulopatias</em> — Doenças das Válvulas</div>
+          <div class="cond-desc">O coração tem quatro válvulas que controlam o fluxo de sangue em apenas uma direção. Quando elas falham — por estreitamento ou vazamento — o coração trabalha de mais, até o momento em que precisa de intervenção.</div>
+        </div>
+
+        <div class="accordion">
+
+          <div class="accordion-item">
+            <button class="accordion-btn open" onclick="toggleAcc(this)">
+              🔬 As quatro válvulas — funções e problemas
+              <span class="acc-icon">▾</span>
+            </button>
+            <div class="accordion-body open">
+              <p>As válvulas cardíacas são estruturas que abrem e fecham a cada batimento cardíaco, garantindo que o sangue flua em uma única direção. Existem dois tipos de problema valvar:</p>
+              <br>
+              <div class="info-box info-teal">
+                <span class="info-box-icon">🔒</span>
+                <div><strong>Estenose</strong> — a válvula não abre o suficiente. O coração precisa fazer mais força para empurrar o sangue por uma abertura estreita. Sobrecarregado, ele hipertrofia progressivamente.</div>
+              </div>
+              <div class="info-box info-teal">
+                <span class="info-box-icon">🔓</span>
+                <div><strong>Regurgitação (insuficiência)</strong> — a válvula não fecha corretamente. Parte do sangue reflui para a câmara de onde veio, sobrecarregando o coração com volume extra.</div>
+              </div>
+              <br>
+              <table class="data-table">
+                <thead><tr><th>Válvula</th><th>Posição</th><th>Problemas mais comuns</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Aórtica</strong></td><td>Entre VE e aorta</td><td>Estenose aórtica (mais comum em idosos), insuficiência aórtica</td></tr>
+                  <tr><td><strong>Mitral</strong></td><td>Entre AE e VE</td><td>Insuficiência mitral (primária e secundária), estenose mitral (reumática)</td></tr>
+                  <tr><td><strong>Tricúspide</strong></td><td>Entre AD e VD</td><td>Insuficiência tricúspide (frequentemente secundária)</td></tr>
+                  <tr><td><strong>Pulmonar</strong></td><td>Entre VD e artéria pulmonar</td><td>Raramente afetada em adultos</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-btn" onclick="toggleAcc(this)">
+              🫀 Estenose aórtica — a mais importante
+              <span class="acc-icon">▾</span>
+            </button>
+            <div class="accordion-body">
+              <p>A estenose aórtica é a valvulopatia mais comum nos países desenvolvidos e ganhou especial importância com o envelhecimento da população. É causada principalmente pelo acúmulo de cálcio nas cúspides da válvula — um processo que lembra a aterosclerose e se agrava ao longo de décadas.</p>
+              <br>
+              <div class="stat-row">
+                <div class="stat-card">
+                  <div class="stat-val">2–5%</div>
+                  <div class="stat-label">da população acima de 65 anos tem estenose aórtica</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-val">~50%</div>
+                  <div class="stat-label">de mortalidade em 2 anos sem tratamento quando sintomática grave</div>
+                </div>
+              </div>
+              <br>
+              <p>Por anos a válvula se estreita sem causar sintomas — o ventrículo esquerdo compensa. Quando os sintomas aparecem, eles formam uma tríade clássica:</p>
+              <br>
+              <div class="symptom-grid">
+                <div class="symptom-item"><span class="s-icon">😮‍💨</span><div><strong>Angina</strong><br><span style="color:var(--muted-foreground);font-size:.75rem;">Dor no peito ao esforço</span></div></div>
+                <div class="symptom-item"><span class="s-icon">😵</span><div><strong>Síncope</strong><br><span style="color:var(--muted-foreground);font-size:.75rem;">Desmaio ao esforço</span></div></div>
+                <div class="symptom-item"><span class="s-icon">😮‍💨</span><div><strong>Insuficiência cardíaca</strong><br><span style="color:var(--muted-foreground);font-size:.75rem;">Falta de ar progressiva</span></div></div>
+              </div>
+              <br>
+              <div class="info-amber info-box">
+                <span class="info-box-icon">⚠️</span>
+                <div>A estenose aórtica severa sintomática sem tratamento tem prognóstico pior que muitos cânceres. <strong>O tratamento quando indicado não deve ser adiado.</strong> Não existe medicamento que reverta ou retarde o processo de calcificação — a única solução é substituir ou abrir a válvula.</div>
+              </div>
+              <br>
+              <div class="info-teal info-box">
+                <span class="info-box-icon">🔬</span>
+                <div><strong>TAVI (TAVR) — substituição valvar aórtica transcateter:</strong> Procedimento revolucionário que troca a válvula doente por uma prótese introduzida por dentro de um vaso — sem cirurgia aberta. Hoje é o tratamento de escolha para pacientes de risco cirúrgico alto ou intermediário, e os dados de longo prazo estão demonstrando eficácia semelhante à cirurgia mesmo em pacientes de baixo risco.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-btn" onclick="toggleAcc(this)">
+              🩺 Insuficiência mitral
+              <span class="acc-icon">▾</span>
+            </button>
+            <div class="accordion-body">
+              <p>A insuficiência mitral (IM) ocorre quando a válvula mitral não fecha completamente, permitindo que sangue flua de volta do ventrículo esquerdo para o átrio esquerdo a cada batimento. Pode ser:</p>
+              <br>
+              <table class="data-table">
+                <thead><tr><th>Tipo</th><th>Causa</th><th>Tratamento</th></tr></thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Primária</strong></td>
+                    <td>Doença da própria válvula (prolapso, degeneração mixomatosa, ruptura de cordoalha tendínea)</td>
+                    <td>Cirurgia ou intervenção percutânea quando grave e sintomática, ou com disfunção do VE</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Secundária</strong></td>
+                    <td>Ventrículo esquerdo doente (dilatação por IC ou infarto) que traciona os folhetos da válvula</td>
+                    <td>Foco no tratamento do VE; intervenção valvar em selecionados</td>
+                  </tr>
+                </tbody>
+              </table>
+              <br>
+              <div class="info-teal info-box">
+                <span class="info-box-icon">🔧</span>
+                <div><strong>MitraClip (TEER — transcatheter edge-to-edge repair):</strong> Dispositivo que aproxima os folhetos da válvula mitral via cateter, reduzindo o refluxo sem cirurgia. Indicado principalmente na IM secundária em pacientes com IC que não respondem ao tratamento clínico.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-btn" onclick="toggleAcc(this)">
+              ⏱️ Quando operar — a decisão mais difícil
+              <span class="acc-icon">▾</span>
+            </button>
+            <div class="accordion-body">
+              <p>Em valvulopatias, o timing da intervenção é crucial. Operar cedo demais expõe o paciente aos riscos do procedimento sem necessidade. Operar tarde demais pode resultar em dano irreversível ao ventrículo — que não melhora nem depois da válvula corrigida.</p>
+              <br>
+              <div class="info-gray info-box">
+                <span class="info-box-icon">ℹ️</span>
+                <div>A decisão é baseada em: gravidade da doença valvar, sintomas, dimensões e função do ventrículo esquerdo, risco cirúrgico e presença de outras condições. O ecocardiograma é o exame central nessa avaliação — e deve ser repetido periodicamente em pacientes com valvulopatia moderada-grave.</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- /valv -->
+
+
+      <!-- ══════════════════════════════════════════════════════════
+           8. AMILOIDOSE CARDÍACA
+      ══════════════════════════════════════════════════════════════ -->
+      <div id="cond-amil" class="condition-panel">
+
+        <div class="cond-header">
+          <div class="cond-eyebrow">Condição Cardíaca</div>
+          <div class="cond-title">Amiloidose <em>Cardíaca</em></div>
+          <div class="cond-desc">Uma condição frequentemente subdiagnosticada em que proteínas anormais se depositam no músculo cardíaco, tornando-o rígido e espessado. Hoje, finalmente, tratável.</div>
+        </div>
+
+        <div class="accordion">
+
+          <div class="accordion-item">
+            <button class="accordion-btn open" onclick="toggleAcc(this)">
+              🧬 O que é amiloidose cardíaca?
+              <span class="acc-icon">▾</span>
+            </button>
+            <div class="accordion-body open">
+              <p>Amiloidose é um grupo de doenças em que proteínas mal dobradas (chamadas de fibrilas amiloides) se depositam em tecidos e órgãos, comprometendo seu funcionamento. Quando o alvo é o coração, temos a <strong>amiloidose cardíaca</strong>.</p>
+              <br>
+              <p>Esses depósitos infiltram o músculo cardíaco, tornando-o progressivamente mais espesso e rígido — incapaz de relaxar normalmente. Resulta em uma forma de insuficiência cardíaca com fração de ejeção preservada (ICFEp), porém com características distintas e pior prognóstico quando não tratada.</p>
+              <br>
+              <table class="data-table">
+                <thead><tr><th></th><th>ATTR (transtirretina)</th><th>AL (cadeia leve)</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Proteína</strong></td><td>Transtirretina (produzida no fígado)</td><td>Cadeias leves de imunoglobulina (plasmócitos)</td></tr>
+                  <tr><td><strong>Tipos</strong></td><td>Wild-type (senil) e hereditária (mutação)</td><td>Relacionada a discrasia de plasmócitos</td></tr>
+                  <tr><td><strong>Quem afeta</strong></td><td>ATTR-WT: predominante em homens >70 anos. ATTR-v: qualquer idade</td><td>Qualquer idade, associado a mieloma/amiloidose sistêmica</td></tr>
+                  <tr><td><strong>Prognóstico sem tto</strong></td><td>Mediana 2,5–3,5 anos após diagnóstico</td><td>Pior — meses a poucos anos</td></tr>
+                  <tr><td><strong>Tratamento específico</strong></td><td>Tafamidis, acoramidis</td><td>Quimioterapia/transplante de medula</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-btn" onclick="toggleAcc(this)">
+              🔍 Por que é subdiagnosticada?
+              <span class="acc-icon">▾</span>
+            </button>
+            <div class="accordion-body">
+              <p>A amiloidose cardíaca por ATTR é muito mais comum do que se reconhecia. Estima-se que esteja presente em <strong>13% dos pacientes com insuficiência cardíaca com FE preservada</strong> e em até 16% dos casos de estenose aórtica grave em idosos.</p>
+              <br>
+              <div class="info-amber info-box">
+                <span class="info-box-icon">⚠️</span>
+                <div>Por décadas foi considerada "rara" porque não havia tratamento e o diagnóstico exigia biópsia. Hoje, com tratamento eficaz disponível e métodos diagnósticos menos invasivos, a busca ativa mudou — e a prevalência real está sendo reconhecida.</div>
+              </div>
+              <br>
+              <p><strong>Pistas diagnósticas que devem levantar suspeita:</strong></p>
+              <div class="pill-list">
+                <span class="pill">Síndrome do túnel do carpo bilateral</span>
+                <span class="pill">Espessamento do septo em ecocardiograma</span>
+                <span class="pill">Estenose aórtica + padrão típico de IC</span>
+                <span class="pill">Neuropatia periférica inexplicada</span>
+                <span class="pill">Ruptura espontânea do tendão do bíceps</span>
+                <span class="pill">Baixa voltagem no ECG com espessamento no eco</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-btn" onclick="toggleAcc(this)">
+              🔬 Como é diagnosticada?
+              <span class="acc-icon">▾</span>
+            </button>
+            <div class="accordion-body">
+              <ul class="steps-list">
+                <li>
+                  <span class="step-num">1</span>
+                  <div class="step-body"><strong>Ecocardiograma</strong> — mostra espessamento das paredes cardíacas, função diastólica comprometida e padrão "granular brilhante" característico. O strain longitudinal global (GLS) tem padrão típico na amiloidose.</div>
+                </li>
+                <li>
+                  <span class="step-num">2</span>
+                  <div class="step-body"><strong>Cintilografia com Tc-99m-pirofosfato</strong> — exame não invasivo que detecta depósitos de ATTR com alta sensibilidade e especificidade. Tornou-se o principal método diagnóstico não invasivo.</div>
+                </li>
+                <li>
+                  <span class="step-num">3</span>
+                  <div class="step-body"><strong>Eletroforese de proteínas e imunohistoquímica</strong> — para excluir componente monoclonal (AL amiloidose).</div>
+                </li>
+                <li>
+                  <span class="step-num">4</span>
+                  <div class="step-body"><strong>Sequenciamento genético</strong> — obrigatório na ATTR para identificar se é hereditária (mutação no gene TTR) ou wild-type.</div>
+                </li>
+                <li>
+                  <span class="step-num">5</span>
+                  <div class="step-body"><strong>Biópsia</strong> — ainda necessária em casos atípicos. Pode ser de tecido extramiocárdico (gordura abdominal, glândula salivar) ou endomiocárdica.</div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-btn" onclick="toggleAcc(this)">
+              💊 Tratamento — uma revolução recente
+              <span class="acc-icon">▾</span>
+            </button>
+            <div class="accordion-body">
+              <div class="info-teal info-box">
+                <span class="info-box-icon">🏆</span>
+                <div><strong>Tafamidis (Vyndaqel)</strong> — estabiliza a proteína transtirretina, impedindo que ela se desdobre e forme as fibrilas amiloides. O estudo ATTR-ACT (NEJM 2018) demonstrou redução de mortalidade e hospitalizações em pacientes com ATTR cardíaca. É hoje o tratamento padrão para ATTR cardíaca.</div>
+              </div>
+              <br>
+              <div class="info-teal info-box">
+                <span class="info-box-icon">🔬</span>
+                <div><strong>Novas terapias:</strong> Patisiran e inotersen (silenciadores do gene TTR por RNA de interferência ou antisense) reduzem dramaticamente a produção de transtirretina pelo fígado. Indicados principalmente na forma hereditária com polineuropatia. Vutrisiran é uma opção mais recente com dados favoráveis também para a forma cardíaca.</div>
+              </div>
+              <br>
+              <div class="info-amber info-box">
+                <span class="info-box-icon">⚠️</span>
+                <div><strong>Atenção aos medicamentos que podem ser perigosos na amiloidose:</strong> Bloqueadores de canal de cálcio (verapamil, diltiazem) tendem a se ligar ao amiloide e causar toxicidade. Digoxina também. O tratamento da IC na amiloidose tem especificidades importantes que diferem da IC convencional.</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- /amil -->
+
+
+      <!-- ══════════════════════════════════════════════════════════
+           9. BLOQUEIO ÁTRIO-VENTRICULAR
+      ══════════════════════════════════════════════════════════════ -->
+      <div id="cond-bav" class="condition-panel">
+
+        <div class="cond-header">
+          <div class="cond-eyebrow">Condição Cardíaca</div>
+          <div class="cond-title">Bloqueio <em>Átrio-Ventricular</em></div>
+          <div class="cond-desc">Quando o sistema elétrico do coração tem dificuldade em transmitir o sinal dos átrios para os ventrículos. Do grau leve (sem consequências) ao grave (risco de morte) — entender as diferenças é essencial.</div>
+        </div>
+
+        <div class="accordion">
+
+          <div class="accordion-item">
+            <button class="accordion-btn open" onclick="toggleAcc(this)">
+              🔌 O sistema elétrico do coração
+              <span class="acc-icon">▾</span>
+            </button>
+            <div class="accordion-body open">
+              <p>O coração tem seu próprio sistema elétrico. Cada batimento começa no <strong>nó sinusal</strong> (o marcapasso natural, no átrio direito), que gera um impulso elétrico que percorre os átrios e chega ao <strong>nó átrio-ventricular (nó AV)</strong>. O nó AV é o único ponto de conexão elétrica entre átrios e ventrículos — um portão obrigatório pelo qual o impulso deve passar antes de ativar os ventrículos.</p>
+              <br>
+              <p>No bloqueio AV, esse "portão" está comprometido. O sinal elétrico demora mais, passa apenas parcialmente, ou não passa — dependendo do grau do bloqueio.</p>
+              <br>
+              <div class="info-teal info-box">
+                <span class="info-box-icon">💡</span>
+                <div>O bloqueio AV pode ser transitório (por medicamentos, vagai, inflamação) ou permanente (por fibrose do sistema de condução, doença coronariana, doenças infiltrativas como sarcoidose e amiloidose). Causas reversíveis devem ser sempre investigadas antes de indicar marcapasso.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-btn" onclick="toggleAcc(this)">
+              📋 Os três graus — diferenças fundamentais
+              <span class="acc-icon">▾</span>
+            </button>
+            <div class="accordion-body">
+              <table class="data-table">
+                <thead><tr><th>Grau</th><th>O que acontece</th><th>Sintomas</th><th>Urgência</th></tr></thead>
+                <tbody>
+                  <tr>
+                    <td><strong>1º Grau</strong></td>
+                    <td>O sinal passa, mas mais devagar (PR &gt;200ms)</td>
+                    <td>Ausentes — geralmente achado de ECG</td>
+                    <td><span class="badge badge-green">Baixa</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>2º Grau Mobitz I</strong></td>
+                    <td>O intervalo PR aumenta progressivamente até um batimento não passar (Wenckebach)</td>
+                    <td>Pode ser assintomático ou causar tontura leve</td>
+                    <td><span class="badge badge-amber">Moderada</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>2º Grau Mobitz II</strong></td>
+                    <td>Batimentos não conduzidos de forma súbita, sem progressão previsível do PR</td>
+                    <td>Tontura, síncope, palpitações</td>
+                    <td><span class="badge badge-red">Alta</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>3º Grau (completo)</strong></td>
+                    <td>Nenhum sinal dos átrios chega aos ventrículos. Os ventrículos batem sozinhos, lentamente (20–50 bpm)</td>
+                    <td>Síncope, pré-síncope, insuficiência cardíaca, morte súbita</td>
+                    <td><span class="badge badge-red">Emergência</span></td>
+                  </tr>
+                </tbody>
+              </table>
+              <br>
+              <div class="info-red info-box">
+                <span class="info-box-icon">🚨</span>
+                <div>O bloqueio AV de 3º grau é uma emergência médica. O coração bate muito devagar para manter o débito cardíaco adequado. Pode causar síncope (desmaio súbito), insuficiência cardíaca aguda e morte súbita. Requer tratamento imediato — geralmente marcapasso provisório como ponte ao definitivo.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-btn" onclick="toggleAcc(this)">
+              🔌 Marcapasso — quando é necessário?
+              <span class="acc-icon">▾</span>
+            </button>
+            <div class="accordion-body">
+              <p>O marcapasso cardíaco é um dispositivo eletrônico implantado sob a pele que monitora o ritmo cardíaco e emite impulsos elétricos quando detecta que o coração está batendo devagar demais ou pausando.</p>
+              <br>
+              <div class="info-teal info-box">
+                <span class="info-box-icon">💡</span>
+                <div>O marcapasso moderno é sofisticado: responde ao nível de atividade física, armazena registros dos ritmos anormais detectados, e pode ser monitorado remotamente pelo cardiologista via telemetria. A maioria dos pacientes não sente o dispositivo funcionando.</div>
+              </div>
+              <br>
+              <table class="data-table">
+                <thead><tr><th>Situação</th><th>Indicação de marcapasso</th></tr></thead>
+                <tbody>
+                  <tr><td>BAV 3º grau sintomático</td><td>Indicação classe I — obrigatório</td></tr>
+                  <tr><td>BAV 3º grau assintomático com FE↓ ou pausa &gt;3s</td><td>Indicação classe I</td></tr>
+                  <tr><td>BAV 2º grau Mobitz II</td><td>Indicação classe I independente de sintomas</td></tr>
+                  <tr><td>BAV 2º grau Mobitz I sintomático</td><td>Indicação em selecionados</td></tr>
+                  <tr><td>BAV 1º grau isolado</td><td>Não indicado</td></tr>
+                </tbody>
+              </table>
+              <br>
+              <div class="info-teal info-box">
+                <span class="info-box-icon">🔬</span>
+                <div><strong>Marcapasso sem eletrodo (leadless):</strong> Dispositivos miniaturizados (do tamanho de uma cápsula) implantados diretamente dentro do coração pelo cateter, sem necessidade de eletrodos ou gerador subcutâneo. São uma evolução tecnológica relevante, especialmente para pacientes com acesso venoso difícil ou alto risco de infecção.</div>
+              </div>
+              <br>
+              <div class="info-gray info-box">
+                <span class="info-box-icon">ℹ️</span>
+                <div><strong>Vivendo com marcapasso:</strong> Aparelhos domésticos comuns (celular, microondas, fogão) não interferem com marcapassos modernos. Restrições existem para campos eletromagnéticos de alta intensidade (ressonância magnética — consultar sempre antes, pois existem dispositivos compatíveis com RM). Aeroporto: informar sobre o dispositivo para o segurança.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-btn" onclick="toggleAcc(this)">
+              🚨 Quando é uma emergência?
+              <span class="acc-icon">▾</span>
+            </button>
+            <div class="accordion-body">
+              <div class="alarm-box">
+                <div class="alarm-box-title">🚨 Procure emergência imediatamente se tiver bloqueio AV conhecido e sentir:</div>
+                <ul>
+                  <li>Desmaio súbito (síncope) — especialmente se em repouso ou durante esforço</li>
+                  <li>Tontura intensa com escurecimento da visão (pré-síncope)</li>
+                  <li>Palpitações lentas, sensação de coração parando</li>
+                  <li>Falta de ar súbita e intensa</li>
+                  <li>Se tiver marcapasso: qualquer sintoma novo de tontura, desmaio ou falta de ar deve ser avaliado — pode indicar disfunção do dispositivo</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- /bav -->
+
+
+      <!-- DISCLAIMER -->
+      <div class="disclaimer">
+        ⚕️ <strong>Este conteúdo é informativo e educativo.</strong> As informações aqui apresentadas são baseadas em evidências científicas e diretrizes internacionais atuais, mas <strong>não substituem a consulta médica individualizada</strong>. Cada paciente tem características únicas que determinam o melhor caminho diagnóstico e terapêutico. Sempre discuta sua condição com seu médico cardiologista.<br><br>
+        Elaborado por <strong>Dr. Lucas Silva</strong> — Cardiologista Intervencionista · <a href="https://lucascardio.com.br" style="color:var(--teal);">lucascardio.com.br</a>
+      </div>
+
+    </main>
+  </div><!-- /main-grid -->
+</div><!-- /page-wrapper -->
+
+<!-- ── FOOTER ──────────────────────────────────────────────────── -->
+<footer>
+  <div class="page-wrapper">
+    <div class="footer-inner">
+      <div class="footer-copy">
+        © 2026 Dr. Lucas Silva — Cardiologia Intervencionista · <a href="https://lucascardio.com.br" style="color:var(--teal);">lucascardio.com.br</a>
+      </div>
+      <div style="font-size:.72rem;color:var(--muted-foreground);">Última atualização: Março de 2026</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── CONDITION SWITCHER ─────────────────────────────────────────
+  function showCondition(id) {
+    // Hide all panels
+    document.querySelectorAll('.condition-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.sidebar-item').forEach(s => s.classList.remove('active'));
+
+    // Show target
+    const panel = document.getElementById('cond-' + id);
+    if (panel) panel.classList.add('active');
+
+    // Activate sidebar item
+    const items = document.querySelectorAll('.sidebar-item');
+    items.forEach(item => {
+      if (item.getAttribute('onclick') && item.getAttribute('onclick').includes("'" + id + "'")) {
+        item.classList.add('active');
+      }
+    });
+
+    // Sync mobile select
+    const sel = document.querySelector('.mobile-select');
+    if (sel) sel.value = id;
+
+    // Open first accordion in new panel
+    const firstBtn = panel ? panel.querySelector('.accordion-btn') : null;
+    if (firstBtn && !firstBtn.classList.contains('open')) {
+      toggleAcc(firstBtn);
+    }
+
+    // Scroll to top of content on mobile
+    if (window.innerWidth <= 768) {
+      panel && panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  // ── ACCORDION ─────────────────────────────────────────────────
+  function toggleAcc(btn) {
+    const body = btn.nextElementSibling;
+    const isOpen = btn.classList.contains('open');
+
+    // Optionally close siblings in same accordion group
+    const accordion = btn.closest('.accordion');
+    if (accordion) {
+      accordion.querySelectorAll('.accordion-btn.open').forEach(b => {
+        if (b !== btn) {
+          b.classList.remove('open');
+          b.nextElementSibling.classList.remove('open');
+        }
+      });
+    }
+
+    if (isOpen) {
+      btn.classList.remove('open');
+      body.classList.remove('open');
+    } else {
+      btn.classList.add('open');
+      body.classList.add('open');
+    }
+  }
+
+  // ── MOBILE SELECT SYNC ─────────────────────────────────────────
+  document.addEventListener('DOMContentLoaded', () => {
+    // Ensure first condition is shown
+    showCondition('dac');
+  });
+</script>
+
+</body>
+</html>

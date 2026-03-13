@@ -1,0 +1,1116 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>Sinais de Alarme Cardiológico | Dr. Lucas Silva</title>
+  <meta name="description" content="Guia interativo de sinais e sintomas cardiológicos que exigem atendimento de emergência imediato. Baseado em Braunwald's Heart Disease e diretrizes ESC/ACC." />
+  <meta name="author" content="Dr. Lucas Silva" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── DESIGN TOKENS ───────────────────────────────────────── */
+    :root {
+      --primary: oklch(65% .18 195);
+      --primary-foreground: oklch(98% 0 0);
+      --background: oklch(13% .018 250);
+      --foreground: oklch(93% .01 250);
+      --card: oklch(18.5% .018 250);
+      --card-foreground: oklch(93% .01 250);
+      --muted: oklch(22% .018 250);
+      --muted-foreground: oklch(62% .02 250);
+      --border: oklch(28% .025 250);
+      --input: oklch(22% .02 250);
+      --destructive: oklch(60% .22 25);
+      --secondary: oklch(22% .022 250);
+      --secondary-foreground: oklch(88% .01 250);
+      --accent: oklch(24% .025 250);
+      --accent-foreground: oklch(90% .01 250);
+      --teal: #00d3bd;
+      --teal-dim: rgba(0,211,189,.12);
+      --amber: oklch(82.8% .189 84.429);
+      --red: oklch(63.7% .237 25.331);
+      --green: oklch(79.2% .209 151.711);
+      --radius: 0.625rem;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--background);
+      color: var(--foreground);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ─────────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(18,20,27,.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: .6rem;
+      text-decoration: none; color: var(--foreground);
+    }
+    .nav-brand-icon {
+      width: 28px; height: 28px; border-radius: 7px;
+      background: #ef4444; display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .nav-brand-name { font-weight: 800; font-size: 1rem; letter-spacing: -.025em; line-height: 1; }
+    .nav-brand-name span { color: #f87171; }
+    .nav-brand-sep { width: 1px; height: 14px; background: var(--border); margin: 0 6px; }
+    .nav-brand-sub { font-size: .7rem; font-weight: 500; color: var(--muted-foreground); }
+    .nav-actions { display: flex; align-items: center; gap: .5rem; }
+    .nav-badge {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 999px; background: rgba(239,68,68,.12);
+      color: #f87171; border: 1px solid rgba(239,68,68,.25);
+      white-space: nowrap; animation: pulse-badge 2s ease-in-out infinite;
+    }
+    @keyframes pulse-badge {
+      0%, 100% { opacity: 1; }
+      50% { opacity: .65; }
+    }
+    .nav-link {
+      font-size: .75rem; font-weight: 600; padding: 5px 12px;
+      border-radius: 8px; border: 1.5px solid var(--primary);
+      color: var(--primary); background: transparent;
+      text-decoration: none;
+      transition: background .15s, color .15s;
+      display: inline-flex; align-items: center; gap: 5px;
+    }
+    .nav-link:hover { background: var(--primary); color: var(--primary-foreground); }
+
+    /* ── LAYOUT ──────────────────────────────────────────────── */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+    .section { padding: 3rem 0; }
+
+    /* ── HERO ─────────────────────────────────────────────────── */
+    .hero {
+      padding: 3.5rem 0 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .7rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: #f87171;
+      margin-bottom: 1rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 20px; height: 2px;
+      background: #f87171; border-radius: 1px;
+    }
+    .hero h1 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 800; line-height: 1.2;
+      margin-bottom: .75rem; letter-spacing: -.02em;
+    }
+    .hero h1 em { font-style: normal; color: #f87171; }
+    .hero-sub {
+      color: var(--muted-foreground); font-size: .95rem;
+      max-width: 640px; margin-bottom: 1.5rem;
+    }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 6px; border: 1px solid var(--border);
+      color: var(--muted-foreground); background: var(--card);
+      font-family: var(--font-mono);
+    }
+
+    /* ── EMERGENCY BANNER ─────────────────────────────────────── */
+    .emergency-banner {
+      margin: 2rem 0 0;
+      background: rgba(239,68,68,.1);
+      border: 1.5px solid rgba(239,68,68,.35);
+      border-radius: calc(var(--radius) + 4px);
+      padding: 1.25rem 1.5rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .emergency-banner-icon {
+      font-size: 2.2rem; line-height: 1; flex-shrink: 0;
+    }
+    .emergency-banner-text h2 {
+      font-size: 1.05rem; font-weight: 800; color: #f87171; margin-bottom: .2rem;
+    }
+    .emergency-banner-text p {
+      font-size: .85rem; color: var(--muted-foreground); line-height: 1.5;
+    }
+    .emergency-banner-action {
+      margin-left: auto; flex-shrink: 0;
+    }
+    .btn-emergency {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: .9rem; font-weight: 800; padding: 11px 22px;
+      border-radius: calc(var(--radius) + 2px);
+      border: none; cursor: pointer;
+      background: #ef4444; color: #fff;
+      transition: all .15s; white-space: nowrap;
+      font-family: var(--font-sans); text-decoration: none;
+      letter-spacing: -.01em;
+    }
+    .btn-emergency:hover { background: #dc2626; transform: translateY(-1px); }
+
+    /* ── CATEGORY NAV ─────────────────────────────────────────── */
+    .cat-nav {
+      display: flex; gap: .4rem; flex-wrap: wrap;
+      margin: 2rem 0 1rem;
+    }
+    .cat-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .75rem; font-weight: 600; padding: 6px 14px;
+      border-radius: 999px; border: 1px solid var(--border);
+      background: var(--card); color: var(--muted-foreground);
+      cursor: pointer; transition: all .15s;
+      font-family: var(--font-sans);
+    }
+    .cat-btn:hover { background: var(--accent); color: var(--foreground); border-color: var(--primary); }
+    .cat-btn.active { background: rgba(239,68,68,.15); color: #f87171; border-color: rgba(239,68,68,.4); }
+
+    /* ── SYMPTOM CARDS ────────────────────────────────────────── */
+    .symptom-grid {
+      display: flex; flex-direction: column; gap: 1.25rem;
+      margin: 1.5rem 0;
+    }
+    .symptom-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 4px);
+      overflow: hidden;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .symptom-card:hover { border-color: rgba(239,68,68,.3); box-shadow: 0 0 0 1px rgba(239,68,68,.1); }
+    .symptom-card.urgency-immediate { border-left: 4px solid #ef4444; }
+    .symptom-card.urgency-urgent { border-left: 4px solid #f59e0b; }
+    .symptom-card.urgency-watch { border-left: 4px solid var(--teal); }
+
+    .symptom-header {
+      display: flex; align-items: center; gap: .75rem;
+      padding: 1.1rem 1.25rem;
+      cursor: pointer;
+      user-select: none;
+      transition: background .15s;
+    }
+    .symptom-header:hover { background: var(--muted); }
+    .symptom-icon-wrap {
+      width: 42px; height: 42px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; flex-shrink: 0;
+    }
+    .icon-red { background: rgba(239,68,68,.15); }
+    .icon-amber { background: rgba(245,158,11,.12); }
+    .icon-teal { background: var(--teal-dim); }
+
+    .symptom-meta { flex: 1; min-width: 0; }
+    .symptom-title {
+      font-weight: 800; font-size: .98rem; margin-bottom: 3px;
+      display: flex; align-items: center; gap: .5rem; flex-wrap: wrap;
+    }
+    .symptom-subtitle { font-size: .78rem; color: var(--muted-foreground); }
+
+    .urgency-pill {
+      font-size: .65rem; font-weight: 700; padding: 2px 9px;
+      border-radius: 999px; white-space: nowrap; letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .pill-immediate { background: rgba(239,68,68,.2); color: #f87171; border: 1px solid rgba(239,68,68,.35); }
+    .pill-urgent { background: rgba(245,158,11,.15); color: #fbbf24; border: 1px solid rgba(245,158,11,.3); }
+    .pill-watch { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.25); }
+
+    .symptom-chevron {
+      flex-shrink: 0; color: var(--muted-foreground);
+      transition: transform .25s;
+    }
+    .symptom-card.open .symptom-chevron { transform: rotate(180deg); }
+
+    .symptom-body {
+      display: none;
+      padding: 0 1.25rem 1.25rem;
+      border-top: 1px solid var(--border);
+      animation: fadeUp .2s ease;
+    }
+    .symptom-card.open .symptom-body { display: block; }
+
+    /* ── SIGNAL LIST ──────────────────────────────────────────── */
+    .signal-section { margin-top: 1rem; }
+    .signal-label {
+      font-size: .7rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--muted-foreground);
+      margin-bottom: .6rem; margin-top: 1rem;
+    }
+    .signal-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: .4rem;
+    }
+    .signal-item {
+      display: flex; align-items: flex-start; gap: 8px;
+      padding: 8px 10px; border-radius: var(--radius);
+      background: var(--muted); font-size: .8rem; line-height: 1.45;
+    }
+    .signal-dot {
+      width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; margin-top: 5px;
+    }
+    .dot-red { background: #ef4444; }
+    .dot-amber { background: #f59e0b; }
+    .dot-teal { background: var(--teal); }
+
+    /* ── INFO BOXES ───────────────────────────────────────────── */
+    .info-box {
+      border-radius: var(--radius); padding: 12px 16px;
+      font-size: .82rem; line-height: 1.6;
+      display: flex; gap: 10px; margin-top: .75rem;
+    }
+    .info-box-icon { flex-shrink: 0; font-size: 1rem; margin-top: 1px; }
+    .info-teal { background: var(--teal-dim); border-left: 3px solid var(--teal); }
+    .info-amber { background: rgba(251,191,36,.08); border-left: 3px solid rgba(251,191,36,.5); }
+    .info-red { background: rgba(220,38,38,.08); border-left: 3px solid rgba(220,38,38,.4); }
+    .info-gray { background: var(--muted); border-left: 3px solid var(--border); }
+
+    /* ── DIFFERENTIALS TABLE ──────────────────────────────────── */
+    .diff-table {
+      width: 100%; border-collapse: collapse; font-size: .8rem; margin-top: .75rem;
+    }
+    .diff-table th {
+      text-align: left; padding: 7px 10px;
+      font-size: .7rem; font-weight: 700; letter-spacing: .05em;
+      text-transform: uppercase; color: var(--muted-foreground);
+      background: var(--muted); border-bottom: 1px solid var(--border);
+    }
+    .diff-table th:first-child { border-radius: var(--radius) 0 0 0; }
+    .diff-table th:last-child { border-radius: 0 var(--radius) 0 0; }
+    .diff-table td {
+      padding: 7px 10px; border-bottom: 1px solid var(--border);
+      vertical-align: top; line-height: 1.4;
+    }
+    .diff-table tr:last-child td { border-bottom: none; }
+    .diff-table tr:nth-child(even) td { background: rgba(255,255,255,.018); }
+
+    /* ── QUICK CHECKLIST ──────────────────────────────────────── */
+    .checklist-section {
+      background: rgba(239,68,68,.07);
+      border: 1.5px solid rgba(239,68,68,.25);
+      border-radius: calc(var(--radius) + 4px);
+      padding: 1.5rem;
+      margin: 2rem 0;
+    }
+    .checklist-title {
+      font-weight: 800; font-size: 1.05rem; margin-bottom: .25rem;
+      display: flex; align-items: center; gap: .5rem;
+      color: #f87171;
+    }
+    .checklist-subtitle { font-size: .82rem; color: var(--muted-foreground); margin-bottom: 1.25rem; }
+    .cl-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: .5rem;
+    }
+    .cl-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 10px 12px; border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--card);
+      cursor: pointer; transition: background .15s, border-color .15s;
+      user-select: none;
+    }
+    .cl-item:hover { background: var(--accent); border-color: rgba(239,68,68,.4); }
+    .cl-item.checked { background: rgba(239,68,68,.1); border-color: rgba(239,68,68,.45); }
+    .cl-box {
+      width: 17px; height: 17px; border-radius: 4px; flex-shrink: 0; margin-top: 1px;
+      border: 1.5px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      transition: all .15s;
+    }
+    .cl-item.checked .cl-box { background: #ef4444; border-color: #ef4444; }
+    .cl-label { font-size: .8rem; line-height: 1.4; }
+    .cl-label strong { display: block; font-weight: 600; margin-bottom: 1px; }
+    .cl-label small { font-size: .72rem; color: var(--muted-foreground); }
+    .cl-result {
+      margin-top: 1.25rem; padding: 12px 16px; border-radius: var(--radius);
+      font-size: .85rem; font-weight: 600;
+      display: none; align-items: center; gap: 8px;
+    }
+    .cl-result.show { display: flex; animation: fadeUp .25s ease; }
+    .cl-result.go { background: rgba(239,68,68,.15); color: #f87171; border: 1px solid rgba(239,68,68,.35); }
+    .cl-result.ok { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.3); }
+
+    /* ── ACTION PANEL ─────────────────────────────────────────── */
+    .action-panel {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 4px);
+      overflow: hidden;
+      margin: 2rem 0;
+    }
+    .action-step {
+      background: var(--card);
+      padding: 1.25rem;
+    }
+    .action-step-num {
+      font-size: .65rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--muted-foreground);
+      margin-bottom: .4rem; font-family: var(--font-mono);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .action-num-dot {
+      display: inline-flex; width: 19px; height: 19px; border-radius: 50%;
+      background: rgba(239,68,68,.2); color: #f87171;
+      font-size: .62rem; align-items: center; justify-content: center;
+      font-weight: 700; font-family: var(--font-mono);
+    }
+    .action-title { font-weight: 700; font-size: .9rem; margin-bottom: .3rem; }
+    .action-desc { font-size: .78rem; color: var(--muted-foreground); line-height: 1.5; }
+    .action-highlight {
+      font-size: 1.4rem; font-weight: 800; color: #f87171;
+      font-family: var(--font-mono); display: block; margin-bottom: .15rem;
+    }
+
+    /* ── DO NOT ───────────────────────────────────────────────── */
+    .donot-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: .5rem; margin-top: .75rem;
+    }
+    .donot-item {
+      display: flex; align-items: flex-start; gap: 8px;
+      padding: 9px 11px; border-radius: var(--radius);
+      background: rgba(220,38,38,.06); border: 1px solid rgba(220,38,38,.2);
+      font-size: .8rem; line-height: 1.4;
+    }
+    .donot-x {
+      width: 16px; height: 16px; border-radius: 50%;
+      background: rgba(239,68,68,.2); color: #f87171;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .65rem; font-weight: 900; flex-shrink: 0; margin-top: 1px;
+    }
+
+    /* ── SECTION TITLES ───────────────────────────────────────── */
+    .section-title {
+      font-size: 1.3rem; font-weight: 800; margin-bottom: .25rem;
+    }
+    .section-sub {
+      font-size: .82rem; color: var(--muted-foreground); margin-bottom: 1.25rem;
+    }
+    .section-eyebrow {
+      font-size: .68rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--muted-foreground);
+      margin-bottom: .4rem;
+    }
+
+    /* ── REFERENCES ───────────────────────────────────────────── */
+    .ref-list { list-style: none; }
+    .ref-list li {
+      font-size: .77rem; color: var(--muted-foreground);
+      padding: 6px 0; border-bottom: 1px solid var(--border);
+      line-height: 1.5;
+    }
+    .ref-list li:last-child { border-bottom: none; }
+    .ref-list li span { color: var(--foreground); font-weight: 600; }
+
+    /* ── DISCLAIMER ───────────────────────────────────────────── */
+    .disclaimer {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 12px 16px;
+      font-size: .75rem; color: var(--muted-foreground);
+      line-height: 1.6; margin-top: 1.5rem;
+    }
+
+    /* ── ANIMATIONS ───────────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── FOOTER ───────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 0; margin-top: 3rem;
+    }
+    .footer-inner {
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-copy { font-size: .75rem; color: var(--muted-foreground); }
+
+    /* ── RESPONSIVE ───────────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .signal-list { grid-template-columns: 1fr; }
+      .emergency-banner { flex-wrap: wrap; }
+      .emergency-banner-action { width: 100%; }
+      .btn-emergency { width: 100%; justify-content: center; }
+      .action-panel { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ──────────────────────────────────────────────────── -->
+<nav>
+  <a class="nav-brand" href="#">
+    <div class="nav-brand-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+      </svg>
+    </div>
+    <div class="nav-brand-name">Cardio<span>Alert</span></div>
+    <div class="nav-brand-sep"></div>
+    <div class="nav-brand-sub">Sinais de Alarme Cardiológico</div>
+  </a>
+  <div class="nav-actions">
+    <div class="nav-badge">⚡ Emergência</div>
+    <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      lucascardio.com.br
+    </a>
+  </div>
+</nav>
+
+<!-- ── MAIN ──────────────────────────────────────────────────── -->
+<main>
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">Guia para Pacientes e Familiares</div>
+    <h1>Quando ir imediatamente<br>ao <em>Pronto-Socorro</em></h1>
+    <p class="hero-sub">
+      Reconhecer sinais de alarme cardiológicos pode salvar vidas. Esta página descreve os sintomas que exigem atendimento de emergência imediato — não espere para ver se melhora.
+    </p>
+    <div class="hero-tags">
+      <span class="tag">SCA / IAM</span>
+      <span class="tag">Arritmias</span>
+      <span class="tag">ICC Descompensada</span>
+      <span class="tag">TEP</span>
+      <span class="tag">Dissecção Aórtica</span>
+      <span class="tag">Síncope</span>
+    </div>
+
+    <!-- Emergency Banner -->
+    <div class="emergency-banner">
+      <div class="emergency-banner-icon">🚨</div>
+      <div class="emergency-banner-text">
+        <h2>Em caso de emergência, ligue agora</h2>
+        <p>SAMU 192 · Bombeiros 193 · Pronto-socorro mais próximo. Não dirija sozinho em crise cardiológica.</p>
+      </div>
+      <div class="emergency-banner-action">
+        <a class="btn-emergency" href="tel:192">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.11 12 19.79 19.79 0 0 1 1.18 3.5 2 2 0 0 1 3.22 1.32h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l1.06-1.06a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.73 16z"/></svg>
+          SAMU 192
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CATEGORY NAV -->
+  <div class="cat-nav" id="catNav">
+    <button class="cat-btn active" onclick="filterCategory('all', this)">🫀 Todos os sinais</button>
+    <button class="cat-btn" onclick="filterCategory('chest', this)">💢 Dor torácica</button>
+    <button class="cat-btn" onclick="filterCategory('syncope', this)">😵 Síncope</button>
+    <button class="cat-btn" onclick="filterCategory('dyspnea', this)">🌬️ Dispneia</button>
+    <button class="cat-btn" onclick="filterCategory('rhythm', this)">⚡ Arritmia</button>
+    <button class="cat-btn" onclick="filterCategory('neuro', this)">🧠 Neurológico</button>
+    <button class="cat-btn" onclick="filterCategory('other', this)">⚠️ Outros</button>
+  </div>
+
+  <!-- SYMPTOM CARDS -->
+  <div class="symptom-grid" id="symptomGrid">
+
+    <!-- 1. DOR TORÁCICA -->
+    <div class="symptom-card urgency-immediate" data-cat="chest" data-open="true">
+      <div class="symptom-header" onclick="toggleCard(this)">
+        <div class="symptom-icon-wrap icon-red">💢</div>
+        <div class="symptom-meta">
+          <div class="symptom-title">
+            Dor ou desconforto torácico
+            <span class="urgency-pill pill-immediate">Emergência imediata</span>
+          </div>
+          <div class="symptom-subtitle">Pressão, aperto, queimação, peso no peito — com ou sem irradiação</div>
+        </div>
+        <svg class="symptom-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="symptom-body">
+        <div class="info-red info-box">
+          <span class="info-box-icon">⚠️</span>
+          <div>A dor torácica é o sintoma de apresentação do <strong>infarto agudo do miocárdio (IAM)</strong> em 70–80% dos casos. A demora no atendimento aumenta diretamente a extensão da necrose miocárdica e a mortalidade. <em>Cada minuto conta.</em></div>
+        </div>
+
+        <div class="signal-section">
+          <div class="signal-label">Características que indicam emergência</div>
+          <div class="signal-list">
+            <div class="signal-item"><span class="signal-dot dot-red"></span>Dor em aperto, pressão ou peso no centro do peito</div>
+            <div class="signal-item"><span class="signal-dot dot-red"></span>Irradiação para braço esquerdo, pescoço, mandíbula ou dorso</div>
+            <div class="signal-item"><span class="signal-dot dot-red"></span>Duração &gt; 15–20 minutos sem alívio</div>
+            <div class="signal-item"><span class="signal-dot dot-red"></span>Associada a sudorese fria, náusea ou vômito</div>
+            <div class="signal-item"><span class="signal-dot dot-red"></span>Acompanhada de falta de ar ou tontura intensa</div>
+            <div class="signal-item"><span class="signal-dot dot-red"></span>Dor torácica <strong>em repouso</strong>, inclusive noturna</div>
+            <div class="signal-item"><span class="signal-dot dot-red"></span>Dor de início súbito e muito intensa ("a pior da vida") — sugere dissecção aórtica</div>
+            <div class="signal-item"><span class="signal-dot dot-red"></span>Dor em facada, pior com respiração profunda — pode indicar TEP ou pericardite</div>
+          </div>
+        </div>
+
+        <div class="signal-section">
+          <div class="signal-label">Diagnósticos diferenciais que exigem emergência</div>
+          <table class="diff-table">
+            <thead>
+              <tr>
+                <th>Condição</th>
+                <th>Característica típica</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>SCA / IAM</strong></td><td>Aperto retroesternal, irradiação para MSE, diaforese, náusea</td></tr>
+              <tr><td><strong>Dissecção aórtica</strong></td><td>Dor lancinante de início abrupto, irradiação para dorso, assimetria de pulsos</td></tr>
+              <tr><td><strong>TEP maciço</strong></td><td>Dor pleurítica + dispneia súbita, taquicardia, hipoxemia, fator de risco (imobilização, neoplasia)</td></tr>
+              <tr><td><strong>Pneumotórax hipertensivo</strong></td><td>Dor unilateral + dispneia súbita + ausência de MV unilateral</td></tr>
+              <tr><td><strong>Pericardite / Tamponamento</strong></td><td>Dor pleurítica, piora em decúbito dorsal, melhora sentado; em tamponamento: hipotensão + turgência jugular</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="info-teal info-box">
+          <span class="info-box-icon">📖</span>
+          <div><strong>Base:</strong> Braunwald's Heart Disease, 12ª ed., Cap. 56 (Abordagem do Paciente com Dor Torácica); ESC Guidelines for Acute Coronary Syndromes 2023; ACC/AHA Chest Pain Guidelines 2021.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. SÍNCOPE -->
+    <div class="symptom-card urgency-immediate" data-cat="syncope">
+      <div class="symptom-header" onclick="toggleCard(this)">
+        <div class="symptom-icon-wrap icon-red">😵</div>
+        <div class="symptom-meta">
+          <div class="symptom-title">
+            Síncope e pré-síncope
+            <span class="urgency-pill pill-immediate">Emergência imediata</span>
+          </div>
+          <div class="symptom-subtitle">Perda de consciência súbita, desmaio, "apagamento" repentino</div>
+        </div>
+        <svg class="symptom-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="symptom-body">
+        <div class="info-red info-box">
+          <span class="info-box-icon">⚠️</span>
+          <div>Síncope de origem cardíaca — arrítmica ou estrutural — carrega risco de morte súbita elevado. A causa não pode ser determinada sem avaliação médica imediata. <strong>Não assuma que foi "só um desmaio".</strong></div>
+        </div>
+
+        <div class="signal-section">
+          <div class="signal-label">Sinais que indicam causa cardíaca (emergência)</div>
+          <div class="signal-list">
+            <div class="signal-item"><span class="signal-dot dot-red"></span>Síncope durante esforço físico ou exercício</div>
+            <div class="signal-item"><span class="signal-dot dot-red"></span>Síncope sem pródromo (sem tontura, palidez ou náusea prévia)</div>
+            <div class="signal-item"><span class="signal-dot dot-red"></span>Síncope precedida por palpitações rápidas ou "coração faltando batidas"</div>
+            <div class="signal-item"><span class="signal-dot dot-red"></span>Síncope em paciente com cardiopatia estrutural conhecida</div>
+            <div class="signal-item"><span class="signal-dot dot-red"></span>Síncope em jovem com história familiar de morte súbita</div>
+            <div class="signal-item"><span class="signal-dot dot-red"></span>Trauma por queda durante a síncope (risco de fraturas, TCE)</div>
+            <div class="signal-item"><span class="signal-dot dot-red"></span>Recuperação lenta da consciência (&gt; 1–2 minutos)</div>
+            <div class="signal-item"><span class="signal-dot dot-amber"></span>Pré-síncope recorrente inexplicada no mesmo dia</div>
+          </div>
+        </div>
+
+        <div class="info-amber info-box">
+          <span class="info-box-icon">💡</span>
+          <div><strong>Síncope vasovagal clássica</strong> (gatilho emocional/ortostático, pródromo de sudorese e palidez, recuperação rápida em posição supina) é geralmente benigna — mas mesmo assim merece avaliação médica eletiva. Em caso de dúvida, vá ao PS.</div>
+        </div>
+
+        <div class="info-teal info-box">
+          <span class="info-box-icon">📖</span>
+          <div><strong>Base:</strong> ESC Guidelines on Syncope 2018; Braunwald's Heart Disease, Cap. 89 (Hipotensão e Síncope); ACEP Clinical Policy on Syncope 2023.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. DISPNEIA SÚBITA -->
+    <div class="symptom-card urgency-immediate" data-cat="dyspnea">
+      <div class="symptom-header" onclick="toggleCard(this)">
+        <div class="symptom-icon-wrap icon-red">🌬️</div>
+        <div class="symptom-meta">
+          <div class="symptom-title">
+            Dispneia súbita ou progressiva intensa
+            <span class="urgency-pill pill-immediate">Emergência imediata</span>
+          </div>
+          <div class="symptom-subtitle">Falta de ar que aparece de repente, piora rápida ou impede fala</div>
+        </div>
+        <svg class="symptom-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="symptom-body">
+        <div class="signal-section">
+          <div class="signal-label">Características que exigem ida imediata ao PS</div>
+          <div class="signal-list">
+            <div class="signal-item"><span class="signal-dot dot-red"></span>Dispneia súbita em repouso, sem causa aparente</div>
+            <div class="signal-item"><span class="signal-dot dot-red"></span>Dispneia noturna paroxística: acorda à noite com falta de ar grave (EAP)</div>
+            <div class="signal-item"><span class="signal-dot dot-red"></span>Ortopneia marcante: não consegue deitar, precisa sentar para respirar</div>
+            <div class="signal-item"><span class="signal-dot dot-red"></span>Lábios ou unhas arroxeados (cianose)</div>
+            <div class="signal-item"><span class="signal-dot dot-red"></span>Fala difícil por falta de ar — consegue dizer apenas palavras isoladas</div>
+            <div class="signal-item"><span class="signal-dot dot-red"></span>Dispneia associada a dor torácica ou síncope</div>
+            <div class="signal-item"><span class="signal-dot dot-red"></span>Piora significativa em paciente com IC ou DPOC conhecido</div>
+            <div class="signal-item"><span class="signal-dot dot-amber"></span>Edema progressivo de membros inferiores com dispneia ao mínimo esforço</div>
+          </div>
+        </div>
+
+        <div class="info-red info-box">
+          <span class="info-box-icon">🫁</span>
+          <div>O <strong>edema agudo de pulmão (EAP)</strong> por insuficiência cardíaca descompensada é uma emergência com mortalidade hospitalar de 5–15%. Apresenta-se com ortopneia, crepitações bilaterais, SpO₂ baixa e frequentemente hipertensão arterial severa associada.</div>
+        </div>
+
+        <div class="info-teal info-box">
+          <span class="info-box-icon">📖</span>
+          <div><strong>Base:</strong> ESC Guidelines for Acute and Chronic Heart Failure 2021; Braunwald's Heart Disease, Cap. 23 (Dispneia e Edema Pulmonar); ESC Guidelines on Pulmonary Embolism 2019.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. PALPITAÇÕES / ARRITMIAS -->
+    <div class="symptom-card urgency-immediate" data-cat="rhythm">
+      <div class="symptom-header" onclick="toggleCard(this)">
+        <div class="symptom-icon-wrap icon-red">⚡</div>
+        <div class="symptom-meta">
+          <div class="symptom-title">
+            Palpitações com sintomas associados
+            <span class="urgency-pill pill-immediate">Emergência imediata</span>
+          </div>
+          <div class="symptom-subtitle">Coração acelerado, irregular ou "pulando" — com tontura, síncope ou dispneia</div>
+        </div>
+        <svg class="symptom-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="symptom-body">
+        <div class="signal-section">
+          <div class="signal-label">Palpitações que exigem emergência</div>
+          <div class="signal-list">
+            <div class="signal-item"><span class="signal-dot dot-red"></span>Palpitações associadas a síncope ou pré-síncope</div>
+            <div class="signal-item"><span class="signal-dot dot-red"></span>Frequência muito alta e sustentada: "coração disparado" por &gt;30 minutos</div>
+            <div class="signal-item"><span class="signal-dot dot-red"></span>Palpitações com dor torácica, dispneia ou sudorese</div>
+            <div class="signal-item"><span class="signal-dot dot-red"></span>Ritmo caótico e extremamente irregular em paciente com cardiopatia</div>
+            <div class="signal-item"><span class="signal-dot dot-red"></span>Palpitações em paciente com desfibrilador implantado (CDI) que recebeu choque</div>
+            <div class="signal-item"><span class="signal-dot dot-red"></span>Palpitações em paciente com QT longo congênito ou síndrome de Brugada conhecida</div>
+            <div class="signal-item"><span class="signal-dot dot-amber"></span>FA de início recente em paciente anticoagulado de forma irregular</div>
+          </div>
+        </div>
+
+        <div class="info-amber info-box">
+          <span class="info-box-icon">💡</span>
+          <div>Palpitações isoladas, breves, sem sintomas associados e sem cardiopatia estrutural costumam ser extrassístoles benignas — mas merecem avaliação eletiva. <strong>Com qualquer sintoma associado ou em paciente cardiopata, vá ao PS.</strong></div>
+        </div>
+
+        <div class="info-teal info-box">
+          <span class="info-box-icon">📖</span>
+          <div><strong>Base:</strong> ESC Guidelines on Ventricular Arrhythmias and Prevention of Sudden Cardiac Death 2022; Braunwald's Heart Disease, Cap. 65 (Diagnóstico das Arritmias Cardíacas).</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. SINAIS NEUROLÓGICOS SÚBITOS -->
+    <div class="symptom-card urgency-immediate" data-cat="neuro">
+      <div class="symptom-header" onclick="toggleCard(this)">
+        <div class="symptom-icon-wrap icon-red">🧠</div>
+        <div class="symptom-meta">
+          <div class="symptom-title">
+            Déficit neurológico de início súbito
+            <span class="urgency-pill pill-immediate">Emergência imediata</span>
+          </div>
+          <div class="symptom-subtitle">Fraqueza facial, hemiplegia, afasia, confusão — o tempo é músculo e neurônio</div>
+        </div>
+        <svg class="symptom-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="symptom-body">
+        <div class="info-red info-box">
+          <span class="info-box-icon">⏱️</span>
+          <div>AVC cardioembólico (geralmente por FA ou trombo intracardíaco) representa 30% dos AVCs isquêmicos. A janela terapêutica para trombólise é de <strong>4h30 a partir do início dos sintomas</strong>. Cada 30 min de atraso = 3 semanas de vida saudável perdidas.</div>
+        </div>
+
+        <div class="signal-section">
+          <div class="signal-label">Sinal RÁPIDO — use esta regra</div>
+          <div class="signal-list" style="grid-template-columns:1fr;">
+            <div class="signal-item" style="background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);">
+              <span class="signal-dot dot-red" style="margin-top:2px;"></span>
+              <div><strong style="color:#f87171;font-family:var(--font-mono);">R</strong> — Rosto caído de um lado? Peça para sorrir</div>
+            </div>
+            <div class="signal-item" style="background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);">
+              <span class="signal-dot dot-red" style="margin-top:2px;"></span>
+              <div><strong style="color:#f87171;font-family:var(--font-mono);">Á</strong> — Ângulo do braço cai? Peça para levantar os dois braços</div>
+            </div>
+            <div class="signal-item" style="background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);">
+              <span class="signal-dot dot-red" style="margin-top:2px;"></span>
+              <div><strong style="color:#f87171;font-family:var(--font-mono);">P</strong> — Palavra embaralhada? Peça para repetir uma frase simples</div>
+            </div>
+            <div class="signal-item" style="background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);">
+              <span class="signal-dot dot-red" style="margin-top:2px;"></span>
+              <div><strong style="color:#f87171;font-family:var(--font-mono);">I</strong> — Imediatamente ligue para 192 se qualquer um for positivo</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="signal-section">
+          <div class="signal-label">Outros déficits neurológicos de origem cardiológica</div>
+          <div class="signal-list">
+            <div class="signal-item"><span class="signal-dot dot-red"></span>Confusão mental súbita ou alteração de consciência</div>
+            <div class="signal-item"><span class="signal-dot dot-red"></span>Perda visual súbita em um olho (amaurose fugaz)</div>
+            <div class="signal-item"><span class="signal-dot dot-red"></span>Cefaleia intensa de início súbito ("a pior da vida") — HSA/dissecção</div>
+            <div class="signal-item"><span class="signal-dot dot-red"></span>Tontura vertiginosa intensa com diplopia ou ataxia — origem central</div>
+          </div>
+        </div>
+
+        <div class="info-teal info-box">
+          <span class="info-box-icon">📖</span>
+          <div><strong>Base:</strong> ESC Guidelines on Atrial Fibrillation 2020 (seção AVC cardioembólico); AHA/ASA Stroke Guidelines 2019; Braunwald's Heart Disease, Cap. 93 (Neurologia e Coração).</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. CRISE HIPERTENSIVA -->
+    <div class="symptom-card urgency-immediate" data-cat="other">
+      <div class="symptom-header" onclick="toggleCard(this)">
+        <div class="symptom-icon-wrap icon-red">🌡️</div>
+        <div class="symptom-meta">
+          <div class="symptom-title">
+            Crise hipertensiva com sintomas
+            <span class="urgency-pill pill-immediate">Emergência imediata</span>
+          </div>
+          <div class="symptom-subtitle">PA muito elevada com cefaleia, dor torácica, dispneia ou déficit neurológico</div>
+        </div>
+        <svg class="symptom-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="symptom-body">
+        <div class="info-red info-box">
+          <span class="info-box-icon">⚠️</span>
+          <div><strong>Emergência hipertensiva</strong> (PA ≥ 180/120 mmHg + lesão de órgão-alvo) difere da urgência hipertensiva (sem lesão). Sempre vá ao PS se houver sintomas associados — a diferenciação exige exames.</div>
+        </div>
+
+        <div class="signal-section">
+          <div class="signal-label">Vá imediatamente ao PS se PA elevada + qualquer um destes:</div>
+          <div class="signal-list">
+            <div class="signal-item"><span class="signal-dot dot-red"></span>Dor torácica — suspeita de SCA ou dissecção aórtica</div>
+            <div class="signal-item"><span class="signal-dot dot-red"></span>Déficit neurológico focal — encefalopatia hipertensiva ou AVC</div>
+            <div class="signal-item"><span class="signal-dot dot-red"></span>Dispneia intensa — EAP hipertensivo</div>
+            <div class="signal-item"><span class="signal-dot dot-red"></span>Cefaleia intensa, vômitos, alteração visual</div>
+            <div class="signal-item"><span class="signal-dot dot-red"></span>Eclâmpsia: PA elevada em gestante com convulsão</div>
+            <div class="signal-item"><span class="signal-dot dot-amber"></span>PA ≥ 180/120 assintomática: avaliação médica urgente em até horas</div>
+          </div>
+        </div>
+
+        <div class="info-teal info-box">
+          <span class="info-box-icon">📖</span>
+          <div><strong>Base:</strong> ESC Guidelines on Arterial Hypertension 2023; Braunwald's Heart Disease, Cap. 46 (Hipertensão Sistêmica); JNC 8.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. EDEMA AGUDO + ICC -->
+    <div class="symptom-card urgency-urgent" data-cat="other">
+      <div class="symptom-header" onclick="toggleCard(this)">
+        <div class="symptom-icon-wrap icon-amber">🫧</div>
+        <div class="symptom-meta">
+          <div class="symptom-title">
+            Edema e congestão de piora rápida
+            <span class="urgency-pill pill-urgent">Urgência — PS no mesmo dia</span>
+          </div>
+          <div class="symptom-subtitle">Inchaço de pernas, barriga ou pulmões com piora progressiva em horas a dias</div>
+        </div>
+        <svg class="symptom-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="symptom-body">
+        <div class="signal-section">
+          <div class="signal-label">Sinais de alarme para descompensação de IC</div>
+          <div class="signal-list">
+            <div class="signal-item"><span class="signal-dot dot-amber"></span>Ganho de peso &gt; 2 kg em 2 dias ou &gt; 3 kg em uma semana</div>
+            <div class="signal-item"><span class="signal-dot dot-amber"></span>Edema de MMII progressivo bilateral acima do tornozelo</div>
+            <div class="signal-item"><span class="signal-dot dot-amber"></span>Aumento do número de travesseiros para dormir (ortopneia progressiva)</div>
+            <div class="signal-item"><span class="signal-dot dot-amber"></span>Redução importante da tolerância ao exercício em poucos dias</div>
+            <div class="signal-item"><span class="signal-dot dot-amber"></span>Distensão abdominal, náusea, saciedade precoce (congestão hepática)</div>
+            <div class="signal-item"><span class="signal-dot dot-red"></span>SpO₂ ≤ 93% em oxímetro de dedo — PS imediato</div>
+          </div>
+        </div>
+
+        <div class="info-amber info-box">
+          <span class="info-box-icon">💡</span>
+          <div>Pacientes com IC conhecida devem ter um <strong>plano de ação escrito</strong> com seu cardiologista, incluindo critérios para autoajuste diurético e quando ligar ou ir ao PS. Pergunte ao seu médico se você ainda não tem esse plano.</div>
+        </div>
+
+        <div class="info-teal info-box">
+          <span class="info-box-icon">📖</span>
+          <div><strong>Base:</strong> ESC Heart Failure Guidelines 2021; Braunwald's Heart Disease, Cap. 25 (Insuficiência Cardíaca: Manejo Clínico).</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. PARADA / REANIMAÇÃO -->
+    <div class="symptom-card urgency-immediate" data-cat="other">
+      <div class="symptom-header" onclick="toggleCard(this)">
+        <div class="symptom-icon-wrap icon-red">💀</div>
+        <div class="symptom-meta">
+          <div class="symptom-title">
+            Parada cardiorrespiratória
+            <span class="urgency-pill pill-immediate">Ligue 192 AGORA</span>
+          </div>
+          <div class="symptom-subtitle">Pessoa não responde, não respira normalmente — inicie RCP imediatamente</div>
+        </div>
+        <svg class="symptom-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="symptom-body">
+        <div class="info-red info-box">
+          <span class="info-box-icon">🚨</span>
+          <div>Em parada cardiorrespiratória, <strong>cada minuto sem RCP reduz a chance de sobrevida em 10%</strong>. A RCP precoce e o desfibrilador (DEA) são os principais determinantes da sobrevida.</div>
+        </div>
+
+        <div class="signal-section">
+          <div class="signal-label">Sequência de ação imediata (para leigos)</div>
+          <div class="signal-list" style="grid-template-columns:1fr;">
+            <div class="signal-item" style="background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);">
+              <strong style="color:#f87171;font-family:var(--font-mono);font-size:.85rem;flex-shrink:0;margin-top:0;">1.</strong>
+              <div>Verifique resposta: chame pelo nome, chacoalhe os ombros</div>
+            </div>
+            <div class="signal-item" style="background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);">
+              <strong style="color:#f87171;font-family:var(--font-mono);font-size:.85rem;flex-shrink:0;">2.</strong>
+              <div>Ligue 192 (SAMU) — peça a alguém, enquanto você não sai do lado da vítima</div>
+            </div>
+            <div class="signal-item" style="background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);">
+              <strong style="color:#f87171;font-family:var(--font-mono);font-size:.85rem;flex-shrink:0;">3.</strong>
+              <div>Inicie compressões torácicas: centro do peito, 5–6 cm de profundidade, 100–120/min</div>
+            </div>
+            <div class="signal-item" style="background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);">
+              <strong style="color:#f87171;font-family:var(--font-mono);font-size:.85rem;flex-shrink:0;">4.</strong>
+              <div>Localize um DEA (desfibrilador) — em aeroportos, shoppings, academias — e siga as instruções de voz</div>
+            </div>
+            <div class="signal-item" style="background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);">
+              <strong style="color:#f87171;font-family:var(--font-mono);font-size:.85rem;flex-shrink:0;">5.</strong>
+              <div>Não interrompa até chegar o socorro ou a vítima recuperar consciência</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-teal info-box">
+          <span class="info-box-icon">📖</span>
+          <div><strong>Base:</strong> AHA Guidelines for CPR and ECC 2020; ERC Guidelines 2021; Braunwald's Heart Disease, Cap. 42 (Morte Súbita Cardíaca).</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /symptom-grid -->
+
+  <!-- CHECKLIST RÁPIDO -->
+  <div class="checklist-section">
+    <div class="checklist-title">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      Você tem algum desses sintomas agora?
+    </div>
+    <div class="checklist-subtitle">Marque o que está sentindo. O resultado aparece abaixo.</div>
+
+    <div class="cl-grid" id="clGrid">
+      <label class="cl-item" onclick="clToggle(this)">
+        <div class="cl-box"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <span class="cl-label"><strong>Dor ou pressão no peito</strong><small>Com ou sem irradiação para braço, pescoço ou costas</small></span>
+      </label>
+      <label class="cl-item" onclick="clToggle(this)">
+        <div class="cl-box"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <span class="cl-label"><strong>Falta de ar intensa e súbita</strong><small>Em repouso ou pior que o habitual</small></span>
+      </label>
+      <label class="cl-item" onclick="clToggle(this)">
+        <div class="cl-box"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <span class="cl-label"><strong>Desmaio ou quase desmaio</strong><small>Perda ou quase perda de consciência</small></span>
+      </label>
+      <label class="cl-item" onclick="clToggle(this)">
+        <div class="cl-box"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <span class="cl-label"><strong>Coração acelerado ou irregular</strong><small>Por mais de 30 min ou com outros sintomas</small></span>
+      </label>
+      <label class="cl-item" onclick="clToggle(this)">
+        <div class="cl-box"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <span class="cl-label"><strong>Fraqueza súbita em braço ou perna</strong><small>Ou boca torta, dificuldade para falar</small></span>
+      </label>
+      <label class="cl-item" onclick="clToggle(this)">
+        <div class="cl-box"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <span class="cl-label"><strong>Sudorese fria e náusea sem causa</strong><small>Especialmente com qualquer outro sintoma acima</small></span>
+      </label>
+      <label class="cl-item" onclick="clToggle(this)">
+        <div class="cl-box"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <span class="cl-label"><strong>Cefaleia intensa de início abrupto</strong><small>"A pior dor de cabeça da minha vida"</small></span>
+      </label>
+      <label class="cl-item" onclick="clToggle(this)">
+        <div class="cl-box"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <span class="cl-label"><strong>Lábios ou unhas roxas (cianose)</strong><small>Queda de saturação</small></span>
+      </label>
+    </div>
+
+    <div class="cl-result go" id="clResultGo">
+      🚨 <span>Você marcou um ou mais sinais de alarme. <strong>Vá ao pronto-socorro agora</strong> ou ligue 192 (SAMU).</span>
+    </div>
+    <div class="cl-result ok" id="clResultOk">
+      ✅ <span>Nenhum sinal de alarme marcado no momento. Se tiver dúvidas ou sintomas leves, consulte seu médico.</span>
+    </div>
+  </div>
+
+  <!-- O QUE FAZER -->
+  <div>
+    <div class="section-eyebrow">Protocolo de ação</div>
+    <div class="section-title">O que fazer durante uma crise</div>
+    <div class="section-sub">Siga esta sequência enquanto aguarda o socorro ou se dirige ao PS.</div>
+
+    <div class="action-panel">
+      <div class="action-step">
+        <div class="action-step-num"><span class="action-num-dot">1</span> LIGUE</div>
+        <span class="action-highlight">192</span>
+        <div class="action-title">SAMU imediatamente</div>
+        <div class="action-desc">Descreva os sintomas, o endereço completo e o estado do paciente. Não desligue antes de ser orientado.</div>
+      </div>
+      <div class="action-step">
+        <div class="action-step-num"><span class="action-num-dot">2</span> POSIÇÃO</div>
+        <div class="action-title">Sente ou deite o paciente</div>
+        <div class="action-desc">Mantenha em posição de conforto. Em dispneia intensa: sentado, inclinado para frente. Não force deitar se piorar a respiração.</div>
+      </div>
+      <div class="action-step">
+        <div class="action-step-num"><span class="action-num-dot">3</span> NÃO DIRIJA</div>
+        <div class="action-title">Peça carona ou aguarde o SAMU</div>
+        <div class="action-desc">O paciente em crise NÃO deve dirigir. O acompanhante deve assumir ou chamar ambulância. IAM pode evoluir para parada súbita.</div>
+      </div>
+      <div class="action-step">
+        <div class="action-step-num"><span class="action-num-dot">4</span> DOCUMENTOS</div>
+        <div class="action-title">Leve os medicamentos</div>
+        <div class="action-desc">Traga todos os remédios de uso contínuo ou a lista deles. Informe alergias, marca-passo, stents, cirurgias cardíacas prévias.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- O QUE NÃO FAZER -->
+  <div style="margin-top: 2rem;">
+    <div class="section-eyebrow">Cuidados importantes</div>
+    <div class="section-title">O que <em style="color:#f87171;font-style:normal;">não</em> fazer</div>
+    <div class="section-sub">Erros comuns que podem agravar o desfecho.</div>
+    <div class="donot-grid">
+      <div class="donot-item"><div class="donot-x">✕</div><div>Não espere para ver se os sintomas "passam" — especialmente dor torácica ≥ 15 min</div></div>
+      <div class="donot-item"><div class="donot-x">✕</div><div>Não tome remédios caseiros ou para "gases" antes de ir ao PS</div></div>
+      <div class="donot-item"><div class="donot-x">✕</div><div>Não dirija sozinho durante uma crise cardiológica ativa</div></div>
+      <div class="donot-item"><div class="donot-x">✕</div><div>Não tome aspirina por conta própria sem orientação — pode ser contraindicada</div></div>
+      <div class="donot-item"><div class="donot-x">✕</div><div>Não deixe de ir ao PS por medo de "ocupar uma vaga" — sua vida importa</div></div>
+      <div class="donot-item"><div class="donot-x">✕</div><div>Não desconsidere sintomas atípicos em mulheres, idosos e diabéticos (IAM sem dor típica é mais comum nestes grupos)</div></div>
+    </div>
+  </div>
+
+  <!-- GRUPOS DE RISCO -->
+  <div style="margin-top:2.5rem;">
+    <div class="section-eyebrow">Atenção especial</div>
+    <div class="section-title">Quem tem maior risco e deve agir mais rápido</div>
+    <div class="section-sub">Alguns grupos têm apresentações atípicas e mortalidade maior se houver atraso.</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.75rem;margin-top:.5rem;">
+      <div class="info-red info-box" style="margin-top:0;">
+        <span class="info-box-icon">👩</span>
+        <div><strong>Mulheres</strong> — mais frequentemente apresentam IAM com dispneia, fadiga extrema, náusea e dor epigástrica sem dor torácica clássica. Maior tempo de atendimento = maior mortalidade.</div>
+      </div>
+      <div class="info-red info-box" style="margin-top:0;">
+        <span class="info-box-icon">🧓</span>
+        <div><strong>Idosos (&gt; 75 anos)</strong> — IAM silencioso mais comum. Dispneia, confusão e queda súbita podem ser a única manifestação. Alta suspeita clínica necessária.</div>
+      </div>
+      <div class="info-red info-box" style="margin-top:0;">
+        <span class="info-box-icon">🩸</span>
+        <div><strong>Diabéticos</strong> — neuropatia autonômica reduz percepção de dor. IAM pode se apresentar apenas como dispneia, hipotensão ou mal-estar inespecífico.</div>
+      </div>
+      <div class="info-amber info-box" style="margin-top:0;">
+        <span class="info-box-icon">💊</span>
+        <div><strong>Cardiopatas conhecidos</strong> — qualquer mudança no padrão habitual de sintomas (piora de angina, nova dispneia) é sinal de alarme. Limiar para buscar PS deve ser baixo.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REFERÊNCIAS -->
+  <div style="margin-top:3rem;" id="referencias">
+    <div class="section-eyebrow">Evidências</div>
+    <div class="section-title">Referências bibliográficas</div>
+    <div class="section-sub">Fontes utilizadas na elaboração deste conteúdo.</div>
+
+    <ul class="ref-list" style="margin-top:.75rem;">
+      <li><span>Braunwald's Heart Disease</span> — Libby P, et al. 12th ed. Elsevier, 2022. Capítulos: 23 (Dispneia), 42 (Morte Súbita), 56 (Dor Torácica), 65 (Arritmias), 89 (Síncope), 93 (Neurologia e Coração).</li>
+      <li><span>ESC Guidelines for Acute Coronary Syndromes</span> — Byrne RA, et al. Eur Heart J. 2023;44(38):3720-3826. doi:10.1093/eurheartj/ehad191</li>
+      <li><span>2021 AHA/ACC Chest Pain Guidelines</span> — Gulati M, et al. J Am Coll Cardiol. 2021;78(22):e187-e285. doi:10.1016/j.jacc.2021.07.053</li>
+      <li><span>ESC Guidelines on Syncope</span> — Brignole M, et al. Eur Heart J. 2018;39(21):1883-1948. doi:10.1093/eurheartj/ehy037</li>
+      <li><span>ESC Guidelines for Acute and Chronic Heart Failure</span> — McDonagh TA, et al. Eur Heart J. 2021;42(36):3599-3726. doi:10.1093/eurheartj/ehab368</li>
+      <li><span>ESC Guidelines on Ventricular Arrhythmias (SCD Prevention)</span> — Zeppenfeld K, et al. Eur Heart J. 2022;43(40):3997-4126. doi:10.1093/eurheartj/ehac262</li>
+      <li><span>ESC/ESH Guidelines on Arterial Hypertension</span> — Mancia G, et al. Eur Heart J. 2023;44(28):2688-2740. doi:10.1093/eurheartj/ehad195</li>
+      <li><span>2020 AHA Guidelines for CPR and ECC</span> — Panchal AR, et al. Circulation. 2020;142(16_Suppl_2):S366-S468. doi:10.1161/CIR.0000000000000916</li>
+      <li><span>AHA/ASA Stroke Guidelines</span> — Powers WJ, et al. Stroke. 2019;50(12):e344-e418. doi:10.1161/STR.0000000000000211</li>
+      <li><span>ESC Guidelines on Pulmonary Embolism</span> — Konstantinides SV, et al. Eur Heart J. 2020;41(4):543-603. doi:10.1093/eurheartj/ehz405</li>
+    </ul>
+  </div>
+
+  <div class="disclaimer">
+    <strong>Aviso:</strong> Este material tem fins exclusivamente educativos e informacionais para pacientes e familiares. Não substitui avaliação médica individualizada. Em caso de dúvida sobre qualquer sintoma, busque atendimento médico. Informações baseadas em diretrizes vigentes até 2024 — Dr. Lucas Silva, CRM [inserir]. lucascardio.com.br
+  </div>
+
+</div><!-- /container -->
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-copy">
+        © 2025 Dr. Lucas Silva · Cardiologia Intervencionista ·
+        <a href="https://lucascardio.com.br" style="color:var(--teal);text-decoration:none;" target="_blank">lucascardio.com.br</a>
+      </div>
+      <div class="footer-copy">
+        Baseado em Braunwald's Heart Disease &amp; Diretrizes ESC/ACC/AHA
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── TOGGLE CARDS ───────────────────────────────────────────── */
+function toggleCard(header) {
+  const card = header.closest('.symptom-card');
+  card.classList.toggle('open');
+}
+
+// Open first card by default
+document.querySelector('.symptom-card').classList.add('open');
+
+/* ── CATEGORY FILTER ────────────────────────────────────────── */
+function filterCategory(cat, btn) {
+  // Update buttons
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  // Filter cards
+  document.querySelectorAll('.symptom-card').forEach(card => {
+    if (cat === 'all' || card.dataset.cat === cat) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+/* ── QUICK CHECKLIST ────────────────────────────────────────── */
+function clToggle(label) {
+  label.classList.toggle('checked');
+  updateChecklist();
+}
+
+function updateChecklist() {
+  const checked = document.querySelectorAll('.cl-item.checked').length;
+  const total   = document.querySelectorAll('.cl-item').length;
+  const go = document.getElementById('clResultGo');
+  const ok = document.getElementById('clResultOk');
+
+  go.classList.toggle('show', checked > 0);
+  ok.classList.toggle('show', checked === 0);
+}
+
+// Show "ok" state initially after a brief moment
+setTimeout(() => {
+  document.getElementById('clResultOk').classList.add('show');
+}, 400);
+</script>
+</body>
+</html>

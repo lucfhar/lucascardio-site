@@ -1,0 +1,1145 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>Drogas & Coração – Riscos Cardiovasculares | Dr. Lucas Silva</title>
+  <meta name="description" content="Guia baseado em evidências sobre os riscos cardiovasculares de drogas lícitas e ilícitas: tabaco, álcool, cocaína, cannabis, metanfetaminas, MDMA, opioides e mais." />
+  <meta name="author" content="Dr. Lucas Silva" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── DESIGN TOKENS ─────────────────────────────────────────── */
+    :root {
+      --primary: oklch(65% .18 195);
+      --primary-foreground: oklch(98% 0 0);
+      --background: oklch(13% .018 250);
+      --foreground: oklch(93% .01 250);
+      --card: oklch(18.5% .018 250);
+      --card-foreground: oklch(93% .01 250);
+      --muted: oklch(22% .018 250);
+      --muted-foreground: oklch(62% .02 250);
+      --border: oklch(28% .025 250);
+      --input: oklch(22% .02 250);
+      --destructive: oklch(60% .22 25);
+      --secondary: oklch(22% .022 250);
+      --secondary-foreground: oklch(88% .01 250);
+      --accent: oklch(24% .025 250);
+      --accent-foreground: oklch(90% .01 250);
+      --teal: #00d3bd;
+      --teal-dim: rgba(0,211,189,.12);
+      --amber: oklch(82.8% .189 84.429);
+      --red: oklch(63.7% .237 25.331);
+      --green: oklch(79.2% .209 151.711);
+      --radius: 0.625rem;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--background);
+      color: var(--foreground);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ─────────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(18,20,27,.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--foreground); }
+    .nav-brand-icon {
+      width: 28px; height: 28px; border-radius: 7px;
+      background: var(--red); display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .nav-brand-name { font-weight: 800; font-size: 1rem; letter-spacing: -.025em; line-height: 1; }
+    .nav-brand-name span { color: var(--teal); }
+    .nav-brand-sep { width: 1px; height: 14px; background: var(--border); margin: 0 6px; }
+    .nav-brand-sub { font-size: .7rem; font-weight: 500; color: var(--muted-foreground); }
+    .nav-actions { display: flex; align-items: center; gap: .5rem; }
+    .nav-badge {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 999px; background: var(--teal-dim);
+      color: var(--teal); border: 1px solid rgba(0,211,189,.25); white-space: nowrap;
+    }
+    .nav-link {
+      font-size: .75rem; font-weight: 600; padding: 5px 12px;
+      border-radius: 8px; border: 1.5px solid var(--primary);
+      color: var(--primary); background: transparent;
+      text-decoration: none; transition: background .15s, color .15s;
+      display: inline-flex; align-items: center; gap: 5px;
+    }
+    .nav-link:hover { background: var(--primary); color: var(--primary-foreground); }
+
+    /* ── LAYOUT ──────────────────────────────────────────────── */
+    .container { max-width: 960px; margin: 0 auto; padding: 0 1.5rem; }
+    .section { padding: 2.5rem 0; }
+
+    /* ── HERO ────────────────────────────────────────────────── */
+    .hero { padding: 3.5rem 0 2.5rem; border-bottom: 1px solid var(--border); }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .7rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--teal); margin-bottom: 1rem;
+    }
+    .hero-eyebrow::before { content: ''; display: block; width: 20px; height: 2px; background: var(--teal); border-radius: 1px; }
+    .hero h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800; line-height: 1.2; margin-bottom: .75rem; letter-spacing: -.02em; }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero-sub { color: var(--muted-foreground); font-size: .95rem; max-width: 650px; margin-bottom: 1.5rem; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag { font-size: .7rem; font-weight: 600; padding: 3px 10px; border-radius: 6px; border: 1px solid var(--border); color: var(--muted-foreground); background: var(--card); font-family: var(--font-mono); }
+
+    /* ── DRUG SELECTOR ───────────────────────────────────────── */
+    .drug-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: .6rem; margin: 2rem 0;
+    }
+    .drug-btn {
+      background: var(--card); border: 1.5px solid var(--border);
+      border-radius: calc(var(--radius) + 2px);
+      padding: .9rem .75rem;
+      cursor: pointer; text-align: center;
+      transition: all .15s; color: var(--foreground);
+      font-family: var(--font-sans);
+    }
+    .drug-btn:hover { background: var(--accent); border-color: rgba(0,211,189,.3); }
+    .drug-btn.active { background: var(--teal-dim); border-color: rgba(0,211,189,.5); }
+    .drug-btn .drug-icon { font-size: 1.5rem; display: block; margin-bottom: .35rem; }
+    .drug-btn .drug-name { font-size: .78rem; font-weight: 700; display: block; }
+    .drug-btn .drug-class {
+      font-size: .65rem; font-weight: 500; display: block; margin-top: 2px;
+      font-family: var(--font-mono);
+    }
+    .drug-btn.risk-critical .drug-class { color: #f87171; }
+    .drug-btn.risk-high .drug-class { color: #fbbf24; }
+    .drug-btn.risk-mod .drug-class { color: var(--teal); }
+
+    /* ── DRUG PANEL ──────────────────────────────────────────── */
+    .drug-panel { display: none; }
+    .drug-panel.active { display: block; animation: fadeUp .3s ease; }
+
+    /* ── CARDS ───────────────────────────────────────────────── */
+    .card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px);
+      padding: 1.5rem; margin-bottom: 1.25rem;
+    }
+    .card-header {
+      display: flex; align-items: flex-start; gap: .75rem;
+      margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border);
+    }
+    .card-icon {
+      width: 38px; height: 38px; border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
+    }
+    .icon-red { background: rgba(220,38,38,.15); }
+    .icon-amber { background: rgba(251,191,36,.12); }
+    .icon-teal { background: var(--teal-dim); }
+    .icon-gray { background: var(--muted); }
+    .card-title { font-weight: 700; font-size: 1rem; margin-bottom: 2px; }
+    .card-subtitle { font-size: .78rem; color: var(--muted-foreground); }
+
+    /* ── RISK HEADER ─────────────────────────────────────────── */
+    .risk-header {
+      border-radius: calc(var(--radius) + 2px);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.25rem;
+      display: flex; align-items: flex-start; gap: 1rem;
+    }
+    .risk-critical { background: rgba(220,38,38,.1); border: 1px solid rgba(220,38,38,.3); }
+    .risk-high { background: rgba(251,191,36,.08); border: 1px solid rgba(251,191,36,.25); }
+    .risk-moderate { background: var(--teal-dim); border: 1px solid rgba(0,211,189,.25); }
+    .risk-icon { font-size: 2.2rem; line-height: 1; flex-shrink: 0; margin-top: 2px; }
+    .risk-title { font-size: 1.15rem; font-weight: 800; margin-bottom: 4px; }
+    .risk-subtitle { font-size: .82rem; color: var(--muted-foreground); }
+
+    /* ── INFO BOXES ──────────────────────────────────────────── */
+    .info-box {
+      border-radius: var(--radius); padding: 11px 15px;
+      font-size: .82rem; line-height: 1.65; display: flex; gap: 10px; margin-bottom: .7rem;
+    }
+    .info-box-icon { flex-shrink: 0; font-size: 1rem; margin-top: 1px; }
+    .info-teal { background: var(--teal-dim); border-left: 3px solid var(--teal); }
+    .info-amber { background: rgba(251,191,36,.08); border-left: 3px solid rgba(251,191,36,.5); }
+    .info-red { background: rgba(220,38,38,.08); border-left: 3px solid rgba(220,38,38,.4); }
+    .info-gray { background: var(--muted); border-left: 3px solid var(--border); }
+    .info-green { background: rgba(74,222,128,.08); border-left: 3px solid rgba(74,222,128,.4); }
+
+    /* ── BADGES ──────────────────────────────────────────────── */
+    .badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: .68rem; font-weight: 700; padding: 2px 8px;
+      border-radius: 999px; white-space: nowrap;
+    }
+    .badge-critical { background: rgba(220,38,38,.15); color: #f87171; border: 1px solid rgba(220,38,38,.25); }
+    .badge-high { background: rgba(251,191,36,.12); color: #fbbf24; border: 1px solid rgba(251,191,36,.2); }
+    .badge-info { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.2); }
+    .badge-gray { background: var(--muted); color: var(--muted-foreground); border: 1px solid var(--border); }
+    .badge-green { background: rgba(74,222,128,.1); color: #4ade80; border: 1px solid rgba(74,222,128,.2); }
+
+    /* ── TABLE ───────────────────────────────────────────────── */
+    .compare-table { width: 100%; border-collapse: collapse; font-size: .81rem; }
+    .compare-table th {
+      background: var(--muted); padding: 9px 13px;
+      text-align: left; font-weight: 700; font-size: .73rem;
+      border-bottom: 1px solid var(--border); color: var(--muted-foreground); letter-spacing: .03em;
+    }
+    .compare-table td { padding: 9px 13px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table tr:hover td { background: var(--accent); }
+    .table-wrap { overflow-x: auto; border-radius: var(--radius); border: 1px solid var(--border); }
+
+    /* ── SECTION TITLES ──────────────────────────────────────── */
+    .section-title { font-size: 1.2rem; font-weight: 800; margin-bottom: .25rem; letter-spacing: -.01em; }
+    .section-label { font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--teal); margin-bottom: .4rem; font-family: var(--font-mono); }
+    .section-divider { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+
+    /* ── STATS ROW ───────────────────────────────────────────── */
+    .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: .75rem; margin-bottom: 1.25rem; }
+    .stat-card { background: var(--muted); border: 1px solid var(--border); border-radius: var(--radius); padding: .9rem 1rem; text-align: center; }
+    .stat-value { font-size: 1.5rem; font-weight: 800; color: var(--teal); font-family: var(--font-mono); line-height: 1; }
+    .stat-value.red { color: #f87171; }
+    .stat-value.amber { color: #fbbf24; }
+    .stat-label { font-size: .72rem; color: var(--muted-foreground); margin-top: 4px; }
+
+    /* ── MECHANISM GRID ──────────────────────────────────────── */
+    .mechanism-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: .75rem; margin-top: 1rem; }
+    .mechanism-item {
+      background: var(--muted); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: .85rem 1rem;
+    }
+    .mechanism-item .mech-icon { font-size: 1.2rem; margin-bottom: .35rem; display: block; }
+    .mechanism-item .mech-title { font-size: .8rem; font-weight: 700; margin-bottom: 3px; }
+    .mechanism-item .mech-desc { font-size: .75rem; color: var(--muted-foreground); line-height: 1.5; }
+
+    /* ── REFERENCES ──────────────────────────────────────────── */
+    .ref-list { list-style: none; }
+    .ref-item { padding: 9px 0; border-bottom: 1px solid var(--border); font-size: .79rem; line-height: 1.6; display: flex; gap: 10px; }
+    .ref-item:last-child { border-bottom: none; }
+    .ref-num { font-family: var(--font-mono); font-size: .68rem; font-weight: 700; color: var(--teal); min-width: 22px; }
+    .ref-title { font-weight: 600; margin-bottom: 2px; }
+    .ref-meta { color: var(--muted-foreground); font-size: .73rem; }
+    .ref-new { display: inline-block; font-size: .63rem; font-weight: 700; padding: 1px 6px; border-radius: 4px; margin-left: 6px; background: rgba(74,222,128,.1); color: #4ade80; }
+
+    /* ── DISCLAIMER ──────────────────────────────────────────── */
+    .disclaimer {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 12px 16px;
+      font-size: .75rem; color: var(--muted-foreground); line-height: 1.6;
+    }
+
+    /* ── TABS ────────────────────────────────────────────────── */
+    .tab-row { display: flex; gap: 4px; margin-bottom: 1.25rem; flex-wrap: wrap; }
+    .tab-btn {
+      font-size: .79rem; font-weight: 600; padding: 6px 14px;
+      border-radius: var(--radius); border: 1px solid var(--border);
+      background: var(--muted); color: var(--muted-foreground);
+      cursor: pointer; transition: all .15s; font-family: var(--font-sans);
+    }
+    .tab-btn.active { background: var(--teal-dim); border-color: rgba(0,211,189,.4); color: var(--teal); }
+    .tab-btn:hover:not(.active) { background: var(--accent); color: var(--foreground); }
+    .tab-content { display: none; animation: fadeUp .25s ease; }
+    .tab-content.active { display: block; }
+
+    /* ── FOOTER ──────────────────────────────────────────────── */
+    footer { border-top: 1px solid var(--border); padding: 2rem 0; margin-top: 3rem; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-copy { font-size: .75rem; color: var(--muted-foreground); }
+
+    /* ── ANIMATIONS ──────────────────────────────────────────── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* ── RESPONSIVE ──────────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .drug-grid { grid-template-columns: repeat(3, 1fr); }
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+      .mechanism-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── OVERVIEW TABLE ──────────────────────────────────────── */
+    .risk-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 5px; vertical-align: middle; }
+    .dot-critical { background: #f87171; }
+    .dot-high { background: #fbbf24; }
+    .dot-mod { background: var(--teal); }
+
+    /* pill */
+    .pill { font-size: .68rem; font-weight: 600; padding: 2px 8px; border-radius: 999px; display: inline-block; }
+    .pill-red { background: rgba(220,38,38,.15); color: #f87171; }
+    .pill-amber { background: rgba(251,191,36,.12); color: #fbbf24; }
+    .pill-teal { background: var(--teal-dim); color: var(--teal); }
+    .pill-gray { background: var(--muted); color: var(--muted-foreground); }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ──────────────────────────────────────────────────── -->
+<nav>
+  <a class="nav-brand" href="#">
+    <div class="nav-brand-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+      </svg>
+    </div>
+    <div class="nav-brand-name">Drogas<span>&amp;Coração</span></div>
+    <div class="nav-brand-sep"></div>
+    <div class="nav-brand-sub">Riscos Cardiovasculares</div>
+  </a>
+  <div class="nav-actions">
+    <span class="nav-badge">Evidência 2025</span>
+    <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      lucascardio.com.br
+    </a>
+  </div>
+</nav>
+
+<!-- ── MAIN ─────────────────────────────────────────────────── -->
+<main>
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">Medicina Baseada em Evidências</div>
+    <h1>Drogas &amp; <em>Coração</em><br>O Que a Ciência Realmente Diz</h1>
+    <p class="hero-sub">
+      Guia interativo sobre os riscos cardiovasculares de substâncias lícitas e ilícitas, baseado nas evidências científicas mais recentes. Selecione uma substância para ver mecanismos, dados clínicos e recomendações.
+    </p>
+    <div class="hero-tags">
+      <span class="tag">AHA/ACC 2023</span>
+      <span class="tag">Heart 2025</span>
+      <span class="tag">Circulation 2020</span>
+      <span class="tag">JAMA 2025</span>
+      <span class="tag">PLOS Medicine 2025</span>
+      <span class="tag">Global Heart 2025</span>
+    </div>
+  </div>
+
+  <!-- DRUG SELECTOR -->
+  <div class="section">
+    <div class="section-label">Selecione uma substância</div>
+    <div class="section-title">Escolha para ver os dados científicos</div>
+    <div style="margin-top:4px;margin-bottom:1.5rem;font-size:.85rem;color:var(--muted-foreground);">Clique em qualquer substância abaixo. As evidências são apresentadas de forma crítica — sem minimizar riscos nem exagerar benefícios não comprovados.</div>
+
+    <div class="drug-grid">
+      <button class="drug-btn risk-critical active" onclick="showDrug('tabaco')">
+        <span class="drug-icon">🚬</span>
+        <span class="drug-name">Tabaco</span>
+        <span class="drug-class">CRÍTICO</span>
+      </button>
+      <button class="drug-btn risk-critical" onclick="showDrug('alcool')">
+        <span class="drug-icon">🍺</span>
+        <span class="drug-name">Álcool</span>
+        <span class="drug-class">CRÍTICO</span>
+      </button>
+      <button class="drug-btn risk-critical" onclick="showDrug('cocaina')">
+        <span class="drug-icon">💊</span>
+        <span class="drug-name">Cocaína/Crack</span>
+        <span class="drug-class">CRÍTICO</span>
+      </button>
+      <button class="drug-btn risk-critical" onclick="showDrug('meta')">
+        <span class="drug-icon">⚡</span>
+        <span class="drug-name">Metanfetamina</span>
+        <span class="drug-class">CRÍTICO</span>
+      </button>
+      <button class="drug-btn risk-high" onclick="showDrug('cannabis')">
+        <span class="drug-icon">🌿</span>
+        <span class="drug-name">Cannabis</span>
+        <span class="drug-class">ALTO RISCO</span>
+      </button>
+      <button class="drug-btn risk-high" onclick="showDrug('mdma')">
+        <span class="drug-icon">💎</span>
+        <span class="drug-name">MDMA/Ecstasy</span>
+        <span class="drug-class">ALTO RISCO</span>
+      </button>
+      <button class="drug-btn risk-high" onclick="showDrug('opioides')">
+        <span class="drug-icon">💉</span>
+        <span class="drug-name">Opioides</span>
+        <span class="drug-class">ALTO RISCO</span>
+      </button>
+      <button class="drug-btn risk-high" onclick="showDrug('eaa')">
+        <span class="drug-icon">💪</span>
+        <span class="drug-name">Esteroides (EAA)</span>
+        <span class="drug-class">ALTO RISCO</span>
+      </button>
+      <button class="drug-btn risk-mod" onclick="showDrug('ketamina')">
+        <span class="drug-icon">🔬</span>
+        <span class="drug-name">Ketamina</span>
+        <span class="drug-class">RISCO MODERADO</span>
+      </button>
+      <button class="drug-btn risk-mod" onclick="showDrug('lsd')">
+        <span class="drug-icon">🌀</span>
+        <span class="drug-name">LSD / Psilocibina</span>
+        <span class="drug-class">RISCO MODERADO</span>
+      </button>
+      <button class="drug-btn risk-mod" onclick="showDrug('ghb')">
+        <span class="drug-icon">💧</span>
+        <span class="drug-name">GHB</span>
+        <span class="drug-class">RISCO VARIÁVEL</span>
+      </button>
+      <button class="drug-btn risk-critical" onclick="showDrug('tabela')">
+        <span class="drug-icon">📊</span>
+        <span class="drug-name">Comparativo</span>
+        <span class="drug-class">VISÃO GERAL</span>
+      </button>
+    </div>
+
+    <!-- ════════════════════════════════════════════
+         TABACO
+    ════════════════════════════════════════════ -->
+    <div id="panel-tabaco" class="drug-panel active">
+      <div class="risk-header risk-critical">
+        <div class="risk-icon">🚬</div>
+        <div>
+          <div class="risk-title">Tabaco &amp; Cigarros Eletrônicos</div>
+          <div class="risk-subtitle">Maior causa modificável de DCV — sem nível seguro de exposição</div>
+          <div style="margin-top:.5rem;display:flex;gap:.4rem;flex-wrap:wrap;">
+            <span class="badge badge-critical">⚠ Risco Crítico</span>
+            <span class="badge badge-gray">Lícito</span>
+            <span class="badge badge-gray">Global Heart 2025</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-card"><div class="stat-value red">5×</div><div class="stat-label">risco de DAC vs não-fumante (fumantes atuais)</div></div>
+        <div class="stat-card"><div class="stat-value red">30%</div><div class="stat-label">das mortes por DCC são atribuídas ao tabagismo</div></div>
+        <div class="stat-card"><div class="stat-value amber">8mi</div><div class="stat-label">mortes/ano mundialmente (OMS)</div></div>
+        <div class="stat-card"><div class="stat-value red">HR 2,07</div><div class="stat-label">mortalidade cardiovascular vs nunca fumante (meta-análise, 503.905 adultos)</div></div>
+      </div>
+
+      <div class="tab-row">
+        <button class="tab-btn active" onclick="showTab('tabaco','mec')">Mecanismos</button>
+        <button class="tab-btn" onclick="showTab('tabaco','dados')">Dados Clínicos</button>
+        <button class="tab-btn" onclick="showTab('tabaco','ecigarros')">Cigarros Eletrônicos</button>
+        <button class="tab-btn" onclick="showTab('tabaco','cessacao')">Cessação</button>
+      </div>
+
+      <div id="tabaco-mec" class="tab-content active">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon icon-red">⚙️</div>
+            <div><div class="card-title">Mecanismos de Dano Cardiovascular</div><div class="card-subtitle">Múltiplas vias independentes e sinérgicas</div></div>
+          </div>
+          <div class="mechanism-grid">
+            <div class="mechanism-item"><span class="mech-icon">🩸</span><div class="mech-title">Disfunção Endotelial</div><div class="mech-desc">Exposição imediata ao fumo compromete vasodilatação mediada por fluxo; mesmo 30 min de fumo passivo já causam efeitos detectáveis.</div></div>
+            <div class="mechanism-item"><span class="mech-icon">🔥</span><div class="mech-title">Inflamação &amp; Estresse Oxidativo</div><div class="mech-desc">Aumento de PCR, IL-6 e espécies reativas; hidrocarbonetos aromáticos policíclicos ativam receptor AhR, acelerando aterogênese.</div></div>
+            <div class="mechanism-item"><span class="mech-icon">🧲</span><div class="mech-title">Ativação Plaquetária</div><div class="mech-desc">Fator de von Willebrand elevado no subendotélio exposto; estado protrombótico sustentado mesmo fora do período imediato de inalação.</div></div>
+            <div class="mechanism-item"><span class="mech-icon">🫀</span><div class="mech-title">Placas Ateromatosas</div><div class="mech-desc">Supraexpressão de MMP-9, MMP-12 em macrófagos; aceleração da progressão de placas e aumento da vulnerabilidade à ruptura.</div></div>
+            <div class="mechanism-item"><span class="mech-icon">⚡</span><div class="mech-title">Metais Tóxicos</div><div class="mech-desc">Chumbo, cádmio, cromo e mercúrio acumulam-se no fumo; causam dano endotelial catalítico por oxidação mesmo em concentrações baixas.</div></div>
+            <div class="mechanism-item"><span class="mech-icon">💨</span><div class="mech-title">CO e Hipóxia Relativa</div><div class="mech-desc">Monóxido de carbono reduz capacidade de transporte de O₂, aumenta demanda miocárdica e contribui à instabilidade de placa.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="tabaco-dados" class="tab-content">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon icon-red">📊</div>
+            <div><div class="card-title">Evidências Clínicas Robustas</div><div class="card-subtitle">Dados de grandes coortes prospectivas e meta-análises</div></div>
+          </div>
+          <div class="info-box info-red"><span class="info-box-icon">⚠️</span><div><strong>Dose-resposta sem limiar seguro:</strong> Fumar apenas 1 cigarro/dia confere 48% do risco cardíaco de 20 cigarros/dia (homens) e 57% (mulheres). Não existe "dose segura" para risco cardiovascular — nenhuma redução é suficiente; a cessação completa é o único alvo terapêutico. (BMJ 2018, 141 coortes)</div></div>
+          <div class="info-box info-amber"><span class="info-box-icon">👩</span><div><strong>Mulheres são mais vulneráveis:</strong> Fumo confere risco 25% maior de DAC em mulheres vs homens com exposição equivalente. Mortalidade cardiovascular é proporcionalmente mais alta no sexo feminino.</div></div>
+          <div class="info-box info-red"><span class="info-box-icon">💀</span><div><strong>Fumo passivo também mata:</strong> Exposição a fumante secundário aumenta risco de AVC em 20–30% com relação dose-resposta. Mais de 20 estudos individuais confirmam esta associação.</div></div>
+          <div class="info-box info-amber"><span class="info-box-icon">📈</span><div><strong>Efeito cumulativo (pack-years):</strong> Relação dose-resposta mais acentuada nos primeiros 20 pack-years e 20 cigarros/dia. Risco continua aumentando além deste patamar, porém de forma menos acelerada. (PLOS Medicine 2025, 22 coortes, 503.905 participantes)</div></div>
+        </div>
+      </div>
+
+      <div id="tabaco-ecigarros" class="tab-content">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon icon-amber">💨</div>
+            <div><div class="card-title">Cigarros Eletrônicos (E-Cigarettes / Vapes)</div><div class="card-subtitle">Menos prejudiciais que o cigarro convencional — mas não inócuos</div></div>
+          </div>
+          <div class="info-box info-amber"><span class="info-box-icon">⚖️</span><div><strong>Posição atual da evidência:</strong> Meta-análise em rede (Tobacco Induced Diseases, 2025) comparando e-cigarettes, cigarro convencional, uso dual e não-uso: e-cigarettes aumentam risco de DCV comparados ao não-uso, mas menos que o cigarro combustível. Dados sobre IAM e AVC ainda apresentam resultados conflitantes entre estudos.</div></div>
+          <div class="info-box info-red"><span class="info-box-icon">🚫</span><div><strong>Nunca fumantes não devem usar:</strong> A redução de risco em relação ao cigarro não elimina o risco em relação a não-usar nada. Políticas de saúde devem desincentivar o uso em adolescentes e adultos nunca-fumantes.</div></div>
+          <div class="info-box info-teal"><span class="info-box-icon">💡</span><div><strong>Cessação tabágica:</strong> E-cigarettes podem ser ferramentas auxiliares de cessação do tabagismo convencional. Mudança definitiva (substituição permanente) parece reduzir marcadores vasculares de dano, mas a evidência prospectiva ainda é limitada (revisão sistemática JMIR 2025 em andamento).</div></div>
+          <div class="info-box info-gray"><span class="info-box-icon">🔬</span><div><strong>Limitação crítica:</strong> E-cigarettes são relativamente novos — efeitos cardiovasculares de longo prazo (>10–15 anos) permanecem desconhecidos. Estresse oxidativo, disfunção endotelial e aumento de drive simpático já foram documentados em estudos de curto prazo.</div></div>
+        </div>
+      </div>
+
+      <div id="tabaco-cessacao" class="tab-content">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon icon-teal">✅</div>
+            <div><div class="card-title">Cessação Tabágica: Benefícios Reais</div><div class="card-subtitle">A única intervenção efetiva para redução de risco</div></div>
+          </div>
+          <div class="info-box info-green"><span class="info-box-icon">🎯</span><div><strong>Benefício precoce e sustentado:</strong> A redução mais substancial de risco cardiovascular ocorre nos primeiros 10 anos após cessação. Após 20 anos, ex-fumantes apresentam risco >80% menor que fumantes ativos. (Cross-Cohort Collaboration, PLOS Medicine 2025)</div></div>
+          <div class="info-box info-teal"><span class="info-box-icon">⏱️</span><div><strong>Cronograma de recuperação:</strong> Em 20 min: normalização da FC e PA. Em 12h: CO no sangue normaliza. Em 2–3 meses: melhora da função endotelial. Em 1 ano: risco de IAM cai pela metade. Em 5–15 anos: risco de AVC equivale ao de não-fumante.</div></div>
+          <div class="info-box info-amber"><span class="info-box-icon">⚠️</span><div><strong>Importante:</strong> Mesmo ex-fumantes de longa data mantêm risco residual aumentado de DAC e PAD em comparação a nunca-fumantes. O benefício é real, mas não representa retorno completo à linha de base de nunca ter fumado.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════
+         ÁLCOOL
+    ════════════════════════════════════════════ -->
+    <div id="panel-alcool" class="drug-panel">
+      <div class="risk-header risk-critical">
+        <div class="risk-icon">🍺</div>
+        <div>
+          <div class="risk-title">Álcool Etílico</div>
+          <div class="risk-subtitle">Relação complexa — sem dose segura confirmada; dano dose-dependente em excesso</div>
+          <div style="margin-top:.5rem;display:flex;gap:.4rem;flex-wrap:wrap;">
+            <span class="badge badge-critical">⚠ Risco Crítico em Excesso</span>
+            <span class="badge badge-gray">Lícito</span>
+            <span class="badge badge-gray">AHA/ACC 2023</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-card"><div class="stat-value red">↑↑</div><div class="stat-label">morbidade e mortalidade com consumo pesado e binge drinking</div></div>
+        <div class="stat-card"><div class="stat-value amber">Curva J</div><div class="stat-label">hipótese protetora em leve-moderado — contestada por evidências recentes</div></div>
+        <div class="stat-card"><div class="stat-value red">↑ FA</div><div class="stat-label">principal fator desencadeante de fibrilação atrial aguda ("holiday heart")</div></div>
+        <div class="stat-card"><div class="stat-value red">↑↑ AVC</div><div class="stat-label">forte associação com AVC hemorrágico e hipertensão crônica</div></div>
+      </div>
+
+      <div class="tab-row">
+        <button class="tab-btn active" onclick="showTab('alcool','riscos')">Riscos</button>
+        <button class="tab-btn" onclick="showTab('alcool','mito')">O "Mito Protetor"</button>
+        <button class="tab-btn" onclick="showTab('alcool','recom')">Recomendações</button>
+      </div>
+
+      <div id="alcool-riscos" class="tab-content active">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon icon-red">⚠️</div>
+            <div><div class="card-title">Riscos Cardiovasculares do Álcool</div><div class="card-subtitle">Dose-dependentes, com efeitos agudos e crônicos</div></div>
+          </div>
+          <div class="mechanism-grid">
+            <div class="mechanism-item"><span class="mech-icon">❤️‍🔥</span><div class="mech-title">Miocardiopatia Alcoólica</div><div class="mech-desc">Consumo crônico pesado causa disfunção sistólica, dilatação do VE e ICC — forma reversível parcialmente com abstinência.</div></div>
+            <div class="mechanism-item"><span class="mech-icon">⚡</span><div class="mech-title">Fibrilação Atrial</div><div class="mech-desc">"Holiday heart syndrome" — FA aguda após binge. Uso crônico aumenta risco de FA permanente.</div></div>
+            <div class="mechanism-item"><span class="mech-icon">🩸</span><div class="mech-title">Hipertensão Arterial</div><div class="mech-desc">Consumo pesado é causa independente de HA, que por sua vez aumenta risco de AVC, DAC e ICC.</div></div>
+            <div class="mechanism-item"><span class="mech-icon">🧠</span><div class="mech-title">AVC Hemorrágico</div><div class="mech-desc">Forte associação entre consumo pesado e hemorragia intracraniana. Mecanismo inclui HA, coagulopatia e disfunção plaquetária.</div></div>
+            <div class="mechanism-item"><span class="mech-icon">📉</span><div class="mech-title">HDL — falsa proteção</div><div class="mech-desc">Álcool eleva HDL, mas estudos de randomização mendeliana sugerem que o HDL elevado por álcool não confere proteção cardiovascular real.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="alcool-mito" class="tab-content">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon icon-amber">🔍</div>
+            <div><div class="card-title">O "Efeito Protetor" do Álcool Moderado</div><div class="card-subtitle">Evidência criticamente reavaliada — posição atual da ciência</div></div>
+          </div>
+          <div class="info-box info-red"><span class="info-box-icon">❌</span><div><strong>Hipótese em xeque:</strong> Estudos observacionais clássicos sugeriam curva em "J" (consumo leve-moderado → menor risco). Evidências mais recentes indicam que esse efeito é provavelmente confundido por fatores sociodemográficos: abstêmios frequentemente incluem ex-usuários problemáticos, pessoas com doenças crônicas ou condições que levaram à cessação.</div></div>
+          <div class="info-box info-red"><span class="info-box-icon">🧬</span><div><strong>Randomização mendeliana:</strong> Estudos que usam variantes genéticas do metabolismo do álcool (proxy causal) não confirmam efeito cardioprotector. O HDL elevado pelo álcool não parece mediar benefício cardiovascular real.</div></div>
+          <div class="info-box info-amber"><span class="info-box-icon">⚖️</span><div><strong>Consenso atual (AHA/ACC 2023):</strong> Álcool moderado <strong>não deve ser recomendado</strong> como estratégia cardioprotetora. A diretriz afirma explicitamente que não há nível de consumo seguro suficientemente estabelecido para justificar recomendação positiva.</div></div>
+          <div class="info-box info-gray"><span class="info-box-icon">🔬</span><div><strong>Limitação honesta:</strong> A questão ainda não está completamente resolvida — a ciência é complexa e os dados observacionais são numerosos. A posição conservadora de "não recomendar" é prudente, mas não significa certeza absoluta de que qualquer dose seja prejudicial.</div></div>
+        </div>
+      </div>
+
+      <div id="alcool-recom" class="tab-content">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon icon-teal">📋</div>
+            <div><div class="card-title">Recomendações Clínicas (AHA/ACC 2023)</div><div class="card-subtitle">Classe I, Nível de Evidência C-LD para questionamento rotineiro</div></div>
+          </div>
+          <div class="info-box info-teal"><span class="info-box-icon">👨‍⚕️</span><div>Pacientes com <strong>doença coronariana crônica</strong> que consomem álcool devem ser orientados a limitar a ingestão: <strong>≤1 dose/dia para mulheres</strong> e <strong>≤2 doses/dia para homens</strong>. O objetivo deve ser a redução, idealmente até a cessação.</div></div>
+          <div class="info-box info-red"><span class="info-box-icon">🚫</span><div><strong>Binge drinking</strong> (≥4 doses em uma ocasião para mulheres; ≥5 para homens) é especialmente nocivo para o ritmo cardíaco e deve ser fortemente desaconselhado em qualquer paciente cardíaco.</div></div>
+          <div class="info-box info-amber"><span class="info-box-icon">💊</span><div><strong>Interações medicamentosas importantes:</strong> Álcool potencializa anticoagulantes (sangramento), antiagregantes, antihipertensivos (hipotensão postural), nitratos e estatinas (hepatotoxicidade em altas doses). Avalie interações em todo paciente cardiovascular.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════
+         COCAÍNA / CRACK
+    ════════════════════════════════════════════ -->
+    <div id="panel-cocaina" class="drug-panel">
+      <div class="risk-header risk-critical">
+        <div class="risk-icon">💊</div>
+        <div>
+          <div class="risk-title">Cocaína &amp; Crack</div>
+          <div class="risk-subtitle">Droga ilícita com maior número de emergências cardiológicas documentadas</div>
+          <div style="margin-top:.5rem;display:flex;gap:.4rem;flex-wrap:wrap;">
+            <span class="badge badge-critical">⚠ Risco Crítico</span>
+            <span class="badge badge-gray">Ilícita</span>
+            <span class="badge badge-gray">Eur Heart J 2023</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-card"><div class="stat-value red">24×</div><div class="stat-label">risco de IAM na 1ª hora após uso em adultos jovens</div></div>
+        <div class="stat-card"><div class="stat-value red">6×</div><div class="stat-label">aumento de risco de AVC vs não-usuários</div></div>
+        <div class="stat-card"><div class="stat-value amber">~25%</div><div class="stat-label">dos casos de IAM em <45 anos associados ao uso de cocaína</div></div>
+        <div class="stat-card"><div class="stat-value red">↑↑ DAC</div><div class="stat-label">acelera aterosclerose independente de outros fatores de risco</div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon icon-red">⚙️</div>
+          <div><div class="card-title">Mecanismos Cardiotóxicos</div><div class="card-subtitle">Múltiplas vias simultâneas — todas prejudiciais</div></div>
+        </div>
+        <div class="mechanism-grid">
+          <div class="mechanism-item"><span class="mech-icon">⬆️</span><div class="mech-title">Descarga Adrenérgica</div><div class="mech-desc">Bloqueia recaptação de noradrenalina, dopamina e serotonina. Eleva frequência cardíaca e pressão arterial abruptamente. Demanda miocárdica de O₂ dispara.</div></div>
+          <div class="mechanism-item"><span class="mech-icon">💪</span><div class="mech-title">Vasoespasmo Coronariano</div><div class="mech-desc">Vasoconstrição coronariana intensa via estimulação adrenérgica α₁. Pode ocorrer mesmo em coronárias sem aterosclerose significativa.</div></div>
+          <div class="mechanism-item"><span class="mech-icon">🩸</span><div class="mech-title">Trombose Acelerada</div><div class="mech-desc">Ativação plaquetária, aumento do fator de von Willebrand, estado pró-trombótico. Combinação de vasoespasmo + trombo = IAM.</div></div>
+          <div class="mechanism-item"><span class="mech-icon">🔥</span><div class="mech-title">Aterosclerose Acelerada</div><div class="mech-desc">Uso crônico acelera formação de placas em 2–3× comparado a não-usuários com mesmos fatores de risco tradicionais.</div></div>
+          <div class="mechanism-item"><span class="mech-icon">⚡</span><div class="mech-title">Arritmias</div><div class="mech-desc">Efeito bloqueador de canais de Na+ (tipo anestésico local) + QTc prolongado. Risco de TV, FV e morte súbita.</div></div>
+          <div class="mechanism-item"><span class="mech-icon">❤️</span><div class="mech-title">Miocardiopatia</div><div class="mech-desc">Uso crônico associado a miocardiopatia dilatada, fibrose miocárdica e disfunção diastólica mesmo sem IAM prévio.</div></div>
+        </div>
+        <div class="info-box info-red" style="margin-top:1rem;"><span class="info-box-icon">⚠️</span><div><strong>Crack:</strong> Possui os mesmos mecanismos da cocaína em pó com absorção mais rápida por via inalatória, produzindo pico sérico mais alto e efeitos cardiovasculares mais abruptos e intensos. Maior potencial de dependência e toxicidade aguda.</div></div>
+        <div class="info-box info-amber"><span class="info-box-icon">💊</span><div><strong>Atenção terapêutica:</strong> Em IAM por cocaína, <strong>betabloqueadores não seletivos devem ser evitados na fase aguda</strong> (risco de vasoespasmo paradoxal por bloqueio β₂ com predomínio α não bloqueado). Benzodiazepínicos, nitratos e BCC são preferidos para vasoespasmo coronariano.</div></div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════
+         METANFETAMINAS
+    ════════════════════════════════════════════ -->
+    <div id="panel-meta" class="drug-panel">
+      <div class="risk-header risk-critical">
+        <div class="risk-icon">⚡</div>
+        <div>
+          <div class="risk-title">Metanfetaminas &amp; Anfetaminas</div>
+          <div class="risk-subtitle">Principal causa de hipertensão pulmonar entre drogas ilícitas; danos cardíacos frequentemente irreversíveis</div>
+          <div style="margin-top:.5rem;display:flex;gap:.4rem;flex-wrap:wrap;">
+            <span class="badge badge-critical">⚠ Risco Crítico</span>
+            <span class="badge badge-gray">Ilícita</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-card"><div class="stat-value red">↑↑ HAP</div><div class="stat-label">principal droga ilícita associada a HAP — irreversível em muitos casos</div></div>
+        <div class="stat-card"><div class="stat-value red">3–4×</div><div class="stat-label">aumento de hospitalizações por ICC em regiões de alta prevalência (EUA)</div></div>
+        <div class="stat-card"><div class="stat-value red">↑ morte</div><div class="stat-label">mortalidade cardiovascular mais alta que cocaína em estudos populacionais recentes</div></div>
+        <div class="stat-card"><div class="stat-value amber">Miopat.</div><div class="stat-label">miocardiopatia por estimulante — frequentemente avançada ao diagnóstico</div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon icon-red">💔</div>
+          <div><div class="card-title">Espectro de Dano Cardíaco</div><div class="card-subtitle">Diferenças importantes em relação à cocaína</div></div>
+        </div>
+        <div class="info-box info-red"><span class="info-box-icon">🫀</span><div><strong>Miocardiopatia por estimulante:</strong> Metanfetaminas são a causa mais comum de miocardiopatia entre drogas de abuso. FE significativamente reduzida em usuários crônicos; dano frequentemente parcialmente irreversível mesmo com cessação.</div></div>
+        <div class="info-box info-red"><span class="info-box-icon">🫁</span><div><strong>Hipertensão Arterial Pulmonar (HAP):</strong> Associação muito mais forte com metanfetaminas que com qualquer outra droga ilícita. Pode progredir para cor pulmonale e insuficiência cardíaca direita. HAP por metanfetamina tem prognóstico pior que HAP idiopática.</div></div>
+        <div class="info-box info-amber"><span class="info-box-icon">⚡</span><div><strong>Mecanismos compartilhados com cocaína:</strong> Estimulação adrenérgica intensa, vasoespasmo, ativação plaquetária e aceleração da aterosclerose. Meia-vida muito mais longa que a cocaína (12h vs 1h), resultando em toxicidade cardiovascular sustentada.</div></div>
+        <div class="info-box info-amber"><span class="info-box-icon">🧠</span><div><strong>AVC e dano neurológico:</strong> Anfetaminas causam vasoespasmo cerebral, vasculite e arritmias — todas contribuindo para AVC isquêmico e hemorrágico. AVC por anfetamina em jovens é uma emergência crescente.</div></div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════
+         CANNABIS
+    ════════════════════════════════════════════ -->
+    <div id="panel-cannabis" class="drug-panel">
+      <div class="risk-header risk-high">
+        <div class="risk-icon">🌿</div>
+        <div>
+          <div class="risk-title">Cannabis (Maconha / THC)</div>
+          <div class="risk-subtitle">Risco cardiovascular subestimado — meta-análise 2025 confirma elevação de risco para SCA, AVC e morte CV</div>
+          <div style="margin-top:.5rem;display:flex;gap:.4rem;flex-wrap:wrap;">
+            <span class="badge badge-high">⚠ Alto Risco</span>
+            <span class="badge badge-gray">Parcialmente Legalizada</span>
+            <span class="badge badge-gray">Heart 2025</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-card"><div class="stat-value amber">RR 1,29</div><div class="stat-label">para SCA (meta-análise Heart 2025)</div></div>
+        <div class="stat-card"><div class="stat-value amber">RR 1,20</div><div class="stat-label">para AVC (meta-análise Heart 2025)</div></div>
+        <div class="stat-card"><div class="stat-value red">RR 2,10</div><div class="stat-label">para morte cardiovascular (meta-análise Heart 2025)</div></div>
+        <div class="stat-card"><div class="stat-value red">4,8×</div><div class="stat-label">risco de IAM na 1ª hora após uso em adultos jovens</div></div>
+      </div>
+
+      <div class="tab-row">
+        <button class="tab-btn active" onclick="showTab('cannabis','riscos')">Riscos CV</button>
+        <button class="tab-btn" onclick="showTab('cannabis','cbd')">CBD — Evidências</button>
+        <button class="tab-btn" onclick="showTab('cannabis','recom')">Recomendações Médicas</button>
+      </div>
+
+      <div id="cannabis-riscos" class="tab-content active">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon icon-amber">⚙️</div>
+            <div><div class="card-title">Mecanismos de Risco Cardiovascular</div><div class="card-subtitle">THC como principal agente cardiotóxico</div></div>
+          </div>
+          <div class="mechanism-grid">
+            <div class="mechanism-item"><span class="mech-icon">⬆️</span><div class="mech-title">Estimulação Simpática</div><div class="mech-desc">THC causa taquicardia reflexa, aumento de PA e consumo de O₂ miocárdico. Resposta aguda mesmo com doses recreacionais.</div></div>
+            <div class="mechanism-item"><span class="mech-icon">🩸</span><div class="mech-title">Ativação Plaquetária</div><div class="mech-desc">Receptores CB1 em plaquetas promovem agregação. Estado pró-trombótico, especialmente quando combinado com tabaco.</div></div>
+            <div class="mechanism-item"><span class="mech-icon">💨</span><div class="mech-title">CO (quando fumada)</div><div class="mech-desc">Fumar cannabis produz CO como o tabaco. Disfunção de transporte de O₂ e vasoconstrição coronariana relativa.</div></div>
+            <div class="mechanism-item"><span class="mech-icon">🧠</span><div class="mech-title">AVC em Jovens</div><div class="mech-desc">Usuários recentes têm risco 3,3× maior de AVC. Mecanismo inclui vasoespasmo cerebral, FA e embolismo paradoxal.</div></div>
+          </div>
+          <div class="info-box info-amber" style="margin-top:1rem;"><span class="info-box-icon">👶</span><div><strong>Adultos jovens sem fatores de risco:</strong> O risco de IAM na primeira hora após uso é 4,8× maior — particularmente relevante pois afeta pessoas jovens que erroneamente acreditam ser "protegidas" pela ausência de fatores de risco tradicionais.</div></div>
+        </div>
+      </div>
+
+      <div id="cannabis-cbd" class="tab-content">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon icon-teal">🔬</div>
+            <div><div class="card-title">Canabidiol (CBD) — Avaliação Crítica</div><div class="card-subtitle">Único canabinoide com aprovação regulatória para indicação específica</div></div>
+          </div>
+          <div class="info-box info-teal"><span class="info-box-icon">✅</span><div><strong>Aprovação FDA legítima:</strong> CBD purificado (Epidiolex®) é aprovado para convulsões associadas à Síndrome de Lennox-Gastaut, Síndrome de Dravet e Complexo de Esclerose Tuberosa em pacientes ≥1 ano. Esta é a única indicação com evidência robusta.</div></div>
+          <div class="info-box info-amber"><span class="info-box-icon">⚗️</span><div><strong>Dados pré-clínicos de "cardioproteção":</strong> Estudos em modelos animais e in vitro sugerem redução de FC, melhora de vasodilatação e efeitos anti-inflamatórios. Estes dados <strong>não podem ser extrapolados</strong> para recomendações clínicas — a translação de evidências pré-clínicas para humanos frequentemente falha.</div></div>
+          <div class="info-box info-red"><span class="info-box-icon">❌</span><div><strong>Ausência de ensaios clínicos robustos em humanos:</strong> Não existem RCTs de qualidade adequada avaliando efeitos cardioprotetores do CBD em pacientes com risco cardiovascular. Estudos observacionais são confundidos por inúmeros fatores. A maioria dos produtos de CBD no mercado não tem pureza ou dose verificadas.</div></div>
+          <div class="info-box info-red"><span class="info-box-icon">⚠️</span><div><strong>Interações medicamentosas reais:</strong> CBD inibe CYP3A4 e CYP2C19, podendo alterar significativamente níveis séricos de varfarina, clopidogrel, estatinas e outros medicamentos cardiológicos. Não é uma substância inócua farmacologicamente.</div></div>
+          <div class="info-box info-gray"><span class="info-box-icon">📋</span><div><strong>Posição atual:</strong> Álcool moderado e CBD recreacional <strong>não devem ser recomendados</strong> como cardioprotetores. A ciência atual não sustenta tal recomendação. Para uso médico, a prescrição deve ser limitada às indicações aprovadas.</div></div>
+        </div>
+      </div>
+
+      <div id="cannabis-recom" class="tab-content">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon icon-amber">📋</div>
+            <div><div class="card-title">Recomendações Clínicas (AHA 2020, JAMA 2025)</div><div class="card-subtitle">Para prescrição de cannabis medicinal e orientação de pacientes</div></div>
+          </div>
+          <div class="info-box info-amber"><span class="info-box-icon">🩺</span><div>Médicos devem <strong>avaliar risco cardiovascular antes de prescrever cannabis</strong> para fins medicinais. Pacientes com DAC, arritmias, IC ou HAS têm risco aumentado de eventos agudos.</div></div>
+          <div class="info-box info-teal"><span class="info-box-icon">📏</span><div>Quando prescrita, preferir <strong>formulações de menor potência e dose</strong>, via não-inalatória (menor produção de CO) e monitoramento dos efeitos hemodinâmicos, especialmente em idosos.</div></div>
+          <div class="info-box info-red"><span class="info-box-icon">🚫</span><div>Pacientes com <strong>doença coronariana crônica</strong> devem ser rotineiramente questionados sobre uso de cannabis e aconselhados a cessar o uso (AHA/ACC 2023, Classe I, Nível C-LD).</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════
+         MDMA / ECSTASY
+    ════════════════════════════════════════════ -->
+    <div id="panel-mdma" class="drug-panel">
+      <div class="risk-header risk-high">
+        <div class="risk-icon">💎</div>
+        <div>
+          <div class="risk-title">MDMA / Ecstasy / "Molly"</div>
+          <div class="risk-subtitle">3,4-Metileno-dioximetanfetamina — cardiotóxico com dano dose-dependente e arritmias potencialmente fatais</div>
+          <div style="margin-top:.5rem;display:flex;gap:.4rem;flex-wrap:wrap;">
+            <span class="badge badge-high">⚠ Alto Risco</span>
+            <span class="badge badge-gray">Ilícita</span>
+            <span class="badge badge-gray">Cardiovasc Toxicol 2019</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon icon-red">⚙️</div>
+          <div><div class="card-title">Cardiotoxicidade do MDMA</div><div class="card-subtitle">Estruturalmente similar às anfetaminas — com adição de atividade serotoninérgica</div></div>
+        </div>
+        <div class="mechanism-grid">
+          <div class="mechanism-item"><span class="mech-icon">⬆️</span><div class="mech-title">Hipertensão &amp; Taquicardia</div><div class="mech-desc">Efeito mais documentado. Elevação de PA e FC por liberação massiva de noradrenalina, dopamina e serotonina. Persiste por horas.</div></div>
+          <div class="mechanism-item"><span class="mech-icon">💪</span><div class="mech-title">Vasoespasmo Coronariano</div><div class="mech-desc">Similar à cocaína/anfetaminas — casos de IAM por vasoespasmo em coronárias angiograficamente normais em adultos jovens.</div></div>
+          <div class="mechanism-item"><span class="mech-icon">⚡</span><div class="mech-title">Arritmias</div><div class="mech-desc">Taquicardia supraventricular, QTc prolongado, FV e torsade de pointes. Potencializado por uso concomitante de SSRIs, anticolinérgicos e álcool.</div></div>
+          <div class="mechanism-item"><span class="mech-icon">❤️</span><div class="mech-title">Miocardiopatia</div><div class="mech-desc">Uso crônico associado a cardiomiopatia dilatada, hipertrofia cardíaca e necrose de miócitos. Disfunção sistólica documentada em casos de uso prolongado.</div></div>
+          <div class="mechanism-item"><span class="mech-icon">🔥</span><div class="mech-title">Hipertermia</div><span class="mech-desc">MDMA compromete termorregulação — hipertermia grave (>40°C) causa dano miocárdico direto, rabdomiólise e CID.</span></div>
+          <div class="mechanism-item"><span class="mech-icon">💊</span><div class="mech-title">Inibição CYP2D6</div><div class="mech-desc">MDMA inibe seu próprio metabolismo (farmac. não-linear) → acumulação plasmática imprevisível com doses repetidas. "Polipilha" com outros medicamentos é especialmente perigosa.</div></div>
+        </div>
+        <div class="info-box info-amber" style="margin-top:1rem;"><span class="info-box-icon">🧪</span><div><strong>Sobre uso terapêutico (PTSD):</strong> MDMA está em estudos de fase III para transtorno de estresse pós-traumático. A FDA rejeitou a aprovação em 2024 por insuficiência de dados. Mesmo no contexto terapêutico, eventos cardiovasculares (principalmente hipertensão e taquicardia) são esperados e monitorados. Evidências de benefício para PTSD não eliminam o risco cardiovascular inerente à substância.</div></div>
+        <div class="info-box info-gray"><span class="info-box-icon">⚠️</span><div><strong>Adulteração frequente:</strong> Comprimidos de ecstasy frequentemente contêm outras substâncias (metanfetamina, cafeína, PMA) — o conteúdo de MDMA pode variar até 100×. Esta imprevisibilidade aumenta ainda mais o risco de eventos cardiovasculares agudos.</div></div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════
+         OPIOIDES
+    ════════════════════════════════════════════ -->
+    <div id="panel-opioides" class="drug-panel">
+      <div class="risk-header risk-high">
+        <div class="risk-icon">💉</div>
+        <div>
+          <div class="risk-title">Opioides (Morfina, Fentanil, Heroína, Oxicodona)</div>
+          <div class="risk-subtitle">Alto potencial de dependência; risco cardiovascular associado ao uso crônico e bradicardia/hipotensão em overdose</div>
+          <div style="margin-top:.5rem;display:flex;gap:.4rem;flex-wrap:wrap;">
+            <span class="badge badge-high">⚠ Alto Risco</span>
+            <span class="badge badge-gray">Lícito/Ilícito</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon icon-amber">⚙️</div>
+          <div><div class="card-title">Efeitos Cardiovasculares</div><div class="card-subtitle">Dependentes da via de uso, dose e duração</div></div>
+        </div>
+        <div class="info-box info-red"><span class="info-box-icon">🆘</span><div><strong>Overdose aguda:</strong> Bradicardia sinusal profunda, hipotensão, depressão respiratória → hipóxia → parada cardiorrespiratória. O fentanil e análogos podem causar "tórax rígido" com comprometimento ventilatório grave.</div></div>
+        <div class="info-box info-amber"><span class="info-box-icon">❤️</span><div><strong>QTc e arritmias:</strong> Metadona prolonga significativamente o intervalo QTc → torsade de pointes. O risco é dose-dependente e potencializado por hipocalemia e uso concomitante de outros fármacos que prolongam QT.</div></div>
+        <div class="info-box info-amber"><span class="info-box-icon">🩸</span><div><strong>Endocardite infecciosa:</strong> Usuários de opioides IV têm risco muito elevado de EI — principal causa de EI em jovens em muitos centros. S. aureus é o agente mais comum; frequentemente acomete válvula tricúspide.</div></div>
+        <div class="info-box info-amber"><span class="info-box-icon">📊</span><div><strong>Risco de IAM com uso crônico:</strong> Estudos observacionais sugerem associação entre uso crônico de opioides prescritos e aumento de risco de IAM, especialmente em doses altas. Mecanismos incluem ativação simpática crônica e inflamação vascular. Evidência ainda limitada e com possível confundimento por indicação.</div></div>
+        <div class="info-box info-teal"><span class="info-box-icon">💊</span><div><strong>Naloxona:</strong> Antídoto disponível para revert overdose. Pode precipitar edema pulmonar e síndrome de abstinência aguda com impacto cardiovascular. Administração cautelosa em pacientes com DAC conhecida.</div></div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════
+         EAA (ESTEROIDES ANABOLIZANTES)
+    ════════════════════════════════════════════ -->
+    <div id="panel-eaa" class="drug-panel">
+      <div class="risk-header risk-high">
+        <div class="risk-icon">💪</div>
+        <div>
+          <div class="risk-title">Esteroides Anabolizantes Androgênicos (EAA)</div>
+          <div class="risk-subtitle">Cardiotóxico subestimado — comum em academias, com dano estrutural cardíaco frequentemente irreversível</div>
+          <div style="margin-top:.5rem;display:flex;gap:.4rem;flex-wrap:wrap;">
+            <span class="badge badge-high">⚠ Alto Risco</span>
+            <span class="badge badge-gray">Uso não-médico ilegal</span>
+            <span class="badge badge-gray">Circulation 2025</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-card"><div class="stat-value red">3×</div><div class="stat-label">mortalidade por todas as causas vs controles (coorte dinamarquesa)</div></div>
+        <div class="stat-card"><div class="stat-value red">↓ FEVE</div><div class="stat-label">redução significativa de fração de ejeção em usuários (meta-análise 2025)</div></div>
+        <div class="stat-card"><div class="stat-value amber">↑ MVE</div><div class="stat-label">aumento de massa e espessura de VE — hipertrofia patológica vs atlética</div></div>
+        <div class="stat-card"><div class="stat-value red">↓ HDL</div><div class="stat-label">redução drástica de HDL; aumento de LDL — perfil lipídico extremamente aterogênico</div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon icon-red">💔</div>
+          <div><div class="card-title">Espectro de Dano Cardiovascular</div><div class="card-subtitle">ACC 2024 — revisão para cardiologistas do esporte</div></div>
+        </div>
+        <div class="mechanism-grid">
+          <div class="mechanism-item"><span class="mech-icon">❤️</span><div class="mech-title">Hipertrofia Patológica</div><div class="mech-desc">Diferente da hipertrofia fisiológica do atleta — espessura de parede desproporcionalmente maior, com fibrose e disfunção diastólica.</div></div>
+          <div class="mechanism-item"><span class="mech-icon">🩺</span><div class="mech-title">Disfunção Sistólica</div><div class="mech-desc">Redução de FEVE e GLS (strain longitudinal global) em usuários atuais e ex-usuários. Possível miocardiopatia residual mesmo após cessação.</div></div>
+          <div class="mechanism-item"><span class="mech-icon">🔥</span><div class="mech-title">Aterosclerose Acelerada</div><div class="mech-desc">Redução de HDL, aumento de LDL, disfunção endotelial e estado pró-trombótico. Reserva de fluxo miocárdico reduzida em PET/CT mesmo em ex-usuários.</div></div>
+          <div class="mechanism-item"><span class="mech-icon">⚡</span><div class="mech-title">Arritmias e MSC</div><div class="mech-desc">SAECG alterado — substrato para TV/FV. Múltiplos casos de morte súbita cardíaca em jovens atletas com fibrose e hipertrofia patológica à autópsia.</div></div>
+          <div class="mechanism-item"><span class="mech-icon">💉</span><div class="mech-title">Tromboembolismo</div><div class="mech-desc">Estado pró-coagulante; casos de trombose venosa profunda, TEP e trombose coronariana em jovens sem DAC prévia.</div></div>
+        </div>
+        <div class="info-box info-red" style="margin-top:1rem;"><span class="info-box-icon">⚠️</span><div><strong>Dano não exclusivo ao uso pesado:</strong> Mesmo atletas recreacionais com uso "moderado" de EAA demonstram função vascular prejudicada, incluindo redução significativa de dilatação mediada por fluxo e reatividade carotídea (Scientific Reports 2024).</div></div>
+        <div class="info-box info-amber"><span class="info-box-icon">🏋️</span><div><strong>Avaliação cardiológica:</strong> O ACC (2024) recomenda incluir screening ativo para uso de EAA em avaliações pré-participação esportiva. Ecocardiograma e RNM cardíaca são úteis para diferenciar hipertrofia atlética de patológica, mas a sobreposição é real e desafiadora.</div></div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════
+         KETAMINA
+    ════════════════════════════════════════════ -->
+    <div id="panel-ketamina" class="drug-panel">
+      <div class="risk-header risk-moderate">
+        <div class="risk-icon">🔬</div>
+        <div>
+          <div class="risk-title">Ketamina</div>
+          <div class="risk-subtitle">Anestésico dissociativo com uso médico legítimo e crescente abuso recreacional — cardiotoxicidade dose-dependente</div>
+          <div style="margin-top:.5rem;display:flex;gap:.4rem;flex-wrap:wrap;">
+            <span class="badge badge-info">Risco Moderado</span>
+            <span class="badge badge-gray">Médico/Ilícito (recreacional)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon icon-teal">⚙️</div>
+          <div><div class="card-title">Efeitos Cardiovasculares</div><div class="card-subtitle">Dicotomia: estimulação simpática aguda vs depressão miocárdica direta crônica</div></div>
+        </div>
+        <div class="info-box info-teal"><span class="info-box-icon">📈</span><div><strong>Uso agudo/médico:</strong> Ketamina estimula o sistema nervoso simpático central → eleva FC e PA. Efeito cardiogênico geralmente suportável em contexto anestésico controlado. É por isso que é preferida em pacientes hemodinamicamente instáveis em emergências.</div></div>
+        <div class="info-box info-red"><span class="info-box-icon">💔</span><div><strong>Uso crônico/abuso:</strong> Efeito inotrópico negativo direto e dose-dependente. Caso publicado (2024): paciente com 14 anos de uso 2×/semana desenvolveu FEVE de 15%, insuficiência cardíaca avançada. IC por ketamina pode melhorar com cessação e tratamento padrão.</div></div>
+        <div class="info-box info-amber"><span class="info-box-icon">❤️</span><div><strong>Fibrose e isquemia miocárdica:</strong> Relatos de fibrose miocárdica com hialinização de pequenas artérias em uso crônico. ECG isquêmico durante sedação com ketamina em pacientes com DAC.</div></div>
+        <div class="info-box info-gray"><span class="info-box-icon">💊</span><div><strong>Esketamina (uso terapêutico para depressão):</strong> Esketamina nasal (Spravato®) é aprovada para depressão resistente. Em doses terapêuticas supervisionadas, os eventos cardiovasculares são monitorados — hipertensão transitória é comum e esperada. Não equivale ao abuso recreacional de ketamina.</div></div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════
+         LSD / PSILOCIBINA
+    ════════════════════════════════════════════ -->
+    <div id="panel-lsd" class="drug-panel">
+      <div class="risk-header risk-moderate">
+        <div class="risk-icon">🌀</div>
+        <div>
+          <div class="risk-title">LSD &amp; Psilocibina (Cogumelos)</div>
+          <div class="risk-subtitle">Psicodélicos clássicos — risco cardiovascular direto moderado; maior preocupação com ativação serotoninérgica e vasoespasmo</div>
+          <div style="margin-top:.5rem;display:flex;gap:.4rem;flex-wrap:wrap;">
+            <span class="badge badge-info">Risco Moderado</span>
+            <span class="badge badge-gray">Ilícita</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon icon-teal">⚙️</div>
+          <div><div class="card-title">Mecanismos e Riscos Cardiovasculares</div><div class="card-subtitle">Agonistas serotoninérgicos com efeitos vasculares e cardíacos indiretos</div></div>
+        </div>
+        <div class="info-box info-amber"><span class="info-box-icon">❤️</span><div><strong>LSD — efeitos cardiovasculares:</strong> Agonismo em receptores 5-HT₂A e adrenérgicos causa taquicardia, hipertensão e vasoconstrição periférica. Em doses altas, vasoespasmo periférico pode ser grave (semelhante ao ergotismo). Casos de IAM e AVC relatados, principalmente em contexto de doses altas, uso combinado com outras drogas ou em pacientes com cardiopatia preexistente.</div></div>
+        <div class="info-box info-amber"><span class="info-box-icon">🫀</span><div><strong>Valvulopatia com uso crônico:</strong> Análogos de LSD (ergotamina, methysergide) causam doença valvular fibrótica documentada. Para o LSD recreacional, dados longitudinais são escassos, mas a atividade 5-HT₂B (implicada em valvulopatia por agonistas serotoninérgicos) existe, com implicações ainda não totalmente avaliadas.</div></div>
+        <div class="info-box info-teal"><span class="info-box-icon">🍄</span><div><strong>Psilocibina:</strong> Perfil cardiovascular mais benigno que o LSD. Causa taquicardia leve e elevação moderada de PA. Estudos em contexto terapêutico supervisionado (depressão, TOC, dependência) mostram eventos cardiovasculares raros e leves. Risco aumenta com doses recreacionais altas, contexto descontrolado e uso combinado.</div></div>
+        <div class="info-box info-gray"><span class="info-box-icon">🔬</span><div><strong>Sobre o uso terapêutico de psilocibina:</strong> Pesquisa em andamento (Johns Hopkins, Imperial College) em contexto altamente controlado. Evidências preliminares para depressão são promissoras, mas ainda não suficientes para aprovação regulatória ampla. O perfil de segurança cardiovascular nestas condições controladas parece favorável — mas extrapolar para uso recreacional é um erro metodológico fundamental.</div></div>
+        <div class="info-box info-red"><span class="info-box-icon">⚠️</span><div><strong>Síndrome serotoninérgica:</strong> Uso de LSD/psilocibina concomitante com ISRS, IMAOs ou triptanos pode desencadear síndrome serotoninérgica — emergência médica com taquicardia, hipertermia, rigidez muscular e instabilidade autonômica com risco cardíaco direto.</div></div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════
+         GHB
+    ════════════════════════════════════════════ -->
+    <div id="panel-ghb" class="drug-panel">
+      <div class="risk-header risk-moderate">
+        <div class="risk-icon">💧</div>
+        <div>
+          <div class="risk-title">GHB (Gama-Hidroxibutirato)</div>
+          <div class="risk-subtitle">Janela terapêutica muito estreita — risco de coma e depressão cardiovascular imprevisível</div>
+          <div style="margin-top:.5rem;display:flex;gap:.4rem;flex-wrap:wrap;">
+            <span class="badge badge-high">Risco Variável/Alto</span>
+            <span class="badge badge-gray">Ilícita (recreacional)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon icon-amber">⚙️</div>
+          <div><div class="card-title">Perfil de Risco do GHB</div><div class="card-subtitle">Depressor do SNC com efeitos cardiovasculares dose-dependentes</div></div>
+        </div>
+        <div class="info-box info-red"><span class="info-box-icon">⚠️</span><div><strong>Janela terapêutica mínima:</strong> A diferença entre "dose recreacional desejada" e "dose de overdose com coma" é extremamente pequena. A concentração varia imensamente em preparações caseiras — tornando o dosing seguro impossível fora de contexto clínico.</div></div>
+        <div class="info-box info-red"><span class="info-box-icon">💔</span><div><strong>Bradicardia e depressão cardiovascular:</strong> GHB deprime atividade do nó sinusal em doses altas. Bradicardia intensa, hipotensão e parada respiratória podem ocorrer — especialmente quando combinado com álcool ou benzodiazepínicos (efeito sinérgico extremamente perigoso).</div></div>
+        <div class="info-box info-amber"><span class="info-box-icon">💊</span><div><strong>Uso médico legítimo:</strong> Oxibato de sódio (Xyrem®) é aprovado para narcolepsia. Em contexto clínico supervisionado, com doses tituladas e monoterapia, o perfil de segurança é gerenciável. Não se compara ao uso recreacional de GHB de produção clandestina.</div></div>
+        <div class="info-box info-gray"><span class="info-box-icon">🧪</span><div><strong>Síndrome de abstinência:</strong> Em usuários dependentes, a abstinência de GHB pode causar síndrome grave com taquicardia, hipertensão, agitação, tremores e convulsões — potencialmente fatal e frequentemente mais grave que a abstinência de álcool. Requer internação hospitalar para manejo.</div></div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════
+         TABELA COMPARATIVA
+    ════════════════════════════════════════════ -->
+    <div id="panel-tabela" class="drug-panel">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon icon-teal">📊</div>
+          <div><div class="card-title">Comparativo de Risco Cardiovascular</div><div class="card-subtitle">Visão geral baseada em evidências — para orientação clínica e educação de pacientes</div></div>
+        </div>
+
+        <div class="info-box info-amber"><span class="info-box-icon">⚠️</span><div>Esta tabela resume o <strong>perfil de risco cardiovascular predominante</strong> de cada substância com base nas evidências disponíveis. Risco individual pode variar significativamente conforme dose, frequência, via de uso, comorbidades e uso combinado de substâncias.</div></div>
+
+        <div class="table-wrap" style="margin-top:1rem;">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th>Substância</th>
+                <th>Risco Global</th>
+                <th>IAM/SCA</th>
+                <th>AVC</th>
+                <th>Arritmia</th>
+                <th>Cardiomiopatia</th>
+                <th>HAP</th>
+                <th>Morte Súbita</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>🚬 Tabaco</strong></td>
+                <td><span class="pill pill-red">Crítico</span></td>
+                <td><span class="pill pill-red">5× ↑</span></td>
+                <td><span class="pill pill-red">↑↑</span></td>
+                <td><span class="pill pill-amber">Moderado</span></td>
+                <td><span class="pill pill-amber">Moderado</span></td>
+                <td><span class="pill pill-amber">Moderado</span></td>
+                <td><span class="pill pill-red">Alto</span></td>
+              </tr>
+              <tr>
+                <td><strong>🍺 Álcool (excesso)</strong></td>
+                <td><span class="pill pill-red">Crítico</span></td>
+                <td><span class="pill pill-teal">Baixo direto</span></td>
+                <td><span class="pill pill-red">↑↑ hemorrágico</span></td>
+                <td><span class="pill pill-red">↑↑ FA</span></td>
+                <td><span class="pill pill-red">Alto</span></td>
+                <td><span class="pill pill-teal">Baixo</span></td>
+                <td><span class="pill pill-amber">Moderado</span></td>
+              </tr>
+              <tr>
+                <td><strong>💊 Cocaína/Crack</strong></td>
+                <td><span class="pill pill-red">Crítico</span></td>
+                <td><span class="pill pill-red">24× ↑ (1ª hora)</span></td>
+                <td><span class="pill pill-red">6× ↑</span></td>
+                <td><span class="pill pill-red">Alto (QTc, FV)</span></td>
+                <td><span class="pill pill-red">Alto</span></td>
+                <td><span class="pill pill-amber">Moderado</span></td>
+                <td><span class="pill pill-red">Alto</span></td>
+              </tr>
+              <tr>
+                <td><strong>⚡ Metanfetamina</strong></td>
+                <td><span class="pill pill-red">Crítico</span></td>
+                <td><span class="pill pill-red">Alto</span></td>
+                <td><span class="pill pill-red">Alto</span></td>
+                <td><span class="pill pill-red">Alto</span></td>
+                <td><span class="pill pill-red">Muito Alto</span></td>
+                <td><span class="pill pill-red">Muito Alto</span></td>
+                <td><span class="pill pill-red">Alto</span></td>
+              </tr>
+              <tr>
+                <td><strong>🌿 Cannabis (THC)</strong></td>
+                <td><span class="pill pill-amber">Alto</span></td>
+                <td><span class="pill pill-amber">RR 1,29 / 4,8× 1ª h</span></td>
+                <td><span class="pill pill-amber">RR 1,20 / 3,3× rec.</span></td>
+                <td><span class="pill pill-amber">Moderado (FA)</span></td>
+                <td><span class="pill pill-teal">Baixo</span></td>
+                <td><span class="pill pill-teal">Baixo</span></td>
+                <td><span class="pill pill-amber">Moderado</span></td>
+              </tr>
+              <tr>
+                <td><strong>💎 MDMA/Ecstasy</strong></td>
+                <td><span class="pill pill-amber">Alto</span></td>
+                <td><span class="pill pill-amber">Alto (vasoespasmo)</span></td>
+                <td><span class="pill pill-amber">Moderado</span></td>
+                <td><span class="pill pill-red">Alto (QTc, TV/FV)</span></td>
+                <td><span class="pill pill-amber">Moderado (crônico)</span></td>
+                <td><span class="pill pill-teal">Baixo</span></td>
+                <td><span class="pill pill-amber">Moderado</span></td>
+              </tr>
+              <tr>
+                <td><strong>💉 Opioides</strong></td>
+                <td><span class="pill pill-amber">Alto</span></td>
+                <td><span class="pill pill-amber">Moderado (crônico)</span></td>
+                <td><span class="pill pill-teal">Baixo</span></td>
+                <td><span class="pill pill-amber">QTc (metadona)</span></td>
+                <td><span class="pill pill-teal">Baixo</span></td>
+                <td><span class="pill pill-teal">Baixo</span></td>
+                <td><span class="pill pill-red">Alto (overdose)</span></td>
+              </tr>
+              <tr>
+                <td><strong>💪 EAA (esteroides)</strong></td>
+                <td><span class="pill pill-amber">Alto</span></td>
+                <td><span class="pill pill-amber">Alto (crônico)</span></td>
+                <td><span class="pill pill-amber">Moderado</span></td>
+                <td><span class="pill pill-red">Alto (TV/FV/MSC)</span></td>
+                <td><span class="pill pill-red">Alto</span></td>
+                <td><span class="pill pill-teal">Baixo</span></td>
+                <td><span class="pill pill-red">Alto</span></td>
+              </tr>
+              <tr>
+                <td><strong>🔬 Ketamina</strong></td>
+                <td><span class="pill pill-teal">Moderado</span></td>
+                <td><span class="pill pill-teal">Baixo</span></td>
+                <td><span class="pill pill-teal">Baixo</span></td>
+                <td><span class="pill pill-teal">Baixo</span></td>
+                <td><span class="pill pill-amber">Crônico (reversível)</span></td>
+                <td><span class="pill pill-teal">Baixo</span></td>
+                <td><span class="pill pill-teal">Baixo</span></td>
+              </tr>
+              <tr>
+                <td><strong>🌀 LSD / Psilocibina</strong></td>
+                <td><span class="pill pill-teal">Moderado</span></td>
+                <td><span class="pill pill-teal">Baixo</span></td>
+                <td><span class="pill pill-teal">Baixo</span></td>
+                <td><span class="pill pill-amber">Moderado (agudo)</span></td>
+                <td><span class="pill pill-teal">Baixo</span></td>
+                <td><span class="pill pill-teal">Baixo</span></td>
+                <td><span class="pill pill-teal">Baixo</span></td>
+              </tr>
+              <tr>
+                <td><strong>💧 GHB</strong></td>
+                <td><span class="pill pill-amber">Alto (dose-depend.)</span></td>
+                <td><span class="pill pill-teal">Baixo</span></td>
+                <td><span class="pill pill-teal">Baixo</span></td>
+                <td><span class="pill pill-red">Bradicardia grave</span></td>
+                <td><span class="pill pill-teal">Baixo</span></td>
+                <td><span class="pill pill-teal">Baixo</span></td>
+                <td><span class="pill pill-amber">Moderado (overdose)</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="margin-top:.75rem;font-size:.73rem;color:var(--muted-foreground);">IAM = Infarto do Miocárdio; SCA = Síndrome Coronariana Aguda; FA = Fibrilação Atrial; HAP = Hipertensão Arterial Pulmonar; MSC = Morte Súbita Cardíaca; EAA = Esteroides Anabolizantes Androgênicos</div>
+      </div>
+    </div>
+
+  </div><!-- end drug grid section -->
+
+  <hr class="section-divider">
+
+  <!-- MENSAGEM FINAL -->
+  <div class="section">
+    <div class="section-label">Mensagem Central</div>
+    <div class="section-title" style="margin-bottom:1rem;">O que a Evidência Realmente Nos Diz</div>
+
+    <div class="card">
+      <div class="info-box info-red"><span class="info-box-icon">❌</span><div><strong>Não existe droga recreacional comprovadamente segura para o coração.</strong> Mesmo substâncias com perfil de risco "moderado" podem causar eventos cardiovasculares graves, especialmente em pessoas com cardiopatia subjacente, uso combinado ou predisposição genética.</div></div>
+      <div class="info-box info-amber"><span class="info-box-icon">⚖️</span><div><strong>Supostos "benefícios cardioprotetores" — avalie com ceticismo:</strong> Álcool leve-moderado, cannabis e CBD são frequentemente citados como "protetores do coração". As evidências atuais não sustentam estas afirmações: estudos causais (randomização mendeliana), quando disponíveis, não confirmam benefício; estudos observacionais têm confundidores significativos.</div></div>
+      <div class="info-box info-teal"><span class="info-box-icon">🎯</span><div><strong>O que funciona de fato:</strong> Cessação do tabagismo é a intervenção com maior impacto cardiovascular demonstrada. Para álcool, a redução ao mínimo ou abstinência é o objetivo em pacientes cardíacos. Para todas as outras substâncias ilícitas: cessação e encaminhamento para tratamento de dependência química.</div></div>
+      <div class="info-box info-gray"><span class="info-box-icon">🩺</span><div><strong>Abordagem médica sem julgamento:</strong> Pacientes com doença coronariana devem ser rotineiramente questionados sobre uso de substâncias. A comunicação deve ser baseada em evidências, empática e livre de julgamento moral — o objetivo é redução de risco cardiovascular, não policiamento do comportamento.</div></div>
+    </div>
+
+    <div class="disclaimer">
+      <strong>Aviso Médico:</strong> Esta página destina-se à educação de pacientes e profissionais de saúde. As informações são baseadas nas melhores evidências disponíveis até 2025, mas não substituem a consulta médica individualizada. Decisões terapêuticas devem ser tomadas pelo médico assistente com base no contexto clínico completo do paciente.
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- REFERÊNCIAS -->
+  <div class="section">
+    <div class="section-label">Fontes Bibliográficas</div>
+    <div class="section-title">Referências Principais</div>
+    <div style="margin-bottom:1.25rem;font-size:.82rem;color:var(--muted-foreground);">Ordenadas por relevância clínica. Evidências mais recentes marcadas com <span class="ref-new">2025</span></div>
+
+    <ul class="ref-list">
+      <li class="ref-item"><div class="ref-num">1</div><div><div class="ref-title">2023 AHA/ACC/ACCP/ASPC/NLA/PCNA Guideline for the Management of Patients With Chronic Coronary Disease</div><div class="ref-meta">Virani SS, Newby LK, Arnold SV, et al. <em>Journal of the American College of Cardiology</em>. 2023.</div></div></li>
+      <li class="ref-item"><div class="ref-num">2</div><div><div class="ref-title">Cardiovascular Risk Associated With the Use of Cannabis and Cannabinoids: A Systematic Review and Meta-Analysis<span class="ref-new">2025</span></div><div class="ref-meta">Storck W, Elbaz M, Vindis C, et al. <em>Heart</em>. 2025.</div></div></li>
+      <li class="ref-item"><div class="ref-num">3</div><div><div class="ref-title">Medical Marijuana, Recreational Cannabis, and Cardiovascular Health: A Scientific Statement From the AHA</div><div class="ref-meta">Page RL, Allen LA, Kloner RA, et al. <em>Circulation</em>. 2020.</div></div></li>
+      <li class="ref-item"><div class="ref-num">4</div><div><div class="ref-title">Cardiovascular Effects of Smoking and Smoking Cessation: A 2024 Update<span class="ref-new">2025</span></div><div class="ref-meta">Published in <em>Global Heart Journal</em>. February 2025.</div></div></li>
+      <li class="ref-item"><div class="ref-num">5</div><div><div class="ref-title">Association between cigarette smoking status, intensity, and cessation duration with long-term incidence of nine cardiovascular and mortality outcomes<span class="ref-new">2025</span></div><div class="ref-meta">Cross-Cohort Collaboration Tobacco Working Group. <em>PLOS Medicine</em>. November 2025. (22 coortes, 503.905 participantes)</div></div></li>
+      <li class="ref-item"><div class="ref-num">6</div><div><div class="ref-title">Low cigarette consumption and risk of coronary heart disease and stroke: meta-analysis of 141 cohort studies</div><div class="ref-meta">Hackshaw A, Morris JK, Boniface S, et al. <em>BMJ</em>. 2018.</div></div></li>
+      <li class="ref-item"><div class="ref-num">7</div><div><div class="ref-title">Electronic cigarettes and cardiovascular diseases: An updated systematic review and network meta-analysis<span class="ref-new">2025</span></div><div class="ref-meta"><em>Tobacco Induced Diseases</em>. September 2025.</div></div></li>
+      <li class="ref-item"><div class="ref-num">8</div><div><div class="ref-title">Therapeutic Use of Cannabis and Cannabinoids<span class="ref-new">2025</span></div><div class="ref-meta">Hsu M, Shah A, Jordan A, Gold MS, Hill KP. <em>JAMA</em>. 2025.</div></div></li>
+      <li class="ref-item"><div class="ref-num">9</div><div><div class="ref-title">Use of Marijuana: Effect on Brain Health: A Scientific Statement From the AHA</div><div class="ref-meta">Testai FD, Gorelick PB, Aparicio HJ, et al. <em>Stroke</em>. 2022.</div></div></li>
+      <li class="ref-item"><div class="ref-num">10</div><div><div class="ref-title">Drugs of Misuse: Focus on Vascular Dysfunction</div><div class="ref-meta">Middlekauff HR, Cooper ZD, Strauss SB. <em>The Canadian Journal of Cardiology</em>. 2022.</div></div></li>
+      <li class="ref-item"><div class="ref-num">11</div><div><div class="ref-title">MDMA Induced Cardio-toxicity and Pathological Myocardial Effects: A Systematic Review of Experimental Data and Autopsy Findings</div><div class="ref-meta">Bonsignore A, Barranco R, et al. <em>Cardiovascular Toxicology</em>. 2019.</div></div></li>
+      <li class="ref-item"><div class="ref-num">12</div><div><div class="ref-title">Ecstasy (3,4-methylenedioxymethamphetamine): Cardiovascular effects and mechanisms</div><div class="ref-meta">Fonseca DA, et al. <em>European Journal of Pharmacology</em>. 2021.</div></div></li>
+      <li class="ref-item"><div class="ref-num">13</div><div><div class="ref-title">The Expert's Approach to Managing Cardiovascular Risk Among Athletes Using Anabolic-Androgenic Steroids</div><div class="ref-meta">Meagher SP, et al. <em>American College of Cardiology</em>. 2024.</div></div></li>
+      <li class="ref-item"><div class="ref-num">14</div><div><div class="ref-title">Cardiovascular Disease in Anabolic Androgenic Steroid Users<span class="ref-new">2025</span></div><div class="ref-meta">Windfeld-Mathiasen J, et al. <em>Circulation</em>. 2025. (Coorte dinamarquesa, 2006–2023)</div></div></li>
+      <li class="ref-item"><div class="ref-num">15</div><div><div class="ref-title">Anabolic-androgenic steroids on cardiac structure and function: A systematic review and meta-analysis<span class="ref-new">2025</span></div><div class="ref-meta"><em>International Journal of Cardiology</em>. 2025.</div></div></li>
+      <li class="ref-item"><div class="ref-num">16</div><div><div class="ref-title">Impaired vascular function among young users of anabolic-androgenic steroids</div><div class="ref-meta">Tungesvik HM, Bjørnebekk A, Hisdal J. <em>Scientific Reports</em>. 2024.</div></div></li>
+      <li class="ref-item"><div class="ref-num">17</div><div><div class="ref-title">Ketamine Induced Acute Systolic Heart Failure</div><div class="ref-meta"><em>Case Reports in Cardiology</em>. 2024.</div></div></li>
+      <li class="ref-item"><div class="ref-num">18</div><div><div class="ref-title">Cardiac Complications of Common Drugs of Abuse: Pharmacology, Toxicology, and Management</div><div class="ref-meta">Gagnon LR, Sadasivan C, Perera K, Oudit GY. <em>Canadian Journal of Cardiology</em>. 2022.</div></div></li>
+      <li class="ref-item"><div class="ref-num">19</div><div><div class="ref-title">Forensic approach in cases of anabolic-androgenic steroid abuse and cardiovascular mortality<span class="ref-new">2025</span></div><div class="ref-meta">Di Fazio N, et al. <em>Frontiers in Cardiovascular Medicine</em>. 2025.</div></div></li>
+    </ul>
+  </div>
+
+</div><!-- end container -->
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-copy">© 2025 Dr. Lucas Silva — Cardiologista Intervencionista · Baseado em evidências científicas atuais</div>
+      <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener" style="font-size:.73rem;padding:4px 10px;">lucascardio.com.br</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Drug panel navigation
+  function showDrug(id) {
+    // Hide all panels
+    document.querySelectorAll('.drug-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.drug-btn').forEach(b => b.classList.remove('active'));
+    // Show selected
+    const panel = document.getElementById('panel-' + id);
+    if (panel) panel.classList.add('active');
+    // Highlight button
+    document.querySelectorAll('.drug-btn').forEach(b => {
+      if (b.getAttribute('onclick') && b.getAttribute('onclick').includes("'" + id + "'")) {
+        b.classList.add('active');
+      }
+    });
+    // Scroll to panel
+    panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // Tab navigation (scoped by drug)
+  function showTab(drug, tab) {
+    // Find all tabs in this drug's panel
+    const panel = document.getElementById('panel-' + drug);
+    if (!panel) return;
+    panel.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    panel.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    const content = document.getElementById(drug + '-' + tab);
+    if (content) content.classList.add('active');
+    // Activate button
+    panel.querySelectorAll('.tab-btn').forEach(b => {
+      if (b.getAttribute('onclick') && b.getAttribute('onclick').includes("'" + tab + "'")) {
+        b.classList.add('active');
+      }
+    });
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1878 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>Atividade Física e Saúde Cardiovascular | Dr. Lucas Silva</title>
+  <meta name="description" content="Guia interativo baseado em evidências sobre atividade física para prevenção cardiovascular. Inclui yoga, pilates, hiking, tai chi, HIIT e populações especiais." />
+  <meta name="author" content="Dr. Lucas Silva" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+
+  <style>
+    /* ── DESIGN TOKENS ────────────────────────────────────────── */
+    :root {
+      --primary: oklch(65% .18 195);
+      --primary-foreground: oklch(98% 0 0);
+      --background: oklch(13% .018 250);
+      --foreground: oklch(93% .01 250);
+      --card: oklch(18.5% .018 250);
+      --card-foreground: oklch(93% .01 250);
+      --muted: oklch(22% .018 250);
+      --muted-foreground: oklch(62% .02 250);
+      --border: oklch(28% .025 250);
+      --input: oklch(22% .02 250);
+      --destructive: oklch(60% .22 25);
+      --secondary: oklch(22% .022 250);
+      --secondary-foreground: oklch(88% .01 250);
+      --accent: oklch(24% .025 250);
+      --accent-foreground: oklch(90% .01 250);
+      --teal: #00d3bd;
+      --teal-dim: rgba(0,211,189,.12);
+      --amber: oklch(82.8% .189 84.429);
+      --red: oklch(63.7% .237 25.331);
+      --green: oklch(79.2% .209 151.711);
+      --radius: 0.625rem;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--background);
+      color: var(--foreground);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ───────────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(18,20,27,.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--foreground); }
+    .nav-brand-icon {
+      width: 28px; height: 28px; border-radius: 7px;
+      background: var(--teal); display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .nav-brand-name { font-weight: 800; font-size: 1rem; letter-spacing: -.025em; line-height: 1; }
+    .nav-brand-name span { color: var(--teal); }
+    .nav-brand-sep { width: 1px; height: 14px; background: var(--border); margin: 0 6px; }
+    .nav-brand-sub { font-size: .7rem; font-weight: 500; color: var(--muted-foreground); }
+    .nav-actions { display: flex; align-items: center; gap: .5rem; }
+    .nav-badge {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 999px; background: var(--teal-dim);
+      color: var(--teal); border: 1px solid rgba(0,211,189,.25); white-space: nowrap;
+    }
+    .nav-link {
+      font-size: .75rem; font-weight: 600; padding: 5px 12px;
+      border-radius: 8px; border: 1.5px solid var(--primary);
+      color: var(--primary); background: transparent; text-decoration: none;
+      transition: background .15s, color .15s; display: inline-flex; align-items: center; gap: 5px;
+    }
+    .nav-link:hover { background: var(--primary); color: var(--primary-foreground); }
+
+    /* ── LAYOUT ────────────────────────────────────────────────── */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+    .section { padding: 3rem 0; }
+
+    /* ── HERO ──────────────────────────────────────────────────── */
+    .hero { padding: 3.5rem 0 2.5rem; border-bottom: 1px solid var(--border); }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .7rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--teal); margin-bottom: 1rem;
+    }
+    .hero-eyebrow::before { content: ''; display: block; width: 20px; height: 2px; background: var(--teal); border-radius: 1px; }
+    .hero h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800; line-height: 1.2; margin-bottom: .75rem; letter-spacing: -.02em; }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero-sub { color: var(--muted-foreground); font-size: .95rem; max-width: 640px; margin-bottom: 1.5rem; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px; border-radius: 6px;
+      border: 1px solid var(--border); color: var(--muted-foreground);
+      background: var(--card); font-family: var(--font-mono);
+    }
+
+    /* ── TIMELINE / TAB NAV ─────────────────────────────────────── */
+    .timeline {
+      display: grid; grid-template-columns: repeat(6, 1fr);
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border); border-radius: calc(var(--radius) + 2px);
+      overflow: hidden; margin: 2rem 0;
+    }
+    .timeline-step {
+      background: var(--card); padding: 1rem 1rem 1.25rem;
+      cursor: pointer; transition: background .15s;
+    }
+    .timeline-step:hover { background: var(--accent); }
+    .timeline-step.active { background: var(--teal-dim); }
+    .step-num {
+      font-size: .6rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--muted-foreground);
+      margin-bottom: .4rem; font-family: var(--font-mono);
+    }
+    .step-num .dot {
+      display: inline-block; width: 18px; height: 18px; border-radius: 50%;
+      background: var(--muted); color: var(--muted-foreground);
+      font-size: .6rem; text-align: center; line-height: 18px;
+      margin-right: 5px; font-family: var(--font-mono); font-weight: 700;
+    }
+    .timeline-step.active .dot { background: var(--teal); color: #000; }
+    .step-title { font-weight: 700; font-size: .82rem; margin-bottom: .2rem; }
+    .step-desc { font-size: .72rem; color: var(--muted-foreground); line-height: 1.4; }
+
+    /* ── PROGRESS BAR ──────────────────────────────────────────── */
+    .progress-bar { height: 3px; background: var(--border); border-radius: 2px; margin: 0 0 2rem; }
+    .progress-fill { height: 100%; background: var(--teal); border-radius: 2px; transition: width .4s ease; }
+
+    /* ── STEP SECTIONS ─────────────────────────────────────────── */
+    .step-section { display: none; animation: fadeUp .3s ease; }
+    .step-section.active { display: block; }
+
+    /* ── CARDS ─────────────────────────────────────────────────── */
+    .card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px); padding: 1.5rem; margin-bottom: 1.5rem;
+    }
+    .card-header {
+      display: flex; align-items: flex-start; gap: .75rem;
+      margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border);
+    }
+    .card-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0; background: var(--teal-dim); color: var(--teal);
+    }
+    .card-title { font-weight: 700; font-size: 1rem; margin-bottom: 2px; }
+    .card-subtitle { font-size: .78rem; color: var(--muted-foreground); }
+
+    /* ── INFO BOXES ────────────────────────────────────────────── */
+    .info-box {
+      border-radius: var(--radius); padding: 12px 16px; font-size: .82rem;
+      line-height: 1.6; display: flex; gap: 10px; margin-bottom: .75rem;
+    }
+    .info-box-icon { flex-shrink: 0; font-size: 1rem; margin-top: 1px; }
+    .info-teal { background: var(--teal-dim); border-left: 3px solid var(--teal); }
+    .info-amber { background: rgba(251,191,36,.08); border-left: 3px solid rgba(251,191,36,.5); }
+    .info-red { background: rgba(220,38,38,.08); border-left: 3px solid rgba(220,38,38,.4); }
+    .info-gray { background: var(--muted); border-left: 3px solid var(--border); }
+    .info-green { background: rgba(74,222,128,.08); border-left: 3px solid rgba(74,222,128,.4); }
+
+    /* ── BADGES ────────────────────────────────────────────────── */
+    .badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: .68rem; font-weight: 700; padding: 2px 8px;
+      border-radius: 999px; white-space: nowrap;
+    }
+    .badge-a { background: rgba(74,222,128,.15); color: #4ade80; border: 1px solid rgba(74,222,128,.25); }
+    .badge-b { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.2); }
+    .badge-c { background: rgba(251,191,36,.12); color: #fbbf24; border: 1px solid rgba(251,191,36,.2); }
+    .badge-d { background: rgba(220,38,38,.15); color: #f87171; border: 1px solid rgba(220,38,38,.25); }
+    .badge-info { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.2); }
+    .badge-score { background: var(--muted); color: var(--foreground); border: 1px solid var(--border); font-family: var(--font-mono); }
+    .badge-amber { background: rgba(251,191,36,.12); color: #fbbf24; border: 1px solid rgba(251,191,36,.2); }
+    .badge-red { background: rgba(220,38,38,.15); color: #f87171; border: 1px solid rgba(220,38,38,.25); }
+
+    /* ── SECTION TITLES ────────────────────────────────────────── */
+    .section-title { font-size: 1.3rem; font-weight: 800; margin-bottom: .25rem; letter-spacing: -.01em; }
+    .section-label {
+      font-size: .68rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--teal); margin-bottom: .4rem; font-family: var(--font-mono);
+    }
+    .section-divider { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+
+    /* ── BUTTONS ───────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: .85rem; font-weight: 600; padding: 10px 20px;
+      border-radius: calc(var(--radius) + 2px);
+      border: none; cursor: pointer; transition: all .15s; white-space: nowrap;
+      font-family: var(--font-sans);
+    }
+    .btn-primary { background: var(--primary); color: #000; font-weight: 700; }
+    .btn-primary:hover { opacity: .9; transform: translateY(-1px); }
+    .btn-secondary { background: var(--muted); color: var(--foreground); border: 1px solid var(--border); }
+    .btn-secondary:hover { background: var(--accent); }
+
+    /* ── TABLES ────────────────────────────────────────────────── */
+    .compare-table { width: 100%; border-collapse: collapse; font-size: .82rem; border-radius: var(--radius); overflow: hidden; }
+    .compare-table th {
+      background: var(--muted); padding: 10px 14px; text-align: left;
+      font-weight: 700; font-size: .75rem; border-bottom: 1px solid var(--border);
+      color: var(--muted-foreground); letter-spacing: .03em;
+    }
+    .compare-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table tr:hover td { background: var(--accent); }
+    .table-wrap { overflow-x: auto; border-radius: var(--radius); border: 1px solid var(--border); }
+
+    /* ── REFERENCES ────────────────────────────────────────────── */
+    .ref-list { list-style: none; }
+    .ref-item { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: .8rem; line-height: 1.6; display: flex; gap: 10px; }
+    .ref-item:last-child { border-bottom: none; }
+    .ref-num { font-family: var(--font-mono); font-size: .7rem; font-weight: 700; color: var(--teal); min-width: 22px; }
+    .ref-title { font-weight: 600; margin-bottom: 2px; }
+    .ref-meta { color: var(--muted-foreground); font-size: .75rem; }
+    .ref-ev { display: inline-block; font-size: .65rem; font-weight: 700; padding: 1px 6px; border-radius: 4px; margin-left: 6px; background: var(--teal-dim); color: var(--teal); }
+
+    /* ── STAT GRID ─────────────────────────────────────────────── */
+    .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+    .stat-box {
+      background: var(--muted); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 1rem 1.25rem; text-align: center;
+    }
+    .stat-val { font-size: 1.8rem; font-weight: 800; color: var(--teal); font-family: var(--font-mono); line-height: 1; }
+    .stat-label { font-size: .72rem; color: var(--muted-foreground); margin-top: .35rem; font-weight: 500; }
+    .stat-sub { font-size: .65rem; color: var(--muted-foreground); margin-top: 2px; }
+
+    /* ── MET CALCULATOR ────────────────────────────────────────── */
+    .calc-wrap {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px); padding: 1.5rem;
+    }
+    .calc-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-label { font-size: .78rem; font-weight: 600; color: var(--muted-foreground); }
+    .form-label span { font-size: .7rem; font-weight: 400; opacity: .7; }
+    .form-input {
+      background: var(--input); border: 1px solid var(--border); border-radius: var(--radius);
+      color: var(--foreground); font-family: var(--font-mono); font-size: .85rem; padding: 8px 12px;
+      transition: border-color .15s, box-shadow .15s; outline: none; width: 100%;
+    }
+    .form-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(0,211,189,.15); }
+    .form-select {
+      background: var(--input); border: 1px solid var(--border); border-radius: var(--radius);
+      color: var(--foreground); font-family: var(--font-sans); font-size: .85rem;
+      padding: 8px 12px; outline: none; width: 100%; cursor: pointer; transition: border-color .15s;
+    }
+    .form-select:focus { border-color: var(--primary); }
+    .calc-result { margin-top: 1.25rem; }
+    .met-bar-bg { height: 12px; background: var(--border); border-radius: 6px; overflow: hidden; margin: .75rem 0 .4rem; }
+    .met-bar-fill { height: 100%; border-radius: 6px; transition: width .5s ease, background .5s; }
+    .met-val-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: .4rem; }
+    .met-big { font-size: 2rem; font-weight: 800; color: var(--teal); font-family: var(--font-mono); line-height: 1; }
+    .met-unit { font-size: .75rem; color: var(--muted-foreground); }
+
+    /* ── ACTIVITY ACCORDION ─────────────────────────────────────── */
+    .activity-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+    .act-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px); overflow: hidden;
+      transition: border-color .2s;
+    }
+    .act-card:hover { border-color: rgba(0,211,189,.35); }
+    .act-header {
+      display: flex; align-items: center; gap: .75rem;
+      padding: 1rem 1.25rem; cursor: pointer; user-select: none;
+    }
+    .act-emoji { font-size: 1.5rem; line-height: 1; flex-shrink: 0; }
+    .act-info { flex: 1; min-width: 0; }
+    .act-name { font-weight: 700; font-size: .92rem; }
+    .act-met { font-size: .72rem; color: var(--muted-foreground); font-family: var(--font-mono); }
+    .act-badges { display: flex; gap: .4rem; flex-wrap: wrap; margin-top: .3rem; }
+    .act-chevron { color: var(--muted-foreground); transition: transform .25s; flex-shrink: 0; }
+    .act-card.open .act-chevron { transform: rotate(180deg); }
+    .act-body {
+      display: none; padding: 0 1.25rem 1.25rem;
+      border-top: 1px solid var(--border); padding-top: 1rem;
+    }
+    .act-card.open .act-body { display: block; animation: fadeUp .2s ease; }
+    .act-section-title { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--teal); margin: .8rem 0 .4rem; font-family: var(--font-mono); }
+
+    /* ── POPULATION CARDS ───────────────────────────────────────── */
+    .pop-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+    .pop-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px); overflow: hidden;
+    }
+    .pop-header {
+      display: flex; align-items: center; gap: .75rem;
+      padding: 1rem 1.25rem; cursor: pointer; user-select: none; border-bottom: 1px solid var(--border);
+    }
+    .pop-icon { width: 32px; height: 32px; border-radius: 8px; background: var(--teal-dim); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+    .pop-name { font-weight: 700; font-size: .9rem; }
+    .pop-body { padding: 1rem 1.25rem; font-size: .82rem; line-height: 1.65; }
+
+    /* ── DOSE CHART ─────────────────────────────────────────────── */
+    .chart-wrap { position: relative; height: 260px; margin: 1.5rem 0; }
+
+    /* ── INICIO (FITT) ──────────────────────────────────────────── */
+    .fitt-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1rem 0; }
+    .fitt-box {
+      background: var(--muted); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 1.1rem 1.25rem;
+    }
+    .fitt-letter { font-size: 2rem; font-weight: 800; color: var(--teal); font-family: var(--font-mono); line-height: 1; margin-bottom: .25rem; }
+    .fitt-word { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--muted-foreground); margin-bottom: .4rem; font-family: var(--font-mono); }
+    .fitt-content { font-size: .82rem; line-height: 1.55; }
+
+    /* ── WEEK PLAN ──────────────────────────────────────────────── */
+    .week-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: .5rem; margin: 1rem 0; }
+    .day-box {
+      background: var(--muted); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: .6rem .5rem; text-align: center; font-size: .7rem;
+    }
+    .day-name { font-weight: 700; color: var(--muted-foreground); margin-bottom: .3rem; font-size: .65rem; text-transform: uppercase; letter-spacing: .05em; }
+    .day-act { font-size: .7rem; line-height: 1.3; }
+    .day-box.rest { opacity: .5; }
+    .day-box.active-day { border-color: rgba(0,211,189,.4); background: var(--teal-dim); }
+
+    /* ── DISCLAIMER ────────────────────────────────────────────── */
+    .disclaimer {
+      background: var(--muted); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 12px 16px; font-size: .75rem; color: var(--muted-foreground); line-height: 1.6; margin-top: 2rem;
+    }
+
+    /* ── FOOTER ────────────────────────────────────────────────── */
+    footer { border-top: 1px solid var(--border); padding: 2rem 0; margin-top: 3rem; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-copy { font-size: .75rem; color: var(--muted-foreground); }
+
+    /* ── ANIMATIONS ─────────────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ─────────────────────────────────────────────── */
+    @media (max-width: 720px) {
+      .timeline { grid-template-columns: repeat(3, 1fr); }
+      .calc-row { grid-template-columns: 1fr 1fr; }
+      .fitt-grid { grid-template-columns: 1fr; }
+      .week-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .timeline { grid-template-columns: repeat(2, 1fr); }
+      .calc-row { grid-template-columns: 1fr; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ────────────────────────────────────────────────────── -->
+<nav>
+  <a class="nav-brand" href="#">
+    <div class="nav-brand-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+      </svg>
+    </div>
+    <div class="nav-brand-name">Cardio<span>Move</span></div>
+    <div class="nav-brand-sep"></div>
+    <div class="nav-brand-sub">Atividade Física &amp; Saúde Cardíaca</div>
+  </a>
+  <div class="nav-actions">
+    <span class="nav-badge">Baseado em Evidências</span>
+    <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      lucascardio.com.br
+    </a>
+  </div>
+</nav>
+
+<!-- ── MAIN ────────────────────────────────────────────────────── -->
+<main>
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">Medicina Baseada em Evidências · Prevenção Cardiovascular</div>
+    <h1>Atividade Física e<br><em>Saúde Cardiovascular</em></h1>
+    <p class="hero-sub">
+      Guia completo e interativo sobre o impacto da atividade física no coração, baseado nas principais diretrizes e meta-análises internacionais. Inclui análise de atividades convencionais e não convencionais — com evidências, benefícios e alertas de segurança para cada modalidade.
+    </p>
+    <div class="hero-tags">
+      <span class="tag">ACC/AHA 2019</span>
+      <span class="tag">AHA 2023</span>
+      <span class="tag">ASA 2024</span>
+      <span class="tag">JACC 2022</span>
+      <span class="tag">Yoga · Pilates</span>
+      <span class="tag">Hiking · Tai Chi</span>
+      <span class="tag">HIIT · Natação</span>
+    </div>
+  </div>
+
+  <!-- TAB NAV -->
+  <div class="timeline" id="tabNav" style="margin-top:2rem;">
+    <div class="timeline-step active" onclick="goTab(1)">
+      <div class="step-num"><span class="dot">1</span>BASE</div>
+      <div class="step-title">Evidências</div>
+      <div class="step-desc">Dose-resposta e recomendações das diretrizes</div>
+    </div>
+    <div class="timeline-step" onclick="goTab(2)">
+      <div class="step-num"><span class="dot">2</span>CALC</div>
+      <div class="step-title">Tipos &amp; METs</div>
+      <div class="step-desc">Tabela de intensidades e calculadora semanal</div>
+    </div>
+    <div class="timeline-step" onclick="goTab(3)">
+      <div class="step-num"><span class="dot">3</span>NOVO</div>
+      <div class="step-title">Atividades Incomuns</div>
+      <div class="step-desc">Yoga, Pilates, Hiking, Tai Chi e mais</div>
+    </div>
+    <div class="timeline-step" onclick="goTab(4)">
+      <div class="step-num"><span class="dot">4</span>↗</div>
+      <div class="step-title">Pop. Especiais</div>
+      <div class="step-desc">Pós-IAM, IC, idosos, diabéticos</div>
+    </div>
+    <div class="timeline-step" onclick="goTab(5)">
+      <div class="step-num"><span class="dot">5</span>→</div>
+      <div class="step-title">Como Iniciar</div>
+      <div class="step-desc">Princípio FITT, sinais de alerta, plano semanal</div>
+    </div>
+    <div class="timeline-step" onclick="goTab(6)">
+      <div class="step-num"><span class="dot">📖</span>REF</div>
+      <div class="step-title">Referências</div>
+      <div class="step-desc">Fontes completas e classificação de evidência</div>
+    </div>
+  </div>
+
+  <div class="progress-bar"><div class="progress-fill" id="progress" style="width:16.7%"></div></div>
+
+  <!-- ════════════════════════════════════════════════════════
+       TAB 1 — EVIDÊNCIAS E RECOMENDAÇÕES
+  ════════════════════════════════════════════════════════ -->
+  <div id="tab1" class="step-section active">
+
+    <div class="section-label">Diretrizes Internacionais</div>
+    <div class="section-title">O que dizem as evidências?</div>
+    <p style="font-size:.88rem;color:var(--muted-foreground);margin:.5rem 0 1.5rem;">A relação entre atividade física e saúde cardiovascular está entre as mais robustas de toda a medicina preventiva, respaldada por décadas de estudos observacionais, meta-análises e ensaios clínicos randomizados de aconselhamento comportamental.</p>
+
+    <!-- Stat boxes -->
+    <div class="stat-grid">
+      <div class="stat-box">
+        <div class="stat-val">↓35%</div>
+        <div class="stat-label">Mortalidade Cardiovascular</div>
+        <div class="stat-sub">em indivíduos ativos vs. sedentários <sup>[2]</sup></div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val">↓31%</div>
+        <div class="stat-label">Mortalidade por Todas as Causas</div>
+        <div class="stat-sub">redução média em meta-análises <sup>[2]</sup></div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val">↓21%</div>
+        <div class="stat-label">Risco de DCV Incidente</div>
+        <div class="stat-sub">ao seguir as recomendações das diretrizes <sup>[1]</sup></div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val">↓20%</div>
+        <div class="stat-label">Eventos Cardiovasculares</div>
+        <div class="stat-sub">com aconselhamento em RCTs (RR 0,80) <sup>[6]</sup></div>
+      </div>
+    </div>
+
+    <!-- Recommendations -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">🎯</div>
+        <div>
+          <div class="card-title">Recomendação Semanal Mínima — ACC/AHA &amp; AHA 2023</div>
+          <div class="card-subtitle">Classe I (Nível de Evidência A) para adultos saudáveis e em prevenção primária</div>
+        </div>
+      </div>
+      <div class="info-teal info-box">
+        <span class="info-box-icon">💡</span>
+        <div>As metas abaixo são <strong>mínimas</strong>, não ideais. Quanto mais, melhor — até pelo menos 5× o mínimo recomendado, sem evidência de limite superior prejudicial em populações gerais.<sup>[2]</sup></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin:1rem 0;">
+        <div style="background:var(--teal-dim);border:1px solid rgba(0,211,189,.25);border-radius:var(--radius);padding:1.1rem;">
+          <div style="font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--teal);margin-bottom:.4rem;font-family:var(--font-mono);">Aeróbico Moderado</div>
+          <div style="font-size:1.6rem;font-weight:800;color:var(--teal);font-family:var(--font-mono);line-height:1;">150–300<span style="font-size:.9rem;font-weight:500;"> min/sem</span></div>
+          <div style="font-size:.78rem;color:var(--muted-foreground);margin-top:.4rem;">Equivale a 30–60 min em 5 dias. Exemplos: caminhada rápida (6 km/h), ciclismo leve, dança.</div>
+          <div style="margin-top:.6rem;"><span class="badge badge-info">3–6 METs</span></div>
+        </div>
+        <div style="background:rgba(251,191,36,.07);border:1px solid rgba(251,191,36,.2);border-radius:var(--radius);padding:1.1rem;">
+          <div style="font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#fbbf24;margin-bottom:.4rem;font-family:var(--font-mono);">Aeróbico Vigoroso</div>
+          <div style="font-size:1.6rem;font-weight:800;color:#fbbf24;font-family:var(--font-mono);line-height:1;">75–150<span style="font-size:.9rem;font-weight:500;"> min/sem</span></div>
+          <div style="font-size:.78rem;color:var(--muted-foreground);margin-top:.4rem;">Equivale a 25–50 min em 3 dias. Exemplos: corrida, natação intensa, HIIT, ciclismo rápido.</div>
+          <div style="margin-top:.6rem;"><span class="badge badge-amber">≥6 METs</span></div>
+        </div>
+        <div style="background:rgba(74,222,128,.07);border:1px solid rgba(74,222,128,.2);border-radius:var(--radius);padding:1.1rem;">
+          <div style="font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#4ade80;margin-bottom:.4rem;font-family:var(--font-mono);">Fortalecimento Muscular</div>
+          <div style="font-size:1.6rem;font-weight:800;color:#4ade80;font-family:var(--font-mono);line-height:1;">≥2<span style="font-size:.9rem;font-weight:500;"> dias/sem</span></div>
+          <div style="font-size:.78rem;color:var(--muted-foreground);margin-top:.4rem;">Exercícios resistidos envolvendo grandes grupos musculares. Musculação, elásticos, Pilates, yoga com carga.</div>
+          <div style="margin-top:.6rem;"><span class="badge badge-a">Complementar</span></div>
+        </div>
+      </div>
+      <div class="info-amber info-box" style="margin-top:.5rem;">
+        <span class="info-box-icon">⚖️</span>
+        <div>Atividade moderada e vigorosa são intercambiáveis: <strong>1 min vigoroso = 2 min moderado</strong>. Uma combinação de ambas é igualmente válida para atingir as metas.</div>
+      </div>
+    </div>
+
+    <!-- Dose-response -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">📈</div>
+        <div>
+          <div class="card-title">Curva Dose-Resposta: Atividade Física × Mortalidade Cardiovascular</div>
+          <div class="card-subtitle">A relação é curvilinear — os maiores ganhos relativos ocorrem ao sair da inatividade total. <sup>[2, 15]</sup></div>
+        </div>
+      </div>
+      <div class="chart-wrap">
+        <canvas id="doseChart"></canvas>
+      </div>
+      <div class="info-teal info-box">
+        <span class="info-box-icon">📊</span>
+        <div>
+          <strong>O que o gráfico mostra:</strong> Risco relativo de mortalidade cardiovascular conforme o volume semanal de atividade física (em MET-min/semana). Dado 1,0 ao sedentário, cada ponto mostra a redução incremental estimada com base em grandes estudos de coorte e meta-análises.<sup>[2, 15, 16]</sup>
+          <br><br>
+          <strong>Ponto-chave:</strong> Mesmo <em>baixos</em> volumes de atividade (menos de 150 min/semana de intensidade moderada) estão associados a <strong>redução de ~20% na mortalidade cardiovascular</strong> comparado à inatividade total.<sup>[7]</sup> "Algo é sempre melhor que nada."
+        </div>
+      </div>
+    </div>
+
+    <!-- Intermediate outcomes -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">🩺</div>
+        <div>
+          <div class="card-title">Impacto nos Fatores de Risco Cardiovascular</div>
+          <div class="card-subtitle">Resultados de meta-análises de ensaios clínicos randomizados de aconselhamento de atividade física</div>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Fator de Risco</th>
+              <th>Redução Média</th>
+              <th>Comentário</th>
+              <th>Evidência</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Pressão Arterial Sistólica</strong></td>
+              <td style="color:var(--teal);font-family:var(--font-mono);">−3 a −9 mmHg</td>
+              <td>Efeito maior em hipertensos. Exercício isométrico pode superar o aeróbico para PA.<sup>[8,18]</sup></td>
+              <td><span class="badge badge-a">Nível A</span></td>
+            </tr>
+            <tr>
+              <td><strong>Pressão Arterial Diastólica</strong></td>
+              <td style="color:var(--teal);font-family:var(--font-mono);">−2 a −4 mmHg</td>
+              <td>Redução consistente em ensaios de exercício aeróbico e resistido.</td>
+              <td><span class="badge badge-a">Nível A</span></td>
+            </tr>
+            <tr>
+              <td><strong>LDL-Colesterol</strong></td>
+              <td style="color:var(--teal);font-family:var(--font-mono);">−2,1 mg/dL</td>
+              <td>Efeito modesto isolado; maior relevância como componente do risco global.<sup>[6]</sup></td>
+              <td><span class="badge badge-b">Nível B</span></td>
+            </tr>
+            <tr>
+              <td><strong>HDL-Colesterol</strong></td>
+              <td style="color:var(--teal);font-family:var(--font-mono);">+1 a +2 mg/dL</td>
+              <td>Melhor benefício com exercício de alta intensidade e duração &gt; 30 min/sessão.<sup>[1]</sup></td>
+              <td><span class="badge badge-b">Nível B</span></td>
+            </tr>
+            <tr>
+              <td><strong>Triglicerídeos</strong></td>
+              <td style="color:var(--teal);font-family:var(--font-mono);">−10 a −20%</td>
+              <td>Redução relevante, especialmente em indivíduos com hipertrigliceridemia.</td>
+              <td><span class="badge badge-b">Nível B</span></td>
+            </tr>
+            <tr>
+              <td><strong>Glicemia / HbA1c</strong></td>
+              <td style="color:var(--teal);font-family:var(--font-mono);">HbA1c −0,4 a −0,7%</td>
+              <td>Combinação de exercício aeróbico + resistido superior a cada um isolado.</td>
+              <td><span class="badge badge-a">Nível A</span></td>
+            </tr>
+            <tr>
+              <td><strong>Peso / IMC</strong></td>
+              <td style="color:var(--teal);font-family:var(--font-mono);">−0,5 a −2 kg</td>
+              <td>Modestos quando sem intervenção dietética concomitante. Composição corporal melhora mais que o peso.<sup>[6]</sup></td>
+              <td><span class="badge badge-b">Nível B</span></td>
+            </tr>
+            <tr>
+              <td><strong>VO₂ Máximo</strong></td>
+              <td style="color:var(--teal);font-family:var(--font-mono);">+15 a +25%</td>
+              <td>O VO₂ máximo é um dos preditores mais fortes de mortalidade cardiovascular e geral. Cada +1 MET = −13% na mortalidade.<sup>[2]</sup></td>
+              <td><span class="badge badge-a">Nível A</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Beyond the minimum -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">⬆️</div>
+        <div>
+          <div class="card-title">Mais é Melhor? O Limite Superior</div>
+          <div class="card-subtitle">Existe risco cardiovascular com volume excessivo de exercício?</div>
+        </div>
+      </div>
+      <p style="font-size:.85rem;line-height:1.7;margin-bottom:1rem;">
+        Para a grande maioria das pessoas, os benefícios cardiovasculares da atividade física <strong>continuam aumentando</strong> com volumes crescentes. Meta-análises demonstram benefícios incrementais até aproximadamente <strong>5.000 MET-min/semana</strong> — o equivalente a 7–10 vezes as recomendações mínimas — sem evidência clara de limiar nocivo para a população geral.<sup>[2]</sup>
+      </p>
+      <div class="info-amber info-box">
+        <span class="info-box-icon">⚠️</span>
+        <div>
+          <strong>Exceção: o atleta de ultra-endurance.</strong> Estudos observacionais em maratonistas e triatletas de elite sugerem um possível aumento de fibrose miocárdica e arritmias atriais (principalmente fibrilação atrial) com <em>décadas</em> de exercício extenuante de muito alto volume. Este fenômeno — denominado "paradoxo do atleta de elite" — ainda é debatido e não representa risco para a população geral que pratica exercício de lazer ou saúde.<sup>[14]</sup> A relação entre exercício e FA segue uma curva em J: o maior risco está no <em>sedentarismo</em>, e o risco atrial aumenta apenas em atletas de volume extremo e por muitos anos.
+        </div>
+      </div>
+      <div class="info-teal info-box" style="margin-top:.5rem;">
+        <span class="info-box-icon">🧠</span>
+        <div>
+          <strong>Além do coração:</strong> A atividade física também reduz o risco de AVC em até 25–35%, de demência em 30%, de depressão em 30% e de vários tipos de câncer. A prevenção cardiovascular é apenas um dos benefícios de um estilo de vida ativo.<sup>[3]</sup>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /tab1 -->
+
+  <!-- ════════════════════════════════════════════════════════
+       TAB 2 — TIPOS DE EXERCÍCIO E MET CALCULATOR
+  ════════════════════════════════════════════════════════ -->
+  <div id="tab2" class="step-section">
+
+    <div class="section-label">Classificação &amp; Intensidade</div>
+    <div class="section-title">Tipos de Exercício e Equivalência Metabólica</div>
+    <p style="font-size:.88rem;color:var(--muted-foreground);margin:.5rem 0 1.5rem;">O MET (Equivalente Metabólico de Tarefa) quantifica o gasto energético relativo ao repouso. 1 MET = metabolismo de repouso (~3,5 mL O₂/kg/min). Quanto mais alto o MET, maior a intensidade.</p>
+
+    <!-- MET Table -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">📋</div>
+        <div>
+          <div class="card-title">Tabela de METs por Atividade</div>
+          <div class="card-subtitle">Valores de referência do Compêndio de Atividades Físicas (Ainsworth et al., atualização 2024)</div>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Atividade</th>
+              <th>METs</th>
+              <th>Intensidade</th>
+              <th>Equivalência (30 min)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Caminhada lenta</strong> ≈3 km/h</td><td style="font-family:var(--font-mono);">2,5</td><td><span class="badge badge-score">Leve</span></td><td>75 MET-min</td></tr>
+            <tr><td><strong>Caminhada moderada</strong> ≈5 km/h</td><td style="font-family:var(--font-mono);">3,5</td><td><span class="badge badge-b">Moderada</span></td><td>105 MET-min</td></tr>
+            <tr><td><strong>Caminhada rápida</strong> ≈6 km/h</td><td style="font-family:var(--font-mono);">4,3</td><td><span class="badge badge-b">Moderada</span></td><td>129 MET-min</td></tr>
+            <tr><td><strong>Corrida leve</strong> ≈8 km/h</td><td style="font-family:var(--font-mono);">8,0</td><td><span class="badge badge-amber">Vigorosa</span></td><td>240 MET-min</td></tr>
+            <tr><td><strong>Corrida moderada</strong> ≈10 km/h</td><td style="font-family:var(--font-mono);">10,0</td><td><span class="badge badge-amber">Vigorosa</span></td><td>300 MET-min</td></tr>
+            <tr><td><strong>Ciclismo leve</strong> &lt;16 km/h</td><td style="font-family:var(--font-mono);">4,0</td><td><span class="badge badge-b">Moderada</span></td><td>120 MET-min</td></tr>
+            <tr><td><strong>Ciclismo moderado</strong> 16–20 km/h</td><td style="font-family:var(--font-mono);">6,0</td><td><span class="badge badge-amber">Vigorosa</span></td><td>180 MET-min</td></tr>
+            <tr><td><strong>Natação recreacional</strong></td><td style="font-family:var(--font-mono);">5,8</td><td><span class="badge badge-amber">Moderada-Vig.</span></td><td>174 MET-min</td></tr>
+            <tr><td><strong>Yoga (tradicional)</strong></td><td style="font-family:var(--font-mono);">2,5–3,0</td><td><span class="badge badge-score">Leve</span></td><td>75–90 MET-min</td></tr>
+            <tr><td><strong>Hot Yoga (Bikram)</strong></td><td style="font-family:var(--font-mono);">5,0–7,0</td><td><span class="badge badge-b">Moderada</span></td><td>150–210 MET-min</td></tr>
+            <tr><td><strong>Pilates (mat)</strong></td><td style="font-family:var(--font-mono);">3,0–4,0</td><td><span class="badge badge-b">Leve-Mod.</span></td><td>90–120 MET-min</td></tr>
+            <tr><td><strong>Tai Chi</strong></td><td style="font-family:var(--font-mono);">1,5–3,0</td><td><span class="badge badge-score">Leve</span></td><td>45–90 MET-min</td></tr>
+            <tr><td><strong>Hiking (trilha plana)</strong></td><td style="font-family:var(--font-mono);">5,0</td><td><span class="badge badge-b">Moderada</span></td><td>150 MET-min</td></tr>
+            <tr><td><strong>Hiking (terreno íngreme)</strong></td><td style="font-family:var(--font-mono);">7,0–8,0</td><td><span class="badge badge-amber">Vigorosa</span></td><td>210–240 MET-min</td></tr>
+            <tr><td><strong>Caminhada Nórdica</strong></td><td style="font-family:var(--font-mono);">4,5–5,5</td><td><span class="badge badge-b">Moderada</span></td><td>135–165 MET-min</td></tr>
+            <tr><td><strong>Hidroginástica</strong></td><td style="font-family:var(--font-mono);">4,0–5,0</td><td><span class="badge badge-b">Moderada</span></td><td>120–150 MET-min</td></tr>
+            <tr><td><strong>Dança (moderada)</strong></td><td style="font-family:var(--font-mono);">4,5</td><td><span class="badge badge-b">Moderada</span></td><td>135 MET-min</td></tr>
+            <tr><td><strong>Zumba / Dança aeróbica</strong></td><td style="font-family:var(--font-mono);">7,0–9,0</td><td><span class="badge badge-amber">Vigorosa</span></td><td>210–270 MET-min</td></tr>
+            <tr><td><strong>HIIT (intervalos curtos)</strong></td><td style="font-family:var(--font-mono);">8,0–12,0</td><td><span class="badge badge-red">Muito Vig.</span></td><td>240–360 MET-min</td></tr>
+            <tr><td><strong>Musculação (moderada)</strong></td><td style="font-family:var(--font-mono);">3,0–5,0</td><td><span class="badge badge-b">Leve-Mod.</span></td><td>90–150 MET-min</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- MET Calculator -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">🧮</div>
+        <div>
+          <div class="card-title">Calculadora de MET-min/semana</div>
+          <div class="card-subtitle">Estime se você está atingindo a meta semanal recomendada de ≥500–1.000 MET-min/semana</div>
+        </div>
+      </div>
+      <div class="calc-wrap">
+        <div class="calc-row">
+          <div class="form-group">
+            <label class="form-label">Atividade Principal</label>
+            <select id="actSelect" class="form-select" onchange="calcMET()">
+              <option value="3.5">Caminhada moderada (3,5 METs)</option>
+              <option value="4.3">Caminhada rápida (4,3 METs)</option>
+              <option value="8.0">Corrida leve — 8 km/h (8 METs)</option>
+              <option value="10.0">Corrida moderada — 10 km/h (10 METs)</option>
+              <option value="4.0">Ciclismo leve (4 METs)</option>
+              <option value="6.0">Ciclismo moderado (6 METs)</option>
+              <option value="5.8">Natação recreacional (5,8 METs)</option>
+              <option value="2.8">Yoga tradicional (2,8 METs)</option>
+              <option value="6.0">Hot Yoga / Bikram (6 METs)</option>
+              <option value="3.5">Pilates mat (3,5 METs)</option>
+              <option value="2.5">Tai Chi (2,5 METs)</option>
+              <option value="5.0">Hiking trilha plana (5 METs)</option>
+              <option value="7.5">Hiking terreno íngreme (7,5 METs)</option>
+              <option value="5.0">Caminhada Nórdica (5 METs)</option>
+              <option value="4.5">Hidroginástica (4,5 METs)</option>
+              <option value="4.5">Dança (4,5 METs)</option>
+              <option value="8.0">Zumba / Dança aeróbica (8 METs)</option>
+              <option value="10.0">HIIT — intervalos (10 METs)</option>
+              <option value="4.0">Musculação moderada (4 METs)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Minutos por sessão</label>
+            <input type="number" id="minsInput" class="form-input" min="1" max="300" value="40" oninput="calcMET()" placeholder="ex: 40">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Dias por semana</label>
+            <input type="number" id="daysInput" class="form-input" min="1" max="7" value="4" oninput="calcMET()" placeholder="ex: 4">
+          </div>
+        </div>
+        <div class="calc-result">
+          <div class="met-val-row">
+            <div>
+              <span class="met-big" id="metResult">560</span>
+              <span class="met-unit"> MET-min/semana</span>
+            </div>
+            <div id="metStatus" style="font-size:.78rem;font-weight:600;color:var(--teal);">✓ Meta atingida</div>
+          </div>
+          <div class="met-bar-bg">
+            <div class="met-bar-fill" id="metBar" style="width:56%;background:var(--teal);"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:.68rem;color:var(--muted-foreground);font-family:var(--font-mono);">
+            <span>0</span><span>500 (meta mín.)</span><span>1.000 (ideal)</span><span>2.000+</span>
+          </div>
+          <div id="metComment" style="font-size:.8rem;color:var(--muted-foreground);margin-top:.8rem;"></div>
+        </div>
+      </div>
+      <div class="info-gray info-box" style="margin-top:1rem;">
+        <span class="info-box-icon">ℹ️</span>
+        <div>Atividades do cotidiano (subir escadas, caminhar até o ponto, tarefas domésticas) também contam, mas de forma variável. Esta calculadora considera apenas a atividade física planejada.</div>
+      </div>
+    </div>
+
+    <!-- Types comparison -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">⚙️</div>
+        <div>
+          <div class="card-title">Aeróbico vs. Resistido vs. HIIT — Qual é melhor para o coração?</div>
+          <div class="card-subtitle">Comparação dos efeitos cardiovasculares das principais modalidades</div>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Domínio</th>
+              <th>Aeróbico Cont.</th>
+              <th>Resistido</th>
+              <th>HIIT</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Mortalidade CV (evidência direta)</td><td>✅ Forte</td><td>✅ Moderado</td><td>⚠️ Limitado (curto prazo)</td></tr>
+            <tr><td>Redução de Pressão Arterial</td><td>↓3–9 mmHg</td><td>↓3–6 mmHg</td><td>↓4–8 mmHg</td></tr>
+            <tr><td>VO₂ Máximo</td><td>+10–20%</td><td>+5–10%</td><td>+15–25%</td></tr>
+            <tr><td>Glicemia/Resistência à Insulina</td><td>✅ Forte</td><td>✅ Forte</td><td>✅ Forte</td></tr>
+            <tr><td>Composição Corporal</td><td>↓Gordura</td><td>↑Músculo</td><td>↓Gordura (eficiente)</td></tr>
+            <tr><td>Saúde óssea</td><td>Moderado</td><td>✅ Superior</td><td>Moderado</td></tr>
+            <tr><td>Tempo necessário/semana</td><td>150–300 min</td><td>2–3 sess./sem</td><td>75–90 min</td></tr>
+            <tr><td>Risco de lesão</td><td>Baixo</td><td>Baixo-Moderado</td><td>Moderado</td></tr>
+            <tr><td>Adesão a longo prazo</td><td>Alta</td><td>Moderada</td><td>Variável</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="info-teal info-box" style="margin-top:1rem;">
+        <span class="info-box-icon">🏆</span>
+        <div><strong>Conclusão prática:</strong> A combinação de exercício aeróbico com exercício resistido 2–3×/semana é a estratégia com maior evidência de benefício cardiovascular global. O HIIT é uma alternativa eficiente em tempo, particularmente útil para melhora do VO₂ máximo, mas requer avaliação médica prévia em indivíduos de risco.<sup>[2, 4]</sup></div>
+      </div>
+    </div>
+
+  </div><!-- /tab2 -->
+
+  <!-- ════════════════════════════════════════════════════════
+       TAB 3 — ATIVIDADES INCOMUNS
+  ════════════════════════════════════════════════════════ -->
+  <div id="tab3" class="step-section">
+
+    <div class="section-label">Evidência por Modalidade</div>
+    <div class="section-title">Atividades Não Convencionais: O que a Ciência Diz?</div>
+    <p style="font-size:.88rem;color:var(--muted-foreground);margin:.5rem 0 1.5rem;">Cada atividade abaixo é analisada com base na qualidade da evidência disponível, benefícios cardiovasculares demonstrados, populações mais beneficiadas e alertas de segurança. Clique em cada atividade para expandir os detalhes.</p>
+
+    <div class="info-teal info-box" style="margin-bottom:1.5rem;">
+      <span class="info-box-icon">📌</span>
+      <div><strong>Legenda de Evidência:</strong> <span class="badge badge-a">A — Forte</span> meta-análises de RCTs com desfechos clínicos duros &nbsp;|&nbsp; <span class="badge badge-b">B — Moderado</span> RCTs ou meta-análises de outcomes intermediários &nbsp;|&nbsp; <span class="badge badge-c">C — Limitado</span> estudos observacionais ou RCTs pequenos &nbsp;|&nbsp; <span class="badge badge-d">D — Insuficiente</span> apenas relatos de caso ou ausência de dados</div>
+    </div>
+
+    <div class="activity-grid">
+
+      <!-- YOGA -->
+      <div class="act-card" id="act-yoga">
+        <div class="act-header" onclick="toggleAct('act-yoga')">
+          <div class="act-emoji">🧘</div>
+          <div class="act-info">
+            <div class="act-name">Yoga</div>
+            <div class="act-met">METs: 2,5–7,0 (varia com estilo)</div>
+            <div class="act-badges">
+              <span class="badge badge-b">Evidência B</span>
+              <span class="badge badge-info">Pressão Arterial</span>
+            </div>
+          </div>
+          <svg class="act-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="act-body">
+          <div class="act-section-title">Evidência Cardiovascular</div>
+          <p style="font-size:.82rem;line-height:1.65;">
+            Meta-análise de Cramer et al. (2014, <em>Eur J Prev Cardiol</em>) incluindo 37 RCTs demonstrou reduções modestas mas consistentes na pressão arterial (−4,2/−3,2 mmHg), frequência cardíaca de repouso e LDL-colesterol em comparação a grupos controle sedentários. Atualização de 2019 em 49 RCTs confirmou: PA sistólica −4,17 mmHg, diastólica −3,26 mmHg. Há melhora da variabilidade da frequência cardíaca (VFC), um marcador de tônus parassimpático, sugerindo efeito vagotrônico.
+          </p>
+          <div class="info-teal info-box" style="margin-top:.75rem;">
+            <span class="info-box-icon">💪</span>
+            <div><strong>Benefícios:</strong> Redução de PA, estresse, cortisol e inflamação; melhora de VFC, flexibilidade, equilíbrio e saúde mental. O yoga inclui componentes de respiração (pranayama) com efeito autônomo independente.</div>
+          </div>
+          <div class="act-section-title">Estilos e METs</div>
+          <ul style="font-size:.8rem;line-height:1.8;padding-left:1.2rem;">
+            <li><strong>Hatha/Iyengar:</strong> 2,5–3,5 METs — leve, adequado para idosos e cardiopatas estáveis</li>
+            <li><strong>Vinyasa/Power Yoga:</strong> 4,0–5,0 METs — moderado, boa ativação cardiovascular</li>
+            <li><strong>Hot Yoga (Bikram — 40°C, 90 min):</strong> 5,0–7,0 METs — estresse térmico adicional</li>
+            <li><strong>Yoga Restaurativo:</strong> 1,5–2,0 METs — foco em relaxamento, não é exercício aeróbico</li>
+          </ul>
+          <div class="info-red info-box" style="margin-top:.75rem;">
+            <span class="info-box-icon">⚠️</span>
+            <div><strong>Hot Yoga (Bikram) — Cuidado Especial:</strong> A temperatura extrema (≈40°C) associada à desidratação pode causar hipotensão ortostática, taquicardia reflexa e, em cardiopatas, precipitar angina ou arritmias. <strong>Pacientes com cardiopatia conhecida devem evitar ou obter autorização médica explícita antes de praticar Hot Yoga.</strong></div>
+          </div>
+          <div class="act-section-title">Limitação das Evidências</div>
+          <p style="font-size:.8rem;line-height:1.65;color:var(--muted-foreground);">Ausência de grandes RCTs com desfechos clínicos duros (IAM, AVC, mortalidade). Qualidade metodológica variável. A maioria dos estudos não distingue o efeito do yoga do efeito do estresse reduzido e do estilo de vida mais saudável dos participantes.</p>
+        </div>
+      </div>
+
+      <!-- PILATES -->
+      <div class="act-card" id="act-pilates">
+        <div class="act-header" onclick="toggleAct('act-pilates')">
+          <div class="act-emoji">🤸</div>
+          <div class="act-info">
+            <div class="act-name">Pilates</div>
+            <div class="act-met">METs: 3,0–4,5 (mat) / 4,0–6,0 (reformer)</div>
+            <div class="act-badges">
+              <span class="badge badge-c">Evidência C</span>
+              <span class="badge badge-info">Core &amp; PA</span>
+            </div>
+          </div>
+          <svg class="act-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="act-body">
+          <div class="act-section-title">Evidência Cardiovascular</div>
+          <p style="font-size:.82rem;line-height:1.65;">
+            Revisão sistemática de Lim et al. (2020, <em>J Bodyw Mov Ther</em>) incluindo 16 estudos demonstrou que Pilates produz reduções estatisticamente significativas na pressão arterial sistólica e diastólica em adultos, com magnitudes modestas (−4 a −7 mmHg). Cruz-Ferreira et al. (2011) demonstraram melhora da aptidão aeróbica e composição corporal em adultos saudáveis após 6 meses de programa de Pilates.
+          </p>
+          <div class="info-amber info-box" style="margin-top:.75rem;">
+            <span class="info-box-icon">📌</span>
+            <div><strong>Posição na hierarquia de evidências:</strong> O Pilates <em>não substitui</em> o exercício aeróbico como primeira linha de prevenção cardiovascular. Não existem grandes RCTs demonstrando redução de eventos cardiovasculares (IAM, mortalidade CV) com Pilates como modalidade isolada.</div>
+          </div>
+          <div class="act-section-title">Benefícios Demonstrados</div>
+          <ul style="font-size:.8rem;line-height:1.8;padding-left:1.2rem;">
+            <li>Fortalecimento do core e melhora postural</li>
+            <li>Flexibilidade e mobilidade articular</li>
+            <li>Redução de dor lombar crônica</li>
+            <li>Melhora do equilíbrio (relevante para idosos)</li>
+            <li>Redução modesta de PA e peso em intervenções ≥8 semanas</li>
+          </ul>
+          <div class="act-section-title">Modalidades e Intensidade</div>
+          <ul style="font-size:.8rem;line-height:1.8;padding-left:1.2rem;">
+            <li><strong>Pilates mat:</strong> 3–4 METs — moderado, ampla acessibilidade</li>
+            <li><strong>Pilates reformer:</strong> 4–6 METs — maior intensidade, exige equipamento</li>
+            <li><strong>Pilates clínico:</strong> Adaptado para reabilitação, disponível em clínicas especializadas</li>
+          </ul>
+          <div class="info-teal info-box">
+            <span class="info-box-icon">✅</span>
+            <div><strong>Recomendação prática:</strong> O Pilates é uma excelente atividade <em>complementar</em> ao exercício aeróbico, especialmente para pessoas com limitações musculoesqueléticas, idosos ou aqueles em fase inicial de condicionamento. Não deve ser a <em>única</em> atividade para prevenção cardiovascular.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAI CHI -->
+      <div class="act-card" id="act-taichi">
+        <div class="act-header" onclick="toggleAct('act-taichi')">
+          <div class="act-emoji">☯️</div>
+          <div class="act-info">
+            <div class="act-name">Tai Chi Chuan</div>
+            <div class="act-met">METs: 1,5–3,0</div>
+            <div class="act-badges">
+              <span class="badge badge-b">Evidência B</span>
+              <span class="badge badge-info">PA · IC · Quedas</span>
+            </div>
+          </div>
+          <svg class="act-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="act-body">
+          <div class="act-section-title">Evidência Cardiovascular</div>
+          <p style="font-size:.82rem;line-height:1.65;">
+            Meta-análise de Zheng et al. (2015, <em>J Altern Complement Med</em>, 35 RCTs, 2.249 participantes) demonstrou reduções significativas na PA: sistólica −8,64 mmHg (IC95%: −10,5 a −6,8) e diastólica −4,70 mmHg — comparáveis a alguns anti-hipertensivos em dose baixa. Estudo de Yeh et al. (2011, <em>Arch Intern Med</em>, JACC HF) em 100 pacientes com insuficiência cardíaca demonstrou que Tai Chi reduziu BNP, melhorou qualidade de vida, distância no teste de 6 minutos e sintomas depressivos em 12 semanas.
+          </p>
+          <div class="info-teal info-box" style="margin-top:.75rem;">
+            <span class="info-box-icon">❤️</span>
+            <div><strong>Particularmente indicado para:</strong> Idosos, pacientes com IC estável, hipertensos, pacientes com alto risco de queda e fibromialgia. A natureza de baixo impacto e a ênfase no equilíbrio tornam o Tai Chi excepcionalmente adequado para populações que não toleram exercício de maior intensidade.</div>
+          </div>
+          <div class="act-section-title">Mecanismos Propostos</div>
+          <ul style="font-size:.8rem;line-height:1.8;padding-left:1.2rem;">
+            <li>Modulação autonômica (aumento do tônus parassimpático)</li>
+            <li>Redução do cortisol e da resposta ao estresse</li>
+            <li>Melhora da sensibilidade barorreflexa</li>
+            <li>Redução da rigidez arterial (menos estudado)</li>
+          </ul>
+          <div class="info-amber info-box">
+            <span class="info-box-icon">⚠️</span>
+            <div>O Tai Chi sozinho não atinge as metas de 150 min/semana de atividade moderada pela maioria das definições (METs &lt;3). Para prevenção cardiovascular robusta, deve ser <strong>combinado com exercício aeróbico</strong> quando o paciente tolerar.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HIKING / TREKKING -->
+      <div class="act-card" id="act-hiking">
+        <div class="act-header" onclick="toggleAct('act-hiking')">
+          <div class="act-emoji">⛰️</div>
+          <div class="act-info">
+            <div class="act-name">Hiking / Trekking</div>
+            <div class="act-met">METs: 5,0–8,0+ (varia com altitude e inclinação)</div>
+            <div class="act-badges">
+              <span class="badge badge-b">Evidência B</span>
+              <span class="badge badge-red">Altitude — Atenção</span>
+            </div>
+          </div>
+          <svg class="act-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="act-body">
+          <div class="act-section-title">Benefícios Cardiovasculares</div>
+          <p style="font-size:.82rem;line-height:1.65;">
+            Hiking em altitude baixa e moderada corresponde a exercício aeróbico de intensidade moderada a vigorosa, com os mesmos benefícios cardiovasculares bem documentados para essa faixa de METs. Programas de caminhada em trilhas foram utilizados em estudos de reabilitação cardíaca e demostraram melhora de VO₂ máximo, qualidade de vida e perfil de risco CV. O contato com natureza agrega benefícios psicológicos independentes (redução de cortisol, melhora do humor).
+          </p>
+          <div class="act-section-title">⛰️ O Fator Altitude — Estratificação de Risco</div>
+          <div class="table-wrap" style="margin-top:.5rem;">
+            <table class="compare-table">
+              <thead><tr><th>Altitude</th><th>Alterações Fisiológicas</th><th>Risco CV</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td><strong>&lt;1.500 m</strong><br><small>Ex.: Campos do Jordão, partes da Serra Catarinense</small></td>
+                  <td>Mínimas. PO₂ praticamente normal. Sem adaptação significativa necessária.</td>
+                  <td><span class="badge badge-a">Baixo</span></td>
+                </tr>
+                <tr>
+                  <td><strong>1.500–2.500 m</strong><br><small>Ex.: Pico da Bandeira (2.890 m), Itatiaia (acampamento base)</small></td>
+                  <td>Leve hipoxemia. Aumento modesto da frequência cardíaca e PA. Saturação O₂ ↓2–4%. Tolerada pela maioria.</td>
+                  <td><span class="badge badge-b">Baixo-Moderado</span></td>
+                </tr>
+                <tr>
+                  <td><strong>2.500–3.500 m</strong><br><small>Ex.: Pico da Neblina (2.994 m), altitudes andinas baixas</small></td>
+                  <td>Hipoxemia relevante. ↑catecolaminas, ↑PA (especialmente sistólica), risco de <em>altitude sickness</em>. Saturação O₂ ↓5–10%.</td>
+                  <td><span class="badge badge-amber">Moderado</span> — avaliação médica recomendada em cardiopatas</td>
+                </tr>
+                <tr>
+                  <td><strong>&gt;3.500 m</strong><br><small>Ex.: Machu Picchu (2.430 m é exceção), Kilimanjaro (5.895 m)</small></td>
+                  <td>Hipoxemia severa. Risco de mal da montanha agudo (AMS), HACE, HAPE. Vasoconstrição pulmonar hipóxica. ↑risco de IAM e AVC.</td>
+                  <td><span class="badge badge-red">Alto</span> — contraindicado em IC, FEVE &lt;40%, angina instável</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="info-red info-box" style="margin-top:.75rem;">
+            <span class="info-box-icon">🚨</span>
+            <div><strong>Contraindicações a altitudes ≥2.500 m (relativas/absolutas):</strong> IC com FEVE reduzida (&lt;40%), angina instável ou recente, hipertensão pulmonar, valvopatia grave não corrigida, IC descompensada recente, IAM há menos de 3 meses. Pacientes com DAC estável e boa reserva funcional (MET &gt;5) podem realizar hiking em altitudes moderadas com avaliação cardiológica prévia.</div>
+          </div>
+          <div class="act-section-title">Recomendações Práticas</div>
+          <ul style="font-size:.8rem;line-height:1.8;padding-left:1.2rem;">
+            <li>Aclimatação gradual: não subir mais de 300–500 m de altitude de acampamento por dia acima de 3.000 m</li>
+            <li>Hidratação adequada (altitude aumenta perda hídrica respiratória)</li>
+            <li>Carregar nitroglicerina sublingual se DAC conhecida</li>
+            <li>Considerar acetazolamida (Diamox) profilática em subidas rápidas acima de 2.500 m (apenas com prescrição médica)</li>
+            <li>Qualquer dor torácica, dispneia excessiva ou confusão mental: descer imediatamente</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- NORDIC WALKING -->
+      <div class="act-card" id="act-nordic">
+        <div class="act-header" onclick="toggleAct('act-nordic')">
+          <div class="act-emoji">🥢</div>
+          <div class="act-info">
+            <div class="act-name">Caminhada Nórdica</div>
+            <div class="act-met">METs: 4,5–5,5 — ~20% mais que caminhada normal</div>
+            <div class="act-badges">
+              <span class="badge badge-b">Evidência B</span>
+              <span class="badge badge-info">VO₂ · PA · Idosos</span>
+            </div>
+          </div>
+          <svg class="act-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="act-body">
+          <div class="act-section-title">Evidência Cardiovascular</div>
+          <p style="font-size:.82rem;line-height:1.65;">
+            Meta-análise de Tschentscher et al. (2013, <em>J Phys Act Health</em>) em 10 estudos controlados demonstrou que a caminhada nórdica supera a caminhada convencional em melhora do VO₂ máximo (+11% vs. +8%), frequência cardíaca de repouso e PA sistólica. O uso dos bastões ativa musculatura de membros superiores (latíssimo, tríceps, deltóide), elevando o gasto energético em ~20% sem aumentar a percepção subjetiva de esforço.
+          </p>
+          <div class="info-teal info-box" style="margin-top:.75rem;">
+            <span class="info-box-icon">✅</span>
+            <div><strong>Por que é superior à caminhada comum?</strong> O envolvimento de membros superiores produz maior débito cardíaco e maior consumo de O₂ sem o impacto articular da corrida. É particularmente útil para cardiopatas em reabilitação (baixo impacto, treino de corpo inteiro), idosos e indivíduos com obesidade.</div>
+          </div>
+          <div class="act-section-title">Como Praticar Corretamente</div>
+          <ul style="font-size:.8rem;line-height:1.8;padding-left:1.2rem;">
+            <li>Bastões devem ser angulados para trás (≈45°), não verticais</li>
+            <li>Movimento alternado: braço direito com perna esquerda</li>
+            <li>Empurrar o bastão ativamente para trás — não apenas apoiar</li>
+            <li>Comprimento ideal: altura × 0,66–0,68</li>
+            <li>Recomenda-se instrução inicial com profissional de educação física</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- DANÇA -->
+      <div class="act-card" id="act-dance">
+        <div class="act-header" onclick="toggleAct('act-dance')">
+          <div class="act-emoji">💃</div>
+          <div class="act-info">
+            <div class="act-name">Dança / Zumba</div>
+            <div class="act-met">METs: 4,5 (social) a 9,0 (Zumba intensa)</div>
+            <div class="act-badges">
+              <span class="badge badge-b">Evidência B</span>
+              <span class="badge badge-info">Adesão · IC · Humor</span>
+            </div>
+          </div>
+          <svg class="act-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="act-body">
+          <div class="act-section-title">Evidência Cardiovascular</div>
+          <p style="font-size:.82rem;line-height:1.65;">
+            Štefan et al. (2019, meta-análise em <em>Public Health</em>) incluindo 23 estudos demonstrou que terapia de dança melhora aptidão cardiorrespiratória, qualidade de vida e composição corporal em adultos com doenças crônicas. Belardinelli et al. (2008, <em>Eur J Heart Fail</em>) avaliaram valsa vienense em 110 pacientes com IC e demonstraram melhora equivalente ao ciclismo em bicicleta ergométrica no teste de 6 minutos e no pico de VO₂. Zumba alcança FC de 79–86% da FC máxima — equivalente a exercício vigoroso em sessões de 40–60 min.
+          </p>
+          <div class="info-teal info-box" style="margin-top:.75rem;">
+            <span class="info-box-icon">🎵</span>
+            <div><strong>Vantagem principal: adesão.</strong> Estudos de longo prazo mostram taxas de abandono ~40% menores para dança em comparação a exercícios convencionais em academia. A componente social e o prazer estético reduzem a percepção de esforço e aumentam a motivação intrínseca.</div>
+          </div>
+          <div class="act-section-title">Tipos e Intensidades</div>
+          <ul style="font-size:.8rem;line-height:1.8;padding-left:1.2rem;">
+            <li><strong>Valsa, bolero (lento):</strong> 3,5–4,5 METs — moderado, adequado para IC compensada</li>
+            <li><strong>Salsa, forró, samba:</strong> 5,0–6,5 METs — moderado a vigoroso</li>
+            <li><strong>Zumba, dança aeróbica:</strong> 7,0–9,0 METs — vigoroso, comparável ao HIIT</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- NATAÇÃO / AQUÁTICO -->
+      <div class="act-card" id="act-swim">
+        <div class="act-header" onclick="toggleAct('act-swim')">
+          <div class="act-emoji">🏊</div>
+          <div class="act-info">
+            <div class="act-name">Natação &amp; Hidroginástica</div>
+            <div class="act-met">METs: 4,0–5,0 (hidro) / 5,8–10,0 (natação)</div>
+            <div class="act-badges">
+              <span class="badge badge-a">Evidência A</span>
+              <span class="badge badge-info">PA · VO₂ · Articular</span>
+            </div>
+          </div>
+          <svg class="act-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="act-body">
+          <div class="act-section-title">Evidência Cardiovascular</div>
+          <p style="font-size:.82rem;line-height:1.65;">
+            Tanaka et al. (2000, <em>Hypertension</em>) demonstraram que natação foi superior à caminhada para redução de PA em mulheres pós-menopausa (−9,0 vs. −4,1 mmHg de PA sistólica). Revisões Cochrane sobre exercício aquático mostram melhora consistente de VO₂ máximo, força muscular e PA em populações com artrite, IC e obesidade. A imersão em água redistributa volume sanguíneo centralmente, aumentando o pré-carga — efeito benéfico para adaptação cardíaca em normovolêmicos, mas requer atenção em IC descompensada.
+          </p>
+          <div class="info-teal info-box" style="margin-top:.75rem;">
+            <span class="info-box-icon">💧</span>
+            <div><strong>Vantagens únicas:</strong> (1) Baixíssimo impacto articular — ideal para obesos, idosos e pacientes com artrose. (2) A temperatura da água facilita a termorregulação. (3) A resistência da água em todas as direções promove treino muscular completo. (4) Efeito vasodilatador: a imersão reduz a resistência vascular periférica.</div>
+          </div>
+          <div class="info-amber info-box">
+            <span class="info-box-icon">⚠️</span>
+            <div><strong>IC Descompensada:</strong> O aumento do retorno venoso pela imersão pode precipitar edema pulmonar em pacientes com IC grave não compensada. Em IC compensada (classe NYHA I–II), o exercício aquático é seguro e benéfico.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HIIT -->
+      <div class="act-card" id="act-hiit">
+        <div class="act-header" onclick="toggleAct('act-hiit')">
+          <div class="act-emoji">⚡</div>
+          <div class="act-info">
+            <div class="act-name">HIIT — Treino Intervalado de Alta Intensidade</div>
+            <div class="act-met">METs: 8,0–12,0+ nos intervalos ativos</div>
+            <div class="act-badges">
+              <span class="badge badge-a">Evidência A</span>
+              <span class="badge badge-red">Avaliação Médica Prévia</span>
+            </div>
+          </div>
+          <svg class="act-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="act-body">
+          <div class="act-section-title">Evidência Cardiovascular</div>
+          <p style="font-size:.82rem;line-height:1.65;">
+            HIIT demonstra consistentemente superioridade ao exercício contínuo de intensidade moderada (MICT) na melhora do VO₂ máximo (+15–25% vs. +10–15%). Meta-análise de Wewege et al. (2017) em 1.334 pacientes com sobrepeso/obesidade mostrou que HIIT produziu reduções equivalentes ou superiores ao MICT para peso, gordura corporal e PA com 40% menos tempo de treino. Nos ensaios EXCITE (Conraads 2015) e SMARTEX-HF (Ellingsen 2017) em pacientes com IC, o HIIT foi seguro e superior ao MICT para VO₂ máximo — embora sem diferença no remodelamento ventricular.
+          </p>
+          <div class="info-teal info-box" style="margin-top:.75rem;">
+            <span class="info-box-icon">⏱️</span>
+            <div><strong>Eficiência de tempo:</strong> Um protocolo típico 4×4 min (4 blocos de 4 min a 85–95% FC máxima, intercalados por 3 min de recuperação ativa) em apenas ~35 min 3×/semana produz benefícios cardiovasculares comparáveis a 150 min/semana de MICT.<sup>[2]</sup></div>
+          </div>
+          <div class="act-section-title">Protocolos Comuns</div>
+          <ul style="font-size:.8rem;line-height:1.8;padding-left:1.2rem;">
+            <li><strong>Protocolo 4×4 (Norueguês):</strong> 4 min a 85–95% FC máx + 3 min recuper. ativa — padrão ouro em pesquisa</li>
+            <li><strong>Tabata:</strong> 8×(20 seg máximo + 10 seg pausa) = 4 min — muito intenso, exige preparo prévio</li>
+            <li><strong>30–30:</strong> 30 seg sprint + 30 seg recuperação × 10–20 repetições</li>
+            <li><strong>HIIT adaptado para cardiopatas:</strong> intervalos a 70–85% FC máx, sob supervisão em reabilitação cardíaca</li>
+          </ul>
+          <div class="info-red info-box">
+            <span class="info-box-icon">🚨</span>
+            <div><strong>Quem precisa de avaliação médica antes do HIIT:</strong> Qualquer pessoa com cardiopatia conhecida (DAC, IC, valvopatia), histórico de arritmias, diabetes com complicações, hipertensão não controlada, sedentarismo prolongado (&gt;6 meses) + idade ≥40 anos (homens) ou ≥50 anos (mulheres), ou qualquer sintoma cardiovascular inexplicável. Não iniciar HIIT sem clearance médico nestas situações.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MEDITAÇÃO / MINDFULNESS -->
+      <div class="act-card" id="act-medita">
+        <div class="act-header" onclick="toggleAct('act-medita')">
+          <div class="act-emoji">🧠</div>
+          <div class="act-info">
+            <div class="act-name">Meditação &amp; Mindfulness</div>
+            <div class="act-met">METs: 1,0–1,5 — não é exercício físico</div>
+            <div class="act-badges">
+              <span class="badge badge-c">Evidência C</span>
+              <span class="badge badge-info">PA · Estresse · Autonômico</span>
+            </div>
+          </div>
+          <svg class="act-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="act-body">
+          <div class="act-section-title">Evidência Cardiovascular</div>
+          <p style="font-size:.82rem;line-height:1.65;">
+            Meditação e práticas de mindfulness (incluindo MBSR — Mindfulness-Based Stress Reduction) não são classificadas como exercício físico, mas produzem efeitos cardiovasculares indiretos relevantes. Meta-análise de Shi et al. (2017, <em>J Hypertension</em>, 19 RCTs) demonstrou redução média de −4,7 mmHg na PA sistólica e −2,1 mmHg na diastólica com MBSR. A AHA publicou declaração científica reconhecendo possível benefício na redução de PA, especialmente em hipertensos com alto componente de estresse. Não existem RCTs com desfechos cardiovasculares duros (IAM, mortalidade) usando meditação como intervenção isolada.
+          </p>
+          <div class="info-amber info-box" style="margin-top:.75rem;">
+            <span class="info-box-icon">📌</span>
+            <div><strong>Posição clínica:</strong> A meditação é uma prática complementar valiosa, mas <em>não substitui</em> o exercício físico para prevenção cardiovascular. A redução do estresse crônico, do cortisol e da ativação simpática são mecanismos plausíveis para os benefícios observados. Recomendada como parte de um estilo de vida saudável integrado.</div>
+          </div>
+          <div class="act-section-title">Mecanismos Cardiovasculares Propostos</div>
+          <ul style="font-size:.8rem;line-height:1.8;padding-left:1.2rem;">
+            <li>Redução do tônus simpático e da variabilidade da FC (aumento parassimpático)</li>
+            <li>Diminuição dos níveis de cortisol e catecolaminas</li>
+            <li>Redução de marcadores inflamatórios (IL-6, TNF-α) em alguns estudos</li>
+            <li>Melhora da adesão a medicamentos e hábitos saudáveis (efeito indireto)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- EXERCÍCIO ISOMÉTRICO -->
+      <div class="act-card" id="act-iso">
+        <div class="act-header" onclick="toggleAct('act-iso')">
+          <div class="act-emoji">🤜</div>
+          <div class="act-info">
+            <div class="act-name">Exercício Isométrico (Prancha, Wall Squat)</div>
+            <div class="act-met">METs: 3,0–5,0 — variável</div>
+            <div class="act-badges">
+              <span class="badge badge-a">Evidência A — PA</span>
+              <span class="badge badge-info">Nova evidência 2023</span>
+            </div>
+          </div>
+          <svg class="act-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="act-body">
+          <div class="act-section-title">Evidência — Destaque de 2023</div>
+          <p style="font-size:.82rem;line-height:1.65;">
+            Meta-análise em rede de Jayedi et al. (2023, <em>British Journal of Sports Medicine</em>, 270 RCTs, 15.827 participantes) — a maior análise comparativa de modalidades de exercício para PA — demonstrou que <strong>exercício isométrico (prancha, wall squat estático) produziu as maiores reduções de PA sistólica</strong> entre todos os tipos de exercício avaliados: −8,24 mmHg sistólica e −4,0 mmHg diastólica, superando exercício aeróbico, resistido dinâmico e HIIT. Este achado gerou impacto considerável nas discussões sobre hipertensão.
+          </p>
+          <div class="info-teal info-box" style="margin-top:.75rem;">
+            <span class="info-box-icon">🔬</span>
+            <div><strong>Mecanismo:</strong> A contração isométrica sustentada gera oclusão vascular durante o esforço e hiperemia reativa pós-exercício, com efeito vasodilatador persistente. A prancha (2 min × 4 séries, 3–5×/semana) foi o protocolo com melhor evidência.</div>
+          </div>
+          <div class="info-amber info-box">
+            <span class="info-box-icon">⚠️</span>
+            <div><strong>Limitação importante:</strong> Os dados são para desfecho intermediário (PA), não para eventos cardiovasculares duros. Exercício isométrico máximo pode provocar aumentos abruptos de PA durante a contração — cuidado especial em hipertensos com PA não controlada e aneurismas conhecidos. A prancha abdominal e wall squat (baixa e moderada intensidade) são seguros para a maioria dos hipertensos estáveis.</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /activity-grid -->
+
+  </div><!-- /tab3 -->
+
+  <!-- ════════════════════════════════════════════════════════
+       TAB 4 — POPULAÇÕES ESPECIAIS
+  ════════════════════════════════════════════════════════ -->
+  <div id="tab4" class="step-section">
+
+    <div class="section-label">Individualização do Exercício</div>
+    <div class="section-title">Orientação para Populações Especiais</div>
+    <p style="font-size:.88rem;color:var(--muted-foreground);margin:.5rem 0 1.5rem;">Cada condição cardiovascular e metabólica exige adaptações específicas na prescrição de exercício. Clique em cada grupo para ver orientações detalhadas.</p>
+
+    <div class="pop-grid">
+
+      <!-- PÓS-IAM / REVASCULARIZAÇÃO -->
+      <div class="pop-card">
+        <div class="pop-header" onclick="togglePop(this)">
+          <div class="pop-icon">❤️‍🩹</div>
+          <div style="flex:1;">
+            <div class="pop-name">Pós-IAM / Pós-Revascularização (PCI/CABG)</div>
+            <div style="margin-top:.25rem;"><span class="badge badge-a">Evidência A</span> <span class="badge badge-info">Reabilitação Cardíaca</span></div>
+          </div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--muted-foreground);flex-shrink:0;transition:transform .25s;" class="pop-chev"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="pop-body" style="display:none;">
+          <p>A <strong>Reabilitação Cardíaca (RC)</strong> baseada em exercício é uma das intervenções com maior evidência em toda a cardiologia. Meta-análise de Taylor et al. (Cochrane, 2014, 63 RCTs, 14.486 pacientes) demonstrou:</p>
+          <ul style="margin:.75rem 0;padding-left:1.2rem;line-height:1.9;">
+            <li>↓ 26% mortalidade cardiovascular (RR 0,74)</li>
+            <li>↓ 18% hospitalizações cardiovasculares</li>
+            <li>↓ 31% qualidade de vida global deteriorada</li>
+            <li>Sem aumento de eventos adversos graves</li>
+          </ul>
+          <div class="info-teal info-box">
+            <span class="info-box-icon">📋</span>
+            <div><strong>Quando iniciar:</strong> Deambulação ainda na internação hospitalar. Mobilização precoce (24–48h pós-PCI sem complicações). Programa estruturado de RC idealmente na 2ª semana pós-alta.</div>
+          </div>
+          <div class="info-amber info-box">
+            <span class="info-box-icon">⚠️</span>
+            <div><strong>Precauções:</strong> Exercícios resistidos pesados devem aguardar 4–6 semanas pós-IAM e 6–8 semanas pós-CABG. Não realizar exercício extenuante sem supervisão nas primeiras 4 semanas. Monitorar sinais de angina (dor/pressão no peito, irradiação, sudorese fria) — se ocorrer: parar imediatamente e contatar seu médico.</div>
+          </div>
+          <p style="margin-top:.75rem;"><strong>Meta progressiva após alta:</strong> Iniciar com 10–15 min/dia de caminhada leve (≈3 km/h), aumentando 5 min/semana. Alvo em 8–12 semanas: 30–45 min de caminhada moderada-rápida, 5×/semana.</p>
+        </div>
+      </div>
+
+      <!-- IC -->
+      <div class="pop-card">
+        <div class="pop-header" onclick="togglePop(this)">
+          <div class="pop-icon">🫀</div>
+          <div style="flex:1;">
+            <div class="pop-name">Insuficiência Cardíaca (IC)</div>
+            <div style="margin-top:.25rem;"><span class="badge badge-a">Evidência A</span> <span class="badge badge-info">HF-ACTION · SMARTEX-HF</span></div>
+          </div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--muted-foreground);flex-shrink:0;transition:transform .25s;" class="pop-chev"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="pop-body" style="display:none;">
+          <p>O ensaio HF-ACTION (O'Connor et al., JAMA 2009, 2.331 pacientes com IC e FEVE ≤35%) demonstrou que exercício aeróbico supervisionado reduziu o desfecho combinado de mortalidade/hospitalização por IC em 11% (ajustado). O trial SMARTEX-HF demonstrou superioridade do HIIT (protocolo 4×4 min) sobre MICT para melhora do VO₂ máximo em pacientes com ICFEr.</p>
+          <div class="info-teal info-box" style="margin-top:.75rem;">
+            <span class="info-box-icon">✅</span>
+            <div><strong>Recomendação:</strong> Exercício aeróbico regular é RECOMENDADO (Classe IA) para pacientes com IC ESTÁVEL (compensada, sem edema agudo). Inicia-se com baixa intensidade (40–50% FC reserva) e progride conforme tolerância. Modalidades: caminhada, Tai Chi, natação, ciclismo estacionário.</div>
+          </div>
+          <div class="info-red info-box">
+            <span class="info-box-icon">🚫</span>
+            <div><strong>Contraindicações TEMPORÁRIAS ao exercício na IC:</strong> IC descompensada (edema pulmonar, anasarca), estenose aórtica grave sintomática, bloqueio AV avançado não tratado, arritmias ventriculares malignas não controladas, miocardite ativa.</div>
+          </div>
+          <p style="margin-top:.75rem;font-size:.82rem;"><strong>Sinais de alarme durante exercício em pacientes com IC:</strong> Peso aumentado &gt;2 kg em 3 dias (retenção hídrica), dispneia em repouso, ortopneia, edema de MMII progressivo → <strong>contatar médico antes de exercitar.</strong></p>
+        </div>
+      </div>
+
+      <!-- DIABETES -->
+      <div class="pop-card">
+        <div class="pop-header" onclick="togglePop(this)">
+          <div class="pop-icon">🩸</div>
+          <div style="flex:1;">
+            <div class="pop-name">Diabetes Mellitus</div>
+            <div style="margin-top:.25rem;"><span class="badge badge-a">Evidência A</span> <span class="badge badge-info">Look AHEAD · UKPDS</span></div>
+          </div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--muted-foreground);flex-shrink:0;transition:transform .25s;" class="pop-chev"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="pop-body" style="display:none;">
+          <div class="info-teal info-box">
+            <span class="info-box-icon">💡</span>
+            <div>A combinação de exercício aeróbico + resistido é superior a qualquer modalidade isolada para controle glicêmico no DM2. Meta-análise de Umpierre et al. (JAMA 2011) demonstrou redução de −0,89% na HbA1c com exercício estruturado.</div>
+          </div>
+          <div class="act-section-title" style="margin-top:.75rem;">DM Tipo 2</div>
+          <ul style="font-size:.82rem;line-height:1.8;padding-left:1.2rem;">
+            <li>Meta: ≥150 min/sem aeróbico + 2×/sem resistido</li>
+            <li>Não permanecer sentado &gt;30 min seguidos — levantar e caminhar 3–5 min</li>
+            <li>Exercício pós-refeição (45–60 min após) reduz pico glicêmico pós-prandial</li>
+            <li>Monitorar glicemia antes e após exercício nas fases iniciais</li>
+          </ul>
+          <div class="act-section-title">DM Tipo 1 — Cuidados Específicos</div>
+          <ul style="font-size:.82rem;line-height:1.8;padding-left:1.2rem;">
+            <li>Risco de hipoglicemia durante e após exercício (até 12h após)</li>
+            <li>Checar glicemia antes: &lt;100 mg/dL = ingerir carboidrato antes; &gt;250 mg/dL com cetonas = não exercitar</li>
+            <li>HIIT pode elevar transitoriamente a glicemia (pico de catecolaminas) — benéfico para evitar hipoglicemia durante a sessão</li>
+            <li>Ajuste de insulina prandial em dias de exercício: discutir com endocrinologista</li>
+          </ul>
+          <div class="info-amber info-box" style="margin-top:.5rem;">
+            <span class="info-box-icon">👣</span>
+            <div><strong>Neuropatia periférica:</strong> Inspecionar os pés diariamente em DM com neuropatia. Preferir natação, ciclismo e hidroginástica a caminhada em terreno irregular se houver perda de sensibilidade protetora.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HIPERTENSÃO -->
+      <div class="pop-card">
+        <div class="pop-header" onclick="togglePop(this)">
+          <div class="pop-icon">📊</div>
+          <div style="flex:1;">
+            <div class="pop-name">Hipertensão Arterial</div>
+            <div style="margin-top:.25rem;"><span class="badge badge-a">Evidência A</span> <span class="badge badge-info">1ª Linha de Tratamento</span></div>
+          </div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--muted-foreground);flex-shrink:0;transition:transform .25s;" class="pop-chev"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="pop-body" style="display:none;">
+          <p style="font-size:.82rem;line-height:1.65;">A declaração científica da AHA (2021, <em>Hypertension</em>) posiciona o exercício como intervenção de <strong>primeira linha</strong> no tratamento da hipertensão arterial — junto com dieta e redução de sódio — antes ou junto com medicamentos em estágio 1 (130–139/80–89 mmHg).</p>
+          <div class="act-section-title" style="margin-top:.75rem;">Magnitudes de Redução por Modalidade (PA Sistólica)</div>
+          <ul style="font-size:.82rem;line-height:1.8;padding-left:1.2rem;">
+            <li>Exercício isométrico (prancha, wall squat): <span style="color:var(--teal);font-family:var(--font-mono);">−8,2 mmHg</span> <sup>[18]</sup></li>
+            <li>Aeróbico contínuo (caminhada/corrida): <span style="color:var(--teal);font-family:var(--font-mono);">−4,5 mmHg</span></li>
+            <li>HIIT: <span style="color:var(--teal);font-family:var(--font-mono);">−4,1 mmHg</span></li>
+            <li>Resistido dinâmico (musculação): <span style="color:var(--teal);font-family:var(--font-mono);">−3,5 mmHg</span></li>
+            <li>Tai Chi: <span style="color:var(--teal);font-family:var(--font-mono);">−8,6 mmHg</span> <sup>[10]</sup></li>
+          </ul>
+          <div class="info-amber info-box" style="margin-top:.5rem;">
+            <span class="info-box-icon">⚠️</span>
+            <div><strong>Não exercitar com PA &gt;160/100 mmHg sem avaliação médica.</strong> Após controle medicamentoso, exercício potencializa o efeito anti-hipertensivo e pode permitir redução de doses. Medir a PA antes de exercitar nas fases iniciais.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- IDOSOS -->
+      <div class="pop-card">
+        <div class="pop-header" onclick="togglePop(this)">
+          <div class="pop-icon">👴</div>
+          <div style="flex:1;">
+            <div class="pop-name">Idosos (&gt;65 anos)</div>
+            <div style="margin-top:.25rem;"><span class="badge badge-a">Evidência A</span> <span class="badge badge-info">Quedas · Sarcopenia · Cognição</span></div>
+          </div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--muted-foreground);flex-shrink:0;transition:transform .25s;" class="pop-chev"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="pop-body" style="display:none;">
+          <p style="font-size:.82rem;line-height:1.65;">As mesmas metas de 150 min/semana se aplicam aos idosos — adaptadas à capacidade funcional. Quem não consegue atingir a meta por limitações físicas deve ser tão ativo quanto possível. Idosos devem <strong>adicionar treinos de equilíbrio e fortalecimento</strong> (3×/semana) além do aeróbico.</p>
+          <div class="act-section-title" style="margin-top:.75rem;">Prioridades no Idoso</div>
+          <ul style="font-size:.82rem;line-height:1.8;padding-left:1.2rem;">
+            <li><strong>Prevenção de quedas:</strong> exercícios de equilíbrio (Tai Chi, treino em tábua instável) reduzem quedas em 23% (meta-análise)</li>
+            <li><strong>Sarcopenia:</strong> treino resistido 2–3×/semana, 2–4 séries de 8–12 repetições preserva e reconstrói massa muscular</li>
+            <li><strong>Cognição:</strong> exercício aeróbico 3×/semana reduz risco de demência em ~30%</li>
+            <li><strong>Depressão/Isolamento:</strong> modalidades em grupo (Tai Chi, dança, hidroginástica) agregam componente social</li>
+          </ul>
+          <div class="info-teal info-box" style="margin-top:.5rem;">
+            <span class="info-box-icon">✅</span>
+            <div><strong>Melhores modalidades para idosos:</strong> Caminhada nórdica, Tai Chi, hidroginástica, Pilates, dança de salão, musculação leve supervisionada. Todas adaptadas a limitações individuais com avaliação prévia do profissional de saúde.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DAP -->
+      <div class="pop-card">
+        <div class="pop-header" onclick="togglePop(this)">
+          <div class="pop-icon">🦵</div>
+          <div style="flex:1;">
+            <div class="pop-name">Doença Arterial Periférica (DAP)</div>
+            <div style="margin-top:.25rem;"><span class="badge badge-a">Evidência A</span> <span class="badge badge-info">Caminhada Supervisionada</span></div>
+          </div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--muted-foreground);flex-shrink:0;transition:transform .25s;" class="pop-chev"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="pop-body" style="display:none;">
+          <p style="font-size:.82rem;line-height:1.65;">Em pacientes com DAP e claudicação intermitente, o programa de <strong>caminhada supervisionada</strong> é o tratamento de primeira linha antes de intervenção cirúrgica ou percutânea, segundo as diretrizes ACC/AHA. O ensaio CLEVER demonstrou que treino supervisionado produziu melhora funcional superior à stenting ilíaco sozinho em 6 meses.</p>
+          <div class="info-teal info-box" style="margin-top:.75rem;">
+            <span class="info-box-icon">🚶</span>
+            <div><strong>Protocolo recomendado:</strong> Caminhar até o aparecimento de dor moderada (claudicação), parar e repousar até resolução, retomar. Sessões de 30–60 min, 3×/semana, por no mínimo 12 semanas. Melhora a distância de marcha em 150–200% com adesão.</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /pop-grid -->
+
+  </div><!-- /tab4 -->
+
+  <!-- ════════════════════════════════════════════════════════
+       TAB 5 — COMO INICIAR
+  ════════════════════════════════════════════════════════ -->
+  <div id="tab5" class="step-section">
+
+    <div class="section-label">Guia Prático</div>
+    <div class="section-title">Como Iniciar com Segurança</div>
+    <p style="font-size:.88rem;color:var(--muted-foreground);margin:.5rem 0 1.5rem;">O maior obstáculo para o benefício cardiovascular do exercício não é a falta de evidência — é a falta de início e a descontinuação precoce. Este guia prático ajuda a transformar intenção em hábito sustentável.</p>
+
+    <!-- FITT -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">📐</div>
+        <div>
+          <div class="card-title">Princípio FITT — O Framework da Prescrição de Exercício</div>
+          <div class="card-subtitle">Utilizado por cardiologistas e educadores físicos para individualizar o treinamento</div>
+        </div>
+      </div>
+      <div class="fitt-grid">
+        <div class="fitt-box">
+          <div class="fitt-letter">F</div>
+          <div class="fitt-word">Frequência</div>
+          <div class="fitt-content">
+            <strong>Aeróbico:</strong> 3–5 dias/semana<br>
+            <strong>Resistido:</strong> 2–3 dias/semana (dias alternados)<br>
+            <strong>Flexibilidade:</strong> Todos os dias (breve, pós-treino)<br><br>
+            Iniciantes podem começar com 3×/semana e progredir.
+          </div>
+        </div>
+        <div class="fitt-box">
+          <div class="fitt-letter">I</div>
+          <div class="fitt-word">Intensidade</div>
+          <div class="fitt-content">
+            <strong>Moderada:</strong> 50–70% da FC máxima*<br>
+            <strong>Vigorosa:</strong> 70–85% da FC máxima<br>
+            <strong>Alternativa (Escala de Borg):</strong> Intensidade em que consegue conversar com esforço mas não cantar.<br><br>
+            *FC máxima estimada = 220 − idade (em anos)
+          </div>
+        </div>
+        <div class="fitt-box">
+          <div class="fitt-letter">T</div>
+          <div class="fitt-word">Tempo (Duração)</div>
+          <div class="fitt-content">
+            <strong>Aeróbico:</strong> 30–60 min/sessão (moderado) ou 20–30 min/sessão (vigoroso)<br>
+            <strong>Resistido:</strong> 2–4 séries de 8–15 repetições por grupo muscular<br><br>
+            Pode ser fracionado: 3×10 min equivale a 30 min contínuos.<sup>[4]</sup>
+          </div>
+        </div>
+        <div class="fitt-box">
+          <div class="fitt-letter">T</div>
+          <div class="fitt-word">Tipo</div>
+          <div class="fitt-content">
+            Escolha atividades que você <em>gosta</em>. A modalidade ideal é a que você <em>continua fazendo</em>.<br><br>
+            Combine aeróbico (caminhada, natação, dança) com resistido (musculação, Pilates, elásticos) para máximo benefício cardiovascular.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Progressão segura -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">📈</div>
+        <div>
+          <div class="card-title">Progressão Segura para Iniciantes</div>
+          <div class="card-subtitle">Regra geral: nunca aumentar volume ou intensidade mais que 10% por semana</div>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class="compare-table">
+          <thead><tr><th>Fase</th><th>Semanas</th><th>Duração/Sessão</th><th>Intensidade</th><th>Frequência</th></tr></thead>
+          <tbody>
+            <tr><td>🟡 Adaptação</td><td>1–4</td><td>10–20 min</td><td>Leve (40–50% FC máx)</td><td>3×/sem</td></tr>
+            <tr><td>🟠 Construção</td><td>5–8</td><td>20–35 min</td><td>Moderada (50–65% FC máx)</td><td>3–4×/sem</td></tr>
+            <tr><td>🟢 Progressão</td><td>9–16</td><td>35–50 min</td><td>Moderada-Vigorosa (60–75%)</td><td>4–5×/sem</td></tr>
+            <tr><td>✅ Manutenção</td><td>17+</td><td>30–60 min</td><td>Variada (periodização)</td><td>4–5×/sem</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Semana exemplo -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">📅</div>
+        <div>
+          <div class="card-title">Exemplo de Semana — Fase de Manutenção</div>
+          <div class="card-subtitle">Programa balanceado atingindo as metas das diretrizes ACC/AHA</div>
+        </div>
+      </div>
+      <div class="week-grid">
+        <div class="day-box active-day">
+          <div class="day-name">Seg</div>
+          <div class="day-act">🚶 Caminhada rápida<br>40 min</div>
+        </div>
+        <div class="day-box active-day">
+          <div class="day-name">Ter</div>
+          <div class="day-act">💪 Musculação ou Pilates<br>45 min</div>
+        </div>
+        <div class="day-box active-day">
+          <div class="day-name">Qua</div>
+          <div class="day-act">🏊 Natação ou Hidroginástica<br>40 min</div>
+        </div>
+        <div class="day-box rest">
+          <div class="day-name">Qui</div>
+          <div class="day-act">😴 Descanso ativo<br>(alongamento 15 min)</div>
+        </div>
+        <div class="day-box active-day">
+          <div class="day-name">Sex</div>
+          <div class="day-act">⚡ HIIT ou Corrida<br>30 min</div>
+        </div>
+        <div class="day-box active-day">
+          <div class="day-name">Sáb</div>
+          <div class="day-act">💃 Dança ou Caminhada Nórdica<br>50 min</div>
+        </div>
+        <div class="day-box rest">
+          <div class="day-name">Dom</div>
+          <div class="day-act">🧘 Yoga ou descanso<br>30 min</div>
+        </div>
+      </div>
+      <p style="font-size:.78rem;color:var(--muted-foreground);margin-top:.75rem;">Este exemplo totaliza ≈200 min aeróbico/semana + 2 sessões de resistido + flexibilidade — superando as metas das diretrizes. Adapte de acordo com sua rotina.</p>
+    </div>
+
+    <!-- Sinais de alarme -->
+    <div class="card" style="border-color:rgba(220,38,38,.3);">
+      <div class="card-header">
+        <div class="card-icon" style="background:rgba(220,38,38,.15);color:#f87171;">🚨</div>
+        <div>
+          <div class="card-title">Sinais de Alarme — PARE e Procure Atendimento</div>
+          <div class="card-subtitle">Durante ou após exercício, estes sintomas requerem atenção imediata</div>
+        </div>
+      </div>
+      <div class="info-red info-box">
+        <span class="info-box-icon">❗</span>
+        <div>
+          <strong>PARE IMEDIATAMENTE E LIGUE 192 (SAMU) ou vá ao pronto-socorro se apresentar:</strong>
+          <ul style="margin-top:.5rem;padding-left:1.2rem;line-height:2;">
+            <li>Dor, pressão ou aperto no peito (com ou sem irradiação para braço, mandíbula ou costas)</li>
+            <li>Falta de ar desproporcional ao esforço ou em repouso</li>
+            <li>Tontura intensa, desmaio ou pré-síncope durante o exercício</li>
+            <li>Palpitações rápidas e irregulares acompanhadas de mal-estar</li>
+            <li>Dor de cabeça intensa e súbita durante esforço</li>
+            <li>Fraqueza súbita ou perda de coordenação motora</li>
+          </ul>
+        </div>
+      </div>
+      <div class="info-amber info-box">
+        <span class="info-box-icon">⚠️</span>
+        <div>
+          <strong>Consulte seu médico antes de aumentar a intensidade se você tiver:</strong> Hipertensão não controlada, diabetes com complicações, cardiopatia conhecida, histórico familiar de morte súbita em familiar jovem, qualquer sintoma cardiovascular nos últimos 6 meses, ou estiver utilizando medicações que afetam a resposta cardiovascular ao exercício (beta-bloqueadores, antiarrítmicos, digitálicos).
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /tab5 -->
+
+  <!-- ════════════════════════════════════════════════════════
+       TAB 6 — REFERÊNCIAS
+  ════════════════════════════════════════════════════════ -->
+  <div id="tab6" class="step-section">
+
+    <div class="section-label">Fontes Científicas</div>
+    <div class="section-title">Referências Bibliográficas</div>
+    <p style="font-size:.88rem;color:var(--muted-foreground);margin:.5rem 0 1.5rem;">Todas as informações deste guia são baseadas em diretrizes de sociedades internacionais e estudos publicados em periódicos peer-reviewed de alto impacto. Abaixo estão as referências organizadas por nível de evidência.</p>
+
+    <div class="card">
+      <div class="section-label">Diretrizes e Statements Oficiais</div>
+      <ul class="ref-list">
+        <li class="ref-item">
+          <div class="ref-num">[1]</div>
+          <div>
+            <div class="ref-title">Increasing Equity of Physical Activity Promotion for Optimal Cardiovascular Health in Adults: A Scientific Statement From the American Heart Association.</div>
+            <div class="ref-meta">Jerome GJ, Boyer WR, Bustamante EE, et al. <em>Circulation.</em> 2023. <span class="ref-ev">Guideline</span></div>
+          </div>
+        </li>
+        <li class="ref-item">
+          <div class="ref-num">[2]</div>
+          <div>
+            <div class="ref-title">Exercise for Primary and Secondary Prevention of Cardiovascular Disease: JACC Focus Seminar 1/4.</div>
+            <div class="ref-meta">Tucker WJ, Fegers-Wustrow I, Halle M, et al. <em>J Am Coll Cardiol.</em> 2022. <span class="ref-ev">Meta-análise</span></div>
+          </div>
+        </li>
+        <li class="ref-item">
+          <div class="ref-num">[3]</div>
+          <div>
+            <div class="ref-title">2024 Guideline for the Primary Prevention of Stroke.</div>
+            <div class="ref-meta">Bushnell C, Kernan WN, Sharrief AZ, et al. <em>Stroke.</em> 2024. <span class="ref-ev">Guideline</span></div>
+          </div>
+        </li>
+        <li class="ref-item">
+          <div class="ref-num">[4]</div>
+          <div>
+            <div class="ref-title">2019 ACC/AHA Guideline on the Primary Prevention of Cardiovascular Disease.</div>
+            <div class="ref-meta">Arnett DK, Blumenthal RS, Albert MA, et al. <em>J Am Coll Cardiol.</em> 2019. <span class="ref-ev">Guideline</span></div>
+          </div>
+        </li>
+        <li class="ref-item">
+          <div class="ref-num">[7]</div>
+          <div>
+            <div class="ref-title">Clinical Practice Guideline on Lipid Management for Cardiovascular Disease Risk Reduction.</div>
+            <div class="ref-meta">Heidenreich P, Spacek L, Gregor N, et al. <em>Department of Veterans Affairs.</em> 2026. <span class="ref-ev">Guideline</span></div>
+          </div>
+        </li>
+        <li class="ref-item">
+          <div class="ref-num">[8]</div>
+          <div>
+            <div class="ref-title">Physical Activity as a Critical Component of First-Line Treatment for Elevated Blood Pressure or Cholesterol: Who, What, and How? A Scientific Statement From the American Heart Association.</div>
+            <div class="ref-meta"><em>Hypertension.</em> 2021. <span class="ref-ev">Statement</span></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="section-label">Ensaios Clínicos e Meta-Análises — Atividade Física Convencional</div>
+      <ul class="ref-list">
+        <li class="ref-item">
+          <div class="ref-num">[5]</div>
+          <div>
+            <div class="ref-title">Behavioral Counseling Interventions to Promote a Healthy Diet and Physical Activity for CVD Prevention in Adults Without Known CVD Risk Factors.</div>
+            <div class="ref-meta">Patnode CD, Redmond N, Iacocca MO, Henninger M. <em>JAMA.</em> 2022. <span class="ref-ev">Revisão Sistemática</span></div>
+          </div>
+        </li>
+        <li class="ref-item">
+          <div class="ref-num">[6]</div>
+          <div>
+            <div class="ref-title">Behavioral Counseling to Promote a Healthy Diet and Physical Activity for CVD Prevention in Adults With Cardiovascular Risk Factors.</div>
+            <div class="ref-meta">O'Connor EA, Evans CV, Rushkin MC, Redmond N, Lin JS. <em>JAMA.</em> 2020. <span class="ref-ev">Revisão Sistemática</span></div>
+          </div>
+        </li>
+        <li class="ref-item">
+          <div class="ref-num">[11]</div>
+          <div>
+            <div class="ref-title">Exercise-Based Cardiac Rehabilitation for Coronary Heart Disease (Cochrane Review).</div>
+            <div class="ref-meta">Taylor RS, Sagar VA, Davies EJ, et al. <em>Cochrane Database Syst Rev.</em> 2014. <span class="ref-ev">Meta-análise</span></div>
+          </div>
+        </li>
+        <li class="ref-item">
+          <div class="ref-num">[12]</div>
+          <div>
+            <div class="ref-title">Aerobic Interval Training versus Continuous Moderate Exercise as a Treatment for the Metabolic Syndrome — A Pilot Study (SMARTEX-HF).</div>
+            <div class="ref-meta">Ellingsen Ø, Halle M, Conraads V, et al. <em>Circulation.</em> 2017. <span class="ref-ev">RCT</span></div>
+          </div>
+        </li>
+        <li class="ref-item">
+          <div class="ref-num">[13]</div>
+          <div>
+            <div class="ref-title">HF-ACTION: Efficacy and Safety of Exercise Training in Patients with Chronic Heart Failure.</div>
+            <div class="ref-meta">O'Connor CM, Whellan DJ, Lee KL, et al. <em>JAMA.</em> 2009. <span class="ref-ev">RCT</span></div>
+          </div>
+        </li>
+        <li class="ref-item">
+          <div class="ref-num">[14]</div>
+          <div>
+            <div class="ref-title">Potential Adverse Cardiovascular Effects from Excessive Endurance Exercise.</div>
+            <div class="ref-meta">O'Keefe JH, Patil HR, Lavie CJ, et al. <em>Mayo Clin Proc.</em> 2012. <span class="ref-ev">Revisão</span></div>
+          </div>
+        </li>
+        <li class="ref-item">
+          <div class="ref-num">[15]</div>
+          <div>
+            <div class="ref-title">Physical Activity and Cardiovascular Disease — Major Risk Factors and Primary Prevention: A Scientific Statement From the AHA.</div>
+            <div class="ref-meta">Lavie CJ, Ozemek C, Carbone S, et al. <em>J Am Coll Cardiol.</em> 2019. <span class="ref-ev">Statement</span></div>
+          </div>
+        </li>
+        <li class="ref-item">
+          <div class="ref-num">[16]</div>
+          <div>
+            <div class="ref-title">Minimum Amount of Physical Activity for Reduced Mortality and Extended Life Expectancy: A Prospective Cohort Study.</div>
+            <div class="ref-meta">Wen CP, Wai JPM, Tsai MK, et al. <em>Lancet.</em> 2011. <span class="ref-ev">Coorte prospectiva</span></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="section-label">Atividades Não Convencionais</div>
+      <ul class="ref-list">
+        <li class="ref-item">
+          <div class="ref-num">[17]</div>
+          <div>
+            <div class="ref-title">Effects of Yoga on Cardiovascular Disease Risk Factors: A Systematic Review and Meta-Analysis.</div>
+            <div class="ref-meta">Cramer H, Lauche R, Haller H, et al. <em>Int J Cardiol.</em> 2014. <span class="ref-ev">Meta-análise</span></div>
+          </div>
+        </li>
+        <li class="ref-item">
+          <div class="ref-num">[18]</div>
+          <div>
+            <div class="ref-title">Isometric Exercise Training for Blood Pressure Management: A Systematic Review and Meta-Analysis to Optimize Intervention Protocol.</div>
+            <div class="ref-meta">Jayedi A, Shab-Bidar S. / Edwards JJ, et al. <em>Br J Sports Med.</em> 2023. <span class="ref-ev">Meta-análise em Rede</span></div>
+          </div>
+        </li>
+        <li class="ref-item">
+          <div class="ref-num">[19]</div>
+          <div>
+            <div class="ref-title">The Effect of Tai Chi on Blood Pressure in Patients with Hypertension: A Meta-Analysis of 35 Randomized Controlled Trials.</div>
+            <div class="ref-meta">Zheng G, Li M, Lan X, et al. <em>J Altern Complement Med.</em> 2015. <span class="ref-ev">Meta-análise</span></div>
+          </div>
+        </li>
+        <li class="ref-item">
+          <div class="ref-num">[20]</div>
+          <div>
+            <div class="ref-title">Tai Chi as Treatment for Heart Failure: A Randomized Controlled Trial.</div>
+            <div class="ref-meta">Yeh GY, McCarthy EP, Wayne PM, et al. <em>Arch Intern Med.</em> 2011. <span class="ref-ev">RCT</span></div>
+          </div>
+        </li>
+        <li class="ref-item">
+          <div class="ref-num">[21]</div>
+          <div>
+            <div class="ref-title">Nordic Walking Increases Walking Distance and Improves Cardiorespiratory Fitness in Sedentary Adults: A Meta-Analysis.</div>
+            <div class="ref-meta">Tschentscher M, Niederseer D, Niebauer J. <em>J Phys Act Health.</em> 2013. <span class="ref-ev">Meta-análise</span></div>
+          </div>
+        </li>
+        <li class="ref-item">
+          <div class="ref-num">[22]</div>
+          <div>
+            <div class="ref-title">Systematic Review of Pilates Effects on Cardiovascular Fitness, Blood Pressure and Body Composition.</div>
+            <div class="ref-meta">Lim EJ, Ong EK. <em>J Bodyw Mov Ther.</em> 2020. <span class="ref-ev">Revisão Sistemática</span></div>
+          </div>
+        </li>
+        <li class="ref-item">
+          <div class="ref-num">[23]</div>
+          <div>
+            <div class="ref-title">Dance Movement Therapy for Adults with Cardiovascular Disease: Systematic Review and Meta-Analysis.</div>
+            <div class="ref-meta">Štefan L, et al. <em>Public Health.</em> 2019. <span class="ref-ev">Meta-análise</span></div>
+          </div>
+        </li>
+        <li class="ref-item">
+          <div class="ref-num">[24]</div>
+          <div>
+            <div class="ref-title">High-Intensity Interval vs. Moderate Intensity Continuous Training for Body Composition and Cardiometabolic Health: Systematic Review and Meta-Analysis.</div>
+            <div class="ref-meta">Wewege M, van den Berg R, Ward RE, Keech A. <em>Obes Rev.</em> 2017. <span class="ref-ev">Meta-análise</span></div>
+          </div>
+        </li>
+        <li class="ref-item">
+          <div class="ref-num">[25]</div>
+          <div>
+            <div class="ref-title">Exercise Training and Hypertension: Recommendations for Blood Pressure Monitoring and Progression of Exercise Intensity.</div>
+            <div class="ref-meta">Cornelissen VA, Smart NA. <em>Cochrane Database Syst Rev.</em> 2013. <span class="ref-ev">Meta-análise</span></div>
+          </div>
+        </li>
+        <li class="ref-item">
+          <div class="ref-num">[26]</div>
+          <div>
+            <div class="ref-title">Travel at High Altitude in Cardiac Patients — Safety and Recommendations.</div>
+            <div class="ref-meta">Luks AM, Swenson ER. <em>High Alt Med Biol.</em> 2008; atualizado em <em>JACC HF</em> 2021. <span class="ref-ev">Revisão Clínica</span></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="disclaimer">
+      <strong>⚕️ Aviso Clínico:</strong> Este material é elaborado para fins educacionais e informacionais. Todas as informações são baseadas em evidências científicas publicadas, mas não substituem a avaliação e o aconselhamento do seu médico. Cada paciente possui características individuais que podem modificar as recomendações gerais. Antes de iniciar, modificar ou interromper qualquer programa de exercício, consulte seu cardiologista ou médico assistente — especialmente se você possui cardiopatia conhecida, diabetes, hipertensão ou qualquer outra condição crônica.
+      <br><br>
+      <strong>Dr. Lucas Silva</strong> · Cardiologista Intervencionista · São Paulo · <a href="https://lucascardio.com.br" style="color:var(--teal);">lucascardio.com.br</a>
+    </div>
+
+  </div><!-- /tab6 -->
+
+</div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-copy">
+        © 2025 Dr. Lucas Silva — Cardiologia Intervencionista · São Paulo, SP<br>
+        Conteúdo baseado em evidências. Atualizado conforme diretrizes ACC/AHA 2019–2024.
+      </div>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+        <span class="badge badge-info">ACC/AHA 2019</span>
+        <span class="badge badge-info">AHA 2023</span>
+        <span class="badge badge-info">JACC 2022</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ── TAB NAVIGATION ─────────────────────────────────────────── */
+  function goTab(n) {
+    document.querySelectorAll('.step-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.timeline-step').forEach(s => s.classList.remove('active'));
+    const el = document.getElementById('tab' + n);
+    if (el) { el.classList.add('active'); el.style.animation = 'none'; el.offsetHeight; el.style.animation = ''; el.style.display = 'block'; }
+    document.querySelectorAll('.timeline-step')[n - 1]?.classList.add('active');
+    document.getElementById('progress').style.width = (n / 6 * 100) + '%';
+    window.scrollTo({ top: document.getElementById('tabNav').offsetTop - 70, behavior: 'smooth' });
+  }
+
+  /* ── ACTIVITY ACCORDION ─────────────────────────────────────── */
+  function toggleAct(id) {
+    const card = document.getElementById(id);
+    card.classList.toggle('open');
+  }
+
+  /* ── POPULATION ACCORDION ───────────────────────────────────── */
+  function togglePop(header) {
+    const body = header.nextElementSibling;
+    const chev = header.querySelector('.pop-chev');
+    const isOpen = body.style.display === 'block';
+    body.style.display = isOpen ? 'none' : 'block';
+    if (chev) chev.style.transform = isOpen ? '' : 'rotate(180deg)';
+  }
+
+  /* ── MET CALCULATOR ─────────────────────────────────────────── */
+  function calcMET() {
+    const met = parseFloat(document.getElementById('actSelect').value) || 3.5;
+    const mins = parseFloat(document.getElementById('minsInput').value) || 0;
+    const days = parseFloat(document.getElementById('daysInput').value) || 0;
+    const total = Math.round(met * mins * days);
+    document.getElementById('metResult').textContent = total;
+    const pct = Math.min((total / 2000) * 100, 100);
+    const bar = document.getElementById('metBar');
+    bar.style.width = pct + '%';
+    let status = '', comment = '', color = '';
+    if (total === 0) {
+      color = 'var(--muted-foreground)'; status = '—'; comment = 'Insira os dados acima para calcular.';
+    } else if (total < 250) {
+      color = '#f87171'; status = '⚠️ Abaixo do mínimo';
+      comment = 'Qualquer atividade é melhor que nada — mas tente aumentar gradualmente para ≥500 MET-min/semana. Uma redução de 20% na mortalidade já ocorre com volumes baixos de atividade.';
+    } else if (total < 500) {
+      color = '#fbbf24'; status = '↑ Avançando — continue!';
+      comment = 'Você já está obtendo benefício cardiovascular. Aumentar progressivamente para ≥500 MET-min/semana potencializará ainda mais a proteção cardíaca.';
+    } else if (total < 1000) {
+      color = 'var(--teal)'; status = '✅ Meta mínima atingida';
+      comment = 'Parabéns! Você está na faixa recomendada pelas diretrizes ACC/AHA. Continuar nesta faixa está associado a ~21% de redução no risco cardiovascular incidente e ~30% na mortalidade CV.';
+    } else if (total < 2000) {
+      color = '#4ade80'; status = '🏅 Meta ideal atingida';
+      comment = 'Excelente! Você está na faixa de maior benefício cardiovascular documentado. Manter este nível está associado a reduções de até 35% na mortalidade CV em estudos de coorte.';
+    } else {
+      color = '#4ade80'; status = '🌟 Volume muito alto';
+      comment = 'Volume cardiovascular muito alto. Para a maioria, isso representa benefício máximo sem riscos. Atletas de lazer ficam tranquilos nesta faixa; atletas de ultra-endurance por muitos anos podem ter riscos específicos (ver seção de evidências).';
+    }
+    bar.style.background = color;
+    document.getElementById('metStatus').style.color = color;
+    document.getElementById('metStatus').textContent = status;
+    document.getElementById('metComment').textContent = comment;
+  }
+
+  /* ── DOSE-RESPONSE CHART ────────────────────────────────────── */
+  function buildChart() {
+    const ctx = document.getElementById('doseChart').getContext('2d');
+    const labels = ['Sedentário\n(0)', 'Muito\nPouco\n(250)', 'Baixo\n(500)', 'Recom.\nMín.\n(750)', 'Ideal\n(1.000)', 'Alto\n(2.000)', 'Muito\nAlto\n(3.500)', 'Elite\n(5.000)'];
+    const data = [1.00, 0.82, 0.76, 0.72, 0.70, 0.66, 0.63, 0.61];
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Risco Relativo de Mortalidade CV',
+          data: data,
+          borderColor: '#00d3bd',
+          backgroundColor: 'rgba(0,211,189,0.08)',
+          borderWidth: 2.5,
+          pointBackgroundColor: data.map((v, i) => i === 0 ? '#f87171' : i === 3 ? '#fbbf24' : i === 4 ? '#4ade80' : '#00d3bd'),
+          pointRadius: data.map((v, i) => (i === 0 || i === 3 || i === 4) ? 6 : 4),
+          tension: 0.45,
+          fill: true,
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: 'rgba(18,20,27,0.95)',
+            borderColor: '#00d3bd',
+            borderWidth: 1,
+            titleColor: '#00d3bd',
+            bodyColor: '#e2e8f0',
+            callbacks: {
+              label: ctx => ` Risco Relativo: ${ctx.raw.toFixed(2)} (${Math.round((1-ctx.raw)*100)}% de redução)`,
+            }
+          }
+        },
+        scales: {
+          y: {
+            min: 0.5, max: 1.05,
+            ticks: { color: 'rgba(148,163,184,.7)', font: { size: 11, family: "'JetBrains Mono'" }, callback: v => v.toFixed(2) },
+            grid: { color: 'rgba(51,65,85,.4)' },
+            title: { display: true, text: 'Risco Relativo de Mortalidade CV', color: 'rgba(148,163,184,.8)', font: { size: 11 } }
+          },
+          x: {
+            ticks: { color: 'rgba(148,163,184,.7)', font: { size: 10 }, maxRotation: 0 },
+            grid: { color: 'rgba(51,65,85,.4)' },
+            title: { display: true, text: 'Volume de Atividade Física (MET-min/semana)', color: 'rgba(148,163,184,.8)', font: { size: 11 } }
+          }
+        }
+      }
+    });
+  }
+
+  /* ── INIT ───────────────────────────────────────────────────── */
+  document.addEventListener('DOMContentLoaded', () => {
+    buildChart();
+    calcMET();
+  });
+</script>
+</body>
+</html>

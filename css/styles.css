@@ -8,14 +8,21 @@
 /* ── 0. DESIGN TOKENS ──────────────────────────────────────── */
 :root {
   /* palette */
-  --lc-primary:      #64a19d;
-  --lc-primary-dark:  #467370;
-  --lc-primary-light: #8bc5c1;
-  --lc-accent:        #c9a96e;          /* warm gold accent */
+  --lc-primary:      #5a9490;
+  --lc-primary-dark:  #3d6b68;
+  --lc-primary-light: #7bbab6;
+  --lc-accent:        #c9a96e;          /* warm gold – identidade visual */
+  --lc-accent-dark:   #a8884d;
   --lc-dark:          #0f1419;
   --lc-dark-soft:     #1a2332;
   --lc-text-muted:    rgba(255,255,255,.55);
   --lc-body-muted:    #6c757d;
+
+  /* light mode surfaces */
+  --lc-surface:       #f0ede8;          /* off-white quente, não branco puro */
+  --lc-surface-card:  #faf8f5;
+  --lc-surface-text:  #2a2a2a;
+  --lc-surface-muted: #5a5a5a;
 
   /* typography */
   --ff-display: 'Playfair Display', Georgia, serif;
@@ -29,11 +36,50 @@
   --transition-slow: .8s  var(--ease-out-expo);
 
   /* Bootstrap overrides */
-  --bs-primary:       #64a19d;
-  --bs-primary-rgb:   100,161,157;
-  --bs-link-color:    #64a19d;
-  --bs-link-hover-color: #467370;
+  --bs-primary:       #5a9490;
+  --bs-primary-rgb:   90,148,144;
+  --bs-link-color:    #5a9490;
+  --bs-link-hover-color: #3d6b68;
   --bs-body-font-family: var(--ff-body);
+  --bs-body-bg:       var(--lc-surface);
+}
+
+/* ── LIGHT MODE (default) ───────────────────────────────────── */
+body {
+  --mode-bg:          var(--lc-surface);
+  --mode-bg-card:     var(--lc-surface-card);
+  --mode-text:        var(--lc-surface-text);
+  --mode-text-muted:  var(--lc-surface-muted);
+  --mode-card-bg:     #ffffff;
+  --mode-card-border: rgba(0,0,0,.08);
+  --mode-nav-bg:      rgba(248,247,244,.97);
+  --mode-nav-text:    var(--lc-dark);
+}
+
+/* ── DARK MODE (sistema) ────────────────────────────────────── */
+@media (prefers-color-scheme: dark) {
+  body {
+    --mode-bg:          #111820;
+    --mode-bg-card:     #161e28;
+    --mode-text:        #e8e4dc;
+    --mode-text-muted:  rgba(232,228,220,.6);
+    --mode-card-bg:     #1c2532;
+    --mode-card-border: rgba(255,255,255,.08);
+    --mode-nav-bg:      rgba(13,18,26,.97);
+    --mode-nav-text:    #e8e4dc;
+  }
+}
+
+/* ── DARK MODE (classe manual via botão toggle) ──────────────── */
+body.dark-mode {
+  --mode-bg:          #111820;
+  --mode-bg-card:     #161e28;
+  --mode-text:        #e8e4dc;
+  --mode-text-muted:  rgba(232,228,220,.6);
+  --mode-card-bg:     #1c2532;
+  --mode-card-border: rgba(255,255,255,.08);
+  --mode-nav-bg:      rgba(13,18,26,.97);
+  --mode-nav-text:    #e8e4dc;
 }
 
 /* ── 1. BASE RESETS & TYPOGRAPHY ───────────────────────────── */
@@ -41,22 +87,32 @@
   :root { scroll-behavior: smooth; }
 }
 
-@media (prefers-color-scheme: dark) {
-  .masthead::after {
-    /* Garante que a opacidade não caia demais no modo escuro do sistema */
-    opacity: 1 !important;
-    filter: grayscale(100%) contrast(1.1) brightness(0.9);
-  }
-}
-
 html { scroll-padding-top: 5rem; }
 
 body {
   font-family: var(--ff-body);
   letter-spacing: .02em;
-  color: #212529;
+  color: var(--mode-text);
+  background-color: var(--mode-bg);
   overflow-x: hidden;
+  transition: background-color .4s ease, color .4s ease;
 }
+
+/* Seções bg-light usam surface do modo atual */
+.bg-light {
+  background-color: var(--mode-bg) !important;
+}
+
+/* Cards de contato e outros bg-white */
+.card {
+  background-color: var(--mode-card-bg) !important;
+  border-color: var(--mode-card-border) !important;
+}
+.card h3 { color: var(--mode-text) !important; }
+.card .small, .card address { color: var(--mode-text-muted) !important; }
+
+/* Textos muted nas seções claras */
+.text-black-50 { color: var(--mode-text-muted) !important; }
 
 h1, h2, h3, .h1, .h2, .h3 {
   font-family: var(--ff-display);
@@ -154,20 +210,21 @@ h4, h5, h6, .h4, .h5, .h6 {
 
   /* scrolled / shrink state */
   #mainNav.navbar-shrink {
-    background-color: rgba(255,255,255,.97);
+    background-color: var(--mode-nav-bg);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 1px 20px rgba(0,0,0,.08);
+    box-shadow: 0 1px 20px rgba(0,0,0,.12);
   }
-  #mainNav.navbar-shrink .navbar-brand { color: var(--lc-dark); }
+  #mainNav.navbar-shrink .navbar-brand { color: var(--mode-nav-text); }
   #mainNav.navbar-shrink .nav-link {
-    color: var(--lc-dark);
+    color: var(--mode-nav-text);
     padding: 1.5rem 1.5rem 1.25rem;
   }
-  #mainNav.navbar-shrink .nav-link:hover { color: var(--lc-primary); }
-  #mainNav.navbar-shrink .nav-link::after { background: var(--lc-primary); }
+  /* Fix 4: hover dourado consistente (mesmo fora da hero) */
+  #mainNav.navbar-shrink .nav-link:hover { color: var(--lc-accent); }
+  #mainNav.navbar-shrink .nav-link::after { background: var(--lc-accent); }
   #mainNav.navbar-shrink .nav-link.active {
-    color: var(--lc-primary);
+    color: var(--lc-accent);
   }
   #mainNav.navbar-shrink .nav-link.active::after {
     width: 60%; left: 20%;
@@ -357,7 +414,7 @@ h4, h5, h6, .h4, .h5, .h6 {
 @media (min-width: 992px) {
   .projects-section .featured-text {
     padding: 0 0 0 2rem;
-    border-left: 4px solid var(--lc-primary);
+    border-left: 4px solid var(--lc-accent);   /* Fix 3: dourado */
   }
 }
 .projects-section .project-text {
@@ -380,13 +437,14 @@ h4, h5, h6, .h4, .h5, .h6 {
 section.py-5 h2 {
   position: relative;
   display: inline-block;
+  color: var(--mode-text);
 }
 section.py-5 h2::after {
   content: '';
   display: block;
   width: 50px;
   height: 3px;
-  background: var(--lc-primary);
+  background: var(--lc-accent);       /* Fix 3: dourado */
   margin: .7rem auto 0;
   border-radius: 2px;
 }
@@ -408,44 +466,71 @@ blockquote.blockquote p {
 
 /* Tool/resource cards */
 .tool-card {
-  background: #121212;   /* Fundo escuro conforme a imagem */
+  background: #0f1822;
   border-radius: 16px;
-  padding: 2.5rem 1.5rem;
-  display: flex;         /* Ativa flexbox para organizar os itens */
+  padding: 2rem 1.5rem;
+  display: flex;
   flex-direction: column;
-  align-items: center;   /* Centraliza tudo horizontalmente */
-  gap: 1.5rem;           /* Cria espaço uniforme entre botão, texto e badge */
-  transition: transform var(--transition-fast);
-  height: 100%;          /* Garante que todos os cards tenham a mesma altura */
+  align-items: center;
+  gap: 1.2rem;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  height: 100%;
+  border-top: 2px solid rgba(201,169,110,.25);   /* Fix 3: linha dourada sutil no topo */
+  position: relative;
+  overflow: hidden;
 }
-/* Ajuste do texto descritivo */
-.tool-card p {
-  color: rgba(255, 255, 255, 0.7) !important; /* Cinza claro para legibilidade */
-  margin: 0;
-  font-size: 0.9rem;
+.tool-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--lc-accent), transparent);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
 }
-.tool-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0,0,0,.1);
-}
+.tool-card:hover { transform: translateY(-5px); box-shadow: 0 16px 45px rgba(0,0,0,.25); }
+.tool-card:hover::before { opacity: 1; }
+
+/* Fix 2: botão melhorado dentro do card */
 .tool-card .btn-med-custom {
-  width: auto;           /* Permite que o botão respire */
-  display: inline-flex;  /* Alinha o conteúdo interno */
+  width: 100%;
+  display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column; 
-  min-height: 80px;      /* Garante altura para as duas linhas de texto */
-  padding: 1rem 2rem;    /* Padding equilibrado */
-  line-height: 1.2;      /* Reduz o espaço entre "EBOOK" e o título */
-  text-wrap: balance;    /* Mantém a quebra de linha harmoniosa */
+  flex-direction: column;
+  min-height: 72px;
+  padding: .9rem 1.4rem;
+  line-height: 1.35;
+  text-wrap: balance;
+  font-size: .8rem;
+  background: linear-gradient(135deg, #2e4f4d, #1e3535);
+  border: 1px solid rgba(90,148,144,.35);
+  box-shadow: 0 4px 16px rgba(0,0,0,.3);
 }
+.tool-card .btn-med-custom:hover {
+  background: linear-gradient(135deg, var(--lc-primary-dark), #162929);
+  box-shadow: 0 8px 28px rgba(90,148,144,.3);
+  border-color: var(--lc-primary);
+}
+
+/* Fix 2: texto descritivo */
+.tool-card p {
+  color: rgba(255,255,255,.6) !important;
+  margin: 0;
+  font-size: .875rem;
+  text-align: center;
+}
+
+/* Fix 3: badge dourado */
 .tool-card .badge {
-  background: rgba(100, 161, 157, 0.1) !important;
-  color: #64a19d !important;
-  border: 1px solid rgba(100, 161, 157, 0.3) !important;
-  white-space: normal;   /* Permite quebra de linha se o texto for longo */
-  padding: 0.6em 1em;
-  max-width: 100%;       /* Não deixa sair do card */
+  background: rgba(201,169,110,.1) !important;
+  color: var(--lc-accent) !important;
+  border: 1px solid rgba(201,169,110,.3) !important;
+  white-space: normal;
+  padding: .5em 1em;
+  max-width: 100%;
+  text-align: center;
+  font-size: .8rem;
 }
 
 /* ── 9. SIGNUP SECTION ─────────────────────────────────────── */
@@ -473,18 +558,18 @@ blockquote.blockquote p {
   border-radius: 0 50px 50px 0;
 }
 
-/* ── 10. CONTACT SECTION ───────────────────────────────────── */
+/* ── 10. CONTACT SECTION ───────────────────────────── */
 .contact-section { padding-top: 5rem; }
 
 .contact-section .card {
   border: 0;
   border-radius: 12px;
-  border-bottom: 3px solid var(--lc-primary);
+  border-bottom: 3px solid var(--lc-accent);   /* Fix 3: dourado */
   transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 .contact-section .card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(0,0,0,.1);
+  box-shadow: 0 12px 30px rgba(0,0,0,.15);
 }
 .contact-section .card h3 {
   font-family: var(--ff-ui);
@@ -494,7 +579,7 @@ blockquote.blockquote p {
 }
 .contact-section .card hr {
   opacity: 1;
-  border-color: var(--lc-primary);
+  border-color: var(--lc-accent);   /* Fix 3: dourado */
   border-width: 2px;
   width: 3rem;
 }
@@ -532,11 +617,11 @@ blockquote.blockquote p {
 
 .bg-black { background-color: var(--lc-dark) !important; }
 
-/* separator line */
+/* separator line – Fix 3: dourado */
 .section-divider {
   width: 60px;
   height: 3px;
-  background: var(--lc-primary);
+  background: var(--lc-accent);
   margin: 0 auto 2rem;
   border-radius: 2px;
 }
@@ -720,8 +805,89 @@ blockquote.blockquote p {
 
 /* Focus visible for keyboard navigation */
 :focus-visible {
-  outline: 2px solid var(--lc-primary);
+  outline: 2px solid var(--lc-accent);
   outline-offset: 2px;
+}
+
+/* ── 17. DARK MODE TOGGLE BUTTON ─────────────────────────── */
+#dark-toggle {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 9999;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+  border: 2px solid var(--lc-accent);
+  background: var(--lc-dark);
+  color: var(--lc-accent);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0,0,0,.3);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+}
+#dark-toggle:hover {
+  transform: translateY(-2px) scale(1.08);
+  box-shadow: 0 6px 24px rgba(201,169,110,.35);
+  background: var(--lc-accent);
+  color: var(--lc-dark);
+}
+
+/* ── 18. DARK MODE OVERRIDES PARA ARTICLE SECTIONS ─────── */
+
+/* 1. Aplicado via classe no body (ex: quando o usuário clica num botão de tema) */
+body.dark-mode .article-section h4 {
+  color: var(--mode-text);
+  border-color: var(--lc-accent);
+}
+
+/* 2. Aplicado via preferência de tema escuro no sistema operacional do usuário */
+@media (prefers-color-scheme: dark) {
+  .article-section h4 {
+    color: var(--mode-text);
+    border-color: var(--lc-accent);
+  }
+}
+body.dark-mode .article-section p,
+body.dark-mode .article-section li { color: var(--mode-text-muted); }
+
+body.dark-mode .article-reference,
+body.dark-mode .article-highlight {
+  background: rgba(255,255,255,.04);
+}
+
+body.dark-mode .article-table th { background: rgba(255,255,255,.06); color: var(--mode-text); }
+body.dark-mode .article-table td { color: var(--mode-text-muted); border-color: rgba(255,255,255,.1); }
+body.dark-mode .article-table tr:hover { background: rgba(255,255,255,.04); }
+
+/* Dark mode subpages sidebar */
+body.dark-mode .side-link,
+body.dark-mode .side-link-btn,
+body.dark-mode .side-submenu {
+  background: #1c2532;
+  color: rgba(232,228,220,.75);
+  border-color: rgba(255,255,255,.08);
+}
+body.dark-mode .side-link:hover { border-color: var(--lc-accent); background: rgba(201,169,110,.06); }
+body.dark-mode .side-sublink { color: rgba(232,228,220,.65); }
+body.dark-mode .side-sublink:hover,
+body.dark-mode .side-sublink.active { background: rgba(201,169,110,.1); color: var(--lc-accent); }
+
+@media (prefers-color-scheme: dark) {
+  .side-link, .side-link-btn, .side-submenu {
+    background: #1c2532;
+    color: rgba(232,228,220,.75);
+    border-color: rgba(255,255,255,.08);
+  }
+  .side-link:hover { border-color: var(--lc-accent); }
+  .article-section h4 { color: #e8e4dc; border-color: var(--lc-accent); }
+  .article-section p, .article-section li { color: rgba(232,228,220,.65); }
+  .article-table th { background: rgba(255,255,255,.06); color: #e8e4dc; }
+  .article-table td { border-color: rgba(255,255,255,.1); }
+  .blockquote p { color: #e8e4dc; }
 }
 
 

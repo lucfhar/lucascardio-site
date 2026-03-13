@@ -1,0 +1,1081 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>Probabilidade Pré-Teste – Dor Torácica Aguda & Crônica | Dr. Lucas Silva</title>
+  <meta name="description" content="Ferramenta interativa de estratificação de risco e probabilidade pré-teste em dor torácica: HEART Score, protocolos de troponina de alta sensibilidade, RF-CL e modelos contemporâneos para DAC estável." />
+  <meta name="author" content="Dr. Lucas Silva" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: oklch(65% .18 195);
+      --primary-foreground: oklch(98% 0 0);
+      --background: oklch(13% .018 250);
+      --foreground: oklch(93% .01 250);
+      --card: oklch(18.5% .018 250);
+      --card-foreground: oklch(93% .01 250);
+      --muted: oklch(22% .018 250);
+      --muted-foreground: oklch(62% .02 250);
+      --border: oklch(28% .025 250);
+      --input: oklch(22% .02 250);
+      --destructive: oklch(60% .22 25);
+      --secondary: oklch(22% .022 250);
+      --secondary-foreground: oklch(88% .01 250);
+      --accent: oklch(24% .025 250);
+      --accent-foreground: oklch(90% .01 250);
+      --teal: #00d3bd;
+      --teal-dim: rgba(0,211,189,.12);
+      --amber: oklch(82.8% .189 84.429);
+      --amber-dim: rgba(251,191,36,.10);
+      --red: oklch(63.7% .237 25.331);
+      --red-dim: rgba(220,38,38,.10);
+      --green: oklch(79.2% .209 151.711);
+      --green-dim: rgba(34,197,94,.10);
+      --radius: 0.625rem;
+      --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
+      --font-mono: "JetBrains Mono", monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); background-color: var(--background); color: var(--foreground); min-height: 100vh; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    nav { position: sticky; top: 0; z-index: 50; background: rgba(18,20,27,.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 1.5rem; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--foreground); }
+    .nav-brand-icon { width: 28px; height: 28px; border-radius: 7px; background: var(--teal); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .nav-brand-name { font-weight: 800; font-size: 1rem; letter-spacing: -.025em; line-height: 1; }
+    .nav-brand-name span { color: var(--teal); }
+    .nav-brand-sep { width: 1px; height: 14px; background: var(--border); margin: 0 6px; }
+    .nav-brand-sub { font-size: .7rem; font-weight: 500; color: var(--muted-foreground); }
+    .nav-actions { display: flex; align-items: center; gap: .5rem; }
+    .nav-badge { font-size: .7rem; font-weight: 600; padding: 3px 10px; border-radius: 999px; background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.25); white-space: nowrap; }
+    .nav-link { font-size: .75rem; font-weight: 600; padding: 5px 12px; border-radius: 8px; border: 1.5px solid var(--primary); color: var(--primary); background: transparent; text-decoration: none; transition: background .15s, color .15s; display: inline-flex; align-items: center; gap: 5px; }
+    .nav-link:hover { background: var(--primary); color: var(--primary-foreground); }
+    .container { max-width: 920px; margin: 0 auto; padding: 0 1.5rem; }
+    .hero { padding: 3rem 0 2rem; border-bottom: 1px solid var(--border); }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 6px; font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); margin-bottom: 1rem; }
+    .hero-eyebrow::before { content: ""; display: block; width: 20px; height: 2px; background: var(--teal); border-radius: 1px; }
+    .hero h1 { font-size: clamp(1.5rem, 4vw, 2.2rem); font-weight: 800; line-height: 1.2; margin-bottom: .75rem; letter-spacing: -.02em; }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero-sub { color: var(--muted-foreground); font-size: .9rem; max-width: 650px; margin-bottom: 1.5rem; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag { font-size: .7rem; font-weight: 600; padding: 3px 10px; border-radius: 6px; border: 1px solid var(--border); color: var(--muted-foreground); background: var(--card); font-family: var(--font-mono); }
+    .module-switcher { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: calc(var(--radius) + 2px); overflow: hidden; margin: 2rem 0 0; }
+    .module-btn { background: var(--card); padding: 1.1rem 1.5rem; cursor: pointer; border: none; text-align: left; font-family: var(--font-sans); transition: background .15s; }
+    .module-btn:hover { background: var(--accent); }
+    .module-btn.active { background: var(--teal-dim); }
+    .module-btn-label { font-size: .62rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted-foreground); font-family: var(--font-mono); margin-bottom: .3rem; }
+    .module-btn.active .module-btn-label { color: var(--teal); }
+    .module-btn-title { font-weight: 700; font-size: .95rem; color: var(--foreground); margin-bottom: .2rem; }
+    .module-btn-desc { font-size: .78rem; color: var(--muted-foreground); }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: calc(var(--radius) + 2px); padding: 1.5rem; margin-bottom: 1.5rem; }
+    .card-header { display: flex; align-items: flex-start; gap: .75rem; margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+    .card-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; background: var(--teal-dim); color: var(--teal); }
+    .card-icon.amber { background: var(--amber-dim); }
+    .card-title { font-weight: 700; font-size: 1rem; margin-bottom: 2px; }
+    .card-subtitle { font-size: .78rem; color: var(--muted-foreground); }
+    .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-label { font-size: .78rem; font-weight: 600; color: var(--muted-foreground); }
+    .form-label span { font-size: .7rem; font-weight: 400; opacity: .7; }
+    .form-hint { font-size: .72rem; color: var(--muted-foreground); opacity: .8; margin-top: 2px; font-style: italic; }
+    .form-input { background: var(--input); border: 1px solid var(--border); border-radius: var(--radius); color: var(--foreground); font-family: var(--font-mono); font-size: .85rem; padding: 8px 12px; transition: border-color .15s, box-shadow .15s; outline: none; width: 100%; }
+    .form-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(0,211,189,.15); }
+    .form-select { background: var(--input); border: 1px solid var(--border); border-radius: var(--radius); color: var(--foreground); font-family: var(--font-sans); font-size: .85rem; padding: 8px 12px; outline: none; width: 100%; cursor: pointer; transition: border-color .15s; }
+    .form-select:focus { border-color: var(--primary); }
+    .option-group { display: flex; gap: .5rem; flex-wrap: wrap; }
+    .opt-btn { flex: 1; min-width: 100px; background: var(--muted); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 8px 10px; cursor: pointer; font-family: var(--font-sans); font-size: .78rem; font-weight: 500; color: var(--muted-foreground); text-align: left; transition: all .15s; line-height: 1.4; }
+    .opt-btn:hover { background: var(--accent); color: var(--foreground); }
+    .opt-btn.selected { background: var(--teal-dim); border-color: rgba(0,211,189,.5); color: var(--foreground); }
+    .opt-btn .opt-pts { display: inline-block; font-family: var(--font-mono); font-weight: 700; font-size: .7rem; padding: 1px 5px; border-radius: 4px; margin-right: 4px; background: var(--muted); color: var(--teal); }
+    .opt-btn.selected .opt-pts { background: rgba(0,211,189,.2); }
+    .check-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: .5rem; }
+    .check-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; border-radius: var(--radius); border: 1px solid var(--border); background: var(--muted); cursor: pointer; transition: background .15s, border-color .15s; user-select: none; }
+    .check-item:hover { background: var(--accent); border-color: var(--primary); }
+    .check-item.checked { background: var(--teal-dim); border-color: rgba(0,211,189,.4); }
+    .check-box { width: 16px; height: 16px; border-radius: 4px; border: 1.5px solid var(--border); flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center; transition: all .15s; }
+    .check-item.checked .check-box { background: var(--teal); border-color: var(--teal); color: #000; }
+    .check-label { font-size: .8rem; line-height: 1.4; }
+    .check-label strong { font-weight: 600; display: block; margin-bottom: 1px; }
+    .check-label small { font-size: .72rem; color: var(--muted-foreground); }
+    .badge { display: inline-flex; align-items: center; gap: 4px; font-size: .68rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
+    .badge-info { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.2); }
+    .badge-warn { background: rgba(251,191,36,.12); color: #fbbf24; border: 1px solid rgba(251,191,36,.2); }
+    .badge-danger { background: rgba(220,38,38,.15); color: #f87171; border: 1px solid rgba(220,38,38,.25); }
+    .badge-score { background: var(--muted); color: var(--foreground); border: 1px solid var(--border); font-family: var(--font-mono); }
+    .badge-green { background: var(--green-dim); color: var(--green); border: 1px solid rgba(34,197,94,.2); }
+    .btn { display: inline-flex; align-items: center; gap: 8px; font-size: .85rem; font-weight: 600; padding: 10px 20px; border-radius: calc(var(--radius) + 2px); border: none; cursor: pointer; transition: all .15s; white-space: nowrap; font-family: var(--font-sans); }
+    .btn-primary { background: var(--primary); color: #000; font-weight: 700; }
+    .btn-primary:hover { opacity: .9; transform: translateY(-1px); }
+    .btn-secondary { background: var(--muted); color: var(--foreground); border: 1px solid var(--border); }
+    .btn-secondary:hover { background: var(--accent); }
+    .btn-lg { font-size: .95rem; padding: 12px 28px; }
+    .btn-row { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 1.5rem; }
+    .info-box { border-radius: var(--radius); padding: 12px 16px; font-size: .82rem; line-height: 1.65; display: flex; gap: 10px; margin-bottom: .75rem; }
+    .info-box-icon { flex-shrink: 0; font-size: 1rem; margin-top: 1px; }
+    .info-teal { background: var(--teal-dim); border-left: 3px solid var(--teal); }
+    .info-amber { background: rgba(251,191,36,.08); border-left: 3px solid rgba(251,191,36,.5); }
+    .info-red { background: rgba(220,38,38,.08); border-left: 3px solid rgba(220,38,38,.4); }
+    .info-gray { background: var(--muted); border-left: 3px solid var(--border); }
+    .section-label { font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--teal); margin-bottom: .4rem; font-family: var(--font-mono); }
+    .section-title { font-size: 1.25rem; font-weight: 800; margin-bottom: .25rem; letter-spacing: -.01em; }
+    .section-divider { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+    .tab-bar { display: flex; gap: 0; border-bottom: 1px solid var(--border); margin-bottom: 1.5rem; overflow-x: auto; }
+    .tab-bar::-webkit-scrollbar {
+      display: none;
+    }
+    /* Oculta a barra de rolagem no Firefox, IE e Edge mais antigos */
+    .tab-bar {
+      -ms-overflow-style: none; /* IE e Edge */
+      scrollbar-width: none;    /* Firefox */
+    }
+    .tab-btn { background: none; border: none; border-bottom: 2px solid transparent; font-family: var(--font-sans); font-size: .82rem; font-weight: 600; color: var(--muted-foreground); padding: 10px 18px; cursor: pointer; white-space: nowrap; transition: all .15s; margin-bottom: -1px; }
+    .tab-btn:hover { color: var(--foreground); }
+    .tab-btn.active { color: var(--teal); border-bottom-color: var(--teal); }
+    .tab-panel { display: none; animation: fadeUp .25s ease; }
+    .tab-panel.active { display: block; }
+    .compare-table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+    .compare-table th { background: var(--muted); padding: 10px 14px; text-align: left; font-weight: 700; font-size: .75rem; border-bottom: 1px solid var(--border); color: var(--muted-foreground); letter-spacing: .03em; }
+    .compare-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table tr:hover td { background: var(--accent); }
+    .result-panel { display: none; border-radius: calc(var(--radius) + 2px); overflow: hidden; margin-top: 1.5rem; }
+    .result-panel.show { display: block; animation: fadeUp .3s ease; }
+    .result-header { padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 1rem; }
+    .result-header.low { background: rgba(0,211,189,.08); border: 1px solid rgba(0,211,189,.25); border-bottom: none; border-radius: calc(var(--radius)+2px) calc(var(--radius)+2px) 0 0; }
+    .result-header.mod { background: rgba(251,191,36,.08); border: 1px solid rgba(251,191,36,.25); border-bottom: none; border-radius: calc(var(--radius)+2px) calc(var(--radius)+2px) 0 0; }
+    .result-header.high { background: rgba(220,38,38,.10); border: 1px solid rgba(220,38,38,.3); border-bottom: none; border-radius: calc(var(--radius)+2px) calc(var(--radius)+2px) 0 0; }
+    .result-icon { font-size: 2rem; line-height: 1; }
+    .result-title { font-size: 1.05rem; font-weight: 800; margin-bottom: 2px; }
+    .result-body { padding: 1.25rem 1.5rem; background: var(--card); border: 1px solid var(--border); border-top: none; border-radius: 0 0 calc(var(--radius)+2px) calc(var(--radius)+2px); }
+    .score-display { display: flex; align-items: baseline; gap: 6px; font-family: var(--font-mono); margin: .5rem 0; }
+    .score-val { font-size: 2.4rem; font-weight: 700; }
+    .score-unit { font-size: .8rem; color: var(--muted-foreground); }
+    .ptp-gauge { margin: 1rem 0; }
+    .ptp-track { position: relative; height: 10px; border-radius: 5px; background: linear-gradient(to right, var(--green) 0%, #fbbf24 30%, var(--red) 70%); margin-bottom: 6px; }
+    .ptp-needle { position: absolute; top: -4px; width: 2px; height: 18px; background: white; border-radius: 1px; transform: translateX(-50%); box-shadow: 0 0 0 2px rgba(0,0,0,.5); transition: left .5s cubic-bezier(.34,1.56,.64,1); }
+    .ptp-labels { display: flex; justify-content: space-between; font-size: .65rem; color: var(--muted-foreground); font-family: var(--font-mono); }
+    .ptp-val-display { font-size: 2.6rem; font-weight: 800; font-family: var(--font-mono); letter-spacing: -.03em; line-height: 1; }
+    .trop-protocol { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin: 1rem 0; }
+    .trop-cell { background: var(--card); padding: 1rem; }
+    .trop-cell-label { font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted-foreground); font-family: var(--font-mono); margin-bottom: .4rem; }
+    .trop-cell-val { font-size: .82rem; line-height: 1.5; }
+    .risk-low { color: var(--green); }
+    .risk-mod { color: #fbbf24; }
+    .risk-high { color: #f87171; }
+    .subsec { margin: 1.5rem 0 .75rem; }
+    .subsec-title { font-weight: 700; font-size: .95rem; margin-bottom: .2rem; }
+    .subsec-sub { font-size: .78rem; color: var(--muted-foreground); }
+    .ref-list { list-style: none; }
+    .ref-item { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: .8rem; line-height: 1.6; display: flex; gap: 10px; }
+    .ref-item:last-child { border-bottom: none; }
+    .ref-num { font-family: var(--font-mono); font-size: .7rem; font-weight: 700; color: var(--teal); min-width: 22px; }
+    .ref-title { font-weight: 600; margin-bottom: 2px; }
+    .ref-meta { color: var(--muted-foreground); font-size: .75rem; }
+    .ref-ev { display: inline-block; font-size: .65rem; font-weight: 700; padding: 1px 6px; border-radius: 4px; margin-left: 6px; background: var(--teal-dim); color: var(--teal); }
+    .module-section { display: none; }
+    .module-section.active { display: block; animation: fadeUp .3s ease; }
+    .disclaimer { background: var(--muted); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 16px; font-size: .75rem; color: var(--muted-foreground); line-height: 1.6; margin-top: 1rem; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    footer { border-top: 1px solid var(--border); padding: 2rem 0; margin-top: 3rem; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-copy { font-size: .75rem; color: var(--muted-foreground); }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @media (max-width: 640px) {
+      .module-switcher { grid-template-columns: 1fr; }
+      .two-col { grid-template-columns: 1fr; }
+      .trop-protocol { grid-template-columns: 1fr; }
+      .btn-row { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="#">
+    <div class="nav-brand-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+    </div>
+    <div class="nav-brand-name">Chest<span>Pain</span></div>
+    <div class="nav-brand-sep"></div>
+    <div class="nav-brand-sub">Probabilidade Pré-Teste</div>
+  </a>
+  <div class="nav-actions">
+    <span class="nav-badge">MBE 2025</span>
+    <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      lucascardio.com.br
+    </a>
+  </div>
+</nav>
+
+<main>
+<div class="container">
+
+  <div class="hero">
+    <div class="hero-eyebrow">Medicina Baseada em Evidências</div>
+    <h1>Probabilidade Pré-Teste em<br><em>Dor Torácica</em></h1>
+    <p class="hero-sub">Ferramenta interativa para estratificação de risco e cálculo de probabilidade pré-teste em dor torácica aguda (emergência) e crônica (DAC estável). Baseada nas diretrizes ACC/AHA 2021–2022, ESC 2019/2020 e evidências contemporâneas até Lancet 2025.</p>
+    <div class="hero-tags">
+      <span class="tag">HEART Score</span><span class="tag">hs-Troponina</span><span class="tag">RF-CL</span>
+      <span class="tag">Juarez-Orozco</span><span class="tag">CAC</span><span class="tag">ACC/AHA 2021</span>
+      <span class="tag">ACC 2022</span><span class="tag">ESC 2020</span><span class="tag">Lancet 2025</span>
+    </div>
+    <div class="module-switcher">
+      <button class="module-btn active" id="btn-aguda" onclick="switchModule('aguda')">
+        <div class="module-btn-label">&#x1F6A8; Emergência</div>
+        <div class="module-btn-title">Dor Torácica Aguda</div>
+        <div class="module-btn-desc">HEART Score · Protocolos hs-Tn · Comparação TIMI/GRACE</div>
+      </button>
+      <button class="module-btn" id="btn-cronica" onclick="switchModule('cronica')">
+        <div class="module-btn-label">&#x1F4CB; Ambulatorial</div>
+        <div class="module-btn-title">Dor Torácica Crônica / Estável</div>
+        <div class="module-btn-desc">RF-CL · Juarez-Orozco · Papel do Escore de Cálcio</div>
+      </button>
+    </div>
+  </div>
+
+  <!-- ======================== MÓDULO AGUDA ======================== -->
+  <div id="mod-aguda" class="module-section active" style="padding:1.5rem 0 2rem">
+
+    <div class="section-label" style="margin-top:1.5rem">Módulo 1 · Emergência</div>
+    <div class="section-title" style="margin-bottom:.25rem">Estratificação de Risco — Dor Torácica Aguda</div>
+    <p style="font-size:.85rem;color:var(--muted-foreground);margin-bottom:1.5rem;max-width:680px">
+      O objetivo primário na emergência é identificar com segurança pacientes de <strong style="color:var(--green)">baixo risco</strong> (alta precoce) e de <strong style="color:#f87171">alto risco</strong> (internação/estratégia invasiva). O escore HEART é a ferramenta mais recomendada pelas diretrizes ACC 2022 (Classe I, LOE B-NR), com desempenho superior ao TIMI e GRACE para predição de MACE em 30 dias.
+    </p>
+
+    <div class="tab-bar" id="tab-bar-aguda">
+      <button class="tab-btn active" onclick="switchTab('aguda','heart',event)">HEART Score</button>
+      <button class="tab-btn" onclick="switchTab('aguda','trop',event)">Protocolos hs-Troponina</button>
+      <button class="tab-btn" onclick="switchTab('aguda','comp',event)">Comparação de Escores</button>
+      <button class="tab-btn" onclick="switchTab('aguda','algo',event)">Algoritmo Integrado</button>
+    </div>
+
+    <!-- HEART SCORE TAB -->
+    <div id="tab-aguda-heart" class="tab-panel active">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">&#x1FAC0;</div>
+          <div>
+            <div class="card-title">HEART Score</div>
+            <div class="card-subtitle">History · ECG · Age · Risk Factors · Troponin — Escores 0–10 pontos</div>
+          </div>
+        </div>
+        <div class="info-teal info-box">
+          <span class="info-box-icon">&#x1F4A1;</span>
+          <div>Derivado por Six et al. (Neth Heart J 2008) e validado em múltiplos estudos prospectivos e meta-análises. O HEART prediz MACE com <strong>AUC 0,80</strong> — superior ao GRACE (0,70) e TIMI para dor torácica indiferenciada na emergência. <strong>Escore ≤3 identifica baixo risco com sensibilidade 99,5% e VPN 99,6%</strong> para MACE em 6 semanas [Reaney 2018; ACC 2022 Classe I, LOE B-NR].</div>
+        </div>
+
+        <div class="subsec"><div class="subsec-title">H — História Clínica</div><div class="subsec-sub">Compatibilidade com síndrome isquêmica coronariana</div></div>
+        <div class="option-group" id="h-history">
+          <button class="opt-btn" onclick="selectHEART('history',0,this)"><span class="opt-pts">0</span><strong>Levemente suspeita</strong><br><small style="color:var(--muted-foreground)">Sintomas atípicos, sem relação com esforço, perfil jovem sem FR</small></button>
+          <button class="opt-btn" onclick="selectHEART('history',1,this)"><span class="opt-pts">1</span><strong>Moderadamente suspeita</strong><br><small style="color:var(--muted-foreground)">Mistura de achados típicos e atípicos; aperto inespecífico</small></button>
+          <button class="opt-btn" onclick="selectHEART('history',2,this)"><span class="opt-pts">2</span><strong>Altamente suspeita</strong><br><small style="color:var(--muted-foreground)">Pressão retroesternal, irradiação, sudorese, relação com esforço</small></button>
+        </div>
+
+        <div class="subsec" style="margin-top:1.25rem"><div class="subsec-title">E — ECG</div><div class="subsec-sub">Alterações eletrocardiográficas na apresentação</div></div>
+        <div class="option-group" id="h-ecg">
+          <button class="opt-btn" onclick="selectHEART('ecg',0,this)"><span class="opt-pts">0</span><strong>Normal</strong><br><small style="color:var(--muted-foreground)">BRE/MP com ECG anterior normal comparável</small></button>
+          <button class="opt-btn" onclick="selectHEART('ecg',1,this)"><span class="opt-pts">1</span><strong>Alteração inespecífica</strong><br><small style="color:var(--muted-foreground)">HVE, BRE/BRD antigos, distúrbios inespecíficos de repolarização</small></button>
+          <button class="opt-btn" onclick="selectHEART('ecg',2,this)"><span class="opt-pts">2</span><strong>Desvio de ST significativo</strong><br><small style="color:var(--muted-foreground)">Depressão/elevação nova, inversão de onda T em ≥2 derivações</small></button>
+        </div>
+
+        <div class="subsec" style="margin-top:1.25rem"><div class="subsec-title">A — Idade</div></div>
+        <div class="option-group" id="h-age">
+          <button class="opt-btn" onclick="selectHEART('age',0,this)"><span class="opt-pts">0</span>&lt; 45 anos</button>
+          <button class="opt-btn" onclick="selectHEART('age',1,this)"><span class="opt-pts">1</span>45–64 anos</button>
+          <button class="opt-btn" onclick="selectHEART('age',2,this)"><span class="opt-pts">2</span>&#x2265; 65 anos</button>
+        </div>
+
+        <div class="subsec" style="margin-top:1.25rem"><div class="subsec-title">R — Fatores de Risco</div><div class="subsec-sub">HAS, dislipidemia, DM, obesidade (IMC&gt;30), tabagismo, HF coronariana</div></div>
+        <div class="option-group" id="h-risk">
+          <button class="opt-btn" onclick="selectHEART('risk',0,this)"><span class="opt-pts">0</span>Nenhum FR conhecido</button>
+          <button class="opt-btn" onclick="selectHEART('risk',1,this)"><span class="opt-pts">1</span>1–2 fatores de risco</button>
+          <button class="opt-btn" onclick="selectHEART('risk',2,this)"><span class="opt-pts">2</span><strong>&#x2265;3 FR</strong> ou <strong>aterosclerose conhecida</strong><br><small style="color:var(--muted-foreground)">IAM prévio, revascularização, AVC, DAP, doença carotídea</small></button>
+        </div>
+
+        <div class="subsec" style="margin-top:1.25rem"><div class="subsec-title">T — Troponina</div><div class="subsec-sub">Em relação ao limite superior de normalidade (LSN) do ensaio utilizado</div></div>
+        <div class="option-group" id="h-trop">
+          <button class="opt-btn" onclick="selectHEART('trop',0,this)"><span class="opt-pts">0</span>&#x2264; LSN<br><small style="color:var(--muted-foreground)">Dentro do limite normal do laboratório</small></button>
+          <button class="opt-btn" onclick="selectHEART('trop',1,this)"><span class="opt-pts">1</span>1–3× LSN<br><small style="color:var(--muted-foreground)">Elevação leve a moderada</small></button>
+          <button class="opt-btn" onclick="selectHEART('trop',2,this)"><span class="opt-pts">2</span>&gt; 3× LSN<br><small style="color:var(--muted-foreground)">Elevação significativa; padrão consistente com IAM</small></button>
+        </div>
+
+        <div id="heart-breakdown" style="display:none;margin-top:1rem">
+          <div style="font-size:.78rem;font-weight:700;color:var(--muted-foreground);margin-bottom:.5rem">PONTUAÇÃO POR COMPONENTE:</div>
+          <div style="display:flex;gap:.5rem;flex-wrap:wrap" id="heart-breakdown-pills"></div>
+        </div>
+
+        <div id="heart-result" class="result-panel">
+          <div class="result-header" id="heart-result-header">
+            <div class="result-icon" id="heart-result-icon"></div>
+            <div>
+              <div id="heart-result-cat" class="result-title"></div>
+              <div id="heart-result-sub" style="font-size:.82rem;color:var(--muted-foreground)"></div>
+            </div>
+          </div>
+          <div class="result-body">
+            <div style="display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;margin-bottom:1.25rem">
+              <div>
+                <div style="font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted-foreground);font-family:var(--font-mono);margin-bottom:4px">HEART SCORE</div>
+                <div class="score-display"><span class="score-val" id="heart-score-val" style="color:var(--teal)">—</span><span class="score-unit">/ 10</span></div>
+              </div>
+              <div style="flex:1;min-width:200px">
+                <div id="heart-mace" style="font-weight:700;font-size:.95rem;margin-bottom:4px"></div>
+                <div id="heart-action" style="font-size:.82rem;color:var(--muted-foreground);line-height:1.55"></div>
+              </div>
+            </div>
+            <div id="heart-detail"></div>
+            <div class="disclaimer">&#x26A0;&#xFE0F; O HEART Score é uma ferramenta auxiliar. Decisões de alta devem integrar julgamento clínico, troponinas seriadas e contexto completo. MACE inclui: IAM, revascularização não eletiva e óbito.</div>
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn btn-primary btn-lg" onclick="calcHEART()">Calcular HEART Score</button>
+          <button class="btn btn-secondary" onclick="resetHEART()">Limpar</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" style="margin-bottom:1rem;padding-bottom:.75rem">
+          <div class="card-icon" style="background:var(--muted)">&#x1F4CB;</div>
+          <div><div class="card-title">Tabela de Estratificação — HEART Score</div></div>
+        </div>
+        <div style="overflow-x:auto;border-radius:var(--radius);border:1px solid var(--border)">
+          <table class="compare-table" style="min-width:540px">
+            <thead><tr><th>Categoria</th><th>Score</th><th>MACE 6 semanas</th><th>Conduta recomendada</th></tr></thead>
+            <tbody>
+              <tr><td><strong class="risk-low">Baixo Risco</strong></td><td><span class="badge badge-info">0–3</span></td><td>1,7–2,5%</td><td>Alta precoce. Acompanhamento ambulatorial em 72h. Sem teste provocativo de rotina em assintomático (ACC 2022, Classe I, LOE B).</td></tr>
+              <tr><td><strong class="risk-mod">Risco Intermediário</strong></td><td><span class="badge badge-warn">4–6</span></td><td>12–16,6%</td><td>Observação, troponinas seriadas. Teste não-invasivo (CCTA, ECO estresse, cintilografia) antes da alta ou em 72h.</td></tr>
+              <tr><td><strong class="risk-high">Alto Risco</strong></td><td><span class="badge badge-danger">7–10</span></td><td>50–65%</td><td>Hospitalização imediata. Estratégia invasiva precoce. Coronariografia em 24–72h conforme quadro clínico.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="info-gray info-box" style="margin-top:1rem">
+          <span class="info-box-icon">&#x1F52C;</span>
+          <div><strong>Nota sobre troponinas de alta sensibilidade:</strong> Em centros com hs-Tn, protocolos 0h/1h ou 0h/2h (ESC 2020) oferecem estratificação análoga ao componente T do HEART e devem ser usados em paralelo. Evidências sugerem que a adição de escore clínico ao protocolo hs-Tn preserva a avaliação do contexto clínico e ECG, importantes para a decisão de alta segura [Dawson 2022, JACC].</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HS-TROPONIN TAB -->
+    <div id="tab-aguda-trop" class="tab-panel">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon amber">&#x1F9EA;</div>
+          <div>
+            <div class="card-title">Protocolos de Troponina de Alta Sensibilidade (hs-Tn)</div>
+            <div class="card-subtitle">Estratificação rápida — rule-out e rule-in de IAM sem supra-ST</div>
+          </div>
+        </div>
+        <div class="info-teal info-box">
+          <span class="info-box-icon">&#x1F4A1;</span>
+          <div>Os protocolos de hs-Tn permitem rule-out de IAM com segurança em 1–2h após apresentação. <strong>ESC 2020 NSTE-ACS (Collet et al.)</strong> recomenda os algoritmos 0h/1h e 0h/2h como Classe I, LOE B. Os valores-limite variam por ensaio — <strong>nunca aplique cutoffs de um ensaio em outro</strong>. Aproximadamente 60–70% dos pacientes são classificados na chegada; os demais requerem coleta seriada.</div>
+        </div>
+
+        <div class="subsec"><div class="subsec-title">Protocolo 0h/1h (ESC 2020) — Roche Elecsys hs-TnT</div><div class="subsec-sub">Sensibilidade 99%, VPN 99,5% para IAM tipo 1 em população de emergência</div></div>
+        <div class="trop-protocol">
+          <div class="trop-cell" style="background:var(--green-dim);border-bottom:1px solid var(--border)">
+            <div class="trop-cell-label" style="color:var(--green)">&#x2705; RULE-OUT — IAM improvável</div>
+            <div class="trop-cell-val"><strong>hs-TnT 0h &lt; 5 ng/L</strong><br><em>E</em> &#x394;1h &lt; 2 ng/L<br><small style="color:var(--muted-foreground)">Alta precoce segura. Risco de MACE 0,4–1% em 30 dias.</small></div>
+          </div>
+          <div class="trop-cell" style="background:var(--red-dim);border-bottom:1px solid var(--border)">
+            <div class="trop-cell-label" style="color:#f87171">&#x1F6A8; RULE-IN — IAM provável</div>
+            <div class="trop-cell-val"><strong>hs-TnT 0h &#x2265; 52 ng/L</strong><br><em>OU</em> &#x394;1h &#x2265; 6 ng/L<br><small style="color:var(--muted-foreground)">IAM tipo 1 em ~76% dos casos. Estratégia invasiva.</small></div>
+          </div>
+          <div class="trop-cell" style="grid-column:1/-1">
+            <div class="trop-cell-label">&#x26A0;&#xFE0F; OBSERVAÇÃO (Zona cinzenta)</div>
+            <div class="trop-cell-val">Não atende critérios de rule-out nem rule-in → coleta seriada (2h ou 3h). Avaliação clínica, HEART score e ECG seriados. ~20% dos pacientes caem nesta zona.</div>
+          </div>
+        </div>
+
+        <div class="subsec" style="margin-top:1.5rem"><div class="subsec-title">Protocolo 0h/2h (ESC 2020) — Roche Elecsys hs-TnT</div><div class="subsec-sub">Alternativa quando coleta de 1h não é operacionalmente viável</div></div>
+        <div class="trop-protocol">
+          <div class="trop-cell" style="background:var(--green-dim);border-bottom:1px solid var(--border)">
+            <div class="trop-cell-label" style="color:var(--green)">&#x2705; RULE-OUT</div>
+            <div class="trop-cell-val"><strong>hs-TnT 0h &lt; 12 ng/L</strong><br><em>E</em> hs-TnT 2h &lt; 12 ng/L<br><em>E</em> &#x394;2h &lt; 3 ng/L</div>
+          </div>
+          <div class="trop-cell" style="background:var(--red-dim);border-bottom:1px solid var(--border)">
+            <div class="trop-cell-label" style="color:#f87171">&#x1F6A8; RULE-IN</div>
+            <div class="trop-cell-val"><strong>hs-TnT 0h &#x2265; 52 ng/L</strong><br><em>OU</em> &#x394;2h &#x2265; 6 ng/L</div>
+          </div>
+          <div class="trop-cell" style="grid-column:1/-1">
+            <div class="trop-cell-label">&#x26A0;&#xFE0F; OBSERVAÇÃO</div>
+            <div class="trop-cell-val">Critérios não atendidos → avaliação de coleta adicional, contexto clínico e HEART score.</div>
+          </div>
+        </div>
+
+        <div class="subsec" style="margin-top:1.5rem"><div class="subsec-title">Protocolo 0h/1h — Abbott ARCHITECT hs-TnI</div><div class="subsec-sub">Cutoffs específicos do ensaio — NÃO intercambiáveis com hs-TnT</div></div>
+        <div class="trop-protocol">
+          <div class="trop-cell" style="background:var(--green-dim)">
+            <div class="trop-cell-label" style="color:var(--green)">&#x2705; RULE-OUT</div>
+            <div class="trop-cell-val"><strong>hs-TnI 0h &lt; 5 ng/L</strong><br><em>E</em> &#x394;1h &lt; 4 ng/L</div>
+          </div>
+          <div class="trop-cell" style="background:var(--red-dim)">
+            <div class="trop-cell-label" style="color:#f87171">&#x1F6A8; RULE-IN</div>
+            <div class="trop-cell-val"><strong>hs-TnI 0h &#x2265; 64 ng/L</strong><br><em>OU</em> &#x394;1h &#x2265; 6 ng/L</div>
+          </div>
+        </div>
+
+        <div class="info-amber info-box" style="margin-top:1.25rem">
+          <span class="info-box-icon">&#x26A0;&#xFE0F;</span>
+          <div><strong>Limitações críticas:</strong> (1) Válidos apenas para IAM tipo 1 — elevações crônicas (DRC, miocardite, TEP) geram falsos-positivos. (2) Dor com início &lt;3h pode requerer coleta adicional mesmo com rule-out inicial. (3) O protocolo não estratifica DAC não obstrutiva ou angina instável sem lesão miocárdica — o HEART score complementa nestas situações [Dawson 2022 JACC].</div>
+        </div>
+
+        <hr class="section-divider" style="margin:1.5rem 0">
+        <div class="subsec"><div class="subsec-title">Calculadora Rápida — Protocolo 0h/1h (Elecsys hs-TnT)</div><div class="subsec-sub">Classificação automática com interpretação clínica</div></div>
+        <div class="form-grid" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.75rem">
+          <div class="form-group">
+            <label class="form-label">hs-TnT 0h <span>(ng/L)</span></label>
+            <input id="trop0h" class="form-input" type="number" min="0" max="5000" step="0.1" placeholder="ex: 8.4" oninput="calcTrop()"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">hs-TnT 1h <span>(ng/L)</span></label>
+            <input id="trop1h" class="form-input" type="number" min="0" max="5000" step="0.1" placeholder="ex: 9.1" oninput="calcTrop()"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">&#x394; calculado <span>(ng/L)</span></label>
+            <input id="tropDelta" class="form-input" type="number" readonly style="opacity:.6" placeholder="—"/>
+          </div>
+        </div>
+        <div id="trop-result" style="display:none;margin-top:1rem">
+          <div id="trop-result-box" style="border-radius:var(--radius);padding:1rem 1.25rem"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCORE COMPARISON TAB -->
+    <div id="tab-aguda-comp" class="tab-panel">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon" style="background:var(--muted)">&#x1F4CA;</div>
+          <div>
+            <div class="card-title">Comparação de Escores — Dor Torácica Aguda</div>
+            <div class="card-subtitle">HEART vs TIMI vs GRACE vs EDACS — Evidências 2018–2022</div>
+          </div>
+        </div>
+        <div class="info-teal info-box">
+          <span class="info-box-icon">&#x1F3C6;</span>
+          <div>Meta-análise indireta (Ke et al. BMJ Open 2021, 9 estudos, 12.589 pacientes): <strong>HEART supera TIMI e GRACE</strong> para MACE em 30 dias: AUC 0,80 vs 0,72 (TIMI) vs 0,70 (GRACE). O HEART classifica mais pacientes como baixo risco habilitando alta precoce segura.</div>
+        </div>
+        <div style="overflow-x:auto;border-radius:var(--radius);border:1px solid var(--border)">
+          <table class="compare-table" style="min-width:680px">
+            <thead><tr><th>Escore</th><th>Variáveis</th><th>AUC (MACE)</th><th>Sensibilidade baixo risco</th><th>% pacientes baixo risco</th><th>Diretriz</th></tr></thead>
+            <tbody>
+              <tr style="background:rgba(0,211,189,.04)"><td><strong>HEART</strong> <span class="badge badge-info">Preferido</span></td><td>5 domínios (H/E/A/R/T)</td><td><strong>0,80</strong></td><td>99,5%</td><td>~30–40%</td><td><span class="badge badge-info">ACC 2022 Classe I</span></td></tr>
+              <tr><td><strong>EDACS</strong></td><td>Idade, sexo, sintomas, FR</td><td>0,79</td><td>99,7%</td><td>~45–50%</td><td><span class="badge badge-warn">ACC 2022 Classe IIa</span></td></tr>
+              <tr><td><strong>TIMI</strong></td><td>7 variáveis</td><td>0,72</td><td>96–98%</td><td>~20–30%</td><td><span class="badge badge-score">Derivado em UA/NSTEMI</span></td></tr>
+              <tr><td><strong>GRACE</strong></td><td>8 variáveis clínicas</td><td>0,70</td><td>95–97%</td><td>~15–25%</td><td><span class="badge badge-score">Prognóstico pós-SCA</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="info-amber info-box" style="margin-top:1.25rem">
+          <span class="info-box-icon">&#x26A0;&#xFE0F;</span>
+          <div><strong>TIMI e GRACE foram derivados em populações com SCA confirmada</strong> — não em dor torácica indiferenciada na emergência. Aplicá-los como triagem inicial subestima sistematicamente o risco em pacientes atípicos e pode classificar incorretamente IAM como baixo risco (Mark et al. JACC 2018). O HEART foi derivado especificamente para triagem primária na emergência.</div>
+        </div>
+        <hr class="section-divider" style="margin:1.5rem 0">
+        <div class="subsec"><div class="subsec-title">Componentes Detalhados — HEART vs TIMI vs GRACE</div></div>
+        <div style="overflow-x:auto;border-radius:var(--radius);border:1px solid var(--border)">
+          <table class="compare-table" style="min-width:520px">
+            <thead><tr><th>Componente</th><th>HEART</th><th>TIMI</th><th>GRACE</th></tr></thead>
+            <tbody>
+              <tr><td>Idade</td><td>&#x2705; (0/1/2)</td><td>&#x2705; (&#x2265;65)</td><td>&#x2705; (contínua)</td></tr>
+              <tr><td>História clínica da dor</td><td>&#x2705; (0/1/2)</td><td>&#x2705; (&#x2265;3 FR)</td><td>&#x274C;</td></tr>
+              <tr><td>ECG</td><td>&#x2705; (0/1/2)</td><td>&#x2705; (desvio ST)</td><td>&#x2705; (parada)</td></tr>
+              <tr><td>Troponina</td><td>&#x2705; (0/1/2)</td><td>&#x2705; (positiva)</td><td>&#x2705; (elevada)</td></tr>
+              <tr><td>FC / PA</td><td>&#x274C;</td><td>&#x274C;</td><td>&#x2705; (ambas)</td></tr>
+              <tr><td>Killip class</td><td>&#x274C;</td><td>&#x274C;</td><td>&#x2705;</td></tr>
+              <tr><td>Creatinina sérica</td><td>&#x274C;</td><td>&#x274C;</td><td>&#x2705;</td></tr>
+              <tr><td>Doença coronariana conhecida</td><td>&#x2705; (em FR)</td><td>&#x2705; (estenose &#x2265;50%)</td><td>&#x274C;</td></tr>
+              <tr><td>AAS nos últimos 7 dias</td><td>&#x274C;</td><td>&#x2705;</td><td>&#x274C;</td></tr>
+              <tr><td>Angina recente (&#x2264;24h)</td><td>&#x274C;</td><td>&#x2705; (&#x2265;2 episódios)</td><td>&#x274C;</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ALGORITHM TAB -->
+    <div id="tab-aguda-algo" class="tab-panel">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">&#x1F5FA;&#xFE0F;</div>
+          <div>
+            <div class="card-title">Algoritmo Integrado — Dor Torácica Aguda na Emergência</div>
+            <div class="card-subtitle">ACC 2022 (Kontos et al.) · ESC NSTE-ACS 2020 (Collet et al.)</div>
+          </div>
+        </div>
+        <div class="info-gray info-box"><span class="info-box-icon">&#x1F4CC;</span><div>Fluxo sequencial integrando avaliação de STEMI, uso de hs-Tn e HEART Score. Aplicável a pacientes adultos com dor torácica aguda na emergência sem diagnóstico alternativo evidente na triagem.</div></div>
+        <div style="display:flex;flex-direction:column;gap:.75rem;margin-top:1rem">
+          <div style="background:var(--red-dim);border:1px solid rgba(220,38,38,.3);border-radius:var(--radius);padding:1rem 1.25rem">
+            <div style="font-weight:700;font-size:.85rem;color:#f87171;margin-bottom:.3rem">&#x1F534; PASSO 1 · Exclusão de STEMI — ECG em ≤10 min</div>
+            <div style="font-size:.82rem;line-height:1.6">Se supradesnivelamento de ST &#x2265;1mm em &#x2265;2 derivações contíguas (ou equivalentes: BRE novo, supra de aVR + infradesnivelamento difuso) → <strong>ativação imediata de hemodinâmica</strong>. Tempo porta-balão alvo: &lt;90 min. O fluxo abaixo aplica-se aos pacientes SEM STEMI.</div>
+          </div>
+          <div style="background:var(--muted);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem">
+            <div style="font-weight:700;font-size:.85rem;margin-bottom:.3rem">&#x26AA; PASSO 2 · Avaliação Inicial (0h)</div>
+            <div style="font-size:.82rem;line-height:1.6">História clínica completa + ECG interpretado + hs-Tn 0h + HEART score calculado.<br>
+              &bull; <strong>HEART 0–3 + hs-Tn &lt; LSN:</strong> ~30% dos pacientes já estratificados como baixo risco na chegada.<br>
+              &bull; <strong>HEART 7–10 + hs-Tn &gt;3× LSN:</strong> alto risco — hospitalização sem aguardar resultado seriado.
+            </div>
+          </div>
+          <div style="background:var(--amber-dim);border:1px solid rgba(251,191,36,.3);border-radius:var(--radius);padding:1rem 1.25rem">
+            <div style="font-weight:700;font-size:.85rem;color:#fbbf24;margin-bottom:.3rem">&#x1F7E1; PASSO 3 · Protocolo hs-Tn 0h/1h ou 0h/2h</div>
+            <div style="font-size:.82rem;line-height:1.6">Pacientes não classificados no passo 2 → coleta seriada de hs-Tn.<br>
+              &bull; <strong>Rule-out atendido:</strong> avaliar HEART; se &#x2264;3 → alta com acompanhamento em 72h.<br>
+              &bull; <strong>Rule-in atendido:</strong> IAM tipo 1 provável → hospitalização e estratégia invasiva.<br>
+              &bull; <strong>Zona cinzenta:</strong> coleta adicional às 3–6h; echocardiograma e consulta cardiológica.
+            </div>
+          </div>
+          <div style="background:var(--teal-dim);border:1px solid rgba(0,211,189,.25);border-radius:var(--radius);padding:1rem 1.25rem">
+            <div style="font-weight:700;font-size:.85rem;color:var(--teal);margin-bottom:.3rem">&#x1F7E2; PASSO 4 · Decisão Final</div>
+            <div style="font-size:.82rem;line-height:1.6">
+              <strong>Baixo risco</strong> (HEART &#x2264;3 + rule-out): alta precoce, orientação sobre retorno imediato, consulta em 72h. Sem teste provocativo de rotina em assintomático.<br><br>
+              <strong>Risco intermediário</strong> (HEART 4–6): teste não-invasivo antes da alta — CCTA, ECO estresse ou cintilografia — ou agendamento em 72h.<br><br>
+              <strong>Alto risco</strong> (HEART &#x2265;7 ou rule-in): hospitalização; coronariografia dentro de 24–72h. Se instável hemodinamicamente: emergencial.
+            </div>
+          </div>
+        </div>
+        <div class="info-teal info-box" style="margin-top:1.25rem">
+          <span class="info-box-icon">&#x1F4DA;</span>
+          <div><strong>Evidência de impacto clínico:</strong> Implementação do HEART Pathway demonstrou redução de 20–37% na taxa de hospitalização desnecessária sem aumento de eventos adversos perdidos (taxa de MACE &lt;1% em 30 dias nos grupos de baixo risco com alta precoce) [Dawson 2022 JACC State-of-the-Art Review].</div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /mod-aguda -->
+
+  <!-- ======================== MÓDULO CRÔNICA ======================== -->
+  <div id="mod-cronica" class="module-section" style="padding:1.5rem 0 2rem">
+
+    <div class="section-label" style="margin-top:1.5rem">Módulo 2 · Ambulatorial</div>
+    <div class="section-title" style="margin-bottom:.25rem">Probabilidade Pré-Teste — Dor Torácica Crônica</div>
+    <p style="font-size:.85rem;color:var(--muted-foreground);margin-bottom:1.5rem;max-width:680px">
+      A probabilidade pré-teste (PPT) de DAC obstrutiva orienta a indicação e interpretação de testes diagnósticos. Modelos contemporâneos são significativamente mais precisos que o histórico Diamond-Forrester, que superestimava a prevalência em ~3× nas populações modernas [AHA/ACC 2021; Lancet 2025].
+    </p>
+
+    <div class="tab-bar" id="tab-bar-cronica">
+      <button class="tab-btn active" onclick="switchTab('cronica','ptp',event)">Calculadora RF-CL</button>
+      <button class="tab-btn" onclick="switchTab('cronica','cac',event)">Escore de Cálcio (CAC)</button>
+      <button class="tab-btn" onclick="switchTab('cronica','modelos',event)">Modelos Históricos vs Contemporâneos</button>
+      <button class="tab-btn" onclick="switchTab('cronica','indicacao',event)">Indicação de Testes</button>
+    </div>
+
+    <!-- RF-CL CALCULATOR TAB -->
+    <div id="tab-cronica-ptp" class="tab-panel active">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">&#x1F4D0;</div>
+          <div>
+            <div class="card-title">Calculadora de PPT — Modelo RF-CL Contemporâneo</div>
+            <div class="card-subtitle">Probabilidade pré-teste de DAC obstrutiva (estenose ≥50% FFR-guiada ou CCTA)</div>
+          </div>
+        </div>
+        <div class="info-teal info-box">
+          <span class="info-box-icon">&#x1F4D6;</span>
+          <div>O modelo RF-CL (Risk Factor-weighted Clinical Likelihood) combina os parâmetros básicos de Juarez-Orozco (ESC 2019) — <strong>idade, sexo e tipo de sintoma</strong> — com a ponderação por <strong>fatores de risco cardiovascular</strong>. A adição de RF melhora a AUC de 0,74 para 0,82, e a posterior adição do <strong>CAC eleva para 0,88</strong> (Rasmussen 2024, JACC Imaging). Recomendado pelas diretrizes AHA/ACC 2021 e Lancet 2025 como modelo preferencial.</div>
+        </div>
+
+        <div class="two-col" style="gap:1.25rem">
+          <div>
+            <div class="subsec"><div class="subsec-title">Dados Demográficos</div></div>
+            <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1rem">
+              <div class="form-group">
+                <label class="form-label">Idade <span>(anos)</span></label>
+                <input id="ptp-age" class="form-input" type="number" min="30" max="90" placeholder="ex: 58" oninput="calcPTP()"/>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Sexo</label>
+                <select id="ptp-sex" class="form-select" onchange="calcPTP()">
+                  <option value="">Selecione</option>
+                  <option value="M">Masculino</option>
+                  <option value="F">Feminino</option>
+                </select>
+              </div>
+            </div>
+            <div class="subsec"><div class="subsec-title">Tipo de Sintoma</div><div class="subsec-sub">Classificação AHA/ACC 2021 — 3 critérios: (1) pressão/aperto retroesternal, (2) relação com esforço/estresse, (3) alívio com repouso ou nitrato &lt;5 min</div></div>
+            <div style="display:flex;flex-direction:column;gap:.5rem" id="ptp-symptom-group">
+              <button class="opt-btn" style="min-width:0;flex:none" onclick="selectSymptom('typical',this)"><strong>Angina Típica</strong> — os 3 critérios presentes<br><small style="color:var(--muted-foreground)">Pressão retroesternal + esforço + alívio com nitrato</small></button>
+              <button class="opt-btn" style="min-width:0;flex:none" onclick="selectSymptom('atypical',this)"><strong>Angina Atípica</strong> — 2 dos 3 critérios<br><small style="color:var(--muted-foreground)">Características parciais da angina típica</small></button>
+              <button class="opt-btn" style="min-width:0;flex:none" onclick="selectSymptom('nonanginal',this)"><strong>Dor Não-Anginosa</strong> — ≤1 critério<br><small style="color:var(--muted-foreground)">Inclui dor pleurítica, posicional ou à palpação</small></button>
+            </div>
+          </div>
+          <div>
+            <div class="subsec"><div class="subsec-title">Fatores de Risco Cardiovascular</div><div class="subsec-sub">Cada fator presente aumenta a PPT pelo modelo RF-CL</div></div>
+            <div style="display:flex;flex-direction:column;gap:.5rem">
+              <div class="check-item" onclick="toggleRF(this,'dm')">
+                <div class="check-box"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+                <span class="check-label"><strong>Diabetes mellitus</strong><small>Tipo 1 ou 2, qualquer tratamento</small></span>
+              </div>
+              <div class="check-item" onclick="toggleRF(this,'smoking')">
+                <div class="check-box"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+                <span class="check-label"><strong>Tabagismo atual ou recente</strong><small>Cessação há &lt;1 ano</small></span>
+              </div>
+              <div class="check-item" onclick="toggleRF(this,'htn')">
+                <div class="check-box"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+                <span class="check-label"><strong>Hipertensão arterial</strong><small>Diagnóstico médico ou uso de anti-hipertensivo</small></span>
+              </div>
+              <div class="check-item" onclick="toggleRF(this,'dyslipi')">
+                <div class="check-box"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+                <span class="check-label"><strong>Dislipidemia</strong><small>LDL elevado, HDL baixo ou uso de hipolipemiante</small></span>
+              </div>
+              <div class="check-item" onclick="toggleRF(this,'famhx')">
+                <div class="check-box"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+                <span class="check-label"><strong>Histórico familiar de DAC precoce</strong><small>Parente 1º grau: homem &lt;55a ou mulher &lt;65a</small></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="ptp-result" class="result-panel" style="margin-top:1.5rem">
+          <div class="result-header" id="ptp-result-header">
+            <div class="result-icon" id="ptp-result-icon"></div>
+            <div>
+              <div id="ptp-result-cat" class="result-title"></div>
+              <div id="ptp-result-sub" style="font-size:.82rem;color:var(--muted-foreground)"></div>
+            </div>
+          </div>
+          <div class="result-body">
+            <div style="display:flex;align-items:flex-end;gap:1.5rem;flex-wrap:wrap;margin-bottom:1.25rem">
+              <div>
+                <div style="font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted-foreground);font-family:var(--font-mono);margin-bottom:4px">PPT ESTIMADA</div>
+                <div class="ptp-val-display" id="ptp-val" style="color:var(--teal)">—%</div>
+                <div style="font-size:.7rem;color:var(--muted-foreground);font-family:var(--font-mono)">DAC obstrutiva (&#x2265;50%)</div>
+              </div>
+              <div style="flex:1;min-width:200px">
+                <div class="ptp-gauge">
+                  <div class="ptp-track"><div class="ptp-needle" id="ptp-needle" style="left:0%"></div></div>
+                  <div class="ptp-labels"><span>0%</span><span>15%</span><span>50%</span><span>100%</span></div>
+                </div>
+                <div id="ptp-action-brief" style="font-size:.82rem;font-weight:600;margin-top:.5rem"></div>
+              </div>
+            </div>
+            <div id="ptp-detail"></div>
+            <div class="disclaimer">&#x26A0;&#xFE0F; Estimativa baseada nos modelos Juarez-Orozco (ESC 2019) com ajuste por fatores de risco RF-CL. Valores refletem prevalência de DAC obstrutiva em populações europeias e norte-americanas contemporâneas. O cálculo é uma aproximação probabilística — interprete no contexto clínico completo.</div>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-primary btn-lg" onclick="calcPTP()">Calcular Probabilidade Pré-Teste</button>
+          <button class="btn btn-secondary" onclick="resetPTP()">Limpar</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" style="margin-bottom:1rem;padding-bottom:.75rem">
+          <div class="card-icon" style="background:var(--muted)">&#x1F4CB;</div>
+          <div><div class="card-title">Tabela de PPT Clínica Básica — Juarez-Orozco 2019 / ESC 2019</div><div class="card-subtitle">Prevalência de DAC obstrutiva (%) — valores contemporâneos (significativamente menores que Diamond-Forrester)</div></div>
+        </div>
+        <div style="overflow-x:auto;border-radius:var(--radius);border:1px solid var(--border)">
+          <table class="compare-table" style="min-width:560px">
+            <thead><tr><th>Faixa etária</th><th>Angina Típica &#x2642;</th><th>Angina Típica &#x2640;</th><th>Atípica &#x2642;</th><th>Atípica &#x2640;</th><th>Não-Anginosa &#x2642;</th><th>Não-Anginosa &#x2640;</th></tr></thead>
+            <tbody>
+              <tr><td>30–39</td><td>3%</td><td>5%</td><td>4%</td><td>3%</td><td>1%</td><td>1%</td></tr>
+              <tr><td>40–49</td><td>22%</td><td>10%</td><td>10%</td><td>6%</td><td>3%</td><td>2%</td></tr>
+              <tr><td>50–59</td><td>32%</td><td>13%</td><td>17%</td><td>6%</td><td>11%</td><td>3%</td></tr>
+              <tr><td>60–69</td><td>44%</td><td>16%</td><td>26%</td><td>11%</td><td>22%</td><td>6%</td></tr>
+              <tr><td>70–79</td><td>52%</td><td>27%</td><td>34%</td><td>19%</td><td>24%</td><td>14%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="font-size:.75rem;color:var(--muted-foreground);margin-top:.75rem">Fonte: Juarez-Orozco et al. Eur Heart J 2019; reproduzido nas diretrizes ESC 2019 e AHA/ACC 2021. Valores baseados em coortes com CCTA ou angiografia funcional (FFR) — significativamente menores que Diamond-Forrester (1979).</div>
+      </div>
+    </div>
+
+    <!-- CAC TAB -->
+    <div id="tab-cronica-cac" class="tab-panel">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon amber">&#x1F48E;</div>
+          <div>
+            <div class="card-title">Escore de Cálcio Coronariano (CAC)</div>
+            <div class="card-subtitle">Refinamento da PPT — AHA/ACC 2021 Classe IIa · Rasmussen JACC Imaging 2024</div>
+          </div>
+        </div>
+        <div class="info-teal info-box">
+          <span class="info-box-icon">&#x1F4A1;</span>
+          <div>A adição do CAC ao modelo RF-CL aumenta a AUC de 0,82 para <strong>0,88</strong> (Rasmussen 2024 JACC Imaging). O <strong>CAC zero</strong> em pacientes com PPT &lt;15% identifica uma coorte de risco muito baixo que pode dispensar testes adicionais. CAC &#x2265;400 aponta para alta probabilidade de DAC multivascular, guiando estratégia invasiva direta. O CAC tem melhor custo-efetividade como "desempate" em PPT intermediária-baixa (5–50%) [Lancet 2025].</div>
+        </div>
+        <div style="overflow-x:auto;border-radius:var(--radius);border:1px solid var(--border);margin-bottom:1.25rem">
+          <table class="compare-table" style="min-width:580px">
+            <thead><tr><th>CAC (Agatston)</th><th>Interpretação</th><th>Efeito sobre a PPT</th><th>Conduta sugerida</th></tr></thead>
+            <tbody>
+              <tr><td><strong>0</strong></td><td><span class="badge badge-green">Muito baixo</span></td><td>Redução de ~70–80% da PPT base</td><td>Se PPT base &lt;15%: sem teste adicional. Reavaliação em 5 anos ou mudança de sintomas. Foco em estilo de vida e RCV global.</td></tr>
+              <tr><td><strong>1–99</strong></td><td><span class="badge badge-info">Baixo-Moderado</span></td><td>Aumento modesto da PPT</td><td>CCTA ou teste funcional conforme PPT clínica e sintomas. Controle agressivo de FR.</td></tr>
+              <tr><td><strong>100–399</strong></td><td><span class="badge badge-warn">Moderado-Alto</span></td><td>Aumento significativo da PPT</td><td>Teste funcional (ECO estresse, SPECT, PET) ou CCTA. Estatina de alta intensidade independentemente.</td></tr>
+              <tr><td><strong>&#x2265; 400</strong></td><td><span class="badge badge-danger">Alto</span></td><td>Aumento &#x2265;3× da PPT base</td><td>Considerar coronariografia direta em sintomáticos. Terapia médica intensiva.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="background:var(--muted);border-radius:var(--radius);padding:1.25rem;margin-top:1rem">
+          <div style="font-weight:700;font-size:.9rem;margin-bottom:.75rem">Ajuste de PPT com CAC</div>
+          <div class="form-grid" style="grid-template-columns:1fr 1fr;gap:.75rem">
+            <div class="form-group">
+              <label class="form-label">PPT clínica base <span>(%)</span></label>
+              <input id="cac-base-ptp" class="form-input" type="number" min="1" max="99" placeholder="ex: 22" oninput="calcCACadj()"/>
+              <div class="form-hint">Calculada na aba anterior com RF-CL</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Escore de Cálcio <span>(Agatston)</span></label>
+              <input id="cac-score" class="form-input" type="number" min="0" max="5000" placeholder="ex: 142" oninput="calcCACadj()"/>
+            </div>
+          </div>
+          <div id="cac-result" style="display:none;margin-top:1rem">
+            <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;padding:1rem;background:var(--card);border-radius:var(--radius);border:1px solid var(--border)">
+              <div>
+                <div style="font-size:.7rem;color:var(--muted-foreground);font-family:var(--font-mono);margin-bottom:2px">PPT AJUSTADA</div>
+                <div style="font-size:2rem;font-weight:800;font-family:var(--font-mono);color:var(--teal)" id="cac-adj-val">—%</div>
+              </div>
+              <div style="flex:1;min-width:160px">
+                <div id="cac-interp" style="font-weight:700;margin-bottom:4px;font-size:.9rem"></div>
+                <div id="cac-action" style="font-size:.8rem;color:var(--muted-foreground);line-height:1.55"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="info-amber info-box" style="margin-top:1.25rem">
+          <span class="info-box-icon">&#x26A0;&#xFE0F;</span>
+          <div><strong>Limitações do CAC:</strong> (1) Não avalia estenoses não calcificadas — relevante em jovens (&lt;40–50a) e diabéticos com placas lipídicas. (2) Não substitui avaliação funcional de isquemia quando PPT já é alta (&gt;65%). (3) Contraindicado em gestantes. (4) Exposição a ~1 mSv. Mais custo-efetivo como "desempate" em PPT intermediária-baixa (5–50%) [Lancet 2025].</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODELS TAB -->
+    <div id="tab-cronica-modelos" class="tab-panel">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon" style="background:var(--muted)">&#x1F52C;</div>
+          <div>
+            <div class="card-title">Evolução dos Modelos de Probabilidade Pré-Teste</div>
+            <div class="card-subtitle">Diamond-Forrester 1979 → ESC 2013 → Contemporâneo 2019–2024</div>
+          </div>
+        </div>
+        <div class="info-red info-box">
+          <span class="info-box-icon">&#x1F6AB;</span>
+          <div>O modelo de <strong>Diamond-Forrester (1979)</strong> foi derivado em era pré-stent, em população de alto risco, com definição de DAC por estenose &#x2265;70% à angiografia visual. Nas populações contemporâneas, <strong>superestima a PPT em até 3×</strong>, levando à indicação excessiva de testes invasivos. As diretrizes AHA/ACC 2021 e ESC 2019 contraindicam seu uso como modelo primário [Gulati 2021; Winther 2022 JACC Imaging].</div>
+        </div>
+        <div style="overflow-x:auto;border-radius:var(--radius);border:1px solid var(--border)">
+          <table class="compare-table" style="min-width:640px">
+            <thead><tr><th>Modelo</th><th>Ano</th><th>Variáveis</th><th>Definição de DAC</th><th>AUC</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr style="background:var(--red-dim)"><td><strong>Diamond-Forrester</strong></td><td>1979</td><td>Idade, sexo, tipo de sintoma</td><td>&#x2265;70% angiografia visual</td><td>~0,72</td><td style="color:#f87171"><strong>Superestima ~3× — NÃO USAR</strong></td></tr>
+              <tr><td><strong>Duke Clinical Score</strong></td><td>1993</td><td>Sintomas, FR, ECG</td><td>&#x2265;75% angiografia</td><td>~0,74</td><td>Derivado em pacientes referidos — viés de seleção</td></tr>
+              <tr><td><strong>ESC 2013 Update</strong></td><td>2013</td><td>Idade, sexo, sintomas</td><td>&#x2265;50% angiografia</td><td>~0,73</td><td>Ainda superestima vs coortes contemporâneas</td></tr>
+              <tr style="background:var(--teal-dim)"><td><strong>Juarez-Orozco</strong> <span class="badge badge-info">ESC 2019</span></td><td>2019</td><td>Idade, sexo, tipo de sintoma</td><td>&#x2265;50% CCTA ou FFR &lt;0,80</td><td>0,74</td><td>Não inclui FR — subestima em pacientes com múltiplos FR</td></tr>
+              <tr style="background:rgba(0,211,189,.05)"><td><strong>RF-CL</strong> <span class="badge badge-info">ACC/AHA 2021</span></td><td>2019–22</td><td>Idade, sexo, sintoma + FR</td><td>&#x2265;50% CCTA ou FFR &lt;0,80</td><td>0,82</td><td style="color:var(--green)">Modelo de referência atual — validado externamente</td></tr>
+              <tr style="background:rgba(0,211,189,.05)"><td><strong>RF-CL + CAC</strong> <span class="badge badge-info">Lancet 2025</span></td><td>2024</td><td>RF-CL + Escore de Cálcio</td><td>&#x2265;50% CCTA ou FFR &lt;0,80</td><td>0,88</td><td style="color:var(--green)">Melhor desempenho global quando CAC disponível</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="info-teal info-box" style="margin-top:1.25rem">
+          <span class="info-box-icon">&#x1F50E;</span>
+          <div><strong>Por que a PPT caiu nas populações contemporâneas?</strong> (1) Controle moderno de FR reduz prevalência de DAC obstrutiva. (2) Diagnóstico precoce das SCA diminui progressão crônica obstrutiva. (3) Uso da CCTA revela que muitos com "angina típica" têm coronárias normais ou placas não-obstrutivas (INOCA/MINOCA). (4) Definições modernas usam FFR &lt;0,80 — mais restritivo que estenose &#x2265;70% visual de Diamond-Forrester.</div>
+        </div>
+        <hr class="section-divider" style="margin:1.5rem 0">
+        <div class="subsec"><div class="subsec-title">Exemplo Prático — Mulher 55 anos, angina atípica</div><div class="subsec-sub">Impacto do modelo escolhido na conduta clínica</div></div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.75rem">
+          <div style="background:var(--red-dim);border:1px solid rgba(220,38,38,.3);border-radius:var(--radius);padding:1rem;text-align:center">
+            <div style="font-size:.65rem;color:#f87171;font-weight:700;letter-spacing:.06em;margin-bottom:.5rem">DIAMOND-FORRESTER 1979</div>
+            <div style="font-size:2.2rem;font-weight:800;font-family:var(--font-mono);color:#f87171">54%</div>
+            <div style="font-size:.75rem;color:var(--muted-foreground);margin-top:.3rem">&#x2192; Teste invasivo<br><small>Coronariografia indicada</small></div>
+          </div>
+          <div style="background:var(--amber-dim);border:1px solid rgba(251,191,36,.3);border-radius:var(--radius);padding:1rem;text-align:center">
+            <div style="font-size:.65rem;color:#fbbf24;font-weight:700;letter-spacing:.06em;margin-bottom:.5rem">ESC 2013</div>
+            <div style="font-size:2.2rem;font-weight:800;font-family:var(--font-mono);color:#fbbf24">28%</div>
+            <div style="font-size:.75rem;color:var(--muted-foreground);margin-top:.3rem">&#x2192; Teste não-invasivo<br><small>ECO estresse ou CCTA</small></div>
+          </div>
+          <div style="background:var(--teal-dim);border:1px solid rgba(0,211,189,.25);border-radius:var(--radius);padding:1rem;text-align:center">
+            <div style="font-size:.65rem;color:var(--teal);font-weight:700;letter-spacing:.06em;margin-bottom:.5rem">JUAREZ-OROZCO 2019</div>
+            <div style="font-size:2.2rem;font-weight:800;font-family:var(--font-mono);color:var(--teal)">6%</div>
+            <div style="font-size:.75rem;color:var(--muted-foreground);margin-top:.3rem">&#x2192; Baixo risco<br><small>Considerar CAC</small></div>
+          </div>
+          <div style="background:rgba(0,211,189,.07);border:1px solid rgba(0,211,189,.3);border-radius:var(--radius);padding:1rem;text-align:center">
+            <div style="font-size:.65rem;color:var(--teal);font-weight:700;letter-spacing:.06em;margin-bottom:.5rem">RF-CL (+ 2 FR)</div>
+            <div style="font-size:2.2rem;font-weight:800;font-family:var(--font-mono);color:var(--teal)">12%</div>
+            <div style="font-size:.75rem;color:var(--muted-foreground);margin-top:.3rem">&#x2192; Baixo-intermediário<br><small>CAC ou CCTA para refinar</small></div>
+          </div>
+        </div>
+        <div style="font-size:.78rem;color:var(--muted-foreground);margin-top:.75rem">&#x27F9; A mesma paciente teria coronariografia indicada com Diamond-Forrester, mas seria elegível para avaliação não-invasiva com modelos contemporâneos — discrepância que justifica a mudança de paradigma nas diretrizes.</div>
+      </div>
+    </div>
+
+    <!-- INDICAÇÃO TAB -->
+    <div id="tab-cronica-indicacao" class="tab-panel">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">&#x1F9ED;</div>
+          <div>
+            <div class="card-title">Indicação de Testes Diagnósticos por PPT</div>
+            <div class="card-subtitle">AHA/ACC 2021 · ESC 2019 · Lancet 2025 (van der Bijl et al.)</div>
+          </div>
+        </div>
+        <div class="info-teal info-box">
+          <span class="info-box-icon">&#x1F4CC;</span>
+          <div>Testes diagnósticos são recomendados principalmente quando PPT &gt;15%. Abaixo deste limiar, o rendimento diagnóstico é baixo e o risco de falso-positivos (com subsequente angiografia desnecessária) supera o benefício. Pacientes com PPT &#x2264;5% têm risco equivalente a uma população assintomática [AHA/ACC 2021, Gulati et al. JACC 2021].</div>
+        </div>
+        <div style="overflow-x:auto;border-radius:var(--radius);border:1px solid var(--border)">
+          <table class="compare-table" style="min-width:600px">
+            <thead><tr><th>PPT (RF-CL)</th><th>Categoria</th><th>Exame recomendado</th><th>Estratégia</th></tr></thead>
+            <tbody>
+              <tr><td><strong>&lt; 5%</strong></td><td><span class="badge badge-green">Muito baixo</span></td><td>Nenhum — ou CAC se refinamento desejado</td><td>Investigar causas alternativas. Se CAC=0: sem teste adicional. Reavaliação em 5 anos.</td></tr>
+              <tr><td><strong>5–15%</strong></td><td><span class="badge badge-info">Baixo</span></td><td>CAC para reclassificação</td><td>Se CAC=0 → sem teste adicional. Se CAC&gt;0 → CCTA. Alta VPN da CCTA nesta faixa.</td></tr>
+              <tr><td><strong>15–50%</strong></td><td><span class="badge badge-warn">Intermediário</span></td><td>CCTA de primeira linha (Classe I, LOE A)</td><td>VPN excelente; detecta placas não-obstrutivas. SCOT-HEART (2018): redução de MACE com CCTA. FFR-CT pode ser adicionado. Alternativas: ECO estresse, SPECT, PET se CCTA limitada.</td></tr>
+              <tr><td><strong>50–65%</strong></td><td><span class="badge badge-warn">Intermed.-Alto</span></td><td>Teste funcional de imagem</td><td>PET (melhor acurácia), ECO estresse ou SPECT. Especificidade da CCTA cai por calcificações. Angiografia + FFR se discordância.</td></tr>
+              <tr><td><strong>&gt; 65%</strong></td><td><span class="badge badge-danger">Alto</span></td><td>Coronariografia direta (Classe IIa)</td><td>Em sintomáticos refratários: cateterismo + FFR permite diagnóstico e tratamento simultâneos. PET ou RNM se documentar isquemia prévia necessário.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="info-amber info-box" style="margin-top:1.25rem">
+          <span class="info-box-icon">&#x1F504;</span>
+          <div><strong>CCTA como primeiro exame na PPT intermediária:</strong> PROMISE (2015) e SCOT-HEART (2018) demonstraram que a CCTA como exame de primeira linha melhora a prescrição de tratamento preventivo e reduz MACE (SCOT-HEART: RR 0,59, p=0,04) comparada à estratégia funcional inicial. O Lancet 2025 (van der Bijl et al.) reafirma a CCTA como exame preferencial para PPT intermediária.</div>
+        </div>
+        <hr class="section-divider" style="margin:1.5rem 0">
+        <div class="subsec"><div class="subsec-title">Comparação de Modalidades Diagnósticas</div></div>
+        <div style="overflow-x:auto;border-radius:var(--radius);border:1px solid var(--border)">
+          <table class="compare-table" style="min-width:620px">
+            <thead><tr><th>Exame</th><th>Tipo</th><th>Sens.</th><th>Espec.</th><th>PPT ideal</th><th>Vantagem principal</th></tr></thead>
+            <tbody>
+              <tr><td><strong>CCTA</strong></td><td>Anatômica</td><td>95–99%</td><td>64–83%</td><td>15–50%</td><td>VPN excelente; detecta placas não-obstrutivas; exame integrado único</td></tr>
+              <tr><td><strong>PET miocárdico</strong></td><td>Funcional</td><td>90–95%</td><td>82–90%</td><td>50–80%</td><td>Melhor especificidade; reserva de fluxo absoluta; doença microvascular</td></tr>
+              <tr><td><strong>ECO de Estresse</strong></td><td>Funcional</td><td>80–88%</td><td>80–88%</td><td>30–70%</td><td>Sem radiação; informação funcional + estrutural; custo</td></tr>
+              <tr><td><strong>SPECT</strong></td><td>Funcional</td><td>82–90%</td><td>70–80%</td><td>30–70%</td><td>Amplamente disponível; dados prognósticos robustos</td></tr>
+              <tr><td><strong>FFR-CT (HeartFlow)</strong></td><td>Funcional-Anat.</td><td>~88%</td><td>~79%</td><td>25–65%</td><td>Fisiologia sem cateterismo; complementa CCTA duvidosa</td></tr>
+              <tr><td><strong>Coronariografia + FFR</strong></td><td>Invasivo</td><td>~97%</td><td>~96%</td><td>&gt;65%</td><td>Diagnóstico e tratamento simultâneos; padrão-ouro</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /mod-cronica -->
+
+  <!-- REFERÊNCIAS -->
+  <hr class="section-divider">
+  <div class="section-label">Referências</div>
+  <div class="section-title" style="margin-bottom:1.5rem">Evidências que Fundamentam esta Ferramenta</div>
+  <div class="card" style="padding:1.25rem">
+    <ol class="ref-list">
+      <li class="ref-item"><span class="ref-num">1</span><div><div class="ref-title">2022 ACC Expert Consensus Decision Pathway on the Evaluation and Disposition of Acute Chest Pain In the Emergency Department <span class="ref-ev">Guideline</span></div><div class="ref-meta">Kontos MC, de Lemos JA, Deitelzweig SB, et al. J Am Coll Cardiol. 2022;80(20):1925-1960.</div></div></li>
+      <li class="ref-item"><span class="ref-num">2</span><div><div class="ref-title">Indirect Comparison of TIMI, HEART and GRACE for Predicting Major Cardiovascular Events in Patients with Acute Chest Pain: Systematic Review and Meta-Analysis</div><div class="ref-meta">Ke J, Chen Y, Wang X, Wu Z, Chen F. BMJ Open. 2021;11(8):e048356.</div></div></li>
+      <li class="ref-item"><span class="ref-num">3</span><div><div class="ref-title">Risk Stratifying Chest Pain Patients in the Emergency Department Using HEART, GRACE and TIMI Scores With a Single Contemporary Troponin Result to Predict MACE</div><div class="ref-meta">Reaney PDW, Elliott HI, Noman A, Cooper JG. Emerg Med J. 2018;35(7):420-427.</div></div></li>
+      <li class="ref-item"><span class="ref-num">4</span><div><div class="ref-title">Care Models for Acute Chest Pain That Improve Outcomes and Efficiency: JACC State-of-the-Art Review</div><div class="ref-meta">Dawson LP, Smith K, Cullen L, et al. J Am Coll Cardiol. 2022;79(23):2333-2348.</div></div></li>
+      <li class="ref-item"><span class="ref-num">5</span><div><div class="ref-title">Performance of Coronary Risk Scores Among Patients With Chest Pain in the Emergency Department</div><div class="ref-meta">Mark DG, Huang J, Chettipally U, et al. J Am Coll Cardiol. 2018;71(6):606-616.</div></div></li>
+      <li class="ref-item"><span class="ref-num">6</span><div><div class="ref-title">2021 AHA/ACC/ASE/CHEST/SAEM/SCCT/SCMR Guideline for the Evaluation and Diagnosis of Chest Pain <span class="ref-ev">Guideline</span></div><div class="ref-meta">Gulati M, Levy PD, Mukherjee D, et al. J Am Coll Cardiol. 2021;78(22):e187-e285.</div></div></li>
+      <li class="ref-item"><span class="ref-num">7</span><div><div class="ref-title">Contemporary, Non-Invasive Imaging Diagnosis of Chronic Coronary Artery Disease <span class="ref-ev">Lancet 2025</span></div><div class="ref-meta">van der Bijl P, Gulati M, Saraste A, et al. Lancet. 2025;406(10519):2577-2587.</div></div></li>
+      <li class="ref-item"><span class="ref-num">8</span><div><div class="ref-title">Comparison of Pretest Probability Models of Obstructive Coronary Artery Disease</div><div class="ref-meta">Winther S, Schmidt SE, Knuuti J, Bttcher M. JACC Cardiovasc Imaging. 2022;15(1):173-175.</div></div></li>
+      <li class="ref-item"><span class="ref-num">9</span><div><div class="ref-title">Clinical Likelihood Prediction of Hemodynamically Obstructive Coronary Artery Disease in Patients With Stable Chest Pain</div><div class="ref-meta">Rasmussen LD, Karim SR, Westra J, et al. JACC Cardiovasc Imaging. 2024;17(10):1199-1210.</div></div></li>
+      <li class="ref-item"><span class="ref-num">10</span><div><div class="ref-title">2019 ESC Guidelines for the Diagnosis and Management of Chronic Coronary Syndromes <span class="ref-ev">Guideline</span></div><div class="ref-meta">Knuuti J, Wijns W, Saraste A, et al. Eur Heart J. 2020;41(3):407-477.</div></div></li>
+      <li class="ref-item"><span class="ref-num">11</span><div><div class="ref-title">ESC 2020 Guidelines for Acute Coronary Syndromes Without Persistent ST-Segment Elevation <span class="ref-ev">Guideline</span></div><div class="ref-meta">Collet JP, Thiele H, Barbato E, et al. Eur Heart J. 2021;42(14):1289-1367.</div></div></li>
+      <li class="ref-item"><span class="ref-num">12</span><div><div class="ref-title">HEART Score for Rapid Risk Stratification of Patients With Chest Pain at the Emergency Department</div><div class="ref-meta">Six AJ, Backus BE, Kelder JC. Neth Heart J. 2008;16(6):191-196.</div></div></li>
+    </ol>
+  </div>
+
+  <div class="disclaimer">
+    <strong>Aviso legal:</strong> Esta ferramenta é destinada exclusivamente a médicos e profissionais de saúde devidamente habilitados. As informações e cálculos têm caráter educativo e de suporte à decisão clínica, não substituindo o julgamento médico individualizado. O autor não se responsabiliza por decisões clínicas tomadas com base exclusiva nesta ferramenta. Sempre consulte as diretrizes vigentes e avalie cada paciente no seu contexto clínico completo.
+  </div>
+
+</div>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-copy">
+        &copy; 2025 Dr. Lucas Silva &middot; Cardiologia Intervencionista &middot; São Paulo, Brasil<br>
+        v1.0 — Baseado em evidências até Lancet 2025 (van der Bijl et al.)
+      </div>
+      <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">lucascardio.com.br</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function switchModule(mod) {
+  document.querySelectorAll(".module-section").forEach(s => s.classList.remove("active"));
+  document.querySelectorAll(".module-btn").forEach(b => b.classList.remove("active"));
+  document.getElementById("mod-" + mod).classList.add("active");
+  document.getElementById("btn-" + mod).classList.add("active");
+}
+function switchTab(module, tab, e) {
+  var bar = document.getElementById("tab-bar-" + module);
+  bar.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+  if(e) e.currentTarget.classList.add("active");
+  var prefix = "tab-" + module + "-";
+  document.querySelectorAll("[id^=\"" + prefix + "\"]").forEach(p => p.classList.remove("active"));
+  document.getElementById(prefix + tab).classList.add("active");
+}
+var heartScores = {history:null,ecg:null,age:null,risk:null,trop:null};
+function selectHEART(component,val,el) {
+  el.parentElement.querySelectorAll(".opt-btn").forEach(b => b.classList.remove("selected"));
+  el.classList.add("selected");
+  heartScores[component] = val;
+  updateHeartBreakdown();
+}
+function updateHeartBreakdown() {
+  var labels = {history:"H",ecg:"E",age:"A",risk:"R",trop:"T"};
+  var filled = Object.values(heartScores).filter(v => v !== null).length;
+  if(filled===0) return;
+  document.getElementById("heart-breakdown").style.display = "block";
+  document.getElementById("heart-breakdown-pills").innerHTML = Object.entries(heartScores).map(([k,v]) => {
+    var col = v===null?"var(--muted-foreground)":v===2?"#f87171":v===1?"#fbbf24":"var(--green)";
+    return "<span style=\"font-size:.78rem;font-family:var(--font-mono);font-weight:700;padding:4px 10px;border-radius:6px;background:var(--muted);border:1px solid var(--border);color:" + col + "\">" + labels[k] + ": " + (v!==null?v:"?") + "</span>";
+  }).join("");
+}
+function calcHEART() {
+  if(Object.values(heartScores).some(v => v===null)) { alert("Selecione uma opção para todos os 5 componentes."); return; }
+  var total = Object.values(heartScores).reduce((a,b)=>a+b,0);
+  var panel = document.getElementById("heart-result");
+  var header = document.getElementById("heart-result-header");
+  var icon = document.getElementById("heart-result-icon");
+  var cat = document.getElementById("heart-result-cat");
+  var sub = document.getElementById("heart-result-sub");
+  var scoreEl = document.getElementById("heart-score-val");
+  var mace = document.getElementById("heart-mace");
+  var action = document.getElementById("heart-action");
+  var detail = document.getElementById("heart-detail");
+  scoreEl.textContent = total;
+  panel.classList.add("show");
+  if(total<=3) {
+    header.className="result-header low"; icon.textContent="🟢"; scoreEl.style.color="var(--green)";
+    cat.textContent="Baixo Risco"; cat.style.color="var(--green)";
+    sub.textContent="HEART Score ≤3 — Risco de MACE em 6 semanas: 1,7–2,5%";
+    mace.innerHTML="<span style=\"color:var(--green)\">MACE estimado: ~1,7–2,5%</span>";
+    action.textContent="Alta precoce com orientação sobre retorno. Acompanhamento cardiológico em 72h. Sem indicação de teste provocativo de rotina em assintomático.";
+    detail.innerHTML="<div class=\"info-teal info-box\"><span class=\"info-box-icon\">✅</span><div><strong>Alta segura com monitorização ambulatorial.</strong> Sensibilidade do HEART ≤3: 99,5%. VPN: 99,6% (Reaney 2018). O HEART Pathway demonstrou redução de 20% nas hospitalizações desnecessárias sem perda de eventos adversos. Solicite retorno imediato em caso de dor recorrente, dispneia ou síncope.</div></div>";
+  } else if(total<=6) {
+    header.className="result-header mod"; icon.textContent="🟡"; scoreEl.style.color="#fbbf24";
+    cat.textContent="Risco Intermediário"; cat.style.color="#fbbf24";
+    sub.textContent="HEART Score 4–6 — Risco de MACE em 6 semanas: 12–16,6%";
+    mace.innerHTML="<span style=\"color:#fbbf24\">MACE estimado: ~12–16,6%</span>";
+    action.textContent="Observação hospitalar com troponinas seriadas. Teste não-invasivo antes da alta ou com agendamento em 72h: CCTA, ECO de estresse ou cintilografia.";
+    detail.innerHTML="<div class=\"info-amber info-box\"><span class=\"info-box-icon\">⚠️</span><div><strong>Investigação adicional necessária.</strong> Risco não desprezível de MACE nesta faixa. ACC 2022 recomenda observação com estratificação funcional (Classe I). CCTA apresenta alta VPN e pode excluir DAC significativa com segurança. Evitar alta sem definição diagnóstica.</div></div>";
+  } else {
+    header.className="result-header high"; icon.textContent="🔴"; scoreEl.style.color="#f87171";
+    cat.textContent="Alto Risco"; cat.style.color="#f87171";
+    sub.textContent="HEART Score 7–10 — Risco de MACE em 6 semanas: 50–65%";
+    mace.innerHTML="<span style=\"color:#f87171\">MACE estimado: ~50–65%</span>";
+    action.textContent="Hospitalização imediata. Estratégia invasiva precoce: coronariografia em 24–72h. DAPT e anticoagulação conforme quadro clínico.";
+    detail.innerHTML="<div class=\"info-red info-box\"><span class=\"info-box-icon\">🚨</span><div><strong>Alto risco — internação obrigatória.</strong> MACE acima de 50% justifica abordagem invasiva precoce. Correlacionar com troponinas seriadas, ECG evolutivo e estabilidade hemodinâmica. Em instabilidade ou supra de ST: coronariografia emergencial (Classe I).</div></div>";
+  }
+}
+function resetHEART() {
+  Object.keys(heartScores).forEach(k => heartScores[k]=null);
+  ["h-history","h-ecg","h-age","h-risk","h-trop"].forEach(id => document.querySelectorAll("#"+id+" .opt-btn").forEach(b=>b.classList.remove("selected")));
+  document.getElementById("heart-result").classList.remove("show");
+  document.getElementById("heart-breakdown").style.display="none";
+}
+function calcTrop() {
+  var t0 = parseFloat(document.getElementById("trop0h").value);
+  var t1 = parseFloat(document.getElementById("trop1h").value);
+  var delta = t1 - t0;
+  document.getElementById("tropDelta").value = (!isNaN(delta))?delta.toFixed(1):"";
+  var result = document.getElementById("trop-result");
+  var box = document.getElementById("trop-result-box");
+  if(isNaN(t0)||isNaN(t1)){result.style.display="none";return;}
+  result.style.display="block";
+  if(t0<5&&Math.abs(delta)<2) {
+    box.style.cssText="background:var(--green-dim);border:1px solid rgba(34,197,94,.3);border-radius:var(--radius);padding:1rem 1.25rem";
+    box.innerHTML="<div style=\"font-weight:700;color:var(--green);font-size:.9rem;margin-bottom:.5rem\">✅ RULE-OUT — IAM Improvável</div><div style=\"font-size:.82rem;line-height:1.6\">hs-TnT 0h = <strong>"+t0+"</strong> ng/L (&lt;5) · Δ1h = <strong>"+delta.toFixed(1)+"</strong> ng/L (&lt;2)<br>Critérios ESC 0h/1h atendidos. Risco de MACE ≈ &lt;1%. Complementar com HEART Score para decisão de alta.</div>";
+  } else if(t0>=52||Math.abs(delta)>=6) {
+    box.style.cssText="background:var(--red-dim);border:1px solid rgba(220,38,38,.3);border-radius:var(--radius);padding:1rem 1.25rem";
+    box.innerHTML="<div style=\"font-weight:700;color:#f87171;font-size:.9rem;margin-bottom:.5rem\">🚨 RULE-IN — IAM Provável</div><div style=\"font-size:.82rem;line-height:1.6\">hs-TnT 0h = <strong>"+t0+"</strong> ng/L · Δ1h = <strong>"+delta.toFixed(1)+"</strong> ng/L<br>Critérios ESC 0h/1h para rule-in atendidos. IAM tipo 1 em ~76% dos casos com este padrão. Hospitalização e estratégia invasiva precoce. Afastar elevações crônicas.</div>";
+  } else {
+    box.style.cssText="background:var(--amber-dim);border:1px solid rgba(251,191,36,.3);border-radius:var(--radius);padding:1rem 1.25rem";
+    box.innerHTML="<div style=\"font-weight:700;color:#fbbf24;font-size:.9rem;margin-bottom:.5rem\">⚠️ ZONA CINZENTA — Observação Necessária</div><div style=\"font-size:.82rem;line-height:1.6\">hs-TnT 0h = <strong>"+t0+"</strong> ng/L · Δ1h = <strong>"+delta.toFixed(1)+"</strong> ng/L<br>Não atende critérios de rule-out nem rule-in. Coleta adicional às 2–3h. HEART Score e ECG seriados. ~20% dos pacientes caem nesta zona.</div>";
+  }
+}
+var ptpTable = {
+  M:{typical:{"30-39":3,"40-49":22,"50-59":32,"60-69":44,"70-79":52},atypical:{"30-39":4,"40-49":10,"50-59":17,"60-69":26,"70-79":34},nonanginal:{"30-39":1,"40-49":3,"50-59":11,"60-69":22,"70-79":24}},
+  F:{typical:{"30-39":5,"40-49":10,"50-59":13,"60-69":16,"70-79":27},atypical:{"30-39":3,"40-49":6,"50-59":6,"60-69":11,"70-79":19},nonanginal:{"30-39":1,"40-49":2,"50-59":3,"60-69":6,"70-79":14}}
+};
+var selectedSymptom=null;
+var rfState={dm:false,smoking:false,htn:false,dyslipi:false,famhx:false};
+function selectSymptom(sym,el) {
+  document.querySelectorAll("#ptp-symptom-group .opt-btn").forEach(b=>b.classList.remove("selected"));
+  el.classList.add("selected"); selectedSymptom=sym; calcPTP();
+}
+function toggleRF(el,key) {
+  el.classList.toggle("checked"); rfState[key]=el.classList.contains("checked"); calcPTP();
+}
+function getAgeGroup(age) {
+  if(age<30)return null; if(age<=39)return"30-39"; if(age<=49)return"40-49";
+  if(age<=59)return"50-59"; if(age<=69)return"60-69"; return"70-79";
+}
+function calcPTP() {
+  var age=parseInt(document.getElementById("ptp-age").value);
+  var sex=document.getElementById("ptp-sex").value;
+  if(!age||!sex||!selectedSymptom)return;
+  var ag=getAgeGroup(age); if(!ag)return;
+  var base=ptpTable[sex]&&ptpTable[sex][selectedSymptom]&&ptpTable[sex][selectedSymptom][ag];
+  if(base===undefined)return;
+  var rfCount=Object.values(rfState).filter(Boolean).length;
+  var m=rfCount===0?0.70:rfCount===1?1.00:rfCount===2?1.30:rfCount===3?1.60:1.90;
+  var adj=Math.max(1,Math.min(95,Math.round(base*m)));
+  showPTPResult(adj,base,rfCount);
+}
+function showPTPResult(ptp,base,rfCount) {
+  var panel=document.getElementById("ptp-result");
+  var header=document.getElementById("ptp-result-header");
+  var icon=document.getElementById("ptp-result-icon");
+  var cat=document.getElementById("ptp-result-cat");
+  var sub=document.getElementById("ptp-result-sub");
+  var val=document.getElementById("ptp-val");
+  var needle=document.getElementById("ptp-needle");
+  var brief=document.getElementById("ptp-action-brief");
+  var detail=document.getElementById("ptp-detail");
+  panel.classList.add("show");
+  val.textContent=ptp+"%";
+  needle.style.left=Math.min(Math.max(ptp,0),100)+"%";
+  sub.textContent="PPT estimada: "+ptp+"% (base Juarez-Orozco: "+base+"%, ajuste RF-CL: "+rfCount+" fator(es))";
+  if(ptp<5) {
+    header.className="result-header low"; icon.textContent="🟢"; val.style.color="var(--green)";
+    cat.textContent="PPT Muito Baixa"; cat.style.color="var(--green)";
+    brief.innerHTML="<span style=\"color:var(--green)\">Sem necessidade de teste diagnóstico de rotina</span>";
+    detail.innerHTML="<div class=\"info-teal info-box\"><span class=\"info-box-icon\">✅</span><div><strong>PPT &lt;5%: investigação de rotina não indicada.</strong> O rendimento diagnóstico é extremamente baixo — o risco de falso-positivo supera o benefício. Investigar causas alternativas (musculoesquelética, DRGE, ansiedade). Se desejado refinamento: <strong>CAC</strong> — se zero, reassegura ausência de aterosclerose coronariana. Controle agressivo dos FR presentes. Reavaliação em caso de mudança de sintomas.</div></div>";
+  } else if(ptp<=15) {
+    header.className="result-header low"; icon.textContent="🟡"; val.style.color="#fbbf24";
+    cat.textContent="PPT Baixa"; cat.style.color="#fbbf24";
+    brief.innerHTML="<span style=\"color:#fbbf24\">CAC recomendado para reclassificação</span>";
+    detail.innerHTML="<div class=\"info-amber info-box\"><span class=\"info-box-icon\">💎</span><div><strong>PPT 5–15%: zona de reclassificação pelo CAC.</strong> O <strong>escore de cálcio (CAC)</strong> é o exame mais custo-efetivo nesta faixa. Se CAC=0: probabilidade reduzida ~70–80% → dispensar testes funcionais. Se CAC&gt;0: CCTA indicada. Se CAC não disponível: CCTA como primeira linha (AHA/ACC 2021, Classe IIa).</div></div>";
+  } else if(ptp<=50) {
+    header.className="result-header mod"; icon.textContent="🔶"; val.style.color="#fbbf24";
+    cat.textContent="PPT Intermediária"; cat.style.color="#fbbf24";
+    brief.innerHTML="<span style=\"color:#fbbf24\">CCTA como exame de primeira linha (Classe I, LOE A)</span>";
+    detail.innerHTML="<div class=\"info-amber info-box\"><span class=\"info-box-icon\">🔬</span><div><strong>PPT 15–50%: maior benefício de testes não-invasivos.</strong> <strong>CCTA</strong> é o exame de primeira linha preferido (AHA/ACC 2021, Classe I, LOE A). Benefícios: VPN excelente (~99%), detecta placas não-obstrutivas com implicação terapêutica. SCOT-HEART (2018) demonstrou redução de MACE com estratégia guiada por CCTA. FFR-CT pode ser adicionado. Alternativas: ECO estresse, SPECT, PET se CCTA limitada.</div></div>";
+  } else if(ptp<=65) {
+    header.className="result-header mod"; icon.textContent="🔴"; val.style.color="#f87171";
+    cat.textContent="PPT Intermediária-Alta"; cat.style.color="#f87171";
+    brief.innerHTML="<span style=\"color:#f87171\">Teste funcional de imagem preferível</span>";
+    detail.innerHTML="<div class=\"info-red info-box\"><span class=\"info-box-icon\">⚠️</span><div><strong>PPT 50–65%: preferir testes funcionais.</strong> Alta prevalência de coronárias calcificadas reduz a especificidade da CCTA nesta faixa. Preferir: <strong>PET miocárdico</strong> (melhor acurácia), <strong>ECO estresse</strong> ou <strong>SPECT</strong>. Se positivo: coronariografia + FFR para guiar revascularização. Iniciar terapia médica otimizada independente do resultado.</div></div>";
+  } else {
+    header.className="result-header high"; icon.textContent="🔴"; val.style.color="#f87171";
+    cat.textContent="PPT Alta"; cat.style.color="#f87171";
+    brief.innerHTML="<span style=\"color:#f87171\">Considerar coronariografia direta em sintomáticos</span>";
+    detail.innerHTML="<div class=\"info-red info-box\"><span class=\"info-box-icon\">🚨</span><div><strong>PPT &gt;65%: coronariografia direta em sintomáticos refratários.</strong> Cateterismo + FFR permite diagnóstico e tratamento no mesmo procedimento. Se necessário documentar isquemia antes: PET ou RNM cardíaca com estresse farmacológico. Iniciar terapia médica otimizada imediatamente.</div></div>";
+  }
+}
+function resetPTP() {
+  selectedSymptom=null;
+  Object.keys(rfState).forEach(k=>rfState[k]=false);
+  document.querySelectorAll("#ptp-symptom-group .opt-btn").forEach(b=>b.classList.remove("selected"));
+  document.querySelectorAll(".check-item.checked").forEach(el=>el.classList.remove("checked"));
+  ["ptp-age","ptp-sex"].forEach(id=>{var el=document.getElementById(id);if(el)el.value="";});
+  document.getElementById("ptp-result").classList.remove("show");
+}
+function calcCACadj() {
+  var base=parseFloat(document.getElementById("cac-base-ptp").value);
+  var cac=parseFloat(document.getElementById("cac-score").value);
+  var result=document.getElementById("cac-result");
+  if(isNaN(base)||isNaN(cac)){result.style.display="none";return;}
+  var mult,interp,action;
+  if(cac===0){mult=0.25;interp="🟢 CAC Zero — Risco Muito Baixo";action="Probabilidade de DAC marcadamente reduzida. Sem necessidade de teste adicional se PPT base <15%. Reavaliação em 5 anos ou mudança sintomática.";}
+  else if(cac<100){mult=1.1;interp="🟡 CAC Baixo (1–99)";action="Aumento modesto da probabilidade. CCTA ou teste funcional conforme sintomas e PPT clínica.";}
+  else if(cac<400){mult=1.6;interp="🟠 CAC Moderado-Alto (100–399)";action="Probabilidade aumentada de DAC significativa. Teste funcional ou CCTA recomendado. Estatina de alta intensidade indicada.";}
+  else{mult=2.5;interp="🔴 CAC Muito Alto (≥400)";action="Alta probabilidade de DAC multivascular. Considerar coronariografia direta em sintomáticos.";}
+  var adj=Math.max(1,Math.min(95,Math.round(base*mult)));
+  result.style.display="block";
+  document.getElementById("cac-adj-val").textContent=adj+"%";
+  document.getElementById("cac-interp").textContent=interp;
+  document.getElementById("cac-action").textContent=action;
+}
+</script>
+</body>
+</html>

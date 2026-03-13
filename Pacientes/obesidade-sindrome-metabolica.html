@@ -1,0 +1,2172 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>Obesidade & Síndrome Metabólica – Guia Baseado em Evidências | Dr. Lucas Silva</title>
+  <meta name="description" content="Guia interativo e baseado em evidências sobre obesidade e síndrome metabólica: causas, fatores genéticos e ambientais, consequências e todas as opções de tratamento." />
+  <meta name="author" content="Dr. Lucas Silva" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── DESIGN TOKENS ─────────────────────────────────────────── */
+    :root {
+      --primary: oklch(65% .18 195);
+      --primary-foreground: oklch(98% 0 0);
+      --background: oklch(13% .018 250);
+      --foreground: oklch(93% .01 250);
+      --card: oklch(18.5% .018 250);
+      --card-foreground: oklch(93% .01 250);
+      --muted: oklch(22% .018 250);
+      --muted-foreground: oklch(62% .02 250);
+      --border: oklch(28% .025 250);
+      --input: oklch(22% .02 250);
+      --destructive: oklch(60% .22 25);
+      --secondary: oklch(22% .022 250);
+      --secondary-foreground: oklch(88% .01 250);
+      --accent: oklch(24% .025 250);
+      --accent-foreground: oklch(90% .01 250);
+      --teal: #00d3bd;
+      --teal-dim: rgba(0,211,189,.12);
+      --amber: oklch(82.8% .189 84.429);
+      --red: oklch(63.7% .237 25.331);
+      --green: oklch(79.2% .209 151.711);
+      --orange: oklch(72% .19 42);
+      --orange-dim: rgba(255,140,0,.1);
+      --radius: 0.625rem;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--background);
+      color: var(--foreground);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ───────────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(18,20,27,.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: .6rem;
+      text-decoration: none; color: var(--foreground);
+    }
+    .nav-brand-icon {
+      width: 28px; height: 28px; border-radius: 7px;
+      background: var(--teal); display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .nav-brand-name { font-weight: 800; font-size: 1rem; letter-spacing: -.025em; line-height: 1; }
+    .nav-brand-name span { color: var(--teal); }
+    .nav-brand-sep { width: 1px; height: 14px; background: var(--border); margin: 0 6px; }
+    .nav-brand-sub { font-size: .7rem; font-weight: 500; color: var(--muted-foreground); }
+    .nav-tabs { display: flex; align-items: center; gap: .15rem; }
+    .nav-tab-btn {
+      background: none; border: none; cursor: pointer; font-family: var(--font-sans);
+      font-size: .78rem; font-weight: 500; color: var(--muted-foreground);
+      padding: 5px 10px; border-radius: 7px;
+      transition: background .15s, color .15s; white-space: nowrap;
+    }
+    .nav-tab-btn:hover { background: var(--accent); color: var(--foreground); }
+    .nav-tab-btn.active { color: var(--teal); background: var(--teal-dim); }
+    .nav-actions { display: flex; align-items: center; gap: .5rem; }
+    .nav-link {
+      font-size: .75rem; font-weight: 600; padding: 5px 12px;
+      border-radius: 8px; border: 1.5px solid var(--primary);
+      color: var(--primary); background: transparent;
+      text-decoration: none;
+      transition: background .15s, color .15s;
+      display: inline-flex; align-items: center; gap: 5px;
+    }
+    .nav-link:hover { background: var(--primary); color: var(--primary-foreground); }
+    .mobile-menu { display: none; }
+    .hamburger {
+      display: none; background: none; border: none; cursor: pointer;
+      color: var(--muted-foreground); padding: 4px;
+    }
+
+    /* ── LAYOUT ────────────────────────────────────────────────── */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* ── HERO ──────────────────────────────────────────────────── */
+    .hero {
+      padding: 3.5rem 0 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .7rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--teal);
+      margin-bottom: 1rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 20px; height: 2px;
+      background: var(--teal); border-radius: 1px;
+    }
+    .hero h1 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 800; line-height: 1.2;
+      margin-bottom: .75rem; letter-spacing: -.02em;
+    }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero-sub {
+      color: var(--muted-foreground); font-size: .95rem;
+      max-width: 640px; margin-bottom: 1.5rem;
+    }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 6px; border: 1px solid var(--border);
+      color: var(--muted-foreground); background: var(--card);
+      font-family: var(--font-mono);
+    }
+
+
+
+    /* ── TAB NAV CARDS ─────────────────────────────────────────── */
+    .tab-nav {
+      display: flex; gap: 1px; background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px);
+      overflow: hidden; margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      flex: 1; min-width: 120px; background: var(--card);
+      border: none; cursor: pointer; font-family: var(--font-sans);
+      padding: 1rem 1.25rem; text-align: left;
+      transition: background .15s; position: relative;
+    }
+    .tab-btn:hover { background: var(--accent); }
+    .tab-btn.active { background: var(--teal-dim); }
+    .tab-btn.active::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 2px; background: var(--teal);
+    }
+    .tab-num {
+      font-size: .62rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--muted-foreground);
+      margin-bottom: .35rem; font-family: var(--font-mono);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .tab-dot {
+      display: inline-flex; width: 18px; height: 18px;
+      border-radius: 50%; background: var(--muted);
+      color: var(--muted-foreground); font-size: .58rem;
+      align-items: center; justify-content: center;
+      font-family: var(--font-mono); font-weight: 700;
+    }
+    .tab-btn.active .tab-dot { background: var(--teal); color: #000; }
+    .tab-title { font-weight: 700; font-size: .85rem; margin-bottom: .2rem; }
+    .tab-desc { font-size: .73rem; color: var(--muted-foreground); line-height: 1.4; }
+
+    /* ── SECTION PANELS ────────────────────────────────────────── */
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; animation: fadeUp .3s ease; padding-bottom: 3rem; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SECTION TITLES ────────────────────────────────────────── */
+    .section-label {
+      font-size: .68rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--teal);
+      margin-bottom: .4rem; font-family: var(--font-mono);
+    }
+    .section-title {
+      font-size: 1.3rem; font-weight: 800; margin-bottom: .25rem;
+      letter-spacing: -.01em;
+    }
+    .section-sub {
+      font-size: .88rem; color: var(--muted-foreground); margin-bottom: 1.75rem; line-height: 1.6;
+    }
+    .section-divider {
+      border: none; border-top: 1px solid var(--border);
+      margin: 2.25rem 0;
+    }
+
+    /* ── CARDS ─────────────────────────────────────────────────── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px);
+      padding: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .card-header {
+      display: flex; align-items: flex-start;
+      gap: .75rem; margin-bottom: 1.25rem;
+      padding-bottom: 1rem; border-bottom: 1px solid var(--border);
+    }
+    .card-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+      background: var(--teal-dim); color: var(--teal);
+    }
+    .card-icon.red { background: rgba(220,38,38,.12); }
+    .card-icon.amber { background: rgba(251,191,36,.1); }
+    .card-icon.green { background: rgba(34,197,94,.1); }
+    .card-icon.orange { background: var(--orange-dim); }
+    .card-title { font-weight: 700; font-size: 1rem; margin-bottom: 2px; }
+    .card-subtitle { font-size: .78rem; color: var(--muted-foreground); }
+
+    /* ── INFO BOXES ────────────────────────────────────────────── */
+    .info-box {
+      border-radius: var(--radius); padding: 12px 16px;
+      font-size: .82rem; line-height: 1.6;
+      display: flex; gap: 10px; margin-bottom: .75rem;
+    }
+    .info-box-icon { flex-shrink: 0; font-size: 1rem; margin-top: 1px; }
+    .info-teal { background: var(--teal-dim); border-left: 3px solid var(--teal); }
+    .info-amber { background: rgba(251,191,36,.08); border-left: 3px solid rgba(251,191,36,.5); }
+    .info-red { background: rgba(220,38,38,.08); border-left: 3px solid rgba(220,38,38,.4); }
+    .info-green { background: rgba(34,197,94,.07); border-left: 3px solid rgba(34,197,94,.45); }
+    .info-orange { background: var(--orange-dim); border-left: 3px solid rgba(255,140,0,.5); }
+    .info-gray { background: var(--muted); border-left: 3px solid var(--border); }
+
+    /* ── BADGES ────────────────────────────────────────────────── */
+    .badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: .68rem; font-weight: 700; padding: 2px 8px;
+      border-radius: 999px; white-space: nowrap;
+    }
+    .badge-teal { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.25); }
+    .badge-red { background: rgba(220,38,38,.15); color: #f87171; border: 1px solid rgba(220,38,38,.25); }
+    .badge-amber { background: rgba(251,191,36,.12); color: #fbbf24; border: 1px solid rgba(251,191,36,.2); }
+    .badge-green { background: rgba(34,197,94,.1); color: #4ade80; border: 1px solid rgba(34,197,94,.25); }
+    .badge-orange { background: var(--orange-dim); color: var(--orange); border: 1px solid rgba(255,140,0,.25); }
+    .badge-gray { background: var(--muted); color: var(--muted-foreground); border: 1px solid var(--border); }
+
+    /* ── GRID CARDS ────────────────────────────────────────────── */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.25rem; }
+    .mini-card {
+      background: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.1rem;
+    }
+    .mini-card-label { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--muted-foreground); font-family: var(--font-mono); margin-bottom: .4rem; }
+    .mini-card-val { font-size: 1.4rem; font-weight: 800; font-family: var(--font-mono); color: var(--teal); line-height: 1.1; }
+    .mini-card-desc { font-size: .75rem; color: var(--muted-foreground); margin-top: .25rem; line-height: 1.4; }
+
+    /* ── FACTOR PILL LIST ──────────────────────────────────────── */
+    .pill-list { display: flex; flex-wrap: wrap; gap: .5rem; margin: .75rem 0; }
+    .pill {
+      font-size: .75rem; font-weight: 600; padding: 4px 12px;
+      border-radius: 999px; border: 1px solid var(--border);
+      background: var(--muted); color: var(--foreground); line-height: 1.4;
+    }
+    .pill.mod { border-color: rgba(0,211,189,.3); background: var(--teal-dim); color: var(--teal); }
+    .pill.fixed { border-color: rgba(220,38,38,.25); background: rgba(220,38,38,.08); color: #f87171; }
+    .pill.partial { border-color: rgba(251,191,36,.25); background: rgba(251,191,36,.08); color: #fbbf24; }
+
+    /* ── TREATMENT BLOCKS ──────────────────────────────────────── */
+    .treatment-block {
+      border: 1px solid var(--border); border-radius: calc(var(--radius) + 2px);
+      overflow: hidden; margin-bottom: 1.25rem;
+    }
+    .treatment-header {
+      padding: 1rem 1.25rem; display: flex; align-items: center; gap: .75rem;
+      cursor: pointer; transition: background .15s; user-select: none;
+      background: var(--card);
+    }
+    .treatment-header:hover { background: var(--accent); }
+    .treatment-header.open { background: var(--teal-dim); }
+    .treatment-icon { font-size: 1.3rem; flex-shrink: 0; }
+    .treatment-info { flex: 1; }
+    .treatment-name { font-weight: 700; font-size: .95rem; }
+    .treatment-sub { font-size: .75rem; color: var(--muted-foreground); }
+    .treatment-chevron {
+      color: var(--muted-foreground); transition: transform .25s;
+      flex-shrink: 0;
+    }
+    .treatment-header.open .treatment-chevron { transform: rotate(180deg); }
+    .treatment-body {
+      display: none; border-top: 1px solid var(--border);
+      background: var(--card); padding: 1.25rem;
+    }
+    .treatment-body.open { display: block; animation: fadeUp .2s ease; }
+
+    /* ── COMPARE TABLE ─────────────────────────────────────────── */
+    .compare-table {
+      width: 100%; border-collapse: collapse;
+      font-size: .82rem;
+    }
+    .compare-table th {
+      background: var(--muted); padding: 9px 12px;
+      text-align: left; font-weight: 700; font-size: .73rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted-foreground); letter-spacing: .03em;
+    }
+    .compare-table td {
+      padding: 9px 12px; border-bottom: 1px solid var(--border);
+      vertical-align: top; line-height: 1.5;
+    }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table tr:hover td { background: var(--accent); }
+    .table-wrap { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin: 1rem 0; }
+
+    /* ── MYTH VS SCIENCE ───────────────────────────────────────── */
+    .myth-card {
+      border: 1px solid var(--border); border-radius: calc(var(--radius) + 2px);
+      overflow: hidden; margin-bottom: 1rem;
+    }
+    .myth-header {
+      display: grid; grid-template-columns: 1fr 1fr;
+      border-bottom: 1px solid var(--border);
+    }
+    .myth-col {
+      padding: .75rem 1rem; font-size: .72rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .07em;
+    }
+    .myth-col.myth-label { background: rgba(220,38,38,.1); color: #f87171; border-right: 1px solid var(--border); }
+    .myth-col.sci-label { background: rgba(0,211,189,.07); color: var(--teal); }
+    .myth-body { display: grid; grid-template-columns: 1fr 1fr; }
+    .myth-cell {
+      padding: 1rem 1.1rem; font-size: .82rem; line-height: 1.6;
+      border-right: 1px solid var(--border);
+    }
+    .myth-cell:last-child { border-right: none; }
+    .myth-cell.myth-side { background: rgba(220,38,38,.04); }
+    .myth-cell.sci-side { background: rgba(0,211,189,.03); }
+
+    /* ── BMI CALCULATOR ────────────────────────────────────────── */
+    .calc-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 5px; }
+    .form-label { font-size: .78rem; font-weight: 600; color: var(--muted-foreground); }
+    .form-label span { font-size: .7rem; font-weight: 400; opacity: .7; }
+    .form-input {
+      background: var(--input); border: 1px solid var(--border);
+      border-radius: var(--radius); color: var(--foreground);
+      font-family: var(--font-mono); font-size: .85rem;
+      padding: 8px 12px; transition: border-color .15s, box-shadow .15s;
+      outline: none; width: 100%;
+    }
+    .form-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(0,211,189,.15); }
+    .form-input::-webkit-inner-spin-button { opacity: .4; }
+
+    .bmi-result {
+      background: var(--muted); border-radius: var(--radius);
+      padding: 1.25rem; display: flex; align-items: center; gap: 1.25rem;
+      flex-wrap: wrap; margin-top: .75rem;
+    }
+    .bmi-val {
+      font-size: 2.6rem; font-weight: 800; font-family: var(--font-mono);
+      line-height: 1; min-width: 90px;
+    }
+    .bmi-class { font-weight: 700; font-size: 1rem; margin-bottom: .2rem; }
+    .bmi-note { font-size: .8rem; color: var(--muted-foreground); line-height: 1.5; }
+
+    /* BMI bar */
+    .bmi-bar-wrap { width: 100%; margin-top: .75rem; }
+    .bmi-bar-track {
+      height: 8px; border-radius: 4px; margin-bottom: .4rem;
+      background: linear-gradient(to right,
+        #60a5fa 0%, #60a5fa 16.5%,
+        #4ade80 16.5%, #4ade80 33%,
+        #facc15 33%, #facc15 50%,
+        #fb923c 50%, #fb923c 66.5%,
+        #f87171 66.5%, #f87171 83%,
+        #dc2626 83%, #dc2626 100%
+      );
+      position: relative;
+    }
+    .bmi-bar-marker {
+      position: absolute; top: 50%; transform: translate(-50%, -50%);
+      width: 12px; height: 12px; border-radius: 50%;
+      background: white; border: 2px solid #000;
+      transition: left .4s ease; pointer-events: none;
+    }
+    .bmi-bar-labels {
+      display: flex; justify-content: space-between;
+      font-size: .62rem; font-family: var(--font-mono);
+      color: var(--muted-foreground);
+    }
+
+    /* ── SM CRITERIA ───────────────────────────────────────────── */
+    .criteria-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: .75rem; margin: 1rem 0;
+    }
+    .criteria-item {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: .85rem 1rem;
+      transition: border-color .2s, background .2s;
+    }
+    .criteria-item.met { border-color: rgba(0,211,189,.4); background: var(--teal-dim); }
+    .criteria-item.unmet { border-color: rgba(220,38,38,.3); background: rgba(220,38,38,.06); }
+    .criteria-icon { font-size: 1.2rem; margin-bottom: .35rem; }
+    .criteria-name { font-weight: 700; font-size: .82rem; margin-bottom: 2px; }
+    .criteria-val { font-size: .75rem; color: var(--muted-foreground); }
+    .criteria-status { font-size: .7rem; font-weight: 700; margin-top: .4rem; }
+    .criteria-item.met .criteria-status { color: var(--teal); }
+    .criteria-item.unmet .criteria-status { color: #f87171; }
+
+    /* ── RISK METER ────────────────────────────────────────────── */
+    .risk-meter {
+      background: var(--muted); border-radius: var(--radius);
+      padding: 1rem 1.25rem; margin: 1rem 0;
+      display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+    }
+    .risk-val { font-size: 2rem; font-weight: 800; font-family: var(--font-mono); }
+    .risk-label { font-weight: 700; font-size: .9rem; margin-bottom: 2px; }
+    .risk-sub { font-size: .78rem; color: var(--muted-foreground); }
+
+    /* ── DRUG TABLE ────────────────────────────────────────────── */
+    .drug-row { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 1px; background: var(--border); }
+    .drug-cell { background: var(--card); padding: .7rem .9rem; font-size: .8rem; }
+    .drug-cell.head { background: var(--muted); font-weight: 700; font-size: .72rem; color: var(--muted-foreground); }
+
+    /* ── REFS ──────────────────────────────────────────────────── */
+    .ref-list { list-style: none; }
+    .ref-item {
+      padding: 10px 0; border-bottom: 1px solid var(--border);
+      font-size: .8rem; line-height: 1.6;
+      display: flex; gap: 10px;
+    }
+    .ref-item:last-child { border-bottom: none; }
+    .ref-num {
+      font-family: var(--font-mono); font-size: .7rem; font-weight: 700;
+      color: var(--teal); min-width: 22px;
+    }
+    .ref-title { font-weight: 600; margin-bottom: 2px; }
+    .ref-meta { color: var(--muted-foreground); font-size: .75rem; }
+
+    /* ── DISCLAIMER ────────────────────────────────────────────── */
+    .disclaimer {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 12px 16px;
+      font-size: .75rem; color: var(--muted-foreground);
+      line-height: 1.6;
+    }
+
+    /* ── FOOTER ────────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 0; margin-top: 1rem;
+    }
+    .footer-inner {
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-copy { font-size: .75rem; color: var(--muted-foreground); }
+
+    /* ── RESPONSIVE ────────────────────────────────────────────── */
+    @media (max-width: 680px) {
+      .grid-2 { grid-template-columns: 1fr; }
+      .grid-3 { grid-template-columns: 1fr 1fr; }
+      .calc-row { grid-template-columns: 1fr 1fr; }
+      .myth-header, .myth-body { grid-template-columns: 1fr; }
+      .myth-cell { border-right: none; border-bottom: 1px solid var(--border); }
+      .myth-cell:last-child { border-bottom: none; }
+      .tab-btn { min-width: 90px; }
+      .nav-tabs { display: none; }
+      .hamburger { display: block; }
+      .mobile-menu {
+        position: fixed; top: 56px; left: 0; right: 0;
+        background: rgba(18,20,27,.98); backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+        padding: 1rem; display: none; flex-direction: column; gap: .5rem;
+        z-index: 49;
+      }
+      .mobile-menu.open { display: flex; }
+      .mobile-menu-btn {
+        background: none; border: none; cursor: pointer; font-family: var(--font-sans);
+        font-size: .85rem; font-weight: 500; color: var(--muted-foreground);
+        padding: 8px 12px; border-radius: 8px; text-align: left;
+        transition: background .15s, color .15s;
+      }
+      .mobile-menu-btn:hover, .mobile-menu-btn.active { background: var(--teal-dim); color: var(--teal); }
+      .drug-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .grid-3 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ───────────────────────────────────────────────────── -->
+<nav>
+  <a class="nav-brand" href="#">
+    <div class="nav-brand-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
+      </svg>
+    </div>
+    <div class="nav-brand-name">Obesidade<span>+SM</span></div>
+    <div class="nav-brand-sep"></div>
+    <div class="nav-brand-sub">Guia Baseado em Evidências</div>
+  </a>
+  <div class="nav-tabs" id="navTabs">
+    <button class="nav-tab-btn active" onclick="goTab(0)">O que é?</button>
+    <button class="nav-tab-btn" onclick="goTab(1)">Causas</button>
+    <button class="nav-tab-btn" onclick="goTab(2)">Consequências</button>
+    <button class="nav-tab-btn" onclick="goTab(3)">Mitos × Ciência</button>
+    <button class="nav-tab-btn" onclick="goTab(4)">Tratamento</button>
+    <button class="nav-tab-btn" onclick="goTab(5)">Referências</button>
+  </div>
+  <div class="nav-actions">
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      lucascardio.com.br
+    </a>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-btn active" onclick="goTab(0);toggleMenu()">O que é? / Diagnóstico</button>
+  <button class="mobile-menu-btn" onclick="goTab(1);toggleMenu()">Causas e Fatores de Risco</button>
+  <button class="mobile-menu-btn" onclick="goTab(2);toggleMenu()">Consequências</button>
+  <button class="mobile-menu-btn" onclick="goTab(3);toggleMenu()">Mitos × Ciência</button>
+  <button class="mobile-menu-btn" onclick="goTab(4);toggleMenu()">Opções de Tratamento</button>
+  <button class="mobile-menu-btn" onclick="goTab(5);toggleMenu()">Referências</button>
+</div>
+
+<!-- ── MAIN ───────────────────────────────────────────────────── -->
+<main>
+  <div class="container">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-eyebrow">Educação para o Paciente · Medicina Baseada em Evidências</div>
+      <h1>Obesidade &amp; <em>Síndrome Metabólica</em></h1>
+      <p class="hero-sub">
+        Entenda sem mitos o que a ciência sabe sobre causas, fatores de risco e todas as opções de tratamento — da mudança de estilo de vida à cirurgia. Produzido pelo Dr. Lucas Silva, Cardiologista Intervencionista.
+      </p>
+      <div class="hero-tags">
+        <span class="tag">OMS 2022</span>
+        <span class="tag">IDF/AHA/NCEP ATP III</span>
+        <span class="tag">Lancet Obesity</span>
+        <span class="tag">STEP Trials</span>
+        <span class="tag">SURMOUNT-1</span>
+        <span class="tag">Look AHEAD</span>
+        <span class="tag">SBD / ABESO 2024</span>
+      </div>
+    </div>
+
+    <!-- TAB NAV CARDS -->
+    <div class="tab-nav" id="tabNav">
+      <button class="tab-btn active" onclick="goTab(0)">
+        <div class="tab-num"><span class="tab-dot">1</span>DIAGNÓSTICO</div>
+        <div class="tab-title">O que é?</div>
+        <div class="tab-desc">Definições, IMC e calculadoras</div>
+      </button>
+      <button class="tab-btn" onclick="goTab(1)">
+        <div class="tab-num"><span class="tab-dot">2</span>ETIOLOGIA</div>
+        <div class="tab-title">Causas</div>
+        <div class="tab-desc">Genética, ambiente, modificáveis</div>
+      </button>
+      <button class="tab-btn" onclick="goTab(2)">
+        <div class="tab-num"><span class="tab-dot">3</span>RISCO</div>
+        <div class="tab-title">Consequências</div>
+        <div class="tab-desc">Comorbidades e risco cardiovascular</div>
+      </button>
+      <button class="tab-btn" onclick="goTab(3)">
+        <div class="tab-num"><span class="tab-dot">🔬</span>EVIDÊNCIAS</div>
+        <div class="tab-title">Mitos × Ciência</div>
+        <div class="tab-desc">Verdades sobre obesidade</div>
+      </button>
+      <button class="tab-btn" onclick="goTab(4)">
+        <div class="tab-num"><span class="tab-dot">💊</span>TERAPIA</div>
+        <div class="tab-title">Tratamento</div>
+        <div class="tab-desc">Do estilo de vida à cirurgia</div>
+      </button>
+      <button class="tab-btn" onclick="goTab(5)">
+        <div class="tab-num"><span class="tab-dot">📖</span>REFS</div>
+        <div class="tab-title">Referências</div>
+        <div class="tab-desc">Estudos e diretrizes</div>
+      </button>
+    </div>
+
+    <!-- ═════════════════════════════════════════════════════════
+         TAB 0 — O QUE É
+    ══════════════════════════════════════════════════════════════ -->
+    <div class="tab-panel active" id="panel0">
+
+      <div class="section-label">Definição</div>
+      <div class="section-title">O que é Obesidade?</div>
+      <p class="section-sub">
+        A Organização Mundial da Saúde define obesidade como acúmulo excessivo de gordura corporal que representa risco para a saúde. Não é fraqueza de caráter — é uma <strong>doença crônica, complexa e multifatorial</strong>, reconhecida pela OMS, AHA, AMA e SBD.
+      </p>
+
+      <!-- BMI Calculator -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">⚖️</div>
+          <div>
+            <div class="card-title">Calculadora de IMC</div>
+            <div class="card-subtitle">Índice de Massa Corporal — ferramenta diagnóstica, mas não suficiente isoladamente</div>
+          </div>
+        </div>
+
+        <div class="info-amber info-box">
+          <span class="info-box-icon">⚠️</span>
+          <div>O IMC é um <strong>índice de rastreamento</strong>, não um marcador direto de gordura corporal. Indivíduos com IMC normal podem ter adiposidade visceral excessiva ("obesidade metabólica de peso normal"), e atletas podem ter IMC elevado por massa muscular. A circunferência abdominal e a composição corporal complementam o diagnóstico.</div>
+        </div>
+
+        <div class="calc-row">
+          <div class="form-group">
+            <label class="form-label">Peso <span>(kg)</span></label>
+            <input id="bmi_peso" class="form-input" type="number" min="30" max="300" step="0.1" placeholder="ex: 85" oninput="calcBMI()" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Altura <span>(cm)</span></label>
+            <input id="bmi_alt" class="form-input" type="number" min="100" max="220" placeholder="ex: 170" oninput="calcBMI()" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Cintura <span>(cm, opcional)</span></label>
+            <input id="bmi_cin" class="form-input" type="number" min="50" max="200" placeholder="ex: 94" oninput="calcBMI()" />
+          </div>
+        </div>
+
+        <div id="bmi_result" style="display:none;">
+          <div class="bmi-result">
+            <div>
+              <div class="bmi-val" id="bmi_num" style="color:var(--teal);">—</div>
+              <div style="font-size:.72rem;color:var(--muted-foreground);font-family:var(--font-mono);">kg/m²</div>
+            </div>
+            <div style="flex:1;">
+              <div class="bmi-class" id="bmi_class">—</div>
+              <div class="bmi-note" id="bmi_note">—</div>
+              <div id="bmi_waist_note" style="margin-top:.4rem;font-size:.78rem;"></div>
+            </div>
+          </div>
+          <div class="bmi-bar-wrap" style="margin-top:.85rem;">
+            <div class="bmi-bar-track" id="bmiBarTrack">
+              <div class="bmi-bar-marker" id="bmiMarker" style="left:0%;"></div>
+            </div>
+            <div class="bmi-bar-labels">
+              <span>&lt;16</span><span>18.5</span><span>25</span><span>30</span><span>35</span><span>40</span><span>&gt;45</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Classificação OMS -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">📋</div>
+          <div>
+            <div class="card-title">Classificação da OMS por IMC</div>
+            <div class="card-subtitle">Válida para adultos ≥ 18 anos. Populações asiáticas têm limiares menores (sobrepeso ≥ 23, obesidade ≥ 27,5).</div>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th>Classificação</th>
+                <th>IMC (kg/m²)</th>
+                <th>Risco de comorbidades</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Baixo peso</td><td style="font-family:var(--font-mono);">&lt; 18,5</td><td><span class="badge badge-amber">Aumentado (outras causas)</span></td></tr>
+              <tr><td>Eutrófico (peso normal)</td><td style="font-family:var(--font-mono);">18,5 – 24,9</td><td><span class="badge badge-green">Médio</span></td></tr>
+              <tr><td>Sobrepeso</td><td style="font-family:var(--font-mono);">25,0 – 29,9</td><td><span class="badge badge-amber">Levemente aumentado</span></td></tr>
+              <tr><td>Obesidade Grau I</td><td style="font-family:var(--font-mono);">30,0 – 34,9</td><td><span class="badge badge-orange">Moderado</span></td></tr>
+              <tr><td>Obesidade Grau II</td><td style="font-family:var(--font-mono);">35,0 – 39,9</td><td><span class="badge badge-red">Grave</span></td></tr>
+              <tr><td>Obesidade Grau III ("mórbida")</td><td style="font-family:var(--font-mono);">≥ 40,0</td><td><span class="badge badge-red">Muito grave</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Circunferência abdominal -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon" style="font-size:1.2rem;">📏</div>
+          <div>
+            <div class="card-title">Circunferência Abdominal — O que realmente importa</div>
+            <div class="card-subtitle">Medida no ponto médio entre a última costela e a crista ilíaca, com o paciente em pé e ao final da expiração.</div>
+          </div>
+        </div>
+        <div class="info-teal info-box">
+          <span class="info-box-icon">💡</span>
+          <div>A gordura <strong>visceral</strong> (abdominal/intra-abdominal) é metabolicamente ativa: libera ácidos graxos livres e citocinas inflamatórias diretamente na circulação portal, impactando fígado, glicemia e lipídeos. A gordura subcutânea periférica tem impacto metabólico bem menor. Por isso, a cintura é frequentemente um preditor de risco melhor que o IMC isolado.</div>
+        </div>
+        <div class="grid-2">
+          <div class="mini-card">
+            <div class="mini-card-label">Homens — Risco aumentado</div>
+            <div class="mini-card-val">≥ 94 cm</div>
+            <div class="mini-card-desc">Alto risco: ≥ 102 cm (OMS/IDF). Para brasileiros de ascendência asiática: ≥ 90 cm.</div>
+          </div>
+          <div class="mini-card">
+            <div class="mini-card-label">Mulheres — Risco aumentado</div>
+            <div class="mini-card-val">≥ 80 cm</div>
+            <div class="mini-card-desc">Alto risco: ≥ 88 cm (OMS/IDF). Para brasileiras de ascendência asiática: ≥ 80 cm.</div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="section-divider" />
+
+      <!-- Síndrome Metabólica -->
+      <div class="section-label">Síndrome Metabólica</div>
+      <div class="section-title">O que é Síndrome Metabólica?</div>
+      <p class="section-sub">
+        Síndrome Metabólica (SM) é um conjunto de anormalidades metabólicas que, juntas, aumentam substancialmente o risco de doença cardiovascular e diabetes tipo 2. Não é uma doença única — é um <strong>cluster de fatores de risco</strong>. A prevalência no Brasil é de aproximadamente 38% em adultos (SBD 2024).
+      </p>
+
+      <!-- SM Criteria Calculator -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">🔬</div>
+          <div>
+            <div class="card-title">Critérios Diagnósticos — IDF/AHA/NHLBI 2009 (Consenso Harmonizado)</div>
+            <div class="card-subtitle">Diagnóstico: ≥ 3 dos 5 critérios abaixo. Insira seus valores para verificar.</div>
+          </div>
+        </div>
+        <div class="info-gray info-box">
+          <span class="info-box-icon">📌</span>
+          <div>O critério de cintura abdominal varia por etnia. Para sul-americanos: homens ≥ 90 cm, mulheres ≥ 80 cm (IDF). O ponto de corte de cintura é <strong>obrigatório</strong> nos critérios IDF, mas no consenso harmonizado de 2009 qualquer 3/5 critérios satisfazem.</div>
+        </div>
+
+        <div class="calc-row">
+          <div class="form-group">
+            <label class="form-label">Cintura <span>(cm)</span></label>
+            <input id="sm_cin" class="form-input" type="number" placeholder="ex: 96" oninput="calcSM()" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Triglicerídeos <span>(mg/dL)</span></label>
+            <input id="sm_tg" class="form-input" type="number" placeholder="ex: 165" oninput="calcSM()" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">HDL-C <span>(mg/dL)</span></label>
+            <input id="sm_hdl" class="form-input" type="number" placeholder="ex: 38" oninput="calcSM()" />
+          </div>
+        </div>
+        <div class="calc-row">
+          <div class="form-group">
+            <label class="form-label">PA Sistólica <span>(mmHg)</span></label>
+            <input id="sm_pas" class="form-input" type="number" placeholder="ex: 136" oninput="calcSM()" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Glicemia Jejum <span>(mg/dL)</span></label>
+            <input id="sm_glic" class="form-input" type="number" placeholder="ex: 102" oninput="calcSM()" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Sexo biológico</label>
+            <select id="sm_sex" class="form-input" style="cursor:pointer;" onchange="calcSM()">
+              <option value="">Selecionar</option>
+              <option value="M">Masculino</option>
+              <option value="F">Feminino</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="sm_result" style="display:none; margin-top:.75rem;">
+          <div class="criteria-grid" id="sm_criteria_grid"></div>
+          <div id="sm_verdict" class="risk-meter"></div>
+        </div>
+      </div>
+
+    </div><!-- /panel0 -->
+
+    <!-- ═════════════════════════════════════════════════════════
+         TAB 1 — CAUSAS
+    ══════════════════════════════════════════════════════════════ -->
+    <div class="tab-panel" id="panel1">
+
+      <div class="section-label">Etiologia</div>
+      <div class="section-title">Causas da Obesidade</div>
+      <p class="section-sub">
+        A obesidade resulta de uma interação complexa entre <strong>genética, ambiente, comportamento, psicologia, medicamentos e doenças</strong>. A divisão simplista em "come muito / move pouco" é cientificamente inadequada. O balanço energético é regulado por sistemas hormonais e neurológicos sofisticados que a ciência ainda está desvendando.
+      </p>
+
+      <!-- Fatores Genéticos -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">🧬</div>
+          <div>
+            <div class="card-title">Fatores Genéticos — Não Modificáveis</div>
+            <div class="card-subtitle">Herdabilidade estimada da obesidade: 40–70% (estudos com gêmeos)</div>
+          </div>
+        </div>
+        <div class="info-teal info-box">
+          <span class="info-box-icon">💡</span>
+          <div>Estudos de associação genômica ampla (GWAS) identificaram mais de <strong>900 variantes genéticas</strong> associadas ao IMC. A maioria afeta regiões cerebrais ligadas ao controle do apetite (FTO, MC4R, BDNF). Ter "genes para obesidade" aumenta o risco, mas não determina o destino — e ambiente pode amplificar ou atenuar esse risco.</div>
+        </div>
+        <div class="grid-2">
+          <div>
+            <p style="font-size:.82rem;font-weight:700;margin-bottom:.6rem;">Formas monogênicas (raras)</p>
+            <div class="pill-list">
+              <span class="pill fixed">Mutação MC4R</span>
+              <span class="pill fixed">Deficiência de leptina/receptor</span>
+              <span class="pill fixed">Síndrome de Prader-Willi</span>
+              <span class="pill fixed">Síndrome de Bardet-Biedl</span>
+              <span class="pill fixed">Mutação POMC</span>
+            </div>
+            <p style="font-size:.75rem;color:var(--muted-foreground);margin-top:.5rem;">Responsáveis por &lt; 5% dos casos. Geralmente obesidade de início precoce, grave e refratária.</p>
+          </div>
+          <div>
+            <p style="font-size:.82rem;font-weight:700;margin-bottom:.6rem;">Formas poligênicas (comuns)</p>
+            <div class="pill-list">
+              <span class="pill fixed">Gene FTO (locus mais forte)</span>
+              <span class="pill fixed">Variantes TMEM18</span>
+              <span class="pill fixed">Gene GNPDA2</span>
+              <span class="pill fixed">MC4R polimorfismos</span>
+              <span class="pill fixed">Score de risco poligênico (PRS)</span>
+            </div>
+            <p style="font-size:.75rem;color:var(--muted-foreground);margin-top:.5rem;">Cada variante tem efeito pequeno; combinadas, somam risco substancial.</p>
+          </div>
+        </div>
+        <div class="info-gray info-box" style="margin-top:.75rem;">
+          <span class="info-box-icon">🧠</span>
+          <div>A genética influencia principalmente: <strong>set-point de peso</strong> corporal, resposta hipotalâmica à leptina e grelina, termogênese adaptativa, distribuição regional de gordura e comportamento alimentar (preferência por alimentos densos em energia).</div>
+        </div>
+      </div>
+
+      <!-- Fatores Ambientais -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">🌍</div>
+          <div>
+            <div class="card-title">Fatores Ambientais — Parcialmente Modificáveis</div>
+            <div class="card-subtitle">O "ambiente obesogênico" é o principal motor da epidemia global</div>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div>
+            <p style="font-size:.82rem;font-weight:700;margin-bottom:.6rem;color:var(--teal);">🍔 Alimentação</p>
+            <ul style="font-size:.82rem;color:var(--muted-foreground);line-height:2;padding-left:1rem;">
+              <li>Ultraprocesados: alta densidade energética, baixa saciedade</li>
+              <li>Bebidas açucaradas (refrigerantes, sucos, energéticos)</li>
+              <li>Porções aumentadas, marketing alimentar</li>
+              <li>Acesso desigual a alimentos nutritivos</li>
+              <li>Comer fora de casa frequentemente</li>
+            </ul>
+          </div>
+          <div>
+            <p style="font-size:.82rem;font-weight:700;margin-bottom:.6rem;color:var(--teal);">🛋️ Sedentarismo</p>
+            <ul style="font-size:.82rem;color:var(--muted-foreground);line-height:2;padding-left:1rem;">
+              <li>Trabalho sedentário (home office, escritório)</li>
+              <li>Tempo de tela aumentado (TV, celular)</li>
+              <li>Urbanização sem infraestrutura para caminhada</li>
+              <li>Transporte motorizado</li>
+              <li>Lazer passivo</li>
+            </ul>
+          </div>
+        </div>
+        <div class="grid-2" style="margin-top:.75rem;">
+          <div>
+            <p style="font-size:.82rem;font-weight:700;margin-bottom:.6rem;color:var(--amber);">😴 Sono</p>
+            <div class="info-amber info-box" style="margin-bottom:0;">
+              <span class="info-box-icon">⚠️</span>
+              <div>Privação de sono (&lt; 6h/noite) eleva grelina (+15%) e reduz leptina, aumentando o apetite por alimentos hipercalóricos. Estudo prospectivo (Taheri et al., PLOS Medicine) mostrou que cada hora a menos de sono associou-se a maior IMC. A qualidade do sono é um fator subestimado.</div>
+            </div>
+          </div>
+          <div>
+            <p style="font-size:.82rem;font-weight:700;margin-bottom:.6rem;color:var(--red);">😰 Estresse Crônico</p>
+            <div class="info-red info-box" style="margin-bottom:0;">
+              <span class="info-box-icon">⚠️</span>
+              <div>Cortisol elevado cronicamente aumenta deposição de gordura visceral, estimula o apetite e favorece o "comer emocional". Estresse socioeconômico e insegurança alimentar se associam independentemente à obesidade.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fatores Biológicos -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">⚗️</div>
+          <div>
+            <div class="card-title">Fatores Biológicos e Fisiológicos</div>
+            <div class="card-subtitle">Por que perder peso é tão difícil: a biologia do set-point</div>
+          </div>
+        </div>
+        <div class="info-red info-box">
+          <span class="info-box-icon">🧠</span>
+          <div><strong>Fenômeno da "contra-regulação":</strong> ao perder peso, o organismo reduz o metabolismo basal e aumenta hormônios do apetite (grelina ↑, GLP-1 ↓, PYY ↓, leptina ↓) para restaurar o peso perdido. Este mecanismo persiste por <em>pelo menos um ano</em> após a perda de peso (Sumithran et al., NEJM 2011). É fisiologia, não falta de força de vontade.</div>
+        </div>
+        <div class="grid-3">
+          <div class="mini-card">
+            <div class="mini-card-label">Microbioma intestinal</div>
+            <div class="mini-card-val" style="font-size:.95rem;color:var(--amber);">🦠</div>
+            <div class="mini-card-desc">Disbiose intestinal altera extração de energia dos alimentos e produção de metabólitos inflamatórios. Transplante fecal alterou peso em modelos animais.</div>
+          </div>
+          <div class="mini-card">
+            <div class="mini-card-label">Disruptores endócrinos</div>
+            <div class="mini-card-val" style="font-size:.95rem;color:var(--amber);">☣️</div>
+            <div class="mini-card-desc">BPA, ftalatos, pesticidas orgânicos: interferem no metabolismo lipídico e na sinalização da insulina. Evidência crescente, mas causalidade ainda em estudo.</div>
+          </div>
+          <div class="mini-card">
+            <div class="mini-card-label">Doenças endócrinas</div>
+            <div class="mini-card-val" style="font-size:.95rem;color:var(--red);">🏥</div>
+            <div class="mini-card-desc">Hipotireoidismo, síndrome de Cushing, PCOS, hipogonadismo: causas secundárias que devem ser descartadas, especialmente em obesidade de início rápido.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Medicamentos obesogênicos -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon amber">💊</div>
+          <div>
+            <div class="card-title">Medicamentos Que Causam Ganho de Peso</div>
+            <div class="card-subtitle">Fator reversível muitas vezes negligenciado na anamnese</div>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="compare-table">
+            <thead>
+              <tr><th>Classe</th><th>Exemplos</th><th>Ganho médio</th><th>Mecanismo</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Antipsicóticos atípicos</td>
+                <td style="font-family:var(--font-mono);font-size:.75rem;">Olanzapina, Quetiapina, Risperidona</td>
+                <td><span class="badge badge-red">4–10 kg</span></td>
+                <td style="font-size:.75rem;">Antagonismo H1 e 5-HT2C → ↑ apetite</td>
+              </tr>
+              <tr>
+                <td>Antidepressivos (alguns)</td>
+                <td style="font-family:var(--font-mono);font-size:.75rem;">Paroxetina, Mirtazapina, Amitriptilina</td>
+                <td><span class="badge badge-amber">2–5 kg</span></td>
+                <td style="font-size:.75rem;">Ação antihistamínica, sedação</td>
+              </tr>
+              <tr>
+                <td>Corticosteroides</td>
+                <td style="font-family:var(--font-mono);font-size:.75rem;">Prednisona, Dexametasona</td>
+                <td><span class="badge badge-amber">Dose-dependente</span></td>
+                <td style="font-size:.75rem;">↑ cortisol → adipogênese visceral, resistência insulínica</td>
+              </tr>
+              <tr>
+                <td>Insulina e secretagogos</td>
+                <td style="font-family:var(--font-mono);font-size:.75rem;">Insulina, Sulfonilureias, Glitazonas</td>
+                <td><span class="badge badge-amber">2–4 kg</span></td>
+                <td style="font-size:.75rem;">Hipoglicemia → hiperfagia compensatória; efeito lipogênico</td>
+              </tr>
+              <tr>
+                <td>Antiepilépticos</td>
+                <td style="font-family:var(--font-mono);font-size:.75rem;">Valproato, Gabapentina, Carbamazepina</td>
+                <td><span class="badge badge-amber">2–6 kg</span></td>
+                <td style="font-size:.75rem;">Estimulação do apetite, retenção hídrica</td>
+              </tr>
+              <tr>
+                <td>Beta-bloqueadores (antigos)</td>
+                <td style="font-family:var(--font-mono);font-size:.75rem;">Propranolol, Atenolol</td>
+                <td><span class="badge badge-gray">1–3 kg</span></td>
+                <td style="font-size:.75rem;">↓ metabolismo basal, fadiga → ↓ atividade física</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="info-teal info-box" style="margin-top:.75rem;">
+          <span class="info-box-icon">💡</span>
+          <div>Se você toma alguma dessas medicações e ganhou peso, <strong>não interrompa por conta própria</strong>. Converse com seu médico sobre substituições ou ajustes. Muitas vezes há alternativas com menor impacto ponderal.</div>
+        </div>
+      </div>
+
+      <!-- Determinantes sociais -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">🏘️</div>
+          <div>
+            <div class="card-title">Determinantes Sociais e Estruturais</div>
+            <div class="card-subtitle">Fatores que frequentemente estão além do controle individual</div>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div>
+            <div class="pill-list">
+              <span class="pill fixed">Baixa renda / insegurança alimentar</span>
+              <span class="pill fixed">Baixa escolaridade</span>
+              <span class="pill fixed">Acesso limitado a áreas verdes</span>
+              <span class="pill fixed">Violência urbana (restringe atividade física)</span>
+              <span class="pill fixed">Trabalho em turnos noturnos</span>
+              <span class="pill fixed">Racismo e discriminação (estresse crônico)</span>
+            </div>
+          </div>
+          <div class="info-gray info-box" style="margin-bottom:0;">
+            <span class="info-box-icon">📊</span>
+            <div>A desigualdade social é um determinante estrutural da obesidade. Nos EUA e Brasil, as populações mais pobres têm maior prevalência de obesidade — não por escolhas ruins, mas por menor acesso a alimentos saudáveis, espaços para exercício e serviços de saúde. Culpabilizar individualmente sem considerar esses fatores é cientificamente equivocado.</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /panel1 -->
+
+    <!-- ═════════════════════════════════════════════════════════
+         TAB 2 — CONSEQUÊNCIAS
+    ══════════════════════════════════════════════════════════════ -->
+    <div class="tab-panel" id="panel2">
+
+      <div class="section-label">Complicações</div>
+      <div class="section-title">Consequências da Obesidade</div>
+      <p class="section-sub">
+        A obesidade afeta praticamente todos os sistemas do organismo. Não se trata apenas de "peso" — é uma doença inflamatória crônica com repercussões cardiovasculares, metabólicas, oncológicas, psicológicas e musculoesqueléticas.
+      </p>
+
+      <!-- Risco cardiovascular -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon red">❤️</div>
+          <div>
+            <div class="card-title">Risco Cardiovascular</div>
+            <div class="card-subtitle">O coração paga o preço mais alto da obesidade crônica</div>
+          </div>
+        </div>
+        <div class="info-red info-box">
+          <span class="info-box-icon">📊</span>
+          <div>Cada aumento de 5 kg/m² no IMC associa-se a: ↑ 29% na mortalidade geral, ↑ 41% mortalidade vascular, ↑ 49% mortalidade por doença isquêmica do coração (Whitlock et al., Lancet 2009, 900.000 participantes). A gordura visceral é um órgão endócrino que libera citocinas pró-inflamatórias, favorece a aterosclerose acelerada.</div>
+        </div>
+        <div class="grid-3">
+          <div class="mini-card">
+            <div class="mini-card-label">Hipertensão Arterial</div>
+            <div class="mini-card-val" style="color:#f87171;">3×</div>
+            <div class="mini-card-desc">Obesidade aumenta 3x o risco de hipertensão. Mecanismo: ativação do sistema renina-angiotensina-aldosterona, aumento do débito cardíaco, compressão renal.</div>
+          </div>
+          <div class="mini-card">
+            <div class="mini-card-label">Infarto e AVC</div>
+            <div class="mini-card-val" style="color:#f87171;">↑ 50%</div>
+            <div class="mini-card-desc">Via hipertensão, dislipidemia aterogênica, resistência insulínica, inflamação crônica e trombofilia relativa (↑ PAI-1, fibrinogênio).</div>
+          </div>
+          <div class="mini-card">
+            <div class="mini-card-label">Insuficiência Cardíaca</div>
+            <div class="mini-card-val" style="color:#f87171;">↑ 5% / IMC</div>
+            <div class="mini-card-desc">Cada unidade de IMC ↑ risco de IC em ~5%. Obesidade causa IC com FE preservada via expansão de volume, fibrose miocárdica e disfunção diastólica.</div>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="mini-card">
+            <div class="mini-card-label">Fibrilação Atrial</div>
+            <div class="mini-card-val" style="color:#fbbf24;">↑ 49%</div>
+            <div class="mini-card-desc">Obesidade é um dos principais fatores de risco modificáveis para FA. Remodelamento atrial por expansão de volume e inflamação. Perda de peso reduz carga de FA.</div>
+          </div>
+          <div class="mini-card">
+            <div class="mini-card-label">Dislipidemia aterogênica</div>
+            <div class="mini-card-val" style="color:#fbbf24;">TG↑ HDL↓</div>
+            <div class="mini-card-desc">Padrão clássico: hipertrigliceridemia + HDL baixo + LDL-P pequena e densa (mais aterogênica). Resulta da resistência insulínica hepática.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Metabólico -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon amber">🩺</div>
+          <div>
+            <div class="card-title">Complicações Metabólicas</div>
+            <div class="card-subtitle">A resistência à insulina está no centro de quase todas as complicações metabólicas</div>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div>
+            <p style="font-size:.82rem;font-weight:700;margin-bottom:.75rem;">Diabetes tipo 2</p>
+            <div class="info-amber info-box">
+              <span class="info-box-icon">⚠️</span>
+              <div>90% dos casos de DM2 são atribuíveis ao sobrepeso/obesidade. IMC ≥ 35 aumenta o risco de DM2 em até 40 vezes. A perda de 7–10% do peso previne ou reverte o DM2 em fase inicial (Look AHEAD, NEJM 2013).</div>
+            </div>
+            <p style="font-size:.82rem;font-weight:700;margin-bottom:.75rem;margin-top:.75rem;">Esteatose hepática / MASLD</p>
+            <div class="info-amber info-box">
+              <span class="info-box-icon">⚠️</span>
+              <div>Doença hepática associada à disfunção metabólica (MASLD): presente em ~75% dos obesos. Pode evoluir para cirrose e hepatocarcinoma. Principal causa de transplante hepático no Brasil em 2030 (projeção SBH).</div>
+            </div>
+          </div>
+          <div>
+            <p style="font-size:.82rem;font-weight:700;margin-bottom:.75rem;">PCOS (mulheres)</p>
+            <div class="info-amber info-box" style="margin-bottom:.75rem;">
+              <span class="info-box-icon">⚠️</span>
+              <div>Síndrome dos ovários policísticos afeta 60–80% das mulheres com obesidade. Resistência insulínica → hiperandrogenismo → anovulação → infertilidade.</div>
+            </div>
+            <p style="font-size:.82rem;font-weight:700;margin-bottom:.75rem;">Hipotireoidismo</p>
+            <div class="info-gray info-box" style="margin-bottom:0;">
+              <span class="info-box-icon">📌</span>
+              <div>Obesidade pode causar elevação discreta do TSH. O hipotireoidismo causa ganho de peso modesto (2–3 kg), e sua correção raramente normaliza o IMC em obesos — fator frequentemente superestimado.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Outros sistemas -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">🔗</div>
+          <div>
+            <div class="card-title">Outros Sistemas Afetados</div>
+            <div class="card-subtitle">A obesidade é sistêmica — afeta todo o organismo</div>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="compare-table">
+            <thead>
+              <tr><th>Sistema</th><th>Condição associada</th><th>Mecanismo</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Respiratório</strong></td>
+                <td>Apneia obstrutiva do sono (SAOS), Hipoventilação por obesidade</td>
+                <td style="font-size:.75rem;color:var(--muted-foreground);">Compressão torácica, colapso faríngeo por adiposidade parafar íngea</td>
+              </tr>
+              <tr>
+                <td><strong>Oncológico</strong></td>
+                <td>↑ risco de 13 cânceres: mama, cólon, endométrio, rim, fígado, esôfago...</td>
+                <td style="font-size:.75rem;color:var(--muted-foreground);">Inflamação crônica, hiperinsulinemia, hiperestrogenismo (gordura aromatase)</td>
+              </tr>
+              <tr>
+                <td><strong>Musculoesquelético</strong></td>
+                <td>Osteoartrose (joelho, quadril), lombalgia, gota</td>
+                <td style="font-size:.75rem;color:var(--muted-foreground);">Sobrecarga mecânica + inflamação sinovial mediada por adipocinas</td>
+              </tr>
+              <tr>
+                <td><strong>Renal</strong></td>
+                <td>Glomeruloesclerose focal segmentar, DRC</td>
+                <td style="font-size:.75rem;color:var(--muted-foreground);">Hiperfiltração glomerular, inflamação, HAS</td>
+              </tr>
+              <tr>
+                <td><strong>Gastrintestinal</strong></td>
+                <td>DRGE, cálculos biliares, pancreatite aguda</td>
+                <td style="font-size:.75rem;color:var(--muted-foreground);">↑ pressão intra-abdominal, supersaturação biliar de colesterol</td>
+              </tr>
+              <tr>
+                <td><strong>Saúde mental</strong></td>
+                <td>Depressão, ansiedade, baixa autoestima, transtornos alimentares</td>
+                <td style="font-size:.75rem;color:var(--muted-foreground);">Estigma, inflamação (eixo intestino-cérebro), bidirecionalidade causal</td>
+              </tr>
+              <tr>
+                <td><strong>Reprodutivo</strong></td>
+                <td>Infertilidade (ambos os sexos), risco gestacional, macrossomia</td>
+                <td style="font-size:.75rem;color:var(--muted-foreground);">Hiperandrogenismo, disfunção erétil, ambiente uterino inflamatório</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Paradoxo da obesidade -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">⚖️</div>
+          <div>
+            <div class="card-title">"Paradoxo da Obesidade" — A Controvérsia</div>
+            <div class="card-subtitle">Alguns estudos sugerem proteção em certas condições — o que a ciência diz?</div>
+          </div>
+        </div>
+        <div class="info-teal info-box">
+          <span class="info-box-icon">🔬</span>
+          <div>Alguns estudos observacionais em populações com doença cardíaca estabelecida encontraram que pacientes com sobrepeso/obesidade leve tinham menor mortalidade de curto prazo. Isso foi chamado de "paradoxo da obesidade". Análises mais rigorosas mostraram que isso é principalmente <strong>artefato metodológico</strong>: viés do fumante (fumantes magros e doentes), confundimento por doença crônica preexistente que causa perda de peso, e IMC como proxy inadequado de gordura visceral. A esmagadora maioria das evidências confirma que a obesidade aumenta a mortalidade em longo prazo.</div>
+        </div>
+      </div>
+
+    </div><!-- /panel2 -->
+
+    <!-- ═════════════════════════════════════════════════════════
+         TAB 3 — MITOS VS CIÊNCIA
+    ══════════════════════════════════════════════════════════════ -->
+    <div class="tab-panel" id="panel3">
+
+      <div class="section-label">Evidências</div>
+      <div class="section-title">Mitos × Ciência na Obesidade</div>
+      <p class="section-sub">
+        A obesidade é um dos campos com mais desinformação. Crenças sem base científica prejudicam pacientes, atrasam tratamentos e perpetuam estigma. Aqui estão os principais mitos desmascarados pelas evidências.
+      </p>
+
+      <div class="myth-card">
+        <div class="myth-header">
+          <div class="myth-col myth-label">❌ Mito</div>
+          <div class="myth-col sci-label">✅ O que a ciência diz</div>
+        </div>
+        <div class="myth-body">
+          <div class="myth-cell myth-side">"Obesidade é falta de força de vontade e preguiça"</div>
+          <div class="myth-cell sci-side">A obesidade é regulada por sistemas neuroendócrinos complexos (leptina, grelina, GLP-1, CCK, peptídeo YY). Após perda de peso, o organismo ativa mecanismos de contra-regulação que persistem por anos (Sumithran et al., NEJM 2011). Voluntarismo isolado tem eficácia muito limitada.</div>
+        </div>
+      </div>
+
+      <div class="myth-card">
+        <div class="myth-header">
+          <div class="myth-col myth-label">❌ Mito</div>
+          <div class="myth-col sci-label">✅ O que a ciência diz</div>
+        </div>
+        <div class="myth-body">
+          <div class="myth-cell myth-side">"Uma caloria é uma caloria — só conta o déficit calórico"</div>
+          <div class="myth-cell sci-side">A composição macronutricional afeta hormônios, saciedade e termogênese. Proteínas têm efeito termogênico 25–30% (vs. 6–8% carboidratos). Açúcares líquidos produzem menor saciedade que sólidos isocalóricos. Ainda assim, balanço energético é a lei fundamental — mas "como" entrar em déficit importa para sustentabilidade.</div>
+        </div>
+      </div>
+
+      <div class="myth-card">
+        <div class="myth-header">
+          <div class="myth-col myth-label">❌ Mito</div>
+          <div class="myth-col sci-label">✅ O que a ciência diz</div>
+        </div>
+        <div class="myth-body">
+          <div class="myth-cell myth-side">"Dieta low-carb / cetogênica é sempre superior para emagrecer"</div>
+          <div class="myth-cell sci-side">Meta-análises de RCTs mostram que em 12 meses, diferenças entre dietas (low-carb, low-fat, mediterrânea, DASH) são mínimas e clinicamente irrelevantes. Aderência a longo prazo é o fator determinante. A melhor dieta é aquela que o paciente consegue manter (Sacks et al., NEJM 2009; Johnston et al., JAMA 2014).</div>
+        </div>
+      </div>
+
+      <div class="myth-card">
+        <div class="myth-header">
+          <div class="myth-col myth-label">❌ Mito</div>
+          <div class="myth-col sci-label">✅ O que a ciência diz</div>
+        </div>
+        <div class="myth-body">
+          <div class="myth-cell myth-side">"Exercício físico é suficiente para emagrecer sem dieta"</div>
+          <div class="myth-cell sci-side">Exercício aeróbico isolado produz perda de peso modesta (~2–3 kg em 6 meses), pois o organismo compensa com aumento do apetite ("compensation hypothesis"). Exercício é fundamental — mas principalmente para manutenção do peso perdido, saúde cardiovascular e composição corporal. Dieta tem maior impacto no déficit calórico.</div>
+        </div>
+      </div>
+
+      <div class="myth-card">
+        <div class="myth-header">
+          <div class="myth-col myth-label">❌ Mito</div>
+          <div class="myth-col sci-label">✅ O que a ciência diz</div>
+        </div>
+        <div class="myth-body">
+          <div class="myth-cell myth-side">"Suplementos (chás, termogênicos, detox) emagrecem de forma eficaz e segura"</div>
+          <div class="myth-cell sci-side">Nenhum suplemento alimentar comercializado no Brasil possui evidência de eficácia comparável a medicamentos aprovados pela ANVISA. Muitos contêm substâncias não declaradas, com riscos cardiovasculares (taquicardia, HAS, arritmias). Casos de hepatotoxicidade por compostos "naturais" são reportados frequentemente.</div>
+        </div>
+      </div>
+
+      <div class="myth-card">
+        <div class="myth-header">
+          <div class="myth-col myth-label">❌ Mito</div>
+          <div class="myth-col sci-label">✅ O que a ciência diz</div>
+        </div>
+        <div class="myth-body">
+          <div class="myth-cell myth-side">"Cirurgia bariátrica é 'jeito fácil' e só para quem não tem compromisso"</div>
+          <div class="myth-cell sci-side">Cirurgia bariátrica é o tratamento com maior eficácia comprovada para obesidade grave. Reduz mortalidade geral em 40%, reverte DM2 em 80% dos casos, reduz eventos cardiovasculares (NEJM 2007, 2012). Requer compromisso com mudanças permanentes de estilo de vida, suplementação vitalícia e acompanhamento multidisciplinar.</div>
+        </div>
+      </div>
+
+      <div class="myth-card">
+        <div class="myth-header">
+          <div class="myth-col myth-label">❌ Mito</div>
+          <div class="myth-col sci-label">✅ O que a ciência diz</div>
+        </div>
+        <div class="myth-body">
+          <div class="myth-cell myth-side">"Glândula lenta (hipotireoidismo) é a causa da obesidade"</div>
+          <div class="myth-cell sci-side">Hipotireoidismo clínico causa ganho médio de 2–3 kg, principalmente por retenção hídrica. Corrigir o hipotireoidismo raramente normaliza o IMC em obesos. A maioria dos pacientes com obesidade e TSH elevado apresenta hipotireoidismo subclínico que tem contribuição mínima ao peso (Pearce et al., NEJM 2012).</div>
+        </div>
+      </div>
+
+      <div class="myth-card">
+        <div class="myth-header">
+          <div class="myth-col myth-label">❌ Mito</div>
+          <div class="myth-col sci-label">✅ O que a ciência diz</div>
+        </div>
+        <div class="myth-body">
+          <div class="myth-cell myth-side">"Jejum intermitente é drasticamente superior às dietas convencionais"</div>
+          <div class="myth-cell sci-side">RCTs comparando jejum intermitente (16:8, 5:2) vs. restrição calórica contínua isocalórica mostram resultados equivalentes em peso, composição corporal e marcadores metabólicos em 12 meses (Lowe et al., JAMA Internal Medicine 2020; Wilkinson et al., Cell Metabolism 2020). A vantagem real: preferência individual pode facilitar a aderência para alguns.</div>
+        </div>
+      </div>
+
+    </div><!-- /panel3 -->
+
+    <!-- ═════════════════════════════════════════════════════════
+         TAB 4 — TRATAMENTO
+    ══════════════════════════════════════════════════════════════ -->
+    <div class="tab-panel" id="panel4">
+
+      <div class="section-label">Terapêutica</div>
+      <div class="section-title">Opções de Tratamento</div>
+      <p class="section-sub">
+        O tratamento da obesidade é <strong>multimodal e progressivo</strong>. A escolha das intervenções depende do grau de obesidade, comorbidades, preferências do paciente e resposta prévia. Todas as abordagens têm mecanismos, eficácias e riscos distintos.
+      </p>
+
+      <!-- Piramide de tratamento -->
+      <div class="grid-3" style="margin-bottom:1.5rem;">
+        <div class="mini-card" style="border-color:rgba(0,211,189,.3);">
+          <div class="mini-card-label">1ª Linha — TODOS os pacientes</div>
+          <div class="mini-card-val" style="font-size:.9rem;color:var(--teal);">🥗 Estilo de Vida</div>
+          <div class="mini-card-desc">Dieta, exercício, comportamento e sono. Base de qualquer tratamento.</div>
+        </div>
+        <div class="mini-card" style="border-color:rgba(251,191,36,.3);">
+          <div class="mini-card-label">2ª Linha — IMC ≥ 30 (ou ≥ 27 com comorbidade)</div>
+          <div class="mini-card-val" style="font-size:.9rem;color:var(--amber);">💊 Farmacoterapia</div>
+          <div class="mini-card-desc">Medicamentos aprovados com mecanismo de ação e monitorização definidos.</div>
+        </div>
+        <div class="mini-card" style="border-color:rgba(220,38,38,.25);">
+          <div class="mini-card-label">3ª Linha — IMC ≥ 35 com comorbidade ou ≥ 40</div>
+          <div class="mini-card-val" style="font-size:.9rem;color:#f87171;">🔪 Cirurgia / Procedimento</div>
+          <div class="mini-card-desc">Maior eficácia e durabilidade, mas com riscos cirúrgicos e exigências de longo prazo.</div>
+        </div>
+      </div>
+
+      <!-- ── ESTILO DE VIDA ── -->
+      <div class="section-label" style="margin-top:1.5rem;">Mudança de Estilo de Vida</div>
+
+      <div class="treatment-block">
+        <div class="treatment-header" onclick="toggleTreatment(this)">
+          <div class="treatment-icon">🥗</div>
+          <div class="treatment-info">
+            <div class="treatment-name">Intervenção Dietética</div>
+            <div class="treatment-sub">5–10% de perda de peso sustentada com aderência — a melhor dieta é a que você consegue manter</div>
+          </div>
+          <svg class="treatment-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="treatment-body">
+          <div class="grid-2">
+            <div>
+              <p style="font-weight:700;font-size:.85rem;margin-bottom:.65rem;">Estratégias com evidência</p>
+              <ul style="font-size:.82rem;line-height:2;color:var(--muted-foreground);padding-left:1rem;">
+                <li><strong style="color:var(--foreground);">Déficit calórico de 500–750 kcal/dia</strong> → perda de ~0,5–1 kg/semana</li>
+                <li>Dieta mediterrânea: ↓ risco CV independentemente do peso</li>
+                <li>↑ proteínas (1,2–1,6 g/kg/dia): ↑ saciedade, preserva massa magra</li>
+                <li>↑ fibras (25–30 g/dia): saciedade, microbioma, glicemia</li>
+                <li>Redução de ultraprocessados: ponto mais impactante</li>
+                <li>Redução de bebidas açucaradas: álcool conta (7 kcal/g)</li>
+              </ul>
+            </div>
+            <div>
+              <p style="font-weight:700;font-size:.85rem;margin-bottom:.65rem;">Limitações e considerações</p>
+              <div class="info-amber info-box">
+                <span class="info-box-icon">⚠️</span>
+                <div>Restrições muito severas (&lt; 800 kcal/dia = VLCD) só com supervisão médica estrita. Dietas da moda com exclusão total de grupos alimentares aumentam risco de deficiências nutricionais. Ciclismo de peso ("efeito sanfona") é prejudicial à composição corporal e ao metabolismo.</div>
+              </div>
+              <div class="info-teal info-box">
+                <span class="info-box-icon">💡</span>
+                <div>Consulte sempre um <strong>nutricionista</strong> para individualização. Planos alimentares genéricos têm menor aderência e eficácia que planos personalizados.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="treatment-block">
+        <div class="treatment-header" onclick="toggleTreatment(this)">
+          <div class="treatment-icon">🏃</div>
+          <div class="treatment-info">
+            <div class="treatment-name">Exercício Físico</div>
+            <div class="treatment-sub">Fundamental para manutenção do peso e saúde cardiovascular — efeito isolado no emagrecimento é modesto</div>
+          </div>
+          <svg class="treatment-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="treatment-body">
+          <div class="grid-2">
+            <div>
+              <p style="font-weight:700;font-size:.85rem;margin-bottom:.65rem;">Recomendações OMS / ACSM</p>
+              <div class="info-teal info-box">
+                <span class="info-box-icon">✅</span>
+                <div><strong>Aeróbico:</strong> 150–300 min/sem de intensidade moderada (ou 75–150 min de alta). Inclui caminhada rápida, natação, ciclismo, dança.</div>
+              </div>
+              <div class="info-teal info-box">
+                <span class="info-box-icon">✅</span>
+                <div><strong>Resistência (musculação):</strong> ≥ 2 sessões/semana. Preserva ou aumenta massa muscular, melhora sensibilidade insulínica e metabolismo basal.</div>
+              </div>
+              <div class="info-teal info-box">
+                <span class="info-box-icon">✅</span>
+                <div><strong>Para manutenção do peso perdido:</strong> 200–300 min/sem de intensidade moderada. Evidência do National Weight Control Registry: exercício diário é o principal preditor de manutenção.</div>
+              </div>
+            </div>
+            <div>
+              <p style="font-weight:700;font-size:.85rem;margin-bottom:.65rem;">Por que o exercício isolado emagrece pouco?</p>
+              <div class="info-gray info-box">
+                <span class="info-box-icon">🧠</span>
+                <div>O organismo compensa o gasto calórico aumentando o apetite e reduzindo o gasto não-relacionado ao exercício (NEAT — Non-Exercise Activity Thermogenesis). Isso é adaptação evolutiva, não "falta de resultado". Mesmo assim, exercício melhora composição corporal, sensibilidade insulínica, função cardiovascular e qualidade de vida <em>mesmo sem perda de peso</em>.</div>
+              </div>
+              <div class="info-amber info-box" style="margin-top:.5rem;">
+                <span class="info-box-icon">⚠️</span>
+                <div>Pacientes com obesidade grave devem ter <strong>avaliação cardiológica</strong> antes de iniciar programas de alta intensidade. Sobrecarga articular com exercícios de impacto pode ser problemática em obesidade grau III.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="treatment-block">
+        <div class="treatment-header" onclick="toggleTreatment(this)">
+          <div class="treatment-icon">🧠</div>
+          <div class="treatment-info">
+            <div class="treatment-name">Terapia Comportamental e Psicológica</div>
+            <div class="treatment-sub">TCC, mindfulness eating e suporte psicossocial — componente frequentemente subestimado</div>
+          </div>
+          <svg class="treatment-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="treatment-body">
+          <div class="info-teal info-box">
+            <span class="info-box-icon">💡</span>
+            <div>Terapia Cognitivo-Comportamental (TCC) focada em obesidade: melhora aderência ao tratamento, aborda comer emocional, reduz episódios de compulsão alimentar e melhora manutenção do peso perdido. Meta-análises mostram ganho adicional de ~2–3 kg vs. intervenção dietética isolada (Shaw et al., Cochrane 2009).</div>
+          </div>
+          <div class="grid-2">
+            <div>
+              <p style="font-weight:700;font-size:.82rem;margin-bottom:.5rem;">Intervenções eficazes</p>
+              <div class="pill-list">
+                <span class="pill mod">TCC para obesidade</span>
+                <span class="pill mod">Mindful eating</span>
+                <span class="pill mod">Automonitorização (diário alimentar)</span>
+                <span class="pill mod">Metas comportamentais SMART</span>
+                <span class="pill mod">Suporte de grupo (presencial ou online)</span>
+                <span class="pill mod">Abordagem de traumas e alimentação emocional</span>
+              </div>
+            </div>
+            <div>
+              <p style="font-weight:700;font-size:.82rem;margin-bottom:.5rem;">Transtornos associados a tratar</p>
+              <div class="pill-list">
+                <span class="pill fixed">Transtorno de compulsão alimentar periódica (TCAP)</span>
+                <span class="pill fixed">Síndrome do comer noturno</span>
+                <span class="pill fixed">Depressão e ansiedade</span>
+                <span class="pill fixed">Traumas (ACEs)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── FARMACOTERAPIA ── -->
+      <hr class="section-divider" />
+      <div class="section-label">Farmacoterapia</div>
+      <div class="section-title">Medicamentos para Obesidade</div>
+      <p class="section-sub">
+        Indicados para IMC ≥ 30 kg/m², ou ≥ 27 kg/m² com pelo menos uma comorbidade relacionada ao peso. Sempre associados a mudanças de estilo de vida — não substituem dieta e exercício. Prescrição médica obrigatória.
+      </p>
+
+      <div class="treatment-block">
+        <div class="treatment-header" onclick="toggleTreatment(this)">
+          <div class="treatment-icon">💉</div>
+          <div class="treatment-info">
+            <div class="treatment-name">Agonistas de GLP-1 — Semaglutida e Liraglutida</div>
+            <div class="treatment-sub">Padrão-ouro atual: maior eficácia, benefício cardiovascular comprovado (SELECT Trial, LEADER)</div>
+          </div>
+          <svg class="treatment-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="treatment-body">
+          <div class="info-teal info-box">
+            <span class="info-box-icon">🏆</span>
+            <div><strong>Semaglutida 2,4 mg sc/sem (Wegovy®):</strong> estudo STEP 1 (NEJM 2021) — perda média de <strong>14,9% do peso corporal</strong> em 68 semanas vs. 2,4% placebo. Estudo SELECT (NEJM 2023): redução de 20% em eventos cardiovasculares maiores (MACE) em obesos sem DM com DCV prévia. Aprovada pela ANVISA para obesidade.</div>
+          </div>
+          <div class="grid-2">
+            <div>
+              <p style="font-weight:700;font-size:.82rem;margin-bottom:.5rem;">Mecanismo de ação</p>
+              <ul style="font-size:.82rem;color:var(--muted-foreground);line-height:1.9;padding-left:1rem;">
+                <li>Agonismo do receptor GLP-1 no hipotálamo → ↓ apetite e ingestão calórica</li>
+                <li>Retarda esvaziamento gástrico → ↑ saciedade pós-prandial</li>
+                <li>Atua no sistema de recompensa mesolímbico → ↓ desejo por alimentos hipercalóricos</li>
+                <li>Melhora secreção de insulina glicose-dependente (efeito anti-DM2)</li>
+              </ul>
+            </div>
+            <div>
+              <p style="font-weight:700;font-size:.82rem;margin-bottom:.5rem;">Efeitos adversos (principais)</p>
+              <div class="pill-list">
+                <span class="pill fixed">Náuseas (40%) — transitórias</span>
+                <span class="pill fixed">Vômitos, diarreia, constipação</span>
+                <span class="pill fixed">Pancreatite aguda (raro)</span>
+                <span class="pill fixed">Tumor tireoidiano de células C (contraindicado em NEM-2, histórico de carcinoma medular)</span>
+                <span class="pill fixed">Colelitíase (perda rápida de peso)</span>
+                <span class="pill amber">Perda de massa muscular — suplementar proteína + exercício resistido</span>
+              </div>
+            </div>
+          </div>
+          <div class="info-amber info-box" style="margin-top:.75rem;">
+            <span class="info-box-icon">⚠️</span>
+            <div><strong>Recuperação de peso:</strong> Estudo STEP 1 Extension: 12 meses após descontinuação, os pacientes recuperaram 2/3 do peso perdido. GLP-1 RA trata obesidade como doença crônica — descontinuação geralmente implica recuperação de peso. Isso é fisiológico, não falha do tratamento.</div>
+          </div>
+          <div class="info-teal info-box">
+            <span class="info-box-icon">💡</span>
+            <div><strong>Liraglutida 3,0 mg sc/dia (Saxenda®):</strong> aprovada pela ANVISA. Perda média de ~8% do peso. Estudo SCALE (NEJM 2015). Menor eficácia que semaglutida semanal, mas com mais tempo de uso no mercado e dados de segurança.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="treatment-block">
+        <div class="treatment-header" onclick="toggleTreatment(this)">
+          <div class="treatment-icon">💊</div>
+          <div class="treatment-info">
+            <div class="treatment-name">Tirzepatida (GIP/GLP-1 dual) — SURMOUNT</div>
+            <div class="treatment-sub">Maior eficácia documentada em RCT: perda de até 22,5% do peso corporal</div>
+          </div>
+          <svg class="treatment-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="treatment-body">
+          <div class="info-teal info-box">
+            <span class="info-box-icon">🏆</span>
+            <div><strong>SURMOUNT-1 (NEJM 2022):</strong> Tirzepatida 15 mg sc/sem → perda média de <strong>20,9% do peso</strong> vs. 3,1% placebo. 37% dos participantes perderam ≥ 25% do peso. Agonista dual de GIP (polipeptídeo insulinotrópico dependente de glicose) + GLP-1. Aprovada FDA (Zepbound®); em processo de aprovação ANVISA para obesidade (já aprovada como Mounjaro® para DM2).</div>
+          </div>
+          <div class="grid-2">
+            <div>
+              <p style="font-weight:700;font-size:.82rem;margin-bottom:.5rem;">Por que é mais eficaz?</p>
+              <div class="info-gray info-box" style="margin-bottom:0;">
+                <span class="info-box-icon">🔬</span>
+                <div>O receptor GIP, além de potencializar a secreção de insulina, reduz a resistência à leptina e pode aumentar o gasto energético via tecido adiposo marrom. A ação dual amplifica os efeitos sobre apetite e metabolismo de forma sinérgica.</div>
+              </div>
+            </div>
+            <div>
+              <p style="font-weight:700;font-size:.82rem;margin-bottom:.5rem;">Perfil de segurança</p>
+              <div class="info-gray info-box" style="margin-bottom:0;">
+                <span class="info-box-icon">📋</span>
+                <div>Semelhante aos GLP-1 RA. Principalmente GI (náuseas 45%, diarreia 23%). Descontinuação por efeitos adversos: ~5% no SURMOUNT-1. Dados cardiovasculares (SURPASS-CVOT) confirmam segurança e possível benefício.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="treatment-block">
+        <div class="treatment-header" onclick="toggleTreatment(this)">
+          <div class="treatment-icon">🔵</div>
+          <div class="treatment-info">
+            <div class="treatment-name">Orlistate</div>
+            <div class="treatment-sub">Único medicamento de venda direta (dose baixa) — mecanismo periférico, sem ação central</div>
+          </div>
+          <svg class="treatment-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="treatment-body">
+          <div class="grid-2">
+            <div>
+              <p style="font-weight:700;font-size:.82rem;margin-bottom:.5rem;">Mecanismo e eficácia</p>
+              <div class="info-gray info-box">
+                <span class="info-box-icon">🔬</span>
+                <div>Inibe lipases pancreáticas e gástricas → bloqueia a absorção de ~30% das gorduras ingeridas. Dose: 120 mg 3x/dia (rx) ou 60 mg 3x/dia (venda livre). Meta-análises: perda adicional de ~3 kg vs. placebo em 12 meses. Eficácia bem menor que GLP-1 RA.</div>
+              </div>
+            </div>
+            <div>
+              <p style="font-weight:700;font-size:.82rem;margin-bottom:.5rem;">Efeitos adversos</p>
+              <div class="info-amber info-box">
+                <span class="info-box-icon">⚠️</span>
+                <div>Esteatorreia (gordura nas fezes), urgência fecal, flatulência, incontinência fecal — especialmente se ingerir alimentos gordurosos. Reduz absorção de vitaminas lipossolúveis (A, D, E, K) → suplementar multivitamínico 2h após. Casos raros de hepatotoxicidade reportados.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="treatment-block">
+        <div class="treatment-header" onclick="toggleTreatment(this)">
+          <div class="treatment-icon">🟡</div>
+          <div class="treatment-info">
+            <div class="treatment-name">Bupropiona + Naltrexona (Contrave® / Mysimba®)</div>
+            <div class="treatment-sub">Ação central: reduz desejo por alimentos e fome emocional</div>
+          </div>
+          <svg class="treatment-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="treatment-body">
+          <div class="grid-2">
+            <div>
+              <p style="font-weight:700;font-size:.82rem;margin-bottom:.5rem;">Mecanismo</p>
+              <ul style="font-size:.82rem;color:var(--muted-foreground);line-height:1.9;padding-left:1rem;">
+                <li>Bupropiona: inibe recaptura de dopamina e noradrenalina → ↓ apetite</li>
+                <li>Naltrexona: antagonista opioide → bloqueia retroalimentação positiva do ato de comer</li>
+                <li>Agem em conjunto no núcleo arqueado hipotalâmico (neurônios POMC/CART)</li>
+              </ul>
+              <div class="info-teal info-box" style="margin-top:.5rem;">
+                <span class="info-box-icon">📊</span>
+                <div>Estudo COR-I e COR-II: perda de ~6–9% do peso corporal em 56 semanas. Útil em pacientes com comer compulsivo ou emocional.</div>
+              </div>
+            </div>
+            <div>
+              <p style="font-weight:700;font-size:.82rem;margin-bottom:.5rem;">Contraindicações e riscos</p>
+              <div class="pill-list">
+                <span class="pill fixed">Hipertensão não controlada (↑ PA)</span>
+                <span class="pill fixed">Epilepsia ou histórico de convulsões</span>
+                <span class="pill fixed">Uso de IMAOs</span>
+                <span class="pill fixed">Anorexia/bulimia ativas</span>
+                <span class="pill fixed">Gravidez e lactação</span>
+              </div>
+              <div class="info-amber info-box" style="margin-top:.5rem;">
+                <span class="info-box-icon">⚠️</span>
+                <div>Alertas de ideação suicida (como todos antidepressivos). NÃO usar com analgésicos opioides — naltrexona bloqueia o efeito analgésico. Aumenta PA em média 1–2 mmHg.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="treatment-block">
+        <div class="treatment-header" onclick="toggleTreatment(this)">
+          <div class="treatment-icon">🔴</div>
+          <div class="treatment-info">
+            <div class="treatment-name">Anfepramona, Femproporex e Mazindol — Anorexígenos</div>
+            <div class="treatment-sub">Uso restrito no Brasil — regulamentação rigorosa, uso por tempo limitado</div>
+          </div>
+          <svg class="treatment-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="treatment-body">
+          <div class="info-red info-box">
+            <span class="info-box-icon">⚠️</span>
+            <div>São substâncias anfetamínicas (anfepramona, femproporex) ou análogos (mazindol), controladas pela ANVISA. Riscos conhecidos: <strong>dependência química, taquicardia, arritmias, hipertensão pulmonar, psicose, insônia</strong>. Proibidos ou restritos em vários países. No Brasil, prescrição limitada a 60 dias por notificação de receita B2 (azul). Eficácia documentada é inferior a GLP-1 RA com maior perfil de riscos. <strong>O Dr. Lucas Silva não recomenda como 1ª escolha farmacológica.</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PROCEDIMENTOS ── -->
+      <hr class="section-divider" />
+      <div class="section-label">Procedimentos e Cirurgia</div>
+      <div class="section-title">Cirurgia Bariátrica e Endoscopia</div>
+      <p class="section-sub">
+        Indicadas quando IMC ≥ 35 com comorbidades, ou IMC ≥ 40 independente. Requerem avaliação multidisciplinar completa. São os tratamentos com maior eficácia e durabilidade comprovadas para obesidade grave.
+      </p>
+
+      <div class="treatment-block">
+        <div class="treatment-header" onclick="toggleTreatment(this)">
+          <div class="treatment-icon">🔪</div>
+          <div class="treatment-info">
+            <div class="treatment-name">Sleeve Gástrico (Gastrectomia Vertical)</div>
+            <div class="treatment-sub">Procedimento mais realizado no mundo atualmente — irreversível</div>
+          </div>
+          <svg class="treatment-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="treatment-body">
+          <div class="grid-2">
+            <div>
+              <p style="font-weight:700;font-size:.82rem;margin-bottom:.5rem;">Técnica e resultados</p>
+              <div class="info-teal info-box">
+                <span class="info-box-icon">✅</span>
+                <div>Remoção de ~80% do estômago (porção fúndica), criando um tubo gástrico. Efeitos: restrição do volume gástrico + redução dramática de grelina (hormônio da fome produzido no fundo gástrico). Perda média de <strong>25–30% do peso</strong> em 12–18 meses. Manutenção a 5 anos: ~20–23% de perda do peso inicial.</div>
+              </div>
+            </div>
+            <div>
+              <p style="font-weight:700;font-size:.82rem;margin-bottom:.5rem;">Riscos e complicações</p>
+              <div class="pill-list">
+                <span class="pill fixed">Fístula gástrica (0,5–3%)</span>
+                <span class="pill fixed">DRGE agravado (contraindicado em DRGE grave)</span>
+                <span class="pill fixed">Estenose da manga</span>
+                <span class="pill fixed">Deficiências nutricionais (vitamina B12, D, ferro)</span>
+                <span class="pill fixed">Mortalidade cirúrgica &lt; 0,1%</span>
+              </div>
+              <div class="info-amber info-box" style="margin-top:.5rem;">
+                <span class="info-box-icon">⚠️</span>
+                <div>Irreversível — não é possível reverter. DRGE pode aparecer ou piorar em ~15–20% dos pacientes. Suplementação vitamínica vitalícia.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="treatment-block">
+        <div class="treatment-header" onclick="toggleTreatment(this)">
+          <div class="treatment-icon">🔄</div>
+          <div class="treatment-info">
+            <div class="treatment-name">Bypass Gástrico em Y-de-Roux (RYGB)</div>
+            <div class="treatment-sub">Padrão-ouro histórico — maior eficácia em diabéticos, mas mais complexo</div>
+          </div>
+          <svg class="treatment-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="treatment-body">
+          <div class="grid-2">
+            <div>
+              <p style="font-weight:700;font-size:.82rem;margin-bottom:.5rem;">Mecanismo e resultados</p>
+              <div class="info-teal info-box">
+                <span class="info-box-icon">✅</span>
+                <div>Criação de um pequeno reservatório gástrico (~30 mL) + derivação do intestino delgado (alça alimentar). Efeitos: restrição + má-absorção + potentes mudanças hormonais (↑↑ GLP-1, PYY, Oxintomodulina após refeição). Perda de <strong>30–35% do peso</strong>. Remissão do DM2 em 60–80% dos casos. Dados de mortalidade: redução de 40% em mortalidade geral a 10 anos (Adams et al., NEJM 2007).</div>
+              </div>
+            </div>
+            <div>
+              <p style="font-weight:700;font-size:.82rem;margin-bottom:.5rem;">Riscos específicos</p>
+              <div class="pill-list">
+                <span class="pill fixed">Síndrome de dumping (15–20%)</span>
+                <span class="pill fixed">Hipoglicemia hiperinsulinêmica</span>
+                <span class="pill fixed">Deficiências: ferro, B12, Ca, vit D, tiamina</span>
+                <span class="pill fixed">Úlcera marginal (anastomose)</span>
+                <span class="pill fixed">Mortalidade cirúrgica 0,1–0,5%</span>
+                <span class="pill fixed">Reganho de peso a longo prazo (menor que sleeve)</span>
+              </div>
+            </div>
+          </div>
+          <div class="info-gray info-box" style="margin-top:.75rem;">
+            <span class="info-box-icon">📌</span>
+            <div>Preferido em pacientes com DM2, DRGE grave, síndrome metabólica severa. Requer suplementação mais intensiva e acompanhamento nutricional vitalício rigoroso.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="treatment-block">
+        <div class="treatment-header" onclick="toggleTreatment(this)">
+          <div class="treatment-icon">🔬</div>
+          <div class="treatment-info">
+            <div class="treatment-name">Procedimentos Endoscópicos Bariátricos</div>
+            <div class="treatment-sub">Menor invasividade, menor perda de peso — opção para IMC 30–35 ou pré-bariátrico</div>
+          </div>
+          <svg class="treatment-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="treatment-body">
+          <div class="table-wrap">
+            <table class="compare-table">
+              <thead>
+                <tr><th>Procedimento</th><th>Mecanismo</th><th>Perda de peso</th><th>Considerações</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Balão Intragástrico</strong></td>
+                  <td style="font-size:.75rem;">Balão de silicone preenchido com soro fisiológico (400–700 mL) ocupa espaço gástrico</td>
+                  <td><span class="badge badge-amber">10–15%</span></td>
+                  <td style="font-size:.75rem;">Temporário (6 meses). Náuseas intensas iniciais. Risco de deflação e migração (&lt; 1%). Reganho pós-retirada sem mudança de estilo de vida.</td>
+                </tr>
+                <tr>
+                  <td><strong>Gastroplastia Endoscópica em Sleeve (ESG / "Apollo")</strong></td>
+                  <td style="font-size:.75rem;">Suturas endoscópicas reduzem volume gástrico em ~70% sem incisões</td>
+                  <td><span class="badge badge-teal">15–20%</span></td>
+                  <td style="font-size:.75rem;">Reversível (suturas podem ser cortadas). Menor taxa de complicações que cirurgia. Estudo MERIT (NEJM Evidence 2022): 13,6% vs 0,8% placebo em 1 ano.</td>
+                </tr>
+                <tr>
+                  <td><strong>AspireAssist</strong></td>
+                  <td style="font-size:.75rem;">Tubo de gastrostomia para aspirar conteúdo gástrico pós-prandial (30 min após refeição)</td>
+                  <td><span class="badge badge-amber">12–14%</span></td>
+                  <td style="font-size:.75rem;">Controverso. Risco de distúrbios alimentares. Pouco utilizado no Brasil.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comparativo geral -->
+      <div class="card" style="margin-top:.75rem;">
+        <div class="card-header">
+          <div class="card-icon">📊</div>
+          <div>
+            <div class="card-title">Comparativo de Eficácia — Perda de Peso</div>
+            <div class="card-subtitle">Dados de estudos randomizados controlados, 12 meses. Todos associados a mudanças de estilo de vida.</div>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th>Intervenção</th>
+                <th>Perda média (%)</th>
+                <th>Perda &gt; 10%</th>
+                <th>IMC mínimo</th>
+                <th>Reversibilidade</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Dieta + Exercício</td>
+                <td style="font-family:var(--font-mono);">3–8%</td>
+                <td><span class="badge badge-gray">~20%</span></td>
+                <td>Qualquer</td>
+                <td><span class="badge badge-green">Sempre</span></td>
+              </tr>
+              <tr>
+                <td>Orlistate</td>
+                <td style="font-family:var(--font-mono);">5–8%</td>
+                <td><span class="badge badge-gray">~35%</span></td>
+                <td>≥ 27 + comorbidade</td>
+                <td><span class="badge badge-green">Sim</span></td>
+              </tr>
+              <tr>
+                <td>Bupropiona/Naltrexona</td>
+                <td style="font-family:var(--font-mono);">6–9%</td>
+                <td><span class="badge badge-amber">~40%</span></td>
+                <td>≥ 27 + comorbidade</td>
+                <td><span class="badge badge-green">Sim</span></td>
+              </tr>
+              <tr>
+                <td>Liraglutida 3,0 mg</td>
+                <td style="font-family:var(--font-mono);">~8%</td>
+                <td><span class="badge badge-amber">~50%</span></td>
+                <td>≥ 27 + comorbidade</td>
+                <td><span class="badge badge-green">Sim</span></td>
+              </tr>
+              <tr>
+                <td>Semaglutida 2,4 mg</td>
+                <td style="font-family:var(--font-mono);">~15%</td>
+                <td><span class="badge badge-teal">~69%</span></td>
+                <td>≥ 27 + comorbidade</td>
+                <td><span class="badge badge-green">Sim</span></td>
+              </tr>
+              <tr>
+                <td>Tirzepatida 15 mg</td>
+                <td style="font-family:var(--font-mono);">~21%</td>
+                <td><span class="badge badge-teal">~89%</span></td>
+                <td>≥ 27 + comorbidade</td>
+                <td><span class="badge badge-green">Sim</span></td>
+              </tr>
+              <tr>
+                <td>Balão Intragástrico</td>
+                <td style="font-family:var(--font-mono);">10–15%</td>
+                <td><span class="badge badge-amber">~50%</span></td>
+                <td>≥ 30</td>
+                <td><span class="badge badge-green">Sim</span></td>
+              </tr>
+              <tr>
+                <td>ESG (Sleeve Endoscópico)</td>
+                <td style="font-family:var(--font-mono);">15–20%</td>
+                <td><span class="badge badge-teal">~60%</span></td>
+                <td>≥ 30</td>
+                <td><span class="badge badge-amber">Parcial</span></td>
+              </tr>
+              <tr>
+                <td>Sleeve Cirúrgico</td>
+                <td style="font-family:var(--font-mono);">25–30%</td>
+                <td><span class="badge badge-teal">&gt; 80%</span></td>
+                <td>≥ 35 + comorbidade</td>
+                <td><span class="badge badge-red">Não</span></td>
+              </tr>
+              <tr>
+                <td>Bypass Gástrico (RYGB)</td>
+                <td style="font-family:var(--font-mono);">30–35%</td>
+                <td><span class="badge badge-teal">&gt; 85%</span></td>
+                <td>≥ 35 + comorbidade</td>
+                <td><span class="badge badge-red">Não</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="disclaimer" style="margin-top:.75rem;">
+          ⚠️ Porcentagens são médias de estudos randomizados com protocolos específicos de estilo de vida associados. Resultados individuais variam amplamente. Consulte seu médico para indicação personalizada.
+        </div>
+      </div>
+
+    </div><!-- /panel4 -->
+
+    <!-- ═════════════════════════════════════════════════════════
+         TAB 5 — REFERÊNCIAS
+    ══════════════════════════════════════════════════════════════ -->
+    <div class="tab-panel" id="panel5">
+
+      <div class="section-label">Evidências</div>
+      <div class="section-title">Referências Científicas</div>
+      <p class="section-sub">
+        Todas as informações desta página são baseadas em evidências de ensaios clínicos randomizados, meta-análises e diretrizes internacionais de alto nível. Atualizado em 2024–2025.
+      </p>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">📖</div>
+          <div>
+            <div class="card-title">Diretrizes e Consensos</div>
+          </div>
+        </div>
+        <ul class="ref-list">
+          <li class="ref-item">
+            <div class="ref-num">1</div>
+            <div>
+              <div class="ref-title">ABESO — Diretrizes Brasileiras de Obesidade 2024 (6ª edição)</div>
+              <div class="ref-meta">Associação Brasileira para o Estudo da Obesidade e da Síndrome Metabólica. São Paulo, 2024.</div>
+            </div>
+          </li>
+          <li class="ref-item">
+            <div class="ref-num">2</div>
+            <div>
+              <div class="ref-title">Consenso Harmonizado de Síndrome Metabólica (IDF/AHA/NHLBI/WHF/IAS/IASO)</div>
+              <div class="ref-meta">Alberti KG et al. Circulation. 2009;120(16):1640-5.</div>
+            </div>
+          </li>
+          <li class="ref-item">
+            <div class="ref-num">3</div>
+            <div>
+              <div class="ref-title">OMS — Obesity and Overweight Fact Sheet 2022</div>
+              <div class="ref-meta">World Health Organization. Geneva, 2022.</div>
+            </div>
+          </li>
+          <li class="ref-item">
+            <div class="ref-num">4</div>
+            <div>
+              <div class="ref-title">AHA/ACC/TOS Guideline for the Management of Overweight and Obesity</div>
+              <div class="ref-meta">Jensen MD et al. Circulation. 2014;129(25 Suppl 2):S102-38.</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">🔬</div>
+          <div>
+            <div class="card-title">Estudos Clínicos Fundamentais</div>
+          </div>
+        </div>
+        <ul class="ref-list">
+          <li class="ref-item">
+            <div class="ref-num">5</div>
+            <div>
+              <div class="ref-title">STEP 1 — Semaglutida 2,4 mg para obesidade</div>
+              <div class="ref-meta">Wilding JPH et al. N Engl J Med. 2021;384(11):989-1002. <em>Perda de 14,9% vs 2,4% placebo.</em></div>
+            </div>
+          </li>
+          <li class="ref-item">
+            <div class="ref-num">6</div>
+            <div>
+              <div class="ref-title">SELECT — Semaglutida e eventos cardiovasculares em obesos sem DM</div>
+              <div class="ref-meta">Lincoff AM et al. N Engl J Med. 2023;389(24):2221-32. <em>Redução de 20% em MACE.</em></div>
+            </div>
+          </li>
+          <li class="ref-item">
+            <div class="ref-num">7</div>
+            <div>
+              <div class="ref-title">SURMOUNT-1 — Tirzepatida para obesidade</div>
+              <div class="ref-meta">Jastreboff AM et al. N Engl J Med. 2022;387(3):205-16. <em>Perda de 20,9% vs 3,1%.</em></div>
+            </div>
+          </li>
+          <li class="ref-item">
+            <div class="ref-num">8</div>
+            <div>
+              <div class="ref-title">Look AHEAD — Intervenção intensiva estilo de vida em DM2 e obesidade</div>
+              <div class="ref-meta">Look AHEAD Research Group. N Engl J Med. 2013;369(2):145-54.</div>
+            </div>
+          </li>
+          <li class="ref-item">
+            <div class="ref-num">9</div>
+            <div>
+              <div class="ref-title">Liraglutida 3,0 mg — SCALE Obesity and Prediabetes</div>
+              <div class="ref-meta">Pi-Sunyer X et al. N Engl J Med. 2015;373(1):11-22.</div>
+            </div>
+          </li>
+          <li class="ref-item">
+            <div class="ref-num">10</div>
+            <div>
+              <div class="ref-title">Mortalidade a longo prazo após bypass gástrico</div>
+              <div class="ref-meta">Adams TD et al. N Engl J Med. 2007;357(8):753-61. <em>Redução de 40% mortalidade geral.</em></div>
+            </div>
+          </li>
+          <li class="ref-item">
+            <div class="ref-num">11</div>
+            <div>
+              <div class="ref-title">Sumithran P et al — Persistência de adaptações hormonais após perda de peso</div>
+              <div class="ref-meta">N Engl J Med. 2011;365(17):1597-604. <em>Hormônios de fome permanecem alterados 1 ano após perda de peso.</em></div>
+            </div>
+          </li>
+          <li class="ref-item">
+            <div class="ref-num">12</div>
+            <div>
+              <div class="ref-title">Whitlock G et al — IMC e mortalidade: análise prospectiva de 900.000 adultos</div>
+              <div class="ref-meta">Lancet. 2009;373(9669):1083-96.</div>
+            </div>
+          </li>
+          <li class="ref-item">
+            <div class="ref-num">13</div>
+            <div>
+              <div class="ref-title">ESG (Gastroplastia Endoscópica) — Estudo MERIT</div>
+              <div class="ref-meta">Aronne LJ et al. N Engl J Med Evidence. 2022;1(8).</div>
+            </div>
+          </li>
+          <li class="ref-item">
+            <div class="ref-num">14</div>
+            <div>
+              <div class="ref-title">Sacks FM et al — Comparação de dietas para perda de peso (POUNDS LOST)</div>
+              <div class="ref-meta">N Engl J Med. 2009;360(9):859-73. <em>Macronutrientes não determinam o sucesso — aderência sim.</em></div>
+            </div>
+          </li>
+          <li class="ref-item">
+            <div class="ref-num">15</div>
+            <div>
+              <div class="ref-title">Taheri S et al — Sono curto e obesidade (NHANES)</div>
+              <div class="ref-meta">PLoS Med. 2004;1(3):e62.</div>
+            </div>
+          </li>
+          <li class="ref-item">
+            <div class="ref-num">16</div>
+            <div>
+              <div class="ref-title">Locke AE et al — GWAS do IMC (> 300.000 participantes)</div>
+              <div class="ref-meta">Nature. 2015;518(7538):197-206. <em>97 loci genéticos identificados para IMC.</em></div>
+            </div>
+          </li>
+          <li class="ref-item">
+            <div class="ref-num">17</div>
+            <div>
+              <div class="ref-title">Lowe DA et al — Jejum Intermitente vs. Restrição Calórica Diária</div>
+              <div class="ref-meta">JAMA Intern Med. 2020;180(9):1174-86. <em>Resultados equivalentes em 12 meses.</em></div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="disclaimer">
+        ⚕️ <strong>Aviso Médico:</strong> Esta página tem finalidade exclusivamente educativa e informativa. Não substitui consulta médica, diagnóstico ou prescrição individualizados. Toda decisão terapêutica deve ser tomada em conjunto com seu médico, levando em consideração suas condições específicas de saúde. Dr. Lucas Silva — CRM/SP [número] — Cardiologista Intervencionista.
+      </div>
+
+    </div><!-- /panel5 -->
+
+  </div><!-- /container -->
+</main>
+
+<!-- ── FOOTER ──────────────────────────────────────────────────── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-copy">
+        © 2025 Dr. Lucas Silva · Cardiologista Intervencionista · São Paulo, SP<br>
+        Baseado em evidências · Atualizado em 2025
+      </div>
+      <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        lucascardio.com.br
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── TAB NAVIGATION ─────────────────────────────────────────────
+const panels = document.querySelectorAll('.tab-panel');
+const tabBtns = document.querySelectorAll('.tab-btn');
+const navTabBtns = document.querySelectorAll('.nav-tab-btn');
+const mobileMenuBtns = document.querySelectorAll('.mobile-menu-btn');
+
+function goTab(idx) {
+  panels.forEach((p, i) => p.classList.toggle('active', i === idx));
+  tabBtns.forEach((b, i) => b.classList.toggle('active', i === idx));
+  navTabBtns.forEach((b, i) => b.classList.toggle('active', i === idx));
+  mobileMenuBtns.forEach((b, i) => b.classList.toggle('active', i === idx));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+// ── BMI CALCULATOR ─────────────────────────────────────────────
+function calcBMI() {
+  const peso = parseFloat(document.getElementById('bmi_peso').value);
+  const alt  = parseFloat(document.getElementById('bmi_alt').value);
+  const cin  = parseFloat(document.getElementById('bmi_cin').value);
+
+  if (!peso || !alt || alt < 50) {
+    document.getElementById('bmi_result').style.display = 'none';
+    return;
+  }
+
+  const h = alt / 100;
+  const bmi = peso / (h * h);
+  document.getElementById('bmi_result').style.display = 'block';
+  document.getElementById('bmi_num').textContent = bmi.toFixed(1);
+
+  let cls, note, color;
+  if (bmi < 16)       { cls='Magreza grave';          note='Risco elevado por desnutrição. Avaliação médica urgente.'; color='#60a5fa'; }
+  else if (bmi < 18.5){ cls='Baixo peso';             note='Abaixo do normal. Investigue causas e melhore a ingestão nutricional.'; color='#93c5fd'; }
+  else if (bmi < 25)  { cls='Peso normal (eutrófico)'; note='Peso saudável para adultos. Mantenha hábitos saudáveis.'; color='#4ade80'; }
+  else if (bmi < 30)  { cls='Sobrepeso';              note='Risco moderadamente aumentado para comorbidades. Mudanças de estilo de vida indicadas.'; color='#facc15'; }
+  else if (bmi < 35)  { cls='Obesidade grau I';       note='Risco aumentado. Avalie comorbidades. Intervenção terapêutica indicada.'; color='#fb923c'; }
+  else if (bmi < 40)  { cls='Obesidade grau II';      note='Risco grave. Avaliação multidisciplinar. Farmacoterapia e/ou procedimento podem ser indicados.'; color='#f87171'; }
+  else                { cls='Obesidade grau III';     note='Risco muito grave ("mórbida"). Cirurgia bariátrica pode ser a melhor opção. Consulte especialista.'; color='#dc2626'; }
+
+  document.getElementById('bmi_class').textContent = cls;
+  document.getElementById('bmi_class').style.color = color;
+  document.getElementById('bmi_note').textContent = note;
+  document.getElementById('bmi_num').style.color = color;
+
+  // Waist
+  const wn = document.getElementById('bmi_waist_note');
+  if (cin) {
+    // placeholder sex — warn both thresholds
+    const risk94 = cin >= 94, risk80 = cin >= 80;
+    if (cin >= 102) wn.innerHTML = `<span style="color:#f87171;">⚠️ Cintura: ${cin} cm — Risco muito alto (homens ≥ 102 cm / mulheres ≥ 88 cm). Adiposidade visceral elevada.</span>`;
+    else if (cin >= 94) wn.innerHTML = `<span style="color:#fb923c;">⚠️ Cintura: ${cin} cm — Risco aumentado (homens ≥ 94 cm). Verifique com seu médico.</span>`;
+    else if (cin >= 88) wn.innerHTML = `<span style="color:#f87171;">⚠️ Cintura: ${cin} cm — Risco alto para mulheres (≥ 88 cm).</span>`;
+    else if (cin >= 80) wn.innerHTML = `<span style="color:#fb923c;">⚠️ Cintura: ${cin} cm — Risco aumentado para mulheres (≥ 80 cm).</span>`;
+    else wn.innerHTML = `<span style="color:#4ade80;">✓ Cintura: ${cin} cm — Dentro do alvo (&lt; 80 cm mulheres / &lt; 94 cm homens).</span>`;
+  } else {
+    wn.innerHTML = '';
+  }
+
+  // Bar position: map bmi 14–50 to 0–100%
+  const pct = Math.max(0, Math.min(100, ((bmi - 14) / (50 - 14)) * 100));
+  document.getElementById('bmiMarker').style.left = pct + '%';
+}
+
+// ── SM CALCULATOR ───────────────────────────────────────────────
+function calcSM() {
+  const cin  = parseFloat(document.getElementById('sm_cin').value);
+  const tg   = parseFloat(document.getElementById('sm_tg').value);
+  const hdl  = parseFloat(document.getElementById('sm_hdl').value);
+  const pas  = parseFloat(document.getElementById('sm_pas').value);
+  const glic = parseFloat(document.getElementById('sm_glic').value);
+  const sex  = document.getElementById('sm_sex').value;
+
+  const anyFilled = cin || tg || hdl || pas || glic;
+  if (!anyFilled) { document.getElementById('sm_result').style.display = 'none'; return; }
+  document.getElementById('sm_result').style.display = 'block';
+
+  // Cintura threshold (IDF sul-americanos)
+  const cinThresh = sex === 'F' ? 80 : 90;
+  const hdlThresh = sex === 'F' ? 50 : 40;
+
+  const criteria = [
+    {
+      icon: '📏',
+      name: 'Circunferência Abdominal',
+      val: cin ? `${cin} cm` : '—',
+      thresh: sex === 'F' ? '≥ 80 cm (mulheres)' : sex === 'M' ? '≥ 90 cm (homens)' : '≥ 80–90 cm',
+      met: cin ? (sex === 'F' ? cin >= 80 : sex === 'M' ? cin >= 90 : cin >= 90) : null
+    },
+    {
+      icon: '🩸',
+      name: 'Triglicerídeos',
+      val: tg ? `${tg} mg/dL` : '—',
+      thresh: '≥ 150 mg/dL (ou medicação)',
+      met: tg ? tg >= 150 : null
+    },
+    {
+      icon: '💛',
+      name: 'HDL-Colesterol',
+      val: hdl ? `${hdl} mg/dL` : '—',
+      thresh: sex === 'F' ? '< 50 mg/dL (mulheres)' : sex === 'M' ? '< 40 mg/dL (homens)' : '< 40–50 mg/dL',
+      met: hdl ? (sex === 'F' ? hdl < 50 : sex === 'M' ? hdl < 40 : hdl < 40) : null
+    },
+    {
+      icon: '❤️',
+      name: 'Pressão Arterial',
+      val: pas ? `${pas} mmHg (sistólica)` : '—',
+      thresh: '≥ 130 mmHg sistólica ou ≥ 85 diastólica (ou medicação)',
+      met: pas ? pas >= 130 : null
+    },
+    {
+      icon: '🍬',
+      name: 'Glicemia de Jejum',
+      val: glic ? `${glic} mg/dL` : '—',
+      thresh: '≥ 100 mg/dL (ou diagnóstico de DM2)',
+      met: glic ? glic >= 100 : null
+    }
+  ];
+
+  const grid = document.getElementById('sm_criteria_grid');
+  grid.innerHTML = criteria.map(c => `
+    <div class="criteria-item ${c.met === true ? 'met' : c.met === false ? 'unmet' : ''}">
+      <div class="criteria-icon">${c.icon}</div>
+      <div class="criteria-name">${c.name}</div>
+      <div class="criteria-val">${c.thresh}</div>
+      <div class="criteria-val" style="font-family:var(--font-mono);font-size:.8rem;margin-top:.2rem;">${c.val}</div>
+      <div class="criteria-status">
+        ${c.met === true ? '✓ Critério PRESENTE' : c.met === false ? '✗ Critério ausente' : '— Não informado'}
+      </div>
+    </div>
+  `).join('');
+
+  const metCount = criteria.filter(c => c.met === true).length;
+  const filledCount = criteria.filter(c => c.met !== null).length;
+
+  let verdict, vColor, vIcon;
+  if (filledCount < 3) {
+    verdict = `${metCount} critério(s) preenchido(s) — Complete mais campos para diagnóstico.`;
+    vColor = 'var(--muted-foreground)'; vIcon = '📋';
+  } else if (metCount >= 3) {
+    verdict = `${metCount}/5 critérios preenchidos — <strong>SÍNDROME METABÓLICA PRESENTE</strong>. Avaliação médica indicada para manejo de risco cardiovascular.`;
+    vColor = '#f87171'; vIcon = '⚠️';
+  } else {
+    verdict = `${metCount}/5 critérios preenchidos — Síndrome Metabólica não configurada. Acompanhe os fatores de risco individuais.`;
+    vColor = '#4ade80'; vIcon = '✓';
+  }
+
+  document.getElementById('sm_verdict').innerHTML = `
+    <div style="font-size:1.5rem;">${vIcon}</div>
+    <div style="flex:1;">
+      <div style="font-weight:700;color:${vColor};" id="sm_verdict_text"></div>
+      <div style="font-size:.75rem;color:var(--muted-foreground);margin-top:.25rem;">Critério diagnóstico: ≥ 3 dos 5 fatores (Consenso Harmonizado IDF/AHA 2009)</div>
+    </div>
+  `;
+  document.getElementById('sm_verdict_text').innerHTML = verdict;
+}
+
+// ── TREATMENT ACCORDION ────────────────────────────────────────
+function toggleTreatment(header) {
+  const body = header.nextElementSibling;
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  header.classList.toggle('open', !isOpen);
+}
+</script>
+
+</body>
+</html>

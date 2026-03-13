@@ -1,0 +1,1369 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>Dieta e Saúde Cardiovascular – Guia Baseado em Evidências | Dr. Lucas Silva</title>
+  <meta name="description" content="Guia interativo baseado em evidências científicas sobre dietas, saúde cardiovascular e risco cardiometabólico. Por Dr. Lucas Silva, Cardiologista Intervencionista." />
+  <meta name="author" content="Dr. Lucas Silva" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── DESIGN TOKENS ───────────────────────────────────────────── */
+    :root {
+      --primary: oklch(65% .18 195);
+      --primary-foreground: oklch(98% 0 0);
+      --background: oklch(13% .018 250);
+      --foreground: oklch(93% .01 250);
+      --card: oklch(18.5% .018 250);
+      --card-foreground: oklch(93% .01 250);
+      --muted: oklch(22% .018 250);
+      --muted-foreground: oklch(62% .02 250);
+      --border: oklch(28% .025 250);
+      --input: oklch(22% .02 250);
+      --destructive: oklch(60% .22 25);
+      --secondary: oklch(22% .022 250);
+      --secondary-foreground: oklch(88% .01 250);
+      --accent: oklch(24% .025 250);
+      --accent-foreground: oklch(90% .01 250);
+      --teal: #00d3bd;
+      --teal-dim: rgba(0,211,189,.12);
+      --amber: oklch(82.8% .189 84.429);
+      --red: oklch(63.7% .237 25.331);
+      --green: oklch(79.2% .209 151.711);
+      --radius: 0.625rem;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--background);
+      color: var(--foreground);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ─────────────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(18,20,27,.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--foreground); }
+    .nav-brand-icon { width: 28px; height: 28px; border-radius: 7px; background: var(--teal); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .nav-brand-name { font-weight: 800; font-size: 1rem; letter-spacing: -.025em; line-height: 1; }
+    .nav-brand-name span { color: var(--teal); }
+    .nav-brand-sep { width: 1px; height: 14px; background: var(--border); margin: 0 6px; }
+    .nav-brand-sub { font-size: .7rem; font-weight: 500; color: var(--muted-foreground); }
+    .nav-center { display: flex; align-items: center; gap: .15rem; }
+    .nav-center-btn {
+      background: none; border: none; cursor: pointer; font-family: var(--font-sans);
+      font-size: .78rem; font-weight: 500; color: var(--muted-foreground);
+      padding: 5px 10px; border-radius: 7px;
+      transition: background .15s, color .15s;
+    }
+    .nav-center-btn:hover, .nav-center-btn.active { background: var(--accent); color: var(--foreground); }
+    .nav-actions { display: flex; align-items: center; gap: .5rem; }
+    .nav-badge { font-size: .7rem; font-weight: 600; padding: 3px 10px; border-radius: 999px; background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.25); white-space: nowrap; }
+    .nav-link { font-size: .75rem; font-weight: 600; padding: 5px 12px; border-radius: 8px; border: 1.5px solid var(--primary); color: var(--primary); background: transparent; text-decoration: none; transition: background .15s, color .15s; display: inline-flex; align-items: center; gap: 5px; }
+    .nav-link:hover { background: var(--primary); color: var(--primary-foreground); }
+
+    /* ── LAYOUT ──────────────────────────────────────────────────── */
+    .container { max-width: 920px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* ── HERO ────────────────────────────────────────────────────── */
+    .hero { padding: 3.5rem 0 2.5rem; border-bottom: 1px solid var(--border); }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 6px; font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); margin-bottom: 1rem; }
+    .hero-eyebrow::before { content: ''; display: block; width: 20px; height: 2px; background: var(--teal); border-radius: 1px; }
+    .hero h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800; line-height: 1.2; margin-bottom: .75rem; letter-spacing: -.02em; }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero-sub { color: var(--muted-foreground); font-size: .95rem; max-width: 640px; margin-bottom: 1.5rem; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag { font-size: .7rem; font-weight: 600; padding: 3px 10px; border-radius: 6px; border: 1px solid var(--border); color: var(--muted-foreground); background: var(--card); font-family: var(--font-mono); }
+
+    /* ── TAB NAV ─────────────────────────────────────────────────── */
+    .tab-nav { display: flex; gap: 2px; flex-wrap: wrap; padding: 1.5rem 0 0; border-bottom: 1px solid var(--border); margin-bottom: 0; }
+    .tab-btn { background: none; border: none; cursor: pointer; font-family: var(--font-sans); font-size: .82rem; font-weight: 600; color: var(--muted-foreground); padding: 8px 14px; border-radius: 8px 8px 0 0; border-bottom: 2px solid transparent; transition: all .15s; display: inline-flex; align-items: center; gap: 6px; }
+    .tab-btn:hover { color: var(--foreground); background: var(--accent); }
+    .tab-btn.active { color: var(--teal); border-bottom-color: var(--teal); background: var(--teal-dim); }
+
+    /* ── SECTIONS ────────────────────────────────────────────────── */
+    .tab-section { display: none; padding: 2rem 0 3rem; }
+    .tab-section.active { display: block; animation: fadeUp .3s ease; }
+    .section-label { font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--teal); margin-bottom: .4rem; font-family: var(--font-mono); }
+    .section-title { font-size: 1.3rem; font-weight: 800; margin-bottom: .25rem; letter-spacing: -.01em; }
+    .section-divider { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+    h3.sub-title { font-size: 1rem; font-weight: 700; margin: 1.5rem 0 .75rem; }
+    p.body-text { font-size: .88rem; color: var(--muted-foreground); line-height: 1.75; margin-bottom: .75rem; }
+
+    /* ── CARDS ───────────────────────────────────────────────────── */
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: calc(var(--radius) + 2px); padding: 1.5rem; margin-bottom: 1.25rem; }
+    .card-header { display: flex; align-items: flex-start; gap: .75rem; margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+    .card-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; background: var(--teal-dim); color: var(--teal); }
+    .card-icon.red { background: rgba(220,38,38,.1); color: var(--red); }
+    .card-icon.amber { background: rgba(251,191,36,.1); color: var(--amber); }
+    .card-icon.gray { background: var(--muted); color: var(--muted-foreground); }
+    .card-title { font-weight: 700; font-size: 1rem; margin-bottom: 2px; }
+    .card-subtitle { font-size: .78rem; color: var(--muted-foreground); }
+
+    .diet-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1rem; margin: 1.25rem 0; }
+    .diet-card { background: var(--muted); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem 1.25rem; transition: background .15s; }
+    .diet-card:hover { background: var(--accent); }
+    .diet-card-label { font-size: .65rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted-foreground); font-family: var(--font-mono); margin-bottom: .4rem; }
+    .diet-card-title { font-weight: 700; font-size: .95rem; margin-bottom: .5rem; }
+    .diet-card-body { font-size: .8rem; color: var(--muted-foreground); line-height: 1.6; }
+
+    /* ── INFO BOXES ──────────────────────────────────────────────── */
+    .info-box { border-radius: var(--radius); padding: 12px 16px; font-size: .82rem; line-height: 1.65; display: flex; gap: 10px; margin-bottom: .75rem; }
+    .info-box-icon { flex-shrink: 0; font-size: 1rem; margin-top: 2px; }
+    .info-teal { background: var(--teal-dim); border-left: 3px solid var(--teal); }
+    .info-amber { background: rgba(251,191,36,.08); border-left: 3px solid rgba(251,191,36,.5); }
+    .info-red { background: rgba(220,38,38,.08); border-left: 3px solid rgba(220,38,38,.4); }
+    .info-gray { background: var(--muted); border-left: 3px solid var(--border); }
+    .info-green { background: rgba(132,204,22,.08); border-left: 3px solid rgba(132,204,22,.5); }
+
+    /* ── BADGE ───────────────────────────────────────────────────── */
+    .badge { display: inline-flex; align-items: center; gap: 4px; font-size: .68rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
+    .badge-strong { background: rgba(0,211,189,.15); color: var(--teal); border: 1px solid rgba(0,211,189,.3); }
+    .badge-moderate { background: rgba(132,204,22,.12); color: #a3e635; border: 1px solid rgba(132,204,22,.25); }
+    .badge-limited { background: rgba(251,191,36,.12); color: #fbbf24; border: 1px solid rgba(251,191,36,.2); }
+    .badge-insufficient { background: rgba(220,38,38,.12); color: #f87171; border: 1px solid rgba(220,38,38,.2); }
+    .badge-conflicting { background: rgba(168,85,247,.12); color: #c084fc; border: 1px solid rgba(168,85,247,.25); }
+    .badge-info { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.2); }
+
+    /* ── EVIDENCE LEVEL SCALE ────────────────────────────────────── */
+    .ev-scale { display: flex; gap: 3px; margin: 1rem 0; flex-wrap: wrap; }
+    .ev-block { flex: 1; min-width: 100px; padding: 10px 12px; border-radius: var(--radius); text-align: center; }
+    .ev-block-title { font-size: .72rem; font-weight: 700; margin-bottom: 4px; }
+    .ev-block-body { font-size: .68rem; color: var(--muted-foreground); line-height: 1.4; }
+    .ev-strong { background: rgba(0,211,189,.1); border: 1px solid rgba(0,211,189,.3); }
+    .ev-moderate { background: rgba(132,204,22,.08); border: 1px solid rgba(132,204,22,.2); }
+    .ev-limited { background: rgba(251,191,36,.07); border: 1px solid rgba(251,191,36,.2); }
+    .ev-insufficient { background: rgba(220,38,38,.07); border: 1px solid rgba(220,38,38,.2); }
+
+    /* ── COMPARISON TABLE ────────────────────────────────────────── */
+    .compare-wrap { overflow-x: auto; border-radius: calc(var(--radius) + 2px); border: 1px solid var(--border); }
+    .compare-table { width: 100%; border-collapse: collapse; font-size: .8rem; min-width: 660px; }
+    .compare-table th { background: var(--muted); padding: 10px 14px; text-align: left; font-weight: 700; font-size: .73rem; border-bottom: 1px solid var(--border); color: var(--muted-foreground); letter-spacing: .03em; }
+    .compare-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table tr:hover td { background: var(--accent); }
+
+    /* ── STAT CHIPS ──────────────────────────────────────────────── */
+    .stat-row { display: flex; flex-wrap: wrap; gap: .75rem; margin: 1rem 0; }
+    .stat-chip { background: var(--muted); border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 14px; min-width: 130px; flex: 1; }
+    .stat-chip-val { font-size: 1.4rem; font-weight: 800; font-family: var(--font-mono); color: var(--teal); line-height: 1; margin-bottom: 4px; }
+    .stat-chip-val.amber { color: var(--amber); }
+    .stat-chip-val.red { color: var(--red); }
+    .stat-chip-label { font-size: .72rem; color: var(--muted-foreground); line-height: 1.4; }
+
+    /* ── ACCORDION ───────────────────────────────────────────────── */
+    .accordion { border: 1px solid var(--border); border-radius: calc(var(--radius) + 2px); overflow: hidden; margin-bottom: 1rem; }
+    .accordion-header { background: var(--card); padding: 14px 16px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 1rem; transition: background .15s; user-select: none; }
+    .accordion-header:hover { background: var(--accent); }
+    .accordion-header-left { display: flex; align-items: center; gap: 10px; }
+    .accordion-header-title { font-weight: 700; font-size: .9rem; }
+    .accordion-header-badge { }
+    .accordion-arrow { font-size: .8rem; color: var(--muted-foreground); transition: transform .2s; }
+    .accordion.open .accordion-arrow { transform: rotate(180deg); }
+    .accordion-body { display: none; padding: 1.25rem 1.25rem 1.5rem; border-top: 1px solid var(--border); background: var(--card); font-size: .84rem; line-height: 1.7; }
+    .accordion.open .accordion-body { display: block; }
+
+    /* ── REFERENCES ──────────────────────────────────────────────── */
+    .ref-list { list-style: none; }
+    .ref-item { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: .79rem; line-height: 1.6; display: flex; gap: 10px; }
+    .ref-item:last-child { border-bottom: none; }
+    .ref-num { font-family: var(--font-mono); font-size: .7rem; font-weight: 700; color: var(--teal); min-width: 24px; padding-top: 1px; }
+    .ref-title { font-weight: 600; margin-bottom: 1px; }
+    .ref-meta { color: var(--muted-foreground); font-size: .74rem; }
+    .ref-ev { display: inline-block; font-size: .62rem; font-weight: 700; padding: 1px 6px; border-radius: 4px; margin-left: 6px; background: var(--teal-dim); color: var(--teal); }
+
+    /* ── FOOTER ──────────────────────────────────────────────────── */
+    footer { border-top: 1px solid var(--border); padding: 2rem 0; margin-top: 2rem; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-copy { font-size: .75rem; color: var(--muted-foreground); }
+    .disclaimer { background: var(--muted); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 16px; font-size: .76rem; color: var(--muted-foreground); line-height: 1.6; margin-top: 1.5rem; }
+
+    /* ── ANIMATIONS ──────────────────────────────────────────────── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* ── RESPONSIVE ──────────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .nav-center { display: none; }
+      .diet-grid { grid-template-columns: 1fr; }
+      .stat-row { flex-direction: column; }
+      .ev-scale { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ───────────────────────────────────────────────────────── -->
+<nav>
+  <a class="nav-brand" href="#">
+    <div class="nav-brand-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2"/><path d="M18 15a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/><path d="M18 8.5V12"/></svg>
+    </div>
+    <div class="nav-brand-name">Dieta<span>CV</span></div>
+    <div class="nav-brand-sep"></div>
+    <div class="nav-brand-sub">Saúde Cardiovascular &amp; Dieta</div>
+  </a>
+  <div class="nav-center">
+    <button class="nav-center-btn active" onclick="goTab('visao-geral')">Visão Geral</button>
+    <button class="nav-center-btn" onclick="goTab('dietas-com-evidencia')">Dietas com Evidência</button>
+    <button class="nav-center-btn" onclick="goTab('jejum')">Jejum Intermitente</button>
+    <button class="nav-center-btn" onclick="goTab('dietas-da-moda')">Dietas da Moda</button>
+    <button class="nav-center-btn" onclick="goTab('comparativo')">Comparativo</button>
+    <button class="nav-center-btn" onclick="goTab('referencias')">Referências</button>
+  </div>
+  <div class="nav-actions">
+    <span class="nav-badge">MBE · 2025</span>
+    <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      lucascardio.com.br
+    </a>
+  </div>
+</nav>
+
+<!-- ── MAIN ───────────────────────────────────────────────────────── -->
+<main>
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">Medicina Baseada em Evidências · Orientação ao Paciente</div>
+    <h1>Dieta e <em>Saúde Cardiovascular</em>:<br>O que a ciência realmente diz</h1>
+    <p class="hero-sub">
+      Um guia honesto e baseado em evidências sobre padrões alimentares e risco cardiovascular. Aqui você vai encontrar o que sabemos com certeza, o que ainda é incerto — e onde a ciência simplesmente ainda não chegou.
+    </p>
+    <div class="hero-tags">
+      <span class="tag">PREDIMED</span>
+      <span class="tag">Lyon Diet Heart</span>
+      <span class="tag">DASH</span>
+      <span class="tag">EAT-Lancet</span>
+      <span class="tag">BMJ 2023</span>
+      <span class="tag">Cochrane 2019</span>
+      <span class="tag">JAMA Network Open 2022</span>
+      <span class="tag">AHA/ACC 2023</span>
+    </div>
+  </div>
+
+  <!-- TAB NAVIGATION -->
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="goTab('visao-geral')">🔬 Visão Geral</button>
+    <button class="tab-btn" onclick="goTab('dietas-com-evidencia')">✅ Dietas com Evidência</button>
+    <button class="tab-btn" onclick="goTab('jejum')">⏱️ Jejum Intermitente</button>
+    <button class="tab-btn" onclick="goTab('dietas-da-moda')">⚠️ Dietas da Moda</button>
+    <button class="tab-btn" onclick="goTab('comparativo')">📊 Comparativo</button>
+    <button class="tab-btn" onclick="goTab('referencias')">📖 Referências</button>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       ABA 1 – VISÃO GERAL
+  ════════════════════════════════════════════════════════════════ -->
+  <div id="tab-visao-geral" class="tab-section active">
+
+    <div class="section-label">Por que a dieta importa?</div>
+    <div class="section-title">O impacto da alimentação na saúde do coração</div>
+
+    <p class="body-text" style="margin-top:.75rem;">
+      A doença cardiovascular é a principal causa de morte no mundo, e a dieta figura entre os fatores de risco modificáveis mais impactantes. Estima-se que padrões alimentares inadequados sejam responsáveis por uma parcela substancial das mortes por doenças do coração, AVC e diabetes tipo 2 nos países ocidentais — às vezes mais do que o tabagismo individualmente (Micha et al., JAMA 2017).
+    </p>
+    <p class="body-text">
+      Mas nem toda afirmação sobre dieta e saúde tem o mesmo respaldo científico. Este guia distingue o que é suportado por evidências robustas, o que ainda é incerto, e o que é pura especulação.
+    </p>
+
+    <!-- ESCALA DE EVIDÊNCIA -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">📏</div>
+        <div>
+          <div class="card-title">Como avaliar a evidência?</div>
+          <div class="card-subtitle">Nem todo estudo tem o mesmo peso — entenda o que vale mais</div>
+        </div>
+      </div>
+      <div class="ev-scale">
+        <div class="ev-block ev-strong">
+          <div class="ev-block-title" style="color:var(--teal);">🟢 Forte</div>
+          <div class="ev-block-body">Múltiplos ECRs + metanálises com desfechos duros (morte, IAM, AVC). Baixo risco de viés.</div>
+        </div>
+        <div class="ev-block ev-moderate">
+          <div class="ev-block-title" style="color:#a3e635;">🟡 Moderada</div>
+          <div class="ev-block-body">ECRs ou metanálises com limitações metodológicas ou desfechos intermediários (PA, LDL).</div>
+        </div>
+        <div class="ev-block ev-limited">
+          <div class="ev-block-title" style="color:#fbbf24;">🟠 Limitada</div>
+          <div class="ev-block-body">Poucos ECRs. Estudos observacionais com potencial confundimento. Resultados inconsistentes.</div>
+        </div>
+        <div class="ev-block ev-insufficient">
+          <div class="ev-block-title" style="color:#f87171;">🔴 Insuficiente</div>
+          <div class="ev-block-body">Ausência de ECRs. Apenas relatos, séries de casos ou opinião de especialistas.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NUTRIENTES CRÍTICOS -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">🧬</div>
+        <div>
+          <div class="card-title">O que a evidência diz sobre componentes específicos?</div>
+          <div class="card-subtitle">Baseado em metanálises de estudos populacionais (Miller et al., JAMA Network Open 2022)</div>
+        </div>
+      </div>
+      <div class="info-teal info-box">
+        <span class="info-box-icon">💡</span>
+        <div>Uma grande revisão sistemática avaliou a qualidade da evidência para alimentos e nutrientes individuais em relação à DCV e diabetes, classificando cada associação pelo grau de certeza.</div>
+      </div>
+      <div class="diet-grid" style="margin-top:.5rem;">
+        <div class="diet-card" style="border-color:rgba(0,211,189,.25);">
+          <div class="diet-card-label">Evidência mais robusta</div>
+          <div class="diet-card-title">✅ Reduzem o risco</div>
+          <div class="diet-card-body">Nozes e oleaginosas, vegetais, frutas, grãos integrais, azeite de oliva, peixe e ácidos graxos ômega-3, fibras alimentares. Associação consistente com menor mortalidade cardiovascular e por todas as causas.</div>
+        </div>
+        <div class="diet-card" style="border-color:rgba(220,38,38,.25);">
+          <div class="diet-card-label">Evidência mais robusta</div>
+          <div class="diet-card-title">❌ Aumentam o risco</div>
+          <div class="diet-card-body">Sódio em excesso, carnes processadas (embutidos, frios), carnes vermelhas em grande quantidade, gorduras trans industriais, bebidas açucaradas (refrigerantes, sucos industrializados).</div>
+        </div>
+        <div class="diet-card" style="border-color:rgba(251,191,36,.25);">
+          <div class="diet-card-label">Evidência moderada ou conflitante</div>
+          <div class="diet-card-title">⚠️ Incerto ou variável</div>
+          <div class="diet-card-body">Laticínios integrais, ovos, café, álcool (dose-resposta complexa), chocolate amargo, glúten. O contexto do padrão alimentar geral importa mais do que alimentos isolados.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MENSAGEM CENTRAL -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">🎯</div>
+        <div>
+          <div class="card-title">A mensagem central da ciência nutricional</div>
+          <div class="card-subtitle">Consenso entre as principais diretrizes (AHA/ACC 2023, ESC 2021)</div>
+        </div>
+      </div>
+      <div class="info-teal info-box">
+        <span class="info-box-icon">🌿</span>
+        <div><strong>Padrões alimentares importam mais do que alimentos ou nutrientes isolados.</strong> A evidência mais consistente favorece dietas ricas em vegetais, frutas, grãos integrais, leguminosas, oleaginosas, azeite de oliva e peixe — independentemente do "nome" da dieta.</div>
+      </div>
+      <div class="info-gray info-box">
+        <span class="info-box-icon">⚖️</span>
+        <div>Não existe uma dieta única e perfeita para todos. Sustentabilidade, aderência a longo prazo e preferências culturais são fatores cruciais que as diretrizes reconhecem explicitamente. A melhor dieta é aquela que o paciente consegue manter.</div>
+      </div>
+      <div class="info-amber info-box">
+        <span class="info-box-icon">⚠️</span>
+        <div><strong>Limitação importante da evidência nutricional:</strong> ECRs em nutrição são difíceis de conduzir — é impossível cegar o participante para o que come. Grande parte dos dados vem de estudos observacionais sujeitos a confundimento. Interprete os resultados com essa ressalva em mente.</div>
+      </div>
+    </div>
+
+    <div class="btn-row" style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:.5rem;">
+      <button class="btn btn-primary" onclick="goTab('dietas-com-evidencia')" style="display:inline-flex;align-items:center;gap:8px;font-size:.85rem;font-weight:600;padding:10px 20px;border-radius:calc(var(--radius)+2px);border:none;cursor:pointer;background:var(--primary);color:#000;">
+        Ver dietas com evidência robusta
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </button>
+      <button class="btn btn-secondary" onclick="goTab('dietas-da-moda')" style="display:inline-flex;align-items:center;gap:8px;font-size:.85rem;font-weight:600;padding:10px 20px;border-radius:calc(var(--radius)+2px);border:1px solid var(--border);cursor:pointer;background:var(--muted);color:var(--foreground);">
+        Ver dietas da moda ⚠️
+      </button>
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       ABA 2 – DIETAS COM EVIDÊNCIA
+  ════════════════════════════════════════════════════════════════ -->
+  <div id="tab-dietas-com-evidencia" class="tab-section">
+
+    <div class="section-label">O que a ciência realmente sabe</div>
+    <div class="section-title">Padrões alimentares com evidência para desfechos cardiovasculares</div>
+
+    <!-- MEDITERRÂNEA -->
+    <div class="card" style="margin-top:1.5rem;">
+      <div class="card-header">
+        <div class="card-icon">🫒</div>
+        <div>
+          <div class="card-title">Dieta Mediterrânea</div>
+          <div class="card-subtitle">A dieta com a maior quantidade e qualidade de evidência para prevenção cardiovascular</div>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:1rem;flex-wrap:wrap;">
+        <span class="badge badge-strong">🟢 Evidência Forte</span>
+        <span class="badge badge-info">Prevenção Primária e Secundária</span>
+        <span class="badge badge-info">Recomendada AHA/ACC 2023</span>
+      </div>
+
+      <div class="info-teal info-box">
+        <span class="info-box-icon">🏆</span>
+        <div>Uma metanálise em rede com 40 estudos (BMJ 2023, Karam et al.) comparou 7 padrões dietéticos em pacientes com risco cardiovascular elevado. A dieta mediterrânea foi superior em quase todos os desfechos duros avaliados.</div>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-chip">
+          <div class="stat-chip-val">−28%</div>
+          <div class="stat-chip-label">Mortalidade total (OR 0,72 · IC 95% 0,56–0,92)</div>
+        </div>
+        <div class="stat-chip">
+          <div class="stat-chip-val">−45%</div>
+          <div class="stat-chip-label">Mortalidade cardiovascular (OR 0,55 · IC 95% 0,39–0,78)</div>
+        </div>
+        <div class="stat-chip">
+          <div class="stat-chip-val">−35%</div>
+          <div class="stat-chip-label">AVC (OR 0,65 · IC 95% 0,46–0,93)</div>
+        </div>
+        <div class="stat-chip">
+          <div class="stat-chip-val">−52%</div>
+          <div class="stat-chip-label">IAM não fatal (OR 0,48 · IC 95% 0,36–0,65)</div>
+        </div>
+      </div>
+
+      <h3 class="sub-title">Evidência em prevenção secundária</h3>
+      <p class="body-text">O <strong>Lyon Diet Heart Study</strong> — em pacientes com IAM prévio — mostrou reduções marcantes com a dieta mediterrânea modificada: mortalidade cardiovascular (HR 0,35) e mortalidade total (HR 0,44) em comparação com dieta prudente ocidental. Apesar do tamanho amostral modesto, foi um dos primeiros ECRs a demonstrar benefício em prevenção secundária com intervenção dietética.</p>
+
+      <h3 class="sub-title">Limitações do PREDIMED — honestidade é essencial</h3>
+      <div class="info-amber info-box">
+        <span class="info-box-icon">⚠️</span>
+        <div>O estudo PREDIMED (2013) foi parcialmente retratado em 2018 por irregularidades na aleatorização. A análise com dados corrigidos manteve o benefício para AVC (HR 0,60), mas a magnitude das estimativas deve ser interpretada com cautela. A revisão Cochrane 2019 classificou as evidências como de qualidade moderada, com necessidade de mais ECRs de alta qualidade.</div>
+      </div>
+
+      <h3 class="sub-title">O que caracteriza a dieta mediterrânea?</h3>
+      <div class="diet-grid">
+        <div class="diet-card" style="border-color:rgba(0,211,189,.25);">
+          <div class="diet-card-label">Pilar principal</div>
+          <div class="diet-card-title">🫒 Azeite de oliva extra virgem</div>
+          <div class="diet-card-body">Gordura monoinsaturada predominante. Evidências para redução de LDL oxidado e marcadores inflamatórios. Substitui manteiga, margarina e óleos refinados.</div>
+        </div>
+        <div class="diet-card" style="border-color:rgba(0,211,189,.25);">
+          <div class="diet-card-label">Base</div>
+          <div class="diet-card-title">🥦 Vegetais, legumes e frutas</div>
+          <div class="diet-card-body">Consumidos em grande variedade e quantidade. Ricos em fibras, fitoquímicos e antioxidantes. Associados a menor risco cardiovascular de forma consistente.</div>
+        </div>
+        <div class="diet-card" style="border-color:rgba(0,211,189,.25);">
+          <div class="diet-card-label">Proteína preferencial</div>
+          <div class="diet-card-title">🐟 Peixe 2–3x/semana</div>
+          <div class="diet-card-body">Especialmente peixes gordurosos (salmão, sardinha, atum): ricos em ômega-3 (EPA/DHA) com evidência para redução de triglicerídeos e eventos cardiovasculares.</div>
+        </div>
+        <div class="diet-card" style="border-color:rgba(0,211,189,.25);">
+          <div class="diet-card-label">Proteína vegetal</div>
+          <div class="diet-card-title">🫘 Leguminosas e oleaginosas</div>
+          <div class="diet-card-body">Feijão, lentilha, grão-de-bico. Nozes, amêndoas, castanhas. Rica fonte de fibras, proteínas vegetais e gorduras insaturadas com benefício cardiovascular documentado.</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="section-divider" />
+
+    <!-- DIETA DASH -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">🩺</div>
+        <div>
+          <div class="card-title">Dieta DASH</div>
+          <div class="card-subtitle">Dietary Approaches to Stop Hypertension — validada especialmente para controle pressórico</div>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:1rem;flex-wrap:wrap;">
+        <span class="badge badge-strong">🟢 Forte para Pressão Arterial</span>
+        <span class="badge badge-moderate">🟡 Moderada para eventos CV duros</span>
+      </div>
+
+      <p class="body-text">A DASH foi desenhada especificamente para reduzir a pressão arterial e demonstrou eficácia robusta nesse desfecho intermediário. Caracteriza-se por alta ingestão de frutas, vegetais, laticínios com baixo teor de gordura, grãos integrais e proteínas magras, com redução de sódio, gorduras saturadas e açúcares.</p>
+
+      <div class="stat-row">
+        <div class="stat-chip">
+          <div class="stat-chip-val">−7,8 mmHg</div>
+          <div class="stat-chip-label">Redução na PA sistólica (IC 95% −14,2 a −0,46)</div>
+        </div>
+        <div class="stat-chip">
+          <div class="stat-chip-val amber">Moderada</div>
+          <div class="stat-chip-label">Evidência para redução de peso (menor que Mediterrânea)</div>
+        </div>
+        <div class="stat-chip">
+          <div class="stat-chip-val amber">Limitada</div>
+          <div class="stat-chip-label">Evidência direta para eventos CV clínicos (IAM, morte)</div>
+        </div>
+      </div>
+
+      <div class="info-amber info-box" style="margin-top:.75rem;">
+        <span class="info-box-icon">⚠️</span>
+        <div><strong>O que a DASH ainda não provou:</strong> Apesar do efeito bem documentado na PA, faltam ECRs de longo prazo com desfechos duros (mortalidade, eventos cardiovasculares) comparando DASH com outras dietas. Muito do benefício esperado é inferido a partir do controle da hipertensão.</div>
+      </div>
+    </div>
+
+    <hr class="section-divider" />
+
+    <!-- PLANT-BASED / EAT-LANCET -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">🌱</div>
+        <div>
+          <div class="card-title">Dietas Baseadas em Plantas (Plant-Based) e EAT-Lancet</div>
+          <div class="card-subtitle">Padrões de alimentação predominantemente vegetal com evidência crescente</div>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:1rem;flex-wrap:wrap;">
+        <span class="badge badge-moderate">🟡 Evidência Moderada</span>
+        <span class="badge badge-info">Ecológica + Cardiovascular</span>
+      </div>
+
+      <p class="body-text">
+        Dietas predominantemente vegetais (não necessariamente veganas) têm evidência consistente de benefício. Uma metanálise global de 2024 (Liu et al., Clinical Nutrition) avaliou a dieta EAT-Lancet — um padrão sustentável globalmente —, encontrando redução de mortalidade cardiovascular (HR 0,84) e mortalidade total (HR 0,83) comparadas a dietas convencionais.
+      </p>
+
+      <p class="body-text">
+        Estudos de qualidade dietética com índices como AHEI (Alternate Healthy Eating Index) e HEI mostram de forma robusta e consistente: quanto maior a aderência a padrões ricos em vegetais, frutas, grãos integrais, nozes e peixe, menor o risco de mortalidade cardiovascular e por todas as causas — <em>independente do nome da dieta</em> (Brlek &amp; Gregorič, Br J Nutrition 2023).
+      </p>
+
+      <div class="info-gray info-box">
+        <span class="info-box-icon">📝</span>
+        <div><strong>Importante:</strong> A evidência para dietas totalmente veganas (sem nenhum produto animal) ainda é limitada em termos de desfechos cardiovasculares duros. Os benefícios cardiovasculares observados em estudos com vegetarianos frequentemente não controlam bem para outros estilos de vida saudáveis (não fumar, prática de atividade física, etc.).</div>
+      </div>
+    </div>
+
+    <hr class="section-divider" />
+
+    <!-- DIETAS LOW-FAT / ORNISH -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" style="background:rgba(132,204,22,.1);color:#a3e635;">🥗</div>
+        <div>
+          <div class="card-title">Dieta com Baixo Teor de Gordura (Low-Fat)</div>
+          <div class="card-subtitle">Benefícios modestos e inferiores à mediterrânea em comparações diretas</div>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:1rem;">
+        <span class="badge badge-moderate">🟡 Evidência Moderada</span>
+      </div>
+
+      <p class="body-text">
+        A dieta com baixo teor de gordura reduziu mortalidade por todas as causas (OR 0,84) e IAM não fatal (OR 0,77) em metanálises — mas <strong>sem diferença convincente em comparações diretas com a dieta mediterrânea</strong>. Durante décadas, a recomendação de "evitar gordura" dominou as diretrizes, mas essa visão simplista foi superada pela evidência de que <em>o tipo de gordura</em> importa muito mais do que a quantidade total.
+      </p>
+
+      <div class="info-amber info-box">
+        <span class="info-box-icon">⚠️</span>
+        <div>Dietas muito restritivas em gordura podem levar à substituição por carboidratos refinados e açúcares — o que não representa benefício cardiovascular. A qualidade dos carboidratos consumidos em compensação é determinante.</div>
+      </div>
+
+      <div class="info-gray info-box">
+        <span class="info-box-icon">🔬</span>
+        <div><strong>Programa Ornish:</strong> Uma versão extremamente restritiva em gordura (&lt;10% das calorias), combinada com exercício, controle de estresse e suporte social, demonstrou regressão de aterosclerose coronariana em pequenos ECRs. A intervenção, porém, é multifatorial — o efeito isolado da dieta é difícil de separar.</div>
+      </div>
+    </div>
+
+    <hr class="section-divider" />
+
+    <!-- DIETA MIND -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" style="background:rgba(168,85,247,.1);color:#c084fc;">🧠</div>
+        <div>
+          <div class="card-title">Dieta MIND</div>
+          <div class="card-subtitle">Mediterranean–DASH Intervention for Neurodegenerative Delay</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:1rem;">
+        <span class="badge badge-limited">🟠 Evidência Limitada para eventos CV</span>
+        <span class="badge badge-moderate">🟡 Sugestiva para cognição</span>
+      </div>
+      <p class="body-text">
+        Combinação dos elementos da dieta mediterrânea e DASH, com ênfase em vegetais folhosos, frutas vermelhas, oleaginosas, azeite, peixe e grãos integrais. Os estudos publicados são promissores para declínio cognitivo, mas a evidência para desfechos cardiovasculares ainda é insuficiente para recomendação específica nessa indicação.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       ABA 3 – JEJUM INTERMITENTE
+  ════════════════════════════════════════════════════════════════ -->
+  <div id="tab-jejum" class="tab-section">
+
+    <div class="section-label">Um tópico com evidência complexa e em evolução</div>
+    <div class="section-title">Jejum Intermitente: benefícios, riscos e o que ainda não sabemos</div>
+
+    <p class="body-text" style="margin-top:.75rem;">
+      O jejum intermitente (JI) ganhou enorme popularidade nos últimos anos, mas a ciência disponível ainda é predominantemente de curto prazo e focada em desfechos intermediários (peso, PA, lipídios), não em eventos cardiovasculares duros como infarto ou morte. A avaliação honesta da evidência mostra um quadro com benefícios reais mas também limitações e incertezas importantes.
+    </p>
+
+    <!-- TIPOS DE JI -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">⏱️</div>
+        <div>
+          <div class="card-title">As principais modalidades de Jejum Intermitente</div>
+          <div class="card-subtitle">Cada protocolo tem características e evidências distintas</div>
+        </div>
+      </div>
+      <div class="diet-grid">
+        <div class="diet-card">
+          <div class="diet-card-label">16:8 / TRE</div>
+          <div class="diet-card-title">⏰ Alimentação com Tempo Restrito</div>
+          <div class="diet-card-body">Janela alimentar de 8h, jejum de 16h. O protocolo mais popular. A evidência mostra benefícios modestos no peso e fatores de risco intermediários quando há déficit calórico.</div>
+        </div>
+        <div class="diet-card">
+          <div class="diet-card-label">5:2</div>
+          <div class="diet-card-title">📅 Jejum Periódico (5:2)</div>
+          <div class="diet-card-body">5 dias de alimentação normal + 2 dias com restrição severa (500–600 kcal). Evidência para redução de LDL colesterol com certeza moderada em metanálise de 56 ECRs.</div>
+        </div>
+        <div class="diet-card">
+          <div class="diet-card-label">ADF / mADF</div>
+          <div class="diet-card-title">🔄 Jejum em Dias Alternados</div>
+          <div class="diet-card-body">Alternância entre dias de ingestão livre e dias de jejum total ou parcial (mADF ≈ 500 kcal nos dias de jejum). O protocolo com maior evidência de alta certeza para redução de peso e PA.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BENEFÍCIOS COM EVIDÊNCIA -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">✅</div>
+        <div>
+          <div class="card-title">O que o JI demonstrou com maior grau de certeza</div>
+          <div class="card-subtitle">Metanálise em rede · 56 ECRs · 3.965 participantes (Current Nutrition Reports, 2025)</div>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:1rem;">
+        <span class="badge badge-moderate">🟡 Evidência Moderada a Alta</span>
+        <span class="badge badge-info">Desfechos intermediários</span>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-chip">
+          <div class="stat-chip-val">−5,2 kg</div>
+          <div class="stat-chip-label">Redução de peso com mADF (IC 95% −7,0 a −3,3) · alta certeza</div>
+        </div>
+        <div class="stat-chip">
+          <div class="stat-chip-val">−3,6 cm</div>
+          <div class="stat-chip-label">Redução de circunferência abdominal · mADF · alta certeza</div>
+        </div>
+        <div class="stat-chip">
+          <div class="stat-chip-val">↓ PA</div>
+          <div class="stat-chip-label">Redução de PAS e PAD com mADF vs dieta habitual · alta certeza</div>
+        </div>
+        <div class="stat-chip">
+          <div class="stat-chip-val">↓ LDL</div>
+          <div class="stat-chip-label">Redução de LDL com jejum periódico (5:2) vs dieta habitual</div>
+        </div>
+      </div>
+
+      <div class="info-teal info-box" style="margin-top:.75rem;">
+        <span class="info-box-icon">💡</span>
+        <div>Uma revisão em guarda-chuva (eClinicalMedicine, 2024) confirmou que o JI reduz circunferência abdominal, massa gorda, LDL, triglicerídeos, colesterol total, insulina de jejum e PA sistólica — embora com magnitude variável entre os protocolos. O efeito hipotensor do JI parece menor do que o da restrição calórica contínua equivalente.</div>
+      </div>
+    </div>
+
+    <!-- O ALERTA DA AHA 2024 -->
+    <div class="card" style="border-color:rgba(220,38,38,.3);">
+      <div class="card-header">
+        <div class="card-icon red">⚠️</div>
+        <div>
+          <div class="card-title">O Alerta da AHA 2024 — Mortalidade Cardiovascular</div>
+          <div class="card-subtitle">Dados preliminares geraram controvérsia importante — entenda o contexto</div>
+        </div>
+      </div>
+
+      <div class="info-red info-box">
+        <span class="info-box-icon">🚨</span>
+        <div>
+          Em março de 2024, um estudo observacional apresentado na Sessão Científica EPI|Lifestyle da AHA (Chen et al., n=20.078 adultos) reportou que indivíduos que se alimentavam em janela de &lt;8h/dia tinham risco 91% maior de mortalidade cardiovascular em comparação a quem comia em 12–16h. O dado gerou repercussão global.
+        </div>
+      </div>
+
+      <h3 class="sub-title">Por que este dado deve ser interpretado com extrema cautela?</h3>
+
+      <div class="diet-grid">
+        <div class="diet-card" style="border-color:rgba(220,38,38,.25);">
+          <div class="diet-card-label">Limitação crítica 1</div>
+          <div class="diet-card-title">📊 Design observacional</div>
+          <div class="diet-card-body">O estudo utilizou apenas <strong>dois dias</strong> de recordatório alimentar para classificar a janela de alimentação dos participantes — um período insuficiente para representar o padrão habitual ao longo dos anos avaliados.</div>
+        </div>
+        <div class="diet-card" style="border-color:rgba(220,38,38,.25);">
+          <div class="diet-card-label">Limitação crítica 2</div>
+          <div class="diet-card-title">🔄 Causalidade reversa</div>
+          <div class="diet-card-body">Pacientes com doenças graves frequentemente comem menos e em janelas menores (anorexia por doença). Esse fenômeno pode inflar falsamente a associação entre janela curta e morte cardiovascular.</div>
+        </div>
+        <div class="diet-card" style="border-color:rgba(220,38,38,.25);">
+          <div class="diet-card-label">Limitação crítica 3</div>
+          <div class="diet-card-title">📝 Não publicado</div>
+          <div class="diet-card-body">O estudo não foi publicado em periódico com revisão por pares até a data desta publicação. Dados preliminares de conferência devem ser interpretados como hipótese, não conclusão.</div>
+        </div>
+      </div>
+
+      <div class="info-gray info-box" style="margin-top:.75rem;">
+        <span class="info-box-icon">📌</span>
+        <div><strong>Posição atual:</strong> Este dado isolado <em>não</em> é suficiente para contraindicar o jejum intermitente. A evidência de ECRs — o desenho mais robusto — não replica esse sinal de harm. São necessários estudos prospectivos longos com desfechos duros. O JI continua sendo uma estratégia válida em contexto adequado e com supervisão médica.</div>
+      </div>
+    </div>
+
+    <!-- JI vs RESTRIÇÃO CALÓRICA CONTÍNUA -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">⚖️</div>
+        <div>
+          <div class="card-title">JI vs. Restrição Calórica Contínua — são realmente diferentes?</div>
+          <div class="card-subtitle">A questão mais importante da evidência atual</div>
+        </div>
+      </div>
+
+      <p class="body-text">
+        Metanálises de ECRs comparando JI com restrição calórica contínua equivalente mostram <strong>resultados similares</strong> para maioria dos desfechos: perda de peso, LDL, PA sistólica e diastólica — sem diferença estatisticamente significativa (p &gt; 0,05 na maioria dos desfechos). Isso sugere que o benefício do JI pode ser primariamente mediado pela <em>redução calórica total</em>, não pelo jejum em si.
+      </p>
+
+      <div class="info-teal info-box">
+        <span class="info-box-icon">💡</span>
+        <div>Para pacientes que encontram mais facilidade em aderir ao JI do que à restrição calórica contínua, o JI é uma alternativa válida e equivalente. A escolha da estratégia deve considerar preferências individuais, estilo de vida e comorbidades.</div>
+      </div>
+    </div>
+
+    <!-- QUEM NÃO DEVE FAZER JI -->
+    <div class="card" style="border-color:rgba(220,38,38,.3);">
+      <div class="card-header">
+        <div class="card-icon red">🚫</div>
+        <div>
+          <div class="card-title">Quem deve evitar o Jejum Intermitente</div>
+          <div class="card-subtitle">Grupos de risco para os quais o JI pode ser prejudicial</div>
+        </div>
+      </div>
+      <div class="diet-grid">
+        <div class="diet-card" style="border-color:rgba(220,38,38,.2);">
+          <div class="diet-card-body">⛔ Pacientes com <strong>diabetes tipo 1</strong> ou diabetes tipo 2 em uso de insulina ou secretagogos (risco de hipoglicemia) — sem acompanhamento médico rigoroso</div>
+        </div>
+        <div class="diet-card" style="border-color:rgba(220,38,38,.2);">
+          <div class="diet-card-body">⛔ Mulheres <strong>grávidas ou em amamentação</strong></div>
+        </div>
+        <div class="diet-card" style="border-color:rgba(220,38,38,.2);">
+          <div class="diet-card-body">⛔ Indivíduos com <strong>histórico de transtornos alimentares</strong> (anorexia, bulimia) — o JI pode ser gatilho para recaída</div>
+        </div>
+        <div class="diet-card" style="border-color:rgba(220,38,38,.2);">
+          <div class="diet-card-body">⛔ Crianças e adolescentes em fase de crescimento</div>
+        </div>
+        <div class="diet-card" style="border-color:rgba(220,38,38,.2);">
+          <div class="diet-card-body">⛔ Indivíduos com baixo peso ou desnutrição</div>
+        </div>
+        <div class="diet-card" style="border-color:rgba(220,38,38,.2);">
+          <div class="diet-card-body">⛔ Uso de medicamentos que <strong>requerem alimentação regular</strong> (alguns anticoagulantes, AINEs, corticoides)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTTOM LINE JI -->
+    <div class="info-teal info-box">
+      <span class="info-box-icon">🎯</span>
+      <div>
+        <strong>Síntese atual:</strong> O JI é uma estratégia com benefícios documentados sobre fatores de risco intermediários (peso, PA, lipídios, glicemia), equivalente à restrição calórica contínua em comparações diretas. Não há evidência de ECRs de longo prazo demonstrando redução de eventos cardiovasculares duros. Não contraindicado na maioria dos adultos saudáveis, mas deve ser praticado com orientação médica, especialmente em populações de risco.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       ABA 4 – DIETAS DA MODA
+  ════════════════════════════════════════════════════════════════ -->
+  <div id="tab-dietas-da-moda" class="tab-section">
+
+    <div class="section-label">O que a ciência diz — sem filtros</div>
+    <div class="section-title">Dietas da moda: entre o hype e a evidência real</div>
+
+    <div class="info-amber info-box" style="margin-top:1rem;">
+      <span class="info-box-icon">⚠️</span>
+      <div><strong>Aviso importante:</strong> Popularidade nas redes sociais, influenciadores e depoimentos pessoais não são evidência científica. Esta seção apresenta o estado atual da literatura revisada por pares, que é o único critério válido para orientações médicas.</div>
+    </div>
+
+    <!-- CETOGÊNICA -->
+    <div class="accordion" onclick="toggleAccordion(this)">
+      <div class="accordion-header">
+        <div class="accordion-header-left">
+          <span style="font-size:1.2rem;">🥩</span>
+          <div>
+            <div class="accordion-header-title">Dieta Cetogênica (Keto)</div>
+            <div style="font-size:.76rem;color:var(--muted-foreground);">Alta gordura (&gt;70%), baixo carboidrato (&lt;50g/dia), proteína moderada</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:.75rem;">
+          <span class="badge badge-conflicting">Evidência Conflitante</span>
+          <span class="accordion-arrow">▼</span>
+        </div>
+      </div>
+      <div class="accordion-body">
+        <div class="info-teal info-box">
+          <span class="info-box-icon">✅</span>
+          <div><strong>O que funciona:</strong> A dieta cetogênica demonstrou superioridade para <strong>redução de peso</strong> (−10,5 kg, IC 95% −18,0 a −3,05) e melhora do controle glicêmico no diabetes tipo 2 em estudos de curto/médio prazo. Também mostra redução de triglicerídeos e aumento de HDL — efeitos potencialmente benéficos.</div>
+        </div>
+        <div class="info-red info-box">
+          <span class="info-box-icon">❌</span>
+          <div><strong>O problema com o LDL:</strong> A cetogênica frequentemente eleva o LDL-colesterol, especialmente em responadores extremos (fenótipo "lean mass hyper-responder"). O impacto disso no risco cardiovascular de longo prazo é incerto, mas preocupante do ponto de vista mecanístico e epidemiológico.</div>
+        </div>
+        <div class="info-amber info-box">
+          <span class="info-box-icon">⚠️</span>
+          <div><strong>Evidência para eventos cardiovasculares duros:</strong> Praticamente inexistente. Não há ECRs de longo prazo avaliando mortalidade cardiovascular, infarto ou AVC com a dieta cetogênica. A evidência atual não permite afirmar que a cetogênica é segura a longo prazo para a saúde cardiovascular.</div>
+        </div>
+        <div class="info-gray info-box">
+          <span class="info-box-icon">📝</span>
+          <div><strong>Riscos conhecidos:</strong> Constipação, "gripe cetogênica" no início, risco de cálculos renais, pode exacerbar dislipidemia em pacientes predispostos, hipoglicemia em diabéticos em uso de medicamentos, déficit de vitaminas e minerais com adesão rígida a longo prazo.</div>
+        </div>
+        <p style="font-size:.84rem;color:var(--muted-foreground);line-height:1.7;margin-top:.5rem;">
+          <strong>Conclusão:</strong> A dieta cetogênica pode ser uma ferramenta útil para redução de peso e controle glicêmico no curto prazo, com supervisão médica. Não é recomendada como estratégia cardiovascular de longo prazo pelas diretrizes da AHA/ACC, dada a ausência de evidência em desfechos duros e o perfil lipídico frequentemente desfavorável.
+        </p>
+      </div>
+    </div>
+
+    <!-- CARNÍVORA -->
+    <div class="accordion" onclick="toggleAccordion(this)">
+      <div class="accordion-header">
+        <div class="accordion-header-left">
+          <span style="font-size:1.2rem;">🥩</span>
+          <div>
+            <div class="accordion-header-title">Dieta Carnívora (Zero-Carb / Lion Diet)</div>
+            <div style="font-size:.76rem;color:var(--muted-foreground);">100% alimentos de origem animal — carnes, ovos, laticínios. Sem nenhum alimento vegetal.</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:.75rem;">
+          <span class="badge badge-insufficient">🔴 Evidência Insuficiente</span>
+          <span class="accordion-arrow">▼</span>
+        </div>
+      </div>
+      <div class="accordion-body">
+        <div class="info-red info-box">
+          <span class="info-box-icon">🚨</span>
+          <div><strong>Posição da comunidade científica:</strong> Uma revisão de escopo publicada em 2026 (Nutrients) concluiu que a dieta carnívora "pode oferecer benefícios de curto prazo, mas carrega riscos substanciais de deficiências nutricionais, ingestão reduzida de fitoquímicos benéficos e desenvolvimento de doença cardiovascular." A adesão a longo prazo não pode ser recomendada.</div>
+        </div>
+        <div class="info-red info-box">
+          <span class="info-box-icon">❌</span>
+          <div>
+            <strong>Deficiências nutricionais documentadas:</strong> Fibra alimentar praticamente zero (&lt;1g/dia vs. recomendação de 25–30g), vitamina C, magnésio, cálcio, ácido fólico, iodo. A ausência de fibras compromete o controle glicêmico, pressórico e lipídico.
+          </div>
+        </div>
+        <div class="info-red info-box">
+          <span class="info-box-icon">❤️</span>
+          <div>
+            <strong>Risco cardiovascular:</strong> Uma revisão sistemática de 7.446 estudos (ACC) encontrou que o consumo de carnes vermelhas processadas e não processadas está associado a maior risco de DCV, suas subcategorias e diabetes. A dieta carnívora eleva frequentemente LDL-C e colesterol total acima dos intervalos de referência.
+          </div>
+        </div>
+        <div class="info-amber info-box">
+          <span class="info-box-icon">📊</span>
+          <div><strong>Evidência disponível é extremamente fraca:</strong> Série de casos, survey online (2.029 participantes com dados autorreferidos), ausência de grupos controle, estudos com &lt;6 meses de duração. Essa qualidade de evidência é insuficiente para suportar qualquer recomendação clínica.</div>
+        </div>
+        <p style="font-size:.84rem;color:var(--muted-foreground);line-height:1.7;margin-top:.5rem;">
+          <strong>Conclusão:</strong> Não há evidência científica adequada que suporte a dieta carnívora como estratégia segura ou benéfica para a saúde cardiovascular. Do ponto de vista do risco-benefício, as preocupações são substanciais e os dados de segurança a longo prazo, inexistentes. Esta é uma das dietas com maior potencial de dano cardiovascular segundo a literatura atual.
+        </p>
+      </div>
+    </div>
+
+    <!-- PALEO -->
+    <div class="accordion" onclick="toggleAccordion(this)">
+      <div class="accordion-header">
+        <div class="accordion-header-left">
+          <span style="font-size:1.2rem;">🦴</span>
+          <div>
+            <div class="accordion-header-title">Dieta Paleolítica (Paleo)</div>
+            <div style="font-size:.76rem;color:var(--muted-foreground);">Alimentos "ancestrais" — carnes magras, peixe, ovos, vegetais, frutas, oleaginosas. Sem laticínios, grãos, leguminosas.</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:.75rem;">
+          <span class="badge badge-limited">🟠 Evidência Limitada</span>
+          <span class="accordion-arrow">▼</span>
+        </div>
+      </div>
+      <div class="accordion-body">
+        <p style="font-size:.84rem;color:var(--muted-foreground);line-height:1.7;">
+          A dieta paleolítica tem estudos mostrando melhoras em fatores de risco intermediários (peso, glicemia, PA, triglicerídeos) em curto prazo, comparada a dietas de controle. Porém, os estudos são de pequeno porte, curta duração e há heterogeneidade importante na definição do que constitui a "dieta paleo".
+        </p>
+        <div class="info-amber info-box">
+          <span class="info-box-icon">⚠️</span>
+          <div><strong>Preocupações:</strong> A exclusão de leguminosas e grãos integrais — com evidência robusta de benefício cardiovascular — não tem justificativa científica adequada. A ideia de que nossos ancestrais comiam dessa forma é uma reconstrução histórica questionada por arqueólogos e anthropólogos. Não há evidência de longo prazo em desfechos duros.</div>
+        </div>
+        <div class="info-gray info-box">
+          <span class="info-box-icon">📝</span>
+          <div>Os elementos potencialmente benéficos da dieta paleo (ênfase em vegetais, eliminação de ultraprocessados e açúcares) são compartilhados por padrões com evidência muito mais sólida, como a dieta mediterrânea.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DETOX / SUCOS -->
+    <div class="accordion" onclick="toggleAccordion(this)">
+      <div class="accordion-header">
+        <div class="accordion-header-left">
+          <span style="font-size:1.2rem;">🥤</span>
+          <div>
+            <div class="accordion-header-title">Dietas Detox, Cleansing e Sucos</div>
+            <div style="font-size:.76rem;color:var(--muted-foreground);">Protocolos de "desintoxicação" com sucos, chás, líquidos ou restrição extrema</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:.75rem;">
+          <span class="badge badge-insufficient">🔴 Sem Evidência Científica</span>
+          <span class="accordion-arrow">▼</span>
+        </div>
+      </div>
+      <div class="accordion-body">
+        <div class="info-red info-box">
+          <span class="info-box-icon">🚨</span>
+          <div>
+            <strong>Não existe evidência científica</strong> de que "dietas detox" ou protocolos de cleansing sejam capazes de remover toxinas do organismo de forma superior ao que os rins, fígado, pulmões e pele já fazem continuamente. O termo "detox" no contexto dietético é marketing, não terminologia médica.
+          </div>
+        </div>
+        <div class="info-amber info-box">
+          <span class="info-box-icon">⚠️</span>
+          <div><strong>Riscos reais:</strong> Sucos com alta carga glicêmica, desequilíbrio eletrolítico, déficit proteico, potencial de hipoglicemia, riscos específicos em diabéticos e renais. Protocolos agressivos podem ter efeito rebote na alimentação subsequente.</div>
+        </div>
+        <p style="font-size:.84rem;color:var(--muted-foreground);line-height:1.7;margin-top:.5rem;">
+          Uma revisão sistemática sobre dietas "cleanse" à base de sucos (Smith &amp; Kusch) não encontrou evidência de benefício sustentado além da perda transitória de peso por restrição calórica temporária. A melhora subjetiva relatada pelos adeptos é provavelmente resultado de eliminação simultânea de álcool, ultraprocessados e ingestão calórica excessiva — não do "detox" em si.
+        </p>
+      </div>
+    </div>
+
+    <!-- GLÚTEN-FREE SEM DOENÇA CELÍACA -->
+    <div class="accordion" onclick="toggleAccordion(this)">
+      <div class="accordion-header">
+        <div class="accordion-header-left">
+          <span style="font-size:1.2rem;">🌾</span>
+          <div>
+            <div class="accordion-header-title">Dieta Sem Glúten (em não celíacos)</div>
+            <div style="font-size:.76rem;color:var(--muted-foreground);">Muito popular como escolha de saúde geral, sem diagnóstico de doença celíaca</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:.75rem;">
+          <span class="badge badge-insufficient">🔴 Sem Evidência de Benefício</span>
+          <span class="accordion-arrow">▼</span>
+        </div>
+      </div>
+      <div class="accordion-body">
+        <div class="info-gray info-box">
+          <span class="info-box-icon">📌</span>
+          <div><strong>Indicação real do glúten-free:</strong> Doença celíaca (autoimune, ~1% da população) e sensibilidade ao glúten não celíaca (diagnóstico de exclusão, prevalência incerta). Para essas condições, a dieta sem glúten é tratamento médico essencial.</div>
+        </div>
+        <div class="info-amber info-box">
+          <span class="info-box-icon">⚠️</span>
+          <div>Para pessoas sem doença celíaca, não há evidência de benefício cardiovascular, metabólico ou de saúde geral. Produtos industrializados "sem glúten" frequentemente têm mais açúcar, gordura e aditivos do que os equivalentes convencionais. A eliminação de grãos integrais (que contêm glúten, como aveia e trigo integral) pode ser prejudicial à saúde cardiovascular.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DIETA DO TIPO SANGUÍNEO -->
+    <div class="accordion" onclick="toggleAccordion(this)">
+      <div class="accordion-header">
+        <div class="accordion-header-left">
+          <span style="font-size:1.2rem;">🩸</span>
+          <div>
+            <div class="accordion-header-title">Dieta do Tipo Sanguíneo</div>
+            <div style="font-size:.76rem;color:var(--muted-foreground);">Alimentação personalizada de acordo com o grupo sanguíneo ABO</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:.75rem;">
+          <span class="badge badge-insufficient">🔴 Pseudociência</span>
+          <span class="accordion-arrow">▼</span>
+        </div>
+      </div>
+      <div class="accordion-body">
+        <div class="info-red info-box">
+          <span class="info-box-icon">🚨</span>
+          <div>Não há base científica para a afirmação de que o tipo sanguíneo ABO determina as necessidades alimentares de um indivíduo. Um estudo prospectivo grande (Patel et al., 2013, PLOS ONE, n=1.455) não encontrou evidência de que as dietas propostas para cada tipo sanguíneo apresentem benefícios específicos para pessoas daquele grupo. Os benefícios observados ocorreram independentemente do tipo sanguíneo dos participantes.</div>
+        </div>
+        <p style="font-size:.84rem;color:var(--muted-foreground);line-height:1.7;margin-top:.5rem;">
+          A dieta do tipo sanguíneo não tem suporte na literatura científica revisada por pares e não deve ser recomendada.
+        </p>
+      </div>
+    </div>
+
+    <div class="disclaimer" style="margin-top:1.5rem;">
+      <strong>Perspectiva geral sobre dietas da moda:</strong> O ciclo das dietas populares segue um padrão previsível: promessa de resultado rápido → período de popularidade intensa → ausência de evidência de longo prazo → surgimento de outra tendência. A ciência nutricional avança mais devagar — e com mais rigor — do que o mercado. A melhor proteção contra modas prejudiciais é o acesso a informação baseada em evidências como este guia.
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       ABA 5 – COMPARATIVO
+  ════════════════════════════════════════════════════════════════ -->
+  <div id="tab-comparativo" class="tab-section">
+
+    <div class="section-label">Visão integrada</div>
+    <div class="section-title">Tabela Comparativa: Dietas × Desfechos × Evidência</div>
+
+    <p class="body-text" style="margin-top:.75rem;">
+      Esta tabela sintetiza o grau de evidência disponível para cada padrão alimentar nos principais desfechos de interesse cardiovascular e metabólico. A classificação é baseada na revisão das metanálises e revisões sistemáticas mais recentes.
+    </p>
+
+    <div class="compare-wrap" style="margin:1.5rem 0;">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Padrão Alimentar</th>
+            <th>Mortalidade Total</th>
+            <th>Eventos CV (IAM/AVC)</th>
+            <th>Pressão Arterial</th>
+            <th>LDL-Colesterol</th>
+            <th>Peso / Obesidade</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>🫒 Mediterrânea</strong></td>
+            <td><span class="badge badge-strong">Forte ↓ 28%</span></td>
+            <td><span class="badge badge-strong">Forte ↓</span></td>
+            <td><span class="badge badge-moderate">Moderada ↓</span></td>
+            <td><span class="badge badge-moderate">Moderada ↓</span></td>
+            <td><span class="badge badge-moderate">Moderada ↓</span></td>
+          </tr>
+          <tr>
+            <td><strong>🩺 DASH</strong></td>
+            <td><span class="badge badge-limited">Limitada</span></td>
+            <td><span class="badge badge-limited">Limitada</span></td>
+            <td><span class="badge badge-strong">Forte ↓ 7,8 mmHg</span></td>
+            <td><span class="badge badge-moderate">Moderada ↓</span></td>
+            <td><span class="badge badge-moderate">Moderada ↓</span></td>
+          </tr>
+          <tr>
+            <td><strong>🌱 Plant-Based / EAT-Lancet</strong></td>
+            <td><span class="badge badge-moderate">Moderada ↓ 17%</span></td>
+            <td><span class="badge badge-moderate">Moderada ↓</span></td>
+            <td><span class="badge badge-moderate">Moderada ↓</span></td>
+            <td><span class="badge badge-moderate">Moderada ↓</span></td>
+            <td><span class="badge badge-moderate">Moderada ↓</span></td>
+          </tr>
+          <tr>
+            <td><strong>🥗 Baixo Teor de Gordura</strong></td>
+            <td><span class="badge badge-moderate">Moderada ↓ 16%</span></td>
+            <td><span class="badge badge-moderate">Moderada ↓</span></td>
+            <td><span class="badge badge-limited">Limitada</span></td>
+            <td><span class="badge badge-moderate">Moderada ↓</span></td>
+            <td><span class="badge badge-moderate">Moderada ↓</span></td>
+          </tr>
+          <tr>
+            <td><strong>⏱️ Jejum Intermitente</strong></td>
+            <td><span class="badge badge-insufficient">Sem dados duros</span></td>
+            <td><span class="badge badge-insufficient">Sem dados duros</span></td>
+            <td><span class="badge badge-moderate">Moderada ↓</span></td>
+            <td><span class="badge badge-moderate">Moderada ↓</span></td>
+            <td><span class="badge badge-strong">Forte ↓ (mADF)</span></td>
+          </tr>
+          <tr>
+            <td><strong>🥩 Cetogênica</strong></td>
+            <td><span class="badge badge-insufficient">Sem dados duros</span></td>
+            <td><span class="badge badge-insufficient">Sem dados duros</span></td>
+            <td><span class="badge badge-limited">Limitada ↓</span></td>
+            <td><span class="badge badge-conflicting">Conflitante (↑ LDL)</span></td>
+            <td><span class="badge badge-moderate">Moderada ↓</span></td>
+          </tr>
+          <tr>
+            <td><strong>🥩 Carnívora</strong></td>
+            <td><span class="badge badge-insufficient">Sem dados</span></td>
+            <td><span class="badge badge-insufficient">Sem dados</span></td>
+            <td><span class="badge badge-insufficient">Sem dados</span></td>
+            <td><span class="badge badge-insufficient">↑ LDL frequente</span></td>
+            <td><span class="badge badge-limited">Limitada ↓</span></td>
+          </tr>
+          <tr>
+            <td><strong>🦴 Paleolítica</strong></td>
+            <td><span class="badge badge-insufficient">Sem dados duros</span></td>
+            <td><span class="badge badge-insufficient">Sem dados duros</span></td>
+            <td><span class="badge badge-limited">Limitada ↓</span></td>
+            <td><span class="badge badge-limited">Limitada</span></td>
+            <td><span class="badge badge-limited">Limitada ↓</span></td>
+          </tr>
+          <tr>
+            <td><strong>🥤 Detox / Sucos</strong></td>
+            <td><span class="badge badge-insufficient">Sem evidência</span></td>
+            <td><span class="badge badge-insufficient">Sem evidência</span></td>
+            <td><span class="badge badge-insufficient">Sem evidência</span></td>
+            <td><span class="badge badge-insufficient">Sem evidência</span></td>
+            <td><span class="badge badge-insufficient">Transitória</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- O QUE NÃO SABEMOS -->
+    <div class="card" style="border-color:rgba(168,85,247,.3);">
+      <div class="card-header">
+        <div class="card-icon" style="background:rgba(168,85,247,.1);color:#c084fc;">❓</div>
+        <div>
+          <div class="card-title">O que ainda não sabemos — lacunas importantes da ciência nutricional</div>
+          <div class="card-subtitle">Perguntas sem resposta definitiva no estado atual da evidência</div>
+        </div>
+      </div>
+
+      <div class="diet-grid">
+        <div class="diet-card" style="border-color:rgba(168,85,247,.2);">
+          <div class="diet-card-label">Lacuna crítica 1</div>
+          <div class="diet-card-title">Personalização dietética</div>
+          <div class="diet-card-body">Farmacogenômica nutricional e microbioma: indivíduos respondem de formas muito diferentes à mesma dieta. A nutrição de precisão ainda é uma área nascente, sem aplicação clínica estabelecida.</div>
+        </div>
+        <div class="diet-card" style="border-color:rgba(168,85,247,.2);">
+          <div class="diet-card-label">Lacuna crítica 2</div>
+          <div class="diet-card-title">Efeito causal vs. associação</div>
+          <div class="diet-card-body">Estudos observacionais mostram associação, mas não causalidade. Quem come melhor frequentemente tem outros comportamentos saudáveis — difícil separar o efeito isolado da dieta.</div>
+        </div>
+        <div class="diet-card" style="border-color:rgba(168,85,247,.2);">
+          <div class="diet-card-label">Lacuna crítica 3</div>
+          <div class="diet-card-title">Timing das intervenções</div>
+          <div class="diet-card-body">Em qual fase da vida a mudança dietética tem maior impacto? Qual é a janela terapêutica ideal? Há benefício em iniciar dieta saudável após evento cardiovascular já estabelecido com a mesma magnitude?</div>
+        </div>
+        <div class="diet-card" style="border-color:rgba(168,85,247,.2);">
+          <div class="diet-card-label">Lacuna crítica 4</div>
+          <div class="diet-card-title">Alimentos ultraprocessados</div>
+          <div class="diet-card-body">A evidência epidemiológica para dano cardiovascular dos ultraprocessados é crescente e consistente, mas a definição (classificação NOVA) e os mecanismos causais ainda são alvo de debate científico ativo.</div>
+        </div>
+        <div class="diet-card" style="border-color:rgba(168,85,247,.2);">
+          <div class="diet-card-label">Lacuna crítica 5</div>
+          <div class="diet-card-title">Interação com farmacoterapia</div>
+          <div class="diet-card-body">Como dietas específicas interagem com estatinas, anti-hipertensivos, anticoagulantes e novos agentes cardioprotetores (iSGLT2, GLP-1)? Pouquíssimos estudos avaliaram isso adequadamente.</div>
+        </div>
+        <div class="diet-card" style="border-color:rgba(168,85,247,.2);">
+          <div class="diet-card-label">Lacuna crítica 6</div>
+          <div class="diet-card-title">Populações específicas</div>
+          <div class="diet-card-body">Idosos frágeis, pacientes com insuficiência cardíaca avançada, portadores de DRC. Muitos estudos excluem essas populações — e as recomendações não podem ser extrapoladas diretamente.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MENSAGEM FINAL -->
+    <div class="card" style="background:var(--teal-dim);border-color:rgba(0,211,189,.3);">
+      <div class="card-header">
+        <div class="card-icon">🎯</div>
+        <div>
+          <div class="card-title">O que você pode fazer hoje — recomendações práticas</div>
+          <div class="card-subtitle">Baseado no maior nível de evidência disponível</div>
+        </div>
+      </div>
+      <div class="diet-grid">
+        <div class="diet-card" style="background:rgba(0,0,0,.2);border-color:rgba(0,211,189,.2);">
+          <div class="diet-card-label">Evidência mais forte</div>
+          <div class="diet-card-title">✅ Priorize</div>
+          <div class="diet-card-body">Vegetais variados em grande quantidade, frutas, grãos integrais, leguminosas, oleaginosas, peixe 2–3x/semana, azeite de oliva extra virgem como gordura principal.</div>
+        </div>
+        <div class="diet-card" style="background:rgba(0,0,0,.2);border-color:rgba(0,211,189,.2);">
+          <div class="diet-card-label">Evidência mais forte</div>
+          <div class="diet-card-title">❌ Reduza</div>
+          <div class="diet-card-body">Carnes processadas (embutidos, frios, salsicha), bebidas açucaradas, alimentos ultraprocessados, sódio excessivo, gorduras trans (parcialmente hidrogenadas).</div>
+        </div>
+        <div class="diet-card" style="background:rgba(0,0,0,.2);border-color:rgba(0,211,189,.2);">
+          <div class="diet-card-label">Princípio universal</div>
+          <div class="diet-card-title">🌿 A regra mais simples</div>
+          <div class="diet-card-body">Quanto mais um alimento se parece com o que ele era na natureza (menos processado), maior a probabilidade de ser benéfico. Não há dieta perfeita — há padrões mais e menos saudáveis.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       ABA 6 – REFERÊNCIAS
+  ════════════════════════════════════════════════════════════════ -->
+  <div id="tab-referencias" class="tab-section">
+
+    <div class="section-label">Bibliografía</div>
+    <div class="section-title">Referências Científicas</div>
+
+    <p class="body-text" style="margin-top:.75rem;">
+      Todas as afirmações neste guia são baseadas em literatura científica revisada por pares. Abaixo as referências primárias utilizadas, organizadas por nível de evidência.
+    </p>
+
+    <h3 class="sub-title" style="margin-top:1.5rem;">Metanálises e Revisões Sistemáticas Principais</h3>
+    <ul class="ref-list">
+      <li class="ref-item">
+        <span class="ref-num">1</span>
+        <div>
+          <div class="ref-title">Evaluation of the Quality of Evidence of the Association of Foods and Nutrients With Cardiovascular Disease and Diabetes: A Systematic Review <span class="ref-ev">SR</span></div>
+          <div class="ref-meta">Miller V, Micha R, Choi E, et al. · <em>JAMA Network Open</em> · 2022;5(2):e2146705</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <span class="ref-num">2</span>
+        <div>
+          <div class="ref-title">Comparison of Seven Popular Structured Dietary Programmes and Risk of Mortality and Major Cardiovascular Events: Systematic Review and Network Meta-Analysis <span class="ref-ev">NMA</span></div>
+          <div class="ref-meta">Karam G, Agarwal A, Sadeghirad B, et al. · <em>BMJ</em> · 2023;380:e072003</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <span class="ref-num">3</span>
+        <div>
+          <div class="ref-title">Mediterranean-Style Diet for the Primary and Secondary Prevention of Cardiovascular Disease <span class="ref-ev">Cochrane</span></div>
+          <div class="ref-meta">Rees K, Takeda A, Martin N, et al. · <em>Cochrane Database Syst Rev</em> · 2019;3:CD009825</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <span class="ref-num">4</span>
+        <div>
+          <div class="ref-title">Comparative Effect of Dietary Patterns on Selected Cardiovascular Risk Factors: A Network Study <span class="ref-ev">NMA</span></div>
+          <div class="ref-meta">Sun Y, Shang M, Zhang Y, Hu J, Wang H. · <em>Scientific Reports</em> · 2025;15(1):28749</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <span class="ref-num">5</span>
+        <div>
+          <div class="ref-title">Effects of Popular Diets on Anthropometric and Cardiometabolic Parameters: An Umbrella Review of Meta-Analyses of RCTs <span class="ref-ev">Umbrella</span></div>
+          <div class="ref-meta">Dinu M, Pagliai G, Angelino D, et al. · <em>Advances in Nutrition</em> · 2020;11(4):815–833</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <span class="ref-num">6</span>
+        <div>
+          <div class="ref-title">Comparing Dietary Strategies to Manage Cardiovascular Risk in Primary Care: A Narrative Review <span class="ref-ev">Review</span></div>
+          <div class="ref-meta">Greenwood H, Barnes K, Ball L, Glasziou P. · <em>Br J Gen Pract</em> · 2024;74(740):e199–e207</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <span class="ref-num">7</span>
+        <div>
+          <div class="ref-title">Association Between Dietary Factors and Mortality From Heart Disease, Stroke, and Type 2 Diabetes in the United States <span class="ref-ev">Epi</span></div>
+          <div class="ref-meta">Micha R, Peñalvo JL, Cudhea F, et al. · <em>JAMA</em> · 2017;317(9):912–924</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <span class="ref-num">8</span>
+        <div>
+          <div class="ref-title">EAT-Lancet Planetary Health Diet Is Associated With Major Cardiovascular Diseases and All-Cause Mortality: Global Systematic Review and Meta-Analysis <span class="ref-ev">SR+MA</span></div>
+          <div class="ref-meta">Liu J, Shen Q, Wang X. · <em>Clinical Nutrition</em> · 2024;43(12):167–179</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <span class="ref-num">9</span>
+        <div>
+          <div class="ref-title">Diet Quality Indices and Their Associations With All-Cause Mortality, CVD and Type 2 Diabetes: An Umbrella Review <span class="ref-ev">Umbrella</span></div>
+          <div class="ref-meta">Brlek A, Gregorič M. · <em>Br J Nutrition</em> · 2023;130(4):709–718</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <span class="ref-num">10</span>
+        <div>
+          <div class="ref-title">Evaluation of Dietary Patterns and All-Cause Mortality: A Systematic Review <span class="ref-ev">SR</span></div>
+          <div class="ref-meta">English LK, Ard JD, Bailey RL, et al. · <em>JAMA Network Open</em> · 2021;4(8):e2122277</div>
+        </div>
+      </li>
+    </ul>
+
+    <h3 class="sub-title" style="margin-top:1.5rem;">Jejum Intermitente</h3>
+    <ul class="ref-list">
+      <li class="ref-item">
+        <span class="ref-num">11</span>
+        <div>
+          <div class="ref-title">Intermittent Fasting for the Prevention of Cardiovascular Disease Risks: Systematic Review and Network Meta-Analysis <span class="ref-ev">NMA</span></div>
+          <div class="ref-meta">Current Nutrition Reports · 2025;14:93. doi:10.1007/s13668-025-00684-7</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <span class="ref-num">12</span>
+        <div>
+          <div class="ref-title">Intermittent Fasting and Health Outcomes: An Umbrella Review of Systematic Reviews and Meta-Analyses of RCTs <span class="ref-ev">Umbrella</span></div>
+          <div class="ref-meta">eClinicalMedicine (The Lancet) · 2024. doi:10.1016/j.eclinm.2024.102519</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <span class="ref-num">13</span>
+        <div>
+          <div class="ref-title">Intermittent Fasting Strategies and Their Effects on Body Weight and Cardiometabolic Risk Factors: Systematic Review and Network Meta-Analysis of RCTs <span class="ref-ev">NMA</span></div>
+          <div class="ref-meta">Semnani-Azad Z, Khan TA, Chiavaroli L, et al. · <em>BMJ</em> · 2025;389:e082007</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <span class="ref-num">14</span>
+        <div>
+          <div class="ref-title">Association Between Time-Restricted Eating and All-Cause and Cause-Specific Mortality [Abstract Preliminar] <span class="ref-ev">Obs</span></div>
+          <div class="ref-meta">Chen M, Zhong VW. · AHA EPI|Lifestyle Scientific Sessions 2024 · Abstract P192</div>
+        </div>
+      </li>
+    </ul>
+
+    <h3 class="sub-title" style="margin-top:1.5rem;">Dietas Específicas e Componentes</h3>
+    <ul class="ref-list">
+      <li class="ref-item">
+        <span class="ref-num">15</span>
+        <div>
+          <div class="ref-title">Carnivore Diet: A Scoping Review of the Current Evidence, Potential Benefits and Risks <span class="ref-ev">Scoping</span></div>
+          <div class="ref-meta">Lietz A, Dapprich J, Fischer T. · <em>Nutrients</em> · 2026;18(2):348</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <span class="ref-num">16</span>
+        <div>
+          <div class="ref-title">The Impacts of Animal-Based Diets in Cardiovascular Disease Development: A Cellular and Physiological Overview <span class="ref-ev">Review</span></div>
+          <div class="ref-meta"><em>Journal of Cardiovascular Development and Disease</em> · 2023;10(7):282</div>
+        </div>
+      </li>
+    </ul>
+
+    <h3 class="sub-title" style="margin-top:1.5rem;">Diretrizes Clínicas</h3>
+    <ul class="ref-list">
+      <li class="ref-item">
+        <span class="ref-num">17</span>
+        <div>
+          <div class="ref-title">2023 AHA/ACC/ACCP/ASPC/NLA/PCNA Guideline for the Management of Patients With Chronic Coronary Disease <span class="ref-ev">Diretriz</span></div>
+          <div class="ref-meta">Virani SS, Newby LK, Arnold SV, et al. · <em>J Am Coll Cardiol</em> · 2023;82(9):833–955</div>
+        </div>
+      </li>
+    </ul>
+
+    <div class="disclaimer" style="margin-top:2rem;">
+      <strong>⚠️ Aviso Médico Importante:</strong> Este guia tem finalidade exclusivamente educativa e não substitui consulta médica individualizada. As informações aqui apresentadas refletem o estado atual da evidência científica publicada, mas a aplicação clínica deve sempre considerar as características individuais do paciente — comorbidades, medicações em uso, preferências e contexto socioeconômico. Antes de realizar qualquer mudança significativa na sua dieta, especialmente se você tem doença cardiovascular estabelecida, diabetes ou outros problemas de saúde, consulte seu médico ou nutricionista.
+    </div>
+
+  </div>
+
+</div><!-- /container -->
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-copy">
+        © 2025 Dr. Lucas Silva · Cardiologia Intervencionista · São Paulo, SP<br>
+        Conteúdo baseado em evidências para pacientes e profissionais de saúde
+      </div>
+      <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener" style="font-size:.75rem;font-weight:600;padding:5px 12px;border-radius:8px;border:1.5px solid var(--primary);color:var(--primary);background:transparent;text-decoration:none;">
+        lucascardio.com.br
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── TAB NAVIGATION ────────────────────────────────────────────
+  function goTab(id) {
+    document.querySelectorAll('.tab-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.nav-center-btn').forEach(b => b.classList.remove('active'));
+
+    const section = document.getElementById('tab-' + id);
+    if (section) {
+      section.classList.add('active');
+      window.scrollTo({ top: 60, behavior: 'smooth' });
+    }
+
+    // Highlight nav buttons
+    document.querySelectorAll('.tab-btn').forEach(b => {
+      if (b.getAttribute('onclick') && b.getAttribute('onclick').includes(id)) b.classList.add('active');
+    });
+    document.querySelectorAll('.nav-center-btn').forEach(b => {
+      if (b.getAttribute('onclick') && b.getAttribute('onclick').includes(id)) b.classList.add('active');
+    });
+  }
+
+  // ── ACCORDION ─────────────────────────────────────────────────
+  function toggleAccordion(el) {
+    const wasOpen = el.classList.contains('open');
+    // Close all
+    document.querySelectorAll('.accordion.open').forEach(a => a.classList.remove('open'));
+    if (!wasOpen) el.classList.add('open');
+  }
+
+  // Prevent header clicks from bubbling to parent accordion
+  document.querySelectorAll('.accordion-body').forEach(body => {
+    body.addEventListener('click', e => e.stopPropagation());
+  });
+</script>
+</body>
+</html>

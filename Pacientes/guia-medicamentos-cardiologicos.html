@@ -1,0 +1,2121 @@
+html
+
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guia de Medicamentos Cardiológicos | Dr. Lucas Silva</title>
+  <meta name="description" content="Guia completo dos principais medicamentos usados em cardiologia para pacientes — o que são, por que são prescritos, efeitos adversos e preços no Brasil." />
+  <meta name="author" content="Dr. Lucas Silva" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: oklch(65% .18 195);
+      --background: oklch(13% .018 250);
+      --foreground: oklch(93% .01 250);
+      --card: oklch(18.5% .018 250);
+      --muted: oklch(22% .018 250);
+      --muted-foreground: oklch(62% .02 250);
+      --border: oklch(28% .025 250);
+      --input: oklch(22% .02 250);
+      --accent: oklch(24% .025 250);
+      --teal: #00d3bd;
+      --teal-dim: rgba(0,211,189,.12);
+      --radius: 0.625rem;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); background: var(--background); color: var(--foreground); min-height: 100vh; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(18,20,27,.9); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 1.5rem; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--foreground); }
+    .nav-brand-icon { width: 28px; height: 28px; border-radius: 7px; background: var(--teal); display: flex; align-items: center; justify-content: center; }
+    .nav-brand-name { font-weight: 800; font-size: 1rem; letter-spacing: -.025em; }
+    .nav-brand-name span { color: var(--teal); }
+    .nav-sep { width: 1px; height: 14px; background: var(--border); margin: 0 8px; }
+    .nav-sub { font-size: .7rem; font-weight: 500; color: var(--muted-foreground); }
+    .nav-link { font-size: .75rem; font-weight: 600; padding: 5px 12px; border-radius: 8px; border: 1.5px solid var(--primary); color: var(--primary); background: transparent; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; transition: all .15s; }
+    .nav-link:hover { background: var(--primary); color: #000; }
+
+    /* LAYOUT */
+    .page-wrap { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* HERO */
+    .hero { padding: 3rem 0 2rem; border-bottom: 1px solid var(--border); }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 6px; font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); margin-bottom: 1rem; }
+    .hero-eyebrow::before { content: ''; display: block; width: 20px; height: 2px; background: var(--teal); border-radius: 1px; }
+    .hero h1 { font-size: clamp(1.6rem,4vw,2.4rem); font-weight: 800; line-height: 1.2; margin-bottom: .75rem; letter-spacing: -.02em; }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero-sub { color: var(--muted-foreground); font-size: .92rem; max-width: 700px; margin-bottom: 1.25rem; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .tag { font-size: .68rem; font-weight: 600; padding: 3px 9px; border-radius: 6px; border: 1px solid var(--border); color: var(--muted-foreground); background: var(--card); font-family: var(--font-mono); }
+
+    /* SEARCH */
+    .search-bar { position: relative; margin: 1.25rem 0 0; }
+    .search-input { width: 100%; background: var(--input); border: 1px solid var(--border); border-radius: calc(var(--radius)+2px); color: var(--foreground); font-family: var(--font-sans); font-size: .9rem; padding: 10px 16px 10px 40px; outline: none; transition: border-color .15s; }
+    .search-input:focus { border-color: var(--teal); box-shadow: 0 0 0 3px var(--teal-dim); }
+    .search-icon { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: var(--muted-foreground); pointer-events: none; }
+    .search-results { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); margin-top: 4px; z-index: 200; max-height: 320px; overflow-y: auto; }
+    .search-result-item { padding: .6rem 1rem; cursor: pointer; font-size: .83rem; border-bottom: 1px solid var(--border); display: flex; gap: .5rem; align-items: center; }
+    .search-result-item:last-child { border-bottom: none; }
+    .search-result-item:hover { background: var(--accent); }
+    .sr-group { font-size: .65rem; color: var(--teal); font-family: var(--font-mono); font-weight: 700; }
+
+    /* MAIN GRID */
+    .main-grid { display: grid; grid-template-columns: 240px 1fr; gap: 2rem; margin-top: 2rem; align-items: start; }
+
+    /* SIDEBAR */
+    .sidebar { position: sticky; top: 72px; }
+    .sb-group-label { font-size: .6rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted-foreground); padding: .5rem .75rem .2rem; font-family: var(--font-mono); }
+    .sb-item { display: flex; align-items: center; gap: 8px; padding: .5rem .75rem; border-radius: var(--radius); cursor: pointer; font-size: .8rem; font-weight: 500; color: var(--muted-foreground); border: 1px solid transparent; transition: all .15s; margin-bottom: 1px; }
+    .sb-item:hover { background: var(--muted); color: var(--foreground); }
+    .sb-item.active { background: var(--teal-dim); color: var(--teal); border-color: rgba(0,211,189,.25); font-weight: 700; }
+    .sb-icon { flex-shrink: 0; font-size: 1rem; width: 18px; text-align: center; }
+    .sb-divider { border: none; border-top: 1px solid var(--border); margin: .5rem 0; }
+    .sb-count { margin-left: auto; font-size: .65rem; font-family: var(--font-mono); background: var(--muted); padding: 1px 6px; border-radius: 999px; color: var(--muted-foreground); }
+
+    /* PANEL */
+    .group-panel { display: none; animation: fadeUp .25s ease; }
+    .group-panel.active { display: block; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+
+    /* MOBILE */
+    .mobile-sel-wrap { display: none; margin-bottom: 1rem; }
+    .mobile-sel { width: 100%; background: var(--input); border: 1px solid var(--border); border-radius: var(--radius); color: var(--foreground); font-family: var(--font-sans); font-size: .9rem; padding: 10px 14px; outline: none; cursor: pointer; }
+
+    /* CARD */
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: calc(var(--radius)+2px); padding: 1.5rem; margin-bottom: 1rem; }
+    .card-header { display: flex; align-items: flex-start; gap: .75rem; margin-bottom: 1.1rem; padding-bottom: .9rem; border-bottom: 1px solid var(--border); }
+    .card-icon { width: 38px; height: 38px; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; background: var(--teal-dim); }
+    .card-title { font-weight: 700; font-size: 1rem; margin-bottom: 2px; }
+    .card-subtitle { font-size: .75rem; color: var(--muted-foreground); }
+
+    /* ACCORDION */
+    .drug-acc { margin-bottom: .5rem; }
+    .drug-btn { width: 100%; padding: .85rem 1rem; display: flex; align-items: center; justify-content: space-between; background: var(--muted); border: 1px solid var(--border); border-radius: var(--radius); cursor: pointer; font-family: var(--font-sans); font-size: .84rem; font-weight: 700; text-align: left; color: var(--foreground); transition: all .15s; }
+    .drug-btn:hover { background: var(--accent); }
+    .drug-btn.open { background: var(--teal-dim); border-color: rgba(0,211,189,.3); color: var(--teal); border-radius: var(--radius) var(--radius) 0 0; }
+    .drug-btn .d-right { display: flex; align-items: center; gap: .5rem; flex-shrink: 0; }
+    .drug-btn .acc-chevron { font-size: .85rem; transition: transform .2s; }
+    .drug-btn.open .acc-chevron { transform: rotate(180deg); }
+    .drug-body { display: none; padding: 1.1rem; background: var(--card); border: 1px solid var(--border); border-top: none; border-radius: 0 0 var(--radius) var(--radius); font-size: .83rem; line-height: 1.7; }
+    .drug-body.open { display: block; animation: fadeUp .2s ease; }
+
+    /* GROUP HEADER */
+    .group-header { margin-bottom: 1.5rem; }
+    .group-eyebrow { font-size: .65rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--teal); margin-bottom: .4rem; font-family: var(--font-mono); }
+    .group-title { font-size: clamp(1.2rem,3vw,1.7rem); font-weight: 800; letter-spacing: -.02em; margin-bottom: .4rem; }
+    .group-title em { font-style: normal; color: var(--teal); }
+    .group-desc { font-size: .88rem; color: var(--muted-foreground); }
+
+    /* INFO BOXES */
+    .info-box { border-radius: var(--radius); padding: 11px 15px; font-size: .82rem; line-height: 1.65; display: flex; gap: 9px; margin-bottom: .7rem; }
+    .info-box-icon { flex-shrink: 0; margin-top: 1px; }
+    .info-teal { background: var(--teal-dim); border-left: 3px solid var(--teal); }
+    .info-amber { background: rgba(251,191,36,.08); border-left: 3px solid rgba(251,191,36,.5); }
+    .info-red { background: rgba(220,38,38,.08); border-left: 3px solid rgba(220,38,38,.4); }
+    .info-gray { background: var(--muted); border-left: 3px solid var(--border); }
+    .info-green { background: rgba(34,197,94,.08); border-left: 3px solid rgba(34,197,94,.4); }
+
+    /* DRUG TABLE */
+    .drug-table { width: 100%; border-collapse: collapse; font-size: .8rem; margin: .6rem 0 1rem; }
+    .drug-table th { background: var(--muted); padding: 7px 10px; text-align: left; font-weight: 700; font-size: .72rem; border-bottom: 1px solid var(--border); color: var(--muted-foreground); letter-spacing: .02em; }
+    .drug-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
+    .drug-table tr:last-child td { border-bottom: none; }
+    .drug-table tr:hover td { background: rgba(255,255,255,.015); }
+    .brand { font-size: .7rem; color: var(--teal); font-family: var(--font-mono); font-weight: 600; }
+    .price { font-family: var(--font-mono); font-size: .78rem; font-weight: 600; color: #4ade80; }
+    .price-high { color: #fbbf24; }
+
+    /* BADGE */
+    .badge { display: inline-flex; align-items: center; gap: 4px; font-size: .65rem; font-weight: 700; padding: 2px 7px; border-radius: 999px; white-space: nowrap; }
+    .badge-teal { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.25); }
+    .badge-amber { background: rgba(251,191,36,.12); color: #fbbf24; border: 1px solid rgba(251,191,36,.2); }
+    .badge-red { background: rgba(220,38,38,.15); color: #f87171; border: 1px solid rgba(220,38,38,.25); }
+    .badge-green { background: rgba(34,197,94,.12); color: #4ade80; border: 1px solid rgba(34,197,94,.2); }
+    .badge-gray { background: var(--muted); color: var(--muted-foreground); border: 1px solid var(--border); font-family: var(--font-mono); }
+
+    /* SE GRID */
+    .se-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: .4rem; margin: .6rem 0; }
+    .se-item { background: var(--muted); border: 1px solid var(--border); border-radius: calc(var(--radius) - 2px); padding: .5rem .75rem; font-size: .78rem; display: flex; gap: 7px; align-items: flex-start; }
+    .se-item .se-dot { flex-shrink: 0; margin-top: 3px; width: 6px; height: 6px; border-radius: 50%; background: var(--muted-foreground); }
+    .se-item.se-serious .se-dot { background: #f87171; }
+    .se-item.se-common .se-dot { background: #fbbf24; }
+    .se-item.se-mild .se-dot { background: #4ade80; }
+
+    /* MECHANISM BOX */
+    .mech-box { background: var(--muted); border-radius: var(--radius); padding: .75rem 1rem; font-size: .82rem; margin-bottom: .9rem; border-left: 3px solid var(--teal); }
+    .mech-label { font-size: .6rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); margin-bottom: .3rem; font-family: var(--font-mono); }
+
+    /* HIGHLIGHT */
+    .highlight-quote { border-left: 3px solid var(--teal); padding: .65rem 1rem; background: var(--teal-dim); border-radius: 0 var(--radius) var(--radius) 0; font-size: .82rem; color: var(--foreground); margin: .75rem 0; line-height: 1.6; }
+
+    /* SECTION DIVIDER */
+    .sdiv { border: none; border-top: 1px solid var(--border); margin: 1.25rem 0; }
+    .sec-lbl { font-size: .62rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--teal); margin-bottom: .4rem; font-family: var(--font-mono); }
+
+    /* DISCLAIMER */
+    .disclaimer { background: var(--muted); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 16px; font-size: .75rem; color: var(--muted-foreground); line-height: 1.6; margin-top: 2rem; }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 2rem 0; margin-top: 3rem; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-copy { font-size: .75rem; color: var(--muted-foreground); }
+
+    /* RESPONSIVE */
+    @media (max-width: 800px) {
+      .main-grid { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .mobile-sel-wrap { display: block; }
+    }
+    @media (max-width: 480px) {
+      .se-grid { grid-template-columns: 1fr 1fr; }
+      .drug-table { font-size: .73rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="https://lucascardio.com.br">
+    <div class="nav-brand-icon">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+    </div>
+    <div class="nav-brand-name">Lucas<span>Cardio</span></div>
+    <div class="nav-sep"></div>
+    <div class="nav-sub">Guia de Medicamentos</div>
+  </a>
+  <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+    lucascardio.com.br
+  </a>
+</nav>
+
+<div class="page-wrap">
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">Para Pacientes — Dr. Lucas Silva</div>
+    <h1>Guia de <em>Medicamentos Cardiológicos</em></h1>
+    <p class="hero-sub">
+      O que cada remédio do coração faz, por que foi prescrito, o que pode causar e quanto custa. Organizado por condição clínica para facilitar sua busca. Informação real — sem simplificações que enganam.
+    </p>
+    <div class="hero-tags">
+      <span class="tag">Antiagregantes</span><span class="tag">Anticoagulantes</span><span class="tag">Estatinas</span>
+      <span class="tag">Betabloqueadores</span><span class="tag">IECA · BRA · ARNI</span><span class="tag">iSGLT2</span>
+      <span class="tag">Antiarrítmicos</span><span class="tag">HP</span><span class="tag">35 classes</span>
+    </div>
+    <!-- SEARCH -->
+    <div class="search-bar">
+      <span class="search-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </span>
+      <input class="search-input" id="searchInput" type="text" placeholder="Buscar medicamento ou classe... (ex: ticagrelor, estatina, furosemida)" oninput="doSearch(this.value)" onblur="hideSearch()" onfocus="if(this.value)doSearch(this.value)" autocomplete="off" />
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </div>
+
+  <div class="main-grid">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sb-group-label">Prevenção · Coronárias</div>
+      <div class="sb-item active" onclick="showGroup('g1')"><span class="sb-icon">🩺</span> Antiagregantes &amp; Coronárias <span class="sb-count">3</span></div>
+      <div class="sb-item" onclick="showGroup('g2')"><span class="sb-icon">🩸</span> Anticoagulação <span class="sb-count">4</span></div>
+      <hr class="sb-divider">
+      <div class="sb-group-label">Lipídios</div>
+      <div class="sb-item" onclick="showGroup('g3')"><span class="sb-icon">🧪</span> Controle Lipídico <span class="sb-count">7</span></div>
+      <hr class="sb-divider">
+      <div class="sb-group-label">Pressão Arterial</div>
+      <div class="sb-item" onclick="showGroup('g4')"><span class="sb-icon">📈</span> Anti-hipertensivos <span class="sb-count">10</span></div>
+      <hr class="sb-divider">
+      <div class="sb-group-label">Insuficiência Cardíaca</div>
+      <div class="sb-item" onclick="showGroup('g5')"><span class="sb-icon">💔</span> IC &amp; Proteção Cardíaca <span class="sb-count">6</span></div>
+      <hr class="sb-divider">
+      <div class="sb-group-label">Arritmias</div>
+      <div class="sb-item" onclick="showGroup('g6')"><span class="sb-icon">〰️</span> Antiarrítmicos <span class="sb-count">3</span></div>
+      <hr class="sb-divider">
+      <div class="sb-group-label">Hipertensão Pulmonar</div>
+      <div class="sb-item" onclick="showGroup('g7')"><span class="sb-icon">🫁</span> Hipertensão Pulmonar <span class="sb-count">4</span></div>
+    </aside>
+
+    <!-- CONTENT -->
+    <main>
+      <div class="mobile-sel-wrap">
+        <select class="mobile-sel" onchange="showGroup(this.value)">
+          <option value="g1">🩺 Antiagregantes &amp; Coronárias</option>
+          <option value="g2">🩸 Anticoagulação</option>
+          <option value="g3">🧪 Controle Lipídico</option>
+          <option value="g4">📈 Anti-hipertensivos</option>
+          <option value="g5">💔 IC &amp; Proteção Cardíaca</option>
+          <option value="g6">〰️ Antiarrítmicos</option>
+          <option value="g7">🫁 Hipertensão Pulmonar</option>
+        </select>
+      </div>
+
+<!-- ════════════════════════════════════════════════════════════
+     GRUPO 1 — ANTIAGREGANTES & CORONÁRIAS
+════════════════════════════════════════════════════════════ -->
+<div id="g1" class="group-panel active">
+  <div class="group-header">
+    <div class="group-eyebrow">Prevenção / Doença Coronariana</div>
+    <div class="group-title">Antiagregantes &amp; <em>Coronárias</em></div>
+    <div class="group-desc">Medicamentos que atuam nas plaquetas do sangue, no alívio da angina e na regulação da frequência cardíaca em doença coronariana.</div>
+  </div>
+
+  <!-- 1.1 ANTIAGREGANTES -->
+  <div class="drug-acc" id="drug-antiag">
+    <button class="drug-btn open" onclick="toggleDrug(this)">
+      💊 Antiagregantes Plaquetários
+      <div class="d-right"><span class="badge badge-teal">AAS · Clopidogrel · Ticagrelor · Prasugrel</span><span class="acc-chevron">▾</span></div>
+    </button>
+    <div class="drug-body open">
+      <div class="mech-box">
+        <div class="mech-label">Como funcionam</div>
+        As plaquetas são células do sangue responsáveis pela formação de coágulos. Quando uma placa aterosclerótica se rompe — durante um infarto, por exemplo — as plaquetas são ativadas e se aglomeram para formar um tampão, que pode obstruir a artéria. Os antiagregantes <strong>bloqueiam esse processo de ativação plaquetária</strong>, reduzindo o risco de formação de coágulo dentro das coronárias e dos stents.
+      </div>
+      <div class="sec-lbl">Para que são usados</div>
+      <p>Prevenção de infarto e AVC em doença coronariana estável (AAS isolado), após implante de stent (DAPT = AAS + P2Y12 por 1–12 meses), síndrome coronariana aguda, doença arterial periférica e AVC isquêmico prévio.</p>
+      <hr class="sdiv">
+      <div class="sec-lbl">Medicamentos disponíveis no Brasil</div>
+      <table class="drug-table">
+        <thead><tr><th>Genérico</th><th>Marca principal</th><th>Dose usual</th><th>Custo/mês (aprox.)</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Ácido acetilsalicílico (AAS)</strong></td>
+            <td><span class="brand">Aspirina Protect · AAS Protect · Bufferin</span></td>
+            <td>100 mg 1×/dia</td>
+            <td><span class="price">R$ 8–18</span></td>
+          </tr>
+          <tr>
+            <td><strong>Clopidogrel</strong></td>
+            <td><span class="brand">Plavix (referência) · genéricos amplos</span></td>
+            <td>75 mg 1×/dia</td>
+            <td><span class="price">R$ 20–50</span></td>
+          </tr>
+          <tr>
+            <td><strong>Ticagrelor</strong></td>
+            <td><span class="brand">Brilinta</span></td>
+            <td>90 mg 2×/dia (1º ano) ou 60 mg 2×/dia (manutenção)</td>
+            <td><span class="price price-high">R$ 200–380</span></td>
+          </tr>
+          <tr>
+            <td><strong>Prasugrel</strong></td>
+            <td><span class="brand">Efient</span></td>
+            <td>10 mg 1×/dia (5 mg se ≥75 anos ou &lt;60 kg)</td>
+            <td><span class="price price-high">R$ 200–320</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="sec-lbl">Efeitos adversos</div>
+      <div class="se-grid">
+        <div class="se-item se-serious"><div class="se-dot"></div><div><strong>Sangramento</strong> — o principal risco. Pode ser gengival, cutâneo, digestivo ou, raramente, intracraniano.</div></div>
+        <div class="se-item se-common"><div class="se-dot"></div><div><strong>Dispepsia / dor gástrica</strong> — especialmente com AAS. Tomar com alimento e usar IBP se necessário.</div></div>
+        <div class="se-item se-common"><div class="se-dot"></div><div><strong>Dispneia (ticagrelor)</strong> — efeito classe, geralmente leve, melhora espontaneamente. Não é broncospasmo.</div></div>
+        <div class="se-item se-common"><div class="se-dot"></div><div><strong>Hematomas fáceis</strong> — qualquer pequeno trauma causa equimose maior que o habitual.</div></div>
+      </div>
+      <div class="info-red info-box">
+        <span class="info-box-icon">🚫</span>
+        <div><strong>Nunca interrompa o inibidor P2Y12 (clopidogrel/ticagrelor/prasugrel) sem orientação do cardiologista</strong> durante o período obrigatório pós-stent. O risco de trombose do stent na interrupção abrupta é real e potencialmente fatal. Em caso de necessidade cirúrgica, a decisão deve ser conjunta entre cardiologista e cirurgião.</div>
+      </div>
+      <div class="info-amber info-box">
+        <span class="info-box-icon">⚠️</span>
+        <div><strong>Clopidogrel e CYP2C19:</strong> O clopidogrel é um pró-fármaco — precisa ser ativado pelo fígado (enzima CYP2C19). Cerca de 25–30% da população tem variantes genéticas que reduzem essa ativação, tornando o clopidogrel menos eficaz. Por isso o ticagrelor é preferido em SCA de alto risco — sua atividade não depende de metabolismo hepático.</div>
+      </div>
+      <div class="info-amber info-box">
+        <span class="info-box-icon">⚠️</span>
+        <div><strong>AAS e ibuprofeno:</strong> O uso simultâneo de ibuprofeno (anti-inflamatório comum) pode antagonizar o efeito antiplaquetário do AAS. Use paracetamol para dores quando estiver em antiagregação.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1.2 NITRATOS -->
+  <div class="drug-acc" id="drug-nitratos">
+    <button class="drug-btn" onclick="toggleDrug(this)">
+      💨 Nitratos
+      <div class="d-right"><span class="badge badge-gray">Isossorbida · Nitroglicerina</span><span class="acc-chevron">▾</span></div>
+    </button>
+    <div class="drug-body">
+      <div class="mech-box">
+        <div class="mech-label">Como funcionam</div>
+        Os nitratos liberam óxido nítrico (NO) nas paredes vasculares, causando <strong>vasodilatação venosa e arterial</strong>. A dilatação venosa reduz o retorno de sangue ao coração (pré-carga), diminuindo o trabalho cardíaco. A dilatação das coronárias melhora o fluxo para as áreas isquêmicas. O resultado é alívio rápido da angina.
+      </div>
+      <div class="sec-lbl">Para que são usados</div>
+      <p>Alívio agudo da crise de angina (nitrato sublingual), prevenção de episódios anginosos (nitratos de longa ação), insuficiência cardíaca descompensada com pressão arterial elevada.</p>
+      <hr class="sdiv">
+      <table class="drug-table">
+        <thead><tr><th>Genérico</th><th>Marca</th><th>Dose</th><th>Custo/mês</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Dinitrato de isossorbida</strong></td>
+            <td><span class="brand">Isordil · Monocordil</span></td>
+            <td>5 mg sublingual (crise aguda); 5–20 mg 3×/dia (oral)</td>
+            <td><span class="price">R$ 15–30</span></td>
+          </tr>
+          <tr>
+            <td><strong>Mononitrato de isossorbida</strong></td>
+            <td><span class="brand">Monocordil · Monoket · genéricos</span></td>
+            <td>20–60 mg 1–2×/dia</td>
+            <td><span class="price">R$ 20–45</span></td>
+          </tr>
+          <tr>
+            <td><strong>Nitroglicerina transdérmica</strong></td>
+            <td><span class="brand">Nitroderm TTS · Nitradisc</span></td>
+            <td>Adesivo 5–15 mg/24h</td>
+            <td><span class="price price-high">R$ 80–150</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="se-grid">
+        <div class="se-item se-common"><div class="se-dot"></div><div><strong>Cefaleia</strong> — muito frequente, especialmente no início. Costuma diminuir com o tempo.</div></div>
+        <div class="se-item se-common"><div class="se-dot"></div><div><strong>Hipotensão e tontura</strong> — especialmente ao levantar rápido.</div></div>
+        <div class="se-item se-mild"><div class="se-dot"></div><div><strong>Rubor facial</strong> — vasodilatação cutânea.</div></div>
+        <div class="se-item se-serious"><div class="se-dot"></div><div><strong>Tolerância</strong> — perda de efeito com uso contínuo sem intervalo livre.</div></div>
+      </div>
+      <div class="info-red info-box">
+        <span class="info-box-icon">🚫</span>
+        <div><strong>Nitrato + sildenafila/tadalafila/vardenafila = contraindicação absoluta.</strong> A combinação causa hipotensão profunda e potencialmente fatal. Se usa sildenafila (Viagra, Revatio) ou similares para disfunção erétil ou hipertensão pulmonar, não use nenhuma forma de nitrato. Informe seu médico.</div>
+      </div>
+      <div class="info-amber info-box">
+        <span class="info-box-icon">⚠️</span>
+        <div><strong>Tolerância aos nitratos:</strong> O uso contínuo sem uma "janela livre" de 8–12 horas (geralmente à noite) causa perda progressiva do efeito. Por isso nitratos de longa ação devem ser administrados de forma assimétrica — não nas 24 horas.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1.3 IVABRADINA -->
+  <div class="drug-acc" id="drug-ivabradina">
+    <button class="drug-btn" onclick="toggleDrug(this)">
+      💓 Inibidor do Canal If — Ivabradina
+      <div class="d-right"><span class="badge badge-gray">Procoralan · Coralan</span><span class="acc-chevron">▾</span></div>
+    </button>
+    <div class="drug-body">
+      <div class="mech-box">
+        <div class="mech-label">Como funciona</div>
+        A ivabradina bloqueia o canal "If" (funny current) no nó sinusal — o marcapasso natural do coração. Isso <strong>reduz especificamente a frequência cardíaca</strong> sem afetar a contratilidade nem a pressão arterial. É o único medicamento que reduz FC por esse mecanismo.
+      </div>
+      <div class="sec-lbl">Para que é usada</div>
+      <p>Angina estável quando betabloqueadores são insuficientes ou contraindicados, insuficiência cardíaca com FE reduzida em pacientes com FC ≥70 bpm em ritmo sinusal apesar de betabloqueador na dose máxima tolerada.</p>
+      <hr class="sdiv">
+      <table class="drug-table">
+        <thead><tr><th>Genérico</th><th>Marca</th><th>Dose</th><th>Custo/mês</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Ivabradina</strong></td>
+            <td><span class="brand">Procoralan · Coralan</span></td>
+            <td>5–7,5 mg 2×/dia</td>
+            <td><span class="price price-high">R$ 130–220</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="se-grid">
+        <div class="se-item se-common"><div class="se-dot"></div><div><strong>Fosfenos (flashes visuais)</strong> — transitórios, sem dano à visão. Fenômeno elétrico na retina. Motivo de descontinuação em ~1%.</div></div>
+        <div class="se-item se-common"><div class="se-dot"></div><div><strong>Bradicardia</strong> — FC muito baixa se combinada com betabloqueador em dose alta.</div></div>
+        <div class="se-item se-mild"><div class="se-dot"></div><div><strong>Visão borrada transitória</strong> — relacionada aos fosfenos, passageiro.</div></div>
+      </div>
+      <div class="info-amber info-box">
+        <span class="info-box-icon">⚠️</span>
+        <div><strong>Apenas para pacientes em ritmo sinusal.</strong> Não tem efeito em fibrilação atrial — o nó sinusal não é o marcapasso nesses pacientes. Se desenvolveu FA durante uso, a ivabradina perde a indicação e deve ser discutida com o cardiologista.</div>
+      </div>
+    </div>
+  </div>
+</div><!-- /g1 -->
+
+
+<!-- ════════════════════════════════════════════════════════════
+     GRUPO 2 — ANTICOAGULAÇÃO
+════════════════════════════════════════════════════════════ -->
+<div id="g2" class="group-panel">
+  <div class="group-header">
+    <div class="group-eyebrow">Prevenção de Trombose</div>
+    <div class="group-title"><em>Anticoagulação</em> — Entendendo os "Afina o Sangue"</div>
+    <div class="group-desc">Medicamentos que interferem na cascata de coagulação. Não são "antiagregantes" — agem de forma diferente e têm indicações distintas. Frequentemente mal compreendidos pelos pacientes.</div>
+  </div>
+
+  <!-- 2.1 DOACs -->
+  <div class="drug-acc" id="drug-doac">
+    <button class="drug-btn open" onclick="toggleDrug(this)">
+      💉 Anticoagulantes Orais Diretos (DOACs)
+      <div class="d-right"><span class="badge badge-teal">Rivaroxabana · Apixabana · Dabigatrana</span><span class="acc-chevron">▾</span></div>
+    </button>
+    <div class="drug-body open">
+      <div class="mech-box">
+        <div class="mech-label">Como funcionam</div>
+        A coagulação envolve uma "cascata" de reações em série. Os DOACs bloqueiam diretamente fatores específicos dessa cascata — a rivaroxabana e a apixabana bloqueiam o Fator Xa, a dabigatrana bloqueia a trombina (fator IIa). O resultado é a <strong>inibição da formação de fibrina</strong>, o componente estrutural do coágulo.
+      </div>
+      <div class="sec-lbl">Para que são usados</div>
+      <p>Fibrilação atrial (prevenção de AVC), tratamento e prevenção de trombose venosa profunda (TVP) e embolia pulmonar, prevenção de TVP em cirurgias ortopédicas. Preferidos em relação à varfarina na maioria das indicações.</p>
+      <hr class="sdiv">
+      <table class="drug-table">
+        <thead><tr><th>Genérico</th><th>Marca</th><th>Dose (FA)</th><th>Custo/mês</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Rivaroxabana</strong></td>
+            <td><span class="brand">Xarelto · genéricos recentes</span></td>
+            <td>20 mg 1×/dia com jantar</td>
+            <td><span class="price price-high">R$ 200–350</span></td>
+          </tr>
+          <tr>
+            <td><strong>Apixabana</strong></td>
+            <td><span class="brand">Eliquis</span></td>
+            <td>5 mg 2×/dia (2,5 mg em selecionados)</td>
+            <td><span class="price price-high">R$ 280–420</span></td>
+          </tr>
+          <tr>
+            <td><strong>Dabigatrana</strong></td>
+            <td><span class="brand">Pradaxa</span></td>
+            <td>150 mg 2×/dia (110 mg se ≥80 anos)</td>
+            <td><span class="price price-high">R$ 250–380</span></td>
+          </tr>
+          <tr>
+            <td><strong>Edoxabana</strong></td>
+            <td><span class="brand">Lixiana</span></td>
+            <td>60 mg 1×/dia</td>
+            <td><span class="price price-high">R$ 250–380</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="info-teal info-box">
+        <span class="info-box-icon">✅</span>
+        <div><strong>Vantagens sobre a varfarina:</strong> Sem necessidade de exames de coagulação periódicos para ajuste de dose. Menos interações com alimentos. Início de ação mais rápido. Menor risco de AVC hemorrágico. Por isso são hoje a primeira escolha na FA em pacientes sem valvulopatia.</div>
+      </div>
+      <div class="se-grid">
+        <div class="se-item se-serious"><div class="se-dot"></div><div><strong>Sangramento</strong> — principal risco. Qualquer sangramento incomum deve ser comunicado.</div></div>
+        <div class="se-item se-common"><div class="se-dot"></div><div><strong>Dispepsia (dabigatrana)</strong> — frequente. Tomar com alimento reduz o sintoma.</div></div>
+        <div class="se-item se-mild"><div class="se-dot"></div><div><strong>Hematomas e sangramento gengival</strong> — mais frequentes que sem anticoagulação.</div></div>
+      </div>
+      <div class="info-amber info-box">
+        <span class="info-box-icon">⚠️</span>
+        <div><strong>Função renal importa muito.</strong> Os DOACs são eliminados pelos rins em diferentes proporções (dabigatrana ~80%, rivaroxabana ~35%, apixabana ~25%). Em insuficiência renal importante, as doses devem ser ajustadas ou o medicamento trocado — acúmulo leva a sangramento grave. Informe sempre sobre sua função renal.</div>
+      </div>
+      <div class="info-teal info-box">
+        <span class="info-box-icon">🔬</span>
+        <div><strong>Antídotos existem:</strong> Idarucizumabe (Praxbind) reverte dabigatrana em minutos. Andexanet alfa (Andexxa) reverte inibidores de Fator Xa. Em emergências com sangramento grave, esses antídotos podem ser usados em hospitais habilitados.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2.2 VKA - VARFARINA -->
+  <div class="drug-acc" id="drug-vka">
+    <button class="drug-btn" onclick="toggleDrug(this)">
+      💊 Antagonistas da Vitamina K — Varfarina (Warfarina)
+      <div class="d-right"><span class="badge badge-gray">Marevan · Coumadin</span><span class="acc-chevron">▾</span></div>
+    </button>
+    <div class="drug-body">
+      <div class="mech-box">
+        <div class="mech-label">Como funciona</div>
+        A vitamina K é essencial para a síntese hepática de vários fatores de coagulação (II, VII, IX, X). A varfarina bloqueia a reciclagem da vitamina K, <strong>reduzindo a produção desses fatores</strong>. O efeito é indireto e lento — leva 3–5 dias para atingir o nível terapêutico.
+      </div>
+      <div class="sec-lbl">Para que é usada</div>
+      <p>FA em pacientes com valvopatia mitral reumática ou prótese valvar mecânica (onde os DOACs são contraindicados), trombose venosa, embolia pulmonar, próteses valvares mecânicas.</p>
+      <table class="drug-table">
+        <thead><tr><th>Genérico</th><th>Marca</th><th>Dose</th><th>Custo/mês</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Varfarina sódica</strong></td>
+            <td><span class="brand">Marevan · Coumadin</span></td>
+            <td>Variável — ajustada pelo INR (alvo 2–3 em geral; 2,5–3,5 em próteses)</td>
+            <td><span class="price">R$ 10–25</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="info-amber info-box">
+        <span class="info-box-icon">⚠️</span>
+        <div><strong>INR — o exame de controle.</strong> O INR mede o quanto o sangue está "diluído" pela varfarina. Muito baixo = sem proteção. Muito alto = risco de sangramento. Deve ser verificado regularmente, especialmente ao início e a cada mudança de dose, dieta ou medicamento.</div>
+      </div>
+      <div class="info-red info-box">
+        <span class="info-box-icon">🚫</span>
+        <div><strong>Interações são numerosas:</strong> Antibióticos, antifúngicos, AINEs, amiodarona, estatinas, erva-de-são-joão e até alimentos ricos em vitamina K (brócolis, couve, espinafre) afetam o INR. <strong>Não inicie ou interrompa nenhum medicamento ou suplemento sem avisar quem acompanha sua anticoagulação.</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2.3 HEPARINAS -->
+  <div class="drug-acc" id="drug-heparina">
+    <button class="drug-btn" onclick="toggleDrug(this)">
+      💉 Heparinas (uso hospitalar e subcutâneo)
+      <div class="d-right"><span class="badge badge-gray">HNF · Enoxaparina · Fondaparinux</span><span class="acc-chevron">▾</span></div>
+    </button>
+    <div class="drug-body">
+      <div class="mech-box">
+        <div class="mech-label">Como funcionam</div>
+        As heparinas potencializam a ação da antitrombina III — uma proteína natural que inibe os fatores de coagulação. A heparina não fracionada (HNF) inibe trombina e Fator Xa; as heparinas de baixo peso molecular (HBPM, como a enoxaparina) inibem principalmente o Fator Xa.
+      </div>
+      <table class="drug-table">
+        <thead><tr><th>Medicamento</th><th>Via</th><th>Uso</th><th>Custo</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Heparina não fracionada (HNF)</strong></td>
+            <td>IV (hospitalar)</td>
+            <td>Síndrome coronariana aguda, hemodinâmica, circulação extracorpórea</td>
+            <td><span class="price">Hospitalar</span></td>
+          </tr>
+          <tr>
+            <td><strong>Enoxaparina</strong> <span class="brand">Clexane</span></td>
+            <td>Subcutânea</td>
+            <td>SCA, TVP, prevenção cirúrgica</td>
+            <td><span class="price">R$ 8–30 por seringa</span></td>
+          </tr>
+          <tr>
+            <td><strong>Fondaparinux</strong> <span class="brand">Arixtra</span></td>
+            <td>Subcutânea</td>
+            <td>SCA (principalmente NSTEMI), TVP/TEP</td>
+            <td><span class="price price-high">R$ 40–80 por seringa</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="info-gray info-box">
+        <span class="info-box-icon">ℹ️</span>
+        <div>As heparinas são usadas predominantemente no ambiente hospitalar — durante procedimentos cardíacos, síndromes coronarianas agudas e situações que exigem anticoagulação rápida. A enoxaparina é frequentemente prescrita para uso subcutâneo em casa como "ponte" para anticoagulação oral ou no tratamento domiciliar de TVP.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2.4 TROMBOLÍTICOS -->
+  <div class="drug-acc" id="drug-tromb">
+    <button class="drug-btn" onclick="toggleDrug(this)">
+      ⚡ Trombolíticos / Fibrinolíticos
+      <div class="d-right"><span class="badge badge-red">Tenecteplase · Alteplase · Estreptoquinase</span><span class="acc-chevron">▾</span></div>
+    </button>
+    <div class="drug-body">
+      <div class="mech-box">
+        <div class="mech-label">Como funcionam</div>
+        Os trombolíticos ativam o plasminogênio — uma proteína do sangue — convertendo-o em plasmina, que <strong>dissolve diretamente o coágulo já formado</strong>. São os únicos medicamentos que "desfazem" um trombo existente.
+      </div>
+      <div class="sec-lbl">Quando são usados</div>
+      <p>Infarto com supradesnivelamento do ST (STEMI) quando a angioplastia primária não está disponível em tempo hábil (&lt;120 min), AVC isquêmico agudo (dentro de 4,5h dos sintomas), embolia pulmonar maciça com instabilidade hemodinâmica.</p>
+      <table class="drug-table">
+        <thead><tr><th>Medicamento</th><th>Uso principal</th><th>Via</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Tenecteplase</strong> <span class="brand">Metalyse</span></td>
+            <td>STEMI (preferido — dose única em bolus)</td>
+            <td>IV bolus</td>
+          </tr>
+          <tr>
+            <td><strong>Alteplase (rt-PA)</strong> <span class="brand">Actilyse</span></td>
+            <td>AVC isquêmico, TEP maciço, STEMI</td>
+            <td>IV infusão</td>
+          </tr>
+          <tr>
+            <td><strong>Estreptoquinase</strong></td>
+            <td>STEMI (baixo custo, maior risco alérgico)</td>
+            <td>IV infusão</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="info-red info-box">
+        <span class="info-box-icon">🚨</span>
+        <div><strong>Uso exclusivamente hospitalar de emergência.</strong> O risco de sangramento — incluindo AVC hemorrágico (~1%) — é significativo. Por isso a trombólise no infarto é reservada para situações em que a angioplastia primária não é acessível em tempo hábil. O benefício de salvar músculo cardíaco supera o risco nesse cenário, mas a decisão é rigorosamente individualizada.</div>
+      </div>
+    </div>
+  </div>
+</div><!-- /g2 -->
+
+
+<!-- ════════════════════════════════════════════════════════════
+     GRUPO 3 — CONTROLE LIPÍDICO
+════════════════════════════════════════════════════════════ -->
+<div id="g3" class="group-panel">
+  <div class="group-header">
+    <div class="group-eyebrow">Lipídios e Aterosclerose</div>
+    <div class="group-title">Controle <em>Lipídico</em></div>
+    <div class="group-desc">Medicamentos que reduzem colesterol e triglicérides — não apenas para "normalizar o exame", mas para estabilizar a placa aterosclerótica e reduzir eventos cardiovasculares. A meta em DAC é LDL &lt;55 mg/dL.</div>
+  </div>
+
+  <!-- 3.1 ESTATINAS -->
+  <div class="drug-acc" id="drug-estatinas">
+    <button class="drug-btn open" onclick="toggleDrug(this)">
+      🧪 Estatinas — a classe mais prescrita da cardiologia
+      <div class="d-right"><span class="badge badge-teal">Atorvastatina · Rosuvastatina · Sinvastatina</span><span class="acc-chevron">▾</span></div>
+    </button>
+    <div class="drug-body open">
+      <div class="mech-box">
+        <div class="mech-label">Como funcionam</div>
+        As estatinas inibem a HMG-CoA redutase — enzima hepática que produz colesterol. Com menos colesterol endógeno disponível, o fígado aumenta os receptores de LDL na superfície celular, removendo mais LDL do sangue. Além disso, têm <strong>efeitos pleiotrópicos</strong>: anti-inflamatórios, estabilizadores de placa e vasodilatadores — independentes da redução do LDL.
+      </div>
+      <div class="highlight-quote">
+        "As estatinas não são apenas 'remédio para colesterol'. Reduzem eventos cardiovasculares em 25–35% por mmol/L de LDL reduzido — uma das maiores eficácias já demonstradas em prevenção cardiovascular." — Cholesterol Treatment Trialists Collaboration (Lancet, metanálise >170.000 pacientes)
+      </div>
+      <table class="drug-table">
+        <thead><tr><th>Genérico</th><th>Marca</th><th>Dose (alta intensidade)</th><th>Custo/mês</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Atorvastatina</strong></td>
+            <td><span class="brand">Lipitor · Citalor · genéricos amplos</span></td>
+            <td>40–80 mg à noite</td>
+            <td><span class="price">R$ 25–55</span></td>
+          </tr>
+          <tr>
+            <td><strong>Rosuvastatina</strong></td>
+            <td><span class="brand">Crestor · genéricos</span></td>
+            <td>20–40 mg à noite</td>
+            <td><span class="price">R$ 30–65</span></td>
+          </tr>
+          <tr>
+            <td><strong>Sinvastatina</strong></td>
+            <td><span class="brand">Zocor · Sinvacor · genéricos</span></td>
+            <td>20–40 mg (baixa-moderada intensidade)</td>
+            <td><span class="price">R$ 10–20</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="se-grid">
+        <div class="se-item se-common"><div class="se-dot"></div><div><strong>Mialgia (dor muscular)</strong> — sintoma mais relatado (~5–10%). A maioria resolve com troca de estatina ou redução de dose.</div></div>
+        <div class="se-item se-serious"><div class="se-dot"></div><div><strong>Miopatia/rabdomiólise</strong> — raro (&lt;0,1%), mas grave. Dor muscular intensa + urina escura = procure médico imediatamente.</div></div>
+        <div class="se-item se-common"><div class="se-dot"></div><div><strong>Elevação de transaminases</strong> — leve e transitória na maioria. Hepatotoxicidade grave é muito rara.</div></div>
+        <div class="se-item se-mild"><div class="se-dot"></div><div><strong>Leve aumento de glicemia</strong> — relevante em pré-diabéticos. Não contraindica o uso; o benefício cardiovascular supera amplamente esse efeito.</div></div>
+      </div>
+      <div class="info-red info-box">
+        <span class="info-box-icon">🚫</span>
+        <div><strong>Não interrompa a estatina porque "o colesterol normalizou".</strong> Em pacientes com doença coronariana, a meta é LDL &lt;55 mg/dL — muito abaixo do "normal" laboratorial. Mais importante: o benefício da estatina na DAC inclui estabilização de placa e efeitos anti-inflamatórios que não aparecem no exame de sangue. Parar a estatina em paciente com DAC é uma decisão clínica grave.</div>
+      </div>
+      <div class="info-amber info-box">
+        <span class="info-box-icon">⚠️</span>
+        <div><strong>"Minha dor muscular é da estatina?"</strong> Mialgias são frequentes na população geral. Antes de atribuir a dor à estatina, o médico avaliará CPK (enzima muscular) e considerará outros diagnósticos. Em muitos casos a dor não tem relação com o medicamento — e a troca de estatina ou adição de CoQ10 pode ajudar quando a mialgia é real.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3.2 EZETIMIBA -->
+  <div class="drug-acc" id="drug-ezetimiba">
+    <button class="drug-btn" onclick="toggleDrug(this)">
+      💊 Ezetimiba — bloqueio da absorção intestinal
+      <div class="d-right"><span class="badge badge-gray">Zetia · Ezetrol</span><span class="acc-chevron">▾</span></div>
+    </button>
+    <div class="drug-body">
+      <div class="mech-box">
+        <div class="mech-label">Como funciona</div>
+        A ezetimiba inibe o transportador NPC1L1 no enterócito — reduzindo a absorção intestinal de colesterol da dieta e da bile em ~50%. Reduz LDL em 15–25%, com boa tolerabilidade. Age de forma complementar às estatinas (mecanismo diferente).
+      </div>
+      <table class="drug-table">
+        <thead><tr><th>Genérico</th><th>Marca</th><th>Dose</th><th>Custo/mês</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Ezetimiba</strong></td>
+            <td><span class="brand">Zetia · Ezetrol · genéricos</span></td>
+            <td>10 mg 1×/dia (com ou sem alimento)</td>
+            <td><span class="price">R$ 35–70</span></td>
+          </tr>
+          <tr>
+            <td><strong>Rosuvastatina + ezetimiba</strong></td>
+            <td><span class="brand">Crestor Duo · Rosuet</span></td>
+            <td>Combinação em dose fixa</td>
+            <td><span class="price">R$ 80–130</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="info-teal info-box">
+        <span class="info-box-icon">📊</span>
+        <div><strong>IMPROVE-IT (NEJM, 2015):</strong> Adição de ezetimiba à sinvastatina em 18.144 pacientes pós-SCA reduziu eventos cardiovasculares em 6,4% relativo. Pequeno mas real — confirmou que quanto menor o LDL, melhor. A ezetimiba é hoje recomendada quando a estatina isolada não atinge a meta de LDL.</div>
+      </div>
+      <div class="se-grid">
+        <div class="se-item se-mild"><div class="se-dot"></div><div><strong>Desconforto gastrointestinal leve</strong> — raro.</div></div>
+        <div class="se-item se-mild"><div class="se-dot"></div><div><strong>Cefaleia leve</strong> — infrequente.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3.3 PCSK9i -->
+  <div class="drug-acc" id="drug-pcsk9">
+    <button class="drug-btn" onclick="toggleDrug(this)">
+      💉 Inibidores de PCSK9 — a mais potente redução de LDL disponível
+      <div class="d-right"><span class="badge badge-teal">Evolocumabe · Alirocumabe · Inclisirana</span><span class="acc-chevron">▾</span></div>
+    </button>
+    <div class="drug-body">
+      <div class="mech-box">
+        <div class="mech-label">Como funcionam</div>
+        A PCSK9 é uma proteína que "destrói" os receptores de LDL no fígado, reduzindo a capacidade de remover LDL do sangue. Os anticorpos monoclonais (evolocumabe, alirocumabe) bloqueiam a PCSK9, permitindo que os receptores permaneçam ativos — resultando em reduções de LDL de <strong>50–65%</strong> sobre o tratamento prévio.
+      </div>
+      <table class="drug-table">
+        <thead><tr><th>Genérico</th><th>Marca</th><th>Dose</th><th>Custo/mês</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Evolocumabe</strong></td>
+            <td><span class="brand">Repatha</span></td>
+            <td>140 mg SC a cada 2 semanas ou 420 mg SC/mês</td>
+            <td><span class="price price-high">R$ 2.000–3.500 (privado)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Alirocumabe</strong></td>
+            <td><span class="brand">Praluent</span></td>
+            <td>75–150 mg SC a cada 2 semanas</td>
+            <td><span class="price price-high">R$ 2.000–3.200 (privado)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Inclisirana</strong></td>
+            <td><span class="brand">Leqvio</span></td>
+            <td>284 mg SC — apenas 2 doses/ano após dose inicial</td>
+            <td><span class="price price-high">R$ 3.000–5.000/dose (privado)</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="info-teal info-box">
+        <span class="info-box-icon">📊</span>
+        <div><strong>FOURIER (NEJM, 2017) e ODYSSEY OUTCOMES (NEJM, 2018):</strong> Os iPCSK9 reduziram eventos cardiovasculares maiores em ~15% em pacientes já em estatina de alta intensidade. São indicados em alto risco com LDL persistentemente elevado apesar de estatina + ezetimiba, e em hipercolesterolemia familiar.</div>
+      </div>
+      <div class="info-amber info-box">
+        <span class="info-box-icon">⚠️</span>
+        <div><strong>Custo é o principal obstáculo.</strong> No Brasil privado, o custo é proibitivo para a maioria. A ANS aprovou cobertura obrigatória por planos de saúde para indicações específicas. Programas de assistência dos laboratórios (Repatha Juntos, Praluent+) podem reduzir o custo. Verificar disponibilidade via PCDT do Ministério da Saúde para hipercolesterolemia familiar.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3.4 BEMPEDOICO -->
+  <div class="drug-acc" id="drug-bempedoico">
+    <button class="drug-btn" onclick="toggleDrug(this)">
+      💊 Ácido Bempedoico — nova opção para intolerantes a estatinas
+      <div class="d-right"><span class="badge badge-gray">Nilemdo · Nustendi</span><span class="acc-chevron">▾</span></div>
+    </button>
+    <div class="drug-body">
+      <div class="mech-box">
+        <div class="mech-label">Como funciona</div>
+        O ácido bempedoico inibe a ATP-citrato liase — enzima da via de síntese de colesterol, a montante da HMG-CoA redutase (alvo das estatinas). Age principalmente no fígado, <strong>não nos músculos</strong>, o que o torna uma alternativa para pacientes com intolerância muscular às estatinas.
+      </div>
+      <table class="drug-table">
+        <thead><tr><th>Genérico</th><th>Marca</th><th>Dose</th><th>Custo/mês</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Ácido bempedoico</strong></td>
+            <td><span class="brand">Nilemdo</span></td>
+            <td>180 mg 1×/dia</td>
+            <td><span class="price price-high">R$ 250–400</span></td>
+          </tr>
+          <tr>
+            <td><strong>Bempedoico + ezetimiba</strong></td>
+            <td><span class="brand">Nustendi</span></td>
+            <td>180/10 mg 1×/dia</td>
+            <td><span class="price price-high">R$ 300–450</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="info-teal info-box">
+        <span class="info-box-icon">📊</span>
+        <div><strong>CLEAR Outcomes (NEJM, 2023):</strong> Em 13.970 pacientes com intolerância a estatinas, o ácido bempedoico reduziu eventos cardiovasculares maiores em 13% vs placebo — confirmando benefício clínico além da redução de LDL (~21%).</div>
+      </div>
+      <div class="se-grid">
+        <div class="se-item se-common"><div class="se-dot"></div><div><strong>Elevação do ácido úrico</strong> — pode precipitar gota em predispostos. Monitorar uricemia.</div></div>
+        <div class="se-item se-mild"><div class="se-dot"></div><div><strong>Dor muscular</strong> — menos frequente que estatinas, mas pode ocorrer.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3.5 RESINAS -->
+  <div class="drug-acc" id="drug-resinas">
+    <button class="drug-btn" onclick="toggleDrug(this)">
+      🧪 Resinas Sequestradoras de Ácidos Biliares
+      <div class="d-right"><span class="badge badge-gray">Colestiramina · Colesevelam</span><span class="acc-chevron">▾</span></div>
+    </button>
+    <div class="drug-body">
+      <div class="mech-box">
+        <div class="mech-label">Como funcionam</div>
+        Se ligam aos ácidos biliares no intestino, impedindo sua reabsorção. O fígado precisa produzir mais ácidos biliares a partir do colesterol — aumentando o consumo de LDL. Redução de LDL de 15–25%. São não absorvidas — agem apenas no intestino.
+      </div>
+      <table class="drug-table">
+        <thead><tr><th>Medicamento</th><th>Marca</th><th>Dose</th><th>Custo/mês</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Colestiramina</strong></td>
+            <td><span class="brand">Questran</span></td>
+            <td>4–16 g/dia em 1–2 doses com refeição</td>
+            <td><span class="price">R$ 60–120</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="info-amber info-box">
+        <span class="info-box-icon">⚠️</span>
+        <div><strong>Interferência com absorção de outros medicamentos:</strong> As resinas devem ser tomadas pelo menos 1 hora antes ou 4 horas depois de outros medicamentos — podem reduzir absorção de varfarina, digoxina, tiroxina, estatinas. Constipação é o efeito adverso mais frequente e limitante.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3.6 FIBRATOS -->
+  <div class="drug-acc" id="drug-fibratos">
+    <button class="drug-btn" onclick="toggleDrug(this)">
+      🧪 Fibratos — para triglicérides elevados
+      <div class="d-right"><span class="badge badge-gray">Fenofibrato · Gemfibrozila · Bezafibrato</span><span class="acc-chevron">▾</span></div>
+    </button>
+    <div class="drug-body">
+      <div class="mech-box">
+        <div class="mech-label">Como funcionam</div>
+        Ativam o receptor PPAR-α no fígado — um regulador do metabolismo lipídico que aumenta a degradação de triglicérides e eleva o HDL. Reduzem TG em 30–50% e elevam HDL em 5–20%, com impacto modesto no LDL.
+      </div>
+      <div class="sec-lbl">Para que são usados</div>
+      <p>Hipertrigliceridemia grave (risco de pancreatite), dislipidemia mista quando o principal problema é o TG elevado, síndrome metabólica. Não são a primeira escolha para redução de LDL.</p>
+      <table class="drug-table">
+        <thead><tr><th>Genérico</th><th>Marca</th><th>Dose</th><th>Custo/mês</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Fenofibrato</strong></td>
+            <td><span class="brand">Lipanon · Triglide · genéricos</span></td>
+            <td>145–160 mg/dia</td>
+            <td><span class="price">R$ 30–60</span></td>
+          </tr>
+          <tr>
+            <td><strong>Bezafibrato</strong></td>
+            <td><span class="brand">Bezalip</span></td>
+            <td>400 mg/dia</td>
+            <td><span class="price">R$ 35–65</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="info-amber info-box">
+        <span class="info-box-icon">⚠️</span>
+        <div><strong>Combinação com estatinas:</strong> Gemfibrozila + estatina aumenta risco de miopatia (evitar). Fenofibrato + estatina é mais seguro e pode ser usado quando necessário. Monitorar CPK e função renal.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3.7 ÔMEGA-3 -->
+  <div class="drug-acc" id="drug-omega3">
+    <button class="drug-btn" onclick="toggleDrug(this)">
+      🐟 Ômega-3 / Icosapento Etílico (EPA)
+      <div class="d-right"><span class="badge badge-gray">Vascepa · Omacor · Ômega-3</span><span class="acc-chevron">▾</span></div>
+    </button>
+    <div class="drug-body">
+      <div class="mech-box">
+        <div class="mech-label">Como funcionam</div>
+        Os ácidos graxos ômega-3 (EPA e DHA) reduzem triglicérides por múltiplos mecanismos hepáticos. O EPA puro (icosapento etílico) tem, adicionalmente, efeitos anti-inflamatórios e estabilizadores de membrana que podem contribuir para benefício cardiovascular independente da redução de TG.
+      </div>
+      <table class="drug-table">
+        <thead><tr><th>Produto</th><th>Marca</th><th>Dose</th><th>Custo/mês</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>EPA + DHA (ômega-3)</strong></td>
+            <td><span class="brand">Omacor · Fish Oil farmacêutico</span></td>
+            <td>2–4 g/dia para TG</td>
+            <td><span class="price">R$ 60–120</span></td>
+          </tr>
+          <tr>
+            <td><strong>Icosapento etílico (EPA puro)</strong></td>
+            <td><span class="brand">Vascepa</span></td>
+            <td>4 g/dia (2 g 2×/dia)</td>
+            <td><span class="price price-high">R$ 400–700</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="info-teal info-box">
+        <span class="info-box-icon">📊</span>
+        <div><strong>REDUCE-IT (NEJM, 2018):</strong> Icosapento etílico 4g/dia em pacientes com TG elevado em estatina reduziu eventos cardiovasculares em 25%. Efeito surpreendentemente grande — parte controversa por uso de óleo mineral como placebo. EPA puro é diferente dos suplementos comuns de ômega-3 (mistura EPA+DHA).</div>
+      </div>
+      <div class="info-gray info-box">
+        <span class="info-box-icon">ℹ️</span>
+        <div><strong>Suplementos de farmácia vs. medicamento:</strong> Cápsulas de ômega-3 vendidas em farmácias são suplementos alimentares, não medicamentos. A concentração e a pureza variam muito. Para efeito terapêutico em hipertrigliceridemia, são necessários produtos farmacêuticos em doses altas — não suplementos de "1 cápsula por dia".</div>
+      </div>
+    </div>
+  </div>
+</div><!-- /g3 -->
+
+
+<!-- ════════════════════════════════════════════════════════════
+     GRUPO 4 — ANTI-HIPERTENSIVOS
+════════════════════════════════════════════════════════════ -->
+<div id="g4" class="group-panel">
+  <div class="group-header">
+    <div class="group-eyebrow">Pressão Arterial</div>
+    <div class="group-title"><em>Anti-hipertensivos</em></div>
+    <div class="group-desc">As principais classes de medicamentos para pressão arterial — cada uma com mecanismo distinto, efeitos adversos específicos e indicações preferenciais. A maioria dos hipertensos precisa de 2 ou mais classes.</div>
+  </div>
+
+  <!-- 4.1 IECA -->
+  <div class="drug-acc" id="drug-ieca">
+    <button class="drug-btn open" onclick="toggleDrug(this)">
+      🛡️ IECA — Inibidores da Enzima Conversora de Angiotensina
+      <div class="d-right"><span class="badge badge-teal">Enalapril · Ramipril · Lisinopril</span><span class="acc-chevron">▾</span></div>
+    </button>
+    <div class="drug-body open">
+      <div class="mech-box">
+        <div class="mech-label">Como funcionam</div>
+        Bloqueiam a enzima que converte angiotensina I em angiotensina II — um potente vasoconstritor. Menos angiotensina II significa <strong>vasodilatação</strong> (redução da pressão) e menor estimulação das glândulas suprarrenais (menos aldosterona → menos retenção de sódio e água). Também elevam bradicinina — o que contribui para proteção cardíaca e renal, mas causa a tosse característica.
+      </div>
+      <div class="sec-lbl">Por que são tão importantes além da pressão</div>
+      <p>Os IECAs têm proteção orgânica independente do efeito anti-hipertensivo — reduzem fibrose cardíaca e renal, são fundamentais no manejo pós-infarto com FE reduzida, diabetes com proteinúria e insuficiência cardíaca.</p>
+      <table class="drug-table">
+        <thead><tr><th>Genérico</th><th>Marca</th><th>Dose usual</th><th>Custo/mês</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Enalapril</strong></td>
+            <td><span class="brand">Renitec · Vasopril · genéricos amplos</span></td>
+            <td>5–40 mg/dia em 1–2 doses</td>
+            <td><span class="price">R$ 10–22</span></td>
+          </tr>
+          <tr>
+            <td><strong>Ramipril</strong></td>
+            <td><span class="brand">Triatec · genéricos</span></td>
+            <td>2,5–10 mg/dia</td>
+            <td><span class="price">R$ 20–45</span></td>
+          </tr>
+          <tr>
+            <td><strong>Lisinopril</strong></td>
+            <td><span class="brand">Prinivil · Zestril · genéricos</span></td>
+            <td>5–40 mg/dia</td>
+            <td><span class="price">R$ 15–35</span></td>
+          </tr>
+          <tr>
+            <td><strong>Perindopril</strong></td>
+            <td><span class="brand">Coversyl · Prestalia</span></td>
+            <td>4–8 mg/dia</td>
+            <td><span class="price">R$ 40–80</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="se-grid">
+        <div class="se-item se-common"><div class="se-dot"></div><div><strong>Tosse seca</strong> — efeito de classe por acúmulo de bradicinina (~10–15% dos pacientes). Motivo mais comum de troca por BRA.</div></div>
+        <div class="se-item se-serious"><div class="se-dot"></div><div><strong>Angioedema</strong> — inchaço de face, língua ou laringe. Raro mas grave. Suspender imediatamente e buscar emergência.</div></div>
+        <div class="se-item se-common"><div class="se-dot"></div><div><strong>Hiperpotassemia</strong> — especialmente com função renal reduzida ou uso de poupadores de K+.</div></div>
+        <div class="se-item se-common"><div class="se-dot"></div><div><strong>Piora de função renal</strong> — transitória e reversível em estenose de artéria renal bilateral.</div></div>
+      </div>
+      <div class="info-red info-box">
+        <span class="info-box-icon">🚫</span>
+        <div><strong>Contraindicados na gravidez.</strong> Causam malformações fetais graves no 2º e 3º trimestres. Mulheres em idade fértil que engravidem devem trocar imediatamente — idealmente planejar a troca antes da gravidez.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4.2 BRA -->
+  <div class="drug-acc" id="drug-bra">
+    <button class="drug-btn" onclick="toggleDrug(this)">
+      🛡️ BRA — Bloqueadores do Receptor de Angiotensina II
+      <div class="d-right"><span class="badge badge-teal">Losartan · Valsartan · Irbesartan</span><span class="acc-chevron">▾</span></div>
+    </button>
+    <div class="drug-body">
+      <div class="mech-box">
+        <div class="mech-label">Como funcionam</div>
+        Em vez de bloquear a produção de angiotensina II (como os IECAs), os BRAs <strong>bloqueiam o receptor AT1</strong> onde a angiotensina II se liga. O resultado hemodinâmico é semelhante ao dos IECAs — vasodilatação e redução da pressão — mas sem o acúmulo de bradicinina, razão pela qual <strong>não causam tosse</strong>.
+      </div>
+      <table class="drug-table">
+        <thead><tr><th>Genérico</th><th>Marca</th><th>Dose usual</th><th>Custo/mês</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Losartan</strong></td>
+            <td><span class="brand">Cozaar · Hyzaar (c/ HCT) · genéricos</span></td>
+            <td>50–100 mg 1×/dia</td>
+            <td><span class="price">R$ 15–30</span></td>
+          </tr>
+          <tr>
+            <td><strong>Valsartan</strong></td>
+            <td><span class="brand">Diovan · genéricos</span></td>
+            <td>80–320 mg 1×/dia</td>
+            <td><span class="price">R$ 30–60</span></td>
+          </tr>
+          <tr>
+            <td><strong>Irbesartan</strong></td>
+            <td><span class="brand">Aprovel · Avapro · genéricos</span></td>
+            <td>150–300 mg 1×/dia</td>
+            <td><span class="price">R$ 40–80</span></td>
+          </tr>
+          <tr>
+            <td><strong>Candesartan</strong></td>
+            <td><span class="brand">Atacand · genéricos</span></td>
+            <td>8–32 mg 1×/dia</td>
+            <td><span class="price">R$ 40–90</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="info-teal info-box">
+        <span class="info-box-icon">💡</span>
+        <div>BRA e IECA têm eficácia comparável no controle da PA e proteção orgânica. A principal vantagem dos BRAs é a ausência de tosse. <strong>Não se combinam IECA + BRA</strong> — o estudo ONTARGET mostrou que a combinação aumenta eventos adversos sem benefício adicional.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4.3 ARNI (já no grupo 5 também, referência cruzada) -->
+  <div class="drug-acc" id="drug-arni-ha">
+    <button class="drug-btn" onclick="toggleDrug(this)">
+      💊 ARNI — Sacubitril/Valsartan (Entresto)
+      <div class="d-right"><span class="badge badge-teal">Entresto — IC + Hipertensão</span><span class="acc-chevron">▾</span></div>
+    </button>
+    <div class="drug-body">
+      <div class="mech-box">
+        <div class="mech-label">Como funciona</div>
+        Combina um BRA (valsartan) com um inibidor da neprilisina (sacubitril). A neprilisina degrada peptídeos natriuréticos (BNP, ANP) — substâncias que o coração produz para se proteger. Inibindo a neprilisina, o ARNI aumenta os peptídeos natriuréticos, causando vasodilatação adicional, excreção de sódio e efeitos anti-fibróticos. É superior ao enalapril na IC com FE reduzida.
+      </div>
+      <table class="drug-table">
+        <thead><tr><th>Medicamento</th><th>Marca</th><th>Dose</th><th>Custo/mês</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Sacubitril/valsartan</strong></td>
+            <td><span class="brand">Entresto</span></td>
+            <td>24/26 mg → 49/51 mg → 97/103 mg 2×/dia</td>
+            <td><span class="price price-high">R$ 400–900</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="info-teal info-box">
+        <span class="info-box-icon">📊</span>
+        <div><strong>PARADIGM-HF (NEJM, 2014):</strong> Sacubitril/valsartan reduziu morte cardiovascular em 20% e hospitalização por IC em 21% vs enalapril em 8.442 pacientes com ICFEr. É hoje a primeira escolha em substituição ao IECA/BRA em IC com FE reduzida.</div>
+      </div>
+      <div class="info-red info-box">
+        <span class="info-box-icon">🚫</span>
+        <div>Nunca iniciar ARNI dentro de 36 horas após a última dose de IECA — risco de angioedema grave pela inibição simultânea de duas vias de degradação da bradicinina. Gravidez: contraindicado.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4.4 BB -->
+  <div class="drug-acc" id="drug-bb">
+    <button class="drug-btn" onclick="toggleDrug(this)">
+      ❤️ Betabloqueadores
+      <div class="d-right"><span class="badge badge-teal">Metoprolol · Carvedilol · Bisoprolol · Atenolol</span><span class="acc-chevron">▾</span></div>
+    </button>
+    <div class="drug-body">
+      <div class="mech-box">
+        <div class="mech-label">Como funcionam</div>
+        Bloqueiam os receptores β-adrenérgicos, reduzindo os efeitos da adrenalina sobre o coração. Resultado: <strong>frequência cardíaca mais baixa, força de contração reduzida, pressão arterial menor</strong>. Os betabloqueadores β1-seletivos (metoprolol, bisoprolol, atenolol) atuam principalmente no coração. Os não-seletivos (carvedilol, propranolol) também bloqueiam receptores β2 (pulmões e vasos periféricos).
+      </div>
+      <div class="sec-lbl">Indicações em cardiologia</div>
+      <p>Hipertensão arterial, angina, pós-infarto (reduz mortalidade), insuficiência cardíaca com FE reduzida (em doses progressivas — paradoxalmente benéfico), arritmias (controle de FC na FA, taquicardias), miocardiopatia hipertrófica.</p>
+      <table class="drug-table">
+        <thead><tr><th>Genérico</th><th>Marca</th><th>Seletividade</th><th>Custo/mês</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Metoprolol succinato</strong> <span style="font-size:.7rem;color:var(--muted-foreground);">(liberação prolongada)</span></td>
+            <td><span class="brand">Selozok · Lopressor XL · genéricos</span></td>
+            <td>β1-seletivo</td>
+            <td><span class="price">R$ 25–60</span></td>
+          </tr>
+          <tr>
+            <td><strong>Carvedilol</strong></td>
+            <td><span class="brand">Coreg · Dilatrend · genéricos</span></td>
+            <td>Não seletivo + α1-bloqueio</td>
+            <td><span class="price">R$ 15–35</span></td>
+          </tr>
+          <tr>
+            <td><strong>Bisoprolol</strong></td>
+            <td><span class="brand">Concor · Bisoprolol genérico</span></td>
+            <td>β1-seletivo (mais seletivo)</td>
+            <td><span class="price">R$ 30–55</span></td>
+          </tr>
+          <tr>
+            <td><strong>Atenolol</strong></td>
+            <td><span class="brand">Atenolol genérico · Tenormin</span></td>
+            <td>β1-seletivo</td>
+            <td><span class="price">R$ 8–18</span></td>
+          </tr>
+          <tr>
+            <td><strong>Propranolol</strong></td>
+            <td><span class="brand">Inderal · genéricos</span></td>
+            <td>Não seletivo</td>
+            <td><span class="price">R$ 10–20</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="se-grid">
+        <div class="se-item se-common"><div class="se-dot"></div><div><strong>Bradicardia</strong> — FC baixa, especialmente em doses altas.</div></div>
+        <div class="se-item se-common"><div class="se-dot"></div><div><strong>Fadiga e cansaço</strong> — frequente no início, costuma melhorar.</div></div>
+        <div class="se-item se-common"><div class="se-dot"></div><div><strong>Extremidades frias</strong> — vasoconstrição periférica.</div></div>
+        <div class="se-item se-serious"><div class="se-dot"></div><div><strong>Broncoespasmo</strong> — em não-seletivos em asmáticos. β1-seletivos são mais seguros, mas cautela.</div></div>
+        <div class="se-item se-common"><div class="se-dot"></div><div><strong>Disfunção erétil</strong> — mais com atenolol e propranolol.</div></div>
+        <div class="se-item se-mild"><div class="se-dot"></div><div><strong>Pesadelos / distúrbios do sono</strong> — especialmente com propranolol (lipofílico).</div></div>
+      </div>
+      <div class="info-red info-box">
+        <span class="info-box-icon">🚫</span>
+        <div><strong>Nunca interrompa o betabloqueador abruptamente.</strong> A interrupção súbita causa efeito rebote — aumento reflexo de adrenalina que pode desencadear angina grave, infarto ou arritmia. Sempre reduza gradualmente sob orientação médica.</div>
+      </div>
+      <div class="info-amber info-box">
+        <span class="info-box-icon">⚠️</span>
+        <div><strong>Na IC com FE reduzida, o betabloqueador é introduzido em dose mínima quando o paciente está compensado e aumentado lentamente</strong> (a cada 2 semanas). Iniciar em descompensação piora o quadro. Não inicie sozinho; a titulação é supervisionada pelo cardiologista.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4.5 BCC-DHP -->
+  <div class="drug-acc" id="drug-bcc-dhp">
+    <button class="drug-btn" onclick="toggleDrug(this)">
+      💊 Bloqueadores de Canal de Cálcio Diidropiridínicos (BCC-DHP)
+      <div class="d-right"><span class="badge badge-gray">Anlodipino · Nifedipino · Felodipino</span><span class="acc-chevron">▾</span></div>
+    </button>
+    <div class="drug-body">
+      <div class="mech-box">
+        <div class="mech-label">Como funcionam</div>
+        Bloqueiam canais de cálcio voltagem-dependentes nas células musculares lisas dos vasos. Com menos cálcio intracelular, os vasos <strong>relaxam e se dilatam</strong> — reduzindo a resistência vascular e a pressão arterial. Os DHP têm efeito predominante nos vasos (mínimo no nó AV), sem reduzir frequência cardíaca significativamente.
+      </div>
+      <table class="drug-table">
+        <thead><tr><th>Genérico</th><th>Marca</th><th>Dose</th><th>Custo/mês</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Anlodipino</strong></td>
+            <td><span class="brand">Norvasc · Pressovat · genéricos amplos</span></td>
+            <td>2,5–10 mg 1×/dia</td>
+            <td><span class="price">R$ 10–22</span></td>
+          </tr>
+          <tr>
+            <td><strong>Nifedipino LP</strong></td>
+            <td><span class="brand">Adalat OROS · Nifedipino LP</span></td>
+            <td>30–60 mg 1×/dia</td>
+            <td><span class="price">R$ 25–55</span></td>
+          </tr>
+          <tr>
+            <td><strong>Felodipino</strong></td>
+            <td><span class="brand">Plendil · genéricos</span></td>
+            <td>5–10 mg 1×/dia</td>
+            <td><span class="price">R$ 30–65</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="se-grid">
+        <div class="se-item se-common"><div class="se-dot"></div><div><strong>Edema de tornozelos</strong> — dilatação dos capilares periféricos. Muito frequente, não é cardíaco.</div></div>
+        <div class="se-item se-common"><div class="se-dot"></div><div><strong>Rubor facial, cefaleia, tontura</strong> — vasodilatação cutânea.</div></div>
+        <div class="se-item se-mild"><div class="se-dot"></div><div><strong>Palpitações</strong> — taquicardia reflexa, mais com nifedipino de liberação rápida.</div></div>
+      </div>
+      <div class="info-gray info-box">
+        <span class="info-box-icon">ℹ️</span>
+        <div>O edema dos tornozelos com BCC-DHP não é sinal de insuficiência cardíaca ou retenção de líquido — é um efeito local de vasodilatação dos capilares. Não responde a diuréticos. Reduzir a dose ou trocar o medicamento resolve o problema.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4.6 BCC não-DHP -->
+  <div class="drug-acc" id="drug-bcc-ndhp">
+    <button class="drug-btn" onclick="toggleDrug(this)">
+      💊 Bloqueadores de Canal de Cálcio Não-Diidropiridínicos
+      <div class="d-right"><span class="badge badge-gray">Diltiazem · Verapamil</span><span class="acc-chevron">▾</span></div>
+    </button>
+    <div class="drug-body">
+      <div class="mech-box">
+        <div class="mech-label">Como funcionam</div>
+        Além dos vasos, atuam intensamente no nó AV — <strong>reduzindo a frequência cardíaca e a condução elétrica</strong>. Por isso são úteis em arritmias (FA com FC rápida) além da hipertensão e angina. Diltiazem tem efeito cardíaco moderado; verapamil é mais potente no coração.
+      </div>
+      <table class="drug-table">
+        <thead><tr><th>Genérico</th><th>Marca</th><th>Dose</th><th>Custo/mês</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Diltiazem</strong></td>
+            <td><span class="brand">Cardizem · Dilacor · genéricos</span></td>
+            <td>120–360 mg/dia (LP 1×/dia)</td>
+            <td><span class="price">R$ 25–55</span></td>
+          </tr>
+          <tr>
+            <td><strong>Verapamil</strong></td>
+            <td><span class="brand">Isoptin · Verapamil genérico</span></td>
+            <td>120–480 mg/dia</td>
+            <td><span class="price">R$ 20–45</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="info-red info-box">
+        <span class="info-box-icon">🚫</span>
+        <div><strong>BCC não-DHP + betabloqueador = risco de bloqueio AV grave.</strong> A combinação pode causar bradicardia severa e bloqueio de condução. Evitar, especialmente por via endovenosa. <strong>Verapamil e diltiazem são contraindicados na IC com FE reduzida</strong> — pioram a função cardíaca. Atenção especial na amiloidose cardíaca.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4.7 TIAZÍDICOS -->
+  <div class="drug-acc" id="drug-tiazidicos">
+    <button class="drug-btn" onclick="toggleDrug(this)">
+      💧 Diuréticos Tiazídicos e Tiazídico-símiles
+      <div class="d-right"><span class="badge badge-gray">Hidroclorotiazida · Clortalidona · Indapamida</span><span class="acc-chevron">▾</span></div>
+    </button>
+    <div class="drug-body">
+      <div class="mech-box">
+        <div class="mech-label">Como funcionam</div>
+        Inibem a reabsorção de sódio no túbulo distal dos rins, aumentando a excreção de sódio e água. A redução do volume circulante diminui a pressão arterial. Com o uso crônico, também causam vasodilatação direta.
+      </div>
+      <table class="drug-table">
+        <thead><tr><th>Genérico</th><th>Marca</th><th>Dose</th><th>Custo/mês</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Hidroclorotiazida</strong></td>
+            <td><span class="brand">Clorana · genéricos</span></td>
+            <td>12,5–25 mg 1×/dia</td>
+            <td><span class="price">R$ 5–12</span></td>
+          </tr>
+          <tr>
+            <td><strong>Clortalidona</strong></td>
+            <td><span class="brand">Higroton · genérico</span></td>
+            <td>12,5–25 mg 1×/dia</td>
+            <td><span class="price">R$ 15–30</span></td>
+          </tr>
+          <tr>
+            <td><strong>Indapamida</strong></td>
+            <td><span class="brand">Natrilix · genérico</span></td>
+            <td>1,5–2,5 mg 1×/dia</td>
+            <td><span class="price">R$ 20–40</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="se-grid">
+        <div class="se-item se-common"><div class="se-dot"></div><div><strong>Hipopotassemia</strong> — perda de potássio pode causar cãibras e fraqueza. Monitorar ionograma.</div></div>
+        <div class="se-item se-common"><div class="se-dot"></div><div><strong>Hiperuricemia</strong> — aumenta o ácido úrico, pode precipitar gota.</div></div>
+        <div class="se-item se-common"><div class="se-dot"></div><div><strong>Hiperglicemia leve</strong> — diabéticos devem monitorar glicemia.</div></div>
+        <div class="se-item se-mild"><div class="se-dot"></div><div><strong>Sensibilidade solar</strong> — fotossensibilidade leve.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4.8 ANTI-HIPERTENSIVOS DE AÇÃO CENTRAL -->
+  <div class="drug-acc" id="drug-central">
+    <button class="drug-btn" onclick="toggleDrug(this)">
+      🧠 Anti-hipertensivos de Ação Central
+      <div class="d-right"><span class="badge badge-gray">Clonidina · Metildopa · Rilmenidina</span><span class="acc-chevron">▾</span></div>
+    </button>
+    <div class="drug-body">
+      <div class="mech-box">
+        <div class="mech-label">Como funcionam</div>
+        Atuam no sistema nervoso central estimulando receptores adrenérgicos α2 (ou imidazolínicos) no tronco cerebral, o que <strong>reduz o tônus simpático</strong> — menos sinal nervoso para os vasos e para o coração → queda da PA.
+      </div>
+      <table class="drug-table">
+        <thead><tr><th>Genérico</th><th>Marca</th><th>Dose</th><th>Custo/mês</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Clonidina</strong></td>
+            <td><span class="brand">Atensina · Catapresan · genérico</span></td>
+            <td>0,1–0,3 mg 2–3×/dia</td>
+            <td><span class="price">R$ 10–25</span></td>
+          </tr>
+          <tr>
+            <td><strong>Metildopa</strong></td>
+            <td><span class="brand">Aldomet · genérico</span></td>
+            <td>250–500 mg 2–3×/dia</td>
+            <td><span class="price">R$ 15–30</span></td>
+          </tr>
+          <tr>
+            <td><strong>Rilmenidina</strong></td>
+            <td><span class="brand">Hyperium</span></td>
+            <td>1 mg 1–2×/dia</td>
+            <td><span class="price">R$ 40–80</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="info-gray info-box">
+        <span class="info-box-icon">ℹ️</span>
+        <div>São geralmente reservados para hipertensão resistente em associação a outras classes, ou em situações específicas: metildopa é segura na gravidez (primeira escolha em hipertensão gestacional). Clonidina é usada em crises hipertensivas sintomáticas. Efeitos adversos: sedação, boca seca, constipação. A retirada abrupta da clonidina pode causar crise hipertensiva grave.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4.9 ALFA-BLOQUEADORES -->
+  <div class="drug-acc" id="drug-alfa">
+    <button class="drug-btn" onclick="toggleDrug(this)">
+      💊 Alfa-bloqueadores
+      <div class="d-right"><span class="badge badge-gray">Doxazosina · Prazosina · Terazosina</span><span class="acc-chevron">▾</span></div>
+    </button>
+    <div class="drug-body">
+      <div class="mech-box">
+        <div class="mech-label">Como funcionam</div>
+        Bloqueiam receptores α1-adrenérgicos nos vasos periféricos — causando vasodilatação arteriolar e venosa, reduzindo a resistência vascular e a pressão arterial. Também relaxam a musculatura da próstata e da bexiga.
+      </div>
+      <table class="drug-table">
+        <thead><tr><th>Genérico</th><th>Marca</th><th>Dose</th><th>Custo/mês</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Doxazosina</strong></td>
+            <td><span class="brand">Carduran · Carduran Neo · genérico</span></td>
+            <td>1–8 mg 1×/dia</td>
+            <td><span class="price">R$ 25–50</span></td>
+          </tr>
+          <tr>
+            <td><strong>Prazosina</strong></td>
+            <td><span class="brand">Minipress · genérico</span></td>
+            <td>1–5 mg 2–3×/dia</td>
+            <td><span class="price">R$ 15–30</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="info-amber info-box">
+        <span class="info-box-icon">⚠️</span>
+        <div><strong>"Efeito primeira dose":</strong> Hipotensão postural intensa na primeira tomada — especialmente se em pé. Iniciar sempre à noite, deitado. Úteis em homens com hipertensão associada a hiperplasia benigna da próstata. Não são recomendados como primeira linha para hipertensão isolada (estudo ALLHAT demonstrou maior risco de IC vs diurético).</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4.10 VASODILATADORES DIRETOS -->
+  <div class="drug-acc" id="drug-vasodil">
+    <button class="drug-btn" onclick="toggleDrug(this)">
+      💊 Vasodilatadores Diretos — Hidralazina
+      <div class="d-right"><span class="badge badge-gray">Hidralazina · Minoxidil</span><span class="acc-chevron">▾</span></div>
+    </button>
+    <div class="drug-body">
+      <div class="mech-box">
+        <div class="mech-label">Como funcionam</div>
+        Atuam diretamente na musculatura das artérias, causando vasodilatação por mecanismos que não dependem do sistema nervoso autônomo ou hormonal. São potentes vasodilatadores, mas causam taquicardia e retenção de sódio reflexas — por isso são quase sempre usados em associação.
+      </div>
+      <table class="drug-table">
+        <thead><tr><th>Genérico</th><th>Marca</th><th>Uso principal</th><th>Custo/mês</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Hidralazina</strong></td>
+            <td><span class="brand">Nepresol · genérico</span></td>
+            <td>HA resistente, IC com FE reduzida + nitrato, hipertensão na gravidez</td>
+            <td><span class="price">R$ 10–25</span></td>
+          </tr>
+          <tr>
+            <td><strong>Associação hidralazina + nitrato</strong></td>
+            <td><span class="brand">Bidil (EUA) — não disponível assim no BR; prescrever separado</span></td>
+            <td>IC com FE reduzida intolerante a IECA/BRA/ARNI</td>
+            <td><span class="price">R$ 25–50</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="info-teal info-box">
+        <span class="info-box-icon">📊</span>
+        <div><strong>Hidralazina + nitrato na IC:</strong> A combinação reduz mortalidade em IC com FE reduzida, especialmente em pacientes que não toleram IECA/BRA. Historicamente demonstrada no estudo V-HeFT (1986) — o primeiro tratamento a reduzir mortalidade na IC.</div>
+      </div>
+    </div>
+  </div>
+</div><!-- /g4 -->
+
+
+<!-- ════════════════════════════════════════════════════════════
+     GRUPO 5 — IC & PROTEÇÃO CARDÍACA
+════════════════════════════════════════════════════════════ -->
+<div id="g5" class="group-panel">
+  <div class="group-header">
+    <div class="group-eyebrow">Insuficiência Cardíaca</div>
+    <div class="group-title">IC &amp; <em>Proteção Cardíaca</em></div>
+    <div class="group-desc">Além dos IECAs/BRAs/ARNI e betabloqueadores (detalhados nos anti-hipertensivos), a IC exige medicamentos específicos que completam os "quatro pilares" e controlam a congestão.</div>
+  </div>
+
+  <!-- 5.1 ARM -->
+  <div class="drug-acc" id="drug-arm">
+    <button class="drug-btn open" onclick="toggleDrug(this)">
+      🛡️ Antagonistas dos Receptores Mineralocorticoides (ARM)
+      <div class="d-right"><span class="badge badge-teal">Espironolactona · Eplerenona · Finerenona</span><span class="acc-chevron">▾</span></div>
+    </button>
+    <div class="drug-body open">
+      <div class="mech-box">
+        <div class="mech-label">Como funcionam</div>
+        Bloqueiam o receptor da aldosterona — hormônio que promove retenção de sódio e perda de potássio nos rins, além de fibrose em coração e vasos. Os ARMs <strong>reduzem a fibrose miocárdica, têm efeito diurético poupador de potássio</strong> e protegem o coração da remodelação.
+      </div>
+      <table class="drug-table">
+        <thead><tr><th>Genérico</th><th>Marca</th><th>Dose</th><th>Custo/mês</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Espironolactona</strong></td>
+            <td><span class="brand">Aldactone · Espironolactona genérico</span></td>
+            <td>25–50 mg/dia (IC); 25–100 mg/dia (HA resistente)</td>
+            <td><span class="price">R$ 15–35</span></td>
+          </tr>
+          <tr>
+            <td><strong>Eplerenona</strong></td>
+            <td><span class="brand">Inspra</span></td>
+            <td>25–50 mg/dia</td>
+            <td><span class="price price-high">R$ 100–200</span></td>
+          </tr>
+          <tr>
+            <td><strong>Finerenona</strong></td>
+            <td><span class="brand">Kerendia</span></td>
+            <td>10–20 mg/dia (principalmente DRC + diabetes)</td>
+            <td><span class="price price-high">R$ 300–500</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="se-grid">
+        <div class="se-item se-serious"><div class="se-dot"></div><div><strong>Hiperpotassemia</strong> — principal risco. Monitorar K+ sérico regularmente, especialmente com IECA/BRA ou DRC.</div></div>
+        <div class="se-item se-common"><div class="se-dot"></div><div><strong>Ginecomastia (espironolactona)</strong> — dor ou crescimento mamário em homens. Eplerenona tem menos efeito hormonal.</div></div>
+        <div class="se-item se-mild"><div class="se-dot"></div><div><strong>Irregularidade menstrual</strong> — em mulheres, pela ação antiandrogênica da espironolactona.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5.2 iSGLT2 -->
+  <div class="drug-acc" id="drug-sglt2">
+    <button class="drug-btn" onclick="toggleDrug(this)">
+      🏆 Inibidores de SGLT2 — a revolução da IC moderna
+      <div class="d-right"><span class="badge badge-teal">Empagliflozina · Dapagliflozina · Canagliflozina</span><span class="acc-chevron">▾</span></div>
+    </button>
+    <div class="drug-body">
+      <div class="mech-box">
+        <div class="mech-label">Como funcionam</div>
+        Inibem o transportador SGLT2 nos rins, que reabsorve glicose e sódio da urina. O resultado é excreção urinária de glicose e sódio — com efeito diurético osmótico, redução da pré-carga e proteção renal. Os mecanismos de benefício cardíaco são multifatoriais e ainda em estudo (osmótico, metabólico, redução de fibrose).
+      </div>
+      <div class="highlight-quote">
+        "Originalmente desenvolvidos para diabetes tipo 2, os iSGLT2 surpreenderam a cardiologia com benefícios cardiovasculares e renais robustos — independentes do controle glicêmico. São hoje um dos quatro pilares obrigatórios da IC com FE reduzida."
+      </div>
+      <table class="drug-table">
+        <thead><tr><th>Genérico</th><th>Marca</th><th>Dose</th><th>Custo/mês</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Empagliflozina</strong></td>
+            <td><span class="brand">Jardiance</span></td>
+            <td>10 mg 1×/dia</td>
+            <td><span class="price price-high">R$ 200–380</span></td>
+          </tr>
+          <tr>
+            <td><strong>Dapagliflozina</strong></td>
+            <td><span class="brand">Forxiga</span></td>
+            <td>10 mg 1×/dia</td>
+            <td><span class="price price-high">R$ 200–380</span></td>
+          </tr>
+          <tr>
+            <td><strong>Canagliflozina</strong></td>
+            <td><span class="brand">Invokana</span></td>
+            <td>100–300 mg 1×/dia</td>
+            <td><span class="price price-high">R$ 200–350</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="se-grid">
+        <div class="se-item se-serious"><div class="se-dot"></div><div><strong>Infecção genital fúngica (candidíase)</strong> — pela glicose na urina. Mais frequente em mulheres. Higiene adequada previne.</div></div>
+        <div class="se-item se-common"><div class="se-dot"></div><div><strong>ITU (menos frequente que se imagina)</strong> — achado controverso em estudos.</div></div>
+        <div class="se-item se-serious"><div class="se-dot"></div><div><strong>Cetoacidose diabética</strong> — raro, mas pode ocorrer mesmo com glicemia normal em jejum ou cirurgia. Suspender 3 dias antes de procedimentos eletivos.</div></div>
+        <div class="se-item se-mild"><div class="se-dot"></div><div><strong>Queda leve de PA</strong> — pelo efeito osmótico. Pode exigir ajuste de outros anti-hipertensivos.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5.3 DIURÉTICOS DE ALÇA -->
+  <div class="drug-acc" id="drug-alca">
+    <button class="drug-btn" onclick="toggleDrug(this)">
+      💧 Diuréticos de Alça
+      <div class="d-right"><span class="badge badge-gray">Furosemida · Bumetanida · Torasemida</span><span class="acc-chevron">▾</span></div>
+    </button>
+    <div class="drug-body">
+      <div class="mech-box">
+        <div class="mech-label">Como funcionam</div>
+        Inibem o transportador Na-K-2Cl na alça de Henle (região tubular renal com maior capacidade de reabsorção de sódio). Resultam em <strong>diurese intensa e rápida</strong> — os diuréticos mais potentes disponíveis. Fundamentais para alívio de congestão.
+      </div>
+      <table class="drug-table">
+        <thead><tr><th>Genérico</th><th>Marca</th><th>Dose oral</th><th>Custo/mês</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Furosemida</strong></td>
+            <td><span class="brand">Lasix · Furosemida genérico</span></td>
+            <td>20–240 mg/dia (conforme congestão)</td>
+            <td><span class="price">R$ 5–15</span></td>
+          </tr>
+          <tr>
+            <td><strong>Torasemida</strong></td>
+            <td><span class="brand">Demadex · Torasemida genérico</span></td>
+            <td>5–40 mg/dia</td>
+            <td><span class="price">R$ 30–70</span></td>
+          </tr>
+          <tr>
+            <td><strong>Bumetanida</strong></td>
+            <td><span class="brand">Burinax</span></td>
+            <td>0,5–2 mg/dia</td>
+            <td><span class="price">R$ 20–40</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="se-grid">
+        <div class="se-item se-serious"><div class="se-dot"></div><div><strong>Hipopotassemia</strong> — perda intensa de potássio. Monitorar eletrólitos e repor K+ se necessário.</div></div>
+        <div class="se-item se-common"><div class="se-dot"></div><div><strong>Desidratação / hipotensão</strong> — com doses altas ou ingestão líquida insuficiente.</div></div>
+        <div class="se-item se-serious"><div class="se-dot"></div><div><strong>Ototoxicidade</strong> — perda auditiva, especialmente com doses altas IV. Raro com doses orais habituais.</div></div>
+      </div>
+      <div class="info-amber info-box">
+        <span class="info-box-icon">⚠️</span>
+        <div><strong>A dose da furosemida é dinâmica.</strong> Em IC descompensada, pode ser dobrada ou triplicada até resolver a congestão. Em IC compensada sem edema, pode ser reduzida ou suspensa temporariamente. Monitorar peso diário — o guia mais prático de retenção hídrica.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5.4 DIURÉTICOS POUPADORES DE K -->
+  <div class="drug-acc" id="drug-poupk">
+    <button class="drug-btn" onclick="toggleDrug(this)">
+      💊 Diuréticos Poupadores de Potássio
+      <div class="d-right"><span class="badge badge-gray">Amilorida · Triantereno</span><span class="acc-chevron">▾</span></div>
+    </button>
+    <div class="drug-body">
+      <div class="mech-box">
+        <div class="mech-label">Como funcionam</div>
+        Bloqueiam canais de sódio no túbulo coletor de forma independente da aldosterona. Efeito diurético modesto, mas poupam potássio — usados como complemento a diuréticos que causam perda de K+.
+      </div>
+      <table class="drug-table">
+        <thead><tr><th>Genérico</th><th>Marca</th><th>Dose</th><th>Custo/mês</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Amilorida</strong></td>
+            <td><span class="brand">Clin-diuretic · Amilorida</span></td>
+            <td>5–10 mg/dia</td>
+            <td><span class="price">R$ 15–30</span></td>
+          </tr>
+          <tr>
+            <td><strong>Triamtereno + HCT</strong></td>
+            <td><span class="brand">Diazide · Maxzide</span></td>
+            <td>Combinação fixa</td>
+            <td><span class="price">R$ 20–40</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 5.5 DIGITÁLICOS -->
+  <div class="drug-acc" id="drug-digoxina">
+    <button class="drug-btn" onclick="toggleDrug(this)">
+      🍃 Digitálicos — Digoxina
+      <div class="d-right"><span class="badge badge-gray">Digoxina · Lanoxin</span><span class="acc-chevron">▾</span></div>
+    </button>
+    <div class="drug-body">
+      <div class="mech-box">
+        <div class="mech-label">Como funciona</div>
+        Inibe a bomba Na/K-ATPase nas células cardíacas — aumentando o cálcio intracelular e, com isso, a <strong>força de contração</strong>. Também estimula o nervo vago, reduzindo a frequência cardíaca na FA.
+      </div>
+      <table class="drug-table">
+        <thead><tr><th>Genérico</th><th>Marca</th><th>Dose</th><th>Custo/mês</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Digoxina</strong></td>
+            <td><span class="brand">Lanoxin · genérico</span></td>
+            <td>0,125–0,25 mg/dia (dose ajustada pela função renal)</td>
+            <td><span class="price">R$ 10–20</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="info-red info-box">
+        <span class="info-box-icon">🚨</span>
+        <div><strong>Janela terapêutica estreita — intoxicação é real e grave.</strong> Sintomas de toxicidade digitálica: náusea, vômito, visão amarelada/borrada, arritmias. A hipopotassemia potencializa a toxicidade — cuidado ao usar com diuréticos de alça sem reposição de K+. Nível sérico de digoxina alvo: 0,5–0,9 ng/mL (não 1–2 ng/mL como antigamente).</div>
+      </div>
+      <div class="info-amber info-box">
+        <span class="info-box-icon">⚠️</span>
+        <div>Hoje usada principalmente para controle de FC na FA quando betabloqueadores são insuficientes ou não tolerados, e como terapia adjuvante sintomática na IC. Não reduz mortalidade. A amiloidose cardíaca é contraindicação — a digoxina se liga ao amiloide e pode acumular.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5.6 VERICIGUAT -->
+  <div class="drug-acc" id="drug-vericiguat">
+    <button class="drug-btn" onclick="toggleDrug(this)">
+      🔬 Estimulador da Guanilato Ciclase Solúvel — Vericiguat
+      <div class="d-right"><span class="badge badge-gray">Verquvo</span><span class="acc-chevron">▾</span></div>
+    </button>
+    <div class="drug-body">
+      <div class="mech-box">
+        <div class="mech-label">Como funciona</div>
+        Estimula diretamente a guanilato ciclase solúvel (GCs), aumentando o GMPc — segundo mensageiro que causa vasodilatação arterial e venosa, e tem efeitos anti-fibróticos. Atua independentemente do óxido nítrico (diferente dos nitratos).
+      </div>
+      <div class="sec-lbl">Para que é usado</div>
+      <p>IC com FE reduzida sintomática (NYHA II–IV) com hospitalização recente por IC ou necessidade de IV de diurético, em pacientes já em doses máximas toleradas dos quatro pilares. É um medicamento de IC avançada.</p>
+      <table class="drug-table">
+        <thead><tr><th>Medicamento</th><th>Marca</th><th>Dose</th><th>Custo/mês</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Vericiguat</strong></td>
+            <td><span class="brand">Verquvo</span></td>
+            <td>2,5 → 5 → 10 mg 1×/dia (titulação)</td>
+            <td><span class="price price-high">R$ 800–1.500</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="info-red info-box">
+        <span class="info-box-icon">🚫</span>
+        <div>Contraindicado com nitratos (hipotensão grave) — o mesmo mecanismo que vericiguat + nitratos = queda de PA perigosa. Contraindicado na gravidez.</div>
+      </div>
+    </div>
+  </div>
+</div><!-- /g5 -->
+
+
+<!-- ════════════════════════════════════════════════════════════
+     GRUPO 6 — ANTIARRÍTMICOS
+════════════════════════════════════════════════════════════ -->
+<div id="g6" class="group-panel">
+  <div class="group-header">
+    <div class="group-eyebrow">Ritmo Cardíaco</div>
+    <div class="group-title"><em>Antiarrítmicos</em></div>
+    <div class="group-desc">Medicamentos que controlam ou previnem arritmias. Classificados pela classificação de Vaughan Williams — baseada no mecanismo de ação. Alguns são de uso altamente especializado.</div>
+  </div>
+
+  <!-- 6.1 CLASSE I -->
+  <div class="drug-acc" id="drug-classI">
+    <button class="drug-btn open" onclick="toggleDrug(this)">
+      〰️ Antiarrítmicos Classe I — Bloqueadores de Canal de Sódio
+      <div class="d-right"><span class="badge badge-teal">Propafenona · Flecainida · Quinidina · Lidocaína</span><span class="acc-chevron">▾</span></div>
+    </button>
+    <div class="drug-body open">
+      <div class="mech-box">
+        <div class="mech-label">Como funcionam</div>
+        Bloqueiam os canais rápidos de sódio nas células cardíacas — <strong>reduzindo a velocidade de condução do impulso elétrico</strong>. Isso "freia" e pode terminar circuitos de reentrada responsáveis por taquicardias e FA. A classe Ia (quinidina) também prolonga o potencial de ação; Ib (lidocaína) encurta; Ic (propafenona, flecainida) tem efeito mais puro no canal.
+      </div>
+      <table class="drug-table">
+        <thead><tr><th>Classe</th><th>Genérico</th><th>Marca</th><th>Indicação principal</th><th>Custo/mês</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Ic</td>
+            <td><strong>Propafenona</strong></td>
+            <td><span class="brand">Ritmonorm · genérico</span></td>
+            <td>FA paroxística, TSV em coração estruturalmente normal</td>
+            <td><span class="price">R$ 35–70</span></td>
+          </tr>
+          <tr>
+            <td>Ic</td>
+            <td><strong>Flecainida</strong></td>
+            <td><span class="brand">Tambocor</span></td>
+            <td>FA paroxística, TSV</td>
+            <td><span class="price price-high">R$ 100–180</span></td>
+          </tr>
+          <tr>
+            <td>Ia</td>
+            <td><strong>Quinidina</strong></td>
+            <td><span class="brand">Quinicardine</span></td>
+            <td>Síndrome de Brugada (raramente), FA</td>
+            <td><span class="price">R$ 40–80</span></td>
+          </tr>
+          <tr>
+            <td>Ib</td>
+            <td><strong>Lidocaína</strong></td>
+            <td><span class="brand">Xylocaína IV</span></td>
+            <td>Arritmia ventricular aguda hospitalar</td>
+            <td>Hospitalar</td>
+          </tr>
+          <tr>
+            <td>Ib</td>
+            <td><strong>Mexiletina</strong></td>
+            <td><span class="brand">Mexitil</span></td>
+            <td>QT longo congênito, SQTL tipo 3, síndrome de Brugada</td>
+            <td><span class="price price-high">R$ 200–400</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="info-red info-box">
+        <span class="info-box-icon">🚫</span>
+        <div><strong>Antiarrítmicos Ic (propafenona, flecainida) são absolutamente contraindicados em pacientes com doença coronariana ou IC estrutural.</strong> O estudo CAST (1989) demonstrou que, após infarto, a flecainida e encainida suprimiram extrassístoles, mas quase dobraram a mortalidade. São seguros apenas em coração "estruturalmente normal".</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6.2 CLASSE III -->
+  <div class="drug-acc" id="drug-classIII">
+    <button class="drug-btn" onclick="toggleDrug(this)">
+      ⚡ Antiarrítmicos Classe III — Prolonga o Potencial de Ação
+      <div class="d-right"><span class="badge badge-teal">Amiodarona · Sotalol · Dronedarona</span><span class="acc-chevron">▾</span></div>
+    </button>
+    <div class="drug-body">
+      <div class="mech-box">
+        <div class="mech-label">Como funcionam</div>
+        Bloqueiam canais de potássio, <strong>prolongando a fase de repolarização</strong> das células cardíacas (QT longo controlado). Isso aumenta o período refratário, dificultando taquicardias por reentrada. A amiodarona também tem efeitos de classes I, II e IV (inespecífica).
+      </div>
+      <table class="drug-table">
+        <thead><tr><th>Genérico</th><th>Marca</th><th>Indicação</th><th>Custo/mês</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Amiodarona</strong></td>
+            <td><span class="brand">Ancoron · Cordarone · genérico</span></td>
+            <td>FA, TV, FV, TSV — o mais eficaz disponível. Seguro na IC.</td>
+            <td><span class="price">R$ 35–70</span></td>
+          </tr>
+          <tr>
+            <td><strong>Sotalol</strong></td>
+            <td><span class="brand">Sotacor · genérico</span></td>
+            <td>FA, TV sustentada — tem efeito betabloqueador também</td>
+            <td><span class="price">R$ 40–80</span></td>
+          </tr>
+          <tr>
+            <td><strong>Dronedarona</strong></td>
+            <td><span class="brand">Multaq</span></td>
+            <td>FA paroxística/persistente em coração estrutural normal ou doença leve</td>
+            <td><span class="price price-high">R$ 250–450</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="info-red info-box">
+        <span class="info-box-icon">🚨</span>
+        <div><strong>Amiodarona — efeitos adversos extracardíacos importantes:</strong><br>
+        • <strong>Tireóide:</strong> Hipo ou hipertireoidismo (~15–20% a longo prazo). A amiodarona contém 37% de iodo em peso. TSH deve ser monitorado a cada 6 meses.<br>
+        • <strong>Pulmão:</strong> Toxicidade pulmonar (tosse, falta de ar) — rara mas grave. Radiografia de tórax anual.<br>
+        • <strong>Fígado:</strong> Elevação de transaminases; hepatotoxicidade rara.<br>
+        • <strong>Olhos:</strong> Microdepósitos corneanos (quase universal, mas raramente prejudica visão).<br>
+        • <strong>Pele:</strong> Fotossensibilidade; coloração azulada com uso prolongado.<br>
+        A amiodarona é altamente eficaz mas exige monitoramento regular de múltiplos órgãos.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6.3 CANAL DE SÓDIO SÍNDROMES ESPECÍFICAS -->
+  <div class="drug-acc" id="drug-na-channel">
+    <button class="drug-btn" onclick="toggleDrug(this)">
+      🧬 Bloqueadores de Canal de Sódio — Síndromes Arrítmicas Específicas
+      <div class="d-right"><span class="badge badge-gray">Mexiletina · Quinidina · Flecainida</span><span class="acc-chevron">▾</span></div>
+    </button>
+    <div class="drug-body">
+      <div class="mech-box">
+        <div class="mech-label">Contexto específico</div>
+        Algumas síndromes genéticas de arritmia têm mecanismos específicos que fazem certos bloqueadores de canal de sódio serem preferidos ou até contraindicados de forma diferente do contexto geral.
+      </div>
+      <table class="drug-table">
+        <thead><tr><th>Síndrome</th><th>Tratamento de escolha</th><th>Observação</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>SQTL Tipo 3 (SCN5A)</strong></td>          <tr>
+            <td><strong>SQTL Tipo 3 (SCN5A)</strong></td>
+            <td><strong>Mexiletina</strong> 150–300mg 3×/dia</td>
+            <td>Inibe o canal de sódio mutante (ganho de função), encurtando seletivamente o QT. Reduz risco de torsades de pointes noturno.</td>
+          </tr>
+          <tr>
+            <td><strong>Síndrome de Brugada</strong></td>
+            <td><strong>Quinidina</strong> 200–400mg 3×/dia</td>
+            <td>Bloqueia a corrente Ito (potássio) — reduz o gradiente de repolarização transmural que gera o padrão de Brugada e a TV polimórfica.</td>
+          </tr>
+          <tr>
+            <td><strong>SQTL Tipo 2 (KCNH2)</strong></td>
+            <td><strong>Potássio oral</strong> + beta-bloqueador</td>
+            <td>Potássio sérico alto (4,5–5 mEq/L) melhora a função do canal mutante. Evitar QT-prolongadores com extremo cuidado.</td>
+          </tr>
+          <tr>
+            <td><strong>TV polimórfica catecolaminérgica (CPVT)</strong></td>
+            <td><strong>Beta-bloqueador</strong> ± flecainida</td>
+            <td>Flecainida bloqueia canais de rianodina — adjuvante ao CDI e beta-bloqueador em CPVT refratário.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="info-amber info-box">
+        <span class="info-box-icon">⚠️</span>
+        <div><strong>Doenças raras com manejo especializado.</strong> O tratamento dessas síndromes deve ser conduzido exclusivamente por centro especializado em arritmias genéticas / channelopatias. Automedicação ou ajuste de doses sem orientação específica pode ser fatal.</div>
+      </div>
+      <div class="info-teal info-box">
+        <span class="info-box-icon">💡</span>
+        <div><strong>Lista de medicamentos que prolongam o QT e são perigosos nessas síndromes:</strong> consulte sempre o site <strong>crediblemeds.org</strong> (em inglês) ou pergunte ao seu cardiologista antes de iniciar qualquer novo medicamento — incluindo antibióticos, antifúngicos, antidepressivos e antipsicóticos.</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /g6 -->
+
+<!-- ════════════════════════════════════════════════════════════
+     GRUPO 7 — HIPERTENSÃO PULMONAR
+════════════════════════════════════════════════════════════ -->
+<div id="g7" class="group-panel">
+  <div class="group-header">
+    <div class="group-eyebrow">Doença Rara / Especializada</div>
+    <div class="group-title">Hipertensão <em>Pulmonar</em></div>
+    <div class="group-desc">Medicamentos para hipertensão arterial pulmonar (HAP) — uma doença rara e grave que eleva a pressão nas artérias dos pulmões. O tratamento é altamente especializado, de alto custo e geralmente realizado em centros de referência.</div>
+  </div>
+
+  <div class="info-teal info-box" style="margin-bottom:1rem;">
+    <span class="info-box-icon">💡</span>
+    <div><strong>Hipertensão pulmonar ≠ hipertensão arterial sistêmica.</strong> São doenças completamente diferentes — os medicamentos usados aqui não tratam a pressão "do braço". A HAP afeta as artérias dos pulmões, causando aumento da resistência vascular pulmonar e sobrecarga do ventrículo direito. O diagnóstico é feito por cateterismo cardíaco direito.</div>
+  </div>
+
+  <!-- 7.1 ANTAGONISTAS DO RECEPTOR DE ENDOTELINA -->
+  <div class="drug-acc" id="drug-are">
+    <button class="drug-btn open" onclick="toggleDrug(this)">
+      🫁 Antagonistas do Receptor de Endotelina (ARE)
+      <div class="d-right"><span class="badge badge-gray">Bosentana · Ambrisentana · Macitentana</span><span class="acc-chevron">▾</span></div>
+    </button>
+    <div class="drug-body" style="display:block;">
+      <div class="mech-box">
+        <div class="mech-label">Como funciona</div>
+        A endotelina-1 é um potente vasoconstritor e estimulador de crescimento celular produzido pelo endotélio pulmonar. Na HAP, seus níveis estão elevados — contribuindo para o estreitamento progressivo das artérias pulmonares. Os ARE bloqueiam os receptores ETA e/ou ETB, revertendo parcialmente a vasoconstrição e o remodelamento vascular.
+      </div>
+      <table class="drug-table">
+        <thead><tr><th>Genérico</th><th>Marca</th><th>Dose</th><th>Custo/mês</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Bosentana</strong></td>
+            <td><span class="brand">Tracleer 62,5mg / 125mg</span></td>
+            <td>62,5mg 2×/dia por 4 sem → 125mg 2×/dia</td>
+            <td><span class="price price-high">R$ 2.500–5.000</span></td>
+          </tr>
+          <tr>
+            <td><strong>Ambrisentana</strong></td>
+            <td><span class="brand">Volibris 5mg / 10mg</span></td>
+            <td>5–10mg 1×/dia</td>
+            <td><span class="price price-high">R$ 2.500–5.000</span></td>
+          </tr>
+          <tr>
+            <td><strong>Macitentana</strong></td>
+            <td><span class="brand">Opsumit 10mg</span></td>
+            <td>10mg 1×/dia</td>
+            <td><span class="price price-high">R$ 3.000–6.000</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="info-red info-box">
+        <span class="info-box-icon">🚫</span>
+        <div><strong>ABSOLUTAMENTE CONTRAINDICADO na gravidez — teratogênico.</strong> Toda mulher em idade fértil em uso de ARE deve usar contracepção rigorosa e dupla (dois métodos concomitantes). A bosentana reduz a eficácia de contraceptivos hormonais — preferir DIU ou barreira. Teste de gravidez mensal é obrigatório.</div>
+      </div>
+      <div class="info-amber info-box">
+        <span class="info-box-icon">⚠️</span>
+        <div><strong>Monitoramento hepático obrigatório:</strong> transaminases mensais (bosentana) ou trimestrais (ambrisentana, macitentana). Edema periférico e anemia são efeitos adversos frequentes — informe seu médico. O custo elevado pode ser parcialmente coberto pelo SUS (PCDT do Ministério da Saúde) ou plano de saúde — consulte o serviço de referência.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7.2 INIBIDORES DE PDE5 -->
+  <div class="drug-acc" id="drug-pde5-hp">
+    <button class="drug-btn" onclick="toggleDrug(this)">
+      💊 Inibidores de PDE5 para Hipertensão Pulmonar
+      <div class="d-right"><span class="badge badge-gray">Sildenafila · Tadalafila</span><span class="acc-chevron">▾</span></div>
+    </button>
+    <div class="drug-body">
+      <div class="mech-box">
+        <div class="mech-label">Como funciona</div>
+        O óxido nítrico (NO) produzido pelas células endoteliais pulmonares ativa a guanilato ciclase, gerando GMPc — que causa vasodilatação. A PDE5 degrada o GMPc, limitando esse efeito. Os inibidores de PDE5 bloqueiam essa degradação, prolongando a vasodilatação pulmonar. <strong>Importante:</strong> as doses usadas na HAP são diferentes das usadas na disfunção erétil — não são intercambiáveis sem orientação médica.
+      </div>
+      <table class="drug-table">
+        <thead><tr><th>Genérico</th><th>Marca (HAP)</th><th>Dose na HAP</th><th>Custo/mês</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Sildenafila</strong></td>
+            <td><span class="brand">Revatio 20mg <em>(HAP)</em><br><small style="color:var(--muted-foreground)">≠ Viagra 25–100mg (DE)</small></span></td>
+            <td>20mg 3×/dia</td>
+            <td><span class="price">R$ 150–400</span><br><span style="font-size:.68rem;color:var(--muted-foreground)">genérico disponível</span></td>
+          </tr>
+          <tr>
+            <td><strong>Tadalafila</strong></td>
+            <td><span class="brand">Adcirca 20mg <em>(HAP)</em><br><small style="color:var(--muted-foreground)">≠ Cialis 5–20mg (DE)</small></span></td>
+            <td>40mg 1×/dia</td>
+            <td><span class="price">R$ 200–500</span><br><span style="font-size:.68rem;color:var(--muted-foreground)">genérico disponível</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="info-red info-box">
+        <span class="info-box-icon">🚫</span>
+        <div><strong>CONTRAINDICADO com nitratos em qualquer forma</strong> (isossorbida, nitroglicerina spray, nicorandil). A combinação provoca queda grave e potencialmente fatal da pressão arterial. Informe todos os médicos que você usa inibidor de PDE5 — incluindo cardiologistas, clínicos e urologistas.</div>
+      </div>
+      <div class="info-amber info-box">
+        <span class="info-box-icon">⚠️</span>
+        <div><strong>Sildenafila para HAP vs disfunção erétil — diferenças importantes:</strong><br>
+        • <strong>Dose:</strong> 20mg 3×/dia (HAP) vs 50–100mg conforme demanda (DE)<br>
+        • <strong>Produto:</strong> Revatio (HAP) vs Viagra (DE) — diferentes marcas, diferentes embalagens<br>
+        • <strong>Indicação médica:</strong> o Revatio exige receita de especialista e justificativa clínica<br>
+        Nunca substitua Revatio por Viagra ou vice-versa sem orientação do médico de referência.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7.3 ESTIMULADORES DE GUANILATO CICLASE SOLÚVEL -->
+  <div class="drug-acc" id="drug-sgc-hp">
+    <button class="drug-btn" onclick="toggleDrug(this)">
+      🔄 Estimuladores da Guanilato Ciclase Solúvel (sGC)
+      <div class="d-right"><span class="badge badge-gray">Riociguate · Vericiguat</span><span class="acc-chevron">▾</span></div>
+    </button>
+    <div class="drug-body">
+      <div class="mech-box">
+        <div class="mech-label">Como funciona</div>
+        A guanilato ciclase solúvel (sGC) é a enzima que, quando ativada pelo NO, produz GMPc — causando vasodilatação. Na HAP, a via do NO está comprometida. Os estimuladores de sGC ativam diretamente essa enzima, <strong>independentemente do NO</strong> — restaurando a produção de GMPc por um caminho alternativo. São os únicos agentes com eficácia demonstrada tanto na HAP quanto na hipertensão pulmonar tromboembólica crônica (HPTEC) inoperável.
+      </div>
+      <table class="drug-table">
+        <thead><tr><th>Genérico</th><th>Marca</th><th>Indicação</th><th>Dose</th><th>Custo/mês</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Riociguate</strong></td>
+            <td><span class="brand">Adempas 0,5–2,5mg</span></td>
+            <td>HAP (grupo 1) + HPTEC inoperável (grupo 4)</td>
+            <td>Início 0,5–1mg 3×/dia → titular até 2,5mg 3×/dia em 8 semanas</td>
+            <td><span class="price price-high">R$ 2.500–6.000</span></td>
+          </tr>
+          <tr>
+            <td><strong>Vericiguat</strong></td>
+            <td><span class="brand">Verquvo 2,5–10mg</span></td>
+            <td>IC com FE reduzida (não HAP)</td>
+            <td>2,5mg → titular até 10mg 1×/dia</td>
+            <td><span class="price price-high">R$ 600–1.000</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="info-red info-box">
+        <span class="info-box-icon">🚫</span>
+        <div><strong>Três combinações absolutamente proibidas com o riociguate:</strong><br>
+        1. <strong>Nitratos</strong> — hipotensão grave (mesmo mecanismo de expansão do GMPc)<br>
+        2. <strong>Inibidores de PDE5</strong> (sildenafila, tadalafila) — efeito aditivo excessivo no GMPc<br>
+        3. <strong>Gestação</strong> — teratogênico (contracepção obrigatória, igual aos ARE)</div>
+      </div>
+      <div class="info-teal info-box">
+        <span class="info-box-icon">💡</span>
+        <div><strong>Riociguate é o único tratamento medicamentoso aprovado para HPTEC inoperável.</strong> Pacientes com HPTEC em quem a cirurgia (tromboendarterectomia pulmonar) não é possível ou apresentam doença residual após cirurgia podem se beneficiar — discuta com o especialista de HP.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7.4 PROSTACICLINAS E ANÁLOGOS -->
+  <div class="drug-acc" id="drug-prosta">
+    <button class="drug-btn" onclick="toggleDrug(this)">
+      💉 Prostaciclinas e Análogos
+      <div class="d-right"><span class="badge badge-gray">Epoprostenol · Iloprost · Treprostinil · Selexipag</span><span class="acc-chevron">▾</span></div>
+    </button>
+    <div class="drug-body">
+      <div class="mech-box">
+        <div class="mech-label">Como funciona</div>
+        A prostaciclina (PGI2) é produzida naturalmente pelo endotélio vascular saudável e causa vasodilatação potente, inibe a agregação plaquetária e tem efeitos antiproliferativos. Pacientes com HAP têm deficiência de prostaciclina endógena — tornando as artérias pulmonares mais propensas ao espasmo, trombose e remodelamento. A reposição farmacológica ou a estimulação de seus receptores (IP) reverte parcialmente esses efeitos. São as terapias mais potentes disponíveis para HAP grave.
+      </div>
+      <table class="drug-table">
+        <thead><tr><th>Genérico</th><th>Marca / Via</th><th>Indicação / Observação</th><th>Custo/mês</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Epoprostenol</strong></td>
+            <td><span class="brand">Flolan · Veletri<br><em>Infusão IV contínua</em></span></td>
+            <td>HAP grave (CF III-IV). Única terapia com redução de mortalidade em RCT. Requer cateter venoso central permanente. Meia-vida de apenas 3–5 minutos — <strong>interrupção abrupta pode ser fatal.</strong></td>
+            <td><span class="price price-high">R$ 8.000–20.000+</span></td>
+          </tr>
+          <tr>
+            <td><strong>Iloprost</strong></td>
+            <td><span class="brand">Ventavis<br><em>Inalatório (nebulizador específico)</em></span></td>
+            <td>HAP CF III. 6–9 inalações/dia — cada sessão dura 5–15 min. Alternativa menos invasiva ao IV, mas frequência alta dificulta adesão.</td>
+            <td><span class="price price-high">R$ 4.000–10.000</span></td>
+          </tr>
+          <tr>
+            <td><strong>Treprostinil</strong></td>
+            <td><span class="brand">Remodulin<br><em>SC contínuo ou IV</em></span></td>
+            <td>HAP CF II-IV. Meia-vida mais longa (4h) permite infusão subcutânea contínua — menos dependência de acesso central. Dor no sítio de infusão é limitante em alguns pacientes.</td>
+            <td><span class="price price-high">R$ 6.000–15.000+</span></td>
+          </tr>
+          <tr>
+            <td><strong>Selexipag</strong></td>
+            <td><span class="brand">Uptravi 200–1600mcg<br><em>Oral</em></span></td>
+            <td>HAP CF II-III. Agonista seletivo do receptor IP de prostaciclina. Estudo GRIPHON: redução de 40% em progressão/mortalidade. Única prostaciclina oral — facilita muito o acesso.</td>
+            <td><span class="price price-high">R$ 5.000–12.000</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="info-red info-box">
+        <span class="info-box-icon">🚨</span>
+        <div><strong>Epoprostenol IV — nunca interromper abruptamente.</strong> A HAP grave tratada com epoprostenol é dependente do medicamento para sobrevivência. Interrupção por falha da bomba de infusão, desconexão do cateter ou esquecimento de reabastecimento pode causar morte em horas por crise vasoespástica pulmonar. Pacientes e cuidadores devem ser treinados em protocolo de emergência.</div>
+      </div>
+      <div class="info-amber info-box">
+        <span class="info-box-icon">💰</span>
+        <div><strong>Acesso no Brasil:</strong> As prostaciclinas estão no PCDT de Hipertensão Arterial Pulmonar do Ministério da Saúde. O epoprostenol e o iloprost são dispensados pela rede SUS (mediante aprovação). O selexipag pode ter cobertura via plano de saúde com documentação adequada. Contate o centro de referência de HAP mais próximo — o acesso via SUS é consideravelmente mais viável que o custeio direto.</div>
+      </div>
+      <div class="info-teal info-box">
+        <span class="info-box-icon">💡</span>
+        <div><strong>Terapia combinada na HAP:</strong> As diretrizes atuais (ESC/ERS 2022) recomendam iniciar terapia <em>combinada</em> de início para a maioria dos pacientes de risco intermediário-alto e alto — geralmente ARE + PDE5i ± prostaciclina. A HAP não deve ser tratada com monofármaco exceto em casos específicos de baixo risco.</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /g7 -->
+
+    </main>
+  </div><!-- /main-grid -->
+
+  <div class="disclaimer">
+    ⚕️ <strong>Conteúdo informativo — não substitui prescrição médica.</strong>
+    As informações aqui apresentadas têm finalidade exclusivamente educativa. Dosagens, indicações e contraindicações são definidas individualmente pelo seu médico com base no seu quadro clínico, exames e histórico. <strong>Nunca inicie, interrompa ou ajuste medicamentos sem orientação profissional.</strong>
+    Preços são estimativas de mercado (Brasil, 2024–2025) e podem variar amplamente conforme região, farmácia e programa de desconto. Consulte o CMED para preços máximos ao consumidor.<br><br>
+    Elaborado por <strong>Dr. Lucas Silva</strong> — Cardiologista Intervencionista ·
+    <a href="https://lucascardio.com.br" style="color:var(--teal)">lucascardio.com.br</a>
+  </div>
+
+</div><!-- /page-wrap -->
+
+<footer>
+  <div class="page-wrap">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
+      <div style="font-size:.75rem;color:var(--muted-foreground)">© 2026 Dr. Lucas Silva — Cardiologia Intervencionista · <a href="https://lucascardio.com.br" style="color:var(--teal)">lucascardio.com.br</a></div>
+      <div style="font-size:.72rem;color:var(--muted-foreground)">Última atualização: Março de 2026</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── ACCORDION ───────────────────────────────────────────────────
+function toggleDrug(btn) {
+  const acc = btn.closest('.drug-acc');
+  const body = acc.querySelector('.drug-body');
+  const isOpen = btn.classList.contains('open');
+  if (isOpen) {
+    btn.classList.remove('open');
+    body.style.display = 'none';
+  } else {
+    btn.classList.add('open');
+    body.style.display = 'block';
+  }
+}
+
+// ── GROUP NAV ────────────────────────────────────────────────────
+function showGroup(id) {
+  document.querySelectorAll('.group-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.sb-item').forEach(i => i.classList.remove('active'));
+  const panel = document.getElementById(id);
+  if (panel) panel.classList.add('active');
+  const sbItem = document.querySelector(`.sb-item[onclick="showGroup('${id}')"]`);
+  if (sbItem) sbItem.classList.add('active');
+  const sel = document.querySelector('.mobile-sel');
+  if (sel) sel.value = id;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── SEARCH ───────────────────────────────────────────────────────
+const SEARCH_INDEX = [
+  // Group 1
+  { group:'g1', label:'Antiagregantes Plaquetários', terms:'antiagregante ticagrelor clopidogrel prasugrel brilinta plavix aspirina aas acido acetilsalicilico cilostazol plaqueta trombose stent dapt antiplaquetário' },
+  { group:'g1', label:'Nitratos', terms:'nitrato nitroglicerina isossorbida mononitrato dinitrato nitronal isordil monocordil angina vasodilatador nitrato spray sublingual' },
+  { group:'g1', label:'Ivabradina', terms:'ivabradina procoralan canal if frequencia cardiaca angina fc sinus' },
+  // Group 2
+  { group:'g2', label:'Anticoagulantes (DOACs)', terms:'anticoagulante doac rivaroxabana xarelto apixabana eliquis dabigatrana pradaxa edoxabana fibrilacao atrial fa trombose venosa tev embolia pulmonar avc acidente vascular' },
+  { group:'g2', label:'Varfarina / Warfarina', terms:'varfarina warfarina marevan coumadin inr antagonista vitamina k vka coagulacao valva mecanica' },
+  { group:'g2', label:'Heparinas', terms:'heparina enoxaparina clexane fondaparinux arixtra hbpm subcutanea injecao tih trombocitopenia' },
+  { group:'g2', label:'Trombolíticos / Fibrinolíticos', terms:'trombolitico fibrinolitico alteplase tenecteplase estreptoquinase streptokinase actilyse metalyse infarto stemi tpa rt-pa lise coagulo' },
+  // Group 3
+  { group:'g3', label:'Estatinas', terms:'estatina rosuvastatina atorvastatina sinvastatina pitavastatina crestor lipitor zocor livazo ldl colesterol placa aterosclerose' },
+  { group:'g3', label:'Ezetimiba', terms:'ezetimiba zetia zetrol absorção intestinal colesterol ldl combinacao estatina' },
+  { group:'g3', label:'Inibidores de PCSK9', terms:'pcsk9 evolocumabe alirocumabe inclisirana repatha praluent leqvio anticorpo monoclonal ldl muito alto hipercolesterolemia familiar injecao' },
+  { group:'g3', label:'Ácido Bempedoico', terms:'bempedoico acido bempedoico nexletol nustendi ldl intolerancia estatina atp citrato liase' },
+  { group:'g3', label:'Resinas Sequestradoras', terms:'resina colestiramina questran colesevelam welchol acido biliar colesterol intestino' },
+  { group:'g3', label:'Fibratos', terms:'fibrato fenofibrato genfibrozila bezafibrato tricor lopid triglicerideos tg hdl dislipidemia mista' },
+  { group:'g3', label:'Ômega-3 / EPA', terms:'omega3 omacor omega icosapento epa dha peixe triglicerideos vascepa reduce-it' },
+  // Group 4
+  { group:'g4', label:'IECA', terms:'ieca enalapril ramipril lisinopril captopril renitec triatec zestril capoten enzima conversora angiotensina pressao hipertensao insuficiencia cardiaca tosse' },
+  { group:'g4', label:'BRA', terms:'bra bra losartana valsartana candesartana telmisartana cozaar diovan atacand micardis receptor angiotensina pressao' },
+  { group:'g4', label:'ARNI (Sacubitril/Valsartana)', terms:'arni sacubitril valsartana entresto neprilisina insuficiencia cardiaca ic fe reduzida paradigm hf' },
+  { group:'g4', label:'Betabloqueadores', terms:'betabloqueador beta bloqueador carvedilol bisoprolol metoprolol atenolol propranolol coreg concor seloken tenormin inderal frequencia coracao ic angina' },
+  { group:'g4', label:'BCC Diidropiridínicos', terms:'bcc anlodipino nifedipino felodipino lercanidipino norvasc adalat zanidip canal calcio dhp diidropiridinico pressao angina edema tornozelo' },
+  { group:'g4', label:'BCC Não Diidropiridínicos', terms:'diltiazem verapamil cardizem isoptin balcor canal calcio nao dhp frequencia cardiaca fibrilacao atrial constipacao' },
+  { group:'g4', label:'Diuréticos Tiazídicos', terms:'tiazidico hidroclorotiazida clortalidona indapamida hct higroton natrilix arifon pressao diuretico sodio potassio' },
+  { group:'g4', label:'Anti-hipertensivos Centrais', terms:'acao central clonidina metildopa moxonidina atensina aldomet fisiotens gestacao gravidez rebote simpaticomimetico' },
+  { group:'g4', label:'Alfa-Bloqueadores', terms:'alfa bloqueador doxazosina prazosina tansulosina carduran minipress secotex prostata hiperplasia beningna bph ifis catarata' },
+  { group:'g4', label:'Vasodilatadores Diretos + Hidralazina', terms:'vasodilatador hidralazina nitrato isossorbida apresolina isordil ic ieca contraindicado combinacao' },
+  // Group 5
+  { group:'g5', label:'ARM (Espironolactona / Eplerenona)', terms:'arm antagonista mineralocorticoide espironolactona eplerenona aldactone inspra aldosterona potassio ic insuficiencia cardiaca ginecomastia' },
+  { group:'g5', label:'iSGLT2 (Glifozinas)', terms:'sglt2 glifozina empagliflozina dapagliflozina canagliflozina jardiance farxiga invokana diabetes insuficiencia cardiaca rim drc cotransportador glicose sodio' },
+  { group:'g5', label:'Diuréticos de Alça', terms:'diuretico alca furosemida torasemida bumetanida lasix demadex congestao edema ic insuficiencia cardiaca potassio loop' },
+  { group:'g5', label:'Diuréticos Poupadores de Potássio', terms:'poupador potassio amilorida triamtereno moduretic disalunil canal sodio hipocalemia tiazidico combinacao' },
+  { group:'g5', label:'Digitálicos (Digoxina)', terms:'digoxina lanoxin digitalis digitálico intoxicacao toxicidade janela terapeutica inotropico fibrilacao atrial fc frequencia digoxinemia' },
+  { group:'g5', label:'Vericiguat', terms:'vericiguat verquvo guanilato ciclase sgc ic insuficiencia cardiaca avancada gmpc hospitalizacao' },
+  // Group 6
+  { group:'g6', label:'Antiarrítmicos Classe I', terms:'antiarritmico classe 1 propafenona flecainida mexiletina quinidina rytmonorm apocard mexitil canal sodio fa fibrilacao tv taquicardia ventricular cast' },
+  { group:'g6', label:'Antiarrítmicos Classe III', terms:'antiarritmico classe 3 amiodarona sotalol dronedarona ancoron sotacor multaq qt prolongado fibrilacao atrial tv fv tireoidea pulmao' },
+  { group:'g6', label:'Bloqueadores de Canal de Sódio — Channelopatias', terms:'channelopatia sqtl qt longo brugada cpvt mexiletina quinidina sindrome genetica arritmia canal sodio scn5a' },
+  // Group 7
+  { group:'g7', label:'Antagonistas do Receptor de Endotelina (ARE)', terms:'are antagonista endotelina bosentana ambrisentana macitentana tracleer volibris opsumit hap hipertensao pulmonar teratogenico figado' },
+  { group:'g7', label:'Inibidores de PDE5 para HAP', terms:'pde5 sildenafila tadalafila revatio adcirca hap hipertensao pulmonar gmpc no oxido nitrico vardenafila nitrato contraindicado' },
+  { group:'g7', label:'Estimuladores da Guanilato Ciclase (sGC)', terms:'sgc guanilato ciclase riociguate vericiguat adempas verquvo hap hptec tromboembolia cronica gmpc no' },
+  { group:'g7', label:'Prostaciclinas e Análogos', terms:'prostaciclina epoprostenol iloprost treprostinil selexipag flolan ventavis remodulin uptravi pgI2 hap hipertensao pulmonar grave cf3 cf4 iv inalatorio' },
+];
+
+let searchTimeout;
+function doSearch(val) {
+  clearTimeout(searchTimeout);
+  const box = document.getElementById('searchResults');
+  if (!val || val.length < 2) { box.style.display = 'none'; return; }
+  searchTimeout = setTimeout(() => {
+    const q = val.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+    const hits = SEARCH_INDEX.filter(item =>
+      item.terms.normalize('NFD').replace(/[\u0300-\u036f]/g,'').includes(q) ||
+      item.label.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').includes(q)
+    ).slice(0, 8);
+    if (!hits.length) { box.innerHTML = '<div class="search-result-item" style="color:var(--muted-foreground)">Nenhum resultado encontrado</div>'; box.style.display = 'block'; return; }
+    const groupLabels = { g1:'Coronárias & Antitrombótico', g2:'Anticoagulação', g3:'Dislipidemia', g4:'Anti-hipertensivos', g5:'Insuficiência Cardíaca', g6:'Arritmias', g7:'Hipertensão Pulmonar' };
+    box.innerHTML = hits.map(h => `<div class="search-result-item" onclick="goToDrug('${h.group}','${h.label}')">
+      <span style="font-size:1rem">${h.group==='g7'?'🫁':h.group==='g6'?'〰️':h.group==='g5'?'💔':h.group==='g4'?'📈':h.group==='g3'?'🧪':h.group==='g2'?'🩸':'🩺'}</span>
+      <div><div style="font-weight:600">${h.label}</div><div class="sr-group">${groupLabels[h.group]}</div></div>
+    </div>`).join('');
+    box.style.display = 'block';
+  }, 120);
+}
+
+function goToDrug(groupId, label) {
+  document.getElementById('searchResults').style.display = 'none';
+  document.getElementById('searchInput').value = label;
+  showGroup(groupId);
+  // Highlight matching accordion
+  setTimeout(() => {
+    const btns = document.querySelectorAll(`#${groupId} .drug-btn`);
+    btns.forEach(btn => {
+      if (btn.textContent.trim().toLowerCase().includes(label.split(' ')[0].toLowerCase())) {
+        if (!btn.classList.contains('open')) toggleDrug(btn);
+        btn.scrollIntoView({ behavior:'smooth', block:'center' });
+      }
+    });
+  }, 300);
+}
+
+function hideSearch() {
+  setTimeout(() => { document.getElementById('searchResults').style.display = 'none'; }, 200);
+}
+
+// Close search on outside click
+document.addEventListener('click', e => {
+  if (!e.target.closest('.search-bar')) {
+    document.getElementById('searchResults').style.display = 'none';
+  }
+});
+</script>
+</body>
+</html>
