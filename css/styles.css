@@ -810,6 +810,19 @@ blockquote.blockquote p {
 }
 
 /* ── 17. DARK MODE TOGGLE BUTTON ─────────────────────────── */
+/* Esconde o sol no modo claro (padrão) */
+.icon-sun {
+  display: none;
+}
+
+/* Quando o body tiver a classe dark-mode, esconde a lua e mostra o sol */
+body.dark-mode .icon-moon {
+  display: none;
+}
+
+body.dark-mode .icon-sun {
+  display: inline-block; /* ou flex, dependendo do seu layout */
+}
 #dark-toggle {
   position: fixed;
   bottom: 1.5rem;
