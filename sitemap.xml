@@ -94,6 +94,48 @@
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
+   <url>
+    <loc>https://www.lucascardio.com.br/Pacientes/autoimune_cardiovascular.html</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+   <url>
+    <loc>https://www.lucascardio.com.br/Pacientes/cafe-coracao.html</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+   <url>
+    <loc>https://www.lucascardio.com.br/Pacientes/diabetes-doenca-cardiovascular.html</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+   <url>
+    <loc>https://www.lucascardio.com.br/Pacientes/eaa-risco-cardiovascular.html</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+   <url>
+    <loc>https://www.lucascardio.com.br/Pacientes/humor-cardiovascular.html</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+   <url>
+    <loc>https://www.lucascardio.com.br/Pacientes/medicamentos-otc-cardio.html</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+     <url>
+    <loc>https://www.lucascardio.com.br/Pacientes/periodicolucas.html</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
 
   <!-- SEÇÃO PARA MÉDICOS -->
   <url>

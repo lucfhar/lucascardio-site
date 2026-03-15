@@ -1,0 +1,777 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>Medicamentos de Farmácia e o Coração | Dr. Lucas Silva</title>
+  <meta name="description" content="Guia para pacientes: riscos cardiovasculares de anti-inflamatórios, paracetamol e descongestionantes vendidos sem receita." />
+  <meta name="author" content="Dr. Lucas Silva" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: oklch(65% .18 195);
+      --background: oklch(13% .018 250);
+      --foreground: oklch(93% .01 250);
+      --card: oklch(18.5% .018 250);
+      --muted: oklch(22% .018 250);
+      --muted-fg: oklch(62% .02 250);
+      --border: oklch(28% .025 250);
+      --input: oklch(22% .02 250);
+      --accent: oklch(24% .025 250);
+      --teal: #0074d3;
+      --teal-dim: rgba(0,211,189,.12);
+      --amber: oklch(82.8% .189 84.429);
+      --red: oklch(63.7% .237 25.331);
+      --radius: 0.625rem;
+      --fs: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --fm: 'JetBrains Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--fs); background: var(--background); color: var(--foreground); min-height: 100vh; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+    /* TOP NAV */
+    .topnav { position: sticky; top: 0; z-index: 60; background: rgba(18,20,27,.92); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); padding: 0 1.5rem; height: 52px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-brand { display: flex; align-items: center; gap: .55rem; text-decoration: none; color: var(--foreground); }
+    .nav-icon { width: 26px; height: 26px; border-radius: 7px; background: var(--teal); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .nav-name { font-weight: 800; font-size: .95rem; letter-spacing: -.025em; }
+    .nav-name span { color: var(--teal); }
+    .nav-sep { width: 1px; height: 14px; background: var(--border); margin: 0 7px; }
+    .nav-sub { font-size: .68rem; font-weight: 500; color: var(--muted-fg); }
+    .nav-right { display: flex; align-items: center; gap: .6rem; }
+    .nbadge { font-size: .68rem; font-weight: 600; padding: 3px 10px; border-radius: 999px; background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.25); }
+    .nlink { font-size: .73rem; font-weight: 600; padding: 5px 12px; border-radius: 8px; border: 1.5px solid var(--primary); color: var(--primary); background: transparent; text-decoration: none; transition: background .15s, color .15s; display: inline-flex; align-items: center; gap: 5px; }
+    .nlink:hover { background: var(--primary); color: #000; }
+
+    /* HERO */
+    .hero { padding: 2.75rem 0 2rem; border-bottom: 1px solid var(--border); }
+    .eyebrow { display: inline-flex; align-items: center; gap: 6px; font-size: .68rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--teal); margin-bottom: .85rem; }
+    .eyebrow::before { content:''; display:block; width:18px; height:2px; background:var(--teal); border-radius:1px; }
+    .hero h1 { font-size: clamp(1.5rem, 3.5vw, 2.15rem); font-weight: 800; line-height: 1.2; margin-bottom: .55rem; letter-spacing: -.02em; }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero-sub { color: var(--muted-fg); font-size: .88rem; max-width: 640px; line-height: 1.72; margin-bottom: 1.5rem; }
+    .hstats { display: flex; gap: 0; flex-wrap: nowrap; margin-bottom: 1.6rem; background: var(--card); border: 1px solid var(--border); border-radius: calc(var(--radius)+2px); overflow: hidden; }
+    .hstat { flex: 1; padding: 1rem 1.25rem; border-right: 1px solid var(--border); }
+    .hstat:last-child { border-right: none; }
+    .hstat-val { font-size: 1.4rem; font-weight: 800; font-family: var(--fm); color: var(--teal); line-height: 1; }
+    .hstat-val.am { color: var(--amber); }
+    .hstat-val.rd { color: var(--red); }
+    .hstat-lbl { font-size: .71rem; font-weight: 600; margin-top: .22rem; }
+    .hstat-src { font-size: .63rem; color: var(--muted-fg); font-family: var(--fm); }
+    .htags { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .tag { font-size: .67rem; font-weight: 600; padding: 2px 9px; border-radius: 5px; border: 1px solid var(--border); color: var(--muted-fg); background: var(--card); font-family: var(--fm); }
+
+    /* TOPIC NAV */
+    .topic-wrap { position: sticky; top: 52px; z-index: 50; background: rgba(18,20,27,.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .topic-nav { max-width: 920px; margin: 0 auto; padding: 0 1.5rem; display: flex; overflow-x: auto; scrollbar-width: none; }
+    .topic-nav::-webkit-scrollbar { display: none; }
+    .tbtn { display: flex; align-items: center; gap: 5px; font-family: var(--fs); font-size: .77rem; font-weight: 600; color: var(--muted-fg); background: none; border: none; padding: 0 13px; height: 44px; cursor: pointer; white-space: nowrap; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color .15s, border-color .15s; flex-shrink: 0; }
+    .tbtn:hover { color: var(--foreground); }
+    .tbtn.active { color: var(--teal); border-bottom-color: var(--teal); }
+    .tpill { font-size: .59rem; font-weight: 700; padding: 1px 6px; border-radius: 999px; background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.2); }
+    .tpill.w { background: rgba(251,191,36,.1); color: #fbbf24; border-color: rgba(251,191,36,.25); }
+    .tpill.d { background: rgba(220,38,38,.1); color: #f87171; border-color: rgba(220,38,38,.25); }
+
+    /* PANELS */
+    .wrap { max-width: 920px; margin: 0 auto; padding: 0 1.5rem; }
+    .panel { display: none; padding: 2rem 0 3rem; animation: fu .28s ease; }
+    .panel.on { display: block; }
+    @keyframes fu { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+
+    /* SECTION */
+    .slabel { font-size: .65rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--teal); margin-bottom: .3rem; font-family: var(--fm); }
+    .stitle { font-size: 1.22rem; font-weight: 800; margin-bottom: .2rem; letter-spacing: -.01em; }
+    .sintro { font-size: .86rem; color: var(--muted-fg); line-height: 1.72; margin-bottom: 1.4rem; }
+    .sdiv { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+
+    /* CARDS */
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: calc(var(--radius)+2px); padding: 1.35rem; margin-bottom: 1.2rem; }
+    .ch { display: flex; align-items: flex-start; gap: .65rem; margin-bottom: 1rem; padding-bottom: .85rem; border-bottom: 1px solid var(--border); }
+    .ci { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: .9rem; flex-shrink: 0; background: var(--teal-dim); color: var(--teal); }
+    .ct { font-weight: 700; font-size: .93rem; margin-bottom: 2px; }
+    .cs { font-size: .74rem; color: var(--muted-fg); }
+
+    /* INFO BOXES */
+    .ib { border-radius: var(--radius); padding: 10px 13px; font-size: .8rem; line-height: 1.65; display: flex; gap: 8px; margin-bottom: .65rem; }
+    .ibi { flex-shrink: 0; font-size: .9rem; margin-top: 2px; }
+    .ibt { background: var(--teal-dim); border-left: 3px solid var(--teal); }
+    .iba { background: rgba(251,191,36,.07); border-left: 3px solid rgba(251,191,36,.5); }
+    .ibr { background: rgba(220,38,38,.07); border-left: 3px solid rgba(220,38,38,.4); }
+    .ibg { background: var(--muted); border-left: 3px solid var(--border); }
+
+    /* DATA TILES */
+    .dtrow { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: .8rem; margin-bottom: 1rem; }
+    .dt { background: var(--muted); border-radius: var(--radius); padding: .8rem; text-align: center; }
+    .dtv { font-size: 1.4rem; font-weight: 800; font-family: var(--fm); line-height: 1; margin-bottom: .18rem; }
+    .dtd { font-size: .69rem; color: var(--muted-fg); line-height: 1.35; }
+    .dts { font-size: .61rem; color: var(--muted-fg); font-family: var(--fm); margin-top: .18rem; }
+
+    /* MECHANISM */
+    .mech { display: flex; align-items: center; gap: .4rem; flex-wrap: wrap; margin: .85rem 0; font-size: .75rem; }
+    .mb { background: var(--muted); border: 1px solid var(--border); border-radius: var(--radius); padding: 5px 10px; font-weight: 600; text-align: center; line-height: 1.3; }
+    .mb.drug { background: var(--teal-dim); border-color: rgba(0,211,189,.3); color: var(--teal); }
+    .mb.bad { background: rgba(220,38,38,.08); border-color: rgba(220,38,38,.28); color: #f87171; }
+    .mb.w { background: rgba(251,191,36,.08); border-color: rgba(251,191,36,.28); color: #fbbf24; }
+    .ma { color: var(--muted-fg); }
+    .mbl { color: #f87171; font-size: 1.05rem; font-weight: 800; }
+
+    /* DRUG SUBTABS */
+    .dtabs { display: flex; gap: .4rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .dtab { font-size: .77rem; font-weight: 600; padding: 6px 14px; border-radius: 999px; border: 1px solid var(--border); background: var(--muted); color: var(--muted-fg); cursor: pointer; transition: all .15s; font-family: var(--fs); }
+    .dtab:hover { background: var(--accent); color: var(--foreground); }
+    .dtab.on { background: var(--teal-dim); border-color: rgba(0,211,189,.4); color: var(--teal); }
+    .dpanel { display: none; animation: fu .22s ease; }
+    .dpanel.on { display: block; }
+
+    /* ACCORDION */
+    .ab { width: 100%; background: none; border: none; border-top: 1px solid var(--border); padding: .82rem 0; display: flex; align-items: center; justify-content: space-between; cursor: pointer; font-family: var(--fs); color: var(--foreground); font-size: .82rem; font-weight: 600; transition: color .15s; }
+    .ab:hover { color: var(--teal); }
+    .ach { font-size: .73rem; transition: transform .2s; }
+    .ab.open .ach { transform: rotate(180deg); }
+    .abody { display: none; padding-bottom: .7rem; }
+    .abody.open { display: block; animation: fu .18s ease; }
+
+    /* RISK PROFILE */
+    .cgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(235px,1fr)); gap: .42rem; }
+    .ci2 { display: flex; align-items: flex-start; gap: 8px; padding: 8px 11px; border-radius: var(--radius); border: 1px solid var(--border); background: var(--muted); cursor: pointer; transition: background .15s, border-color .15s; user-select: none; }
+    .ci2:hover { background: var(--accent); border-color: var(--primary); }
+    .ci2.on { background: var(--teal-dim); border-color: rgba(0,211,189,.4); }
+    .cbox { width: 14px; height: 14px; border-radius: 3px; border: 1.5px solid var(--border); flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center; transition: all .15s; }
+    .ci2.on .cbox { background: var(--teal); border-color: var(--teal); color: #000; }
+    .clbl { font-size: .77rem; line-height: 1.4; }
+    .clbl strong { font-weight: 600; display: block; margin-bottom: 1px; }
+    .clbl small { font-size: .69rem; color: var(--muted-fg); }
+
+    .rgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(148px,1fr)); gap: .65rem; margin-top: 1rem; }
+    .rcard { background: var(--muted); border: 1px solid var(--border); border-radius: calc(var(--radius)+2px); padding: .85rem .95rem; }
+    .rdn { font-size: .78rem; font-weight: 700; margin-bottom: .12rem; }
+    .rds { font-size: .67rem; color: var(--muted-fg); margin-bottom: .35rem; }
+    .rbadge { display: inline-flex; align-items: center; gap: 3px; font-size: .69rem; font-weight: 700; padding: 2px 9px; border-radius: 999px; transition: all .2s; }
+    .rv { background: rgba(52,211,153,.12); color: #34d399; border: 1px solid rgba(52,211,153,.27); }
+    .ry { background: rgba(251,191,36,.12); color: #fbbf24; border: 1px solid rgba(251,191,36,.27); }
+    .rr { background: rgba(220,38,38,.12); color: #f87171; border: 1px solid rgba(220,38,38,.27); }
+    .rdet { font-size: .69rem; color: var(--muted-fg); line-height: 1.4; margin-top: .35rem; }
+
+    .pbanner { display: none; padding: 8px 12px; border-radius: var(--radius); font-size: .78rem; align-items: center; gap: 8px; margin-bottom: .85rem; }
+    .pbanner.on { display: flex; animation: fu .2s ease; }
+    .pbv { background: rgba(52,211,153,.08); border: 1px solid rgba(52,211,153,.2); }
+    .pby { background: rgba(251,191,36,.08); border: 1px solid rgba(251,191,36,.2); }
+    .pbr { background: rgba(220,38,38,.08); border: 1px solid rgba(220,38,38,.2); }
+
+    .psum { display: inline-flex; align-items: center; gap: 6px; font-size: .77rem; padding: 5px 12px; border-radius: 999px; background: var(--muted); border: 1px solid var(--border); margin-bottom: .85rem; color: var(--muted-fg); }
+    .psum.w { border-color: rgba(251,191,36,.3); background: rgba(251,191,36,.06); color: #fbbf24; }
+    .psum.d { border-color: rgba(220,38,38,.3); background: rgba(220,38,38,.06); color: #f87171; }
+
+    /* COMPARISON TABLE */
+    .twrap { overflow-x: auto; }
+    .ctbl { width: 100%; border-collapse: collapse; font-size: .78rem; }
+    .ctbl th { background: var(--muted); padding: 8px 11px; text-align: left; font-weight: 700; font-size: .7rem; border-bottom: 1px solid var(--border); color: var(--muted-fg); letter-spacing: .03em; white-space: nowrap; }
+    .ctbl td { padding: 8px 11px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+    .ctbl tr:last-child td { border-bottom: none; }
+    .ctbl tr:hover td { background: var(--accent); }
+    .dc { font-weight: 700; font-size: .82rem; }
+    .dcb { font-size: .68rem; color: var(--muted-fg); font-family: var(--fm); display: block; }
+    .rg { color: #34d399; font-family: var(--fm); font-weight: 600; }
+    .rw { color: #fbbf24; font-family: var(--fm); font-weight: 600; }
+    .rb { color: #f87171; font-family: var(--fm); font-weight: 600; }
+    .rn { color: var(--muted-fg); font-family: var(--fm); }
+
+    /* BUTTONS */
+    .btn { display: inline-flex; align-items: center; gap: 7px; font-size: .82rem; font-weight: 600; padding: 8px 17px; border-radius: calc(var(--radius)+2px); border: none; cursor: pointer; transition: all .15s; font-family: var(--fs); }
+    .btnp { background: var(--primary); color: #000; font-weight: 700; }
+    .btnp:hover { opacity: .9; transform: translateY(-1px); }
+    .btns { background: var(--muted); color: var(--foreground); border: 1px solid var(--border); }
+    .btns:hover { background: var(--accent); }
+    .btnsm { font-size: .75rem; padding: 6px 13px; }
+    .brow { display: flex; gap: .55rem; flex-wrap: wrap; margin-top: 1.2rem; }
+
+    /* REFERENCES */
+    .refs { list-style: none; }
+    .ref { padding: 8px 0; border-bottom: 1px solid var(--border); font-size: .77rem; line-height: 1.6; display: flex; gap: 9px; }
+    .ref:last-child { border-bottom: none; }
+    .rnum { font-family: var(--fm); font-size: .67rem; font-weight: 700; color: var(--teal); min-width: 19px; }
+    .rtit { font-weight: 600; margin-bottom: 2px; }
+    .rmet { color: var(--muted-fg); font-size: .72rem; }
+    .rev { display: inline-block; font-size: .62rem; font-weight: 700; padding: 1px 5px; border-radius: 4px; margin-left: 5px; background: var(--teal-dim); color: var(--teal); }
+
+    /* DISCLAIMER */
+    .disc { background: var(--muted); border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 13px; font-size: .73rem; color: var(--muted-fg); line-height: 1.6; margin-top: .9rem; }
+
+    /* ALT GRID */
+    .agrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(265px,1fr)); gap: 1.2rem; }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 1.6rem 0; margin-top: .5rem; }
+    .fi { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .9rem; }
+    .fc { font-size: .72rem; color: var(--muted-fg); }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      .nav-sub, .nav-sep { display: none; }
+      .cgrid { grid-template-columns: 1fr; }
+      .rgrid { grid-template-columns: 1fr 1fr; }
+      .hstats { flex-wrap: wrap; }
+      .hstat { border-right: none; border-bottom: 1px solid var(--border); min-width: 48%; flex: none; }
+      .hstat:last-child { border-bottom: none; }
+      .mech { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <a class="nav-brand" href="#">
+    <div class="nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+    <span class="nav-name">OTC<span>Cardio</span></span>
+    <div class="nav-sep"></div>
+    <span class="nav-sub">Medicamentos &amp; Coração</span>
+  </a>
+  <div class="nav-right">
+    <span class="nbadge">Para Pacientes</span>
+    <a class="nlink" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      lucascardio.com.br
+    </a>
+  </div>
+</nav>
+
+<div class="wrap">
+<!-- HERO -->
+<div class="hero">
+  <div class="eyebrow">Guia para Pacientes — Baseado em Evidências</div>
+  <h1>Medicamentos de Farmácia<br>e o <em>Coração</em></h1>
+  <p class="hero-sub">Anti-inflamatórios, paracetamol e descongestionantes são adquiridos livremente, mas carregam riscos cardiovasculares reais. Esta página resume o que 280 ensaios clínicos mostram — e personaliza as orientações ao seu perfil de saúde.</p>
+
+  <div class="hstats">
+    <div class="hstat">
+      <div class="hstat-val">1,37–1,44</div>
+      <div class="hstat-lbl">RR eventos vasculares maiores (AINEs)</div>
+      <div class="hstat-src">CNT Lancet 2013 · 124.513 pac.</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-val am">7 dias</div>
+      <div class="hstat-lbl">Início do risco aumentado de infarto</div>
+      <div class="hstat-src">Bally et al. BMJ 2017 · 446.763 pac.</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-val rd">2×</div>
+      <div class="hstat-lbl">Risco de internação por IC (todos AINEs)</div>
+      <div class="hstat-src">Meta-análise CNT · 280 ensaios</div>
+    </div>
+  </div>
+
+  <div class="htags">
+    <span class="tag">AINEs</span><span class="tag">Paracetamol</span><span class="tag">Descongestionantes</span>
+    <span class="tag">CNT Lancet 2013</span><span class="tag">BMJ 2017</span><span class="tag">Cochrane 2025</span>
+    <span class="tag">AHA Statement 2016</span><span class="tag">PRECISION NEJM 2016</span>
+  </div>
+</div>
+</div><!-- /wrap -->
+
+<!-- TOPIC NAV -->
+<div class="topic-wrap">
+  <div class="topic-nav">
+    <button class="tbtn active" onclick="show('perfil',this)">👤 Meu Perfil</button>
+    <button class="tbtn" onclick="show('aines',this)">💊 Anti-inflamatórios <span class="tpill d">Alto risco</span></button>
+    <button class="tbtn" onclick="show('paracetamol',this)">💊 Paracetamol <span class="tpill w">Cautela</span></button>
+    <button class="tbtn" onclick="show('descong',this)">💊 Descongestionantes <span class="tpill w">Cautela</span></button>
+    <button class="tbtn" onclick="show('comparativo',this)">📊 Comparativo</button>
+    <button class="tbtn" onclick="show('alternativas',this)">✅ Alternativas</button>
+    <button class="tbtn" onclick="show('refs',this)">📚 Referências</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- ══════ PAINEL: MEU PERFIL ═════════════════════════════════ -->
+<div id="p-perfil" class="panel on">
+  <div class="slabel">Ferramenta Interativa</div>
+  <div class="stitle">Seu Perfil de Risco Pessoal</div>
+  <p class="sintro">Selecione as condições que se aplicam a você. O semáforo abaixo e os alertas em cada aba de medicamento serão atualizados automaticamente. Nenhuma informação é armazenada.</p>
+
+  <div class="card">
+    <div class="ch">
+      <div class="ci">👤</div>
+      <div><div class="ct">Minhas condições de saúde</div><div class="cs">Marque tudo que se aplica</div></div>
+    </div>
+    <div class="cgrid" id="pgrid"></div>
+    <div style="margin-top:.85rem;display:flex;justify-content:flex-end;">
+      <button class="btn btns btnsm" onclick="clearP()">Limpar seleções</button>
+    </div>
+  </div>
+
+  <div class="slabel" style="margin-bottom:.55rem;">Semáforo de Risco por Medicamento</div>
+  <div id="psum" class="psum"><span>👤</span><span id="psum-txt">Nenhuma condição selecionada — mostrando risco geral</span></div>
+  <div class="rgrid" id="rgrid"></div>
+
+  <div class="disc">🩺 Este semáforo é orientação educacional. Não substitui avaliação médica individualizada. Clique nas abas acima para o detalhamento clínico de cada medicamento.</div>
+
+  <div class="brow">
+    <button class="btn btnp btnsm" onclick="show('aines',document.querySelectorAll('.tbtn')[1])">Ver Anti-inflamatórios <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
+  </div>
+</div>
+
+<!-- ══════ PAINEL: AINEs ═══════════════════════════════════════ -->
+<div id="p-aines" class="panel">
+  <div class="slabel">Anti-inflamatórios Não Esteroides</div>
+  <div class="stitle">AINEs: os de maior risco cardiovascular</div>
+  <p class="sintro">Ibuprofeno, diclofenaco e naproxeno são os AINEs mais comuns. São os analgésicos com maior evidência de risco cardiovascular — baseada em 280 ensaios clínicos com 124.513 participantes.</p>
+
+  <div class="card">
+    <div class="ch">
+      <div class="ci">⚙️</div>
+      <div><div class="ct">Por que AINEs afetam o coração?</div><div class="cs">Mecanismo COX-1/COX-2 e desequilíbrio pró-trombótico</div></div>
+    </div>
+    <p style="font-size:.83rem;line-height:1.75;margin-bottom:.85rem;">AINEs bloqueiam enzimas <strong>COX-1</strong> e <strong>COX-2</strong>. Ao inibir a COX-2, reduzem a <strong>prostaciclina</strong> (vasodilatadora, anticoagulante) sem reduzir o <strong>tromboxane</strong> plaquetário (pró-coagulante). Resultado: desequilíbrio pró-trombótico — vasos contraem, pressão sobe, rins retêm sódio.</p>
+    <div class="mech">
+      <div class="mb drug">AINE</div><div class="ma">→</div><div class="mbl">⊗</div><div class="mb">COX-2</div><div class="ma">→</div>
+      <div class="mb bad">↓ Prostaciclina<br><small style="font-size:.61rem;">vasodilatadora</small></div>
+      <div class="ma">+</div>
+      <div class="mb w">= Tromboxane<br><small style="font-size:.61rem;">pró-coagulante</small></div>
+      <div class="ma">→</div>
+      <div class="mb bad">↑ IAM · ↑ AVC<br>↑ PA · ↑ IC</div>
+    </div>
+    <div class="ib ibr" style="margin-bottom:0;"><span class="ibi">🔴</span><div><strong>Retenção de sódio e água:</strong> AINEs bloqueiam prostaglandinas renais → retenção de sódio → elevação da PA, antagonismo de anti-hipertensivos e risco de descompensação de IC. Começa na primeira dose.</div></div>
+  </div>
+
+  <div class="dtabs">
+    <button class="dtab on" onclick="sd('aines','ibuprofeno',this)">Ibuprofeno</button>
+    <button class="dtab" onclick="sd('aines','diclofenaco',this)">Diclofenaco</button>
+    <button class="dtab" onclick="sd('aines','naproxeno',this)">Naproxeno</button>
+  </div>
+
+  <!-- Ibuprofeno -->
+  <div id="aines-ibuprofeno" class="dpanel on">
+    <div class="card">
+      <div class="ch">
+        <div class="ci" style="background:rgba(251,191,36,.1);color:var(--amber);">💊</div>
+        <div><div class="ct">Ibuprofeno</div><div class="cs">Advil®, Alivium®, Buprovil® | 200–400 mg OTC</div></div>
+        <div id="rbadge_ibuprofen" class="rbadge rv" style="margin-left:auto;flex-shrink:0;">🟢 Seguro</div>
+      </div>
+      <div id="pb_ibuprofen" class="pbanner"></div>
+      <div class="dtrow">
+        <div class="dt"><div class="dtv" style="color:#fbbf24;">RR 1,44</div><div class="dtd">Eventos vasculares maiores</div><div class="dts">CNT Lancet 2013</div></div>
+        <div class="dt"><div class="dtv" style="color:#f87171;">97%</div><div class="dtd">Prob. ↑ risco de IAM em 1–7 dias</div><div class="dts">Bally BMJ 2017 · 446k pac.</div></div>
+        <div class="dt"><div class="dtv" style="color:#f87171;">2×</div><div class="dtd">Risco de internação por IC</div><div class="dts">CNT Lancet 2013</div></div>
+      </div>
+      <div class="ib iba"><span class="ibi">📊</span><div><strong>Meta-análise CNT (Lancet 2013):</strong> 280 ensaios, 124.513 participantes. Ibuprofeno aumentou eventos vasculares maiores em 44% (principalmente coronarianos) e dobrou internações por IC. Dose OTC gera menor risco que doses prescritas, mas o risco existe mesmo com doses mínimas.</div></div>
+      <div class="ib ibr"><span class="ibi">⏱️</span><div><strong>Risco começa na 1ª semana:</strong> Bally et al. (BMJ 2017), 446.763 pacientes — apenas 1–7 dias de uso já aumentou o risco de IAM com 97% de probabilidade bayesiana. Doses mais altas elevam ainda mais o risco.</div></div>
+      <button class="ab" onclick="ta(this)"><span>Evidência adicional e interações</span><span class="ach">▼</span></button>
+      <div class="abody">
+        <div class="ib ibg" style="margin-top:.7rem;"><span class="ibi">🔬</span><div><strong>PRECISION Trial (NEJM 2016 — Nissen et al.):</strong> RCT com 24.081 pacientes artríticos. Ibuprofeno associado a maior mortalidade total que naproxeno. Celecoxibe não-inferior a ibuprofeno. Limitação: maioria de baixo risco CV, subestimando o risco em cardiopatas.</div></div>
+        <div class="ib ibg"><span class="ibi">💊</span><div><strong>Interação com anti-hipertensivos:</strong> AINEs antagonizam diuréticos, IECA, BRA e betabloqueadores. Uso concomitante aumenta o risco de eventos CV em 31% vs anti-hipertensivo isolado (Bhala et al., Lancet 2013).</div></div>
+        <div class="ib ibg"><span class="ibi">📦</span><div><strong>Dose OTC máxima:</strong> 1.200 mg/dia (400 mg a cada 8h). Não exceder. Doses prescritas chegam a 2.400 mg/dia — risco proporcional à dose.</div></div>
+      </div>
+      <div class="ib ibr" style="margin-top:.65rem;margin-bottom:0;"><span class="ibi">🚨</span><div><strong>Sinais para parar e buscar atendimento:</strong> inchaço súbito nas pernas; falta de ar ao deitar; dor no peito; ganho rápido de peso (&gt;2 kg em 2 dias); queda do volume urinário; pressão muito elevada.</div></div>
+    </div>
+  </div>
+
+  <!-- Diclofenaco -->
+  <div id="aines-diclofenaco" class="dpanel">
+    <div class="card">
+      <div class="ch">
+        <div class="ci" style="background:rgba(220,38,38,.1);color:#f87171;">💊</div>
+        <div><div class="ct">Diclofenaco</div><div class="cs">Voltaren®, Cataflam® | 50 mg OTC</div></div>
+        <div id="rbadge_diclofenac" class="rbadge rv" style="margin-left:auto;flex-shrink:0;">🟢 Seguro</div>
+      </div>
+      <div id="pb_diclofenac" class="pbanner"></div>
+      <div class="ib ibr"><span class="ibi">⚠️</span><div><strong>Pior perfil CV entre os AINEs sem receita.</strong> Inibição predominantemente COX-2 seletiva — similar ao celecoxibe, reconhecido como de alto risco CV. As diretrizes ESC e EULAR recomendam evitá-lo em pacientes com doença cardiovascular, mesmo disponível sem receita.</div></div>
+      <div class="dtrow">
+        <div class="dt"><div class="dtv" style="color:#f87171;">RR 1,41</div><div class="dtd">Eventos vasculares maiores</div><div class="dts">CNT Lancet 2013</div></div>
+        <div class="dt"><div class="dtv" style="color:#f87171;">99%</div><div class="dtd">Prob. ↑ risco de IAM em 1–7 dias</div><div class="dts">Bally BMJ 2017</div></div>
+        <div class="dt"><div class="dtv" style="color:#f87171;">≈COX-2</div><div class="dtd">Perfil CV similar ao celecoxibe</div><div class="dts">Mecanismo COX-2 seletivo</div></div>
+      </div>
+      <div class="ib iba"><span class="ibi">🔬</span><div><strong>Por que é diferente?</strong> Diclofenaco inibe preferencialmente a COX-2 — causando maior desequilíbrio entre prostaciclina (protetora) e tromboxane (pró-trombótico). Risco CV similar ao celecoxibe e superior ao ibuprofeno em doses equivalentes.</div></div>
+      <button class="ab" onclick="ta(this)"><span>Evidência adicional e contraindicações</span><span class="ach">▼</span></button>
+      <div class="abody">
+        <div class="ib ibg" style="margin-top:.7rem;"><span class="ibi">📊</span><div><strong>Coorte dinamarquesa (Schmidt et al., BMJ 2018):</strong> 6,3 milhões de pessoas. Diclofenaco associado a maior risco de FA, AVC e mortalidade CV vs ibuprofeno e naproxeno. Risco presente mesmo em doses OTC, começando em 30 dias.</div></div>
+        <div class="ib ibr"><span class="ibi">🚫</span><div><strong>Contraindicado em:</strong> Doença coronariana (angina, IAM, stent, cirurgia cardíaca), IC, AVC/AIT prévio, doença arterial periférica. Veja a aba Alternativas.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Naproxeno -->
+  <div id="aines-naproxeno" class="dpanel">
+    <div class="card">
+      <div class="ch">
+        <div class="ci" style="background:rgba(52,211,153,.1);color:#34d399;">💊</div>
+        <div><div class="ct">Naproxeno</div><div class="cs">Flanax® 220 mg | OTC Brasil</div></div>
+        <div id="rbadge_naproxen" class="rbadge rv" style="margin-left:auto;flex-shrink:0;">🟢 Seguro</div>
+      </div>
+      <div id="pb_naproxen" class="pbanner"></div>
+      <div class="ib ibt"><span class="ibi">✅</span><div><strong>Melhor perfil CV entre os AINEs.</strong> Único AINE que não aumentou significativamente eventos vasculares maiores (RR 0,93 — praticamente neutro). Atribuído à inibição plaquetária prolongada, similar à aspirina. Porém <em>não é isento</em>: ainda dobra o risco de IC e tem efeitos renais.</div></div>
+      <div class="dtrow">
+        <div class="dt"><div class="dtv" style="color:#34d399;">RR 0,93</div><div class="dtd">Eventos vasculares maiores (não significativo)</div><div class="dts">CNT Lancet 2013</div></div>
+        <div class="dt"><div class="dtv" style="color:#fbbf24;">2×</div><div class="dtd">Ainda dobra o risco de IC (igual aos demais)</div><div class="dts">CNT Lancet 2013</div></div>
+        <div class="dt"><div class="dtv" style="color:#34d399;">1ª opção</div><div class="dtd">AINE preferível quando uso necessário em risco CV</div><div class="dts">Minhas et al. 2023</div></div>
+      </div>
+      <div class="ib iba"><span class="ibi">⚠️</span><div><strong>"Melhor entre os AINEs" ≠ "seguro".</strong> É a escolha preferível quando um AINE é inevitável, mas ainda apresenta risco aumentado de IC, efeitos renais, antagonismo de anti-hipertensivos e risco GI. Em alto risco CV, a melhor estratégia é evitar todos os AINEs.</div></div>
+      <button class="ab" onclick="ta(this)"><span>O paradoxo do naproxeno — por que é diferente?</span><span class="ach">▼</span></button>
+      <div class="abody">
+        <div class="ib ibg" style="margin-top:.7rem;"><span class="ibi">🔬</span><div><strong>Inibição plaquetária irreversível:</strong> Naproxeno inibe de forma prolongada a COX-1 plaquetária, similar à aspirina. Isso reduz tromboxane e confere efeito antitrombótico que contrabalança parcialmente os efeitos pró-trombóticos. Porém, ao contrário da aspirina em dose baixa (81 mg), em dose plena também inibe COX-2, causando retenção de sódio e risco de IC.</div></div>
+        <div class="ib ibg"><span class="ibi">📋</span><div><strong>Uso prático (Minhas et al., RDC 2023):</strong> Se AINE necessário em cardiopata: (1) preferir naproxeno em dose mínima; (2) limitar a 3–5 dias; (3) monitorar PA e peso; (4) evitar em IC, DRC ≥3b ou anticoagulante; (5) associar protetor gástrico.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ib ibg"><span class="ibi">📌</span><div><strong>Princípio geral:</strong> Use a <em>menor dose efetiva</em> pelo <em>menor tempo possível</em>. Para cada 1.000 pacientes tratados por 1 ano, ~3 eventos vasculares maiores adicionais — sendo 1 fatal. <span style="font-size:.74rem;color:var(--muted-fg);">CNT, Lancet 2013</span></div></div>
+
+  <div class="brow">
+    <button class="btn btns btnsm" onclick="show('perfil',document.querySelectorAll('.tbtn')[0])">← Meu Perfil</button>
+    <button class="btn btnp btnsm" onclick="show('paracetamol',document.querySelectorAll('.tbtn')[2])">Ver Paracetamol →</button>
+  </div>
+</div>
+
+<!-- ══════ PAINEL: PARACETAMOL ════════════════════════════════ -->
+<div id="p-paracetamol" class="panel">
+  <div class="slabel">Analgésico / Antitérmico</div>
+  <div class="stitle">Paracetamol (Acetaminofeno)</div>
+  <p class="sintro">Primeira escolha para dor em cardiopatas — mais seguro que os AINEs. Porém evidências recentes mostram que doses altas elevam a pressão arterial, e o risco hepático é frequentemente subestimado.</p>
+
+  <div class="card">
+    <div class="ch">
+      <div class="ci" style="background:rgba(52,211,153,.1);color:#34d399;">💊</div>
+      <div><div class="ct">Paracetamol</div><div class="cs">Tylenol®, Dôrico®, Neosaldina® (combinado) | 500–1.000 mg | OTC</div></div>
+      <div id="rbadge_acetaminophen" class="rbadge rv" style="margin-left:auto;flex-shrink:0;">🟢 Seguro</div>
+    </div>
+    <div id="pb_acetaminophen" class="pbanner"></div>
+    <div class="ib ibt"><span class="ibi">✅</span><div><strong>Primeira linha para dor em cardiopatas.</strong> Ao contrário dos AINEs, não causa retenção de sódio, não antagoniza anti-hipertensivos e não aumenta risco de trombose ou IC nas doses habituais.</div></div>
+    <div class="dtrow">
+      <div class="dt"><div class="dtv" style="color:#fbbf24;">+3 mmHg</div><div class="dtd">↑ PA sistólica com 3g/dia em coronariopatas (2 semanas)</div><div class="dts">Sudano et al. Circulation 2010</div></div>
+      <div class="dt"><div class="dtv" style="color:#fbbf24;">+4 mmHg</div><div class="dtd">↑ PA sistólica com uso crônico (revisão sist.)</div><div class="dts">McCrae et al. Br J Clin Pharm 2018</div></div>
+      <div class="dt"><div class="dtv" style="color:#34d399;">RR 0,98</div><div class="dtd">Risco de IAM em hipertensos (sem aumento)</div><div class="dts">Fulton et al. Hypertension 2015 · n=24.496</div></div>
+    </div>
+    <div class="ib iba"><span class="ibi">🔬</span><div><strong>A elevação da PA:</strong> RCT (Sudano et al., Circulation 2010) com coronariopatas: +3 mmHg com 3g/dia por 2 semanas. Efeito dose-dependente, maior com uso crônico. <em>Doses pontuais (500 mg–1g) têm impacto mínimo sobre a PA.</em></div></div>
+    <div class="ib ibr"><span class="ibi">🔴</span><div><strong>Maior risco: o fígado.</strong> Causa mais comum de insuficiência hepática aguda no Brasil e EUA. Máximo: <strong>3–4g/dia para adultos saudáveis</strong>; 2g/dia com doença hepática ou alcoolismo. <strong>Atenção a produtos combinados</strong> (antigripais, Benegrip®, Neosaldina®) — a soma pode ultrapassar o limite sem o paciente perceber.</div></div>
+    <button class="ab" onclick="ta(this)"><span>Evidência controversa, varfarina e dose segura</span><span class="ach">▼</span></button>
+    <div class="abody">
+      <div class="ib ibg" style="margin-top:.7rem;"><span class="ibi">📊</span><div><strong>Coorte de 24.496 hipertensos (Fulton et al., Hypertension 2015):</strong> Sem aumento de risco de IAM (RR 0,98) ou AVC (RR 1,09). A maioria das diretrizes CV mantém o paracetamol como primeira escolha para dor em cardiopatas, com ressalva de usar na dose mínima efetiva.</div></div>
+      <div class="ib ibg"><span class="ibi">💊</span><div><strong>Interação com varfarina:</strong> Doses ≥2g/dia potencializam o anticoagulante, aumentando o INR e risco de sangramento. Informe seu médico e monitore o INR com mais frequência ao iniciar paracetamol regular.</div></div>
+      <div class="ib ibt"><span class="ibi">✅</span><div><strong>Dose segura para cardiopatas:</strong> 500 mg a cada 6–8h quando necessário. Máximo 2g/dia em doença hepática/cardíaca/renal; 3g/dia nos demais. Não usar cronicamente sem orientação médica.</div></div>
+    </div>
+  </div>
+
+  <div class="brow">
+    <button class="btn btns btnsm" onclick="show('aines',document.querySelectorAll('.tbtn')[1])">← Anti-inflamatórios</button>
+    <button class="btn btnp btnsm" onclick="show('descong',document.querySelectorAll('.tbtn')[3])">Ver Descongestionantes →</button>
+  </div>
+</div>
+
+<!-- ══════ PAINEL: DESCONGESTIONANTES ════════════════════════ -->
+<div id="p-descong" class="panel">
+  <div class="slabel">Agonistas Adrenérgicos</div>
+  <div class="stitle">Descongestionantes Nasais Orais</div>
+  <p class="sintro">Pseudoefedrina e fenilefrina estão presentes em antigripais e remédios para resfriado. Agem estimulando receptores adrenérgicos — o mesmo sistema que acelera o coração e eleva a pressão no estresse. Efeitos modestos em população geral, porém significativos em cardiopatas.</p>
+
+  <div class="dtabs">
+    <button class="dtab on" onclick="sd('descong','pseudoefedrina',this)">Pseudoefedrina</button>
+    <button class="dtab" onclick="sd('descong','fenilefrina',this)">Fenilefrina oral</button>
+  </div>
+
+  <!-- Pseudoefedrina -->
+  <div id="descong-pseudoefedrina" class="dpanel on">
+    <div class="card">
+      <div class="ch">
+        <div class="ci" style="background:rgba(251,191,36,.1);color:#fbbf24;">💊</div>
+        <div><div class="ct">Pseudoefedrina</div><div class="cs">Resfenol®, Afrinol® e componente de vários antigripais | 60 mg</div></div>
+        <div id="rbadge_pseudoephedrine" class="rbadge rv" style="margin-left:auto;flex-shrink:0;">🟢 Seguro</div>
+      </div>
+      <div id="pb_pseudoephedrine" class="pbanner"></div>
+      <div class="dtrow">
+        <div class="dt"><div class="dtv" style="color:#fbbf24;">+0,99 mmHg</div><div class="dtd">↑ média PA sistólica (população geral)</div><div class="dts">Salerno et al. 2005 · n=1.285</div></div>
+        <div class="dt"><div class="dtv" style="color:#fbbf24;">+2,83 bpm</div><div class="dtd">↑ média frequência cardíaca</div><div class="dts">Salerno et al. 2005</div></div>
+        <div class="dt"><div class="dtv" style="color:#f87171;">AHA ⚠️</div><div class="dtd">Alerta para cardiotoxicidade em doses altas</div><div class="dts">Page et al. Circulation 2016</div></div>
+      </div>
+      <div class="ib ibt"><span class="ibi">📊</span><div><strong>Em população saudável, efeitos são modestos.</strong> Meta-análise Salerno (2005) e Cochrane 2025 (n=882): pequenas elevações de PA e FC. Estudo caso-cruzado francês (Grimaldi-Bensouda, Sci Rep 2021, n=2.797): sem aumento de IAM ou AVC em ≤70 anos <em>sem doença CV prévia</em>.</div></div>
+      <div class="ib ibr"><span class="ibi">🏥</span><div><strong>Alerta AHA (Circulation 2016):</strong> Com uso prolongado, doses elevadas ou em pacientes vulneráveis: isquemia miocárdica, IAM, AVC, arritmias (incluindo FA) e cardiomiopatia por estresse. Listada entre os fármacos que podem precipitar ou piorar IC.</div></div>
+      <button class="ab" onclick="ta(this)"><span>Contraindicações e interações</span><span class="ach">▼</span></button>
+      <div class="abody">
+        <div class="ib ibg" style="margin-top:.7rem;"><span class="ibi">📋</span><div><strong>Contraindicações — Diretrizes AAAAI (Dykewicz et al., JACI 2020):</strong> Arritmia cardíaca, angina, doença coronariana, doença cerebrovascular, hipertensão não controlada, glaucoma de ângulo fechado, hipertireoidismo. Cautela em idosos e crianças &lt;4 anos.</div></div>
+        <div class="ib ibr"><span class="ibi">⛔</span><div><strong>Contraindicado com IMAO:</strong> Crise hipertensiva grave com risco de AVC hemorrágico. Aguardar ≥14 dias após suspensão do IMAO.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fenilefrina -->
+  <div id="descong-fenilefrina" class="dpanel">
+    <div class="card">
+      <div class="ch">
+        <div class="ci" style="background:rgba(251,191,36,.1);color:#fbbf24;">💊</div>
+        <div><div class="ct">Fenilefrina Oral</div><div class="cs">Coristina D®, Benegrip®, Triomune® | 10 mg por dose</div></div>
+        <div id="rbadge_phenylephrine" class="rbadge rv" style="margin-left:auto;flex-shrink:0;">🟢 Seguro</div>
+      </div>
+      <div id="pb_phenylephrine" class="pbanner"></div>
+      <div class="ib iba"><span class="ibi">⚠️</span><div><strong>A fenilefrina oral provavelmente não funciona.</strong> Em setembro de 2023, o painel da FDA concluiu por unanimidade que não é eficaz como descongestionante nas doses OTC. Motivo: metabolismo de primeira passagem extenso — chega ao sangue em quantidades insuficientes. Em 2024, a FDA iniciou processo de retirada de aprovação.</div></div>
+      <div class="ib ibg"><span class="ibi">🔬</span><div><strong>Biodisponibilidade muito baixa:</strong> Apenas 1–2% da fenilefrina oral atinge a circulação ativa. Paradoxalmente, tem risco CV teórico sem o benefício descongestionante — dando pouca justificativa para seu uso via oral.</div></div>
+      <div class="ib ibr"><span class="ibi">🔴</span><div><strong>Implicação prática:</strong> Se você usa medicamento para resfriado com fenilefrina oral, provavelmente não está obtendo descongestionamento. Verifique os outros ingredientes (paracetamol, anti-histamínicos, cafeína) e converse com seu farmacêutico sobre alternativas mais efetivas.</div></div>
+      <button class="ab" onclick="ta(this)"><span>Alternativas efetivas para congestionamento nasal</span><span class="ach">▼</span></button>
+      <div class="abody">
+        <div class="ib ibt" style="margin-top:.7rem;"><span class="ibi">✅</span><div><strong>Alternativas comprovadas:</strong> (1) Lavagem nasal com SF 0,9% — sem risco CV; (2) Corticoides nasais tópicos (budesonida, fluticasona) — primeira linha para rinite; (3) Spray descong. tópico (oximetazolina) — ação local, máximo 3–5 dias. Veja a aba Alternativas.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="brow">
+    <button class="btn btns btnsm" onclick="show('paracetamol',document.querySelectorAll('.tbtn')[2])">← Paracetamol</button>
+    <button class="btn btnp btnsm" onclick="show('comparativo',document.querySelectorAll('.tbtn')[4])">Ver Comparativo →</button>
+  </div>
+</div>
+
+<!-- ══════ PAINEL: COMPARATIVO ════════════════════════════════ -->
+<div id="p-comparativo" class="panel">
+  <div class="slabel">Visão Geral</div>
+  <div class="stitle">Tabela Comparativa de Risco Cardiovascular</div>
+  <p class="sintro">Comparação dos principais parâmetros de segurança. A coluna <strong>Seu perfil</strong> atualiza conforme seleções na aba Meu Perfil.</p>
+
+  <div class="twrap">
+    <table class="ctbl">
+      <thead>
+        <tr>
+          <th>Medicamento</th>
+          <th>Evento CV maior (RR)</th>
+          <th>Pressão arterial</th>
+          <th>Insuf. cardíaca</th>
+          <th>Função renal</th>
+          <th>Anticoagulante</th>
+          <th>Seu perfil</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="dc">Naproxeno<span class="dcb">Flanax® 220mg</span></td>
+          <td class="rg">RR 0,93 ✓</td><td class="rw">↑ leve</td><td class="rb">↑↑ 2×</td><td class="rb">Cautela</td><td class="rb">↑ risco GI</td>
+          <td><div id="tbl_naproxen" class="rbadge rv">🟢</div></td>
+        </tr>
+        <tr>
+          <td class="dc">Ibuprofeno<span class="dcb">Advil®, Alivium® 200–400mg</span></td>
+          <td class="rw">RR 1,44 ⚠️</td><td class="rw">↑↑ moderado</td><td class="rb">↑↑ 2×</td><td class="rb">Cautela</td><td class="rb">↑↑ risco</td>
+          <td><div id="tbl_ibuprofen" class="rbadge rv">🟢</div></td>
+        </tr>
+        <tr>
+          <td class="dc">Diclofenaco<span class="dcb">Voltaren®, Cataflam® 50mg</span></td>
+          <td class="rb">RR 1,41 ⛔</td><td class="rw">↑↑ moderado</td><td class="rb">↑↑ 2×</td><td class="rb">Cautela</td><td class="rb">↑↑ risco</td>
+          <td><div id="tbl_diclofenac" class="rbadge rv">🟢</div></td>
+        </tr>
+        <tr>
+          <td class="dc">Paracetamol<span class="dcb">Tylenol® 500–1.000mg</span></td>
+          <td class="rg">Neutro ✓</td><td class="rw">↑ leve (alta dose)</td><td class="rg">Neutro ✓</td><td class="rw">Cautela crônico</td><td class="rw">↑ INR varfarina</td>
+          <td><div id="tbl_acetaminophen" class="rbadge rv">🟢</div></td>
+        </tr>
+        <tr>
+          <td class="dc">Pseudoefedrina<span class="dcb">60mg por dose</span></td>
+          <td class="rw">Possível ⚠️</td><td class="rb">↑↑ vasoconstricção</td><td class="rb">↑ pode piorar IC</td><td class="rw">Moderado</td><td class="rg">Sem interação</td>
+          <td><div id="tbl_pseudoephedrine" class="rbadge rv">🟢</div></td>
+        </tr>
+        <tr>
+          <td class="dc">Fenilefrina oral<span class="dcb">10mg (eficácia duvidosa)</span></td>
+          <td class="rn">Sem dados</td><td class="rw">↑ leve (teórico)</td><td class="rw">Risco teórico</td><td class="rw">Moderado</td><td class="rg">Sem interação</td>
+          <td><div id="tbl_phenylephrine" class="rbadge rv">🟢</div></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="disc">↑ leve / ↑↑ moderado-significativo / ✓ favorável / ⚠️ atenção / ⛔ desfavorável. RR = razão de risco para eventos vasculares maiores.</div>
+
+  <div class="brow">
+    <button class="btn btns btnsm" onclick="show('descong',document.querySelectorAll('.tbtn')[3])">← Descongestionantes</button>
+    <button class="btn btnp btnsm" onclick="show('alternativas',document.querySelectorAll('.tbtn')[5])">Ver Alternativas →</button>
+  </div>
+</div>
+
+<!-- ══════ PAINEL: ALTERNATIVAS ══════════════════════════════ -->
+<div id="p-alternativas" class="panel">
+  <div class="slabel">Estratégias Terapêuticas</div>
+  <div class="stitle">Alternativas para Pacientes de Alto Risco</div>
+  <p class="sintro">Para quem tem doença cardiovascular ou fatores de risco não controlados, existem opções eficazes para dor e congestão nasal com perfil de segurança superior.</p>
+
+  <div class="agrid">
+    <div class="card" style="margin-bottom:0;">
+      <div class="ch" style="padding-bottom:.7rem;margin-bottom:.7rem;">
+        <div class="ci">🤕</div>
+        <div><div class="ct">Para dor e inflamação</div><div class="cs">Alternativas ao AINE oral</div></div>
+      </div>
+      <div class="ib ibt"><span class="ibi" style="font-size:.72rem;font-weight:800;min-width:16px;text-align:center;">1</span><div><strong>Paracetamol (primeira escolha):</strong> Para dor leve a moderada. 500–1.000 mg conforme necessário, máx. 3g/dia.</div></div>
+      <div class="ib ibt"><span class="ibi" style="font-size:.72rem;font-weight:800;min-width:16px;text-align:center;">2</span><div><strong>AINEs tópicos (gel/spray):</strong> Diclofenaco gel para dor localizada. Absorção sistêmica mínima, efeitos CV desprezíveis. Eficácia comparável ao oral em osteoartrite (Cochrane, Zeng et al. 2021).</div></div>
+      <div class="ib ibg"><span class="ibi" style="font-size:.72rem;font-weight:800;min-width:16px;text-align:center;">3</span><div><strong>Fisioterapia e exercício:</strong> Para dor crônica musculoesquelética — eficácia comparável aos AINEs, sem riscos CV.</div></div>
+      <div class="ib ibg"><span class="ibi" style="font-size:.72rem;font-weight:800;min-width:16px;text-align:center;">4</span><div><strong>Calor e frio locais:</strong> Bolsa de calor ou gelo por 15–20 min. Efetivos para dor aguda, sem qualquer risco sistêmico.</div></div>
+      <div class="ib ibg" style="margin-bottom:0;"><span class="ibi" style="font-size:.72rem;font-weight:800;min-width:16px;text-align:center;">5</span><div><strong>Capsaicina tópica:</strong> Creme 0,025–0,075% para osteoartrite e neuropatia. Sem absorção sistêmica significativa.</div></div>
+    </div>
+
+    <div class="card" style="margin-bottom:0;">
+      <div class="ch" style="padding-bottom:.7rem;margin-bottom:.7rem;">
+        <div class="ci">👃</div>
+        <div><div class="ct">Para congestão nasal</div><div class="cs">Alternativas ao descongestionante oral</div></div>
+      </div>
+      <div class="ib ibt"><span class="ibi" style="font-size:.72rem;font-weight:800;min-width:16px;text-align:center;">1</span><div><strong>Lavagem nasal com SF:</strong> Solução 0,9% ou hipertônica 2–3%. Altamente efetiva, zero risco CV. Pode ser usada à vontade.</div></div>
+      <div class="ib ibt"><span class="ibi" style="font-size:.72rem;font-weight:800;min-width:16px;text-align:center;">2</span><div><strong>Corticoides nasais tópicos (1ª linha):</strong> Budesonida, fluticasona, beclometasona. Absorção sistêmica mínima, seguros para cardiopatas. Efeito pleno em 1–2 semanas.</div></div>
+      <div class="ib iba"><span class="ibi" style="font-size:.72rem;font-weight:800;min-width:16px;text-align:center;">3</span><div><strong>Descong. nasal tópico (uso curto):</strong> Oximetazolina ou xilometazolina spray. Ação local, absorção mínima. <em>Máximo 3–5 dias — risco de rinite de rebote com uso prolongado.</em></div></div>
+      <div class="ib ibg"><span class="ibi" style="font-size:.72rem;font-weight:800;min-width:16px;text-align:center;">4</span><div><strong>Anti-histamínicos 2ª geração:</strong> Loratadina, cetirizina, fexofenadina — seguros CV. Tratam a causa da rinite alérgica.</div></div>
+      <div class="ib ibg" style="margin-bottom:0;"><span class="ibi" style="font-size:.72rem;font-weight:800;min-width:16px;text-align:center;">5</span><div><strong>Vapor úmido e umidificador:</strong> Alívio temporário sem riscos. Útil como complemento.</div></div>
+    </div>
+  </div>
+
+  <div class="brow">
+    <button class="btn btns btnsm" onclick="show('comparativo',document.querySelectorAll('.tbtn')[4])">← Comparativo</button>
+    <button class="btn btnp btnsm" onclick="show('refs',document.querySelectorAll('.tbtn')[6])">Ver Referências →</button>
+  </div>
+</div>
+
+<!-- ══════ PAINEL: REFERÊNCIAS ════════════════════════════════ -->
+<div id="p-refs" class="panel">
+  <div class="slabel">Evidência Científica</div>
+  <div class="stitle">Referências Bibliográficas</div>
+  <p class="sintro">Baseado em meta-análises, ensaios clínicos randomizados e diretrizes internacionais.</p>
+
+  <div class="card">
+    <ul class="refs">
+      <li class="ref"><span class="rnum">1</span><div><div class="rtit">Vascular and upper gastrointestinal effects of non-steroidal anti-inflammatory drugs: meta-analyses of individual participant data from randomised trials<span class="rev">Meta-análise</span></div><div class="rmet">CNT Collaboration (Bhala N, Emberson J, et al.) · <em>Lancet</em> 2013;382:769–779 · <strong>280 ensaios · 124.513 pac.</strong></div></div></li>
+      <li class="ref"><span class="rnum">2</span><div><div class="rtit">Risk of acute myocardial infarction with NSAIDs in real world use: Bayesian meta-analysis of individual patient data<span class="rev">Meta-análise</span></div><div class="rmet">Bally M, Dendukuri N, Rich B, et al. · <em>BMJ</em> 2017;357:j1909 · <strong>446.763 pac.</strong></div></div></li>
+      <li class="ref"><span class="rnum">3</span><div><div class="rtit">Acetaminophen increases blood pressure in patients with coronary artery disease<span class="rev">RCT</span></div><div class="rmet">Sudano I, Flammer AJ, Périat D, et al. · <em>Circulation</em> 2010;122(18):1789–1796</div></div></li>
+      <li class="ref"><span class="rnum">4</span><div><div class="rtit">Long-term adverse effects of paracetamol – a review<span class="rev">Revisão</span></div><div class="rmet">McCrae JC, Morrison EE, MacIntyre IM, Dear JW, Webb DJ · <em>Br J Clin Pharmacol</em> 2018;84(10):2218–2230</div></div></li>
+      <li class="ref"><span class="rnum">5</span><div><div class="rtit">Acetaminophen use and risk of myocardial infarction and stroke in a hypertensive cohort<span class="rev">Coorte</span></div><div class="rmet">Fulton RL, Walters MR, Morton R, et al. · <em>Hypertension</em> 2015;65(5):1008–1014 · <strong>n=24.496</strong></div></div></li>
+      <li class="ref"><span class="rnum">6</span><div><div class="rtit">Why paracetamol is a suitable first choice for treating mild to moderate acute pain in adults with cardiovascular disease<span class="rev">Revisão</span></div><div class="rmet">Alchin J, Dhar A, Siddiqui K, Christo PJ · <em>Curr Med Res Opin</em> 2022;38(5):811–825</div></div></li>
+      <li class="ref"><span class="rnum">7</span><div><div class="rtit">Paracetamol: not as safe as we thought? A systematic literature review of observational studies<span class="rev">Revisão sistemática</span></div><div class="rmet">Roberts E, Delgado Nunes V, Buckner S, et al. · <em>Ann Rheum Dis</em> 2016;75(3):552–559</div></div></li>
+      <li class="ref"><span class="rnum">8</span><div><div class="rtit">Effect of oral pseudoephedrine on blood pressure and heart rate: a meta-analysis<span class="rev">Meta-análise</span></div><div class="rmet">Salerno SM, Jackson JL, Berbano EP · <em>Arch Intern Med</em> 2005;165(15):1686–1694 · <strong>n=1.285</strong></div></div></li>
+      <li class="ref"><span class="rnum">9</span><div><div class="rtit">Effect of adrenergic agonist oral decongestants on blood pressure<span class="rev">Cochrane 2025</span></div><div class="rmet">Chan JJ, Chan M, Wright JM · <em>Cochrane Database Syst Rev</em> 2025;3:CD007895 · <strong>n=882</strong></div></div></li>
+      <li class="ref"><span class="rnum">10</span><div><div class="rtit">Drugs that may cause or exacerbate heart failure: a scientific statement from the American Heart Association<span class="rev">AHA 2016</span></div><div class="rmet">Page RL, O'Bryant CL, Cheng D, et al. · <em>Circulation</em> 2016;134(6):e32–69</div></div></li>
+      <li class="ref"><span class="rnum">11</span><div><div class="rtit">Rhinitis 2020: a practice parameter update<span class="rev">Diretriz</span></div><div class="rmet">Dykewicz MS, Wallace DV, Amrol DJ, et al. · <em>J Allergy Clin Immunol</em> 2020;146(4):721–767</div></div></li>
+      <li class="ref"><span class="rnum">12</span><div><div class="rtit">Decongestant use and the risk of myocardial infarction and stroke: a case-crossover study<span class="rev">Caso-cruzado</span></div><div class="rmet">Grimaldi-Bensouda L, Begaud B, Benichou J, et al. · <em>Sci Rep</em> 2021;11(1):4160 · <strong>n=2.797</strong></div></div></li>
+      <li class="ref"><span class="rnum">13</span><div><div class="rtit">Recommendations for the use of NSAIDs and cardiovascular disease risk<span class="rev">Revisão</span></div><div class="rmet">Minhas D, Nidhaan A, Husni ME · <em>Rheum Dis Clin North Am</em> 2023;49(1):179–191</div></div></li>
+      <li class="ref"><span class="rnum">14</span><div><div class="rtit">Cardiovascular safety of celecoxib, naproxen, or ibuprofen for arthritis (PRECISION Trial)<span class="rev">RCT</span></div><div class="rmet">Nissen SE, Yeomans ND, Solomon DH, et al. · <em>N Engl J Med</em> 2016;375(26):2519–2529 · <strong>n=24.081</strong></div></div></li>
+      <li class="ref"><span class="rnum">15</span><div><div class="rtit">Diclofenac use and cardiovascular risks: series of nationwide cohort studies<span class="rev">Coorte</span></div><div class="rmet">Schmidt M, Sørensen HT, Pedersen L · <em>BMJ</em> 2018;362:k3426 · <strong>6,3 milhões · Dinamarca</strong></div></div></li>
+      <li class="ref"><span class="rnum">16</span><div><div class="rtit">Topical NSAIDs for chronic musculoskeletal pain in adults (Cochrane Review)<span class="rev">Cochrane</span></div><div class="rmet">Zeng C, Wei J, Persson MSM, et al. · <em>Cochrane Database Syst Rev</em> 2021</div></div></li>
+    </ul>
+  </div>
+
+  <div class="disc">📋 <strong>Declaração de responsabilidade:</strong> Esta página tem finalidade exclusivamente educacional e não substitui consulta médica individualizada. O manejo clínico deve ser individualizado por profissional habilitado com acesso ao histórico completo de saúde. Em caso de dúvida sobre qualquer medicamento, consulte seu médico ou farmacêutico.</div>
+</div>
+
+</div><!-- /wrap -->
+
+<footer>
+  <div class="wrap">
+    <div class="fi">
+      <div class="fc">© 2026 Dr. Lucas Silva · Cardiologia Intervencionista · São Paulo, SP - CRM 271.830<br><span style="font-size:.67rem;">Conteúdo baseado em evidências científicas. Atualizado em 2025.</span></div>
+      <a class="nlink" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        lucascardio.com.br
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* PROFILE DATA */
+var profile={htn:false,cardio:false,hf:false,stroke:false,ckd:false,anticoag:false,arrhythmia:false,elderly:false,liver:false};
+var pf=[
+  {key:'htn',label:'Hipertensão arterial',sub:'Pressão alta diagnosticada ou em tratamento'},
+  {key:'cardio',label:'Doença coronariana',sub:'Angina, infarto, stent ou cirurgia cardíaca'},
+  {key:'hf',label:'Insuficiência cardíaca',sub:'Diagnóstico médico confirmado'},
+  {key:'stroke',label:'AVC ou AIT prévio',sub:'Derrame ou isquemia transitória'},
+  {key:'ckd',label:'Doença renal crônica',sub:'TFG < 60 mL/min ou creatinina elevada'},
+  {key:'anticoag',label:'Anticoagulante ou antiagregante',sub:'Varfarina, rivaroxabana, clopidogrel, aspirina'},
+  {key:'arrhythmia',label:'Arritmia cardíaca',sub:'Fibrilação atrial, flutter, outras'},
+  {key:'elderly',label:'65 anos ou mais',sub:'Maior sensibilidade a efeitos adversos'},
+  {key:'liver',label:'Doença hepática',sub:'Cirrose, hepatite crônica ou enzimas elevadas'}
+];
+var drugs=[
+  {key:'ibuprofen',label:'Ibuprofeno',sub:'Advil®, Alivium®',base:0,htn:1,cardio:2,hf:2,stroke:2,ckd:2,anticoag:2,arrhythmia:1,elderly:1,liver:1,reasons:{htn:'eleva PA e antagoniza anti-hipertensivos',cardio:'RR 1,44 — risco desde a 1ª semana',hf:'dobra risco de hospitalização por IC',stroke:'incluído nos eventos vasculares maiores',ckd:'reduz fluxo renal, retém sódio',anticoag:'antiagregante + risco GI elevado',arrhythmia:'retenção hídrica pode exacerbar FA',elderly:'maior sensibilidade a todos os efeitos',liver:'cautela em doença hepática avançada'}},
+  {key:'diclofenac',label:'Diclofenaco',sub:'Voltaren®, Cataflam®',base:0,htn:1,cardio:2,hf:2,stroke:2,ckd:2,anticoag:2,arrhythmia:1,elderly:1,liver:1,reasons:{htn:'eleva PA e antagoniza anti-hipertensivos',cardio:'perfil COX-2 seletivo — similar ao celecoxibe',hf:'dobra risco IC; contraindicado pelas diretrizes ESC',stroke:'associado a AVC em coorte de 6,3 milhões',ckd:'efeitos renais similares aos demais AINEs',anticoag:'risco GI + antiagregante',arrhythmia:'retém líquidos, pode exacerbar FA',elderly:'maior risco de eventos adversos',liver:'hepatotoxicidade descrita'}},
+  {key:'naproxen',label:'Naproxeno',sub:'Flanax® 220mg',base:0,htn:1,cardio:1,hf:2,stroke:1,ckd:2,anticoag:2,arrhythmia:1,elderly:1,liver:1,reasons:{htn:'pode elevar PA e antagonizar anti-hipertensivos',cardio:'melhor AINE em CV (RR 0,93), mas requer cautela',hf:'todos os AINEs dobram risco de IC',stroke:'perfil mais favorável que ibuprofeno e diclofenaco',ckd:'cautela com TFG < 60',anticoag:'antiagregante plaquetário prolongado + risco GI',arrhythmia:'retenção hídrica pode exacerbar FA',elderly:'preferir se AINE necessário',liver:'cautela em doença hepática'}},
+  {key:'acetaminophen',label:'Paracetamol',sub:'Tylenol®, Dôrico®',base:0,htn:1,cardio:1,hf:1,stroke:0,ckd:1,anticoag:1,arrhythmia:0,elderly:0,liver:2,reasons:{htn:'uso crônico ≥2g/dia pode elevar PA modestamente',cardio:'doses ≥3g/dia elevam PA em coronariopatas',hf:'geralmente seguro em doses habituais',stroke:'sem aumento de risco demonstrado',ckd:'mais seguro que AINEs; evitar doses altas cronicamente',anticoag:'doses ≥2g/dia potencializam varfarina',arrhythmia:'sem efeito sobre ritmo',elderly:'seguro em doses habituais',liver:'RISCO ELEVADO — hepatotoxicidade com doses >2g/dia'}},
+  {key:'pseudoephedrine',label:'Pseudoefedrina',sub:'60mg',base:0,htn:2,cardio:2,hf:2,stroke:2,ckd:1,anticoag:0,arrhythmia:2,elderly:1,liver:0,reasons:{htn:'vasoconstricção — risco de crise hipertensiva',cardio:'isquemia e espasmo coronariano descritos (AHA ⚠️)',hf:'listada pela AHA como droga que pode exacerbar IC',stroke:'risco de AVC em doses altas',ckd:'eliminação renal reduzida',anticoag:'sem interação direta',arrhythmia:'estimulação adrenérgica pode desencadear FA',elderly:'maior sensibilidade CV',liver:'sem impacto hepático'}},
+  {key:'phenylephrine',label:'Fenilefrina oral',sub:'Coristina D®, Benegrip®',base:0,htn:2,cardio:2,hf:2,stroke:2,ckd:1,anticoag:0,arrhythmia:2,elderly:1,liver:0,reasons:{htn:'ação alfa-adrenérgica vasoconstritora',cardio:'perfil adrenérgico de risco',hf:'pode piorar IC pela vasoconstricção',stroke:'risco potencial semelhante à pseudoefedrina',ckd:'acumulação possível com função renal reduzida',anticoag:'sem interação direta',arrhythmia:'estimulação adrenérgica',elderly:'maior sensibilidade CV',liver:'sem impacto hepático'}}
+];
+var rc={0:{label:'Seguro',cls:'rv',e:'🟢',bc:'pbv',msg:'Pode ser usado com as precauções gerais.'},1:{label:'Atenção',cls:'ry',e:'🟡',bc:'pby',msg:'Use com cautela: menor dose pelo menor tempo.'},2:{label:'Evitar',cls:'rr',e:'🔴',bc:'pbr',msg:'Risco significativo. Converse com seu médico antes de usar.'}};
+
+function computeRisk(d){
+  var max=d.base,reasons=[];
+  for(var k in profile){if(profile[k]&&d[k]!==undefined){var r=d[k];if(r>max){max=r;reasons=[d.reasons[k]];}else if(r===max&&r>0&&d.reasons[k]){reasons.push(d.reasons[k]);}}}
+  return{level:max,reasons:reasons};
+}
+function updateAll(){
+  var ac=0;for(var k in profile){if(profile[k])ac++;}
+  var mx=0;drugs.forEach(function(d){var r=computeRisk(d);if(r.level>mx)mx=r.level;});
+  var se=document.getElementById('psum'),st=document.getElementById('psum-txt');
+  if(ac===0){se.className='psum';st.textContent='Nenhuma condição selecionada — mostrando risco geral';}
+  else if(mx===2){se.className='psum d';st.textContent=ac+' condição(ões) — risco elevado identificado para alguns medicamentos';}
+  else{se.className='psum w';st.textContent=ac+' condição(ões) selecionada(s)';}
+  drugs.forEach(function(d){
+    var res=computeRisk(d),cfg=rc[res.level];
+    ['rbadge_','tbl_'].forEach(function(p){var el=document.getElementById(p+d.key);if(el){el.className='rbadge '+cfg.cls;el.textContent=cfg.e+' '+cfg.label;}});
+    var det=document.getElementById('rdetail_'+d.key);
+    if(det)det.textContent=(res.level===0||!res.reasons.length)?'Nenhum fator de risco identificado.':res.reasons[0].charAt(0).toUpperCase()+res.reasons[0].slice(1)+(res.reasons.length>1?' (+'+( res.reasons.length-1)+' outros)':'')+'.';
+    var pb=document.getElementById('pb_'+d.key);
+    if(pb){
+      if(ac===0){pb.className='pbanner';}
+      else{
+        pb.className='pbanner on '+cfg.bc;
+        var icon=['✅','⚠️','🚨'][res.level];
+        var rt=res.reasons.length?' — '+res.reasons[0]:'';
+        pb.innerHTML='<span style="font-size:.9rem;flex-shrink:0;">'+icon+'</span><div><strong>Seu perfil:</strong> '+cfg.msg+(rt?'<br><span style="font-size:.71rem;opacity:.75;">'+rt+'</span>':'')+'</div>';
+      }
+    }
+  });
+}
+function toggleF(key){
+  profile[key]=!profile[key];
+  var it=document.querySelector('[data-factor="'+key+'"]');
+  if(it)it.classList.toggle('on',profile[key]);
+  updateAll();
+}
+function clearP(){
+  for(var k in profile){profile[k]=false;}
+  document.querySelectorAll('.ci2[data-factor]').forEach(function(e){e.classList.remove('on');});
+  updateAll();
+}
+function buildPGrid(){
+  var g=document.getElementById('pgrid');if(!g)return;
+  var h='';
+  pf.forEach(function(f){
+    h+='<div class="ci2" data-factor="'+f.key+'" onclick="toggleF(\''+f.key+'\')">';
+    h+='<div class="cbox"><svg width="9" height="9" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>';
+    h+='<span class="clbl"><strong>'+f.label+'</strong><small>'+f.sub+'</small></span></div>';
+  });
+  g.innerHTML=h;
+}
+function buildRGrid(){
+  var g=document.getElementById('rgrid');if(!g)return;
+  var h='';
+  drugs.forEach(function(d){
+    h+='<div class="rcard"><div class="rdn">'+d.label+'</div><div class="rds">'+d.sub+'</div>';
+    h+='<div id="rbadge_'+d.key+'" class="rbadge rv">🟢 Seguro</div>';
+    h+='<div id="rdetail_'+d.key+'" class="rdet">Nenhum fator de risco identificado.</div></div>';
+  });
+  g.innerHTML=h;
+}
+
+/* TAB NAVIGATION */
+function show(id,btn){
+  document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.tbtn').forEach(function(b){b.classList.remove('active');});
+  var p=document.getElementById('p-'+id);if(p)p.classList.add('on');
+  if(btn)btn.classList.add('active');
+  document.querySelector('.topic-wrap').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* DRUG SUBTABS */
+function sd(sec,drug,btn){
+  document.querySelectorAll('[id^="'+sec+'-"]').forEach(function(p){p.classList.remove('on');});
+  var t=document.getElementById(sec+'-'+drug);if(t)t.classList.add('on');
+  if(btn){btn.parentElement.querySelectorAll('.dtab').forEach(function(b){b.classList.remove('on');});btn.classList.add('on');}
+}
+
+/* ACCORDION */
+function ta(btn){
+  btn.classList.toggle('open');
+  var b=btn.nextElementSibling;if(b)b.classList.toggle('open');
+}
+
+/* INIT */
+buildPGrid();buildRGrid();updateAll();
+</script>
+</body>
+</html>

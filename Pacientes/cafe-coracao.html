@@ -1,0 +1,1420 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>Café, Energéticos e Saúde do Coração | Dr. Lucas Silva</title>
+  <meta name="description" content="Guia completo e baseado em evidências sobre café, cafeína, bebidas energéticas e suplementos pré-treino e seus efeitos cardiovasculares. Dr. Lucas Silva, Cardiologista Intervencionista." />
+  <meta name="author" content="Dr. Lucas Silva" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── DESIGN TOKENS ─────────────────────────────────────────── */
+    :root {
+      --primary: oklch(65% .18 195);
+      --primary-foreground: oklch(98% 0 0);
+      --background: oklch(13% .018 250);
+      --foreground: oklch(93% .01 250);
+      --card: oklch(18.5% .018 250);
+      --card-foreground: oklch(93% .01 250);
+      --muted: oklch(22% .018 250);
+      --muted-foreground: oklch(62% .02 250);
+      --border: oklch(28% .025 250);
+      --input: oklch(22% .02 250);
+      --destructive: oklch(60% .22 25);
+      --secondary: oklch(22% .022 250);
+      --secondary-foreground: oklch(88% .01 250);
+      --accent: oklch(24% .025 250);
+      --accent-foreground: oklch(90% .01 250);
+      --teal: #d38900;
+      --teal2:#00d3bd;
+      --teal-dim: rgba(0,211,189,.12);
+      --amber: oklch(82.8% .189 84.429);
+      --red: oklch(63.7% .237 25.331);
+      --green: oklch(79.2% .209 151.711);
+      --orange: oklch(75% .18 50);
+      --radius: 0.625rem;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--background);
+      color: var(--foreground);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ───────────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(18,20,27,.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: .6rem;
+      text-decoration: none; color: var(--foreground);
+    }
+    .nav-brand-icon {
+      width: 28px; height: 28px; border-radius: 7px;
+      background: var(--teal); display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .nav-brand-name { font-weight: 800; font-size: 1rem; letter-spacing: -.025em; line-height: 1; }
+    .nav-brand-name span { color: var(--teal); }
+    .nav-brand-sep { width: 1px; height: 14px; background: var(--border); margin: 0 6px; }
+    .nav-brand-sub { font-size: .7rem; font-weight: 500; color: var(--muted-foreground); }
+    .nav-actions { display: flex; align-items: center; gap: .5rem; }
+    .nav-badge {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 999px; background: var(--teal-dim);
+      color: var(--teal); border: 1px solid rgba(0,211,189,.25);
+      white-space: nowrap;
+    }
+    .nav-link {
+      font-size: .75rem; font-weight: 600; padding: 5px 12px;
+      border-radius: 8px; border: 1.5px solid var(--primary);
+      color: var(--primary); background: transparent;
+      text-decoration: none;
+      transition: background .15s, color .15s;
+      display: inline-flex; align-items: center; gap: 5px;
+    }
+    .nav-link:hover { background: var(--primary); color: var(--primary-foreground); }
+
+    /* ── LAYOUT ────────────────────────────────────────────────── */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* ── HERO ──────────────────────────────────────────────────── */
+    .hero {
+      padding: 3.5rem 0 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .7rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--teal);
+      margin-bottom: 1rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 20px; height: 2px;
+      background: var(--teal); border-radius: 1px;
+    }
+    .hero h1 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 800; line-height: 1.2;
+      margin-bottom: .75rem; letter-spacing: -.02em;
+    }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero-sub {
+      color: var(--muted-foreground); font-size: .95rem;
+      max-width: 640px; margin-bottom: 1.5rem;
+    }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 6px; border: 1px solid var(--border);
+      color: var(--muted-foreground); background: var(--card);
+      font-family: var(--font-mono);
+    }
+
+    /* ── TAB NAVIGATION ─────────────────────────────────────────── */
+    .tab-nav-wrap {
+      position: sticky; top: 56px; z-index: 40;
+      background: rgba(18,20,27,.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 0;
+    }
+    .tab-nav {
+      max-width: 900px; margin: 0 auto;
+      display: flex; gap: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding: 0 1.5rem;
+    }
+    .tab-nav::-webkit-scrollbar { display: none; }
+    .tab-btn {
+      flex-shrink: 0;
+      background: none; border: none; cursor: pointer;
+      font-family: var(--font-sans); font-size: .8rem; font-weight: 600;
+      color: var(--muted-foreground);
+      padding: 14px 16px 12px;
+      border-bottom: 2px solid transparent;
+      transition: color .15s, border-color .15s;
+      display: flex; align-items: center; gap: 6px;
+      white-space: nowrap;
+    }
+    .tab-btn:hover { color: var(--foreground); }
+    .tab-btn.active { color: var(--teal); border-bottom-color: var(--teal); }
+    .tab-btn .tab-icon { font-size: .9rem; }
+
+    /* ── TAB SECTIONS ───────────────────────────────────────────── */
+    .tab-section { display: none; padding: 2.5rem 0 3rem; }
+    .tab-section.active { display: block; animation: fadeUp .25s ease; }
+
+    /* ── CARDS ─────────────────────────────────────────────────── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .card-header {
+      display: flex; align-items: flex-start;
+      gap: .75rem; margin-bottom: 1.25rem;
+      padding-bottom: 1rem; border-bottom: 1px solid var(--border);
+    }
+    .card-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
+      background: var(--teal-dim); color: var(--teal);
+    }
+    .card-icon.red-bg { background: rgba(220,38,38,.12); }
+    .card-icon.amber-bg { background: rgba(251,191,36,.1); }
+    .card-icon.green-bg { background: rgba(132,204,22,.1); }
+    .card-title { font-weight: 700; font-size: 1rem; margin-bottom: 2px; }
+    .card-subtitle { font-size: .78rem; color: var(--muted-foreground); }
+
+    /* ── INFO BOXES ────────────────────────────────────────────── */
+    .info-box {
+      border-radius: var(--radius); padding: 12px 16px;
+      font-size: .82rem; line-height: 1.65;
+      display: flex; gap: 10px; margin-bottom: .75rem;
+    }
+    .info-box:last-child { margin-bottom: 0; }
+    .info-box-icon { flex-shrink: 0; font-size: 1rem; margin-top: 1px; }
+    .info-teal { background: var(--teal-dim); border-left: 3px solid var(--teal); }
+    .info-amber { background: rgba(251,191,36,.08); border-left: 3px solid rgba(251,191,36,.5); }
+    .info-red { background: rgba(220,38,38,.08); border-left: 3px solid rgba(220,38,38,.4); }
+    .info-gray { background: var(--muted); border-left: 3px solid var(--border); }
+    .info-green { background: rgba(132,204,22,.08); border-left: 3px solid rgba(132,204,22,.4); }
+    .info-orange { background: rgba(234,88,12,.08); border-left: 3px solid rgba(234,88,12,.4); }
+
+    /* ── SECTION TITLES ─────────────────────────────────────────── */
+    .section-title {
+      font-size: 1.2rem; font-weight: 800;
+      margin-bottom: .25rem; letter-spacing: -.015em;
+    }
+    .section-subtitle {
+      font-size: .82rem; color: var(--muted-foreground);
+      margin-bottom: 1.5rem;
+    }
+    .section-divider {
+      border: none; border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+
+    /* ── PROSE ─────────────────────────────────────────────────── */
+    .prose p {
+      font-size: .88rem; line-height: 1.75;
+      color: oklch(85% .012 250);
+      margin-bottom: .85rem;
+    }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose strong { color: var(--foreground); font-weight: 700; }
+    .prose em { color: var(--teal); font-style: normal; }
+
+    /* ── DOSE TABLE ─────────────────────────────────────────────── */
+    .dose-table {
+      width: 100%; border-collapse: collapse;
+      font-size: .82rem; margin: 1rem 0;
+    }
+    .dose-table th {
+      text-align: left; padding: 8px 12px;
+      font-size: .72rem; font-weight: 700; letter-spacing: .06em;
+      text-transform: uppercase; color: var(--muted-foreground);
+      border-bottom: 2px solid var(--border);
+      background: var(--muted);
+    }
+    .dose-table th:first-child { border-radius: var(--radius) 0 0 0; }
+    .dose-table th:last-child { border-radius: 0 var(--radius) 0 0; }
+    .dose-table td {
+      padding: 9px 12px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+    .dose-table tr:last-child td { border-bottom: none; }
+    .dose-table tr:hover td { background: var(--accent); }
+    .dose-table .drink-name { font-weight: 600; }
+    .dose-table .caffeine-val { font-family: var(--font-mono); font-weight: 600; }
+    .dose-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: .68rem; font-weight: 700; padding: 2px 8px;
+      border-radius: 999px;
+    }
+    .dose-safe { background: rgba(0,211,189,.15); color: var(--teal); border: 1px solid rgba(0,211,189,.3); }
+    .dose-moderate { background: rgba(132,204,22,.12); color: #86efac; border: 1px solid rgba(132,204,22,.3); }
+    .dose-caution { background: rgba(251,191,36,.12); color: #fbbf24; border: 1px solid rgba(251,191,36,.3); }
+    .dose-danger { background: rgba(220,38,38,.12); color: #f87171; border: 1px solid rgba(220,38,38,.3); }
+
+    /* ── RISK SPECTRUM ──────────────────────────────────────────── */
+    .risk-spectrum {
+      background: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px);
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0;
+    }
+    .risk-spectrum-title {
+      font-size: .72rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--muted-foreground);
+      margin-bottom: 1rem; font-family: var(--font-mono);
+    }
+    .risk-bar-wrap { position: relative; margin-bottom: .5rem; }
+    .risk-bar {
+      height: 10px; border-radius: 5px;
+      background: linear-gradient(to right,
+        rgba(0,211,189,.8) 0%,
+        rgba(132,204,22,.8) 30%,
+        rgba(251,191,36,.8) 55%,
+        rgba(234,88,12,.8) 75%,
+        rgba(220,38,38,.9) 100%);
+      margin-bottom: .6rem;
+    }
+    .risk-bar-labels {
+      display: flex; justify-content: space-between;
+      font-size: .68rem; color: var(--muted-foreground);
+      font-family: var(--font-mono);
+    }
+
+    /* ── MECHANISM LIST ─────────────────────────────────────────── */
+    .mech-list {
+      list-style: none; padding: 0; margin: .75rem 0;
+    }
+    .mech-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 7px 0; border-bottom: 1px solid var(--border);
+      font-size: .83rem;
+    }
+    .mech-list li:last-child { border-bottom: none; }
+    .mech-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--teal); flex-shrink: 0; margin-top: 5px;
+    }
+    .mech-dot.red { background: var(--red); }
+    .mech-dot.amber { background: var(--amber); }
+    .mech-dot.orange { background: var(--orange); }
+
+    /* ── SPECIAL POPULATION CARDS ───────────────────────────────── */
+    .pop-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem; margin: 1rem 0;
+    }
+    .pop-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px);
+      padding: 1rem 1.25rem;
+      transition: border-color .15s;
+    }
+    .pop-card:hover { border-color: var(--primary); }
+    .pop-card-header {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: .75rem;
+    }
+    .pop-icon { font-size: 1.5rem; }
+    .pop-name { font-weight: 700; font-size: .9rem; }
+    .pop-sub { font-size: .72rem; color: var(--muted-foreground); }
+    .pop-limit {
+      font-size: 1.4rem; font-weight: 800;
+      font-family: var(--font-mono); color: var(--teal);
+      line-height: 1.1;
+    }
+    .pop-limit-label { font-size: .72rem; color: var(--muted-foreground); margin-bottom: .5rem; }
+    .pop-note { font-size: .75rem; color: var(--muted-foreground); margin-top: .5rem; line-height: 1.5; }
+
+    /* ── CALCULATOR ─────────────────────────────────────────────── */
+    .calc-row {
+      display: grid;
+      grid-template-columns: 1fr 80px 48px;
+      gap: .5rem; align-items: center;
+      margin-bottom: .5rem;
+    }
+    .calc-select, .calc-input {
+      background: var(--input); border: 1px solid var(--border);
+      border-radius: var(--radius); color: var(--foreground);
+      font-family: var(--font-sans); font-size: .82rem;
+      padding: 8px 10px; outline: none; width: 100%;
+      transition: border-color .15s;
+    }
+    .calc-select:focus, .calc-input:focus { border-color: var(--primary); }
+    .calc-input { font-family: var(--font-mono); text-align: center; }
+    .calc-remove {
+      background: none; border: 1px solid var(--border);
+      border-radius: var(--radius); color: var(--muted-foreground);
+      cursor: pointer; padding: 7px; font-size: .8rem; line-height: 1;
+      transition: all .15s; width: 100%;
+    }
+    .calc-remove:hover { background: rgba(220,38,38,.15); border-color: rgba(220,38,38,.4); color: #f87171; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: .85rem; font-weight: 600; padding: 10px 20px;
+      border-radius: calc(var(--radius) + 2px);
+      border: none; cursor: pointer;
+      transition: all .15s; white-space: nowrap;
+      font-family: var(--font-sans);
+    }
+    .btn-primary { background: var(--primary); color: #000; font-weight: 700; }
+    .btn-primary:hover { opacity: .9; transform: translateY(-1px); }
+    .btn-secondary { background: var(--muted); color: var(--foreground); border: 1px solid var(--border); }
+    .btn-secondary:hover { background: var(--accent); }
+    .btn-row { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 1rem; }
+
+    .calc-result {
+      display: none;
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px);
+      padding: 1.25rem 1.5rem; margin-top: 1.25rem;
+      animation: fadeUp .3s ease;
+    }
+    .calc-result.show { display: block; }
+    .calc-total-wrap { display: flex; align-items: baseline; gap: 8px; margin-bottom: .25rem; }
+    .calc-total-val { font-size: 2.4rem; font-weight: 800; font-family: var(--font-mono); }
+    .calc-total-unit { font-size: .8rem; color: var(--muted-foreground); }
+    .calc-verdict { font-size: .85rem; font-weight: 700; margin-bottom: 1rem; }
+
+    /* ── EVIDENCE TABLE ─────────────────────────────────────────── */
+    .ev-table { width: 100%; border-collapse: collapse; font-size: .78rem; margin: 1rem 0; }
+    .ev-table th {
+      text-align: left; padding: 7px 10px;
+      font-size: .68rem; font-weight: 700; letter-spacing: .06em;
+      text-transform: uppercase; color: var(--muted-foreground);
+      border-bottom: 2px solid var(--border);
+      background: var(--muted);
+    }
+    .ev-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
+    .ev-table tr:last-child td { border-bottom: none; }
+    .ev-table tr:hover td { background: var(--accent); }
+    .ev-grade { font-family: var(--font-mono); font-weight: 700; font-size: .72rem; }
+    .ev-teal { color: var(--teal); }
+    .ev-amber { color: #fbbf24; }
+    .ev-red { color: #f87171; }
+
+    /* ── REFERENCE LIST ─────────────────────────────────────────── */
+    .ref-list { list-style: none; padding: 0; counter-reset: ref-count; }
+    .ref-list li {
+      counter-increment: ref-count;
+      display: flex; gap: 10px;
+      padding: 8px 0; border-bottom: 1px solid var(--border);
+      font-size: .75rem; line-height: 1.6; color: var(--muted-foreground);
+    }
+    .ref-list li:last-child { border-bottom: none; }
+    .ref-list li::before {
+      content: counter(ref-count) ".";
+      font-family: var(--font-mono); font-size: .72rem; font-weight: 700;
+      color: var(--teal); flex-shrink: 0; min-width: 18px;
+    }
+
+    /* ── FAQ ACCORDION ──────────────────────────────────────────── */
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: .5rem;
+      overflow: hidden;
+    }
+    .faq-q {
+      width: 100%; background: var(--card); border: none;
+      padding: 14px 16px; text-align: left; cursor: pointer;
+      font-family: var(--font-sans); font-size: .85rem; font-weight: 600;
+      color: var(--foreground);
+      display: flex; justify-content: space-between; align-items: center;
+      transition: background .15s;
+    }
+    .faq-q:hover { background: var(--accent); }
+    .faq-q .arrow { font-size: .7rem; transition: transform .25s; flex-shrink: 0; color: var(--teal); }
+    .faq-item.open .faq-q .arrow { transform: rotate(180deg); }
+    .faq-a {
+      display: none;
+      padding: 12px 16px 14px;
+      background: var(--muted);
+      font-size: .83rem; line-height: 1.7;
+      color: oklch(83% .012 250);
+      border-top: 1px solid var(--border);
+    }
+    .faq-item.open .faq-a { display: block; animation: fadeUp .2s ease; }
+
+    /* ── DISCLAIMER ─────────────────────────────────────────────── */
+    .disclaimer {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 12px 16px;
+      font-size: .75rem; color: var(--muted-foreground);
+      line-height: 1.6; margin-top: 1.5rem;
+    }
+
+    /* ── ANIMATIONS ─────────────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── FOOTER ─────────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 0; margin-top: 2rem;
+    }
+    .footer-inner {
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-copy { font-size: .75rem; color: var(--muted-foreground); }
+
+    /* ── RESPONSIVE ─────────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .pop-grid { grid-template-columns: 1fr 1fr; }
+      .calc-row { grid-template-columns: 1fr 60px 36px; }
+      .dose-table th:nth-child(3), .dose-table td:nth-child(3) { display: none; }
+    }
+    @media (max-width: 480px) {
+      .pop-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#">
+    <div class="nav-brand-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+      </svg>
+    </div>
+    <div class="nav-brand-name">Lucas<span>Cardio</span></div>
+    <div class="nav-brand-sep"></div>
+    <div class="nav-brand-sub">Educação ao Paciente</div>
+  </a>
+  <div class="nav-actions">
+    <span class="nav-badge">Baseado em Evidências</span>
+    <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      lucascardio.com.br
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="container">
+  <div class="hero">
+    <div class="hero-eyebrow">Cardiologia · Medicina Preventiva</div>
+    <h1>Café, Energéticos e<br>Saúde do <em>Coração</em></h1>
+    <p class="hero-sub">
+      O que a ciência realmente diz sobre café, chá, bebidas energéticas, guaraná e suplementos pré-treino. Um guia completo e atualizado, baseado em evidências de alta qualidade, para você tomar decisões informadas.
+    </p>
+    <div class="hero-tags">
+      <span class="tag">van Dam · NEJM 2020</span>
+      <span class="tag">UK Biobank 2022</span>
+      <span class="tag">Heart Rhythm 2024</span>
+      <span class="tag">GeroScience 2024</span>
+      <span class="tag">J Pediatrics 2024</span>
+      <span class="tag">AHA/ACC 2023</span>
+      <span class="tag">DECAF RCT 2025</span>
+    </div>
+  </div>
+</div>
+
+<!-- TAB NAVIGATION -->
+<div class="tab-nav-wrap">
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="showTab('cafe')"><span class="tab-icon">☕</span>Café & Cafeína</button>
+    <button class="tab-btn" onclick="showTab('energeticos')"><span class="tab-icon">⚡</span>Bebidas Energéticas</button>
+    <button class="tab-btn" onclick="showTab('pretreino')"><span class="tab-icon">🏋️</span>Pré-Treino</button>
+    <button class="tab-btn" onclick="showTab('guarana')"><span class="tab-icon">🌿</span>Guaraná & Chás</button>
+    <button class="tab-btn" onclick="showTab('populacoes')"><span class="tab-icon">👥</span>Populações Especiais</button>
+    <button class="tab-btn" onclick="showTab('calculadora')"><span class="tab-icon">📊</span>Calculadora</button>
+    <button class="tab-btn" onclick="showTab('referencias')"><span class="tab-icon">📖</span>Referências</button>
+  </div>
+</div>
+
+<main>
+<div class="container">
+
+<!-- ═══════════════════════════════ TAB 1: CAFÉ ════════════════════════════════ -->
+<div id="tab-cafe" class="tab-section active">
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">☕</div>
+      <div>
+        <div class="card-title">O que a ciência atual diz sobre café</div>
+        <div class="card-subtitle">van Dam RM et al. NEJM 2020 · GeroScience 2024 · UK Biobank 2022</div>
+      </div>
+    </div>
+    <div class="prose">
+      <p>
+        O café é a bebida mais consumida no mundo depois da água, e ao longo de décadas acumulou evidências crescentes de que, em doses moderadas, <strong>não representa risco cardiovascular aumentado — e pode conferir benefícios mensuráveis.</strong> A revisão abrangente publicada no <em>New England Journal of Medicine</em> em 2020 (van Dam, Hu, Willett) consolidou esse entendimento a partir de centenas de estudos populacionais.
+      </p>
+      <p>
+        É crucial separar dois conceitos que são frequentemente confundidos: <strong>cafeína isolada</strong> versus <strong>café como bebida complexa</strong>. O café contém mais de mil compostos bioativos além da cafeína — principalmente ácido clorogênico, trigonelina, diterpenos (cafestol e kahweol, dependendo do preparo) e uma grande variedade de antioxidantes fenólicos. São esses compostos que explicam, em boa medida, por que os efeitos cardiovasculares do café são distintos dos da cafeína pura.
+      </p>
+    </div>
+
+    <div class="info-teal info-box" style="margin-top:1rem;">
+      <span class="info-box-icon">✅</span>
+      <div><strong>Resumo da evidência:</strong> 3–5 xícaras de café filtrado por dia estão associadas a <strong>redução de 15%</strong> no risco cardiovascular em meta-análise com 1.279.804 participantes e 36.352 eventos (dose ideal ~3,5 xícaras/dia). A relação é em curva J/U — sem benefício em zero xícaras, ótimo em dose moderada, e sem aumento relevante até ~6 xícaras. <small style="opacity:.75;">(Ding 2014; GeroScience 2024)</small></div>
+    </div>
+  </div>
+
+  <!-- Seção: Mecanismos -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon" style="font-size:.9rem;">🔬</div>
+      <div>
+        <div class="card-title">Mecanismos cardioprotetores do café</div>
+        <div class="card-subtitle">Por que o café filtrado é diferente de cafeína pura</div>
+      </div>
+    </div>
+    <ul class="mech-list">
+      <li><div class="mech-dot"></div><div><strong>Ácido clorogênico:</strong> principal polifenol do café; reduz estresse oxidativo, melhora a sensibilidade à insulina e exerce efeito anti-inflamatório. Contrabalança parte do efeito hipertensivo da cafeína ao promover vasodilatação via óxido nítrico.</div></li>
+      <li><div class="mech-dot"></div><div><strong>Antioxidantes fenólicos:</strong> o café é a maior fonte individual de antioxidantes na dieta ocidental. Reduzem a oxidação de LDL, um passo-chave na aterogênese.</div></li>
+      <li><div class="mech-dot amber"></div><div><strong>Cafeína (dose-dependente):</strong> antagonismo de receptores de adenosina → aumento de catecolaminas → elevação transitória da pressão arterial (5–10 mmHg) e frequência cardíaca. Esse efeito é atenuado com o uso habitual (tolerância) e não se traduz em hipertensão crônica em adultos saudáveis.</div></li>
+      <li><div class="mech-dot"></div><div><strong>Efeito metabólico geral:</strong> redução do risco de diabetes tipo 2 (dose-resposta linear, mesmo para café descafeinado), melhora da função hepática e redução de biomarcadores inflamatórios (PCR, IL-6).</div></li>
+      <li><div class="mech-dot amber"></div><div><strong>Diterpenos (cafestol e kahweol):</strong> presentes em café fervido, prensa francesa e espresso não filtrado. Inibem síntese de ácidos biliares → elevam LDL-colesterol. O café filtrado ou coado em papel retém 95% desses compostos — <strong>portanto o método de preparo importa.</strong></div></li>
+    </ul>
+  </div>
+
+  <!-- Seção: Arritmias -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon" style="background:rgba(132,204,22,.1);">💓</div>
+      <div>
+        <div class="card-title">Café e Fibrilação Atrial — desmistificando um mito</div>
+        <div class="card-subtitle">Meta-análise 2022 · DECAF RCT 2025 · AHA/ACC 2023</div>
+      </div>
+    </div>
+    <div class="prose">
+      <p>
+        Durante décadas, pacientes com fibrilação atrial (FA) foram orientados a evitar café — uma recomendação baseada em estudos antigos e na plausibilidade fisiológica do efeito adrenérgico da cafeína. A evidência contemporânea revisou substancialmente esse paradigma.
+      </p>
+      <p>
+        Uma meta-análise de 2022 com 10 coortes prospectivas (723.825 participantes, 30.169 eventos de FA) demonstrou que o consumo de café <strong>não aumenta o risco de FA</strong> e pode apresentar tendência protetora. Os risco relativo para 4+ xícaras/dia versus não consumidores foi de 0,96 (IC 95% 0,88–1,03). A análise dose-resposta sugere risco decrescente de FA com o aumento do consumo até 7 xícaras/dia.
+      </p>
+      <p>
+        O ensaio clínico randomizado <strong>DECAF</strong> (publicado 2025, JAMA), inscreveu 200 adultos com FA persistente planejados para cardioversão elétrica, randomizando-os para consumo habitual de café versus abstinência por 6 meses. O desfecho primário foi recorrência de FA. Os resultados reforçam que a abstinência cafeínica não oferece proteção adicional contra recorrência de arritmia.
+      </p>
+    </div>
+    <div class="info-teal info-box" style="margin-top:.75rem;">
+      <span class="info-box-icon">💡</span>
+      <div><strong>Diretriz AHA/ACC 2023:</strong> "Não há benefício comprovado da abstinência de cafeína para prevenir recorrência de FA." A abstinência pode ser útil apenas nos raros indivíduos que identificam cafeína como gatilho idiossincrático específico — o que deve ser avaliado individualmente.</div>
+    </div>
+    <div class="info-amber info-box">
+      <span class="info-box-icon">⚠️</span>
+      <div><strong>Exceção — espresso em alta dose:</strong> Um estudo com 400 pacientes com FA sugeriu que consumo elevado de espresso (não filtrado) associou-se a maior risco de FA persistente. Isso pode refletir os diterpenos e/ou a dose total de cafeína. Consumo moderado (1–3 cafés filtrados/dia) permanece seguro mesmo nessa população.</div>
+    </div>
+  </div>
+
+  <!-- Seção: Limites e Dose -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon" style="background:var(--teal-dim);">📏</div>
+      <div>
+        <div class="card-title">Quanto é "moderado"? Limites por dose e preparo</div>
+        <div class="card-subtitle">Baseado em EFSA 2015 · FDA · van Dam NEJM 2020</div>
+      </div>
+    </div>
+
+    <div class="risk-spectrum">
+      <div class="risk-spectrum-title">🔴 Espectro de consumo diário de cafeína (adulto saudável)</div>
+      <div class="risk-bar"></div>
+      <div class="risk-bar-labels">
+        <span>0 mg</span>
+        <span>200 mg</span>
+        <span>400 mg</span>
+        <span>600 mg</span>
+        <span>&gt;800 mg</span>
+      </div>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.75rem;">
+        <span class="dose-badge dose-safe">0–200 mg · Seguro</span>
+        <span class="dose-badge dose-moderate">200–400 mg · Ideal / Benefício máximo</span>
+        <span class="dose-badge dose-caution">400–600 mg · Cautela</span>
+        <span class="dose-badge dose-danger">&gt;600 mg · Excesso / Risco aumentado</span>
+      </div>
+    </div>
+
+    <table class="dose-table">
+      <thead>
+        <tr>
+          <th>Bebida / Preparo</th>
+          <th>Volume</th>
+          <th>Cafeína aprox.</th>
+          <th>Nível</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="drink-name">Café coado/filtrado</td><td>200 mL</td><td class="caffeine-val">100–140 mg</td><td><span class="dose-badge dose-moderate">Moderado</span></td></tr>
+        <tr><td class="drink-name">Espresso (shot)</td><td>30 mL</td><td class="caffeine-val">60–75 mg</td><td><span class="dose-badge dose-safe">Baixo/por dose</span></td></tr>
+        <tr><td class="drink-name">Café solúvel/instantâneo</td><td>200 mL</td><td class="caffeine-val">50–80 mg</td><td><span class="dose-badge dose-safe">Baixo</span></td></tr>
+        <tr><td class="drink-name">Café prensa francesa / fervido</td><td>200 mL</td><td class="caffeine-val">100–135 mg</td><td><span class="dose-badge dose-moderate">Moderado</span></td></tr>
+        <tr><td class="drink-name">Café descafeinado</td><td>200 mL</td><td class="caffeine-val">2–12 mg</td><td><span class="dose-badge dose-safe">Mínimo</span></td></tr>
+        <tr><td class="drink-name">Chá preto</td><td>200 mL</td><td class="caffeine-val">40–70 mg</td><td><span class="dose-badge dose-safe">Baixo</span></td></tr>
+        <tr><td class="drink-name">Chá verde</td><td>200 mL</td><td class="caffeine-val">20–40 mg</td><td><span class="dose-badge dose-safe">Baixo</span></td></tr>
+        <tr><td class="drink-name">Refrigerante de cola (350 mL)</td><td>350 mL</td><td class="caffeine-val">35–45 mg</td><td><span class="dose-badge dose-safe">Baixo</span></td></tr>
+        <tr><td class="drink-name">Red Bull (1 lata)</td><td>250 mL</td><td class="caffeine-val">80 mg</td><td><span class="dose-badge dose-caution">Cautela*</span></td></tr>
+        <tr><td class="drink-name">Monster Energy (1 lata)</td><td>473 mL</td><td class="caffeine-val">160 mg</td><td><span class="dose-badge dose-danger">⚠️ Alto</span></td></tr>
+        <tr><td class="drink-name">Bang / Celsius Energy</td><td>473 mL</td><td class="caffeine-val">200–300 mg</td><td><span class="dose-badge dose-danger">⚠️ Muito Alto</span></td></tr>
+      </tbody>
+    </table>
+    <div class="info-gray info-box" style="margin-top:.75rem;">
+      <span class="info-box-icon">📌</span>
+      <div>*Não é somente a cafeína que torna energéticos perigosos — a combinação com taurina, guaraná, niacina em altas doses e outros estimulantes cria um perfil farmacológico distinto e imprevisível, diferente do café simples.</div>
+    </div>
+  </div>
+
+  <!-- FAQ Café -->
+  <div style="margin: 1.5rem 0;">
+    <div class="section-title" style="margin-bottom:1rem;">Perguntas frequentes sobre café e coração</div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Tenho hipertensão. Posso tomar café?
+        <span class="arrow">▼</span>
+      </button>
+      <div class="faq-a">
+        Sim, em consumo moderado (até 3 xícaras/dia de café filtrado). Embora a cafeína isolada provoque elevação transitória da pressão arterial (5–10 mmHg por até 3 horas), o café habitual não está associado a aumento da pressão a longo prazo em meta-análises. Usuários regulares desenvolvem tolerância ao efeito pressórico. O ácido clorogênico do café tem efeito oposto — vasodilatador. Dito isso, se você perceber que seu PA sobe consistentemente após o café, converse com seu médico para ajuste individualizado.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Café descafeinado é opção segura para quem tem doença cardíaca?
+        <span class="arrow">▼</span>
+      </button>
+      <div class="faq-a">
+        Sim, é uma excelente alternativa. O café descafeinado mantém os compostos bioativos benéficos (polifenóis, ácido clorogênico) e em estudos mantém associação protetora com mortalidade cardiovascular, independentemente da cafeína. Para gestantes, portadores de arritmias sensíveis à cafeína ou quem usa medicamentos com interação com cafeína (ex: teofilina), é a opção preferida.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Qual preparo de café é mais saudável para o colesterol?
+        <span class="arrow">▼</span>
+      </button>
+      <div class="faq-a">
+        O <strong>café filtrado (coado em papel)</strong> é o mais recomendado para saúde cardiovascular. O filtro retém 95% dos diterpenos cafestol e kahweol — compostos que elevam o LDL-colesterol ao inibir a síntese hepática de ácidos biliares. Prensa francesa, café fervido (turco, napolitano) e espresso não filtrado contêm concentrações significativas dessas substâncias. Estudo do Tromsø (2022) demonstrou que o consumo de espresso associou-se a aumento do colesterol total versus café filtrado. Para quem tem LDL elevado ou risco cardiovascular aumentado, o café coado em papel é a escolha mais segura.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Tive infarto. Posso voltar a tomar café?
+        <span class="arrow">▼</span>
+      </button>
+      <div class="faq-a">
+        Segundo revisão sistemática e meta-análise (Ribeiro et al., Nutr Metab Cardiovasc Dis 2020) específica sobre consumo de café após infarto do miocárdio, <strong>o consumo moderado de café (até 2–3 xícaras/dia) é seguro</strong> e não aumenta o risco de novos eventos. Dados do registro CLARIFY (coronariopatas estáveis em múltiplos países) corroboram esse achado. Recomenda-se evitar o consumo em excesso, especialmente nos primeiros dias após o evento, e optar por café filtrado. Sempre alinhe com seu cardiologista.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Café pode causar palpitações? Isso é perigoso?
+        <span class="arrow">▼</span>
+      </button>
+      <div class="faq-a">
+        Palpitações após café ocorrem por estimulação adrenérgica da cafeína, que aumenta a automaticidade e a condutividade do tecido cardíaco. Em pessoas sem cardiopatia estrutural, isso geralmente se traduz em extrassístoles benignas (batimentos extras), que a maioria sente como "falhas" ou palpitações. Não representam perigo e tendem a desaparecer com redução da dose. Se as palpitações forem persistentes, acompanhadas de tontura, síncope ou ocorrerem em portadores de cardiopatia conhecida, é fundamental uma avaliação médica com ECG e, eventualmente, Holter 24h.
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════ TAB 2: ENERGÉTICOS ═══════════════════════════ -->
+<div id="tab-energeticos" class="tab-section">
+
+  <div class="info-red info-box" style="margin-bottom:1.5rem;">
+    <span class="info-box-icon">🚨</span>
+    <div><strong>Atenção — esta seção aborda riscos graves.</strong> Bebidas energéticas são responsáveis por eventos cardiovasculares sérios, incluindo infarto, arritmias potencialmente fatais e morte súbita, especialmente em jovens e em indivíduos com cardiopatias não diagnosticadas. O risco não é hipotético: é documentado em ensaios clínicos e séries de casos de alta qualidade.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon red-bg">⚡</div>
+      <div>
+        <div class="card-title">O que são bebidas energéticas e por que são diferentes do café</div>
+        <div class="card-subtitle">Freeman AM et al. JACC 2018 · Higgins JP et al. Curr Sports Med Rep 2018</div>
+      </div>
+    </div>
+    <div class="prose">
+      <p>
+        As bebidas energéticas são classificadas nos EUA como <strong>suplementos dietéticos</strong> (e não como alimentos ou medicamentos), o que significa que a FDA não as regula da mesma forma — não há exigência de testes de segurança pré-mercado. No Brasil, a ANVISA regula o teor máximo de cafeína em bebidas (até 35 mg/100mL), mas o mercado de importados e produtos não regulamentados é amplo.
+      </p>
+      <p>
+        Uma lata de 250 mL de Red Bull contém ~80 mg de cafeína (similar a um café). Porém, latas de maior volume (Monster 473 mL: 160 mg; Bang/Celsius: 200–300 mg) já excedem níveis de cautela. O problema real não é só a cafeína — é a <strong>combinação sinérgica</strong> de múltiplos estimulantes: taurina (1.000 mg/lata), glucuronolactona, guaraná, niacina em megadose, vitaminas B em excesso, e às vezes ervas como ginseng e erva-mate, com interações farmacológicas pouco estudadas.
+      </p>
+    </div>
+
+    <div class="info-amber info-box" style="margin-top:1rem;">
+      <span class="info-box-icon">📊</span>
+      <div><strong>Escala do mercado:</strong> O mercado global de energéticos gerou mais de US$18 bilhões nos EUA em 2023, com crescimento de 73% entre 2018–2023. Red Bull e Monster dominam mais de 70% das vendas. A faixa etária de 12–35 anos é o principal público-alvo das campanhas de marketing.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon red-bg">❤️‍🔥</div>
+      <div>
+        <div class="card-title">Efeitos cardiovasculares documentados</div>
+        <div class="card-subtitle">Basrai RCT 2019 · Somers KR 2020 · J Pediatrics 2024</div>
+      </div>
+    </div>
+
+    <div class="info-red info-box">
+      <span class="info-box-icon">🫀</span>
+      <div>
+        <strong>Efeitos agudos (RCT controlado, Basrai et al. J Nutr 2019):</strong> Após uma única lata de energético em jovens saudáveis, observou-se elevação da PA sistólica de 116,9 → 120,7 mmHg, prolongamento do intervalo QTc de 393,3 → 400,8 ms, e aumento de marcadores de estresse oxidativo. Esses efeitos foram significativamente maiores do que os observados com cafeína isolada equivalente.
+      </div>
+    </div>
+
+    <ul class="mech-list">
+      <li><div class="mech-dot red"></div><div><strong>Prolongamento do QTc (7–25 ms):</strong> Aumenta risco de torsades de pointes e fibrilação ventricular. Múltiplos RCTs confirmaram esse efeito. Em portadores de SQTL (Síndrome do QT Longo congênita), esse prolongamento pode ser fatal.</div></li>
+      <li><div class="mech-dot red"></div><div><strong>Fibrilação atrial e taquicardia ventricular:</strong> Relatados em jovens sem cardiopatia prévia documentada após consumo de energéticos. O mecanismo envolve hipercatecolaminemia e alteração da repolarização ventricular.</div></li>
+      <li><div class="mech-dot red"></div><div><strong>Vasoespasmo coronariano e infarto do miocárdio:</strong> Casos documentados em adultos jovens (20–35 anos) sem doença arterial obstrutiva prévia. O mecanismo pode envolver ação vasoconstritora combinada de cafeína, taurina e estimulação adrenérgica.</div></li>
+      <li><div class="mech-dot red"></div><div><strong>Cardiomiopatia de Takotsubo:</strong> Síndrome de balonamento apical por surto adrenérgico agudo, com apresentação de infarto sem obstrução coronariana (MINOCA). Casos associados temporalmente ao consumo de energéticos.</div></li>
+      <li><div class="mech-dot red"></div><div><strong>Dissecção aórtica:</strong> Casos reportados em jovens hipertensos após consumo de grande quantidade de energéticos, possivelmente por pico hipertensivo agudo.</div></li>
+      <li><div class="mech-dot amber"></div><div><strong>Aumento de agregação plaquetária e disfunção endotelial:</strong> Mesmo doses únicas aumentam marcadores de ativação plaquetária, elevando potencialmente o risco trombótico.</div></li>
+      <li><div class="mech-dot red"></div><div><strong>Morte súbita cardíaca:</strong> Série do Mayo Clinic (Martinez et al., Heart Rhythm 2024) identificou 7 pacientes com parada cardiorrespiratória temporalmente associada ao consumo de energéticos — 87% como evento sentinel (primeiro evento arrítmico documentado). Diagnósticos: SQTL, TVPC (taquicardia ventricular polimórfica catecolaminérgica) e FV idiopática.</div></li>
+    </ul>
+
+    <div class="info-red info-box" style="margin-top:1rem;">
+      <span class="info-box-icon">🔬</span>
+      <div>
+        <strong>Mayo Clinic 2024 — Heart Rhythm:</strong> Revisão de 5.000+ pacientes avaliados no laboratório de arritmias genéticas (2000–2023). Entre 144 sobreviventes de parada cardíaca, 7 (5%) tiveram associação temporal com energéticos. Média de idade ao evento: <strong>29 anos</strong>. 6 de 7 eram do sexo feminino. "Os energéticos provavelmente contribuíram para uma 'tempestade perfeita' de fatores em indivíduos com substrato genético para arritmia." — Dr. Michael Ackerman, Mayo Clinic.
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon red-bg">🍺</div>
+      <div>
+        <div class="card-title">O risco dobra: energético + álcool</div>
+        <div class="card-subtitle">Link JP et al. Pediatr Rep 2024 · Ludwig-Maximilians-University Munich</div>
+      </div>
+    </div>
+    <div class="prose">
+      <p>
+        A combinação de bebida energética com álcool — popularmente consumida em baladas — é particularmente perigosa. O energético mascara a percepção de intoxicação alcoólica (a pessoa bebe mais), ao mesmo tempo que a estimulação adrenérgica se soma à cardiotoxicidade do álcool. Revisão de 2024 (Link et al.) documentou casos de parada cardíaca fora do hospital em adultos jovens de 25 e 28 anos após essa combinação, necessitando de suporte de vida extracorpóreo (ECMO).
+      </p>
+    </div>
+    <div class="info-red info-box" style="margin-top:1rem;">
+      <span class="info-box-icon">🚫</span>
+      <div><strong>Regulação europeia:</strong> Polônia, Letônia e Lituânia já proibiram a venda de bebidas energéticas para menores. A Sociedade Europeia de Cardiologia Pediátrica e a OMS advogam por restrição etária universal. A AAP (Academia Americana de Pediatria) recomenda que crianças e adolescentes <strong>nunca</strong> consumam bebidas energéticas.</div>
+    </div>
+  </div>
+
+  <!-- FAQ Energéticos -->
+  <div style="margin: 1.5rem 0;">
+    <div class="section-title" style="margin-bottom:1rem;">Dúvidas comuns sobre energéticos</div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        "Sou jovem e saudável, eventualmente tomo um energético. Isso é seguro?"
+        <span class="arrow">▼</span>
+      </button>
+      <div class="faq-a">
+        A maioria dos jovens saudáveis tolera um energético ocasional sem eventos graves. O problema é que muitos portadores de cardiopatias arrítmicas genéticas (SQTL, TVPC, síndrome de Brugada) não sabem que têm a condição — e o energético pode ser o fator desencadeante do primeiro evento, que em 5% dos casos pode ser uma parada cardíaca. Além disso, o consumo repetido (diário ou quase diário) impõe um risco cumulativo de disfunção endotelial, aumento da PA e arritmias. Se você pratica esporte de alta intensidade e consome energéticos, o risco é ainda maior (estimulação adrenérgica máxima + substrato arrítmico).
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Tenho arritmia conhecida. Posso tomar energético?
+        <span class="arrow">▼</span>
+      </button>
+      <div class="faq-a">
+        <strong>Não.</strong> Para portadores de qualquer arritmia — especialmente FA, SQTL, TVPC, síndrome de Brugada, taquicardias supraventriculares recorrentes ou cardiomiopatias — bebidas energéticas estão contraindicadas. A combinação de múltiplos estimulantes adrenérgicos com o substrato arrítmico preexistente representa risco inaceitável.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Red Bull tem a mesma cafeína que um café. Por que é mais perigoso?
+        <span class="arrow">▼</span>
+      </button>
+      <div class="faq-a">
+        É um argumento usado pelo próprio marketing da Red Bull, mas é enganoso. Uma lata padrão (250 mL) tem ~80 mg de cafeína, similar a um café — mas contém também 1.000 mg de taurina, glucuronolactona, riboflavina e niacina em doses farmacológicas. A taurina modula canais de sódio e cálcio cardíacos; em combinação com cafeína, produz prolongamento do QTc superior ao que cada substância produziria isoladamente. Em latas maiores (473 mL), a dose de cafeína já é 160–300 mg, em contexto de dose única. E nenhum estudo de segurança a longo prazo foi realizado para essa combinação.
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════ TAB 3: PRÉ-TREINO ════════════════════════════ -->
+<div id="tab-pretreino" class="tab-section">
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon red-bg">🏋️</div>
+      <div>
+        <div class="card-title">Suplementos pré-treino: o que está dentro do pote</div>
+        <div class="card-subtitle">Harty PS et al. JISSN 2018 · Eudy AE et al. AJHP 2013 · EAPC 2022</div>
+      </div>
+    </div>
+    <div class="prose">
+      <p>
+        Os suplementos pré-treino (multi-ingredient pre-workout supplements — MIPS) representam um dos segmentos de mais rápido crescimento no mercado de suplementação esportiva. Sua composição é altamente variável — e deliberadamente obscura. A maioria usa "misturas proprietárias" em que os componentes individuais não têm sua dose especificada no rótulo, apenas o total da mistura.
+      </p>
+      <p>
+        Revisão abrangente publicada no <em>Journal of the International Society of Sports Nutrition</em> (Harty et al. 2018) identificou que <strong>a maioria dos estudos sobre pré-treino dura menos de 8 semanas</strong>, nenhum avaliou segurança cardiovascular a longo prazo, e os estudos existentes apresentam limitações metodológicas sérias.
+      </p>
+    </div>
+
+    <table class="dose-table" style="margin-top:1rem;">
+      <thead>
+        <tr>
+          <th>Ingrediente</th>
+          <th>Dose típica</th>
+          <th>Evidência de eficácia</th>
+          <th>Risco CV</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="drink-name">Cafeína anidra</td><td class="caffeine-val">150–400 mg</td><td>Ergogênica confirmada (potência, foco)</td><td><span class="dose-badge dose-caution">Moderado</span></td></tr>
+        <tr><td class="drink-name">Beta-alanina</td><td class="caffeine-val">2–5 g</td><td>Melhora endurance; formigamento benigno</td><td><span class="dose-badge dose-safe">Baixo</span></td></tr>
+        <tr><td class="drink-name">Creatina</td><td class="caffeine-val">3–5 g</td><td>Comprovada para força/massa muscular</td><td><span class="dose-badge dose-safe">Baixo</span></td></tr>
+        <tr><td class="drink-name">Citrulina malato</td><td class="caffeine-val">6–8 g</td><td>Possível melhora de endurance</td><td><span class="dose-badge dose-safe">Baixo</span></td></tr>
+        <tr><td class="drink-name">Niacina (vit. B3) megadose</td><td class="caffeine-val">20–40 mg</td><td>Sem benefício ergogênico claro</td><td><span class="dose-badge dose-caution">Vasodilatação excessiva</span></td></tr>
+        <tr><td class="drink-name">DMAA (1,3-dimetilamina)</td><td class="caffeine-val">25–75 mg</td><td>SEM evidência sólida</td><td><span class="dose-badge dose-danger">⚠️ Proibido / Fatal</span></td></tr>
+        <tr><td class="drink-name">Sinefrina / extrato cítrico</td><td class="caffeine-val">10–50 mg</td><td>Mínima</td><td><span class="dose-badge dose-danger">⚠️ Alto</span></td></tr>
+        <tr><td class="drink-name">Efedrina</td><td class="caffeine-val">Variável</td><td>Ergogênica, mas proibida</td><td><span class="dose-badge dose-danger">⚠️ Proibida</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="info-red info-box" style="margin-top:1rem;">
+      <span class="info-box-icon">🚫</span>
+      <div><strong>DMAA (3,4-dimetilaminofeniletilamina):</strong> Estimulante simpatomimético estruturalmente similar à anfetamina. Proibido pela FDA desde 2012 após casos de morte e eventos cardiovasculares graves. Ainda encontrado em produtos importados e vendidos on-line. Associado a AVC hemorrágico, hipertensão grave, infarto e morte súbita em jovens atletas. O nome pode aparecer como "geranamine", "methylhexaneamine" ou "1,3-DMAA" em rótulos.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon red-bg">🧨</div>
+      <div>
+        <div class="card-title">Casos clínicos documentados — o que pode acontecer</div>
+        <div class="card-subtitle">Harris BF et al. Mil Med 2017 · Wang SSY. J Sports Sci 2020 · Adami PE et al. EJPC 2022</div>
+      </div>
+    </div>
+    <ul class="mech-list">
+      <li><div class="mech-dot red"></div><div><strong>AVC hemorrágico em militar jovem saudável (Harris et al. Military Medicine 2017):</strong> Uso do pré-treino "Animal Rage XL" em homem jovem, sem fatores de risco, resultou em hemorragia intracerebral. O produto continha DMAA e múltiplos estimulantes. Sequelas neurológicas permanentes.</div></li>
+      <li><div class="mech-dot red"></div><div><strong>Isquemia cardíaca com elevação de troponina em mulher jovem (Wang SSY. J Sports Sci 2020):</strong> Uso de pré-treino comercial causou dor torácica e eletrações de troponina compatíveis com MINOCA (infarto sem obstrução). Coronárias normais à angiografia.</div></li>
+      <li><div class="mech-dot red"></div><div><strong>Hipertensão, arritmias e morte súbita:</strong> Revisão da EAPC (Adami et al. EJPC 2022) consolidou evidência de que substâncias dopantes e ergogênicas — incluindo componentes de pré-treinos — são causa raras mas documentadas de morte súbita em atletas e esportistas recreacionais.</div></li>
+    </ul>
+    <div class="info-amber info-box" style="margin-top:1rem;">
+      <span class="info-box-icon">⚠️</span>
+      <div><strong>Falta de regulamentação:</strong> Estudo de análise laboratorial independente de pré-treinos comercializados encontrou substâncias não declaradas nos rótulos em proporção significativa das amostras. A Eudy et al. (AJHP 2013) concluiu que "a segurança e eficácia da maioria dos ingredientes de pré-treinos não está adequadamente estabelecida."</div>
+    </div>
+    <div class="info-teal info-box">
+      <span class="info-box-icon">💡</span>
+      <div><strong>Alternativa segura:</strong> Cafeína anidra isolada, beta-alanina e creatina têm eficácia comprovada e perfis de segurança razoavelmente bem estabelecidos quando usados em doses recomendadas. Prefira suplementos com ingredientes declarados individualmente e de fabricantes com certificação de qualidade (ex: NSF Certified for Sport no mercado internacional).</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════ TAB 4: GUARANÁ & CHÁS ════════════════════════ -->
+<div id="tab-guarana" class="tab-section">
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon" style="background:rgba(132,204,22,.1);">🌿</div>
+      <div>
+        <div class="card-title">Guaraná: o estimulante brasileiro</div>
+        <div class="card-subtitle">Portella RL et al. Lipids Health Dis 2013 · Chisté LA et al. Oxid Med Cell Longev 2019</div>
+      </div>
+    </div>
+    <div class="prose">
+      <p>
+        O guaraná (<em>Paullinia cupana</em>) é uma planta amazônica cujas sementes contêm <strong>4 a 6 vezes mais cafeína por grama</strong> do que os grãos de café, além de teobromina, teofilina e taninos. Trata-se de um estimulante potente com perfil farmacológico próprio.
+      </p>
+      <p>
+        É fundamental distinguir entre <strong>extrato puro de guaraná</strong> e <strong>refrigerantes de guaraná com adição de açúcar</strong> — porque as evidências apontam em direções opostas.
+      </p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem;">
+      <div>
+        <div class="info-teal info-box">
+          <span class="info-box-icon">✅</span>
+          <div>
+            <strong>Guaraná puro / extrato:</strong> Estudos mostram efeito hipocolesterolêmico (redução de LDL), redução da oxidação de LDL e propriedades anti-inflamatórias via compostos fenólicos. Portella et al. (2013) demonstrou benefícios em idosos. Ruchel et al. (2016) identificou efeitos enzimáticos favoráveis em modelos de hipercolesterolemia.
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="info-red info-box">
+          <span class="info-box-icon">🚫</span>
+          <div>
+            <strong>Refrigerante de guaraná com açúcar:</strong> Chisté et al. (2019) demonstrou em modelo animal (camundongos LDLr-KO) que o consumo piora aterosclerose, aumenta estresse oxidativo e causa dano ao DNA. Os efeitos prejudiciais foram atribuídos ao açúcar livre — não ao extrato de guaraná em si.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-amber info-box" style="margin-top:.5rem;">
+      <span class="info-box-icon">📌</span>
+      <div>Guaraná natural, sem adição de açúcar e em dose controlada, pode ser consumido com segurança por adultos saudáveis. A dose de cafeína deve ser contabilizada no total diário. Nas bebidas energéticas, o guaraná é apenas mais um componente da "mistura estimulante" — sem qualquer benefício demonstrado nesse contexto.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon" style="background:rgba(132,204,22,.1);">🍵</div>
+      <div>
+        <div class="card-title">Chás — evidências cardiovasculares</div>
+        <div class="card-subtitle">Pesquisa emergente com resultados promissores</div>
+      </div>
+    </div>
+
+    <ul class="mech-list">
+      <li><div class="mech-dot"></div><div><strong>Chá verde (Camellia sinensis):</strong> Rico em catequinas (EGCG — epigalocatequina galato), potentes antioxidantes. Meta-análises associam o consumo regular a redução modesta de LDL (-3 mg/dL), pressão arterial (-3 mmHg sistólica) e risco de eventos cardiovasculares. Um estudo demonstrou redução do risco de FA com 1–2 xícaras/dia, com perda do benefício em doses maiores (curva em U).</div></li>
+      <li><div class="mech-dot"></div><div><strong>Chá preto:</strong> Processo de fermentação converte catequinas em teaflavinas e tearubiginas, que também têm propriedades antioxidantes. Evidência modesta para redução de LDL e PA. Cafeína ~40–70 mg/200 mL — dose segura para maioria dos pacientes.</div></li>
+      <li><div class="mech-dot amber"></div><div><strong>Chá mate (erva-mate):</strong> Combinação de cafeína, teobromina e ácido clorogênico. Estudos observacionais brasileiros associam consumo moderado a melhora do perfil lipídico. Contudo, consumo de mate quente em altas quantidades associa-se a risco aumentado de câncer esofágico — relevante para a orientação de consumo a longo prazo.</div></li>
+      <li><div class="mech-dot"></div><div><strong>Chá de hibisco:</strong> Evidência preliminar de efeito hipotensor (redução de ~7 mmHg na PA sistólica), possivelmente por mecanismo diurético e inibição de ECA. Sem impacto negativo cardiovascular documentado.</div></li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════ TAB 5: POPULAÇÕES ════════════════════════════ -->
+<div id="tab-populacoes" class="tab-section">
+
+  <div class="section-title">Limites seguros por população</div>
+  <div class="section-subtitle">As recomendações diferem substancialmente por grupo de risco — personalização é essencial</div>
+
+  <div class="pop-grid">
+
+    <div class="pop-card">
+      <div class="pop-card-header">
+        <div class="pop-icon">🧑</div>
+        <div>
+          <div class="pop-name">Adulto saudável</div>
+          <div class="pop-sub">Sem cardiopatia, sem gravidez</div>
+        </div>
+      </div>
+      <div class="pop-limit-label">Cafeína diária máxima recomendada</div>
+      <div class="pop-limit">400 mg/dia</div>
+      <div class="pop-note">≈ 3–4 xícaras de café filtrado. Acima de 600 mg/dia há associação com risco CV aumentado. Energéticos: evitar ou limitar estritamente.</div>
+    </div>
+
+    <div class="pop-card" style="border-color: rgba(251,191,36,.25);">
+      <div class="pop-card-header">
+        <div class="pop-icon">🤰</div>
+        <div>
+          <div class="pop-name">Gestante / Lactante</div>
+          <div class="pop-sub">Risco fetal documentado</div>
+        </div>
+      </div>
+      <div class="pop-limit-label">Cafeína diária máxima recomendada</div>
+      <div class="pop-limit" style="color:#fbbf24;">200 mg/dia</div>
+      <div class="pop-note">Recomendação OMS, ACOG e EFSA. Cafeína atravessa a placenta; o feto não a metaboliza eficientemente. Associação com aborto espontâneo e baixo peso ao nascer em doses >300 mg/dia. Bebidas energéticas: <strong>absolutamente contraindicadas.</strong></div>
+    </div>
+
+    <div class="pop-card" style="border-color: rgba(220,38,38,.25);">
+      <div class="pop-card-header">
+        <div class="pop-icon">👦</div>
+        <div>
+          <div class="pop-name">Crianças / Adolescentes</div>
+          <div class="pop-sub">&lt; 18 anos</div>
+        </div>
+      </div>
+      <div class="pop-limit-label">Limite recomendado</div>
+      <div class="pop-limit" style="color:#f87171;">2,5 mg/kg/dia</div>
+      <div class="pop-note">Sistema cardiovascular e nervoso ainda em desenvolvimento. Bebidas energéticas: <strong>nunca</strong>, segundo AAP. Risco aumentado de hipertensão, arritmias e dependência de cafeína. Casos de parada cardíaca documentados após consumo de energéticos em adolescentes.</div>
+    </div>
+
+    <div class="pop-card" style="border-color: rgba(251,191,36,.25);">
+      <div class="pop-card-header">
+        <div class="pop-icon">💓</div>
+        <div>
+          <div class="pop-name">FA / Arritmias</div>
+          <div class="pop-sub">Fibrilação atrial e taquicardias</div>
+        </div>
+      </div>
+      <div class="pop-limit-label">Café filtrado</div>
+      <div class="pop-limit" style="color:var(--teal);">OK moderado</div>
+      <div class="pop-note">Café filtrado até 2–3 xícaras/dia é seguro na maioria dos portadores de FA (AHA/ACC 2023, DECAF RCT 2025). Energéticos e pré-treinos: <strong>contraindicados.</strong> Se cafeína é gatilho específico identificado pelo paciente: evitar individualmente.</div>
+    </div>
+
+    <div class="pop-card" style="border-color: rgba(220,38,38,.25);">
+      <div class="pop-card-header">
+        <div class="pop-icon">🧬</div>
+        <div>
+          <div class="pop-name">SQTL / TVPC / Brugada</div>
+          <div class="pop-sub">Canalopatas / Miocardiopatias</div>
+        </div>
+      </div>
+      <div class="pop-limit-label">Energéticos e pré-treino</div>
+      <div class="pop-limit" style="color:#f87171;">Proibido</div>
+      <div class="pop-note">Risco de morte súbita documentado (Mayo Clinic 2024). Mesmo café em doses moderadas deve ser discutido com o especialista — a estimulação adrenérgica pode precipitar eventos em SQTL tipo 1 e TVPC. Avaliação genética recomendada em jovens com palpitações ou síncope de esforço.</div>
+    </div>
+
+    <div class="pop-card" style="border-color: rgba(251,191,36,.25);">
+      <div class="pop-card-header">
+        <div class="pop-icon">🧬</div>
+        <div>
+          <div class="pop-name">CYP1A2 lento</div>
+          <div class="pop-sub">Metabolizador lento de cafeína</div>
+        </div>
+      </div>
+      <div class="pop-limit-label">Limiar de risco</div>
+      <div class="pop-limit" style="color:#fbbf24;">200 mg/dia</div>
+      <div class="pop-note">Polimorfismo no gene CYP1A2 que metaboliza 95% da cafeína. Metabolizadores lentos têm maior exposição à cafeína pelo dobro do tempo. Estudo Zhou & Hyppönen (AJCN 2019, n=347.077) demonstrou que o risco CV com café >4 xícaras/dia é MAIOR nesse grupo. Teste genético disponível comercialmente.</div>
+    </div>
+
+    <div class="pop-card">
+      <div class="pop-card-header">
+        <div class="pop-icon">🫀</div>
+        <div>
+          <div class="pop-name">Pós-infarto / DAC</div>
+          <div class="pop-sub">Doença arterial coronariana</div>
+        </div>
+      </div>
+      <div class="pop-limit-label">Café filtrado</div>
+      <div class="pop-limit" style="color:var(--teal);">Seguro</div>
+      <div class="pop-note">Meta-análise específica (Ribeiro et al. 2020) e dados do CLARIFY registry confirmam segurança do café moderado pós-IAM. Energéticos e suplementos estimulantes: <strong>contraindicados.</strong></div>
+    </div>
+
+    <div class="pop-card">
+      <div class="pop-card-header">
+        <div class="pop-icon">💊</div>
+        <div>
+          <div class="pop-name">Interações medicamentosas</div>
+          <div class="pop-sub">Atenção a fármacos específicos</div>
+        </div>
+      </div>
+      <div class="pop-limit-label">Maior cautela</div>
+      <div class="pop-limit" style="color:#fbbf24;">Variável</div>
+      <div class="pop-note">Teofilina: cafeína potencializa toxicidade (taquicardia, convulsões). Anticoagulantes (varfarina): café em grandes quantidades pode reduzir INR. Lítio: cafeína aumenta excreção renal. Quinolonas (ciprofloxacino): inibem CYP1A2, aumentando meia-vida da cafeína.</div>
+    </div>
+
+  </div>
+
+  <div class="info-teal info-box" style="margin-top:1rem;">
+    <span class="info-box-icon">💡</span>
+    <div><strong>Mendelian Randomization:</strong> Estudos de aleatorização mendeliana — metodologia que usa variantes genéticas como proxies para exposição, reduzindo confusão — confirmam que o consumo habitual de café não causa hipertensão a longo prazo e tem relação causal com redução de risco de DM2. Limitações: esses estudos avaliaram café como um todo; não avaliaram bebidas energéticas especificamente.</div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════ TAB 6: CALCULADORA ════════════════════════════ -->
+<div id="tab-calculadora" class="tab-section">
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📊</div>
+      <div>
+        <div class="card-title">Calculadora de Cafeína Diária</div>
+        <div class="card-subtitle">Estime sua ingestão e veja em qual faixa de risco você se enquadra</div>
+      </div>
+    </div>
+
+    <div class="info-gray info-box" style="margin-bottom:1.25rem;">
+      <span class="info-box-icon">ℹ️</span>
+      <div>Adicione as bebidas que você consome tipicamente em um dia. Os valores de cafeína são aproximações baseadas em dados do USDA, FDA e fabricantes. Use o resultado como orientação — não como diagnóstico.</div>
+    </div>
+
+    <div id="calc-items-wrap">
+      <!-- items inserted by JS -->
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="addCalcItem()">+ Adicionar bebida</button>
+      <button class="btn btn-primary" onclick="calcCaffeine()">Calcular total</button>
+      <button class="btn btn-secondary" onclick="resetCalc()">Limpar</button>
+    </div>
+
+    <div id="calc-result" class="calc-result">
+      <div class="calc-total-wrap">
+        <div class="calc-total-val" id="calc-total-val">0</div>
+        <div class="calc-total-unit">mg de cafeína/dia</div>
+      </div>
+      <div class="calc-verdict" id="calc-verdict"></div>
+      <div id="calc-message"></div>
+    </div>
+  </div>
+
+  <!-- Tabela de referência resumida -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📋</div>
+      <div>
+        <div class="card-title">Resumo comparativo: segurança cardiovascular</div>
+        <div class="card-subtitle">Síntese das melhores evidências disponíveis</div>
+      </div>
+    </div>
+    <table class="ev-table">
+      <thead>
+        <tr>
+          <th>Bebida / Categoria</th>
+          <th>Evidência disponível</th>
+          <th>Efeito CV</th>
+          <th>Grau</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Café filtrado 3–5 xícaras/dia</strong></td>
+          <td>36 estudos prospectivos, 1.28M participantes; meta-análise robusta</td>
+          <td><span class="ev-teal">Benéfico: ↓15% risco CV, ↓mortalidade</span></td>
+          <td><span class="ev-grade ev-teal">Alto</span></td>
+        </tr>
+        <tr>
+          <td><strong>Café filtrado &lt;3 xícaras/dia</strong></td>
+          <td>UK Biobank (502.543 participantes)</td>
+          <td><span class="ev-teal">Neutro a benéfico</span></td>
+          <td><span class="ev-grade ev-teal">Alto</span></td>
+        </tr>
+        <tr>
+          <td><strong>Café prensa francesa / espresso</strong></td>
+          <td>Estudos de lipídios; Tromsø Study 2022</td>
+          <td><span class="ev-amber">↑LDL se consumo elevado</span></td>
+          <td><span class="ev-grade ev-amber">Moderado</span></td>
+        </tr>
+        <tr>
+          <td><strong>Café &gt;6 xícaras/dia</strong></td>
+          <td>Zhou & Hyppönen AJCN 2019 (n=347.077)</td>
+          <td><span class="ev-amber">↑22% risco DCV; maior em CYP1A2 lento</span></td>
+          <td><span class="ev-grade ev-amber">Alto</span></td>
+        </tr>
+        <tr>
+          <td><strong>Chá verde/preto moderado</strong></td>
+          <td>Múltiplas meta-análises</td>
+          <td><span class="ev-teal">Neutro a levemente benéfico</span></td>
+          <td><span class="ev-grade ev-amber">Moderado</span></td>
+        </tr>
+        <tr>
+          <td><strong>Guaraná natural (sem açúcar)</strong></td>
+          <td>Estudos pequenos; modelos animais</td>
+          <td><span class="ev-teal">Possível ↓LDL, ↓oxidação LDL</span></td>
+          <td><span class="ev-grade" style="color:var(--muted-foreground);">Baixo (dados limitados)</span></td>
+        </tr>
+        <tr>
+          <td><strong>Bebidas energéticas (qualquer dose)</strong></td>
+          <td>RCTs (Basrai 2019), séries de caso, Mayo Clinic 2024</td>
+          <td><span class="ev-red">↑QTc, ↑PA, vasoespasmo, morte súbita</span></td>
+          <td><span class="ev-grade ev-red">Alto (risco)</span></td>
+        </tr>
+        <tr>
+          <td><strong>Pré-treino multi-ingrediente</strong></td>
+          <td>Ensaios curtos (&lt;8sem); relatos de caso</td>
+          <td><span class="ev-red">AVC, isquemia, arritmia, morte súbita</span></td>
+          <td><span class="ev-grade ev-red">Alto (risco)</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════ TAB 7: REFERÊNCIAS ════════════════════════════ -->
+<div id="tab-referencias" class="tab-section">
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📖</div>
+      <div>
+        <div class="card-title">Referências Bibliográficas</div>
+        <div class="card-subtitle">Fontes primárias utilizadas neste guia</div>
+      </div>
+    </div>
+    <ol class="ref-list">
+      <li>van Dam RM, Hu FB, Willett WC. Coffee, Caffeine, and Health. <em>N Engl J Med.</em> 2020;383(4):369-378. doi:10.1056/NEJMra1816604</li>
+      <li>Freeman AM, Morris PB, Aspry K, et al. A Clinician's Guide for Trending Cardiovascular Nutrition Controversies: Part II. <em>J Am Coll Cardiol.</em> 2018;72(5):553-568. doi:10.1016/j.jacc.2018.05.030</li>
+      <li>Turnbull D, Rodricks JV, Mariano GF, Chowdhury F. Caffeine and Cardiovascular Health. <em>Regul Toxicol Pharmacol.</em> 2017;89:165-185. doi:10.1016/j.yrtph.2017.07.025</li>
+      <li>Zhou A, Hyppönen E. Long-Term Coffee Consumption, Caffeine Metabolism Genetics, and Risk of Cardiovascular Disease. <em>Am J Clin Nutr.</em> 2019;109(3):509-516. doi:10.1093/ajcn/nqy297</li>
+      <li>Wikoff D, Welsh BT, Henderson R, et al. Systematic Review of the Potential Adverse Effects of Caffeine Consumption in Healthy Adults, Pregnant Women, Adolescents, and Children. <em>Food Chem Toxicol.</em> 2017;109(Pt 1):585-648. doi:10.1016/j.fct.2017.04.002</li>
+      <li>Portella RL, Barcelos RP, da Rosa EJ, et al. Guaraná Effects on LDL Oxidation in Elderly People. <em>Lipids Health Dis.</em> 2013;12:12. doi:10.1186/1476-511X-12-12</li>
+      <li>Ruchel JB, Rezer JF, Thorstenberg ML, et al. Hypercholesterolemia and Ecto-Enzymes of Purinergic System: Effects of Paullinia cupana. <em>Phytother Res.</em> 2016;30(1):49-57. doi:10.1002/ptr.5499</li>
+      <li>Chisté LA, Pereira BP, Porto ML, et al. Worsening of Oxidative Stress, DNA Damage, and Atherosclerotic Lesions in Aged LDLr Mice After Consumption of Guarana Soft Drinks. <em>Oxid Med Cell Longev.</em> 2019;2019:9042526. doi:10.1155/2019/9042526</li>
+      <li>Basrai M, Schweinlin A, Menzel J, et al. Energy Drinks Induce Acute Cardiovascular and Metabolic Changes Pointing to Potential Risks for Young Adults: A Randomized Controlled Trial. <em>J Nutr.</em> 2019;149(3):441-450. doi:10.1093/jn/nxy303</li>
+      <li>Somers KR, Svatikova A. Cardiovascular and Autonomic Responses to Energy Drinks — Clinical Implications. <em>J Clin Med.</em> 2020;9(2):E431. doi:10.3390/jcm9020431</li>
+      <li>Higgins JP, Babu K, Deuster PA, Shearer J. Energy Drinks: A Contemporary Issues Paper. <em>Curr Sports Med Rep.</em> 2018;17(2):65-72. doi:10.1249/JSR.0000000000000454</li>
+      <li>Eudy AE, Gordon LL, Hockaday BC, et al. Efficacy and Safety of Ingredients Found in Preworkout Supplements. <em>Am J Health-Syst Pharm.</em> 2013;70(7):577-88. doi:10.2146/ajhp120118</li>
+      <li>Harty PS, Zabriskie HA, Erickson JL, et al. Multi-Ingredient Pre-Workout Supplements, Safety Implications, and Performance Outcomes. <em>J Int Soc Sports Nutr.</em> 2018;15(1):41. doi:10.1186/s12970-018-0247-6</li>
+      <li>Harris BF, Winn C, Ableman TB. Hemorrhagic Stroke Following Use of Pre-Workout Supplement Animal Rage XL. <em>Mil Med.</em> 2017;182(9):e2030-e2033. doi:10.7205/MILMED-D-17-00013</li>
+      <li>Wang SSY. Pre-Workout Supplement Induced Cardiac Ischaemia in a Young Female. <em>J Sports Sci.</em> 2020;38(2):187-191. doi:10.1080/02640414.2019.1689598</li>
+      <li>Adami PE, Koutlianos N, Baggish A, et al. Cardiovascular Effects of Doping Substances and Ergogenic Aids: EAPC Position Statement. <em>Eur J Prev Cardiol.</em> 2022;29(3):559-575. doi:10.1093/eurjpc/zwab198</li>
+      <li>Chow SL, Bozkurt B, Baker WL, et al. Complementary and Alternative Medicines in the Management of Heart Failure: AHA Scientific Statement. <em>Circulation.</em> 2023;147(2):e4-e30. doi:10.1161/CIR.0000000000001110</li>
+      <li>Martinez KA, Bains S, Neves R, et al. Sudden Cardiac Arrest Occurring in Temporal Proximity to Consumption of Energy Drinks. <em>Heart Rhythm.</em> 2024;21(7):1083-1088. doi:10.1016/j.hrthm.2024.02.018</li>
+      <li>Chami M, Di Primio S. Energy Drink Consumption Can Induce Cardiovascular Events, Two Case Reports and a Literature Review. <em>Toxicol Anal Clin.</em> 2024;36(1):43-61. doi:10.1016/j.toxac.2023.09.005</li>
+      <li>Link JP, Mandilaras G, Dalla-Pozza R, Jakob A. Acute Cardiovascular Effects of Simultaneous Energy Drink and Alcohol Consumption in Young Adults. <em>Pediatr Rep.</em> 2024;16(3):618-630. doi:10.3390/pediatric16030052</li>
+      <li>Iten V, Herber E, Coslovsky M, et al. Coffee consumption and adverse cardiovascular events in patients with atrial fibrillation. <em>BMC Med.</em> 2024;22:593. doi:10.1186/s12916-024-03817-x</li>
+      <li>Chieng D, Canovas R, Segan L, et al. The impact of coffee subtypes on incident cardiovascular disease, arrhythmias, and mortality: Long-term outcomes from the UK Biobank. <em>Eur J Prev Cardiol.</em> 2022;29:2240-2249. doi:10.1093/eurjpc/zwac189</li>
+      <li>Ding M, Bhupathiraju SN, Satija A, et al. Long-Term Coffee Consumption and Risk of Cardiovascular Disease: A Systematic Review and Dose-Response Meta-Analysis of Prospective Cohort Studies. <em>Circulation.</em> 2014;129(6):643-659. doi:10.1161/CIRCULATIONAHA.113.005925</li>
+      <li>Gill H, Gill B, El-Haddi J, et al. Coffee consumption and cardiometabolic health: a comprehensive review of the evidence. <em>GeroScience.</em> 2024;46:6473-6510. doi:10.1007/s11357-024-01262-5</li>
+      <li>Mendoza MF, Sulague RM, Posas-Mendoza T, Lavie CJ. Impact of Coffee Consumption on Cardiovascular Health. <em>Ochsner J.</em> 2023;23:152-158. doi:10.31486/toj.22.0073</li>
+      <li>Ribeiro EM, Alves M, Costa J, et al. Safety of coffee consumption after myocardial infarction: A systematic review and meta-analysis. <em>Nutr Metab Cardiovasc Dis.</em> 2020;30:2146-2158. doi:10.1016/j.numecd.2020.06.024</li>
+    </ol>
+  </div>
+
+  <div class="disclaimer">
+    <strong>Aviso importante:</strong> Este material tem finalidade educacional e não substitui a consulta médica individualizada. As recomendações apresentadas baseiam-se em evidências populacionais; sua aplicação deve ser sempre adaptada ao contexto clínico individual por um profissional habilitado. Casos de sintomas cardiovasculares após consumo de qualquer dessas bebidas devem ser avaliados imediatamente por um médico.
+  </div>
+
+</div>
+
+</div><!-- /container -->
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-copy">
+        © 2026 Dr. Lucas Silva · Cardiologia Intervencionista · São Paulo, SP - CRM 271.830<br>
+        Baseado em evidências atualizadas até 2024–2025.
+      </div>
+      <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        lucascardio.com.br
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ════════════════════════════════════
+   TAB NAVIGATION
+════════════════════════════════════ */
+function showTab(id) {
+  document.querySelectorAll('.tab-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  const section = document.getElementById('tab-' + id);
+  if (section) section.classList.add('active');
+  // find the button
+  document.querySelectorAll('.tab-btn').forEach(b => {
+    if (b.getAttribute('onclick') && b.getAttribute('onclick').includes("'" + id + "'")) {
+      b.classList.add('active');
+    }
+  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ════════════════════════════════════
+   FAQ ACCORDION
+════════════════════════════════════ */
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  item.classList.toggle('open');
+}
+
+/* ════════════════════════════════════
+   CAFFEINE CALCULATOR
+════════════════════════════════════ */
+const drinkData = [
+  { label: "Café coado/filtrado (200 mL)", caffeine: 120 },
+  { label: "Café espresso (1 shot / 30 mL)", caffeine: 65 },
+  { label: "Café solúvel / instantâneo (200 mL)", caffeine: 65 },
+  { label: "Café prensa francesa (200 mL)", caffeine: 120 },
+  { label: "Café coado forte / especial (200 mL)", caffeine: 150 },
+  { label: "Café descafeinado (200 mL)", caffeine: 6 },
+  { label: "Chá preto (200 mL)", caffeine: 55 },
+  { label: "Chá verde (200 mL)", caffeine: 30 },
+  { label: "Chá mate / erva-mate (200 mL)", caffeine: 60 },
+  { label: "Refrigerante cola (350 mL)", caffeine: 38 },
+  { label: "Guaraná Antarctica / refrigerante (350 mL)", caffeine: 35 },
+  { label: "Red Bull (250 mL)", caffeine: 80 },
+  { label: "Monster Energy (473 mL)", caffeine: 160 },
+  { label: "Rockstar Energy (473 mL)", caffeine: 160 },
+  { label: "Burn / NOS Energy (473 mL)", caffeine: 180 },
+  { label: "Bang / Reign Energy (473 mL)", caffeine: 300 },
+  { label: "Celsius Energy (355 mL)", caffeine: 200 },
+  { label: "Pré-treino (1 dose/scoop) — estimulante baixo", caffeine: 100 },
+  { label: "Pré-treino (1 dose/scoop) — estimulante alto", caffeine: 250 },
+  { label: "Chocolate amargo (30 g)", caffeine: 22 },
+  { label: "Extrato de guaraná em pó (1 g)", caffeine: 35 },
+];
+
+let calcItemCount = 0;
+
+function addCalcItem() {
+  calcItemCount++;
+  const wrap = document.getElementById('calc-items-wrap');
+  const div = document.createElement('div');
+  div.className = 'calc-row';
+  div.id = 'calc-item-' + calcItemCount;
+
+  let options = drinkData.map((d, i) =>
+    '<option value="' + d.caffeine + '">' + d.label + '</option>'
+  ).join('');
+
+  div.innerHTML =
+    '<select class="calc-select">' + options + '</select>' +
+    '<input class="calc-input" type="number" min="1" max="20" value="1" placeholder="Qtd" />' +
+    '<button class="calc-remove" onclick="removeCalcItem(' + calcItemCount + ')">✕</button>';
+  wrap.appendChild(div);
+}
+
+function removeCalcItem(id) {
+  const el = document.getElementById('calc-item-' + id);
+  if (el) el.remove();
+}
+
+function calcCaffeine() {
+  const rows = document.querySelectorAll('#calc-items-wrap .calc-row');
+  let total = 0;
+  rows.forEach(row => {
+    const sel = row.querySelector('select');
+    const qty = row.querySelector('input');
+    const caffPerUnit = parseFloat(sel.value) || 0;
+    const count = parseFloat(qty.value) || 1;
+    total += caffPerUnit * count;
+  });
+
+  const result = document.getElementById('calc-result');
+  const valEl = document.getElementById('calc-total-val');
+  const verdictEl = document.getElementById('calc-verdict');
+  const msgEl = document.getElementById('calc-message');
+
+  result.classList.add('show');
+  valEl.textContent = Math.round(total);
+
+  let color, verdict, message;
+
+  if (total === 0) {
+    color = 'var(--muted-foreground)'; verdict = 'Nenhuma bebida selecionada';
+    message = '<div class="info-gray info-box"><span class="info-box-icon">ℹ️</span><div>Adicione bebidas e calcule novamente.</div></div>';
+  } else if (total <= 200) {
+    color = 'var(--teal)'; verdict = '✅ Ingestão baixa — segura para todas as populações';
+    message = '<div class="info-teal info-box"><span class="info-box-icon">✅</span><div>Você está bem abaixo dos limites de segurança para adultos (400 mg/dia) e dentro do limite recomendado para gestantes (200 mg/dia). Continue assim — não há risco cardiovascular associado a esse nível de consumo.</div></div>';
+  } else if (total <= 400) {
+    color = '#86efac'; verdict = '🟢 Ingestão moderada — faixa de benefício máximo para adultos saudáveis';
+    message = '<div class="info-teal info-box"><span class="info-box-icon">✅</span><div>Esta faixa (200–400 mg/dia) corresponde à zona de maior proteção cardiovascular identificada em estudos populacionais — equivalente a 3–4 xícaras de café filtrado. Para gestantes, esse nível excede o recomendado (200 mg/dia).</div></div><div class="info-amber info-box"><span class="info-box-icon">⚠️</span><div>Se parte desse consumo vem de bebidas energéticas ou pré-treinos, o perfil de risco é muito diferente do café simples — veja a aba Bebidas Energéticas.</div></div>';
+  } else if (total <= 600) {
+    color = '#fbbf24'; verdict = '🟡 Ingestão elevada — zona de cautela';
+    message = '<div class="info-amber info-box"><span class="info-box-icon">⚠️</span><div>Você está acima do limite máximo recomendado para adultos (400 mg/dia). Nessa faixa, os benefícios cardiovasculares desaparecem e há aumento modesto do risco, especialmente em portadores de hipertensão, CYP1A2 lento ou com histórico familiar de arritmia. Considere reduzir o consumo.</div></div>';
+  } else {
+    color = '#f87171'; verdict = '🔴 Ingestão excessiva — risco aumentado';
+    message = '<div class="info-red info-box"><span class="info-box-icon">🚨</span><div><strong>Seu consumo supera 600 mg/dia.</strong> Estudos associam esse nível a aumento significativo do risco cardiovascular (Zhou & Hyppönen, AJCN 2019). Sintomas como palpitações, insônia, ansiedade e pressão elevada são comuns. Redução gradual é recomendada para evitar síndrome de abstinência (cefaleia, fadiga). Converse com seu médico.</div></div>';
+  }
+
+  valEl.style.color = color;
+  verdictEl.textContent = verdict;
+  verdictEl.style.color = color;
+  msgEl.innerHTML = message;
+}
+
+function resetCalc() {
+  document.getElementById('calc-items-wrap').innerHTML = '';
+  const result = document.getElementById('calc-result');
+  result.classList.remove('show');
+  calcItemCount = 0;
+}
+
+// Add two default items on load
+addCalcItem();
+addCalcItem();
+</script>
+</body>
+</html>

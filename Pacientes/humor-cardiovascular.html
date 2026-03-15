@@ -1,0 +1,1566 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>Transtornos de Humor & Coração – Guia Completo | Dr. Lucas Silva</title>
+  <meta name="description" content="Guia interativo sobre a relação entre transtornos de humor, ansiedade, TEPT e doença cardiovascular. Mecanismos, riscos de medicamentos e recomendações baseadas em evidências." />
+  <meta name="author" content="Dr. Lucas Silva" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+
+  <style>
+    /* ── DESIGN TOKENS ─────────────────────────────────────────── */
+    :root {
+      --primary: oklch(65% .18 195);
+      --primary-foreground: oklch(98% 0 0);
+      --background: oklch(13% .018 250);
+      --foreground: oklch(93% .01 250);
+      --card: oklch(18.5% .018 250);
+      --card-foreground: oklch(93% .01 250);
+      --muted: oklch(22% .018 250);
+      --muted-foreground: oklch(62% .02 250);
+      --border: oklch(28% .025 250);
+      --input: oklch(22% .02 250);
+      --destructive: oklch(60% .22 25);
+      --secondary: oklch(22% .022 250);
+      --secondary-foreground: oklch(88% .01 250);
+      --accent: oklch(24% .025 250);
+      --accent-foreground: oklch(90% .01 250);
+      --teal: #6638bb;
+      --teal-dim: rgba(0,211,189,.12);
+      --amber: oklch(82.8% .189 84.429);
+      --red: oklch(63.7% .237 25.331);
+      --green: oklch(79.2% .209 151.711);
+      --purple: oklch(70% .18 300);
+      --purple-dim: rgba(160,110,255,.12);
+      --radius: 0.625rem;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--background);
+      color: var(--foreground);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ───────────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(18,20,27,.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: .6rem;
+      text-decoration: none; color: var(--foreground);
+    }
+    .nav-brand-icon {
+      width: 28px; height: 28px; border-radius: 7px;
+      background: var(--teal); display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .nav-brand-name { font-weight: 800; font-size: 1rem; letter-spacing: -.025em; line-height: 1; }
+    .nav-brand-name span { color: var(--teal); }
+    .nav-brand-sep { width: 1px; height: 14px; background: var(--border); margin: 0 6px; }
+    .nav-brand-sub { font-size: .7rem; font-weight: 500; color: var(--muted-foreground); }
+    .nav-center { display: flex; align-items: center; gap: .25rem; }
+    .nav-center-btn {
+      background: none; border: none; cursor: pointer; font-family: var(--font-sans);
+      font-size: .8rem; font-weight: 500; color: var(--muted-foreground);
+      padding: 6px 12px; border-radius: 7px;
+      transition: background .15s, color .15s;
+    }
+    .nav-center-btn:hover, .nav-center-btn.active { background: var(--accent); color: var(--foreground); }
+    .nav-actions { display: flex; align-items: center; gap: .5rem; }
+    .nav-badge {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 999px; background: var(--teal-dim);
+      color: var(--teal); border: 1px solid rgba(0,211,189,.25);
+      white-space: nowrap;
+    }
+    .nav-link {
+      font-size: .75rem; font-weight: 600; padding: 5px 12px;
+      border-radius: 8px; border: 1.5px solid var(--primary);
+      color: var(--primary); background: transparent;
+      text-decoration: none;
+      transition: background .15s, color .15s;
+      display: inline-flex; align-items: center; gap: 5px;
+    }
+    .nav-link:hover { background: var(--primary); color: var(--primary-foreground); }
+
+    /* ── LAYOUT ────────────────────────────────────────────────── */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+    .section { padding: 2rem 0; }
+
+    /* ── HERO ──────────────────────────────────────────────────── */
+    .hero { padding: 3.5rem 0 2.5rem; border-bottom: 1px solid var(--border); }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .7rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--teal);
+      margin-bottom: 1rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 20px; height: 2px;
+      background: var(--teal); border-radius: 1px;
+    }
+    .hero h1 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 800; line-height: 1.2;
+      margin-bottom: .75rem; letter-spacing: -.02em;
+    }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero-sub {
+      color: var(--muted-foreground); font-size: .95rem;
+      max-width: 680px; margin-bottom: 1.5rem;
+    }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 6px; border: 1px solid var(--border);
+      color: var(--muted-foreground); background: var(--card);
+      font-family: var(--font-mono);
+    }
+
+    /* ── STAT GRID ─────────────────────────────────────────────── */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px);
+      overflow: hidden;
+      margin: 2rem 0;
+    }
+    .stat-item {
+      background: var(--card);
+      padding: 1.25rem 1rem;
+      text-align: center;
+    }
+    .stat-val {
+      font-size: 2rem; font-weight: 800;
+      font-family: var(--font-mono); color: var(--teal); line-height: 1;
+      margin-bottom: .25rem;
+    }
+    .stat-val.red { color: #f87171; }
+    .stat-val.amber { color: #fbbf24; }
+    .stat-val.purple { color: var(--purple); }
+    .stat-label { font-size: .72rem; font-weight: 600; color: var(--muted-foreground); line-height: 1.3; }
+    .stat-source { font-size: .65rem; font-family: var(--font-mono); color: oklch(45% .02 250); margin-top: 4px; }
+
+    /* ── TAB NAVIGATION ────────────────────────────────────────── */
+    .tab-nav {
+      display: flex; gap: .25rem; flex-wrap: wrap;
+      border-bottom: 1px solid var(--border);
+      margin: 2rem 0 0;
+      padding-bottom: 0;
+    }
+    .tab-btn {
+      background: none; border: none; cursor: pointer;
+      font-family: var(--font-sans); font-size: .82rem; font-weight: 600;
+      color: var(--muted-foreground); padding: 10px 16px;
+      border-radius: calc(var(--radius) + 2px) calc(var(--radius) + 2px) 0 0;
+      border: 1px solid transparent;
+      border-bottom: 2px solid transparent;
+      transition: all .15s;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .tab-btn:hover { color: var(--foreground); background: var(--muted); }
+    .tab-btn.active {
+      color: var(--teal); background: var(--card);
+      border-color: var(--border); border-bottom-color: var(--card);
+      margin-bottom: -1px;
+    }
+
+    /* ── TAB PANELS ────────────────────────────────────────────── */
+    .tab-panel { display: none; padding: 2rem 0; animation: fadeUp .3s ease; }
+    .tab-panel.active { display: block; }
+
+    /* ── CARDS ─────────────────────────────────────────────────── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .card-header {
+      display: flex; align-items: flex-start;
+      gap: .75rem; margin-bottom: 1.25rem;
+      padding-bottom: 1rem; border-bottom: 1px solid var(--border);
+    }
+    .card-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+      background: var(--teal-dim); color: var(--teal);
+    }
+    .card-icon.red { background: rgba(220,38,38,.12); color: #f87171; }
+    .card-icon.amber { background: rgba(251,191,36,.12); color: #fbbf24; }
+    .card-icon.purple { background: var(--purple-dim); color: var(--purple); }
+    .card-title { font-weight: 700; font-size: 1rem; margin-bottom: 2px; }
+    .card-subtitle { font-size: .78rem; color: var(--muted-foreground); }
+
+    /* ── INFO BOXES ────────────────────────────────────────────── */
+    .info-box {
+      border-radius: var(--radius); padding: 12px 16px;
+      font-size: .82rem; line-height: 1.6;
+      display: flex; gap: 10px; margin-bottom: .75rem;
+    }
+    .info-box-icon { flex-shrink: 0; font-size: 1rem; margin-top: 1px; }
+    .info-teal { background: var(--teal-dim); border-left: 3px solid var(--teal); }
+    .info-amber { background: rgba(251,191,36,.08); border-left: 3px solid rgba(251,191,36,.5); }
+    .info-red { background: rgba(220,38,38,.08); border-left: 3px solid rgba(220,38,38,.4); }
+    .info-gray { background: var(--muted); border-left: 3px solid var(--border); }
+    .info-purple { background: var(--purple-dim); border-left: 3px solid oklch(70% .18 300 / .5); }
+
+    /* ── SECTION TITLES ────────────────────────────────────────── */
+    .section-title {
+      font-size: 1.3rem; font-weight: 800; margin-bottom: .25rem;
+      letter-spacing: -.02em;
+    }
+    .section-subtitle { font-size: .85rem; color: var(--muted-foreground); margin-bottom: 1.5rem; }
+
+    /* ── MECHANISM ACCORDION ───────────────────────────────────── */
+    .accordion { margin-bottom: .75rem; }
+    .accordion-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 16px; background: var(--muted);
+      border: 1px solid var(--border); border-radius: var(--radius);
+      cursor: pointer; transition: background .15s;
+      font-weight: 700; font-size: .88rem;
+      user-select: none;
+    }
+    .accordion-header:hover { background: var(--accent); }
+    .accordion-header.open { background: var(--teal-dim); border-color: rgba(0,211,189,.3); border-bottom: none; border-radius: var(--radius) var(--radius) 0 0; }
+    .accordion-arrow {
+      transition: transform .25s;
+      font-size: .75rem; color: var(--muted-foreground);
+    }
+    .accordion-header.open .accordion-arrow { transform: rotate(180deg); }
+    .accordion-body {
+      display: none;
+      padding: 14px 16px 16px;
+      background: var(--card);
+      border: 1px solid rgba(0,211,189,.2); border-top: none;
+      border-radius: 0 0 var(--radius) var(--radius);
+      font-size: .83rem; line-height: 1.7;
+    }
+    .accordion-body.open { display: block; animation: fadeUp .2s ease; }
+
+    /* ── MECHANISM ICON ROW ────────────────────────────────────── */
+    .mech-icon {
+      display: inline-block; font-size: 1.3rem;
+      margin-right: 10px; vertical-align: middle;
+    }
+
+    /* ── DRUG TABLE ────────────────────────────────────────────── */
+    .drug-table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+    .drug-table th {
+      background: var(--muted); padding: 10px 12px;
+      text-align: left; font-weight: 700; font-size: .75rem;
+      text-transform: uppercase; letter-spacing: .06em;
+      color: var(--muted-foreground); border-bottom: 1px solid var(--border);
+    }
+    .drug-table td {
+      padding: 10px 12px; border-bottom: 1px solid var(--border);
+      vertical-align: top; line-height: 1.5;
+    }
+    .drug-table tr:last-child td { border-bottom: none; }
+    .drug-table tr:hover td { background: var(--accent); }
+    .risk-badge {
+      display: inline-flex; align-items: center;
+      font-size: .68rem; font-weight: 700; padding: 2px 8px;
+      border-radius: 999px; white-space: nowrap;
+    }
+    .risk-high { background: rgba(220,38,38,.15); color: #f87171; border: 1px solid rgba(220,38,38,.3); }
+    .risk-mod { background: rgba(251,191,36,.12); color: #fbbf24; border: 1px solid rgba(251,191,36,.25); }
+    .risk-low { background: rgba(0,211,189,.12); color: var(--teal); border: 1px solid rgba(0,211,189,.25); }
+    .risk-var { background: rgba(160,110,255,.15); color: var(--purple); border: 1px solid rgba(160,110,255,.25); }
+
+    /* ── CHART CONTAINER ───────────────────────────────────────── */
+    .chart-wrap {
+      position: relative; height: 280px;
+      background: var(--muted); border-radius: var(--radius);
+      padding: 1rem; margin: 1rem 0;
+    }
+
+    /* ── FILTER TABS ───────────────────────────────────────────── */
+    .filter-row { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .filter-btn {
+      font-size: .75rem; font-weight: 600; padding: 5px 14px;
+      border-radius: 999px; border: 1px solid var(--border);
+      background: var(--muted); color: var(--muted-foreground);
+      cursor: pointer; transition: all .15s;
+    }
+    .filter-btn:hover { border-color: var(--primary); color: var(--foreground); }
+    .filter-btn.active { background: var(--teal-dim); border-color: rgba(0,211,189,.4); color: var(--teal); }
+
+    /* ── PATHWAY DIAGRAM ───────────────────────────────────────── */
+    .pathway {
+      display: flex; align-items: center; gap: 0;
+      overflow-x: auto; padding-bottom: .5rem;
+      margin: 1.25rem 0;
+    }
+    .pathway-node {
+      flex-shrink: 0;
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 8px 14px;
+      font-size: .75rem; font-weight: 600; text-align: center;
+      min-width: 110px; line-height: 1.3;
+    }
+    .pathway-node.highlight { background: var(--teal-dim); border-color: rgba(0,211,189,.4); color: var(--teal); }
+    .pathway-node.danger { background: rgba(220,38,38,.1); border-color: rgba(220,38,38,.3); color: #f87171; }
+    .pathway-arrow { color: var(--muted-foreground); font-size: .8rem; margin: 0 6px; flex-shrink: 0; }
+
+    /* ── REF MARKERS ───────────────────────────────────────────── */
+    sup.ref {
+      font-size: .62rem; font-family: var(--font-mono); font-weight: 700;
+      color: var(--teal); cursor: pointer; user-select: none;
+      vertical-align: super; opacity: .85;
+    }
+    sup.ref:hover { opacity: 1; }
+
+    /* ── REFERENCE LIST ────────────────────────────────────────── */
+    .ref-list { counter-reset: ref-counter; }
+    .ref-item {
+      display: flex; gap: 10px; padding: 10px 0;
+      border-bottom: 1px solid var(--border); font-size: .78rem; line-height: 1.5;
+    }
+    .ref-item:last-child { border-bottom: none; }
+    .ref-num {
+      flex-shrink: 0; width: 22px; height: 22px;
+      border-radius: 4px; background: var(--teal-dim);
+      color: var(--teal); font-family: var(--font-mono);
+      font-size: .65rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 1px;
+    }
+    .ref-text { color: var(--muted-foreground); }
+    .ref-text strong { color: var(--foreground); }
+    .ref-journal { font-family: var(--font-mono); font-size: .7rem; opacity: .7; }
+
+    /* ── MONITORING TABLE ──────────────────────────────────────── */
+    .monitor-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: .75rem; margin: 1rem 0;
+    }
+    .monitor-card {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 12px;
+    }
+    .monitor-title { font-weight: 700; font-size: .82rem; margin-bottom: .4rem; }
+    .monitor-items { font-size: .75rem; color: var(--muted-foreground); line-height: 1.6; }
+    .monitor-when {
+      font-family: var(--font-mono); font-size: .68rem;
+      color: var(--teal); margin-top: .4rem;
+    }
+
+    /* ── QT TABLE ──────────────────────────────────────────────── */
+    .qt-bar-wrap { display: flex; align-items: center; gap: 8px; }
+    .qt-bar-bg { flex: 1; height: 6px; background: var(--border); border-radius: 3px; }
+    .qt-bar-fill { height: 100%; border-radius: 3px; transition: width .3s; }
+
+    /* ── BUTTONS ───────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: .85rem; font-weight: 600; padding: 10px 20px;
+      border-radius: calc(var(--radius) + 2px);
+      border: none; cursor: pointer;
+      transition: all .15s; white-space: nowrap;
+      font-family: var(--font-sans);
+    }
+    .btn-primary { background: var(--primary); color: #000; font-weight: 700; }
+    .btn-primary:hover { opacity: .9; transform: translateY(-1px); }
+    .btn-secondary { background: var(--muted); color: var(--foreground); border: 1px solid var(--border); }
+    .btn-secondary:hover { background: var(--accent); }
+    .btn-row { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 1.5rem; }
+
+    /* ── PROGRESS BAR ──────────────────────────────────────────── */
+    .progress-bar { height: 3px; background: var(--border); border-radius: 2px; margin: 1.5rem 0; }
+    .progress-fill { height: 100%; background: var(--teal); border-radius: 2px; }
+
+    /* ── DISCLAIMER ────────────────────────────────────────────── */
+    .disclaimer {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 12px 16px;
+      font-size: .75rem; color: var(--muted-foreground);
+      line-height: 1.6; margin-top: 1.5rem;
+    }
+
+    /* ── ANIMATIONS ────────────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── FOOTER ────────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 0; margin-top: 2rem;
+    }
+    .footer-inner {
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-copy { font-size: .75rem; color: var(--muted-foreground); }
+
+    /* ── RESPONSIVE ────────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .nav-center { display: none; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+      .drug-table { font-size: .75rem; }
+      .pathway { flex-wrap: wrap; gap: 6px; }
+      .pathway-arrow { display: none; }
+    }
+
+    /* ── HR PILL ───────────────────────────────────────────────── */
+    .hr-pill {
+      display: inline-flex; align-items: baseline; gap: 3px;
+      background: rgba(220,38,38,.12); border: 1px solid rgba(220,38,38,.25);
+      border-radius: 999px; padding: 1px 10px; font-family: var(--font-mono);
+      font-size: .78rem; color: #f87171;
+    }
+    .hr-pill .label { font-size: .65rem; color: var(--muted-foreground); font-family: var(--font-sans); }
+
+    /* ── GREEN BOX ─────────────────────────────────────────────── */
+    .info-green { background: rgba(34,197,94,.08); border-left: 3px solid rgba(34,197,94,.4); }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ───────────────────────────────────────────────────── -->
+<nav>
+  <a class="nav-brand" href="#">
+    <div class="nav-brand-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+      </svg>
+    </div>
+    <div class="nav-brand-name">Mente<span>&amp;Coração</span></div>
+    <div class="nav-brand-sep"></div>
+    <div class="nav-brand-sub">Saúde Mental &amp; Cardiovascular</div>
+  </a>
+  <div class="nav-center">
+    <button class="nav-center-btn" onclick="showTab('tab-visao')">Visão Geral</button>
+    <button class="nav-center-btn" onclick="showTab('tab-disturbios')">Transtornos</button>
+    <button class="nav-center-btn" onclick="showTab('tab-mecanismos')">Mecanismos</button>
+    <button class="nav-center-btn" onclick="showTab('tab-medicamentos')">Medicamentos</button>
+    <button class="nav-center-btn" onclick="showTab('tab-referencias')">Referências</button>
+  </div>
+  <div class="nav-actions">
+    <span class="nav-badge">Atualizado 2026</span>
+    <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      lucascardio.com.br
+    </a>
+  </div>
+</nav>
+
+<!-- ── MAIN ───────────────────────────────────────────────────── -->
+<main>
+<div class="container">
+
+  <!-- ── HERO ─────────────────────────────────────────────────── -->
+  <div class="hero">
+    <div class="hero-eyebrow">Cardiologia &amp; Saúde Mental · Medicina Baseada em Evidências</div>
+    <h1>Transtornos de Humor e<br><em>Saúde Cardiovascular</em></h1>
+    <p class="hero-sub">
+      Depressão, ansiedade, transtorno bipolar e TEPT não são apenas condições da mente — eles afetam profundamente o coração. Entenda os mecanismos, os riscos e como cuidar da saúde cardiovascular em quem convive com transtornos mentais.
+    </p>
+    <div class="hero-tags">
+      <span class="tag">JAMA Psychiatry 2026</span>
+      <span class="tag">JACC 2022/2024</span>
+      <span class="tag">AHA 2021</span>
+      <span class="tag">Circulation 2025</span>
+      <span class="tag">22M+ participantes</span>
+      <span class="tag">Meta-análise</span>
+    </div>
+  </div>
+
+  <!-- ── STAT GRID ─────────────────────────────────────────────── -->
+  <div class="stat-grid">
+    <div class="stat-item">
+      <div class="stat-val">×2,73</div>
+      <div class="stat-label">Risco de SCA<br>no TEPT</div>
+      <div class="stat-source">JAMA Psychiatry 2026 [1]</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val red">×1,63</div>
+      <div class="stat-label">Risco de SCA<br>na Ansiedade</div>
+      <div class="stat-source">JAMA Psychiatry 2026 [1]</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val amber">×1,40</div>
+      <div class="stat-label">Risco de SCA<br>na Depressão</div>
+      <div class="stat-source">JAMA Psychiatry 2026 [1]</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val purple">10 anos</div>
+      <div class="stat-label">Mais cedo:<br>início da DCV</div>
+      <div class="stat-source">JAMA Psychiatry 2026 [1]</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val red">+63%</div>
+      <div class="stat-label">Mortalidade CV<br>na Depressão</div>
+      <div class="stat-source">JACC 2022 [2]</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val amber">22M</div>
+      <div class="stat-label">Participantes<br>na Meta-análise</div>
+      <div class="stat-source">JAMA Psychiatry 2026 [1]</div>
+    </div>
+  </div>
+
+  <!-- ── TAB NAVIGATION ────────────────────────────────────────── -->
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="showTab('tab-visao')" id="btn-tab-visao">
+      <span>🏠</span> Visão Geral
+    </button>
+    <button class="tab-btn" onclick="showTab('tab-disturbios')" id="btn-tab-disturbios">
+      <span>🧠</span> Transtornos
+    </button>
+    <button class="tab-btn" onclick="showTab('tab-mecanismos')" id="btn-tab-mecanismos">
+      <span>🔬</span> Mecanismos
+    </button>
+    <button class="tab-btn" onclick="showTab('tab-medicamentos')" id="btn-tab-medicamentos">
+      <span>💊</span> Medicamentos
+    </button>
+    <button class="tab-btn" onclick="showTab('tab-referencias')" id="btn-tab-referencias">
+      <span>📖</span> Evidências &amp; Refs
+    </button>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       TAB 1 – VISÃO GERAL
+  ═══════════════════════════════════════════════════════════ -->
+  <div class="tab-panel active" id="tab-visao">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">📊</div>
+        <div>
+          <div class="card-title">A Dimensão do Problema</div>
+          <div class="card-subtitle">Meta-análise com mais de 22 milhões de participantes · JAMA Psychiatry 2026</div>
+        </div>
+      </div>
+
+      <p style="font-size:.88rem;line-height:1.7;margin-bottom:1rem;">
+        Uma das maiores meta-análises já conduzidas sobre saúde mental e coração, publicada no <em>JAMA Psychiatry</em> em 2026 com dados de mais de <strong>22 milhões de participantes</strong>, demonstrou de forma inequívoca que os principais transtornos mentais estão associados a risco substancialmente elevado de síndrome coronariana aguda.<sup class="ref" title="Gupta A et al. JAMA Psychiatry 2026">[1]</sup> Mais do que isso: as pessoas com transtornos psiquiátricos desenvolvem doença cardiovascular cerca de <strong>10 anos mais cedo</strong> do que aquelas sem diagnóstico psiquiátrico.<sup class="ref" title="Gupta A et al. JAMA Psychiatry 2026">[1]</sup>
+      </p>
+
+      <div class="chart-wrap">
+        <canvas id="chartRisco"></canvas>
+      </div>
+      <p style="font-size:.72rem;color:var(--muted-foreground);text-align:center;margin-top:.25rem;">Hazard Ratios para Síndrome Coronariana Aguda. Fonte: Gupta et al., JAMA Psychiatry 2026 <sup class="ref">[1]</sup></p>
+
+      <div class="info-red info-box" style="margin-top:1.25rem;">
+        <span class="info-box-icon">⚠️</span>
+        <div>
+          <strong>Dados do Programa All of Us (2025):</strong> Analisando 141.627 participantes da coorte americana do NIH, transtornos mentais elevaram significativamente o risco de insuficiência cardíaca (HR 1,25), infarto (HR 1,30) e doença coronariana (HR 1,30). O transtorno bipolar, especificamente, elevou o risco de insuficiência cardíaca em 57% (HR 1,57).<sup class="ref" title="Blazoski et al. Am J Cardiol 2025">[3]</sup>
+        </div>
+      </div>
+
+      <div class="info-amber info-box">
+        <span class="info-box-icon">🏥</span>
+        <div>
+          <strong>Posicionamento da American Heart Association (2021):</strong> A AHA reconhece formalmente depressão e transtorno bipolar como <em>condições de risco moderado</em> que predispõem à doença cardiovascular de início precoce — com prevalência combinada de cerca de 10% em adultos jovens. A declaração científica da AHA de 2021 enfatiza a conexão mente-coração-corpo como um paradigma essencial da cardiologia moderna.<sup class="ref" title="Levine GN et al. Circulation 2021">[4]</sup>
+        </div>
+      </div>
+
+      <div class="info-gray info-box">
+        <span class="info-box-icon">📌</span>
+        <div>
+          <strong>Disparidade no cuidado:</strong> Apesar do risco aumentado, pacientes com doença mental grave têm <strong>47% menos probabilidade</strong> de serem submetidos a procedimentos coronarianos invasivos e recebem substancialmente menos medicações de prevenção secundária comparados à população geral. Até 70% dos pacientes em uso de antipsicóticos permanecem sem triagem e tratamento adequados para risco cardiovascular.<sup class="ref" title="Polcwiartek et al. EHJ 2024">[12]</sup><sup class="ref" title="Mangurian et al. JGIM 2016">[11]</sup>
+        </div>
+      </div>
+    </div>
+
+    <!-- Conexão Bidirecional -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">🔄</div>
+        <div>
+          <div class="card-title">Uma Relação Bidirecional</div>
+          <div class="card-subtitle">Mente e coração se afetam mutuamente</div>
+        </div>
+      </div>
+      <p style="font-size:.88rem;line-height:1.7;margin-bottom:1rem;">
+        A relação entre saúde mental e cardiovascular não é de mão única. Assim como a depressão aumenta o risco de infarto, sofrer um infarto aumenta dramaticamente o risco de desenvolver depressão — que, por sua vez, piora o prognóstico cardíaco. Estima-se que <strong>20–30% dos pacientes após infarto</strong> desenvolvam depressão clinicamente significativa, e esses pacientes têm o dobro do risco de novo evento cardiovascular ou morte.<sup class="ref" title="Jha MK et al. JACC 2019">[6]</sup>
+      </p>
+
+      <div class="pathway">
+        <div class="pathway-node highlight">Transtorno Mental</div>
+        <div class="pathway-arrow">→</div>
+        <div class="pathway-node">Inflamação<br>Disfunção Autonômica</div>
+        <div class="pathway-arrow">→</div>
+        <div class="pathway-node danger">Evento Cardiovascular</div>
+        <div class="pathway-arrow">→</div>
+        <div class="pathway-node">Estresse, Perda<br>Funcional</div>
+        <div class="pathway-arrow">→</div>
+        <div class="pathway-node highlight">Piora ou novo<br>Transtorno Mental</div>
+      </div>
+
+      <div class="info-teal info-box">
+        <span class="info-box-icon">💡</span>
+        <div>
+          <strong>Implicação prática:</strong> Todo cardiologista deve rastrear ativamente depressão e ansiedade em seus pacientes. E todo psiquiatra deve monitorar risco cardiovascular e efeitos metabólicos das medicações prescritas. A integração do cuidado não é opcional — é uma necessidade baseada em evidências.
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /tab-visao -->
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       TAB 2 – TRANSTORNOS ESPECÍFICOS
+  ═══════════════════════════════════════════════════════════ -->
+  <div class="tab-panel" id="tab-disturbios">
+
+    <!-- Depressão -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon red">😔</div>
+        <div>
+          <div class="card-title">Depressão Maior</div>
+          <div class="card-subtitle">Transtorno mais estudado na interface cardiológica</div>
+        </div>
+      </div>
+
+      <p style="font-size:.88rem;line-height:1.7;margin-bottom:1rem;">
+        A depressão maior é o transtorno mental mais prevalente do mundo e um dos fatores de risco cardiovascular mais subestimados. A associação com mortalidade cardiovascular aumentada em <strong>63%</strong> foi estabelecida em revisão de estado-da-arte do <em>Journal of the American College of Cardiology</em>.<sup class="ref" title="Goldfarb M et al. JACC 2022">[2]</sup> Estudos prospectivos de grande escala confirmam aumento do risco de insuficiência cardíaca (HR 1,25), infarto do miocárdio (HR 1,30) e doença coronariana (HR 1,30).<sup class="ref" title="Blazoski et al. Am J Cardiol 2025">[3]</sup>
+      </p>
+
+      <p style="font-size:.88rem;line-height:1.7;margin-bottom:1rem;">
+        A depressão não é apenas uma reação à doença cardíaca — ela é um fator causal independente. Mesmo após ajuste para todos os fatores de risco tradicionais (tabagismo, diabetes, hipertensão, dislipidemia), o risco aumentado persiste. A fisiopatologia envolve hiperativação do eixo hipotálamo-hipófise-adrenal, aumento de catecolaminas, disfunção plaquetária com elevação do fator plaquetário 4 e β-tromboglobulina, e redução da síntese de óxido nítrico endotelial.<sup class="ref" title="Gupta et al. JAMA Psychiatry 2026">[1]</sup>
+      </p>
+
+      <div class="info-red info-box">
+        <span class="info-box-icon">🔴</span>
+        <div>
+          <strong>Após IAM — urgência clínica:</strong> A depressão pós-infarto não tratada duplica o risco de morte cardíaca no primeiro ano. As diretrizes do JACC 2019 recomendam triagem universal para depressão em todos os pacientes com doença cardiovascular estabelecida, usando instrumentos validados como PHQ-9 ou PHQ-2.<sup class="ref" title="Jha MK et al. JACC 2019">[6]</sup>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.75rem;margin-top:1rem;">
+        <div style="background:var(--muted);border-radius:var(--radius);padding:12px;">
+          <div style="font-size:.7rem;font-weight:700;color:var(--muted-foreground);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.5rem;">Riscos CV Associados</div>
+          <div style="font-size:.82rem;line-height:1.6;">
+            • Infarto do miocárdio <span class="hr-pill"><span class="label">HR</span>1,30</span><br>
+            • Insuficiência cardíaca <span class="hr-pill"><span class="label">HR</span>1,25</span><br>
+            • Doença coronariana <span class="hr-pill"><span class="label">HR</span>1,30</span><br>
+            • Mortalidade CV <span class="hr-pill"><span class="label">+</span>63%</span>
+          </div>
+        </div>
+        <div style="background:var(--muted);border-radius:var(--radius);padding:12px;">
+          <div style="font-size:.7rem;font-weight:700;color:var(--muted-foreground);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.5rem;">Triagem Recomendada</div>
+          <div style="font-size:.82rem;line-height:1.6;">
+            • PHQ-2 (triagem inicial)<br>
+            • PHQ-9 (se PHQ-2 positivo)<br>
+            • HADS (em cardiopatas)<br>
+            • Reavaliação a cada 6 meses
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Transtorno Bipolar -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon amber">⚡</div>
+        <div>
+          <div class="card-title">Transtorno Bipolar</div>
+          <div class="card-subtitle">Risco cardiovascular elevado e composto</div>
+        </div>
+      </div>
+
+      <p style="font-size:.88rem;line-height:1.7;margin-bottom:1rem;">
+        O transtorno bipolar confere um perfil de risco cardiovascular particularmente grave. A análise do programa <em>All of Us</em> (2025) demonstrou HR de <strong>1,57 para insuficiência cardíaca</strong> e HR de <strong>1,38 para desfechos cardiovasculares compostos</strong>.<sup class="ref" title="Blazoski et al. Am J Cardiol 2025">[3]</sup> Pacientes com transtorno bipolar tipo I têm mais de <strong>4 vezes maior chance de hipertensão</strong> comparado a controles saudáveis.<sup class="ref" title="Gupta et al. JAMA Psychiatry 2026">[1]</sup>
+      </p>
+
+      <p style="font-size:.88rem;line-height:1.7;margin-bottom:1rem;">
+        O risco aumentado no bipolar resulta de múltiplos fatores sobrepostos: a própria doença (com suas desregulações autonômicas e inflamatórias), os comportamentos de risco associados às fases maníacas (tabagismo, uso de substâncias, inatividade, má alimentação), e os efeitos metabólicos dos estabilizadores de humor e antipsicóticos atípicos utilizados no tratamento. O tabagismo atinge prevalência de até <strong>70–80% em pacientes bipolares</strong> versus 21% na população geral.<sup class="ref" title="Goldfarb M et al. JACC 2022">[2]</sup>
+      </p>
+
+      <div class="info-amber info-box">
+        <span class="info-box-icon">⚠️</span>
+        <div>
+          <strong>Síndrome metabólica:</strong> A combinação de lítio (ganho de peso, resistência insulínica), valproato (síndrome metabólica) e antipsicóticos atípicos (dislipidemia, hiperglicemia) cria uma "tempestade metabólica" que acelera a progressão da aterosclerose. O monitoramento metabólico regular é essencial nessa população.<sup class="ref" title="Goldfarb M et al. JACC 2022">[2]</sup>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ansiedade -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" style="background:rgba(251,191,36,.12);color:#fbbf24;">😰</div>
+        <div>
+          <div class="card-title">Transtornos de Ansiedade</div>
+          <div class="card-subtitle">Impacto cardiovascular frequentemente subestimado</div>
+        </div>
+      </div>
+
+      <p style="font-size:.88rem;line-height:1.7;margin-bottom:1rem;">
+        Os transtornos de ansiedade — incluindo transtorno de ansiedade generalizada, transtorno do pânico e fobia social — aumentam o risco de síndrome coronariana aguda em <strong>63% (HR 1,63)</strong>, superando a depressão nesse desfecho específico.<sup class="ref" title="Gupta et al. JAMA Psychiatry 2026">[1]</sup> Um estudo publicado no <em>Circulation: Cardiovascular Imaging</em> (2025) demonstrou pela primeira vez o mecanismo neural integrado: ansiedade e depressão ativam a amígdala (área do cérebro ligada ao estresse), o que reduz a variabilidade da frequência cardíaca e eleva a proteína C-reativa — o elo entre perturbação emocional e lesão vascular.<sup class="ref" title="Abohashem et al. Circ CV Imaging 2025">[5]</sup>
+      </p>
+
+      <div class="info-teal info-box">
+        <span class="info-box-icon">🧬</span>
+        <div>
+          <strong>Mecanismo neural-cardiovascular:</strong> A hiperatividade da amígdala — mensurável por neuroimagem — gera ativação do eixo hipotálamo-hipófise-adrenal, reduz a variabilidade da frequência cardíaca (marcador de risco arrítmico) e promove estado pró-inflamatório sistêmico com elevação de IL-6, TNF-α e PCR. Esse caminho é independente dos fatores de risco tradicionais.<sup class="ref" title="Abohashem et al. Circ CV Imaging 2025">[5]</sup><sup class="ref" title="Levine GN et al. Circulation 2021">[4]</sup>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEPT -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon red">🛡️</div>
+        <div>
+          <div class="card-title">Transtorno de Estresse Pós-Traumático (TEPT)</div>
+          <div class="card-subtitle">O maior risco cardiovascular entre os transtornos mentais estudados</div>
+        </div>
+      </div>
+
+      <p style="font-size:.88rem;line-height:1.7;margin-bottom:1rem;">
+        O TEPT apresenta o maior risco cardiovascular dentre todos os transtornos mentais avaliados na meta-análise de 2026: <strong>HR 2,73 para síndrome coronariana aguda</strong> — quase o triplo do risco.<sup class="ref" title="Gupta et al. JAMA Psychiatry 2026">[1]</sup> Este dado é especialmente relevante para populações expostas a trauma: sobreviventes de guerras, vítimas de violência, sobreviventes de acidentes graves e profissionais de emergência.
+      </p>
+
+      <p style="font-size:.88rem;line-height:1.7;margin-bottom:1rem;">
+        A fisiopatologia do TEPT cardiovascular é dominada pela <strong>desregulação crônica do sistema nervoso autônomo</strong>. O estado de hipervigilância permanente — "fight or flight" cronificado — mantém níveis elevados de catecolaminas, aumenta a frequência cardíaca de repouso, eleva a pressão arterial e promove disfunção endotelial progressiva. A ativação persistente do eixo HPA gera hipercortisolismo com todos os seus efeitos metabólicos e vasculares negativos.<sup class="ref" title="Levine GN et al. Circulation 2021">[4]</sup>
+      </p>
+
+      <div class="info-red info-box">
+        <span class="info-box-icon">🔴</span>
+        <div>
+          <strong>Dados do Veterans Affairs (EUA):</strong> Veteranos de guerra com TEPT têm risco 2–3 vezes maior de infarto, maior prevalência de fibrilação atrial e pior sobrevida após eventos coronarianos. O reconhecimento do TEPT como fator de risco cardiovascular independente é crescente nas diretrizes mais recentes.<sup class="ref" title="Gupta et al. JAMA Psychiatry 2026">[1]</sup>
+        </div>
+      </div>
+
+      <!-- Comparativo HR -->
+      <div style="margin-top:1.25rem;">
+        <div style="font-size:.78rem;font-weight:700;color:var(--muted-foreground);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.75rem;">Hazard Ratios para SCA por Transtorno</div>
+        <div id="hr-bars"></div>
+      </div>
+    </div>
+
+    <!-- Transtornos do Sono -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon purple">🌙</div>
+        <div>
+          <div class="card-title">Transtornos do Sono</div>
+          <div class="card-subtitle">HR 1,60 para SCA — vínculo subestimado com o coração</div>
+        </div>
+      </div>
+
+      <p style="font-size:.88rem;line-height:1.7;margin-bottom:1rem;">
+        Insônia, apneia obstrutiva do sono e outros transtornos do sono estão associados a <strong>HR 1,60 para síndrome coronariana aguda</strong>.<sup class="ref" title="Gupta et al. JAMA Psychiatry 2026">[1]</sup> O sono inadequado prejudica a recuperação cardiovascular noturna, aumenta a atividade simpática basal, eleva a pressão arterial noturna (perda do "dipping" fisiológico), promove inflamação sistêmica e prejudica o metabolismo da glicose. A privação crônica do sono aumenta os níveis de interleucina-6 e PCR em estudos experimentais controlados.
+      </p>
+
+      <div class="info-purple info-box">
+        <span class="info-box-icon">💤</span>
+        <div>
+          <strong>Apneia do sono e coração:</strong> A síndrome da apneia obstrutiva do sono (SAOS) merece destaque especial — é frequentemente subdiagnosticada em pacientes cardiológicos e contribui para hipertensão resistente, fibrilação atrial, insuficiência cardíaca e morte súbita. O tratamento com CPAP melhora desfechos cardiovasculares intermediários (pressão arterial, variabilidade da FC) mesmo que estudos de desfecho duro ainda mostrem resultados mistos.
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /tab-disturbios -->
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       TAB 3 – MECANISMOS FISIOPATOLÓGICOS
+  ═══════════════════════════════════════════════════════════ -->
+  <div class="tab-panel" id="tab-mecanismos">
+
+    <div class="info-teal info-box">
+      <span class="info-box-icon">🔬</span>
+      <div>
+        <strong>Conexão mente-coração-corpo:</strong> A declaração científica da American Heart Association (2021) sistematizou os mecanismos pelos quais estados psicológicos adversos causam doença cardiovascular. A relação é mediada por <strong>três grandes vias</strong>: biológica direta, comportamental e neuroimunológica.<sup class="ref" title="Levine GN et al. Circulation 2021">[4]</sup>
+      </div>
+    </div>
+
+    <!-- Eixo HPA -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon red">⚙️</div>
+        <div>
+          <div class="card-title">Eixo Hipotálamo-Hipófise-Adrenal (HPA) e Sistema Nervoso Autônomo</div>
+          <div class="card-subtitle">A cascata do estresse crônico</div>
+        </div>
+      </div>
+
+      <p style="font-size:.88rem;line-height:1.7;margin-bottom:1rem;">
+        O estresse psicológico crônico ativa persistentemente o eixo HPA, gerando hipercortisolemia prolongada. O cortisol elevado cronicamente promove <strong>redistribuição central da gordura corporal</strong> (favorecendo a gordura visceral), resistência insulínica, hipertensão, dislipidemia e estado pró-trombótico. Simultaneamente, a ativação do sistema nervoso simpático aumenta os níveis circulantes de adrenalina e noradrenalina.<sup class="ref" title="Levine GN et al. Circulation 2021">[4]</sup>
+      </p>
+
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>🧪 Desregulação Autonômica e Variabilidade da FC</span>
+          <span class="accordion-arrow">▼</span>
+        </div>
+        <div class="accordion-body">
+          <p>A variabilidade da frequência cardíaca (VFC) é um marcador de equilíbrio autonômico — alta VFC indica domínio parassimpático saudável; baixa VFC, domínio simpático excessivo. Depressão, ansiedade e TEPT estão consistentemente associados à <strong>redução da VFC</strong>, o que aumenta o risco de arritmias ventriculares, morte súbita cardíaca e eventos isquêmicos.<sup class="ref">[5]</sup></p>
+          <p style="margin-top:.6rem;">O estudo de Abohashem et al. (Circulation 2025) demonstrou que a redução da VFC é um mediador mensurável entre ansiedade/depressão e eventos cardiovasculares, integrado com a atividade da amígdala e marcadores inflamatórios.<sup class="ref" title="Abohashem et al. Circ CV Imaging 2025">[5]</sup></p>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>💉 Catecolaminas, Vasoconstrição e Ativação Plaquetária</span>
+          <span class="accordion-arrow">▼</span>
+        </div>
+        <div class="accordion-body">
+          <p>O excesso de catecolaminas promove vasoconstrição coronariana, aumenta a pré-carga e pós-carga cardíaca, e ativa diretamente as plaquetas via receptores α-adrenérgicos. A depressão está especificamente associada a elevação do <strong>fator plaquetário 4</strong> e <strong>β-tromboglobulina</strong> — marcadores de ativação plaquetária — além de redução da expressão de óxido nítrico sintase endotelial (eNOS).<sup class="ref" title="Gupta et al. JAMA Psychiatry 2026">[1]</sup></p>
+          <p style="margin-top:.6rem;">Esse estado pró-trombótico explica parcialmente por que a depressão é um preditor independente de trombose de stent após intervenção coronária percutânea — mesmo com antiagregação adequada.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Inflamação -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" style="background:rgba(239,68,68,.12);color:#f87171;">🔥</div>
+        <div>
+          <div class="card-title">Inflamação Sistêmica e Disfunção Endotelial</div>
+          <div class="card-subtitle">O elo molecular entre mente e vaso</div>
+        </div>
+      </div>
+
+      <p style="font-size:.88rem;line-height:1.7;margin-bottom:1rem;">
+        Os transtornos mentais — especialmente depressão e TEPT — são acompanhados de um estado inflamatório sistêmico de baixo grau, com elevação de <strong>PCR, IL-6, TNF-α e IL-1β</strong>. Essas citocinas inflamatórias agem diretamente no endotélio vascular, promovendo disfunção endotelial, expressão de moléculas de adesão (ICAM-1, VCAM-1) e facilitando a entrada de monócitos na parede arterial — os passos iniciais da formação da placa aterosclerótica.<sup class="ref" title="Levine GN et al. Circulation 2021">[4]</sup>
+      </p>
+
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>🧬 Envelhecimento Acelerado e Telômeros</span>
+          <span class="accordion-arrow">▼</span>
+        </div>
+        <div class="accordion-body">
+          <p>Depressão e estresse crônico estão associados ao <strong>encurtamento acelerado dos telômeros</strong> — estruturas que protegem as extremidades dos cromossomos e funcionam como "relógio biológico celular". Telômeros mais curtos indicam envelhecimento celular acelerado e estão associados a maior risco de aterosclerose, insuficiência cardíaca e arritmias.<sup class="ref" title="Goldfarb M et al. JACC 2022">[2]</sup></p>
+          <p style="margin-top:.6rem;">O estresse oxidativo elevado (maior produção de espécies reativas de oxigênio) observado na depressão também prejudica a biologia mitocondrial dos cardiomiócitos e células endoteliais, contribuindo para o envelhecimento vascular precoce.</p>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>🧠 Via Neural-Inflamatória da Amígdala</span>
+          <span class="accordion-arrow">▼</span>
+        </div>
+        <div class="accordion-body">
+          <p>Abohashem et al. (Circulation: Cardiovascular Imaging, 2025) demonstraram em estudo prospectivo com neuroimagem que a <strong>hiperatividade da amígdala</strong> — mensurável por PET scan — medeia a relação entre ansiedade/depressão e eventos cardiovasculares através de três caminhos simultâneos:<sup class="ref">[5]</sup></p>
+          <ul style="margin:8px 0 8px 16px;line-height:1.7;font-size:.82rem;">
+            <li><strong>Via neural:</strong> Ativação amígdala → eixo HPA → catecolaminas</li>
+            <li><strong>Via autonômica:</strong> Redução da VFC → risco arrítmico</li>
+            <li><strong>Via inflamatória:</strong> Elevação de PCR → disfunção endotelial</li>
+          </ul>
+          <p>Esse modelo integrado representa um avanço significativo na compreensão mecanicista da conexão mente-coração.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fatores Comportamentais -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon amber">🚬</div>
+        <div>
+          <div class="card-title">Fatores Comportamentais e de Estilo de Vida</div>
+          <div class="card-subtitle">Mediadores comportamentais do risco cardiovascular</div>
+        </div>
+      </div>
+
+      <p style="font-size:.88rem;line-height:1.7;margin-bottom:1rem;">
+        Transtornos mentais estão fortemente associados a comportamentos de alto risco cardiovascular — não apenas como consequência, mas como expressão da própria doença. A anedonia (incapacidade de sentir prazer) da depressão dificulta a adesão a exercícios e dieta saudável. A desinibição das fases maníacas do bipolar favorece tabagismo e abuso de substâncias. O isolamento social do TEPT reduz o suporte social protetor.<sup class="ref" title="Goldfarb M et al. JACC 2022">[2]</sup>
+      </p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.75rem;margin-top:1rem;">
+        <div class="monitor-card">
+          <div class="monitor-title">🚬 Tabagismo</div>
+          <div class="monitor-items">
+            Prevalência de <strong>70–80%</strong> na esquizofrenia e transtorno bipolar vs. <strong>21%</strong> na população geral. Maior dependência nicotínica e menor taxa de cessação espontânea.
+          </div>
+        </div>
+        <div class="monitor-card">
+          <div class="monitor-title">🛋️ Sedentarismo</div>
+          <div class="monitor-items">
+            A anedonia e a fadiga da depressão reduzem drasticamente a atividade física. Inatividade é fator independente de risco cardiovascular e piora o prognóstico psiquiátrico.
+          </div>
+        </div>
+        <div class="monitor-card">
+          <div class="monitor-title">🍔 Má Nutrição</div>
+          <div class="monitor-items">
+            Dieta inadequada, hiperfagia (especialmente com antipsicóticos), consumo de alimentos ultraprocessados. Contribui para obesidade visceral e síndrome metabólica.
+          </div>
+        </div>
+        <div class="monitor-card">
+          <div class="monitor-title">💊 Baixa Adesão</div>
+          <div class="monitor-items">
+            Pacientes com depressão têm 3× mais chance de não aderir a medicações cardiovasculares prescritas. Baixa adesão a estatinas, anti-hipertensivos e antiagregantes.
+          </div>
+        </div>
+      </div>
+
+      <div class="info-amber info-box" style="margin-top:1rem;">
+        <span class="info-box-icon">📊</span>
+        <div>
+          <strong>Hipertensão e Bipolar:</strong> Pacientes com transtorno bipolar tipo I têm <strong>4× maior chance de hipertensão</strong> comparado a controles.<sup class="ref">[1]</sup> O mecanismo é multifatorial: estresse autonômico, efeitos dos medicamentos (especialmente lítio em altas doses e antipsicóticos), sedentarismo e ganho de peso. A hipertensão mal controlada nesses pacientes é um importante contribuinte para o excesso de eventos cardiovasculares.
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /tab-mecanismos -->
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       TAB 4 – MEDICAMENTOS PSICOTRÓPICOS
+  ═══════════════════════════════════════════════════════════ -->
+  <div class="tab-panel" id="tab-medicamentos">
+
+    <div class="info-amber info-box">
+      <span class="info-box-icon">⚠️</span>
+      <div>
+        <strong>Princípio fundamental:</strong> O risco cardiovascular dos medicamentos psicotrópicos deve sempre ser ponderado contra o risco cardiovascular do transtorno mental não tratado. Na maioria dos casos, tratar adequadamente o transtorno mental reduz o risco cardiovascular global — mas a escolha e o monitoramento do medicamento são determinantes para a segurança.
+      </div>
+    </div>
+
+    <div class="filter-row">
+      <button class="filter-btn active" onclick="filterDrugs('all', this)">Todos</button>
+      <button class="filter-btn" onclick="filterDrugs('antidep', this)">Antidepressivos</button>
+      <button class="filter-btn" onclick="filterDrugs('estab', this)">Estabilizadores</button>
+      <button class="filter-btn" onclick="filterDrugs('antipsi', this)">Antipsicóticos</button>
+    </div>
+
+    <!-- ANTIDEPRESSIVOS -->
+    <div class="card drug-group" data-group="antidep">
+      <div class="card-header">
+        <div class="card-icon">💊</div>
+        <div>
+          <div class="card-title">Antidepressivos</div>
+          <div class="card-subtitle">Classes com perfis cardiovasculares muito distintos</div>
+        </div>
+      </div>
+
+      <table class="drug-table">
+        <thead>
+          <tr>
+            <th>Classe / Fármaco</th>
+            <th>Risco CV</th>
+            <th>Efeitos Cardiovasculares Principais</th>
+            <th>Uso em Cardiopatas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>ADTs</strong><br><small style="color:var(--muted-foreground);">Amitriptilina, Imipramina, Nortriptilina</small></td>
+            <td><span class="risk-badge risk-high">ALTO</span></td>
+            <td>Hipotensão ortostática, taquicardia refleta, prolongamento QRS e QT, bloqueio de condução AV, arritmias (FA, TV). Efeito quinidina-símile.</td>
+            <td style="color:#f87171;">⛔ <strong>Evitar</strong> em doença isquêmica, insuficiência cardíaca, história de arritmias. Limitar ao mínimo necessário.</td>
+          </tr>
+          <tr>
+            <td><strong>ISRSs</strong><br><small style="color:var(--muted-foreground);">Sertralina, Escitalopram, Fluoxetina, Citalopram</small></td>
+            <td><span class="risk-badge risk-low">BAIXO</span></td>
+            <td>Leve prolongamento do QTc (especialmente citalopram &gt;40 mg). Raro: hiponatremia (em idosos). Interação com anticoagulantes (risco de sangramento).</td>
+            <td style="color:var(--teal);">✅ <strong>Preferidos</strong> em cardiopatas. Sertralina: maior evidência de segurança em pós-IAM (SADHART). Escitalopram: 1ª escolha, mas citalopram &gt;40mg deve ser evitado.</td>
+          </tr>
+          <tr>
+            <td><strong>ISRSNs</strong><br><small style="color:var(--muted-foreground);">Venlafaxina, Duloxetina, Desvenlafaxina</small></td>
+            <td><span class="risk-badge risk-mod">MODERADO</span></td>
+            <td>Hipertensão dose-dependente (venlafaxina em altas doses), taquicardia, leve prolongamento QT. Duloxetina: hipertensão em 2–3% dos pacientes.</td>
+            <td style="color:#fbbf24;">⚠️ <strong>Com cautela</strong> em hipertensos. Monitorar PA regularmente. Evitar em IC descompensada ou HAS não controlada.</td>
+          </tr>
+          <tr>
+            <td><strong>Bupropiona</strong><br><small style="color:var(--muted-foreground);">IRNDA</small></td>
+            <td><span class="risk-badge risk-mod">MODERADO</span></td>
+            <td>Elevação leve da PA e FC. Pode reduzir limiar convulsivo. Ausência de efeitos anticolinérgicos (vantagem sobre ADTs).</td>
+            <td style="color:#fbbf24;">⚠️ Monitorar PA. Evitar em hipertensão grave não controlada e história de convulsões.</td>
+          </tr>
+          <tr>
+            <td><strong>Mirtazapina</strong><br><small style="color:var(--muted-foreground);">NaSSA</small></td>
+            <td><span class="risk-badge risk-mod">MODERADO</span></td>
+            <td>Ganho de peso significativo, hipotensão ortostática. Perfil sedativo (pode ser útil em insônia). Sem efeito QT relevante.</td>
+            <td style="color:#fbbf24;">⚠️ Considerar o ganho ponderal como fator de risco metabólico. Útil quando sedação e ganho de peso são desejáveis.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="info-red info-box" style="margin-top:1.25rem;">
+        <span class="info-box-icon">⚠️</span>
+        <div>
+          <strong>QTc e Torsades de Pointes:</strong> O prolongamento do intervalo QT é o maior risco arrítmico dos psicotrópicos. O limiar de risco clinicamente relevante é QTc &gt;500 ms ou aumento &gt;60 ms em relação ao basal. Risco aumenta com: hipocalemia, hipomagnesemia, bradicardia, uso concomitante de outros fármacos que prolongam QT, cardiopatia estrutural. ECG basal e seguimento são mandatórios.<sup class="ref" title="Jha MK et al. JACC 2019">[6]</sup><sup class="ref" title="Piña IL et al. JACC 2018">[7]</sup>
+        </div>
+      </div>
+
+      <!-- QT visual -->
+      <div style="margin-top:1rem;">
+        <div style="font-size:.78rem;font-weight:700;color:var(--muted-foreground);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.75rem;">Potencial de Prolongamento de QTc (relativo)</div>
+        <div id="qt-visual"></div>
+      </div>
+    </div>
+
+    <!-- ESTABILIZADORES -->
+    <div class="card drug-group" data-group="estab">
+      <div class="card-header">
+        <div class="card-icon amber">⚖️</div>
+        <div>
+          <div class="card-title">Estabilizadores de Humor</div>
+          <div class="card-subtitle">Lítio, Valproato, Lamotrigina, Carbamazepina</div>
+        </div>
+      </div>
+
+      <table class="drug-table">
+        <thead>
+          <tr>
+            <th>Fármaco</th>
+            <th>Risco CV</th>
+            <th>Efeitos Cardiovasculares</th>
+            <th>Notas Clínicas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Lítio</strong></td>
+            <td><span class="risk-badge risk-mod">MODERADO</span></td>
+            <td>Ganho de peso (2–3 kg em média), resistência insulínica. Raramente: alterações inespecíficas de ST-T no ECG. <em>Toxicidade</em>: arritmias graves (bradicardia, pausa sinusal) em intoxicação.</td>
+            <td>Monitorar glicemia, peso e função renal. Em cardiopatas com insuficiência renal: risco de acúmulo tóxico. Ajuste de dose obrigatório. Evitar combinação com AINEs e diuréticos tiazídicos (elevam litememia).</td>
+          </tr>
+          <tr>
+            <td><strong>Ácido Valproico</strong></td>
+            <td><span class="risk-badge risk-mod">MODERADO</span></td>
+            <td>Ganho de peso significativo (até 10–15 kg), síndrome metabólica, hiperinsulinemia, ovário policístico. Dislipidemia em uso prolongado.</td>
+            <td>Monitorar peso, glicemia, perfil lipídico e transaminases. Impacto metabólico é cumulativo com antipsicóticos atípicos. Considerar alternativas em pacientes com risco metabólico elevado.</td>
+          </tr>
+          <tr>
+            <td><strong>Lamotrigina</strong></td>
+            <td><span class="risk-badge risk-low">BAIXO</span></td>
+            <td>Perfil metabólico neutro. Sem efeito relevante sobre peso, lipídios ou glicemia. Sem prolongamento de QT clinicamente significativo.</td>
+            <td>Estabilizador de escolha quando o impacto metabólico é uma preocupação. Eficaz principalmente para depressão bipolar. Risco de rash grave (Stevens-Johnson) — titulação lenta obrigatória.</td>
+          </tr>
+          <tr>
+            <td><strong>Carbamazepina</strong></td>
+            <td><span class="risk-badge risk-mod">MODERADO</span></td>
+            <td>Prolonga intervalo PR, pode causar bloqueio AV. Indução enzimática potente — reduz eficácia de estatinas, anticoagulantes, antiagregantes e muitos outros cardio-fármacos.</td>
+            <td>Interações farmacológicas são o maior risco em cardiopatas. ECG basal recomendado. Evitar em bloqueio AV pré-existente.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ANTIPSICÓTICOS -->
+    <div class="card drug-group" data-group="antipsi">
+      <div class="card-header">
+        <div class="card-icon red">🧬</div>
+        <div>
+          <div class="card-title">Antipsicóticos Atípicos (2ª Geração)</div>
+          <div class="card-subtitle">Maior risco metabólico e cardiovascular entre os psicotrópicos</div>
+        </div>
+      </div>
+
+      <p style="font-size:.88rem;line-height:1.7;margin-bottom:1rem;">
+        Os antipsicóticos atípicos representam o grupo de maior risco cardiovascular entre os psicotrópicos, especialmente pelos efeitos metabólicos. Estudo de farmacovigilância com dados do FDA FAERS (2015–2020) confirmou que cardiotoxicidade é uma das principais reações adversas graves dessa classe.<sup class="ref" title="He L et al. Front Pharmacol 2021">[9]</sup> O programa de vigilância AMSP (1993–2013, n=373.041 tratamentos) documentou amplo espectro de reações cardiovasculares adversas.<sup class="ref" title="Friedrich ME et al. IJNP 2020">[10]</sup>
+      </p>
+
+      <div style="overflow-x:auto;">
+      <table class="drug-table">
+        <thead>
+          <tr>
+            <th>Fármaco</th>
+            <th>Risco Metabólico</th>
+            <th>QT</th>
+            <th>Hipotensão</th>
+            <th>Evento Especial</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Clozapina</strong></td>
+            <td><span class="risk-badge risk-high">MUITO ALTO</span></td>
+            <td><span class="risk-badge risk-mod">MODERADO</span></td>
+            <td><span class="risk-badge risk-high">ALTA</span></td>
+            <td style="color:#f87171;font-size:.78rem;"><strong>Miocardite (0,7–1,2%):</strong> geralmente nas primeiras 8 semanas. Monitorar troponina e PCR semanalmente nas 4 primeiras semanas. Cardiomiopatia em uso crônico.</td>
+          </tr>
+          <tr>
+            <td><strong>Olanzapina</strong></td>
+            <td><span class="risk-badge risk-high">MUITO ALTO</span></td>
+            <td><span class="risk-badge risk-low">BAIXO</span></td>
+            <td><span class="risk-badge risk-mod">MODERADA</span></td>
+            <td style="font-size:.78rem;">Maior ganho de peso da classe (até 10+ kg). Hiperglicemia, dislipidemia aterogênica. Diabetes novo-início em ~1,5% dos pacientes.</td>
+          </tr>
+          <tr>
+            <td><strong>Quetiapina</strong></td>
+            <td><span class="risk-badge risk-mod">MODERADO</span></td>
+            <td><span class="risk-badge risk-mod">MODERADO</span></td>
+            <td><span class="risk-badge risk-mod">MODERADA</span></td>
+            <td style="font-size:.78rem;">Risco intermediário. Frequentemente usada em baixas doses como adjuvante para insônia — o risco metabólico persiste mesmo em baixas doses.</td>
+          </tr>
+          <tr>
+            <td><strong>Risperidona / Paliperidona</strong></td>
+            <td><span class="risk-badge risk-mod">MODERADO</span></td>
+            <td><span class="risk-badge risk-mod">MODERADO</span></td>
+            <td><span class="risk-badge risk-mod">MODERADA</span></td>
+            <td style="font-size:.78rem;">Menor impacto lipídico que clozapina/olanzapina, mas eleva prolactina. Risco de hipotensão ortostática, especialmente em idosos.</td>
+          </tr>
+          <tr>
+            <td><strong>Aripiprazol</strong></td>
+            <td><span class="risk-badge risk-low">BAIXO</span></td>
+            <td><span class="risk-badge risk-low">BAIXO</span></td>
+            <td><span class="risk-badge risk-low">BAIXA</span></td>
+            <td style="font-size:.78rem;color:var(--teal);">Perfil metabólico mais favorável. Pode inclusive melhorar lipídios em pacientes trocados de olanzapina. Preferível em pacientes com risco metabólico.</td>
+          </tr>
+          <tr>
+            <td><strong>Lurasidona</strong></td>
+            <td><span class="risk-badge risk-low">BAIXO</span></td>
+            <td><span class="risk-badge risk-low">BAIXO</span></td>
+            <td><span class="risk-badge risk-low">BAIXA</span></td>
+            <td style="font-size:.78rem;color:var(--teal);">Perfil metabólico neutro ou favorável. Eficaz para depressão bipolar. Menor ganho de peso da classe. Opção preferencial em pacientes com síndrome metabólica.</td>
+          </tr>
+          <tr>
+            <td><strong>Ziprasidona</strong></td>
+            <td><span class="risk-badge risk-low">BAIXO</span></td>
+            <td><span class="risk-badge risk-high">ALTO</span></td>
+            <td><span class="risk-badge risk-mod">MODERADA</span></td>
+            <td style="font-size:.78rem;color:#f87171;">Maior prolongamento de QTc da classe. Apesar do perfil metabólico favorável, o risco arrítmico limita seu uso em cardiopatas. ECG obrigatório.</td>
+          </tr>
+          <tr>
+            <td><strong>Haloperidol (1ª geração)</strong></td>
+            <td><span class="risk-badge risk-low">BAIXO</span></td>
+            <td><span class="risk-badge risk-high">ALTO</span></td>
+            <td><span class="risk-badge risk-mod">MODERADA</span></td>
+            <td style="font-size:.78rem;color:#f87171;">Especialmente IV: risco de Torsades de Pointes. Monitoramento contínuo de ECG mandatório quando administrado endovenosamente em UTIs.</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+      <!-- Clozapina Miocardite -->
+      <div class="info-red info-box" style="margin-top:1.25rem;">
+        <span class="info-box-icon">❤️‍🔥</span>
+        <div>
+          <strong>Miocardite por Clozapina — Protocolo de Monitoramento:</strong> A clozapina está associada a miocardite com incidência de 0,7–1,2%, geralmente nas primeiras 4–8 semanas de tratamento.<sup class="ref" title="Page RL et al. Circulation 2016">[8]</sup> Sintomas: febre, taquicardia, fadiga, dispneia, dor torácica. Monitorar <strong>troponina I ou T + PCR + eosinófilos semanalmente nas primeiras 4 semanas</strong>, quinzenalmente até 12 semanas. Qualquer elevação de troponina deve levar à suspensão imediata e avaliação cardiológica urgente. Cardiomiopatia dilatada pode ocorrer em uso crônico.
+        </div>
+      </div>
+
+      <div class="info-teal info-box">
+        <span class="info-box-icon">🔄</span>
+        <div>
+          <strong>Troca de antipsicótico como intervenção cardiovascular:</strong> Estudos demonstram que a troca de antipsicóticos de alto risco metabólico (clozapina, olanzapina) para agentes de menor risco (aripiprazol, lurasidona) — quando clinicamente viável — resulta em reduções mensuráveis de peso, glicemia e triglicérides. Essa intervenção farmacológica é considerada mais efetiva que intervenções puramente comportamentais para redução de risco cardiovascular nessa população.<sup class="ref" title="Goldfarb M et al. JACC 2022">[2]</sup>
+        </div>
+      </div>
+
+      <div class="info-gray info-box">
+        <span class="info-box-icon">📋</span>
+        <div>
+          <strong>Modelo PRIMROSE de risco cardiovascular:</strong> As calculadoras convencionais de risco (Framingham, SCORE2) subestimam o risco em pacientes com doença mental grave por não incluírem o diagnóstico psiquiátrico, uso de antipsicóticos ou medicamentos antidepressivos, e o peso corporal de maneira adequada. Os modelos PRIMROSE foram desenvolvidos especificamente para essa população e incorporam esses fatores.<sup class="ref" title="Goldfarb M et al. JACC 2022">[2]</sup>
+        </div>
+      </div>
+    </div>
+
+    <!-- Protocolo de Monitoramento -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" style="background:rgba(34,197,94,.1);color:#4ade80;">📋</div>
+        <div>
+          <div class="card-title">Protocolo de Monitoramento Cardiometabólico</div>
+          <div class="card-subtitle">Ao iniciar antipsicóticos atípicos — recomendações baseadas em evidências</div>
+        </div>
+      </div>
+
+      <div class="monitor-grid">
+        <div class="monitor-card">
+          <div class="monitor-title">⚖️ Peso e IMC</div>
+          <div class="monitor-items">Basal, 4, 8, 12 semanas; depois a cada 3 meses</div>
+          <div class="monitor-when">→ Alvo: ganho &lt;5% do peso basal</div>
+        </div>
+        <div class="monitor-card">
+          <div class="monitor-title">🩺 Pressão Arterial</div>
+          <div class="monitor-items">Basal, 12 semanas; depois anualmente (mais frequente se alterada)</div>
+          <div class="monitor-when">→ Alvo: &lt;130/80 mmHg</div>
+        </div>
+        <div class="monitor-card">
+          <div class="monitor-title">🩸 Glicemia em Jejum</div>
+          <div class="monitor-items">Basal, 12 semanas, 1 ano; anualmente se normal</div>
+          <div class="monitor-when">→ Alvo: glicemia &lt;100 mg/dL</div>
+        </div>
+        <div class="monitor-card">
+          <div class="monitor-title">💉 Perfil Lipídico</div>
+          <div class="monitor-items">Basal, 12 semanas, 1 ano; depois a cada 5 anos se normal</div>
+          <div class="monitor-when">→ Risco TG e LDL elevados</div>
+        </div>
+        <div class="monitor-card">
+          <div class="monitor-title">📈 ECG (QTc)</div>
+          <div class="monitor-items">Basal e após estabilização da dose; em risco de QT prolongado: mais frequente</div>
+          <div class="monitor-when">→ Suspender se QTc &gt;500ms</div>
+        </div>
+        <div class="monitor-card">
+          <div class="monitor-title">❤️ Troponina + PCR</div>
+          <div class="monitor-items"><strong>Clozapina apenas:</strong> semanal nas 4 primeiras semanas; quinzenal até 12 semanas</div>
+          <div class="monitor-when">→ Miocardite: suspender imediatamente</div>
+        </div>
+      </div>
+
+      <div class="info-green info-box" style="margin-top:1rem;">
+        <span class="info-box-icon">✅</span>
+        <div>
+          <strong>Metformina como intervenção preventiva:</strong> Em pacientes iniciando antipsicóticos atípicos com risco metabólico elevado (IMC &gt;25, glicemia limítrofe), a adição de metformina demonstrou redução significativa do ganho de peso e melhora da sensibilidade insulínica em ensaios controlados. É uma das intervenções farmacológicas mais efetivas para mitigar o impacto metabólico dos antipsicóticos.<sup class="ref" title="Goldfarb M et al. JACC 2022">[2]</sup>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /tab-medicamentos -->
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       TAB 5 – EVIDÊNCIAS E REFERÊNCIAS
+  ═══════════════════════════════════════════════════════════ -->
+  <div class="tab-panel" id="tab-referencias">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">🔬</div>
+        <div>
+          <div class="card-title">Base de Evidências</div>
+          <div class="card-subtitle">Estudos e diretrizes que fundamentam este conteúdo</div>
+        </div>
+      </div>
+
+      <div class="info-teal info-box">
+        <span class="info-box-icon">📊</span>
+        <div>
+          Este conteúdo é baseado nas mais recentes publicações científicas de alto impacto, incluindo meta-análises com milhões de participantes, ensaios clínicos randomizados, análises de coortes prospectivas e declarações científicas de sociedades como AHA, ESC e ACC. A atualização mais recente incorpora dados do <em>JAMA Psychiatry</em> 2026 e <em>Circulation</em> 2025.
+        </div>
+      </div>
+
+      <div class="ref-list" style="margin-top:1.25rem;">
+        <div class="ref-item">
+          <div class="ref-num">1</div>
+          <div class="ref-text">
+            <strong>Gupta A, Tejpal T, Seo C, et al.</strong> Mental Disorders as a Risk Factor of Acute Coronary Syndrome.
+            <span class="ref-journal">JAMA Psychiatry. 2026. doi:10.1001/jamapsychiatry.2025.4253</span><br>
+            <em style="font-size:.72rem;opacity:.7;">Meta-análise de 22M+ participantes. TEPT HR 2,73; Ansiedade HR 1,63; Depressão HR 1,40; Sono HR 1,60.</em>
+          </div>
+        </div>
+        <div class="ref-item">
+          <div class="ref-num">2</div>
+          <div class="ref-text">
+            <strong>Goldfarb M, De Hert M, Detraux J, et al.</strong> Severe Mental Illness and Cardiovascular Disease: JACC State-of-the-Art Review.
+            <span class="ref-journal">Journal of the American College of Cardiology. 2022;80(9):918-933. doi:10.1016/j.jacc.2022.06.017</span><br>
+            <em style="font-size:.72rem;opacity:.7;">Revisão abrangente de mecanismos, medicamentos e abordagem clínica integrada. JACC 2022.</em>
+          </div>
+        </div>
+        <div class="ref-item">
+          <div class="ref-num">3</div>
+          <div class="ref-text">
+            <strong>Blazoski C, Yao Z, Bafna T, et al.</strong> Mental Health Disorders and the Development of Cardiovascular Disease: Insights From the All of Us Research Program.
+            <span class="ref-journal">The American Journal of Cardiology. 2025. doi:10.1016/j.amjcard.2025.07.021</span><br>
+            <em style="font-size:.72rem;opacity:.7;">Análise do All of Us (NIH), 141.627 participantes. Bipolar: IC HR 1,57; composto HR 1,38.</em>
+          </div>
+        </div>
+        <div class="ref-item">
+          <div class="ref-num">4</div>
+          <div class="ref-text">
+            <strong>Levine GN, Cohen BE, Commodore-Mensah Y, et al.</strong> Psychological Health, Well-Being, and the Mind-Heart-Body Connection: A Scientific Statement From the American Heart Association.
+            <span class="ref-journal">Circulation. 2021;143(10):e763-e783. doi:10.1161/CIR.0000000000000947</span><br>
+            <em style="font-size:.72rem;opacity:.7;">Declaração científica da AHA. Conexão mente-coração-corpo. Framework de mecanismos.</em>
+          </div>
+        </div>
+        <div class="ref-item">
+          <div class="ref-num">5</div>
+          <div class="ref-text">
+            <strong>Abohashem S, Qamar I, Grewal SS, et al.</strong> Depression and Anxiety Associate With Adverse Cardiovascular Events via Neural, Autonomic, and Inflammatory Pathways.
+            <span class="ref-journal">Circulation: Cardiovascular Imaging. 2025. doi:10.1161/CIRCIMAGING.124.017706</span><br>
+            <em style="font-size:.72rem;opacity:.7;">Neuroimagem (PET) demonstrando atividade da amígdala, VFC e PCR como mediadores.</em>
+          </div>
+        </div>
+        <div class="ref-item">
+          <div class="ref-num">6</div>
+          <div class="ref-text">
+            <strong>Jha MK, Qamar A, Vaduganathan M, Charney DS, Murrough JW.</strong> Screening and Management of Depression in Patients With Cardiovascular Disease: JACC State-of-the-Art Review.
+            <span class="ref-journal">Journal of the American College of Cardiology. 2019;73(14):1827-1845. doi:10.1016/j.jacc.2019.01.041</span><br>
+            <em style="font-size:.72rem;opacity:.7;">Rastreamento (PHQ-9), SADHART, ENRICHD; segurança de ISRSs em cardiopatas.</em>
+          </div>
+        </div>
+        <div class="ref-item">
+          <div class="ref-num">7</div>
+          <div class="ref-text">
+            <strong>Piña IL, Di Palo KE, Ventura HO.</strong> Psychopharmacology and Cardiovascular Disease.
+            <span class="ref-journal">Journal of the American College of Cardiology. 2018;71(20):2346-2359. doi:10.1016/j.jacc.2018.03.458</span><br>
+            <em style="font-size:.72rem;opacity:.7;">Revisão completa dos efeitos cardiovasculares das principais classes psicotrópicas.</em>
+          </div>
+        </div>
+        <div class="ref-item">
+          <div class="ref-num">8</div>
+          <div class="ref-text">
+            <strong>Page RL, O'Bryant CL, Cheng D, et al.</strong> Drugs That May Cause or Exacerbate Heart Failure: A Scientific Statement From the American Heart Association.
+            <span class="ref-journal">Circulation. 2016;134(6):e32-69. doi:10.1161/CIR.0000000000000426</span><br>
+            <em style="font-size:.72rem;opacity:.7;">Miocardite por clozapina: incidência 0,7–1,2%; cardiomiopatia em uso crônico.</em>
+          </div>
+        </div>
+        <div class="ref-item">
+          <div class="ref-num">9</div>
+          <div class="ref-text">
+            <strong>He L, Yu Y, Wei Y, et al.</strong> Characteristics and Spectrum of Cardiotoxicity Induced by Various Antipsychotics: A Real-World Study From 2015 to 2020 Based on FAERS.
+            <span class="ref-journal">Frontiers in Pharmacology. 2021;12:815151. doi:10.3389/fphar.2021.815151</span><br>
+            <em style="font-size:.72rem;opacity:.7;">Dados de farmacovigilância real-world (FDA FAERS). Espectro de cardiotoxicidade por classe.</em>
+          </div>
+        </div>
+        <div class="ref-item">
+          <div class="ref-num">10</div>
+          <div class="ref-text">
+            <strong>Friedrich ME, Winkler D, Konstantinidis A, et al.</strong> Cardiovascular Adverse Reactions During Antipsychotic Treatment: Results of AMSP, a Drug Surveillance Program Between 1993 and 2013.
+            <span class="ref-journal">The International Journal of Neuropsychopharmacology. 2020;23(2):67-75. doi:10.1093/ijnp/pyz046</span><br>
+            <em style="font-size:.72rem;opacity:.7;">AMSP: 373.041 tratamentos; hipotensão, taquicardia, QT, morte súbita por classe.</em>
+          </div>
+        </div>
+        <div class="ref-item">
+          <div class="ref-num">11</div>
+          <div class="ref-text">
+            <strong>Mangurian C, Newcomer JW, Modlin C, Schillinger D.</strong> Diabetes and Cardiovascular Care Among People With Severe Mental Illness: A Literature Review.
+            <span class="ref-journal">Journal of General Internal Medicine. 2016;31(9):1083-91. doi:10.1007/s11606-016-3712-4</span><br>
+            <em style="font-size:.72rem;opacity:.7;">70% sem triagem adequada; disparidades no cuidado cardiometabólico.</em>
+          </div>
+        </div>
+        <div class="ref-item">
+          <div class="ref-num">12</div>
+          <div class="ref-text">
+            <strong>Polcwiartek C, O'Gallagher K, Friedman DJ, et al.</strong> Severe Mental Illness: Cardiovascular Risk Assessment and Management.
+            <span class="ref-journal">European Heart Journal. 2024;45(12):987-997. doi:10.1093/eurheartj/ehae054</span><br>
+            <em style="font-size:.72rem;opacity:.7;">47% menos procedimentos coronarianos; menos prevenção secundária. Avaliação e manejo integrado.</em>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon" style="background:rgba(34,197,94,.1);color:#4ade80;">🎯</div>
+        <div>
+          <div class="card-title">Recomendações Práticas Integradas</div>
+          <div class="card-subtitle">O que a evidência atual indica para o manejo clínico</div>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>🏥 Para Cardiologistas: Rastreando Saúde Mental</span>
+          <span class="accordion-arrow">▼</span>
+        </div>
+        <div class="accordion-body">
+          <ul style="margin:4px 0;padding-left:16px;line-height:1.8;font-size:.83rem;">
+            <li>Rastrear depressão com PHQ-2 / PHQ-9 em <em>todos</em> os pacientes com doença cardiovascular estabelecida ou alto risco</li>
+            <li>Perguntar ativamente sobre ansiedade, TEPT e qualidade do sono na anamnese cardiológica</li>
+            <li>Considerar encaminhamento a psiquiatra ou psicólogo quando rastreamento positivo</li>
+            <li>Reconhecer que depressão não tratada piora o prognóstico cardiovascular e reduz adesão medicamentosa</li>
+            <li>ISRSs — em especial sertralina — são seguros em cardiopatas e têm evidência de benefício pós-IAM</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>🧠 Para Psiquiatras: Monitorando a Saúde Cardiovascular</span>
+          <span class="accordion-arrow">▼</span>
+        </div>
+        <div class="accordion-body">
+          <ul style="margin:4px 0;padding-left:16px;line-height:1.8;font-size:.83rem;">
+            <li>Avaliar e documentar fatores de risco cardiovascular no início do tratamento: PA, peso/IMC, glicemia, lipídios, tabagismo</li>
+            <li>Monitorar parâmetros cardiometabólicos regularmente ao usar antipsicóticos atípicos (ver protocolo na aba Medicamentos)</li>
+            <li>Preferir agentes de menor impacto metabólico quando houver equivalência terapêutica</li>
+            <li>Considerar ECG basal em todos os pacientes e antes de qualquer fármaco com risco de QT</li>
+            <li>Usar calculadoras PRIMROSE para estimar risco cardiovascular nessa população</li>
+            <li>Encaminhar ao cardiologista quando houver fatores de risco acumulados, sintomas cardíacos ou uso de clozapina</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>🤝 Modelo de Cuidado Integrado — O Futuro</span>
+          <span class="accordion-arrow">▼</span>
+        </div>
+        <div class="accordion-body">
+          <p style="font-size:.83rem;line-height:1.7;">
+            A evidência atual aponta para a necessidade de um modelo de <strong>cuidado integrado cardiopsiquiátrico</strong>: equipes multidisciplinares com cardiologistas, psiquiatras, enfermeiros e nutricionistas trabalhando coordenadamente. A revisão do EHJ (2024) e o JACC (2022) convergem nessa recomendação.<sup class="ref">[2][12]</sup>
+          </p>
+          <p style="margin-top:.6rem;font-size:.83rem;line-height:1.7;">
+            A realidade atual é alarmante: até <strong>70% dos pacientes em uso de antipsicóticos não recebem triagem cardiovascular adequada</strong>, e pacientes com doença mental grave têm 47% menos chance de serem submetidos a procedimentos coronarianos invasivos quando indicados — uma disparidade que resulta em mortes evitáveis.<sup class="ref">[11][12]</sup>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="disclaimer">
+      <strong>⚕️ Nota educacional:</strong> Este material destina-se à educação em saúde baseada em evidências e não substitui consulta médica individualizada. Diagnóstico e tratamento de transtornos mentais e de doenças cardiovasculares devem ser realizados por profissionais de saúde habilitados. As decisões terapêuticas devem sempre considerar o contexto clínico individual do paciente. Última atualização do conteúdo: 2026.
+    </div>
+
+  </div><!-- /tab-referencias -->
+
+</div><!-- /container -->
+</main>
+
+<!-- ── FOOTER ─────────────────────────────────────────────────── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-copy">
+        © 2026 Dr. Lucas Silva · Cardiologia Intervencionista · São Paulo, SP - CRM 271.830<br>
+        Conteúdo baseado nas diretrizes mais recentes: JAMA Psychiatry 2026 · JACC 2022/2024 · EHJ 2024 · Circulation 2021/2025
+      </div>
+      <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+        lucascardio.com.br
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ════════════════════════════════════════════════════════
+   TAB NAVIGATION
+══════════════════════════════════════════════════════════ */
+function showTab(id) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.nav-center-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const btnId = 'btn-' + id;
+  const btn = document.getElementById(btnId);
+  if (btn) btn.classList.add('active');
+  // Nav buttons
+  const navBtns = document.querySelectorAll('.nav-center-btn');
+  const tabOrder = ['tab-visao','tab-disturbios','tab-mecanismos','tab-medicamentos','tab-referencias'];
+  const idx = tabOrder.indexOf(id);
+  if (navBtns[idx]) navBtns[idx].classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ════════════════════════════════════════════════════════
+   ACCORDION
+══════════════════════════════════════════════════════════ */
+function toggleAccordion(header) {
+  const body = header.nextElementSibling;
+  const isOpen = header.classList.contains('open');
+  header.classList.toggle('open', !isOpen);
+  body.classList.toggle('open', !isOpen);
+}
+
+/* ════════════════════════════════════════════════════════
+   DRUG FILTER
+══════════════════════════════════════════════════════════ */
+function filterDrugs(group, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.drug-group').forEach(g => {
+    g.style.display = (group === 'all' || g.dataset.group === group) ? 'block' : 'none';
+  });
+}
+
+/* ════════════════════════════════════════════════════════
+   CHART – RISCO HR
+══════════════════════════════════════════════════════════ */
+(function() {
+  const ctx = document.getElementById('chartRisco');
+  if (!ctx) return;
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['TEPT', 'Ansiedade', 'Transt. Sono', 'Depressão', 'Controle'],
+      datasets: [{
+        label: 'Hazard Ratio para SCA',
+        data: [2.73, 1.63, 1.60, 1.40, 1.00],
+        backgroundColor: ['rgba(220,38,38,.75)','rgba(251,146,60,.7)','rgba(167,139,250,.7)','rgba(251,191,36,.7)','rgba(0,211,189,.4)'],
+        borderColor: ['#f87171','#fb923c','#a78bfa','#fbbf24','#00d3bd'],
+        borderWidth: 1.5,
+        borderRadius: 6,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: ctx => 'HR ' + ctx.parsed.y.toFixed(2)
+          }
+        }
+      },
+      scales: {
+        x: { grid: { color: 'rgba(255,255,255,.06)' }, ticks: { color: '#8899a6', font: { size: 12, family: "'Plus Jakarta Sans', sans-serif" } } },
+        y: {
+          grid: { color: 'rgba(255,255,255,.06)' },
+          ticks: { color: '#8899a6', font: { size: 11 } },
+          beginAtZero: true,
+          title: { display: true, text: 'Hazard Ratio', color: '#8899a6', font: { size: 11 } }
+        }
+      }
+    }
+  });
+})();
+
+/* ════════════════════════════════════════════════════════
+   HR BARS (tab disturbios)
+══════════════════════════════════════════════════════════ */
+(function() {
+  const el = document.getElementById('hr-bars');
+  if (!el) return;
+  const data = [
+    { label: 'TEPT', hr: 2.73, max: 3.0, color: '#f87171' },
+    { label: 'Ansiedade', hr: 1.63, max: 3.0, color: '#fb923c' },
+    { label: 'Transt. Sono', hr: 1.60, max: 3.0, color: '#a78bfa' },
+    { label: 'Depressão', hr: 1.40, max: 3.0, color: '#fbbf24' },
+  ];
+  el.innerHTML = data.map(d => `
+    <div style="margin-bottom:.6rem;font-size:.82rem;">
+      <div style="display:flex;justify-content:space-between;margin-bottom:3px;">
+        <span style="font-weight:600;">${d.label}</span>
+        <span style="font-family:var(--font-mono);color:${d.color};font-weight:700;">HR ${d.hr}</span>
+      </div>
+      <div style="height:8px;background:var(--border);border-radius:4px;overflow:hidden;">
+        <div style="height:100%;width:${(d.hr/d.max*100).toFixed(1)}%;background:${d.color};border-radius:4px;transition:width .6s ease;"></div>
+      </div>
+    </div>
+  `).join('');
+})();
+
+/* ════════════════════════════════════════════════════════
+   QT VISUAL
+══════════════════════════════════════════════════════════ */
+(function() {
+  const el = document.getElementById('qt-visual');
+  if (!el) return;
+  const drugs = [
+    { name: 'Ziprasidona', level: 90, risk: 'Alto', color: '#f87171' },
+    { name: 'Haloperidol IV', level: 85, risk: 'Alto', color: '#f87171' },
+    { name: 'Citalopram >40mg', level: 65, risk: 'Moderado', color: '#fbbf24' },
+    { name: 'Quetiapina', level: 55, risk: 'Moderado', color: '#fbbf24' },
+    { name: 'Risperidona', level: 45, risk: 'Moderado', color: '#fbbf24' },
+    { name: 'Escitalopram', level: 30, risk: 'Baixo', color: '#4ade80' },
+    { name: 'Sertralina', level: 15, risk: 'Baixo', color: '#4ade80' },
+    { name: 'Aripiprazol', level: 10, risk: 'Mínimo', color: '#00d3bd' },
+  ];
+  el.innerHTML = drugs.map(d => `
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:.5rem;font-size:.8rem;">
+      <span style="width:140px;flex-shrink:0;font-weight:600;">${d.name}</span>
+      <div style="flex:1;height:7px;background:var(--border);border-radius:4px;overflow:hidden;">
+        <div style="height:100%;width:${d.level}%;background:${d.color};border-radius:4px;"></div>
+      </div>
+      <span style="font-size:.68rem;font-family:var(--font-mono);color:${d.color};width:60px;text-align:right;">${d.risk}</span>
+    </div>
+  `).join('');
+})();
+</script>
+</body>
+</html>

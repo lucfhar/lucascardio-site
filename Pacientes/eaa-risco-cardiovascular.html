@@ -1,0 +1,1801 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1"/>
+  <title>Esteroides Anabolizantes e Risco Cardiovascular | Dr. Lucas Silva</title>
+  <meta name="description" content="Guia completo sobre os riscos cardiovasculares dos esteroides anabolizantes androgênicos. Evidências científicas, mecanismos de dano, diferença entre uso terapêutico e performance."/>
+  <meta name="author" content="Dr. Lucas Silva"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+  <style>
+    /* ── DESIGN TOKENS ─────────────────────────────────────── */
+    :root {
+      --primary: oklch(65% .18 195);
+      --primary-foreground: oklch(98% 0 0);
+      --background: oklch(13% .018 250);
+      --foreground: oklch(93% .01 250);
+      --card: oklch(18.5% .018 250);
+      --card-foreground: oklch(93% .01 250);
+      --muted: oklch(22% .018 250);
+      --muted-foreground: oklch(62% .02 250);
+      --border: oklch(28% .025 250);
+      --input: oklch(22% .02 250);
+      --destructive: oklch(60% .22 25);
+      --secondary: oklch(22% .022 250);
+      --secondary-foreground: oklch(88% .01 250);
+      --accent: oklch(24% .025 250);
+      --accent-foreground: oklch(90% .01 250);
+      --teal: #00d3bd;
+      --teal-dim: rgba(0,211,189,.12);
+      --amber: oklch(82.8% .189 84.429);
+      --red: oklch(63.7% .237 25.331);
+      --green: oklch(79.2% .209 151.711);
+      --radius: 0.625rem;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--background);
+      color: var(--foreground);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ───────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(18,20,27,.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: .6rem;
+      text-decoration: none; color: var(--foreground);
+    }
+    .nav-brand-icon {
+      width: 28px; height: 28px; border-radius: 7px;
+      background: var(--red); display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .nav-brand-name { font-weight: 800; font-size: 1rem; letter-spacing: -.025em; line-height: 1; }
+    .nav-brand-name span { color: var(--teal); }
+    .nav-brand-sep { width: 1px; height: 14px; background: var(--border); margin: 0 6px; }
+    .nav-brand-sub { font-size: .7rem; font-weight: 500; color: var(--muted-foreground); }
+    .nav-center { display: flex; align-items: center; gap: .15rem; }
+    .nav-center-btn {
+      background: none; border: none; cursor: pointer; font-family: var(--font-sans);
+      font-size: .76rem; font-weight: 500; color: var(--muted-foreground);
+      padding: 5px 10px; border-radius: 7px;
+      transition: background .15s, color .15s;
+      white-space: nowrap;
+    }
+    .nav-center-btn:hover { background: var(--accent); color: var(--foreground); }
+    .nav-center-btn.active { background: var(--teal-dim); color: var(--teal); }
+    .nav-actions { display: flex; align-items: center; gap: .5rem; }
+    .nav-badge {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 999px; background: rgba(220,38,38,.12);
+      color: #f87171; border: 1px solid rgba(220,38,38,.25);
+      white-space: nowrap;
+    }
+    .nav-link {
+      font-size: .75rem; font-weight: 600; padding: 5px 12px;
+      border-radius: 8px; border: 1.5px solid var(--primary);
+      color: var(--primary); background: transparent;
+      text-decoration: none;
+      transition: background .15s, color .15s;
+      display: inline-flex; align-items: center; gap: 5px;
+    }
+    .nav-link:hover { background: var(--primary); color: var(--primary-foreground); }
+
+    /* ── LAYOUT ────────────────────────────────────────────── */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+    .section { padding: 3rem 0; }
+
+    /* ── HERO ──────────────────────────────────────────────── */
+    .hero {
+      padding: 3.5rem 0 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .7rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--teal);
+      margin-bottom: 1rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 20px; height: 2px;
+      background: var(--teal); border-radius: 1px;
+    }
+    .hero h1 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 800; line-height: 1.2;
+      margin-bottom: .75rem; letter-spacing: -.02em;
+    }
+    .hero h1 em { font-style: normal; color: #f87171; }
+    .hero-sub {
+      color: var(--muted-foreground); font-size: .95rem;
+      max-width: 640px; margin-bottom: 1.5rem;
+    }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 6px; border: 1px solid var(--border);
+      color: var(--muted-foreground); background: var(--card);
+      font-family: var(--font-mono);
+    }
+
+    /* ── TIMELINE ──────────────────────────────────────────── */
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px);
+      overflow: hidden;
+      margin: 2rem 0;
+    }
+    .timeline-step {
+      background: var(--card);
+      padding: 1rem 1rem 1.25rem;
+      cursor: pointer;
+      transition: background .15s;
+    }
+    .timeline-step:hover { background: var(--accent); }
+    .timeline-step.active { background: var(--teal-dim); }
+    .step-num {
+      font-size: .6rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--muted-foreground);
+      margin-bottom: .4rem; font-family: var(--font-mono);
+      display: flex; align-items: center; gap: 4px;
+    }
+    .step-num .dot {
+      display: inline-flex; width: 16px; height: 16px;
+      border-radius: 50%; background: var(--muted);
+      color: var(--muted-foreground); font-size: .58rem;
+      align-items: center; justify-content: center;
+      flex-shrink: 0; font-family: var(--font-mono); font-weight: 700;
+    }
+    .timeline-step.active .dot { background: var(--teal); color: #000; }
+    .step-title { font-weight: 700; font-size: .82rem; margin-bottom: .2rem; line-height: 1.3; }
+    .step-desc { font-size: .72rem; color: var(--muted-foreground); line-height: 1.4; }
+
+    /* ── PROGRESS BAR ──────────────────────────────────────── */
+    .progress-bar {
+      height: 3px; background: var(--border);
+      border-radius: 2px; margin: 1.5rem 0;
+    }
+    .progress-fill {
+      height: 100%; background: var(--teal);
+      border-radius: 2px; transition: width .4s ease;
+    }
+
+    /* ── STEP SECTIONS ─────────────────────────────────────── */
+    .step-section { display: none; }
+    .step-section.active { display: block; animation: fadeUp .3s ease; }
+
+    /* ── CARDS ─────────────────────────────────────────────── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .card-header {
+      display: flex; align-items: flex-start;
+      gap: .75rem; margin-bottom: 1.25rem;
+      padding-bottom: 1rem; border-bottom: 1px solid var(--border);
+    }
+    .card-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
+    }
+    .card-icon-teal { background: var(--teal-dim); color: var(--teal); }
+    .card-icon-red { background: rgba(220,38,38,.12); color: #f87171; }
+    .card-icon-amber { background: rgba(251,191,36,.1); color: #fbbf24; }
+    .card-icon-green { background: rgba(34,197,94,.1); color: #4ade80; }
+    .card-title { font-weight: 700; font-size: 1rem; margin-bottom: 2px; }
+    .card-subtitle { font-size: .78rem; color: var(--muted-foreground); }
+
+    /* ── INFO BOXES ────────────────────────────────────────── */
+    .info-box {
+      border-radius: var(--radius); padding: 12px 16px;
+      font-size: .83rem; line-height: 1.65;
+      display: flex; gap: 10px; margin-bottom: .75rem;
+    }
+    .info-box-icon { flex-shrink: 0; font-size: 1rem; margin-top: 1px; }
+    .info-teal { background: var(--teal-dim); border-left: 3px solid var(--teal); }
+    .info-amber { background: rgba(251,191,36,.08); border-left: 3px solid rgba(251,191,36,.5); }
+    .info-red { background: rgba(220,38,38,.08); border-left: 3px solid rgba(220,38,38,.4); }
+    .info-green { background: rgba(34,197,94,.08); border-left: 3px solid rgba(34,197,94,.4); }
+    .info-gray { background: var(--muted); border-left: 3px solid var(--border); }
+
+    /* ── SECTION TITLES ────────────────────────────────────── */
+    .section-title {
+      font-size: 1.25rem; font-weight: 800; margin-bottom: .25rem;
+      letter-spacing: -.01em;
+    }
+    .section-label {
+      font-size: .68rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--teal);
+      margin-bottom: .4rem; font-family: var(--font-mono);
+    }
+    .section-divider {
+      border: none; border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+
+    /* ── COMPARE TABLE ─────────────────────────────────────── */
+    .compare-table {
+      width: 100%; border-collapse: collapse;
+      font-size: .82rem; border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .compare-table th {
+      background: var(--muted); padding: 10px 14px;
+      text-align: left; font-weight: 700; font-size: .75rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted-foreground); letter-spacing: .03em;
+    }
+    .compare-table td {
+      padding: 10px 14px; border-bottom: 1px solid var(--border);
+      vertical-align: top; line-height: 1.55;
+    }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table tr:hover td { background: var(--accent); }
+    .col-trat { color: #4ade80; font-weight: 600; }
+    .col-perf { color: #f87171; font-weight: 600; }
+
+    /* ── RISK GRID ─────────────────────────────────────────── */
+    .risk-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .risk-card {
+      background: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px);
+      padding: 1.1rem 1.2rem;
+    }
+    .risk-card-header {
+      display: flex; align-items: center; gap: .6rem;
+      margin-bottom: .6rem;
+    }
+    .risk-icon { font-size: 1.2rem; }
+    .risk-title { font-weight: 700; font-size: .9rem; }
+    .risk-subtitle { font-size: .72rem; color: var(--muted-foreground); }
+    .risk-stat {
+      display: inline-flex; align-items: baseline; gap: 4px;
+      font-family: var(--font-mono); margin: .4rem 0 .6rem;
+    }
+    .risk-stat-val { font-size: 1.8rem; font-weight: 700; color: #f87171; line-height: 1; }
+    .risk-stat-x { font-size: .85rem; color: var(--muted-foreground); }
+    .risk-stat-label { font-size: .68rem; color: var(--muted-foreground); display: block; margin-bottom: .5rem; font-family: var(--font-mono); }
+    .risk-body { font-size: .8rem; line-height: 1.6; color: var(--muted-foreground); }
+
+    /* ── MECHANISM PATHWAY ─────────────────────────────────── */
+    .pathway {
+      display: flex; flex-direction: column; gap: .5rem;
+      margin: 1rem 0;
+    }
+    .pathway-step {
+      display: flex; align-items: flex-start; gap: .75rem;
+      background: var(--muted); border-radius: var(--radius);
+      padding: .8rem 1rem;
+      border-left: 3px solid var(--border);
+    }
+    .pathway-step.red { border-left-color: rgba(220,38,38,.5); }
+    .pathway-step.amber { border-left-color: rgba(251,191,36,.5); }
+    .pathway-step.teal { border-left-color: var(--teal); }
+    .pathway-num {
+      font-family: var(--font-mono); font-size: .65rem; font-weight: 700;
+      color: var(--teal); min-width: 20px; padding-top: 2px;
+    }
+    .pathway-content strong { font-size: .88rem; font-weight: 700; display: block; margin-bottom: 3px; }
+    .pathway-content p { font-size: .8rem; color: var(--muted-foreground); line-height: 1.6; }
+
+    /* ── BADGE ─────────────────────────────────────────────── */
+    .badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: .68rem; font-weight: 700; padding: 2px 8px;
+      border-radius: 999px; white-space: nowrap;
+    }
+    .badge-red { background: rgba(220,38,38,.15); color: #f87171; border: 1px solid rgba(220,38,38,.25); }
+    .badge-amber { background: rgba(251,191,36,.12); color: #fbbf24; border: 1px solid rgba(251,191,36,.2); }
+    .badge-teal { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.2); }
+    .badge-green { background: rgba(34,197,94,.1); color: #4ade80; border: 1px solid rgba(34,197,94,.2); }
+
+    /* ── CHART WRAPPER ─────────────────────────────────────── */
+    .chart-wrap {
+      background: var(--muted); border-radius: var(--radius);
+      padding: 1.25rem; margin: 1rem 0;
+      border: 1px solid var(--border);
+    }
+    .chart-title {
+      font-size: .82rem; font-weight: 700; margin-bottom: .2rem;
+    }
+    .chart-source {
+      font-size: .7rem; color: var(--muted-foreground);
+      font-family: var(--font-mono); margin-bottom: .75rem;
+    }
+
+    /* ── STUDY BLOCK ───────────────────────────────────────── */
+    .study-block {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px);
+      padding: 1.25rem; margin-bottom: 1rem;
+    }
+    .study-header {
+      display: flex; align-items: flex-start;
+      justify-content: space-between; gap: 1rem; margin-bottom: .75rem;
+    }
+    .study-name { font-weight: 800; font-size: .95rem; }
+    .study-journal { font-size: .75rem; color: var(--muted-foreground); margin-top: 2px; }
+    .study-meta { display: flex; gap: .4rem; flex-wrap: wrap; margin-bottom: .75rem; }
+    .study-findings {
+      font-size: .82rem; line-height: 1.65;
+      border-top: 1px solid var(--border); padding-top: .75rem;
+    }
+    .study-findings strong { color: var(--teal); }
+
+    /* ── STAT ROW ──────────────────────────────────────────── */
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: .75rem; margin: 1rem 0;
+    }
+    .stat-item {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: .9rem 1rem; text-align: center;
+    }
+    .stat-val {
+      font-family: var(--font-mono); font-size: 1.6rem; font-weight: 700;
+      line-height: 1; color: #f87171; margin-bottom: .25rem;
+    }
+    .stat-val.teal { color: var(--teal); }
+    .stat-val.amber { color: #fbbf24; }
+    .stat-label { font-size: .72rem; color: var(--muted-foreground); line-height: 1.4; }
+
+    /* ── REFERENCES ────────────────────────────────────────── */
+    .ref-list { list-style: none; }
+    .ref-item {
+      padding: 10px 0; border-bottom: 1px solid var(--border);
+      font-size: .8rem; line-height: 1.6; display: flex; gap: 10px;
+    }
+    .ref-item:last-child { border-bottom: none; }
+    .ref-num {
+      font-family: var(--font-mono); font-size: .7rem; font-weight: 700;
+      color: var(--teal); min-width: 22px;
+    }
+    .ref-title { font-weight: 600; margin-bottom: 2px; }
+    .ref-meta { color: var(--muted-foreground); font-size: .75rem; }
+    .ref-ev {
+      display: inline-block; font-size: .65rem; font-weight: 700;
+      padding: 1px 6px; border-radius: 4px; margin-left: 6px;
+    }
+    .ref-ev-high { background: rgba(220,38,38,.12); color: #f87171; }
+    .ref-ev-med { background: rgba(251,191,36,.1); color: #fbbf24; }
+    .ref-ev-guide { background: var(--teal-dim); color: var(--teal); }
+
+    /* ── DISCLAIMER ────────────────────────────────────────── */
+    .disclaimer {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 12px 16px;
+      font-size: .75rem; color: var(--muted-foreground);
+      line-height: 1.6; margin-top: 1.5rem;
+    }
+
+    /* ── TWO COLUMN ────────────────────────────────────────── */
+    .two-col {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;
+    }
+
+    /* ── UL STYLED ─────────────────────────────────────────── */
+    .styled-ul {
+      list-style: none; display: flex; flex-direction: column; gap: .4rem;
+    }
+    .styled-ul li {
+      font-size: .83rem; line-height: 1.6; padding-left: 1.2rem;
+      position: relative; color: var(--muted-foreground);
+    }
+    .styled-ul li::before {
+      content: '›'; position: absolute; left: 0;
+      color: var(--teal); font-weight: 700;
+    }
+    .styled-ul li strong { color: var(--foreground); }
+
+    /* ── FOOTER ────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 0; margin-top: 3rem;
+    }
+    .footer-inner {
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-copy { font-size: .75rem; color: var(--muted-foreground); }
+
+    /* ── ANIMATIONS ────────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ────────────────────────────────────────── */
+    @media (max-width: 700px) {
+      .timeline { grid-template-columns: repeat(3, 1fr); }
+      .two-col { grid-template-columns: 1fr; }
+      .nav-center { display: none; }
+    }
+    @media (max-width: 460px) {
+      .timeline { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ─────────────────────────────────────────────────── -->
+<nav>
+  <a class="nav-brand" href="#">
+    <div class="nav-brand-icon">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+      </svg>
+    </div>
+    <div class="nav-brand-name">EAA<span>Risk</span></div>
+    <div class="nav-brand-sep"></div>
+    <div class="nav-brand-sub">Esteroides &amp; Coração</div>
+  </a>
+  <div class="nav-center">
+    <button class="nav-center-btn active" id="nbtn1" onclick="goSection(1)">Introdução</button>
+    <button class="nav-center-btn" id="nbtn2" onclick="goSection(2)">Trat. × Perf.</button>
+    <button class="nav-center-btn" id="nbtn3" onclick="goSection(3)">Mecanismos</button>
+    <button class="nav-center-btn" id="nbtn4" onclick="goSection(4)">Riscos</button>
+    <button class="nav-center-btn" id="nbtn5" onclick="goSection(5)">Evidências</button>
+    <button class="nav-center-btn" id="nbtn6" onclick="goSection(6)">Referências</button>
+  </div>
+  <div class="nav-actions">
+    <span class="nav-badge">⚠ Alto Risco CV</span>
+    <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      lucascardio.com.br
+    </a>
+  </div>
+</nav>
+
+<!-- ── MAIN ─────────────────────────────────────────────────── -->
+<main>
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">Cardiologia Baseada em Evidências</div>
+    <h1>Esteroides Anabolizantes e o <em>Risco Cardiovascular</em></h1>
+    <p class="hero-sub">
+      Guia completo sobre os efeitos dos esteroides anabolizantes androgênicos (EAA) no sistema cardiovascular. Entenda a diferença entre uso terapêutico e uso para performance, os mecanismos de dano e as evidências científicas mais recentes.
+    </p>
+    <div class="hero-tags">
+      <span class="tag">Windfeld-Mathiasen 2025</span>
+      <span class="tag">Baggish 2017</span>
+      <span class="tag">Buhl 2025</span>
+      <span class="tag">Bulut 2024</span>
+      <span class="tag">Nascimento 2026</span>
+      <span class="tag">Circulation</span>
+      <span class="tag">JAMA Network Open</span>
+    </div>
+  </div>
+
+  <!-- TIMELINE NAV -->
+  <div class="timeline" style="margin-top:2rem;">
+    <div class="timeline-step active" id="ts1" onclick="goSection(1)">
+      <div class="step-num"><span class="dot">1</span></div>
+      <div class="step-title">Introdução</div>
+      <div class="step-desc">O que são EAA e por que importam</div>
+    </div>
+    <div class="timeline-step" id="ts2" onclick="goSection(2)">
+      <div class="step-num"><span class="dot">2</span></div>
+      <div class="step-title">Trat. × Perf.</div>
+      <div class="step-desc">Uso terapêutico vs. suprafisiológico</div>
+    </div>
+    <div class="timeline-step" id="ts3" onclick="goSection(3)">
+      <div class="step-num"><span class="dot">3</span></div>
+      <div class="step-title">Mecanismos</div>
+      <div class="step-desc">Como os EAA danificam o coração</div>
+    </div>
+    <div class="timeline-step" id="ts4" onclick="goSection(4)">
+      <div class="step-num"><span class="dot">4</span></div>
+      <div class="step-title">Riscos CV</div>
+      <div class="step-desc">IAM, cardiomiopatia, arritmias</div>
+    </div>
+    <div class="timeline-step" id="ts5" onclick="goSection(5)">
+      <div class="step-num"><span class="dot">5</span></div>
+      <div class="step-title">Evidências</div>
+      <div class="step-desc">Estudos chave e dados visuais</div>
+    </div>
+    <div class="timeline-step" id="ts6" onclick="goSection(6)">
+      <div class="step-num"><span class="dot">📖</span></div>
+      <div class="step-title">Referências</div>
+      <div class="step-desc">Bibliografiacompleta</div>
+    </div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-bar"><div class="progress-fill" id="progress" style="width:16.6%"></div></div>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       SEÇÃO 1 — INTRODUÇÃO
+  ══════════════════════════════════════════════════════════════ -->
+  <div id="sec1" class="step-section active">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon card-icon-red">💊</div>
+        <div>
+          <div class="card-title">O que são Esteroides Anabolizantes Androgênicos (EAA)?</div>
+          <div class="card-subtitle">Derivados sintéticos da testosterona com efeitos anabólicos e androgênicos</div>
+        </div>
+      </div>
+
+      <p style="font-size:.88rem;line-height:1.7;margin-bottom:1rem;">
+        Os esteroides anabolizantes androgênicos (EAA) são substâncias sintéticas derivadas da testosterona, o hormônio sexual masculino. A palavra <strong>anabólico</strong> refere-se à capacidade de construir tecidos — especialmente músculo —, enquanto <strong>androgênico</strong> refere-se ao desenvolvimento de características masculinas. Em termos médicos, essas substâncias têm usos legítimos e bem estabelecidos. O problema central discutido neste guia é o uso em doses muito superiores ao necessário para fins de performance esportiva, estética ou antiaging.
+      </p>
+
+      <div class="two-col">
+        <div>
+          <p class="section-label">Mecanismo de ação</p>
+          <p style="font-size:.83rem;line-height:1.65;color:var(--muted-foreground);">
+            Os EAA atuam ligando-se ao <strong style="color:var(--foreground);">receptor androgênico</strong> intracelular, formando um complexo que migra ao núcleo e regula a expressão de centenas de genes. Isso aumenta a síntese de proteínas musculares, reduz a degradação proteica e influencia a eritropoiese (produção de glóbulos vermelhos). Adicionalmente, possuem efeitos não-genômicos diretos sobre membranas celulares que ocorrem em segundos a minutos — particularmente relevantes no tecido cardíaco.
+          </p>
+        </div>
+        <div>
+          <p class="section-label">Dimensão do problema</p>
+          <p style="font-size:.83rem;line-height:1.65;color:var(--muted-foreground);">
+            Estima-se que <strong style="color:var(--foreground);">3 a 4 milhões de pessoas</strong> nos Estados Unidos e dezenas de milhões em todo o mundo usem EAA de forma não médica. No Brasil, a prevalência é especialmente elevada no contexto de academias de musculação. A maioria dos usuários são homens entre 20 e 40 anos, mas o uso também cresce entre mulheres e adolescentes, com consequências potencialmente mais graves para grupos em desenvolvimento.
+          </p>
+        </div>
+      </div>
+
+      <hr class="section-divider"/>
+
+      <p class="section-label">Principais EAA utilizados</p>
+      <div class="stat-row">
+        <div class="stat-item">
+          <div class="stat-val teal" style="font-size:1rem;">Testosterona</div>
+          <div class="stat-label">Enantato, Cipionato, Propionato — injetáveis</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val teal" style="font-size:1rem;">Nandrolona</div>
+          <div class="stat-label">Decanoato (Deca-Durabolin) — injetável</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val amber" style="font-size:1rem;">Estanozolol</div>
+          <div class="stat-label">Oral 17α-alquilado — maior toxicidade hepática e lipídica</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val amber" style="font-size:1rem;">Oxandrolona</div>
+          <div class="stat-label">Oral — redução marcante do HDL</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val" style="font-size:1rem;color:#f87171;">Trembolona</div>
+          <div class="stat-label">Não aromatizável — perfil androgênico muito alto</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val" style="font-size:1rem;color:#f87171;">Boldenona</div>
+          <div class="stat-label">Injetável — policitemia frequente</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon card-icon-red">🫀</div>
+        <div>
+          <div class="card-title">A Mensagem Central: Risco Cardiovascular Substancial e Dose-Dependente</div>
+          <div class="card-subtitle">Sem evidência de dose segura para uso não terapêutico</div>
+        </div>
+      </div>
+
+      <div class="info-red info-box">
+        <span class="info-box-icon">⚠️</span>
+        <div>
+          <strong>Conclusão unânime da literatura científica atual:</strong> o uso de EAA em doses suprafisiológicas está associado a riscos cardiovasculares substanciais e cumulativos. Não existe uma dose documentada como "segura" para uso com finalidade de performance ou estética. Os danos incluem disfunção cardíaca, aterosclerose acelerada, arritmias e morte súbita — e alguns efeitos <strong>persistem mesmo após a cessação do uso</strong>.
+        </div>
+      </div>
+
+      <div class="info-amber info-box">
+        <span class="info-box-icon">📊</span>
+        <div>
+          Um estudo de coorte dinamarquês publicado na <em>Circulation</em> em 2025, com <strong>11 anos de seguimento</strong>, demonstrou que usuários de EAA apresentaram risco <strong>3× maior de infarto</strong>, <strong>8,9× maior de cardiomiopatia</strong> e <strong>3,6× maior de insuficiência cardíaca</strong> em comparação com controles da população geral, após ajuste para todos os fatores de confusão.
+        </div>
+      </div>
+
+      <div class="info-teal info-box">
+        <span class="info-box-icon">💡</span>
+        <div>
+          A evidência atual suporta que os EAA devem ser considerados um <strong>fator de risco cardiovascular independente</strong> — similar em relevância ao tabagismo ou à hipertensão arterial —, especialmente quando o uso é prolongado ou em doses elevadas.
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:.5rem;">
+      <button class="nav-link" style="cursor:pointer;border:none;font-size:.85rem;padding:10px 22px;font-weight:700;background:var(--primary);color:#000;" onclick="goSection(2)">
+        Próximo: Tratamento vs. Performance →
+      </button>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       SEÇÃO 2 — TRATAMENTO × PERFORMANCE
+  ══════════════════════════════════════════════════════════════ -->
+  <div id="sec2" class="step-section">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon card-icon-green">⚕️</div>
+        <div>
+          <div class="card-title">Uso Terapêutico (TRT e indicações médicas)</div>
+          <div class="card-subtitle">Doses fisiológicas sob supervisão médica — perfil de risco diferente</div>
+        </div>
+      </div>
+
+      <p style="font-size:.88rem;line-height:1.7;margin-bottom:1rem;">
+        A terapia de reposição de testosterona (TRT) e outras formas de uso médico de EAA têm <strong>indicações legítimas e bem definidas</strong>. Nesses contextos, o objetivo é restaurar níveis hormonais para dentro da faixa normal (fisiológica), não superá-la. A diferença entre uso terapêutico e não terapêutico não é apenas de grau — é de intenção, dose e contexto.
+      </p>
+
+      <div class="info-green info-box">
+        <span class="info-box-icon">✅</span>
+        <div>
+          <strong>Indicações médicas estabelecidas:</strong> Hipogonadismo masculino (testosterona sérica &lt;300 ng/dL com sintomas); puberdade atrasada; perda muscular grave em doenças como HIV/AIDS, câncer avançado ou cirurgia bariátrica; anemia aplástica; terapia afirmativa de gênero (masculinização); reposição em mulheres na pós-menopausa em casos selecionados; angioedema hereditário (danazol).
+        </div>
+      </div>
+
+      <p style="font-size:.83rem;line-height:1.65;color:var(--muted-foreground);margin-bottom:.75rem;">
+        Na TRT convencional, a dose de testosterona é tipicamente de <strong style="color:var(--foreground);">75–150 mg/semana</strong> (enantato ou cipionato), visando manter níveis séricos entre <strong style="color:var(--foreground);">400–700 ng/dL</strong> — dentro da faixa normal para homens adultos. Nessas doses, as alterações lipídicas são modestas: pequena redução do HDL (5–10%) sem impacto clínico relevante na maioria dos pacientes. A pressão arterial e a função cardíaca permanecem geralmente estáveis com monitorização adequada.
+      </p>
+
+      <div class="info-amber info-box">
+        <span class="info-box-icon">⚠️</span>
+        <div>
+          <strong>Importante:</strong> mesmo em doses terapêuticas, a TRT <em>não é isenta de risco</em>. Policitemia (hematócrito elevado), flutuações pressóricas e pequenas alterações lipídicas exigem monitorização regular. O risco é, contudo, substancialmente menor do que no uso para performance. Pacientes com doenças cardiovasculares preexistentes devem ser avaliados individualmente.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon card-icon-red">🏋️</div>
+        <div>
+          <div class="card-title">Uso para Performance e Estética</div>
+          <div class="card-subtitle">Doses suprafisiológicas — múltiplos agentes — sem supervisão médica</div>
+        </div>
+      </div>
+
+      <p style="font-size:.88rem;line-height:1.7;margin-bottom:1rem;">
+        O uso de EAA para ganho muscular, performance atlética ou mudança estética envolve doses <strong>5 a 40 vezes superiores</strong> às doses terapêuticas. A testosterona sérica pode atingir <strong>2.000 a 10.000+ ng/dL</strong> — versus o máximo fisiológico de ~1.000 ng/dL. Além disso, a prática comum de <em>"stacking"</em> (combinação de múltiplos EAA com outros agentes) amplifica exponencialmente os riscos.
+      </p>
+
+      <div class="info-red info-box">
+        <span class="info-box-icon">🚨</span>
+        <div>
+          <strong>Polyfarmácia típica em usuários avançados:</strong> 2–5 EAA diferentes + hormônio do crescimento (GH) + insulina + diuréticos (para definição muscular) + inibidores de aromatase + SERMs (tamoxifeno) + peptídeos. Cada agente adicional multiplica os riscos cardiovasculares e metabólicos de formas não totalmente previsíveis.
+        </div>
+      </div>
+
+      <p style="font-size:.83rem;line-height:1.65;color:var(--muted-foreground);margin-bottom:1rem;">
+        Os EAA orais 17-alfa-alquilados (estanozolol, oxandrolona, oximetolona) são particularmente prejudiciais ao perfil lipídico: em estudos controlados, o estanozolol oral pode reduzir o HDL-colesterol em <strong style="color:#f87171;">50–70%</strong> em poucas semanas, e elevar o LDL de forma proporcional. Esses compostos orais também causam hepatotoxicidade e são metabolizados sem sofrer a degradação hepática de primeira passagem típica dos injetáveis (por isso o prefixo "17-alfa-alquilado" — modificação química para resistência hepática).
+      </p>
+    </div>
+
+    <!-- COMPARISON TABLE -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon card-icon-teal">⚖️</div>
+        <div>
+          <div class="card-title">Comparativo: Uso Terapêutico vs. Performance</div>
+          <div class="card-subtitle">Diferenças fundamentais em dose, objetivo e perfil de risco</div>
+        </div>
+      </div>
+
+      <div style="overflow-x:auto;">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Característica</th>
+              <th><span class="col-trat">✓ Uso Terapêutico</span></th>
+              <th><span class="col-perf">✗ Uso para Performance</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Dose de testosterona</strong></td>
+              <td class="col-trat">75–150 mg/semana</td>
+              <td class="col-perf">300–2.000+ mg/semana</td>
+            </tr>
+            <tr>
+              <td><strong>Nível sérico alvo</strong></td>
+              <td class="col-trat">400–700 ng/dL (fisiológico)</td>
+              <td class="col-perf">2.000–10.000+ ng/dL (suprafisiológico)</td>
+            </tr>
+            <tr>
+              <td><strong>Número de agentes</strong></td>
+              <td class="col-trat">1 (testosterona isolada)</td>
+              <td class="col-perf">2–7 (stacking frequente)</td>
+            </tr>
+            <tr>
+              <td><strong>Supervisão médica</strong></td>
+              <td class="col-trat">Sim — exames regulares</td>
+              <td class="col-perf">Geralmente não</td>
+            </tr>
+            <tr>
+              <td><strong>Redução do HDL</strong></td>
+              <td class="col-trat">Pequena (5–10%)</td>
+              <td class="col-perf">Grave (30–70% com orais)</td>
+            </tr>
+            <tr>
+              <td><strong>Hipertrofia VE</strong></td>
+              <td class="col-trat">Ausente ou mínima</td>
+              <td class="col-perf">Documentada — patológica</td>
+            </tr>
+            <tr>
+              <td><strong>Risco de cardiomiopatia</strong></td>
+              <td class="col-trat">Baixo com monitorização</td>
+              <td class="col-perf">8,9× maior (coorte 2025)</td>
+            </tr>
+            <tr>
+              <td><strong>Duração típica</strong></td>
+              <td class="col-trat">Contínua (anos a décadas)</td>
+              <td class="col-perf">Ciclos de 8–16 semanas, repetidos</td>
+            </tr>
+            <tr>
+              <td><strong>Esteroides orais 17α-alk.</strong></td>
+              <td class="col-trat">Raramente indicados</td>
+              <td class="col-perf">Comuns (estanozolol, oxandrolona)</td>
+            </tr>
+            <tr>
+              <td><strong>Policitemia</strong></td>
+              <td class="col-trat">Possível — monitorada e tratada</td>
+              <td class="col-perf">Frequente e não monitorada</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-teal info-box" style="margin-top:1rem;">
+        <span class="info-box-icon">🔬</span>
+        <div>
+          <strong>Sobre a aromatização:</strong> EAA que aromatizam (como testosterona e nandrolona) são convertidos em estrogênios, o que oferece alguma proteção vascular via melhora da função endotelial. EAA não aromatizáveis (trembolona, estanozolol, oxandrolona) possuem efeito mais deletério sobre o HDL e o endotélio. Para performance, os usuários frequentemente bloqueiam a aromatização com inibidores de aromatase — eliminando essa proteção e agravando o risco cardiovascular.
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:.5rem;">
+      <button onclick="goSection(1)" style="background:var(--muted);border:1px solid var(--border);color:var(--foreground);border-radius:calc(var(--radius)+2px);padding:10px 18px;font-size:.85rem;font-weight:600;cursor:pointer;font-family:var(--font-sans);">← Anterior</button>
+      <button onclick="goSection(3)" style="background:var(--primary);border:none;color:#000;border-radius:calc(var(--radius)+2px);padding:10px 22px;font-size:.85rem;font-weight:700;cursor:pointer;font-family:var(--font-sans);">Próximo: Mecanismos de Dano →</button>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       SEÇÃO 3 — MECANISMOS DE DANO CARDIOVASCULAR
+  ══════════════════════════════════════════════════════════════ -->
+  <div id="sec3" class="step-section">
+
+    <div class="info-red info-box">
+      <span class="info-box-icon">🔬</span>
+      <div>
+        Os EAA causam toxicidade cardiovascular através de <strong>múltiplos mecanismos simultâneos</strong>, tanto genômicos (via receptor androgênico nuclear) quanto não-genômicos (via receptores de membrana). A combinação desses efeitos explica por que o risco cardiovascular é tão amplo e persistente — envolvendo o músculo cardíaco, as coronárias, a coagulação, o endotélio, o sistema nervoso autônomo e o metabolismo lipídico ao mesmo tempo.
+      </div>
+    </div>
+
+    <!-- MECANISMO 1 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon card-icon-red">❤️‍🔥</div>
+        <div>
+          <div class="card-title">1. Toxicidade Miocárdica Direta</div>
+          <div class="card-subtitle">Remodelamento patológico, estresse oxidativo e apoptose dos cardiomiócitos</div>
+        </div>
+      </div>
+
+      <div class="pathway">
+        <div class="pathway-step red">
+          <div class="pathway-num">A</div>
+          <div class="pathway-content">
+            <strong>Hipertrofia Patológica (≠ fisiológica)</strong>
+            <p>A ativação do receptor androgênico nos cardiomiócitos ativa as vias PI3K/Akt/mTOR — as mesmas do exercício físico. Contudo, em doses suprafisiológicas e cronicamente, ocorre reprogramação de genes fetais (β-MHC, ANP, BNP), fibrosis intersticial e disfunção da câmara. Diferente da hipertrofia fisiológica do atleta, a cardiomiopatia induzida por EAA leva à disfunção sistólica e diastólica progressiva.</p>
+          </div>
+        </div>
+        <div class="pathway-step red">
+          <div class="pathway-num">B</div>
+          <div class="pathway-content">
+            <strong>Estresse Oxidativo e Disfunção Mitocondrial</strong>
+            <p>Os EAA aumentam a produção de espécies reativas de oxigênio (ROS) nos cardiomiócitos, reduzem enzimas antioxidantes (superóxido dismutase, glutationa peroxidase) e comprometem a fosforilação oxidativa mitocondrial. O resultado é redução da reserva energética celular, essencial para um coração que bate 100.000 vezes por dia.</p>
+          </div>
+        </div>
+        <div class="pathway-step red">
+          <div class="pathway-num">C</div>
+          <div class="pathway-content">
+            <strong>Apoptose dos Cardiomiócitos</strong>
+            <p>A sobrecarga oxidativa e os efeitos androgênicos diretos ativam a via mitocondrial da apoptose: liberação de citocromo c, ativação de caspases 3 e 9, fragmentação do DNA. Como os cardiomiócitos são células com capacidade regenerativa muito limitada, a perda celular por apoptose resulta em fibrose cicatricial permanente — substrato para disfunção contrátil e arritmias por reentrada.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MECANISMO 2 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon card-icon-amber">🧪</div>
+        <div>
+          <div class="card-title">2. Dislipidemia Aterogênica</div>
+          <div class="card-subtitle">Redução do HDL, elevação do LDL — aceleração da aterosclerose</div>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <p style="font-size:.83rem;line-height:1.65;color:var(--muted-foreground);">
+            Os EAA — especialmente os orais 17α-alquilados — causam profunda alteração no metabolismo lipídico. O mecanismo central é o <strong style="color:var(--foreground);">aumento da atividade da lipase hepática</strong>, enzima que cataboliza as partículas HDL, reduzindo drasticamente sua concentração plasmática. Simultaneamente, ocorre:
+          </p>
+          <ul class="styled-ul" style="margin-top:.75rem;">
+            <li><strong>Redução da apoliproteína A-I</strong> (principal proteína do HDL)</li>
+            <li><strong>Elevação do LDL-colesterol</strong> e da apo-B</li>
+            <li><strong>Aumento de Lp(a)</strong> — lipoproteína altamente aterogênica</li>
+            <li><strong>Elevação dos triglicerídeos</strong> em alguns usuários</li>
+            <li><strong>Aumento do LDL pequeno e denso</strong> — partícula mais oxidável</li>
+          </ul>
+        </div>
+        <div>
+          <div class="chart-wrap">
+            <div class="chart-title">Impacto no HDL-Colesterol por Tipo de EAA</div>
+            <div class="chart-source">Adaptado de Bhasin et al. Med Sci Sports Exerc. 2021 e Kersey et al. 2012</div>
+            <canvas id="chartHDL" height="200"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-red info-box" style="margin-top:.75rem;">
+        <span class="info-box-icon">📉</span>
+        <div>
+          Estanozolol oral em doses de 6 mg/dia por 6 semanas pode reduzir o HDL em <strong>até 33% em média</strong>, com casos individuais de redução de 60–70%. Em contexto de performance (doses 10× maiores), a depleção do HDL é ainda mais severa. O HDL é um dos mais potentes fatores protetores contra doença coronariana — sua destruição acelerada é um mecanismo direto de aterosclerose.
+        </div>
+      </div>
+    </div>
+
+    <!-- MECANISMO 3 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon card-icon-red">🩸</div>
+        <div>
+          <div class="card-title">3. Estado Pró-Trombótico</div>
+          <div class="card-subtitle">Policitemia, hipercoagulabilidade e hipofibrinólise</div>
+        </div>
+      </div>
+
+      <div class="pathway">
+        <div class="pathway-step amber">
+          <div class="pathway-num">1</div>
+          <div class="pathway-content">
+            <strong>Policitemia (Hematócrito Elevado)</strong>
+            <p>Os EAA estimulam a eritropoiese via aumento da produção de eritropoietina renal e efeito direto na medula óssea. Hematócritos de 50–60% são comuns em usuários — isso eleva a viscosidade sanguínea exponencialmente, favorecendo trombose em vasos coronarianos, cerebrais e venosos.</p>
+          </div>
+        </div>
+        <div class="pathway-step amber">
+          <div class="pathway-num">2</div>
+          <div class="pathway-content">
+            <strong>Ativação Plaquetária e Fatores de Coagulação</strong>
+            <p>Os EAA aumentam a agregabilidade plaquetária, elevam o fibrinogênio, o fator VIII e o fator de von Willebrand (vWF). Esses efeitos são aditivos à policitemia e criam um estado de hipercoagulabilidade que predispõe a síndrome coronariana aguda, tromboembolismo venoso e acidente vascular cerebral.</p>
+          </div>
+        </div>
+        <div class="pathway-step amber">
+          <div class="pathway-num">3</div>
+          <div class="pathway-content">
+            <strong>Inibição da Fibrinólise (PAI-1↑)</strong>
+            <p>Os EAA elevam o inibidor do ativador do plasminogênio tipo 1 (PAI-1), que é o principal inibidor da dissolução de trombos. Com a fibrinólise suprimida, coágulos formados têm muito mais dificuldade de serem dissolvidos espontaneamente, amplificando o risco de oclusão vascular completa.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MECANISMO 4 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon card-icon-amber">🫀</div>
+        <div>
+          <div class="card-title">4. Disfunção Endotelial e Hipertensão</div>
+          <div class="card-subtitle">Redução do óxido nítrico, rigidez vascular e hipertensão sistêmica</div>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <p class="section-label" style="margin-bottom:.5rem;">Disfunção Endotelial</p>
+          <ul class="styled-ul">
+            <li><strong>Redução da eNOS</strong> (óxido nítrico sintase endotelial) → menos NO → vasoconstrição</li>
+            <li><strong>Aumento da endotelina-1</strong> → potente vasoconstritor</li>
+            <li><strong>Disfunção da vasodilatação mediada por fluxo</strong> documentada por ultrassom</li>
+            <li><strong>Redução da elasticidade arterial</strong> — aorta e grandes vasos com maior rigidez</li>
+            <li><strong>Favorecimento da adesão de monócitos</strong> à parede vascular — início da placa aterosclerótica</li>
+          </ul>
+        </div>
+        <div>
+          <p class="section-label" style="margin-bottom:.5rem;">Hipertensão Arterial</p>
+          <ul class="styled-ul">
+            <li><strong>Retenção de sódio e água</strong> por efeitos mineralocorticoides dos EAA</li>
+            <li><strong>Aumento do tônus simpático</strong> via ativação central do sistema nervoso</li>
+            <li><strong>Ativação do SRAA</strong> (sistema renina-angiotensina-aldosterona)</li>
+            <li><strong>Hipertrofia vascular</strong> de arteríolas</li>
+            <li>Picos de PA durante uso que podem causar <strong>dissecção aórtica</strong> em casos graves</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- MECANISMO 5 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon card-icon-red">⚡</div>
+        <div>
+          <div class="card-title">5. Arritmogênese — Substrato para Morte Súbita</div>
+          <div class="card-subtitle">Fibrose, canalopatias, remodelamento elétrico adverso</div>
+        </div>
+      </div>
+
+      <p style="font-size:.88rem;line-height:1.7;margin-bottom:1rem;">
+        A cardiomiopatia induzida por EAA cria múltiplos substratos para arritmias ventriculares graves, incluindo taquicardia ventricular (TV) e fibrilação ventricular (FV) — causa de morte súbita. Os mecanismos incluem:
+      </p>
+
+      <div class="pathway">
+        <div class="pathway-step red">
+          <div class="pathway-num">▶</div>
+          <div class="pathway-content">
+            <strong>Fibrose Miocárdica → Circuitos de Reentrada</strong>
+            <p>A fibrose intersticial causada pela apoptose e inflamação cria barreiras condutoras que formam circuitos de reentrada elétrica — o mecanismo mais comum de TV/FV sustentada. Estudos de ressonância magnética cardíaca com realce tardio de gadolínio documentam fibrose em até 40% dos ex-usuários de EAA.</p>
+          </div>
+        </div>
+        <div class="pathway-step red">
+          <div class="pathway-num">▶</div>
+          <div class="pathway-content">
+            <strong>Remodelamento de Canais Iônicos</strong>
+            <p>Os EAA alteram a expressão de canais de potássio (Kv4.3, HERG), sódio (Nav1.5) e cálcio (ICa,L) — prolongando o potencial de ação e o intervalo QT, e criando dispersão de refratariedade. Isso é especialmente problemático durante exercício intenso — momento de maior vulnerabilidade à FV.</p>
+          </div>
+        </div>
+        <div class="pathway-step red">
+          <div class="pathway-num">▶</div>
+          <div class="pathway-content">
+            <strong>Hiperatividade Simpática e Sensibilidade à Catecolaminas</strong>
+            <p>O uso de EAA eleva o tônus simpático de repouso e aumenta a sensibilidade do miocárdio às catecolaminas. Durante exercício extenuante ou situações de estresse, este estado de hipersensibilidade adrenérgica pode desencadear fibrilação ventricular em corações já estruturalmente comprometidos.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-red info-box" style="margin-top:.5rem;">
+        <span class="info-box-icon">☠️</span>
+        <div>
+          <strong>Morte Súbita Cardíaca:</strong> Revisões de casos de morte súbita em atletas e fisiculturistas jovens revelam prevalência desproporcionalmente elevada de uso de EAA. A combinação de cardiomiopatia estrutural + dislipidemia + estado pró-trombótico + arritmogênese constitui um "perfeito tempestade" de risco cardiovascular — frequentemente subdiagnosticado porque esses indivíduos parecem saudáveis externamente.
+        </div>
+      </div>
+    </div>
+
+    <!-- MECANISMO 6 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon card-icon-amber">🔥</div>
+        <div>
+          <div class="card-title">6. Inflamação Sistêmica e Aterosclerose Acelerada</div>
+          <div class="card-subtitle">Estado pró-inflamatório crônico — progressão acelerada da placa coronariana</div>
+        </div>
+      </div>
+
+      <p style="font-size:.88rem;line-height:1.7;margin-bottom:.75rem;">
+        Estudos recentes (de Melo Junior et al. <em>Tox Appl Pharmacol</em> 2025) demonstraram que os EAA promovem um <strong>estado pró-inflamatório sustentado</strong>, independentemente da dose, que contribui para a progressão da aterosclerose mesmo na ausência de dislipidemia grave. Os marcadores elevados incluem:
+      </p>
+
+      <div class="stat-row">
+        <div class="stat-item">
+          <div class="stat-val" style="font-size:1rem;color:#f87171;">PCR-us ↑↑</div>
+          <div class="stat-label">Proteína C-reativa ultra-sensível — marcador de inflamação vascular</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val" style="font-size:1rem;color:#f87171;">IL-6 ↑</div>
+          <div class="stat-label">Interleucina-6 — promove progressão de placa aterosclerótica</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val" style="font-size:1rem;color:#f87171;">TNF-α ↑</div>
+          <div class="stat-label">Fator de necrose tumoral — ativa macrófagos na placa coronariana</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val" style="font-size:1rem;color:#f87171;">MMP-9 ↑</div>
+          <div class="stat-label">Metaloprotease-9 — desestabiliza a capa fibrosa da placa (risco de ruptura)</div>
+        </div>
+      </div>
+
+      <p style="font-size:.83rem;line-height:1.65;color:var(--muted-foreground);margin-top:.5rem;">
+        A elevação de MMP-9 é particularmente preocupante: esta enzima degrada a matriz extracelular na capa fibrosa das placas ateroscleróticas, tornando-as mais vulneráveis à ruptura — o evento precipitante da maioria dos infartos. Um usuário de EAA com placa coronariana pode ter risco de síndrome coronariana aguda muito superior ao esperado pela aparência angiográfica da placa.
+      </p>
+    </div>
+
+    <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:.5rem;">
+      <button onclick="goSection(2)" style="background:var(--muted);border:1px solid var(--border);color:var(--foreground);border-radius:calc(var(--radius)+2px);padding:10px 18px;font-size:.85rem;font-weight:600;cursor:pointer;font-family:var(--font-sans);">← Anterior</button>
+      <button onclick="goSection(4)" style="background:var(--primary);border:none;color:#000;border-radius:calc(var(--radius)+2px);padding:10px 22px;font-size:.85rem;font-weight:700;cursor:pointer;font-family:var(--font-sans);">Próximo: Riscos Cardiovasculares →</button>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       SEÇÃO 4 — RISCOS CARDIOVASCULARES DETALHADOS
+  ══════════════════════════════════════════════════════════════ -->
+  <div id="sec4" class="step-section">
+
+    <div class="info-red info-box">
+      <span class="info-box-icon">📊</span>
+      <div>
+        Os dados abaixo integram os principais estudos longitudinais e de coorte disponíveis. Os riscos relativos ajustados referem-se a comparações com controles da população geral com características sociodemográficas semelhantes, após controle para tabagismo, sedentarismo, obesidade e outros fatores de confusão.
+      </div>
+    </div>
+
+    <!-- RISK CARDS GRID -->
+    <div class="risk-grid">
+
+      <div class="risk-card">
+        <div class="risk-card-header">
+          <span class="risk-icon">🫀</span>
+          <div>
+            <div class="risk-title">Infarto Agudo do Miocárdio</div>
+            <div class="risk-subtitle">Coorte dinamarquesa 11 anos</div>
+          </div>
+        </div>
+        <div class="risk-stat">
+          <span class="risk-stat-val">3,0×</span>
+          <span class="risk-stat-x">maior risco</span>
+        </div>
+        <span class="risk-stat-label">aRR 3,00 (IC95%: 1,86–4,84)</span>
+        <div class="risk-body">
+          O infarto ocorre pelo efeito combinado de aterosclerose acelerada, trombose e espasmo coronariano. Casos descritos em homens de 20–35 anos sem outros fatores de risco convencionais além do uso de EAA. A aterosclerose coronariana se apresenta frequentemente como placas não-calcificadas e vulneráveis à ruptura.
+        </div>
+      </div>
+
+      <div class="risk-card">
+        <div class="risk-card-header">
+          <span class="risk-icon">❤️‍🩹</span>
+          <div>
+            <div class="risk-title">Cardiomiopatia</div>
+            <div class="risk-subtitle">Coorte dinamarquesa 11 anos</div>
+          </div>
+        </div>
+        <div class="risk-stat">
+          <span class="risk-stat-val">8,9×</span>
+          <span class="risk-stat-x">maior risco</span>
+        </div>
+        <span class="risk-stat-label">aRR 8,90 (IC95%: 4,94–16,08)</span>
+        <div class="risk-body">
+          O risco mais elevado dentre todas as complicações cardiovasculares. A cardiomiopatia induzida por EAA é uma entidade clínica definida, caracterizada por hipertrofia VE com disfunção diastólica precoce progredindo para disfunção sistólica. FEVE reduzida (média 52% vs. 63% em controles) documentada por ecocardiografia.
+        </div>
+      </div>
+
+      <div class="risk-card">
+        <div class="risk-card-header">
+          <span class="risk-icon">💧</span>
+          <div>
+            <div class="risk-title">Insuficiência Cardíaca</div>
+            <div class="risk-subtitle">Coorte dinamarquesa 11 anos</div>
+          </div>
+        </div>
+        <div class="risk-stat">
+          <span class="risk-stat-val">3,6×</span>
+          <span class="risk-stat-x">maior risco</span>
+        </div>
+        <span class="risk-stat-label">aRR 3,63 (IC95%: 2,02–6,53)</span>
+        <div class="risk-body">
+          Consequência da cardiomiopatia não tratada. Usuários jovens e aparentemente atléticos podem desenvolver insuficiência cardíaca com fração de ejeção reduzida (ICFEr) décadas antes do esperado. A gravidade é frequentemente subestimada porque a hipertrofia muscular mascarou os sintomas de intolerância ao exercício.
+        </div>
+      </div>
+
+      <div class="risk-card">
+        <div class="risk-card-header">
+          <span class="risk-icon">⚡</span>
+          <div>
+            <div class="risk-title">Arritmias</div>
+            <div class="risk-subtitle">Coorte dinamarquesa 11 anos</div>
+          </div>
+        </div>
+        <div class="risk-stat">
+          <span class="risk-stat-val">2,3×</span>
+          <span class="risk-stat-x">maior risco</span>
+        </div>
+        <span class="risk-stat-label">aRR 2,26 (IC95%: 1,57–3,26)</span>
+        <div class="risk-body">
+          Incluindo fibrilação atrial, taquicardia ventricular e fibrilação ventricular. A fibrose miocárdica e as alterações dos canais iônicos criam substrato permanente. A morte súbita cardíaca por FV em usuários jovens de EAA está bem documentada em séries de casos e estudos post-mortem.
+        </div>
+      </div>
+
+      <div class="risk-card">
+        <div class="risk-card-header">
+          <span class="risk-icon">🩸</span>
+          <div>
+            <div class="risk-title">Tromboembolismo Venoso</div>
+            <div class="risk-subtitle">Coorte dinamarquesa 11 anos</div>
+          </div>
+        </div>
+        <div class="risk-stat">
+          <span class="risk-stat-val">2,4×</span>
+          <span class="risk-stat-x">maior risco</span>
+        </div>
+        <span class="risk-stat-label">aRR 2,42 (IC95%: 1,55–3,79)</span>
+        <div class="risk-body">
+          TVP e embolia pulmonar pelo estado de hipercoagulabilidade (policitemia, fatores de coagulação elevados, PAI-1 aumentado). Pode ser fatal. Casos descritos em fisiculturistas jovens sem outras causas de trombofilia, com TEP como evento inicial da doença tromboembólica.
+        </div>
+      </div>
+
+      <div class="risk-card">
+        <div class="risk-card-header">
+          <span class="risk-icon">🔬</span>
+          <div>
+            <div class="risk-title">Disfunção Microvascular</div>
+            <div class="risk-subtitle">JAMA Network Open 2024</div>
+          </div>
+        </div>
+        <div class="risk-stat">
+          <span class="risk-stat-val" style="font-size:1.4rem;">Persiste</span>
+        </div>
+        <span class="risk-stat-label">Anos após cessação do uso</span>
+        <div class="risk-body">
+          Bulut et al. (JAMA Network Open 2024) demonstraram que a disfunção microvascular coronariana persiste por anos após a interrupção dos EAA. Reserva de fluxo coronariana (CFR) reduzida mesmo em ex-usuários sem coronariopatia obstrutiva detectável — indicando lesão permanente da microcirculação.
+        </div>
+      </div>
+
+      <div class="risk-card">
+        <div class="risk-card-header">
+          <span class="risk-icon">🧱</span>
+          <div>
+            <div class="risk-title">Aterosclerose Coronariana</div>
+            <div class="risk-subtitle">Baggish et al. Circulation 2017</div>
+          </div>
+        </div>
+        <div class="risk-stat">
+          <span class="risk-stat-val" style="font-size:1.4rem;">↑↑ Placa</span>
+        </div>
+        <span class="risk-stat-label">Volume e densidade aumentados</span>
+        <div class="risk-body">
+          Usuários de EAA apresentam maior volume de placa aterosclerótica coronariana total, maior proporção de placa não-calcificada (mais vulnerável à ruptura) e escore de cálcio coronariano elevado — especialmente após &gt;5 anos de uso. A aterosclerose é assintomática até eventos agudos.
+        </div>
+      </div>
+
+      <div class="risk-card">
+        <div class="risk-card-header">
+          <span class="risk-icon">📐</span>
+          <div>
+            <div class="risk-title">Rigidez Arterial</div>
+            <div class="risk-subtitle">Melsom et al. Sci Rep 2022 | Tungesvik 2024</div>
+          </div>
+        </div>
+        <div class="risk-stat">
+          <span class="risk-stat-val" style="font-size:1.4rem;">↓ PWV</span>
+        </div>
+        <span class="risk-stat-label">Elasticidade arterial reduzida</span>
+        <div class="risk-body">
+          Estudos em humanos e modelos animais confirmaram redução da elasticidade arterial em jovens usuários de EAA. A velocidade de onda de pulso (PWV) — marcador gold-standard de rigidez aórtica — está aumentada, indicando envelhecimento vascular acelerado em décadas.
+        </div>
+      </div>
+    </div>
+
+    <!-- PERSISTENT EFFECTS AFTER CESSATION -->
+    <hr class="section-divider"/>
+    <p class="section-label">Efeitos que persistem após a cessação</p>
+    <p class="section-title">O coração não "reseta" com a parada</p>
+    <p style="font-size:.88rem;line-height:1.7;color:var(--muted-foreground);margin:1rem 0 1.5rem;">
+      Uma das descobertas mais preocupantes da literatura recente é que <strong style="color:var(--foreground);">nem todos os danos cardiovasculares se revertem</strong> com a interrupção do uso. Enquanto alguns efeitos (como as alterações lipídicas agudas) se normalizam em semanas a meses, outros parecem causar alterações estruturais permanentes:
+    </p>
+
+    <div class="two-col">
+      <div>
+        <div class="info-green info-box">
+          <span class="info-box-icon">🔄</span>
+          <div>
+            <strong>Reversíveis após cessação:</strong>
+            <ul class="styled-ul" style="margin-top:.5rem;">
+              <li>Alterações lipídicas agudas (HDL/LDL)</li>
+              <li>Policitemia e viscosidade sanguínea</li>
+              <li>Pressão arterial (parcialmente)</li>
+              <li>Hipertrofia VE inicial (nos primeiros anos)</li>
+              <li>Supressão do eixo hipotálamo-hipófise-gônadas (meses a anos)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="info-red info-box">
+          <span class="info-box-icon">⚠️</span>
+          <div>
+            <strong>Potencialmente permanentes:</strong>
+            <ul class="styled-ul" style="margin-top:.5rem;">
+              <li><strong>Fibrose miocárdica</strong> — substrato para arritmias</li>
+              <li><strong>Disfunção microvascular coronariana</strong> (Bulut 2024)</li>
+              <li><strong>Placa aterosclerótica estabelecida</strong></li>
+              <li><strong>Disfunção sistólica VE</strong> persistente em alguns casos</li>
+              <li><strong>Rigidez arterial</strong> — envelhecimento vascular precoce</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-amber info-box">
+      <span class="info-box-icon">💡</span>
+      <div>
+        <strong>Mensagem clínica crítica:</strong> ex-usuários de EAA devem ser rastreados para doença cardiovascular mesmo décadas após a cessação. A cardiomiopatia, a disfunção microvascular e a aterosclerose são processos que continuam a evoluir após a parada, e a ausência de sintomas não significa ausência de doença estrutural.
+      </div>
+    </div>
+
+    <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1rem;">
+      <button onclick="goSection(3)" style="background:var(--muted);border:1px solid var(--border);color:var(--foreground);border-radius:calc(var(--radius)+2px);padding:10px 18px;font-size:.85rem;font-weight:600;cursor:pointer;font-family:var(--font-sans);">← Anterior</button>
+      <button onclick="goSection(5)" style="background:var(--primary);border:none;color:#000;border-radius:calc(var(--radius)+2px);padding:10px 22px;font-size:.85rem;font-weight:700;cursor:pointer;font-family:var(--font-sans);">Próximo: Evidências & Dados →</button>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       SEÇÃO 5 — ESTUDOS E DADOS
+  ══════════════════════════════════════════════════════════════ -->
+  <div id="sec5" class="step-section">
+
+    <!-- CHART 1 — HAZARD RATIOS -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon card-icon-red">📊</div>
+        <div>
+          <div class="card-title">Risco Cardiovascular Aumentado: Coorte Dinamarquesa 2025</div>
+          <div class="card-subtitle">Windfeld-Mathiasen et al. Circulation 2025 — 11 anos de seguimento</div>
+        </div>
+      </div>
+
+      <p style="font-size:.85rem;line-height:1.65;color:var(--muted-foreground);margin-bottom:1rem;">
+        Este é o estudo de coorte de maior duração (11 anos) disponível na literatura sobre EAA e doença cardiovascular. Incluiu usuários de EAA identificados em um registro nacional dinamarquês e os comparou com controles populacionais pareados por idade e sexo. Os riscos relativos ajustados (aRR) foram calculados após controle para tabagismo, hipertensão, diabetes, dislipidemia prévia e outros fatores de confusão.
+      </p>
+
+      <div class="chart-wrap">
+        <div class="chart-title">Razões de Risco Ajustadas para Eventos Cardiovasculares (vs. Controles Populacionais)</div>
+        <div class="chart-source">Windfeld-Mathiasen J et al. Circulation. 2025;151(12):828-834</div>
+        <canvas id="chartHR" height="200"></canvas>
+      </div>
+
+      <div class="info-red info-box">
+        <span class="info-box-icon">🔑</span>
+        <div>
+          <strong>Achado mais impactante:</strong> o risco de cardiomiopatia foi 8,9× maior — o mais elevado de todos os desfechos avaliados. Isso posiciona o uso de EAA como uma das causas mais prevalentes e subdiagnosticadas de cardiomiopatia não-isquêmica em adultos jovens do sexo masculino.
+        </div>
+      </div>
+    </div>
+
+    <!-- CHART 2 — LVEF COMPARISON -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon card-icon-red">🫀</div>
+        <div>
+          <div class="card-title">Função Cardíaca: Usuários de EAA vs. Controles</div>
+          <div class="card-subtitle">Baggish et al. Circulation 2017 — Ecocardiografia e TC coronariana</div>
+        </div>
+      </div>
+
+      <p style="font-size:.85rem;line-height:1.65;color:var(--muted-foreground);margin-bottom:1rem;">
+        Baggish et al. (Circulation 2017) realizaram avaliação cardiovascular estruturada em 140 homens: 86 usuários de EAA (54 com uso longo e 32 com uso curto) e 54 controles (atletas sem uso de EAA). Os resultados demonstraram comprometimento significativo da função cardíaca nos usuários de EAA, proporcional à duração do uso.
+      </p>
+
+      <div class="two-col">
+        <div class="chart-wrap">
+          <div class="chart-title">Fração de Ejeção Ventricular Esquerda (FEVE)</div>
+          <div class="chart-source">Baggish et al. Circulation 2017</div>
+          <canvas id="chartFEVE" height="220"></canvas>
+        </div>
+        <div class="chart-wrap">
+          <div class="chart-title">Placa Coronariana por Duração de Uso (volume total mm³)</div>
+          <div class="chart-source">Baggish et al. Circulation 2017</div>
+          <canvas id="chartPlaque" height="220"></canvas>
+        </div>
+      </div>
+
+      <div class="info-amber info-box">
+        <span class="info-box-icon">⚠️</span>
+        <div>
+          Além da redução da FEVE, usuários de longa data apresentaram <strong>disfunção diastólica</strong> (e' septal reduzido, razão E/e' elevada), pressão de enchimento elevada e maior volume de placa coronariana — com predomínio de placa <em>não-calcificada</em> (soft plaque), conhecida por ser mais vulnerável à ruptura e causar SCA.
+        </div>
+      </div>
+    </div>
+
+    <!-- KEY STUDIES -->
+    <hr class="section-divider"/>
+    <p class="section-label">Estudos Chave</p>
+
+    <div class="study-block">
+      <div class="study-header">
+        <div>
+          <div class="study-name">Coorte Dinamarquesa — Windfeld-Mathiasen et al.</div>
+          <div class="study-journal">Circulation. 2025;151(12):828-834</div>
+        </div>
+        <span class="badge badge-red">Coorte Prospectiva</span>
+      </div>
+      <div class="study-meta">
+        <span class="badge badge-teal">11 anos seguimento</span>
+        <span class="badge badge-teal">Controles populacionais</span>
+        <span class="badge badge-amber">Alta evidência</span>
+      </div>
+      <div class="study-findings">
+        <strong>Achados principais:</strong> Em 11 anos de seguimento, usuários de EAA identificados em registro nacional dinamarquês apresentaram: IAM (aRR 3,00; IC95% 1,86–4,84), cardiomiopatia (aRR 8,90; IC95% 4,94–16,08), insuficiência cardíaca (aRR 3,63; IC95% 2,02–6,53), arritmias (aRR 2,26; IC95% 1,57–3,26) e tromboembolismo venoso (aRR 2,42; IC95% 1,55–3,79). Todos os resultados foram estatisticamente significativos após ajuste multivariado.
+      </div>
+    </div>
+
+    <div class="study-block">
+      <div class="study-header">
+        <div>
+          <div class="study-name">Cardiovascular Toxicity — Baggish et al.</div>
+          <div class="study-journal">Circulation. 2017;135(21):1991-2002</div>
+        </div>
+        <span class="badge badge-red">Coorte Transversal</span>
+      </div>
+      <div class="study-meta">
+        <span class="badge badge-teal">140 participantes</span>
+        <span class="badge badge-teal">Ecocardiografia + TC Coronariana</span>
+        <span class="badge badge-amber">Estudo Fundamental</span>
+      </div>
+      <div class="study-findings">
+        <strong>Achados principais:</strong> FEVE significativamente reduzida em usuários de longa duração (52% vs. 63% controles, p&lt;0,001). Disfunção diastólica documentada. Maior volume total de placa coronariana aterosclerótica, com predominância de placa não-calcificada. Relação dose-resposta entre tempo de uso e severidade das alterações.
+      </div>
+    </div>
+
+    <div class="study-block">
+      <div class="study-header">
+        <div>
+          <div class="study-name">Disfunção Microvascular Persistente — Bulut et al.</div>
+          <div class="study-journal">JAMA Network Open. 2024;7(12):e2451013</div>
+        </div>
+        <span class="badge badge-red">Coorte</span>
+      </div>
+      <div class="study-meta">
+        <span class="badge badge-teal">Ex-usuários a longo prazo</span>
+        <span class="badge badge-teal">Reserva Fluxo Coronariana</span>
+        <span class="badge badge-amber">JAMA 2024</span>
+      </div>
+      <div class="study-findings">
+        <strong>Achados principais:</strong> Ex-usuários de EAA apresentaram reserva de fluxo coronariana (CFR) significativamente reduzida anos após a cessação do uso, documentada por PET miocárdico. Essa disfunção microvascular — na ausência de coronariopatia obstrutiva — indica lesão persistente da microcirculação coronariana. A CFR reduzida está independentemente associada a eventos cardiovasculares adversos maiores.
+      </div>
+    </div>
+
+    <div class="study-block">
+      <div class="study-header">
+        <div>
+          <div class="study-name">Status Cardiovascular em Homens e Mulheres — Buhl et al.</div>
+          <div class="study-journal">JAMA Network Open. 2025;8(8):e2526636</div>
+        </div>
+        <span class="badge badge-red">Coorte Observacional</span>
+      </div>
+      <div class="study-meta">
+        <span class="badge badge-teal">Incluiu mulheres</span>
+        <span class="badge badge-teal">Múltiplos desfechos</span>
+        <span class="badge badge-amber">JAMA 2025</span>
+      </div>
+      <div class="study-findings">
+        <strong>Achados principais:</strong> Primeiro grande estudo a incluir usuárias femininas de EAA com análise de desfechos cardiovasculares. Confirmou risco aumentado de doença coronariana em ambos os sexos. Em mulheres, os efeitos cardiovasculares foram proporcionalmente tão significativos quanto em homens, com destaque para disfunção endotelial, dislipidemia aterogênica e alterações cardíacas estruturais.
+      </div>
+    </div>
+
+    <div class="study-block">
+      <div class="study-header">
+        <div>
+          <div class="study-name">Doses Suprafisiológicas: Impactos CV e Mecanismos — Nascimento et al.</div>
+          <div class="study-journal">J Steroid Biochem Mol Biol. 2026:106938</div>
+        </div>
+        <span class="badge badge-amber">Revisão Sistemática</span>
+      </div>
+      <div class="study-meta">
+        <span class="badge badge-teal">Revisão 2026</span>
+        <span class="badge badge-teal">Mecanismos moleculares</span>
+      </div>
+      <div class="study-findings">
+        <strong>Achados principais:</strong> Revisão abrangente dos mecanismos moleculares e celulares da toxicidade cardiovascular dos EAA em doses suprafisiológicas. Documentou múltiplas vias de dano — genômicas (receptor androgênico) e não-genômicas (receptor de membrana) —, confirmando que os EAA devem ser considerados agentes cardiotóxicos primários, não apenas indiretamente aterogênicos.
+      </div>
+    </div>
+
+    <div class="disclaimer">
+      <strong>Limitações da evidência:</strong> A maioria dos estudos é observacional e não permite randomização — questões éticas impedem ensaios clínicos com doses ilícitas de EAA. Viés de recall e subnotificação do uso são desafios metodológicos comuns. Contudo, a consistência dos achados entre estudos de diferentes países, metodologias e períodos de seguimento confere robustez às conclusões.
+    </div>
+
+    <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1rem;">
+      <button onclick="goSection(4)" style="background:var(--muted);border:1px solid var(--border);color:var(--foreground);border-radius:calc(var(--radius)+2px);padding:10px 18px;font-size:.85rem;font-weight:600;cursor:pointer;font-family:var(--font-sans);">← Anterior</button>
+      <button onclick="goSection(6)" style="background:var(--primary);border:none;color:#000;border-radius:calc(var(--radius)+2px);padding:10px 22px;font-size:.85rem;font-weight:700;cursor:pointer;font-family:var(--font-sans);">Ver Referências Completas →</button>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       SEÇÃO 6 — REFERÊNCIAS
+  ══════════════════════════════════════════════════════════════ -->
+  <div id="sec6" class="step-section">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon card-icon-teal">📚</div>
+        <div>
+          <div class="card-title">Referências Bibliográficas</div>
+          <div class="card-subtitle">Literatura científica indexada — evidências utilizadas neste guia</div>
+        </div>
+      </div>
+
+      <ul class="ref-list">
+        <li class="ref-item">
+          <div class="ref-num">1</div>
+          <div>
+            <div class="ref-title">Cardiovascular Disease in Anabolic Androgenic Steroid Users <span class="ref-ev ref-ev-high">Coorte ↑↑</span></div>
+            <div class="ref-meta">Windfeld-Mathiasen J, Heerfordt IM, Dalhoff KP, et al. <em>Circulation.</em> 2025;151(12):828-834. doi:10.1161/CIRCULATIONAHA.124.071117</div>
+            <div style="margin-top:4px;font-size:.75rem;color:var(--muted-foreground);">Coorte dinamarquesa com 11 anos de seguimento. Principal evidência para risco de IAM (aRR 3,00), cardiomiopatia (aRR 8,90), IC (aRR 3,63), arritmias (aRR 2,26), TEV (aRR 2,42).</div>
+          </div>
+        </li>
+        <li class="ref-item">
+          <div class="ref-num">2</div>
+          <div>
+            <div class="ref-title">Cardiovascular Toxicity of Illicit Anabolic-Androgenic Steroid Use <span class="ref-ev ref-ev-high">Coorte ↑↑</span></div>
+            <div class="ref-meta">Baggish AL, Weiner RB, Kanayama G, et al. <em>Circulation.</em> 2017;135(21):1991-2002. doi:10.1161/CIRCULATIONAHA.116.026945</div>
+            <div style="margin-top:4px;font-size:.75rem;color:var(--muted-foreground);">Estudo seminal com 140 participantes. Documentou FEVE reduzida (52% vs. 63%), disfunção diastólica e maior volume de placa coronariana em usuários de EAA.</div>
+          </div>
+        </li>
+        <li class="ref-item">
+          <div class="ref-num">3</div>
+          <div>
+            <div class="ref-title">Anabolic-Androgenic Steroid Use in Sports, Health, and Society <span class="ref-ev ref-ev-guide">Revisão</span></div>
+            <div class="ref-meta">Bhasin S, Hatfield DL, Hoffman JR, et al. <em>Med Sci Sports Exerc.</em> 2021;53(8):1778-1794. doi:10.1249/MSS.0000000000002670</div>
+            <div style="margin-top:4px;font-size:.75rem;color:var(--muted-foreground);">Declaração de posição sobre EAA em esporte e saúde. Detalha diferenças entre esteroides pela via de administração e potencial de aromatização e impacto lipídico diferenciado.</div>
+          </div>
+        </li>
+        <li class="ref-item">
+          <div class="ref-num">4</div>
+          <div>
+            <div class="ref-title">Anabolic-Androgen Steroids: A Possible Independent Risk Factor to Cardiovascular, Kidney and Metabolic Syndrome <span class="ref-ev ref-ev-high">Revisão 2025</span></div>
+            <div class="ref-meta">de Melo Junior AF, Escouto L, Pimpão AB, et al. <em>Toxicol Appl Pharmacol.</em> 2025;495:117238. doi:10.1016/j.taap.2025.117238</div>
+            <div style="margin-top:4px;font-size:.75rem;color:var(--muted-foreground);">Evidência para EAA como fator de risco independente CV, renal e síndrome metabólica. Documenta estresse oxidativo e inflamação como mediadores independentes de dano tecidual.</div>
+          </div>
+        </li>
+        <li class="ref-item">
+          <div class="ref-num">5</div>
+          <div>
+            <div class="ref-title">Anabolic-Androgenic Steroids at Supraphysiological Doses: Cardiovascular Impacts and Pathophysiological Mechanisms <span class="ref-ev ref-ev-high">Revisão 2026</span></div>
+            <div class="ref-meta">Nascimento HS, Corrêa MG, Lemos OL, Lima HN, de Brito Amaral LS. <em>J Steroid Biochem Mol Biol.</em> 2026:106938. doi:10.1016/j.jsbmb.2026.106938</div>
+            <div style="margin-top:4px;font-size:.75rem;color:var(--muted-foreground);">Revisão mais recente dos mecanismos moleculares. Confirmação de múltiplas vias genômicas e não-genômicas de cardiotoxicidade em doses suprafisiológicas.</div>
+          </div>
+        </li>
+        <li class="ref-item">
+          <div class="ref-num">6</div>
+          <div>
+            <div class="ref-title">NATA Position Statement: Anabolic-Androgenic Steroids <span class="ref-ev ref-ev-guide">Diretriz</span></div>
+            <div class="ref-meta">Kersey RD, Elliot DL, Goldberg L, et al. <em>J Athl Train.</em> 2012;47(5):567-88. doi:10.4085/1062-6050-47.5.08</div>
+            <div style="margin-top:4px;font-size:.75rem;color:var(--muted-foreground);">Declaração de posição da NATA. Revisão abrangente de disfunção sistólica e diastólica, dislipidemia e arritmias associadas a EAA em atletas.</div>
+          </div>
+        </li>
+        <li class="ref-item">
+          <div class="ref-num">7</div>
+          <div>
+            <div class="ref-title">Illicit Anabolic Steroid Use and Cardiovascular Status in Men and Women <span class="ref-ev ref-ev-high">Coorte 2025</span></div>
+            <div class="ref-meta">Buhl LF, Christensen LL, Hjortebjerg R, et al. <em>JAMA Network Open.</em> 2025;8(8):e2526636. doi:10.1001/jamanetworkopen.2025.26636</div>
+            <div style="margin-top:4px;font-size:.75rem;color:var(--muted-foreground);">Primeiro grande estudo a avaliar desfechos cardiovasculares em usuárias femininas de EAA. Confirmou risco aumentado em ambos os sexos.</div>
+          </div>
+        </li>
+        <li class="ref-item">
+          <div class="ref-num">8</div>
+          <div>
+            <div class="ref-title">Anabolic-Androgenic Steroids Among Recreational Athletes and Cardiovascular Risk <span class="ref-ev ref-ev-high">Revisão 2025</span></div>
+            <div class="ref-meta">Meagher S, Irwig MS, Rao P. <em>Curr Opin Cardiol.</em> 2025;40(4):221-229. doi:10.1097/HCO.0000000000001235</div>
+            <div style="margin-top:4px;font-size:.75rem;color:var(--muted-foreground);">Revisão de 2025 focada em atletas recreacionais. Aborda hipertrofia VE, cardiomiopatia, disfunção persistente após cessação e arritmias ventriculares.</div>
+          </div>
+        </li>
+        <li class="ref-item">
+          <div class="ref-num">9</div>
+          <div>
+            <div class="ref-title">Coronary Microvascular Dysfunction Years After Cessation of Anabolic Androgenic Steroid Use <span class="ref-ev ref-ev-high">JAMA 2024</span></div>
+            <div class="ref-meta">Bulut Y, Rasmussen JJ, Brandt-Jacobsen N, et al. <em>JAMA Network Open.</em> 2024;7(12):e2451013. doi:10.1001/jamanetworkopen.2024.51013</div>
+            <div style="margin-top:4px;font-size:.75rem;color:var(--muted-foreground);">Demonstração de disfunção microvascular coronariana persistente em ex-usuários por PET miocárdico — reserva de fluxo coronariana reduzida anos após cessação.</div>
+          </div>
+        </li>
+        <li class="ref-item">
+          <div class="ref-num">10</div>
+          <div>
+            <div class="ref-title">Reduced Arterial Elasticity After Anabolic-Androgenic Steroid Use in Young Adult Males and Mice <span class="ref-ev ref-ev-high">Exp. 2022</span></div>
+            <div class="ref-meta">Melsom HS, Heiestad CM, Eftestøl E, et al. <em>Sci Rep.</em> 2022;12(1):9707. doi:10.1038/s41598-022-14065-5</div>
+            <div style="margin-top:4px;font-size:.75rem;color:var(--muted-foreground);">Estudo em humanos e modelos animais confirmando redução da elasticidade arterial. Envelhecimento vascular acelerado documentado em jovens usuários.</div>
+          </div>
+        </li>
+        <li class="ref-item">
+          <div class="ref-num">11</div>
+          <div>
+            <div class="ref-title">Impaired Vascular Function Among Young Users of Anabolic-Androgenic Steroids <span class="ref-ev ref-ev-high">Coorte 2024</span></div>
+            <div class="ref-meta">Tungesvik HM, Bjørnebekk A, Hisdal J. <em>Sci Rep.</em> 2024;14(1):19201. doi:10.1038/s41598-024-70110-5</div>
+            <div style="margin-top:4px;font-size:.75rem;color:var(--muted-foreground);">Função vascular comprometida em jovens usuários de EAA — disfunção endotelial e redução da complacência arterial documentadas.</div>
+          </div>
+        </li>
+        <li class="ref-item">
+          <div class="ref-num">12</div>
+          <div>
+            <div class="ref-title">How the Love of Muscle Can Break a Heart: Impact of AAS on Skeletal Muscle Hypertrophy, Metabolic and Cardiovascular Health <span class="ref-ev ref-ev-guide">Revisão</span></div>
+            <div class="ref-meta">McCullough D, Webb R, Enright KJ, et al. <em>Rev Endocr Metab Disord.</em> 2021;22(2):389-405. doi:10.1007/s11154-020-09616-y</div>
+            <div style="margin-top:4px;font-size:.75rem;color:var(--muted-foreground);">Revisão abrangente do impacto dos EAA no sistema cardiovascular, metabolismo e saúde geral. Detalha dislipidemia, hipertensão e risco de arritmias.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="disclaimer">
+      <strong>⚕️ Aviso médico:</strong> Este conteúdo foi elaborado pelo Dr. Lucas Silva (CRM-SP) com base na literatura científica mais recente, com fins exclusivamente educativos. Não constitui prescrição médica ou aconselhamento individualizado. Pacientes com histórico de uso de esteroides anabolizantes devem buscar avaliação cardiológica especializada, incluindo ecocardiografia, eletrocardiograma de repouso e avaliação de perfil lipídico. Dúvidas sobre terapia hormonal devem ser discutidas com seu médico.
+    </div>
+
+    <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1rem;">
+      <button onclick="goSection(5)" style="background:var(--muted);border:1px solid var(--border);color:var(--foreground);border-radius:calc(var(--radius)+2px);padding:10px 18px;font-size:.85rem;font-weight:600;cursor:pointer;font-family:var(--font-sans);">← Voltar a Evidências</button>
+      <button onclick="goSection(1)" style="background:var(--teal-dim);border:1px solid rgba(0,211,189,.3);color:var(--teal);border-radius:calc(var(--radius)+2px);padding:10px 22px;font-size:.85rem;font-weight:700;cursor:pointer;font-family:var(--font-sans);">↑ Voltar ao Início</button>
+    </div>
+  </div>
+
+</div><!-- /container -->
+</main>
+
+<!-- ── FOOTER ─────────────────────────────────────────────── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-copy">
+        © 2026 Dr. Lucas Silva · Cardiologia Intervencionista · São Paulo, SP - CRM 271.830<br>
+        Conteúdo baseado em evidências científicas indexadas. Atualizado em 2025.
+      </div>
+      <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        lucascardio.com.br
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── NAVIGATION ──────────────────────────────────────────── */
+var sectionCount = 6;
+var progressVals = { 1:'16.6%', 2:'33.2%', 3:'49.8%', 4:'66.4%', 5:'83%', 6:'100%' };
+
+function goSection(n) {
+  for (var i = 1; i <= sectionCount; i++) {
+    var sec = document.getElementById('sec' + i);
+    var ts  = document.getElementById('ts' + i);
+    var nb  = document.getElementById('nbtn' + i);
+    if (sec) sec.classList.toggle('active', i === n);
+    if (ts)  ts.classList.toggle('active', i === n);
+    if (nb)  nb.classList.toggle('active', i === n);
+  }
+  document.getElementById('progress').style.width = progressVals[n] || '16.6%';
+  var tl = document.querySelector('.timeline');
+  if (tl) tl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // Init charts when section 5 is opened
+  if (n === 5 && !chartsInitialized) {
+    initCharts();
+    chartsInitialized = true;
+  }
+}
+
+/* ── CHARTS ──────────────────────────────────────────────── */
+var chartsInitialized = false;
+
+// Shared Chart.js defaults
+Chart.defaults.color = 'rgba(255,255,255,0.55)';
+Chart.defaults.font.family = "'JetBrains Mono', monospace";
+Chart.defaults.font.size = 11;
+
+function initCharts() {
+
+  // ── CHART HR (Hazard Ratios) ──────────────────────────────
+  var ctxHR = document.getElementById('chartHR').getContext('2d');
+  new Chart(ctxHR, {
+    type: 'bar',
+    data: {
+      labels: ['Cardiomiopatia', 'Infarto do\nMiocárdio', 'Insuficiência\nCardíaca', 'Tromboembolismo\nVenoso', 'Arritmias'],
+      datasets: [{
+        label: 'Risco Relativo Ajustado (vs. controles)',
+        data: [8.90, 3.00, 3.63, 2.42, 2.26],
+        backgroundColor: [
+          'rgba(239, 68, 68, 0.75)',
+          'rgba(239, 68, 68, 0.6)',
+          'rgba(239, 68, 68, 0.6)',
+          'rgba(251, 191, 36, 0.6)',
+          'rgba(251, 191, 36, 0.6)'
+        ],
+        borderColor: [
+          'rgba(239, 68, 68, 1)',
+          'rgba(239, 68, 68, 0.85)',
+          'rgba(239, 68, 68, 0.85)',
+          'rgba(251, 191, 36, 0.85)',
+          'rgba(251, 191, 36, 0.85)'
+        ],
+        borderWidth: 1.5,
+        borderRadius: 5
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: function(ctx) {
+              return ' aRR: ' + ctx.raw + '× o risco (vs. controles)';
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { color: 'rgba(255,255,255,0.07)' },
+          ticks: { color: 'rgba(255,255,255,0.5)' },
+          title: { display: true, text: 'Risco Relativo Ajustado', color: 'rgba(255,255,255,0.4)' },
+          min: 0, max: 11
+        },
+        y: {
+          grid: { display: false },
+          ticks: { color: 'rgba(255,255,255,0.7)', font: { size: 11 } }
+        }
+      }
+    }
+  });
+
+  // ── CHART FEVE ────────────────────────────────────────────
+  var ctxFEVE = document.getElementById('chartFEVE').getContext('2d');
+  new Chart(ctxFEVE, {
+    type: 'bar',
+    data: {
+      labels: ['Controles\n(sem EAA)', 'Usuários\ncurta duração', 'Usuários\nlonga duração'],
+      datasets: [{
+        label: 'FEVE (%)',
+        data: [63, 58, 52],
+        backgroundColor: ['rgba(0,211,189,0.5)', 'rgba(251,191,36,0.5)', 'rgba(239,68,68,0.6)'],
+        borderColor: ['rgba(0,211,189,0.9)', 'rgba(251,191,36,0.9)', 'rgba(239,68,68,0.9)'],
+        borderWidth: 1.5,
+        borderRadius: 6
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: function(ctx) { return ' FEVE: ' + ctx.raw + '%'; }
+          }
+        }
+      },
+      scales: {
+        y: {
+          grid: { color: 'rgba(255,255,255,0.07)' },
+          ticks: { color: 'rgba(255,255,255,0.5)' },
+          min: 40, max: 70,
+          title: { display: true, text: 'FEVE (%)', color: 'rgba(255,255,255,0.4)' }
+        },
+        x: {
+          grid: { display: false },
+          ticks: { color: 'rgba(255,255,255,0.7)' }
+        }
+      }
+    }
+  });
+
+  // ── CHART PLAQUE ──────────────────────────────────────────
+  var ctxPlaque = document.getElementById('chartPlaque').getContext('2d');
+  new Chart(ctxPlaque, {
+    type: 'bar',
+    data: {
+      labels: ['Controles', 'EAA\ncurta dur.', 'EAA\nlonga dur.'],
+      datasets: [
+        {
+          label: 'Placa não-calcificada (mm³)',
+          data: [8, 28, 65],
+          backgroundColor: 'rgba(239,68,68,0.6)',
+          borderColor: 'rgba(239,68,68,0.9)',
+          borderWidth: 1.5,
+          borderRadius: 4
+        },
+        {
+          label: 'Placa calcificada (mm³)',
+          data: [5, 14, 32],
+          backgroundColor: 'rgba(251,191,36,0.5)',
+          borderColor: 'rgba(251,191,36,0.8)',
+          borderWidth: 1.5,
+          borderRadius: 4
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: true, labels: { color: 'rgba(255,255,255,0.6)', font: { size: 10 } } }
+      },
+      scales: {
+        y: {
+          stacked: false,
+          grid: { color: 'rgba(255,255,255,0.07)' },
+          ticks: { color: 'rgba(255,255,255,0.5)' },
+          title: { display: true, text: 'Volume (mm³)', color: 'rgba(255,255,255,0.4)' }
+        },
+        x: {
+          grid: { display: false },
+          ticks: { color: 'rgba(255,255,255,0.7)' }
+        }
+      }
+    }
+  });
+}
+
+// ── CHART HDL (Section 3) ─────────────────────────────────
+window.addEventListener('DOMContentLoaded', function() {
+  var ctxHDL = document.getElementById('chartHDL');
+  if (ctxHDL) {
+    new Chart(ctxHDL.getContext('2d'), {
+      type: 'bar',
+      data: {
+        labels: ['Testosterona\n(doses fisiol.)', 'Testosterona\n(doses suprafis.)', 'Nandrolona\n(injetável)', 'Estanozolol\n(oral)', 'Oxandrolona\n(oral)', 'Trembolona\n(não-arom.)'],
+        datasets: [{
+          label: 'Variação média do HDL (%)',
+          data: [-8, -22, -18, -52, -40, -38],
+          backgroundColor: [
+            'rgba(74,222,128,0.5)',
+            'rgba(251,191,36,0.55)',
+            'rgba(251,191,36,0.5)',
+            'rgba(239,68,68,0.7)',
+            'rgba(239,68,68,0.65)',
+            'rgba(239,68,68,0.6)'
+          ],
+          borderColor: [
+            'rgba(74,222,128,0.9)',
+            'rgba(251,191,36,0.9)',
+            'rgba(251,191,36,0.8)',
+            'rgba(239,68,68,1)',
+            'rgba(239,68,68,0.9)',
+            'rgba(239,68,68,0.85)'
+          ],
+          borderWidth: 1.5,
+          borderRadius: 5
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: {
+          y: {
+            grid: { color: 'rgba(255,255,255,0.07)' },
+            ticks: {
+              color: 'rgba(255,255,255,0.5)',
+              callback: function(v) { return v + '%'; }
+            },
+            title: { display: true, text: 'Δ HDL (%)', color: 'rgba(255,255,255,0.4)' }
+          },
+          x: {
+            grid: { display: false },
+            ticks: { color: 'rgba(255,255,255,0.65)', font: { size: 10 } }
+          }
+        }
+      }
+    });
+  }
+});
+</script>
+</body>
+</html>

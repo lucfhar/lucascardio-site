@@ -1,0 +1,729 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>Doenças Autoimunes e o Coração | Dr. Lucas Silva</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: oklch(65% .18 195);
+      --primary-foreground: oklch(98% 0 0);
+      --background: oklch(13% .018 250);
+      --foreground: oklch(93% .01 250);
+      --card: oklch(18.5% .018 250);
+      --muted: oklch(22% .018 250);
+      --muted-foreground: oklch(62% .02 250);
+      --border: oklch(28% .025 250);
+      --input: oklch(22% .02 250);
+      --accent: oklch(24% .025 250);
+      --teal: #00d37b;
+      --teal2:#00d3bd;
+      --teal-dim: rgba(0,211,189,.12);
+      --amber: oklch(82.8% .189 84.429);
+      --red: oklch(63.7% .237 25.331);
+      --green: oklch(79.2% .209 151.711);
+      --radius: 0.625rem;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); background: var(--background); color: var(--foreground); min-height: 100vh; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    nav { position: sticky; top: 0; z-index: 50; background: rgba(18,20,27,.88); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 1.5rem; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--foreground); }
+    .nav-brand-icon { width: 28px; height: 28px; border-radius: 7px; background: var(--teal); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .nav-brand-name { font-weight: 800; font-size: 1rem; letter-spacing: -.025em; }
+    .nav-brand-name span { color: var(--teal); }
+    .nav-brand-sep { width: 1px; height: 14px; background: var(--border); margin: 0 6px; }
+    .nav-brand-sub { font-size: .7rem; font-weight: 500; color: var(--muted-foreground); }
+    .nav-center { display: flex; align-items: center; gap: .2rem; }
+    .nav-btn { background: none; border: none; cursor: pointer; font-family: var(--font-sans); font-size: .78rem; font-weight: 500; color: var(--muted-foreground); padding: 6px 11px; border-radius: 7px; transition: background .15s, color .15s; }
+    .nav-btn:hover { background: var(--accent); color: var(--foreground); }
+    .nav-actions { display: flex; align-items: center; gap: .5rem; }
+    .nav-badge { font-size: .7rem; font-weight: 600; padding: 3px 10px; border-radius: 999px; background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.25); white-space: nowrap; }
+    .nav-link { font-size: .75rem; font-weight: 600; padding: 5px 12px; border-radius: 8px; border: 1.5px solid var(--primary); color: var(--primary); background: transparent; text-decoration: none; transition: background .15s, color .15s; display: inline-flex; align-items: center; gap: 5px; }
+    .nav-link:hover { background: var(--primary); color: var(--primary-foreground); }
+
+    /* LAYOUT */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+    .section { padding: 3rem 0; }
+    .section + .section { border-top: 1px solid var(--border); }
+
+    /* HERO */
+    .hero { padding: 3.5rem 0 2.5rem; border-bottom: 1px solid var(--border); }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 6px; font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); margin-bottom: 1rem; }
+    .hero-eyebrow::before { content: ''; display: block; width: 20px; height: 2px; background: var(--teal); border-radius: 1px; }
+    .hero h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800; line-height: 1.2; margin-bottom: .75rem; letter-spacing: -.02em; }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero-sub { color: var(--muted-foreground); font-size: .95rem; max-width: 640px; margin-bottom: 1.5rem; line-height: 1.65; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.5rem; }
+    .tag { font-size: .7rem; font-weight: 600; padding: 3px 10px; border-radius: 6px; border: 1px solid var(--border); color: var(--muted-foreground); background: var(--card); font-family: var(--font-mono); }
+
+    /* HERO STATS */
+    .hero-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: calc(var(--radius) + 2px); overflow: hidden; }
+    .hero-stat { background: var(--card); padding: 1rem 1.1rem; text-align: center; }
+    .hero-stat-num { font-size: 1.65rem; font-weight: 800; font-family: var(--font-mono); color: var(--teal); line-height: 1; margin-bottom: .3rem; display: block; }
+    .hero-stat-label { font-size: .7rem; color: var(--muted-foreground); line-height: 1.4; }
+
+    /* SECTION HEADER */
+    .section-eyebrow { display: inline-flex; align-items: center; gap: 6px; font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); margin-bottom: .6rem; }
+    .section-eyebrow::before { content: ''; display: block; width: 16px; height: 2px; background: var(--teal); border-radius: 1px; }
+    .section-title { font-size: 1.3rem; font-weight: 800; margin-bottom: .25rem; letter-spacing: -.015em; }
+    .section-desc { font-size: .88rem; color: var(--muted-foreground); max-width: 640px; margin-bottom: 1.5rem; line-height: 1.65; }
+
+    /* CARDS */
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: calc(var(--radius) + 2px); padding: 1.5rem; margin-bottom: 1.5rem; }
+    .card-header { display: flex; align-items: flex-start; gap: .75rem; margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+    .card-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; background: var(--teal-dim); color: var(--teal); }
+    .card-title { font-weight: 700; font-size: 1rem; margin-bottom: 2px; }
+    .card-subtitle { font-size: .78rem; color: var(--muted-foreground); }
+
+    /* INFO BOXES */
+    .info-box { border-radius: var(--radius); padding: 12px 16px; font-size: .82rem; line-height: 1.6; display: flex; gap: 10px; margin-bottom: .75rem; }
+    .info-box-icon { flex-shrink: 0; font-size: 1rem; margin-top: 1px; }
+    .info-teal   { background: var(--teal-dim); border-left: 3px solid var(--teal); }
+    .info-amber  { background: rgba(251,191,36,.08); border-left: 3px solid rgba(251,191,36,.5); }
+    .info-red    { background: rgba(220,38,38,.08); border-left: 3px solid rgba(220,38,38,.4); }
+    .info-gray   { background: var(--muted); border-left: 3px solid var(--border); }
+    .info-green  { background: rgba(34,197,94,.08); border-left: 3px solid rgba(34,197,94,.4); }
+    .info-purple { background: rgba(167,139,250,.08); border-left: 3px solid rgba(167,139,250,.4); }
+
+    /* STAT STRIP */
+    .stat-strip { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: calc(var(--radius) + 2px); overflow: hidden; margin: 1.5rem 0; }
+    .stat-cell { background: var(--card); padding: .9rem 1rem; text-align: center; }
+    .stat-num { font-family: var(--font-mono); font-size: 1.5rem; font-weight: 700; line-height: 1; margin-bottom: .3rem; display: block; }
+    .stat-lbl { font-size: .7rem; color: var(--muted-foreground); line-height: 1.4; }
+
+    /* TABS */
+    .tab-bar { display: flex; gap: .35rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+    .tab-btn { font-family: var(--font-sans); font-size: .78rem; font-weight: 600; padding: 6px 14px; border-radius: 8px; border: 1px solid var(--border); background: var(--muted); color: var(--muted-foreground); cursor: pointer; transition: all .15s; }
+    .tab-btn:hover { background: var(--accent); color: var(--foreground); border-color: var(--primary); }
+    .tab-btn.active { background: var(--teal-dim); border-color: rgba(0,211,189,.4); color: var(--teal); }
+    .tab-panel { display: none; animation: fadeUp .25s ease; }
+    .tab-panel.active { display: block; }
+
+    /* DISEASE PANEL */
+    .dp { background: var(--card); border: 1px solid var(--border); border-radius: calc(var(--radius) + 2px); overflow: hidden; }
+    .dp-header { padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: .85rem; }
+    .dp-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+    .dp-title { font-weight: 800; font-size: 1rem; margin-bottom: 2px; }
+    .dp-sub { font-size: .78rem; color: var(--muted-foreground); }
+    .dp-badge { margin-left: auto; flex-shrink: 0; font-size: .68rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; align-self: flex-start; font-family: var(--font-mono); }
+    .b-red    { background: rgba(220,38,38,.15); color: #f87171; border: 1px solid rgba(220,38,38,.25); }
+    .b-amber  { background: rgba(251,191,36,.12); color: #fbbf24; border: 1px solid rgba(251,191,36,.2); }
+    .b-teal   { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.2); }
+    .b-gray   { background: var(--muted); color: var(--muted-foreground); border: 1px solid var(--border); }
+    .dp-body { padding: 1.5rem; }
+    .dp-body p { font-size: .88rem; line-height: 1.75; margin-bottom: .85rem; }
+    .dp-body p:last-child { margin-bottom: 0; }
+
+    /* RISK METERS */
+    .risk-meters { margin: 1rem 0; display: flex; flex-direction: column; gap: .55rem; }
+    .rm-row { display: flex; align-items: center; gap: .75rem; }
+    .rm-label { font-size: .73rem; font-weight: 600; width: 90px; flex-shrink: 0; color: var(--muted-foreground); font-family: var(--font-mono); }
+    .rm-track { flex: 1; height: 6px; border-radius: 3px; background: var(--muted); overflow: hidden; }
+    .rm-fill { height: 100%; border-radius: 3px; transition: width .8s ease; }
+    .rm-val { font-family: var(--font-mono); font-size: .75rem; font-weight: 600; width: 50px; text-align: right; flex-shrink: 0; }
+
+    /* MECH GRID */
+    .mech-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(255px, 1fr)); gap: .85rem; }
+    .mech-card { background: var(--card); border: 1px solid var(--border); border-radius: calc(var(--radius) + 2px); padding: 1.2rem; transition: border-color .15s, background .15s; }
+    .mech-card:hover { background: var(--accent); border-color: rgba(0,211,189,.2); }
+    .mech-icon { width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; margin-bottom: .85rem; }
+    .mech-card h4 { font-size: .88rem; font-weight: 700; margin-bottom: .4rem; }
+    .mech-card p { font-size: .8rem; color: var(--muted-foreground); line-height: 1.6; }
+
+    /* DRUG ACCORDIONS */
+    .drug-card { background: var(--card); border: 1px solid var(--border); border-radius: calc(var(--radius) + 2px); margin-bottom: .75rem; overflow: hidden; }
+    .drug-header { display: flex; align-items: center; gap: .85rem; padding: 1.1rem 1.25rem; cursor: pointer; transition: background .15s; }
+    .drug-header:hover { background: var(--accent); }
+    .drug-signal { width: 38px; height: 38px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+    .s-danger  { background: rgba(220,38,38,.15); }
+    .s-caution { background: rgba(251,191,36,.1); }
+    .s-safe    { background: rgba(34,197,94,.1); }
+    .s-neutral { background: var(--teal-dim); }
+    .drug-info { flex: 1; min-width: 0; }
+    .drug-name { font-size: .92rem; font-weight: 700; margin-bottom: 1px; }
+    .drug-class { font-size: .73rem; color: var(--muted-foreground); }
+    .drug-verdict { flex-shrink: 0; font-size: .68rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; font-family: var(--font-mono); }
+    .v-risk    { background: rgba(220,38,38,.15); color: #f87171; border: 1px solid rgba(220,38,38,.25); }
+    .v-caution { background: rgba(251,191,36,.12); color: #fbbf24; border: 1px solid rgba(251,191,36,.2); }
+    .v-benefit { background: rgba(34,197,94,.1); color: var(--green); border: 1px solid rgba(34,197,94,.2); }
+    .v-complex { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.2); }
+    .drug-chev { color: var(--muted-foreground); font-size: .8rem; margin-left: .35rem; transition: transform .25s; flex-shrink: 0; }
+    .drug-card.open .drug-chev { transform: rotate(180deg); }
+    .drug-body { display: none; padding: 0 1.25rem 1.25rem; border-top: 1px solid var(--border); padding-top: 1.1rem; }
+    .drug-card.open .drug-body { display: block; animation: fadeUp .2s ease; }
+    .drug-body p { font-size: .84rem; line-height: 1.75; margin-bottom: .75rem; }
+    .drug-body p:last-child { margin-bottom: 0; }
+    .drug-evidence { background: var(--muted); border-left: 3px solid var(--primary); border-radius: var(--radius); padding: 10px 14px; font-size: .78rem; color: var(--muted-foreground); margin-top: .85rem; line-height: 1.55; }
+    .drug-evidence strong { color: var(--foreground); }
+
+    /* PREV GRID */
+    .prev-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(255px, 1fr)); gap: .85rem; }
+    .prev-card { background: var(--card); border: 1px solid var(--border); border-radius: calc(var(--radius) + 2px); padding: 1.1rem 1.2rem; }
+    .prev-card h4 { font-size: .88rem; font-weight: 700; margin-bottom: .65rem; display: flex; align-items: center; gap: .5rem; }
+    .prev-card ul { padding-left: 1rem; }
+    .prev-card li { font-size: .8rem; color: var(--muted-foreground); line-height: 1.6; margin-bottom: .3rem; }
+
+    /* REFS */
+    .refs-toggle { display: flex; align-items: center; justify-content: space-between; background: var(--card); border: 1px solid var(--border); border-radius: calc(var(--radius) + 2px); padding: 1rem 1.25rem; cursor: pointer; font-weight: 600; font-size: .88rem; transition: background .15s; }
+    .refs-toggle:hover { background: var(--accent); }
+    .refs-body { display: none; margin-top: .75rem; }
+    .refs-body.open { display: block; animation: fadeUp .2s; }
+    .refs-list { list-style: none; }
+    .refs-list li { font-size: .78rem; color: var(--muted-foreground); line-height: 1.6; padding: .55rem 0; border-bottom: 1px solid var(--border); display: flex; gap: .75rem; }
+    .refs-list li:last-child { border-bottom: none; }
+    .ref-num { font-family: var(--font-mono); font-size: .72rem; color: var(--teal); font-weight: 600; flex-shrink: 0; width: 26px; padding-top: 1px; }
+
+    /* DISCLAIMER */
+    .disclaimer { background: var(--muted); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 16px; font-size: .75rem; color: var(--muted-foreground); line-height: 1.6; margin-bottom: 1.5rem; }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 2rem 0; margin-top: 2rem; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-copy { font-size: .75rem; color: var(--muted-foreground); }
+
+    hr.div { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+
+    @media (max-width: 600px) {
+      .nav-center { display: none; }
+      .mech-grid, .prev-grid { grid-template-columns: 1fr; }
+      .hero-stats, .stat-strip { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="https://lucascardio.com.br">
+    <div class="nav-brand-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+      </svg>
+    </div>
+    <div class="nav-brand-name">Cardio<span>Imuno</span></div>
+    <div class="nav-brand-sep"></div>
+    <div class="nav-brand-sub">Autoimunidade &amp; Coração</div>
+  </a>
+  <div class="nav-center">
+    <button class="nav-btn" onclick="goSection('doencas')">Por Doença</button>
+    <button class="nav-btn" onclick="goSection('mecanismos')">Mecanismos</button>
+    <button class="nav-btn" onclick="goSection('medicamentos')">Medicamentos</button>
+    <button class="nav-btn" onclick="goSection('prevencao')">Prevenção</button>
+  </div>
+  <div class="nav-actions">
+    <span class="nav-badge">Educação ao Paciente</span>
+    <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      lucascardio.com.br
+    </a>
+  </div>
+</nav>
+
+<main>
+<div class="container">
+
+  <div class="hero">
+    <div class="hero-eyebrow">Medicina Baseada em Evidências</div>
+    <h1>Doenças <em>Autoimunes</em><br>e o Coração</h1>
+    <p class="hero-sub">Como a inflamação crônica e os medicamentos que a tratam afetam o sistema cardiovascular. Guia baseado nas evidências mais recentes — do maior estudo populacional já realizado (22 milhões de pessoas, <em>Lancet</em> 2022) às atualizações de 2026.</p>
+    <div class="hero-tags">
+      <span class="tag">Lancet 2022</span>
+      <span class="tag">ORAL Surveillance</span>
+      <span class="tag">ACC/AHA 2019</span>
+      <span class="tag">ESC Guidelines</span>
+      <span class="tag">JACC 2023–2024</span>
+      <span class="tag">NEJM 2024</span>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-num">1,56×</span>
+        <span class="hero-stat-label">Risco CV vs.<br>população geral</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">22M</span>
+        <span class="hero-stat-label">Indivíduos<br>estudados</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">19</span>
+        <span class="hero-stat-label">Doenças<br>analisadas</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">6,3%</span>
+        <span class="hero-stat-label">Fração atribuível<br>ao risco CV</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <div class="section">
+    <div class="section-eyebrow">Por Que Isso Importa</div>
+    <h2 class="section-title">Autoimunidade e o Coração: Uma Conexão Direta</h2>
+    <p class="section-desc">Décadas de pesquisa mostram que quem vive com doenças autoimunes carrega um risco cardiovascular silenciosamente elevado — independente dos fatores de risco tradicionais.</p>
+
+    <div class="info-teal info-box">
+      <span class="info-box-icon">🔬</span>
+      <div>O maior estudo já realizado nessa área, publicado na <strong>The Lancet</strong> em 2022 (Conrad et al.), analisou <strong>22 milhões de pessoas no Reino Unido</strong> e demonstrou que pacientes com doenças autoimunes têm risco cardiovascular <strong>1,56 vezes maior</strong> que a população geral — magnitude comparável ao diabetes tipo 2. Esse risco é mais pronunciado em pacientes jovens, no primeiro ano após o diagnóstico, e não se explica apenas pelos fatores de risco clássicos.</div>
+    </div>
+
+    <div class="info-amber info-box">
+      <span class="info-box-icon">⚠️</span>
+      <div><strong>Um risco historicamente subestimado:</strong> Por muito tempo, o foco esteve exclusivamente no controle da doença de base. A prevenção cardiovascular era negligenciada nessa população. Hoje sabemos que <strong>controlar a inflamação é, ao mesmo tempo, proteger o coração</strong>. As diretrizes ACC/AHA 2019 já reconhecem AR, LES e psoríase como fatores de risco cardiovascular potencializadores.</div>
+    </div>
+
+    <div class="stat-strip">
+      <div class="stat-cell">
+        <span class="stat-num" style="color:#f87171;">48×</span>
+        <span class="stat-lbl">Risco aterosclerótico<br>no LES</span>
+      </div>
+      <div class="stat-cell">
+        <span class="stat-num" style="color:#fbbf24;">50×</span>
+        <span class="stat-lbl">Risco de IAM em mulheres<br>jovens (35–44a) com LES</span>
+      </div>
+      <div class="stat-cell">
+        <span class="stat-num" style="color:var(--teal);">9,38×</span>
+        <span class="stat-lbl">Risco de DAC<br>no DM Tipo 1</span>
+      </div>
+      <div class="stat-cell">
+        <span class="stat-num" style="color:#fbbf24;">2×</span>
+        <span class="stat-lbl">Risco de IAM na<br>Artrite Reumatoide</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- DISEASES -->
+  <div class="section" id="doencas">
+    <div class="section-eyebrow">Evidências por Diagnóstico</div>
+    <h2 class="section-title">Risco Cardiovascular por Doença Autoimune</h2>
+    <p class="section-desc">Selecione sua doença para entender os riscos específicos, mecanismos envolvidos e o que as evidências científicas mais recentes mostram.</p>
+
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="switchTab(event,'ar')">Artrite Reumatoide</button>
+      <button class="tab-btn" onclick="switchTab(event,'les')">Lúpus (LES)</button>
+      <button class="tab-btn" onclick="switchTab(event,'psori')">Psoríase</button>
+      <button class="tab-btn" onclick="switchTab(event,'dm1')">DM Tipo 1</button>
+      <button class="tab-btn" onclick="switchTab(event,'hash')">Hashimoto</button>
+      <button class="tab-btn" onclick="switchTab(event,'em')">Esclerose Múltipla</button>
+      <button class="tab-btn" onclick="switchTab(event,'celiac')">D. Celíaca</button>
+    </div>
+
+    <div id="tab-ar" class="tab-panel active">
+      <div class="dp">
+        <div class="dp-header">
+          <div class="dp-icon" style="background:rgba(220,38,38,.12);">🦴</div>
+          <div><div class="dp-title">Artrite Reumatoide</div><div class="dp-sub">A doença autoimune com risco CV mais bem documentado na literatura científica</div></div>
+          <div class="dp-badge b-amber">Alto Risco</div>
+        </div>
+        <div class="dp-body">
+          <p>Metanálises e coortes populacionais estabelecem que pacientes com AR têm risco <strong>1,5 a 2 vezes maior de doença arterial coronariana</strong>. O risco de infarto do miocárdio é dobrado e o de AVC é 50% maior. A doença cardiovascular explica 40–50% de toda a mortalidade na AR.</p>
+          <div class="risk-meters">
+            <div class="rm-row"><div class="rm-label">DAC</div><div class="rm-track"><div class="rm-fill" style="width:65%;background:#f87171;"></div></div><div class="rm-val" style="color:#f87171;">1,5–2×</div></div>
+            <div class="rm-row"><div class="rm-label">IAM</div><div class="rm-track"><div class="rm-fill" style="width:70%;background:#f87171;"></div></div><div class="rm-val" style="color:#f87171;">~2×</div></div>
+            <div class="rm-row"><div class="rm-label">AVC</div><div class="rm-track"><div class="rm-fill" style="width:50%;background:#fbbf24;"></div></div><div class="rm-val" style="color:#fbbf24;">1,5×</div></div>
+          </div>
+          <p>O mecanismo central é a <strong>inflamação sistêmica crônica</strong>. Citocinas pró-inflamatórias produzidas pela membrana sinovial — TNF-α, IL-1β e IL-6 — circulam pelo sangue, danificam o endotélio vascular e estimulam a formação de placas ateroscleróticas. Existe ainda o <strong>"paradoxo lipídico"</strong>: durante fases de alta atividade inflamatória, o colesterol reduzido paradoxalmente associa-se a maior risco cardiovascular, pois reflete o estado pró-inflamatório que suprime a síntese lipídica hepática.</p>
+          <p>A aterosclerose na AR é frequentemente <strong>silenciosa</strong>. Estudos com angiotomografia e ultrassonografia de carótidas documentam espessamento da íntima-média e placas subclínicas mesmo em pacientes assintomáticos. O JACC Scientific Statement (2023) destaca o papel crescente das imagens cardíacas avançadas na detecção precoce.</p>
+          <div class="info-green info-box" style="margin-top:.75rem;"><span class="info-box-icon">✅</span><div><strong>Boa notícia:</strong> Controlar bem a atividade da AR reduz o risco cardiovascular. O tratamento precoce com DMARDs — especialmente metotrexato — retarda a progressão da aterosclerose e melhora a função endotelial. As diretrizes ACC/AHA 2019 reconhecem a AR como fator de risco cardiovascular potencializador.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-les" class="tab-panel">
+      <div class="dp">
+        <div class="dp-header">
+          <div class="dp-icon" style="background:rgba(220,38,38,.15);">🦋</div>
+          <div><div class="dp-title">Lúpus Eritematoso Sistêmico (LES)</div><div class="dp-sub">Um dos maiores riscos cardiovasculares conhecidos entre as doenças autoimunes</div></div>
+          <div class="dp-badge b-red">Muito Alto Risco</div>
+        </div>
+        <div class="dp-body">
+          <p>O LES confere o maior risco cardiovascular absoluto. Estudos clássicos apontam risco até <strong>48 vezes maior de doença aterosclerótica</strong>. Uma metanálise em <em>Lupus</em> (2023) quantificou <strong>2,51× maior de AVC</strong> e <strong>2,92× maior de IAM</strong>.</p>
+          <div class="info-red info-box"><span class="info-box-icon">🚨</span><div><strong>Dado alarmante para mulheres jovens:</strong> Mulheres com LES entre 35–44 anos têm risco de IAM <strong>50 vezes maior</strong> que mulheres da mesma faixa etária sem a doença (JACC 2020) — um dos mais extremos desequilíbrios de risco em toda a cardiologia preventiva.</div></div>
+          <div class="risk-meters">
+            <div class="rm-row"><div class="rm-label">Aterosclerose</div><div class="rm-track"><div class="rm-fill" style="width:95%;background:#f87171;"></div></div><div class="rm-val" style="color:#f87171;">até 48×</div></div>
+            <div class="rm-row"><div class="rm-label">IAM</div><div class="rm-track"><div class="rm-fill" style="width:75%;background:#f87171;"></div></div><div class="rm-val" style="color:#f87171;">2,92×</div></div>
+            <div class="rm-row"><div class="rm-label">AVC</div><div class="rm-track"><div class="rm-fill" style="width:67%;background:#fbbf24;"></div></div><div class="rm-val" style="color:#fbbf24;">2,51×</div></div>
+          </div>
+          <p>Além da inflamação sistêmica, os <strong>autoanticorpos característicos</strong> — anti-dsDNA, anticorpos antifosfolípides (AAF) — exercem ação direta na vasculatura. Os AAF promovem estado protrombótico, ativam plaquetas e células endoteliais. Um estudo em <em>ATVB</em> (2021) demonstrou que anticorpos anti-dsDNA promovem ativação vascular específica e contribuem independentemente para o risco cardiovascular. O risco é especialmente elevado no <strong>primeiro ano após o diagnóstico</strong> (JACC 2021) e persiste por décadas. Até 40% dos pacientes com LES apresentam aterosclerose subclínica detectável em imagem.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-psori" class="tab-panel">
+      <div class="dp">
+        <div class="dp-header">
+          <div class="dp-icon" style="background:rgba(251,191,36,.1);">🩹</div>
+          <div><div class="dp-title">Psoríase</div><div class="dp-sub">Doença "de pele" com profundo impacto sistêmico e cardiovascular nas formas moderadas-graves</div></div>
+          <div class="dp-badge b-amber">Alto Risco (formas graves)</div>
+        </div>
+        <div class="dp-body">
+          <p>Nas formas moderadas a graves, a psoríase representa uma condição inflamatória sistêmica com impacto cardiovascular bem estabelecido. Segundo análise no <em>JAMA</em> (2020), pacientes com psoríase grave têm risco <strong>1,7× maior de IAM</strong>, <strong>1,56× maior de AVC</strong> e <strong>1,39× maior de mortalidade CV</strong>. A carga de aterosclerose coronariana em psoríase moderada-grave é comparável ao diabetes tipo 2.</p>
+          <div class="info-purple info-box"><span class="info-box-icon">🧬</span><div><strong>O marcador GlycA (JAMA Dermatology 2025):</strong> Svedbom et al. demonstraram que o marcador inflamatório GlycA correlaciona-se tanto com a gravidade das lesões cutâneas quanto com eventos cardiovasculares — confirmando que inflamação cutânea e vascular compartilham vias comuns, com o eixo IL-17/IL-23 no centro da patogênese.</div></div>
+          <div class="risk-meters">
+            <div class="rm-row"><div class="rm-label">IAM</div><div class="rm-track"><div class="rm-fill" style="width:60%;background:#f87171;"></div></div><div class="rm-val" style="color:#f87171;">1,70×</div></div>
+            <div class="rm-row"><div class="rm-label">AVC</div><div class="rm-track"><div class="rm-fill" style="width:52%;background:#fbbf24;"></div></div><div class="rm-val" style="color:#fbbf24;">1,56×</div></div>
+            <div class="rm-row"><div class="rm-label">Mort. CV</div><div class="rm-track"><div class="rm-fill" style="width:44%;background:#fbbf24;"></div></div><div class="rm-val" style="color:#fbbf24;">1,39×</div></div>
+          </div>
+          <p>Psoríase e placa aterosclerótica compartilham características histopatológicas notáveis: proliferação de células T, ativação de macrófagos, produção de TNF-α, IL-1β e IL-17. O tratamento com biológicos (inibidores de IL-17, IL-23 ou TNF) demonstrou redução de marcadores inflamatórios associados ao risco cardiovascular.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-dm1" class="tab-panel">
+      <div class="dp">
+        <div class="dp-header">
+          <div class="dp-icon" style="background:rgba(220,38,38,.12);">💉</div>
+          <div><div class="dp-title">Diabetes Mellitus Tipo 1</div><div class="dp-sub">Doença autoimune pancreática com maior impacto absoluto em sobrevida cardiovascular</div></div>
+          <div class="dp-badge b-red">Muito Alto Risco</div>
+        </div>
+        <div class="dp-body">
+          <p>O DM1 resulta da destruição autoimune das células beta pancreáticas. Uma metanálise no <em>J Diabetes Complications</em> (2021) documentou risco <strong>9,38× maior de DAC</strong>, <strong>6,37× maior de IAM</strong> e <strong>4,08× maior de AVC</strong>. A doença cardiovascular é a principal causa de morte em DM1, reduzindo a expectativa de vida em aproximadamente 13 anos.</p>
+          <div class="info-red info-box"><span class="info-box-icon">📉</span><div><strong>Mesmo com bom controle glicêmico:</strong> Pacientes com DM1 bem controlados mantêm risco CV significativamente elevado. Isso aponta para mecanismos independentes da glicose: inflamação mediada por células T, disfunção endotelial, microangiopatia e estresse oxidativo crônico. Um artigo especial publicado no <em>NEJM</em> em 2024 (Manrique-Acevedo et al.) revisou em profundidade as estratégias de prevenção CV específicas para DM1.</div></div>
+          <div class="risk-meters">
+            <div class="rm-row"><div class="rm-label">DAC</div><div class="rm-track"><div class="rm-fill" style="width:95%;background:#f87171;"></div></div><div class="rm-val" style="color:#f87171;">9,38×</div></div>
+            <div class="rm-row"><div class="rm-label">IAM</div><div class="rm-track"><div class="rm-fill" style="width:85%;background:#f87171;"></div></div><div class="rm-val" style="color:#f87171;">6,37×</div></div>
+            <div class="rm-row"><div class="rm-label">AVC</div><div class="rm-track"><div class="rm-fill" style="width:68%;background:#fbbf24;"></div></div><div class="rm-val" style="color:#fbbf24;">4,08×</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-hash" class="tab-panel">
+      <div class="dp">
+        <div class="dp-header">
+          <div class="dp-icon" style="background:var(--teal-dim);">🔵</div>
+          <div><div class="dp-title">Tireoidite de Hashimoto</div><div class="dp-sub">Risco cardíaco subclínico documentado mesmo em pacientes eutireoideos</div></div>
+          <div class="dp-badge b-teal">Risco Moderado</div>
+        </div>
+        <div class="dp-body">
+          <p>A Tireoidite de Hashimoto está associada a risco <strong>1,44× maior de doença arterial coronariana</strong>, especialmente em mulheres jovens (Chen et al. <em>J Clin Endocrinol Metab</em> 2015). O dado mais relevante e recente é que estudos demonstram comprometimento cardiovascular subclínico mesmo em pacientes <strong>eutireoideos</strong> (função tireoidiana normal, apenas com anticorpos elevados).</p>
+          <div class="info-teal info-box"><span class="info-box-icon">🔍</span><div><strong>Comprometimento subclínico (Eur J Pediatrics 2025):</strong> Sarisoy &amp; Seymen demonstraram disfunção miocárdica subclínica e rigidez arterial aumentada em pacientes eutireoideus com Hashimoto — com correlação positiva entre títulos de anti-TPO/anti-Tg e marcadores de disfunção cardíaca. A autoimunidade per se, independente da disfunção hormonal, prejudica o sistema cardiovascular.</div></div>
+          <p>O tratamento com levotiroxina por mais de 1 ano está associado a redução significativa do risco cardiovascular nessa população. Os mecanismos incluem efeitos diretos dos anticorpos antitireoidianos no miocárdio e na vasculatura, além de inflamação sistêmica de baixo grau.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-em" class="tab-panel">
+      <div class="dp">
+        <div class="dp-header">
+          <div class="dp-icon" style="background:rgba(167,139,250,.1);">🧠</div>
+          <div><div class="dp-title">Esclerose Múltipla</div><div class="dp-sub">Risco vascular aumentado além das limitações neurológicas</div></div>
+          <div class="dp-badge b-teal">Risco Moderado</div>
+        </div>
+        <div class="dp-body">
+          <p>Estudo publicado no <em>JAMA Neurology</em> (Palladino et al. 2020) com população inglesa documentou: risco <strong>1,28× maior de SCA</strong>, <strong>1,59× maior de doença cerebrovascular</strong> e <strong>1,32× maior de qualquer doença macrovascular</strong>. O risco é mais pronunciado em mulheres e não é completamente explicado pelos fatores de risco tradicionais.</p>
+          <div class="info-purple info-box"><span class="info-box-icon">ℹ️</span><div>A desregulação autonômica na EM pode afetar diretamente o controle da frequência cardíaca e da pressão arterial — criando risco específico além dos mecanismos inflamatórios. Os imunomoduladores utilizados no tratamento da EM também podem contribuir para o risco vascular.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-celiac" class="tab-panel">
+      <div class="dp">
+        <div class="dp-header">
+          <div class="dp-icon" style="background:rgba(34,197,94,.1);">🌾</div>
+          <div><div class="dp-title">Doença Celíaca</div><div class="dp-sub">Evidências recentes questionam o risco cardiovascular previamente estimado</div></div>
+          <div class="dp-badge b-gray">Evidências Conflitantes</div>
+        </div>
+        <div class="dp-body">
+          <p>Estudos mais antigos (2011–2015) sugeriram risco modestamente aumentado (HR 1,10–1,36). No entanto, análise publicada em <strong>2026 no <em>Am J Medicine</em></strong> (Fauchier et al.), com <strong>41.071 pacientes</strong> e análise por escore de propensão em rede federada global, demonstrou que a doença celíaca <strong>não confere risco cardiovascular aumentado</strong> após ajuste adequado para comorbidades. As associações anteriores provavelmente refletiam confundimento residual.</p>
+          <div class="info-green info-box"><span class="info-box-icon">🌿</span><div><strong>Papel da dieta isenta de glúten:</strong> Estudos retrospectivos indicam que adesão prolongada à dieta sem glúten pode estar associada a menor risco cardiovascular em pacientes celíacos. Isso reforça que o tratamento adequado da doença de base é a melhor estratégia preventiva.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MECHANISMS -->
+  <div class="section" id="mecanismos">
+    <div class="section-eyebrow">Fisiopatologia</div>
+    <h2 class="section-title">Como a Autoimunidade Danifica o Coração</h2>
+    <p class="section-desc">A relação entre doenças autoimunes e doença cardiovascular é mediada por múltiplos mecanismos simultâneos — uma convergência de vias que se potencializam mutuamente.</p>
+    <div class="mech-grid">
+      <div class="mech-card">
+        <div class="mech-icon" style="background:rgba(220,38,38,.12);">🔥</div>
+        <h4>Inflamação Sistêmica Crônica</h4>
+        <p>Citocinas pró-inflamatórias (TNF-α, IL-1β, IL-6, IL-17, IFN-γ) circulam persistentemente, ativam células endoteliais, aumentam moléculas de adesão e recrutam monócitos para a parede arterial. A PCR de alta sensibilidade, marcador desse processo, é preditor independente de eventos cardiovasculares.</p>
+      </div>
+      <div class="mech-card">
+        <div class="mech-icon" style="background:rgba(251,191,36,.1);">🧪</div>
+        <h4>Disfunção Endotelial</h4>
+        <p>Citocinas reduzem a biodisponibilidade do óxido nítrico (vasodilatador essencial), aumentam o estresse oxidativo e promovem estado pró-trombótico. A disfunção endotelial é o evento mais precoce na aterogênese — detectável por testes vasculares antes de qualquer manifestação clínica.</p>
+      </div>
+      <div class="mech-card">
+        <div class="mech-icon" style="background:rgba(167,139,250,.1);">🦠</div>
+        <h4>Autoanticorpos Vasculotropos</h4>
+        <p>Anticorpos antifosfolípides (LES) ativam plaquetas e células endoteliais, predispondo a tromboses. Anticorpos anti-dsDNA exercem ativação vascular específica (ATVB 2021). Anticorpos anti-TPO (Hashimoto) têm efeitos diretos sobre o miocárdio.</p>
+      </div>
+      <div class="mech-card">
+        <div class="mech-icon" style="background:var(--teal-dim);">⚖️</div>
+        <h4>Paradoxo Lipídico</h4>
+        <p>Em alta atividade inflamatória (AR, LES), a redução paradoxal do colesterol associa-se a maior risco CV — pois a inflamação altera qualitativamente as partículas lipídicas, tornando-as mais aterogênicas, independentemente dos valores quantitativos.</p>
+      </div>
+      <div class="mech-card">
+        <div class="mech-icon" style="background:rgba(34,197,94,.1);">💊</div>
+        <h4>Efeitos dos Medicamentos</h4>
+        <p>O próprio tratamento modifica o risco cardiovascular — para melhor ou pior. Corticosteroides em doses elevadas e NSAIDs seletivos de COX-2 aumentam o risco. Metotrexato, hidroxicloroquina e inibidores de TNF podem ter efeitos cardioprotetores. Ver seção abaixo.</p>
+      </div>
+      <div class="mech-card">
+        <div class="mech-icon" style="background:rgba(220,38,38,.12);">🫀</div>
+        <h4>Aterosclerose Acelerada</h4>
+        <p>A convergência de todos esses mecanismos resulta em placas que se formam mais cedo, crescem mais rápido e são mais instáveis (maior risco de ruptura e IAM). Pacientes jovens com AR ou LES já apresentam carga aterosclerótica comparável à de pacientes mais velhos sem doença autoimune.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DRUGS -->
+  <div class="section" id="medicamentos">
+    <div class="section-eyebrow">Farmacologia e Risco CV</div>
+    <h2 class="section-title">Medicamentos: Riscos e Benefícios Cardiovasculares</h2>
+    <p class="section-desc">Os medicamentos usados no tratamento das doenças autoimunes têm efeitos cardiovasculares complexos e variáveis. Clique em cada classe para ver o que a evidência científica demonstra.</p>
+
+    <div class="info-amber info-box" style="margin-bottom:1.25rem;"><span class="info-box-icon">⚠️</span><div><strong>Importante:</strong> A decisão de iniciar, manter ou modificar qualquer medicamento deve ser sempre tomada em conjunto com seu médico reumatologista e cardiologista. O balanço entre o controle inflamatório e os riscos dos medicamentos é individual e complexo. Esta seção tem objetivo exclusivamente educativo.</div></div>
+
+    <div class="drug-card" id="dc-cortico">
+      <div class="drug-header" onclick="toggleDrug('dc-cortico')">
+        <div class="drug-signal s-danger">⚠️</div>
+        <div class="drug-info"><div class="drug-name">Corticosteroides</div><div class="drug-class">Prednisona, Prednisolona, Dexametasona, Metilprednisolona</div></div>
+        <div class="drug-verdict v-risk">Risco Dose-Dependente</div>
+        <div class="drug-chev">▼</div>
+      </div>
+      <div class="drug-body">
+        <p>Apesar do potente efeito anti-inflamatório, os efeitos adversos cardiovasculares dos corticosteroides são bem documentados e dose-dependentes: <strong>hipertensão arterial</strong> (retenção de sódio, ativação do SRAA), <strong>resistência à insulina e diabetes corticosteroideo</strong>, <strong>dislipidemia</strong> (↑LDL, ↑triglicerídeos), <strong>aceleração da aterosclerose</strong> e <strong>anormalidades de coagulação</strong>.</p>
+        <p>Um estudo de coorte no <em>PLOS Medicine</em> (Pujades-Rodriguez et al. 2020) com 87.794 pacientes com doenças autoimunes demonstrou risco CV aumentado de forma proporcional à dose acima de 5 mg/dia de prednisolona-equivalente. Uma análise nos <em>Annals of the Rheumatic Diseases</em> (2023) com 12.233 pacientes com AR e 105.826 pacientes-ano documentou que <strong>doses ≥5 mg/dia dobram o risco de MACE</strong>, com aumento de 7% no risco por mês adicional de uso. O estudo de Coburn et al. (<em>Arthritis Rheumatol.</em> 2024) confirmou relação dose-resposta clara mesmo em doses consideradas "baixas".</p>
+        <div class="info-teal info-box"><span class="info-box-icon">💡</span><div><strong>Implicação prática:</strong> A tendência global nas diretrizes reumatológicas é minimizar o uso de corticosteroides — menor dose, menor duração, e intensificação dos DMARDs para permitir a retirada dos esteroides. Reduzir corticosteroides é parte integral da estratégia de proteção cardiovascular.</div></div>
+        <div class="drug-evidence"><strong>📚 Evidências-chave:</strong> Coburn BW et al. <em>Arthritis Rheumatol.</em> 2024;76(11):1585. | Pujades-Rodriguez M et al. <em>PLOS Med.</em> 2020;17(12):e1003432. | Análise Ann Rheum Dis 2023 (12.233 pacientes).</div>
+      </div>
+    </div>
+
+    <div class="drug-card" id="dc-nsaid">
+      <div class="drug-header" onclick="toggleDrug('dc-nsaid')">
+        <div class="drug-signal s-caution">🔶</div>
+        <div class="drug-info"><div class="drug-name">Anti-inflamatórios / Inibidores de COX-2</div><div class="drug-class">Ibuprofeno, Naproxeno, Diclofenaco, Celecoxibe, Etoricoxibe</div></div>
+        <div class="drug-verdict v-caution">Risco Variável</div>
+        <div class="drug-chev">▼</div>
+      </div>
+      <div class="drug-body">
+        <p>Os inibidores seletivos de COX-2 suprimem a produção de prostaciclina (PGI2) endotelial sem inibir proporcionalmente a tromboxana plaquetária (TXA2). Essa assimetria resulta em estado protrombótico: maior risco de IAM, AVC e hipertensão arterial. O escândalo do rofecoxibe (retirado em 2004 por dobrar o risco de eventos CV) alertou a comunidade para esse efeito de classe.</p>
+        <p>AINEs não seletivos (ibuprofeno, diclofenaco) também elevam o risco CV. O naproxeno apresenta o perfil mais favorável entre os AINEs, provavelmente por algum efeito antiagregante plaquetário. Todos os AINEs aumentam a pressão arterial e retêm sódio, o que amplifica o risco em pacientes hipertensos.</p>
+        <div class="info-red info-box"><span class="info-box-icon">🚫</span><div><strong>Recomendação:</strong> AINEs e inibidores de COX-2 devem ser usados na menor dose e pelo menor tempo necessário. Em pacientes com doença cardiovascular estabelecida ou alto risco, seu uso deve ser criteriosamente avaliado, priorizando alternativas analgésicas mais seguras.</div></div>
+        <div class="drug-evidence"><strong>📚 Evidências-chave:</strong> PRECISION trial (<em>NEJM</em> 2016). | Estudo APPROVE — rofecoxibe com risco de IAM duplicado.</div>
+      </div>
+    </div>
+
+    <div class="drug-card" id="dc-jak">
+      <div class="drug-header" onclick="toggleDrug('dc-jak')">
+        <div class="drug-signal s-caution">🔶</div>
+        <div class="drug-info"><div class="drug-name">Inibidores de JAK (JAKinibs)</div><div class="drug-class">Tofacitinibe, Baricitinibe, Upadacitinibe, Filgotinibe</div></div>
+        <div class="drug-verdict v-caution">Cautela em Alto Risco CV</div>
+        <div class="drug-chev">▼</div>
+      </div>
+      <div class="drug-body">
+        <p>Os JAKinibs são uma das maiores inovações em reumatologia na última década. O estudo <strong>ORAL Surveillance</strong> (<em>NEJM</em> 2022, Ytterberg et al.) comparou tofacitinibe vs. inibidores de TNF em 4.362 pacientes com AR ≥50 anos e ≥1 fator de risco CV: tofacitinibe <strong>não demonstrou não-inferioridade</strong> — com mais MACE, neoplasias e eventos tromboembólicos. O sinal de <strong>tromboembolismo venoso (TEV)</strong> é o mais consistente e parece ser um efeito de classe dos JAKinibs.</p>
+        <p>Análise post-hoc revelou que o risco concentra-se nos pacientes com <strong>história prévia de ASCVD</strong> (HR 1,98; IC95% 0,95–4,14). Em pacientes sem ASCVD prévia, o risco não foi significativamente diferente. Estudos de vida real subsequentes (STAR-RA com 102.263 pacientes; JAK-pot internacional com 14 registros, EULAR 2023) não demonstraram diferença significativa no risco de MACE entre JAKinibs e inibidores de TNF na população geral de AR.</p>
+        <div class="info-red info-box"><span class="info-box-icon">🚨</span><div><strong>Alertas regulatórios FDA/EMA:</strong> Todos os JAKinibs receberam black box warning para MACE, neoplasias e TEV — restringindo o uso a pacientes sem resposta adequada aos inibidores de TNF. Em pacientes com história de ASCVD, o uso deve ser especialmente ponderado.</div></div>
+        <div class="drug-evidence"><strong>📚 Evidências-chave:</strong> Ytterberg SR et al. <em>NEJM</em> 2022;386:316 (ORAL Surveillance). | Charles-Schoeman C et al. <em>Ann Rheum Dis</em> 2022 (post-hoc ASCVD). | JAK-pot Study, EULAR 2023. | Zhong et al. <em>PLOS One</em> 2025 (farmacovigilância 2012–2023).</div>
+      </div>
+    </div>
+
+    <div class="drug-card" id="dc-mtx">
+      <div class="drug-header" onclick="toggleDrug('dc-mtx')">
+        <div class="drug-signal s-safe">✅</div>
+        <div class="drug-info"><div class="drug-name">Metotrexato (MTX)</div><div class="drug-class">DMARD convencional de primeira linha — AR, Psoríase, Artrite Psoriásica</div></div>
+        <div class="drug-verdict v-benefit">Efeito Protetor</div>
+        <div class="drug-chev">▼</div>
+      </div>
+      <div class="drug-body">
+        <p>O MTX tem o perfil cardiovascular mais favorável entre todos os DMARDs. Metanálises demonstram <strong>redução de 20–21% no risco de eventos cardiovasculares</strong> em pacientes com AR e artrite psoriásica, com redução de 18% no risco de IAM. O uso contínuo dentro do primeiro ano de diagnóstico é especialmente protetor.</p>
+        <p>Os mecanismos incluem: supressão de citocinas pró-inflamatórias (TNF-α, IL-1, IL-8); aumento dos níveis de adenosina (vasodilatadora e anti-inflamatória); melhora da função endotelial; redução do espessamento da íntima-média carotídea; e aumento modesto do HDL colesterol.</p>
+        <div class="info-amber info-box"><span class="info-box-icon">⚠️</span><div><strong>Ressalva: homocisteína e folato.</strong> O MTX eleva os níveis de homocisteína plasmática (fator pró-aterosclerótico), que é revertida pela suplementação de ácido fólico — recomendada rotineiramente durante o tratamento, sem comprometer a eficácia anti-inflamatória do MTX.</div></div>
+        <div class="drug-evidence"><strong>📚 Evidências-chave:</strong> Roubille C et al. <em>Ann Rheum Dis</em> 2015 (metanálise DMARDs e eventos CV).</div>
+      </div>
+    </div>
+
+    <div class="drug-card" id="dc-hcq">
+      <div class="drug-header" onclick="toggleDrug('dc-hcq')">
+        <div class="drug-signal s-safe">✅</div>
+        <div class="drug-info"><div class="drug-name">Hidroxicloroquina (HCQ)</div><div class="drug-class">Antimalárico — LES, AR, Síndrome de Sjögren</div></div>
+        <div class="drug-verdict v-benefit">Efeito Protetor (com ressalva)</div>
+        <div class="drug-chev">▼</div>
+      </div>
+      <div class="drug-body">
+        <p>A HCQ demonstra consistentemente menor risco de eventos cardiovasculares, tromboembólicos e de mortalidade geral em pacientes com LES. Mecanismos: efeitos antiplaquetários e antitrombóticos (inibe ativação mediada por antifosfolípides); efeitos hipolipemiantes (↓LDL, ↓triglicerídeos, ↑HDL); anti-inflamatórios indiretos; melhora da sensibilidade à insulina. No LES, as diretrizes internacionais recomendam seu uso em praticamente todos os pacientes.</p>
+        <div class="info-amber info-box"><span class="info-box-icon">⚠️</span><div><strong>Ressalva cardíaca importante:</strong> Em doses elevadas (&gt;5 mg/kg/dia) e uso por décadas, a HCQ pode depositar-se no tecido cardíaco e causar <strong>cardiomiopatia restritiva e distúrbios de condução</strong> (bloqueios AV, prolongamento de QT). Esse risco justifica monitoramento eletrocardiográfico periódico e adesão estrita às doses recomendadas.</div></div>
+      </div>
+    </div>
+
+    <div class="drug-card" id="dc-tnf">
+      <div class="drug-header" onclick="toggleDrug('dc-tnf')">
+        <div class="drug-signal s-safe">✅</div>
+        <div class="drug-info"><div class="drug-name">Inibidores de TNF-α</div><div class="drug-class">Adalimumabe, Etanercepte, Infliximabe, Certolizumabe, Golimumabe</div></div>
+        <div class="drug-verdict v-benefit">Neutro a Protetor</div>
+        <div class="drug-chev">▼</div>
+      </div>
+      <div class="drug-body">
+        <p>Ao neutralizar o TNF-α — citocina central na aterogênese e disfunção endotelial — os inibidores de TNF reduzem PCR e IL-6, e demonstraram em metanálises e registros nacionais associação com <strong>menor risco de IAM e MACE</strong> em pacientes com AR.</p>
+        <div class="info-red info-box"><span class="info-box-icon">🚨</span><div><strong>Contraindicação em Insuficiência Cardíaca:</strong> Os inibidores de TNF são contraindicados ou devem ser usados com extrema cautela em IC avançada (NYHA III–IV). Estudos com infliximabe em IC demonstraram piora da disfunção cardíaca e aumento de mortalidade em doses mais elevadas.</div></div>
+        <div class="drug-evidence"><strong>📚 Evidências-chave:</strong> Roubille C et al. <em>Ann Rheum Dis</em> 2015 (metanálise). | Registros CORRONA, ARTIS e RABBIT. | Giles JT et al. <em>Arthritis Rheumatol.</em> 2020.</div>
+      </div>
+    </div>
+
+    <div class="drug-card" id="dc-il6">
+      <div class="drug-header" onclick="toggleDrug('dc-il6')">
+        <div class="drug-signal s-neutral">🔵</div>
+        <div class="drug-info"><div class="drug-name">Inibidores de IL-6</div><div class="drug-class">Tocilizumabe, Sarilumabe</div></div>
+        <div class="drug-verdict v-complex">Perfil Complexo</div>
+        <div class="drug-chev">▼</div>
+      </div>
+      <div class="drug-body">
+        <p>Os inibidores de IL-6 apresentam o perfil cardiovascular mais complexo entre os biológicos. Ao bloquear a IL-6 — que suprime a síntese hepática de lipoproteínas — esses medicamentos aumentam consistentemente colesterol total, LDL, HDL e triglicerídeos. Esse aumento lipídico não parece associar-se a aumento proporcional de eventos cardiovasculares — possivelmente porque as lipoproteínas elevadas são qualitativamente menos aterogênicas no contexto de menor inflamação sistêmica. Monitoramento e eventual terapia hipolipemiante são recomendados.</p>
+        <div class="info-teal info-box"><span class="info-box-icon">📊</span><div>Giles JT et al. (<em>Arthritis Rheumatol.</em> 2020) comparou tocilizumabe vs. etanercepte em AR: sem diferença significativa em eventos cardiovasculares clínicos. O tocilizumabe também demonstrou redução de MACE em COVID-19 grave (RECOVERY), sugerindo efeito cardioprotetor em contextos de alta inflamação sistêmica.</div></div>
+      </div>
+    </div>
+
+    <div class="drug-card" id="dc-il17">
+      <div class="drug-header" onclick="toggleDrug('dc-il17')">
+        <div class="drug-signal s-neutral">🔵</div>
+        <div class="drug-info"><div class="drug-name">Inibidores de IL-17 e IL-23</div><div class="drug-class">Secuquinumabe, Ixequizumabe, Guselcumabe, Risanquizumabe</div></div>
+        <div class="drug-verdict v-complex">Dados Promissores</div>
+        <div class="drug-chev">▼</div>
+      </div>
+      <div class="drug-body">
+        <p>Dado que o eixo IL-17/IL-23 está implicado tanto na inflamação cutânea quanto no processo aterosclerótico, os inibidores desse eixo têm impacto cardiovascular favorável esperado. Estudos com secuquinumabe e ixequizumabe em psoríase mostram redução de marcadores de inflamação vascular em PET-CT de aorta e melhora de marcadores lipídicos. Análises de vida real sugerem perfil cardiovascular neutro a favorável, sem o sinal de risco observado nos JAKinibs.</p>
+        <div class="info-green info-box"><span class="info-box-icon">✅</span><div>Diferentemente dos inibidores de TNF, os inibidores de IL-17/IL-23 <strong>não têm contraindicação formal em insuficiência cardíaca</strong> — tornando-os opção valiosa em pacientes com doenças autoimunes que também têm IC concomitante.</div></div>
+        <div class="drug-evidence"><strong>📚 Evidências-chave:</strong> Garshick MS et al. <em>JACC</em> 2021;77(13):1670 (risco CV em psoríase).</div>
+      </div>
+    </div>
+
+    <hr class="div">
+    <div class="info-gray info-box"><span class="info-box-icon">🧠</span><div><strong>Conceito-chave:</strong> Em doenças autoimunes com alta carga inflamatória, o principal determinante do risco cardiovascular é a <strong>inflamação sistêmica não controlada</strong>. O benefício de controlar bem a doença com DMARDs eficazes — mesmo aqueles com algum efeito adverso cardiovascular — frequentemente supera o risco desses medicamentos. A decisão deve equilibrar atividade inflamatória não tratada vs. efeitos colaterais, de forma individualizada e com equipe multidisciplinar.</div></div>
+  </div>
+
+  <!-- PREVENTION -->
+  <div class="section" id="prevencao">
+    <div class="section-eyebrow">Prevenção e Monitoramento</div>
+    <h2 class="section-title">Como se Proteger</h2>
+    <p class="section-desc">A prevenção cardiovascular deve ser parte integral do seu acompanhamento desde o diagnóstico. As diretrizes ACC/AHA 2019 reconhecem AR, LES e psoríase como fatores de risco potencializadores que exigem abordagem proativa.</p>
+    <div class="prev-grid">
+      <div class="prev-card"><h4>🎯 Controle da Doença de Base</h4><ul><li>Manter remissão ou baixa atividade inflamatória</li><li>Cada redução na inflamação reduz o risco CV</li><li>Não abandonar o tratamento em períodos assintomáticos</li><li>Discutir a terapia mais eficaz com seu reumatologista</li></ul></div>
+      <div class="prev-card"><h4>📊 Controle dos Fatores de Risco</h4><ul><li>Hipertensão: manter PA &lt;130/80 mmHg</li><li>Dislipidemia: LDL na meta individualizada</li><li>Diabetes: controle glicêmico rigoroso</li><li>Tabagismo: cessação imediata — maior risco modificável</li><li>Obesidade: manter IMC e circunferência abdominal adequados</li></ul></div>
+      <div class="prev-card"><h4>🏃 Estilo de Vida</h4><ul><li>Atividade física aeróbica: ≥150 min/semana de moderada intensidade</li><li>Dieta antiinflamatória: padrão mediterrâneo ou DASH</li><li>Limitar consumo de álcool</li><li>Controle do estresse e sono adequado (7–9h/noite)</li><li>Fisioterapia para manutenção de mobilidade</li></ul></div>
+      <div class="prev-card"><h4>💊 Uso Criterioso de Medicamentos</h4><ul><li>Minimizar corticosteroides: menor dose, menor duração</li><li>Evitar AINEs prolongados, especialmente em hipertensos</li><li>Discutir com cardiologista estatinas e aspirina preventiva</li><li>Em JAKinibs: avaliar risco CV basal antes de prescrever</li><li>Nunca interromper medicamentos sem orientação médica</li></ul></div>
+      <div class="prev-card"><h4>🔍 Rastreamento Periódico</h4><ul><li>Avaliação anual de fatores de risco cardiovascular</li><li>Cálculo do risco em 10 anos (escore ASCVD ou SCORE)</li><li>ECG periódico (especialmente em uso de hidroxicloroquina)</li><li>Ultrassonografia de carótidas para aterosclerose subclínica</li><li>AngioTC coronariana em casos de alto risco selecionados</li></ul></div>
+      <div class="prev-card"><h4>👥 Equipe Multidisciplinar</h4><ul><li>Consulta conjunta reumatologista + cardiologista em alto risco</li><li>Comunicação ativa entre especialistas sobre medicamentos</li><li>Nutricionista e fisioterapeuta como parte da equipe</li><li>Suporte psicológico: depressão e ansiedade elevam o risco cardiovascular</li></ul></div>
+    </div>
+  </div>
+
+  <div class="disclaimer">
+    <strong>⚕️ Aviso médico-legal:</strong> Este conteúdo tem finalidade exclusivamente educativa e é baseado na literatura científica atual. Não substitui a avaliação clínica individualizada por médico especialista. Cada paciente tem características únicas que determinam a melhor estratégia preventiva e terapêutica. Converse sempre com seu reumatologista e cardiologista antes de tomar qualquer decisão sobre seu tratamento.
+  </div>
+
+  <!-- REFS -->
+  <div class="section" id="referencias">
+    <div class="section-eyebrow">Base Científica</div>
+    <h2 class="section-title">Referências Bibliográficas</h2>
+    <p class="section-desc">Todo o conteúdo é fundamentado em literatura científica revisada por pares, com destaque para grandes estudos populacionais e diretrizes internacionais.</p>
+    <div class="refs-toggle" onclick="toggleRefs()">
+      <span>📚 Ver as 26 referências bibliográficas</span>
+      <span id="refs-chev">▼</span>
+    </div>
+    <div class="refs-body" id="refs-body">
+      <div class="card" style="margin-top:.5rem;">
+        <ol class="refs-list">
+          <li><span class="ref-num">[1]</span><span>Conrad N, et al. Autoimmune diseases and cardiovascular risk: 22 million individuals in the UK. <em>Lancet</em>. 2022;400(10354):733-743.</span></li>
+          <li><span class="ref-num">[2]</span><span>Weber BN, et al. Novel Imaging Approaches to Cardiac Manifestations of Systemic Inflammatory Diseases: JACC Scientific Statement. <em>JACC</em>. 2023;82(22):2128-2151.</span></li>
+          <li><span class="ref-num">[3]</span><span>McInnes IB, Schett G. Pathogenetic Insights From the Treatment of Rheumatoid Arthritis. <em>Lancet</em>. 2017;389(10086):2328-2337.</span></li>
+          <li><span class="ref-num">[4]</span><span>Hansildaar R, et al. Cardiovascular Risk in Inflammatory Arthritis: Rheumatoid Arthritis and Gout. <em>Lancet Rheumatol</em>. 2021;3(1):e58-e70.</span></li>
+          <li><span class="ref-num">[5]</span><span>Bello N, et al. Cardiovascular Events and Risk in Patients With SLE: Systematic Review and Meta-Analysis. <em>Lupus</em>. 2023;32(3):325-341.</span></li>
+          <li><span class="ref-num">[6]</span><span>Cho L, et al. Updated Recommendations for Primary Prevention of CVD in Women: JACC State-of-the-Art Review. <em>JACC</em>. 2020;75(20):2602-2618.</span></li>
+          <li><span class="ref-num">[7]</span><span>Yafasova A, et al. Long-Term Cardiovascular Outcomes in Systemic Lupus Erythematosus. <em>JACC</em>. 2021;77(14):1717-1727.</span></li>
+          <li><span class="ref-num">[8]</span><span>Armstrong AW, Read C. Pathophysiology, Clinical Presentation, and Treatment of Psoriasis. <em>JAMA</em>. 2020;323(19):1945-1960.</span></li>
+          <li><span class="ref-num">[9]</span><span>Svedbom A, et al. Skin Inflammation, Systemic Inflammation, and CVD in Psoriasis. <em>JAMA Dermatol</em>. 2025;161(1):81-86.</span></li>
+          <li><span class="ref-num">[10]</span><span>Manrique-Acevedo C, et al. Prevention of Cardiovascular Disease in Type 1 Diabetes. <em>NEJM</em>. 2024;390(13):1207-1217.</span></li>
+          <li><span class="ref-num">[11]</span><span>Cai X, et al. Meta-Analysis of Type 1 Diabetes Mellitus and Risk of Cardiovascular Disease. <em>J Diabetes Complications</em>. 2021;35(4):107833.</span></li>
+          <li><span class="ref-num">[12]</span><span>Vergès B. Cardiovascular Disease in Type 1 Diabetes. <em>Diabetes &amp; Metab</em>. 2020;46(6):442-449.</span></li>
+          <li><span class="ref-num">[13]</span><span>Chen WH, et al. Hashimoto's Thyroiditis, Risk of CHD, and L-Thyroxine Treatment. <em>J Clin Endocrinol Metab</em>. 2015;100(1):109-14.</span></li>
+          <li><span class="ref-num">[14]</span><span>Sarisoy O, Seymen G. Subclinical CV Involvement in Pediatric Euthyroid Hashimoto's Thyroiditis. <em>Eur J Pediatrics</em>. 2025;184(10):632.</span></li>
+          <li><span class="ref-num">[15]</span><span>Ludvigsson JF, et al. Nationwide Cohort Study of Risk of IHD in Celiac Disease. <em>Circulation</em>. 2011;123(5):483-90.</span></li>
+          <li><span class="ref-num">[16]</span><span>Fauchier L, et al. Reassessing the Association Between Celiac Disease and Cardiovascular Events. <em>Am J Med</em>. 2026. doi:10.1016/j.amjmed.2026.02.018.</span></li>
+          <li><span class="ref-num">[17]</span><span>Palladino R, et al. Evaluating Risk of Macrovascular Events Among People With Multiple Sclerosis in England. <em>JAMA Neurology</em>. 2020;77(7):820-828.</span></li>
+          <li><span class="ref-num">[18]</span><span>Frostegård J. Systemic Lupus Erythematosus and Cardiovascular Disease. <em>J Intern Med</em>. 2023;293(1):48-62.</span></li>
+          <li><span class="ref-num">[19]</span><span>Patiño-Trives AM, et al. Anti-dsDNA Antibodies Increase CV Risk in SLE. <em>ATVB</em>. 2021;41(9):2417-2430.</span></li>
+          <li><span class="ref-num">[20]</span><span>Mortensen MB, et al. Association of Autoimmune Diseases With Coronary Atherosclerosis Severity. <em>JACC</em>. 2024;83(25):2643-2654.</span></li>
+          <li><span class="ref-num">[21]</span><span>Garshick MS, et al. Cardiovascular Risk in Patients With Psoriasis: JACC Review. <em>JACC</em>. 2021;77(13):1670-1680.</span></li>
+          <li><span class="ref-num">[22]</span><span>Ytterberg SR, et al. Cardiovascular and Cancer Risk with Tofacitinib in RA (ORAL Surveillance). <em>NEJM</em>. 2022;386:316-326.</span></li>
+          <li><span class="ref-num">[23]</span><span>Charles-Schoeman C, et al. MACE Risk with Tofacitinib vs. TNFi by History of ASCVD. <em>Ann Rheum Dis</em>. 2022.</span></li>
+          <li><span class="ref-num">[24]</span><span>Coburn BW, et al. Cardiovascular Outcomes With Low-Dose Glucocorticoid in RA. <em>Arthritis Rheumatol</em>. 2024;76(11):1585-1593.</span></li>
+          <li><span class="ref-num">[25]</span><span>Pujades-Rodriguez M, et al. Dose-dependent oral glucocorticoid CV risks in immune-mediated inflammatory diseases. <em>PLOS Med</em>. 2020;17(12):e1003432.</span></li>
+          <li><span class="ref-num">[26]</span><span>Zhong X, et al. Cardiovascular safety of JAK inhibitors: pharmacovigilance study 2012–2023. <em>PLOS One</em>. 2025;20(5):e0322849.</span></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+</div>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-copy">
+        <strong style="color:var(--foreground);">Dr. Lucas Silva</strong> — Cardiologia Intervencionista · São Paulo, SP - CRM 271.830<br>
+        lucascardio.com.br · Conteúdo educativo baseado em evidências científicas atualizadas
+      </div>
+      <div style="display:flex;gap:.75rem;align-items:center;">
+        <span class="nav-badge">Educação ao Paciente</span>
+        <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+          <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Site
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function switchTab(e, id) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    e.target.classList.add('active');
+    document.getElementById('tab-' + id).classList.add('active');
+  }
+  function toggleDrug(id) {
+    const card = document.getElementById(id);
+    const isOpen = card.classList.contains('open');
+    document.querySelectorAll('.drug-card').forEach(c => c.classList.remove('open'));
+    if (!isOpen) card.classList.add('open');
+  }
+  function toggleRefs() {
+    const body = document.getElementById('refs-body');
+    const chev = document.getElementById('refs-chev');
+    body.classList.toggle('open');
+    chev.textContent = body.classList.contains('open') ? '▲' : '▼';
+  }
+  function goSection(id) {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  // Animate risk bars on scroll
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.rm-fill').forEach(bar => {
+          const w = bar.style.width; bar.style.width = '0';
+          setTimeout(() => { bar.style.width = w; }, 80);
+        });
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll('.dp').forEach(p => obs.observe(p));
+</script>
+</body>
+</html>

@@ -1,0 +1,1310 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>Diabetes e Doença Cardiovascular | Dr. Lucas Silva</title>
+  <meta name="description" content="Guia completo sobre tipos de diabetes, mecanismos de doença cardiovascular, diagnóstico e tratamento com foco em proteção cardiovascular. Baseado nas evidências mais recentes." />
+  <meta name="author" content="Dr. Lucas Silva" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: oklch(65% .18 195);
+      --primary-foreground: oklch(98% 0 0);
+      --background: oklch(13% .018 250);
+      --foreground: oklch(93% .01 250);
+      --card: oklch(18.5% .018 250);
+      --card-foreground: oklch(93% .01 250);
+      --muted: oklch(22% .018 250);
+      --muted-foreground: oklch(62% .02 250);
+      --border: oklch(28% .025 250);
+      --input: oklch(22% .02 250);
+      --destructive: oklch(60% .22 25);
+      --secondary: oklch(22% .022 250);
+      --secondary-foreground: oklch(88% .01 250);
+      --accent: oklch(24% .025 250);
+      --accent-foreground: oklch(90% .01 250);
+      --teal: #d3df2a;
+      --teal2:#00d3bd;
+      --teal-dim: rgba(0,211,189,.12);
+      --amber: oklch(82.8% .189 84.429);
+      --red: oklch(63.7% .237 25.331);
+      --green: oklch(79.2% .209 151.711);
+      --purple: #a78bfa;
+      --purple-dim: rgba(167,139,250,.12);
+      --pink: #f472b6;
+      --pink-dim: rgba(244,114,182,.12);
+      --blue: #60a5fa;
+      --blue-dim: rgba(96,165,250,.12);
+      --orange: #fb923c;
+      --orange-dim: rgba(251,146,60,.12);
+      --radius: 0.625rem;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); background: var(--background); color: var(--foreground); min-height: 100vh; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    nav { position: sticky; top: 0; z-index: 50; background: rgba(18,20,27,.88); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 1.5rem; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--foreground); }
+    .nav-brand-icon { width: 28px; height: 28px; border-radius: 7px; background: var(--teal); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .nav-brand-name { font-weight: 800; font-size: 1rem; letter-spacing: -.025em; line-height: 1; }
+    .nav-brand-name span { color: var(--teal); }
+    .nav-brand-sep { width: 1px; height: 14px; background: var(--border); margin: 0 6px; }
+    .nav-brand-sub { font-size: .7rem; font-weight: 500; color: var(--muted-foreground); }
+    .nav-actions { display: flex; align-items: center; gap: .5rem; }
+    .nav-badge { font-size: .7rem; font-weight: 600; padding: 3px 10px; border-radius: 999px; background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.25); white-space: nowrap; }
+    .nav-link { font-size: .75rem; font-weight: 600; padding: 5px 12px; border-radius: 8px; border: 1.5px solid var(--primary); color: var(--primary); background: transparent; text-decoration: none; transition: background .15s, color .15s; display: inline-flex; align-items: center; gap: 5px; }
+    .nav-link:hover { background: var(--primary); color: var(--primary-foreground); }
+
+    /* LAYOUT */
+    .container { max-width: 960px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* HERO */
+    .hero { padding: 3.5rem 0 2.5rem; border-bottom: 1px solid var(--border); }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 6px; font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); margin-bottom: 1rem; }
+    .hero-eyebrow::before { content: ''; display: block; width: 20px; height: 2px; background: var(--teal); border-radius: 1px; }
+    .hero h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800; line-height: 1.2; margin-bottom: .75rem; letter-spacing: -.02em; }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero-sub { color: var(--muted-foreground); font-size: .95rem; max-width: 660px; margin-bottom: 1.5rem; line-height: 1.7; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag { font-size: .7rem; font-weight: 600; padding: 3px 10px; border-radius: 6px; border: 1px solid var(--border); color: var(--muted-foreground); background: var(--card); font-family: var(--font-mono); }
+
+    /* TAB NAVIGATION */
+    .tab-strip { display: flex; gap: 2px; margin: 2rem 0 0; background: var(--muted); border-radius: calc(var(--radius) + 4px); padding: 4px; border: 1px solid var(--border); overflow-x: auto; }
+    .tab-btn { flex: 1; min-width: max-content; background: none; border: none; cursor: pointer; font-family: var(--font-sans); font-size: .8rem; font-weight: 600; color: var(--muted-foreground); padding: 9px 16px; border-radius: var(--radius); transition: background .15s, color .15s; white-space: nowrap; display: flex; align-items: center; gap: 7px; justify-content: center; }
+    .tab-btn:hover { background: var(--accent); color: var(--foreground); }
+    .tab-btn.active { background: var(--card); color: var(--foreground); box-shadow: 0 1px 3px rgba(0,0,0,.3); }
+    .tab-btn .tab-icon { font-size: 1rem; }
+
+    /* PROGRESS BAR */
+    .progress-bar { height: 3px; background: var(--border); border-radius: 2px; margin: 1rem 0 2rem; }
+    .progress-fill { height: 100%; background: var(--teal); border-radius: 2px; transition: width .4s ease; }
+
+    /* TAB PANES */
+    .tab-pane { display: none; animation: fadeUp .3s ease; }
+    .tab-pane.active { display: block; }
+
+    /* SECTION TITLES */
+    .section-title { font-size: 1.3rem; font-weight: 800; margin-bottom: .25rem; letter-spacing: -.02em; }
+    .section-subtitle { font-size: .88rem; color: var(--muted-foreground); margin-bottom: 1.5rem; line-height: 1.6; }
+    .section-label { font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--teal); margin-bottom: .4rem; font-family: var(--font-mono); }
+
+    /* CARDS */
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: calc(var(--radius) + 2px); padding: 1.5rem; margin-bottom: 1.25rem; }
+    .card-header { display: flex; align-items: flex-start; gap: .75rem; margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+    .card-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; background: var(--teal-dim); color: var(--teal); }
+    .card-title { font-weight: 700; font-size: 1rem; margin-bottom: 2px; }
+    .card-subtitle { font-size: .78rem; color: var(--muted-foreground); }
+
+    /* DIABETES TYPE CARDS */
+    .type-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+    .type-card { background: var(--card); border: 1px solid var(--border); border-radius: calc(var(--radius) + 2px); padding: 1.25rem; border-top-width: 3px; transition: border-color .2s; }
+    .type-card:hover { border-color: var(--primary); }
+    .type-card.t1 { border-top-color: var(--blue); }
+    .type-card.t2 { border-top-color: var(--amber); }
+    .type-card.lada { border-top-color: var(--purple); }
+    .type-card.dmg { border-top-color: var(--pink); }
+    .type-card.mody { border-top-color: var(--green); }
+    .type-card.outros { border-top-color: var(--orange); }
+    .type-badge { display: inline-flex; align-items: center; gap: 5px; font-size: .68rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; font-family: var(--font-mono); margin-bottom: .75rem; }
+    .t1 .type-badge { background: var(--blue-dim); color: var(--blue); border: 1px solid rgba(96,165,250,.3); }
+    .t2 .type-badge { background: rgba(251,191,36,.12); color: var(--amber); border: 1px solid rgba(251,191,36,.3); }
+    .lada .type-badge { background: var(--purple-dim); color: var(--purple); border: 1px solid rgba(167,139,250,.3); }
+    .dmg .type-badge { background: var(--pink-dim); color: var(--pink); border: 1px solid rgba(244,114,182,.3); }
+    .mody .type-badge { background: rgba(134,239,172,.12); color: var(--green); border: 1px solid rgba(134,239,172,.3); }
+    .outros .type-badge { background: var(--orange-dim); color: var(--orange); border: 1px solid rgba(251,146,60,.3); }
+    .type-title { font-weight: 800; font-size: 1rem; margin-bottom: .25rem; }
+    .type-prev { font-size: .72rem; font-family: var(--font-mono); color: var(--muted-foreground); margin-bottom: .6rem; }
+    .type-desc { font-size: .82rem; color: var(--card-foreground); line-height: 1.6; margin-bottom: .75rem; }
+    .type-features { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+    .type-features li { font-size: .78rem; color: var(--muted-foreground); display: flex; align-items: flex-start; gap: 6px; line-height: 1.5; }
+    .type-features li::before { content: '→'; color: var(--teal); font-size: .7rem; margin-top: 2px; flex-shrink: 0; font-family: var(--font-mono); }
+    .type-cv-risk { display: inline-flex; align-items: center; gap: 5px; font-size: .7rem; font-weight: 700; padding: 3px 10px; border-radius: 6px; margin-top: .75rem; font-family: var(--font-mono); }
+    .risk-high { background: rgba(220,38,38,.12); color: #f87171; border: 1px solid rgba(220,38,38,.25); }
+    .risk-mod { background: rgba(251,191,36,.1); color: #fbbf24; border: 1px solid rgba(251,191,36,.25); }
+    .risk-var { background: var(--purple-dim); color: var(--purple); border: 1px solid rgba(167,139,250,.25); }
+
+    /* INFO BOXES */
+    .info-box { border-radius: var(--radius); padding: 12px 16px; font-size: .82rem; line-height: 1.65; display: flex; gap: 10px; margin-bottom: .75rem; }
+    .info-box-icon { flex-shrink: 0; font-size: 1rem; margin-top: 1px; }
+    .info-teal { background: var(--teal-dim); border-left: 3px solid var(--teal); }
+    .info-amber { background: rgba(251,191,36,.08); border-left: 3px solid rgba(251,191,36,.5); }
+    .info-red { background: rgba(220,38,38,.08); border-left: 3px solid rgba(220,38,38,.4); }
+    .info-gray { background: var(--muted); border-left: 3px solid var(--border); }
+    .info-purple { background: var(--purple-dim); border-left: 3px solid rgba(167,139,250,.5); }
+    .info-blue { background: var(--blue-dim); border-left: 3px solid rgba(96,165,250,.5); }
+    .info-green { background: rgba(134,239,172,.08); border-left: 3px solid rgba(134,239,172,.4); }
+
+    /* MECHANISM ACCORDION */
+    .accordion { display: flex; flex-direction: column; gap: .5rem; margin-bottom: 1.5rem; }
+    .acc-item { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .acc-header { display: flex; align-items: center; gap: .75rem; padding: .9rem 1.1rem; cursor: pointer; user-select: none; transition: background .15s; }
+    .acc-header:hover { background: var(--accent); }
+    .acc-icon-wrap { width: 32px; height: 32px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: .95rem; flex-shrink: 0; }
+    .acc-title { font-weight: 700; font-size: .9rem; flex: 1; }
+    .acc-toggle { font-size: .8rem; color: var(--muted-foreground); transition: transform .2s; }
+    .acc-item.open .acc-toggle { transform: rotate(180deg); }
+    .acc-body { display: none; padding: 0 1.1rem 1rem; border-top: 1px solid var(--border); font-size: .83rem; line-height: 1.7; color: var(--card-foreground); }
+    .acc-item.open .acc-body { display: block; }
+    .acc-body p { margin-bottom: .6rem; }
+    .acc-body strong { color: var(--foreground); }
+
+    /* RISK COMPARISON */
+    .risk-table-wrap { overflow-x: auto; margin-bottom: 1.5rem; border-radius: var(--radius); border: 1px solid var(--border); }
+    .risk-table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+    .risk-table th { background: var(--muted); padding: 10px 14px; text-align: left; font-weight: 700; font-size: .75rem; text-transform: uppercase; letter-spacing: .05em; color: var(--muted-foreground); border-bottom: 1px solid var(--border); }
+    .risk-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
+    .risk-table tr:last-child td { border-bottom: none; }
+    .risk-table tr:hover td { background: var(--accent); }
+    .ref-sup { font-size: .7rem; font-family: var(--font-mono); color: var(--teal); margin-left: 2px; }
+
+    /* MANIFESTATION GRID */
+    .manifest-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: .75rem; margin-bottom: 1.5rem; }
+    .manifest-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; }
+    .manifest-icon { font-size: 1.5rem; margin-bottom: .5rem; }
+    .manifest-title { font-weight: 700; font-size: .88rem; margin-bottom: .3rem; }
+    .manifest-desc { font-size: .78rem; color: var(--muted-foreground); line-height: 1.5; }
+
+    /* DIAGNOSTIC CRITERIA */
+    .diag-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: .75rem; margin-bottom: 1.5rem; }
+    .diag-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem; }
+    .diag-card.active-diag { border-color: rgba(0,211,189,.4); background: var(--teal-dim); }
+    .diag-num { font-size: 1.5rem; font-weight: 800; font-family: var(--font-mono); color: var(--teal); line-height: 1; margin-bottom: .3rem; }
+    .diag-unit { font-size: .75rem; color: var(--muted-foreground); font-family: var(--font-mono); }
+    .diag-label { font-weight: 700; font-size: .85rem; margin: .4rem 0 .2rem; }
+    .diag-note { font-size: .75rem; color: var(--muted-foreground); line-height: 1.5; }
+
+    /* TREATMENT — DRUG CARDS */
+    .drug-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+    .drug-card { background: var(--card); border: 1px solid var(--border); border-radius: calc(var(--radius) + 2px); padding: 1.25rem; border-left-width: 3px; }
+    .drug-card.sglt2 { border-left-color: var(--teal); }
+    .drug-card.glp1 { border-left-color: var(--blue); }
+    .drug-card.statin { border-left-color: var(--amber); }
+    .drug-card.raas { border-left-color: var(--purple); }
+    .drug-card.metf { border-left-color: var(--green); }
+    .drug-card.insulin { border-left-color: var(--orange); }
+    .drug-class-badge { font-size: .65rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; font-family: var(--font-mono); display: inline-block; margin-bottom: .5rem; }
+    .sglt2 .drug-class-badge { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.3); }
+    .glp1 .drug-class-badge { background: var(--blue-dim); color: var(--blue); border: 1px solid rgba(96,165,250,.3); }
+    .statin .drug-class-badge { background: rgba(251,191,36,.1); color: var(--amber); border: 1px solid rgba(251,191,36,.3); }
+    .raas .drug-class-badge { background: var(--purple-dim); color: var(--purple); border: 1px solid rgba(167,139,250,.3); }
+    .metf .drug-class-badge { background: rgba(134,239,172,.1); color: var(--green); border: 1px solid rgba(134,239,172,.3); }
+    .insulin .drug-class-badge { background: var(--orange-dim); color: var(--orange); border: 1px solid rgba(251,146,60,.3); }
+    .drug-name { font-weight: 800; font-size: .95rem; margin-bottom: .25rem; }
+    .drug-mechanism { font-size: .78rem; color: var(--muted-foreground); margin-bottom: .75rem; line-height: 1.5; }
+    .trial-pills { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: .75rem; }
+    .trial-pill { font-size: .65rem; font-weight: 700; padding: 2px 7px; border-radius: 4px; font-family: var(--font-mono); background: var(--muted); color: var(--muted-foreground); border: 1px solid var(--border); }
+    .trial-pill.positive { background: rgba(0,211,189,.1); color: var(--teal); border-color: rgba(0,211,189,.25); }
+    .drug-key-result { font-size: .8rem; line-height: 1.6; }
+    .drug-key-result strong { color: var(--foreground); }
+    .cv-indication { display: inline-flex; align-items: center; gap: 4px; font-size: .68rem; font-weight: 700; padding: 2px 8px; border-radius: 4px; background: rgba(0,211,189,.12); color: var(--teal); border: 1px solid rgba(0,211,189,.25); font-family: var(--font-mono); margin-top: .5rem; }
+
+    /* TARGETS */
+    .target-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: .75rem; margin-bottom: 1.5rem; }
+    .target-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; text-align: center; }
+    .target-val { font-size: 1.6rem; font-weight: 800; font-family: var(--font-mono); color: var(--teal); line-height: 1; margin-bottom: .2rem; }
+    .target-label { font-size: .75rem; font-weight: 700; margin-bottom: .2rem; }
+    .target-note { font-size: .7rem; color: var(--muted-foreground); line-height: 1.4; }
+
+    /* ALGORITHM */
+    .algo-flow { display: flex; flex-direction: column; gap: 0; margin-bottom: 1.5rem; }
+    .algo-step { display: flex; align-items: flex-start; gap: 1rem; position: relative; padding-bottom: 1rem; }
+    .algo-step:last-child { padding-bottom: 0; }
+    .algo-connector { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+    .algo-circle { width: 32px; height: 32px; border-radius: 50%; background: var(--teal); color: #000; font-weight: 800; font-size: .8rem; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); flex-shrink: 0; }
+    .algo-line { width: 2px; flex: 1; background: var(--border); min-height: 24px; }
+    .algo-content { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.1rem; flex: 1; }
+    .algo-title { font-weight: 700; font-size: .88rem; margin-bottom: .25rem; }
+    .algo-desc { font-size: .8rem; color: var(--muted-foreground); line-height: 1.6; }
+
+    /* REFERENCES */
+    .ref-list { display: flex; flex-direction: column; gap: .5rem; }
+    .ref-item { display: flex; gap: .75rem; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: .9rem 1rem; font-size: .78rem; line-height: 1.6; }
+    .ref-num { font-family: var(--font-mono); font-weight: 700; color: var(--teal); flex-shrink: 0; min-width: 24px; font-size: .75rem; }
+    .ref-authors { color: var(--muted-foreground); }
+    .ref-title { font-weight: 600; color: var(--foreground); }
+    .ref-journal { color: var(--muted-foreground); font-style: italic; }
+
+    /* BUTTONS */
+    .btn { display: inline-flex; align-items: center; gap: 8px; font-size: .85rem; font-weight: 600; padding: 10px 20px; border-radius: calc(var(--radius) + 2px); border: none; cursor: pointer; transition: all .15s; white-space: nowrap; font-family: var(--font-sans); }
+    .btn-primary { background: var(--primary); color: #000; font-weight: 700; }
+    .btn-primary:hover { opacity: .9; transform: translateY(-1px); }
+    .btn-secondary { background: var(--muted); color: var(--foreground); border: 1px solid var(--border); }
+    .btn-secondary:hover { background: var(--accent); }
+
+    /* BADGES */
+    .badge { display: inline-flex; align-items: center; gap: 4px; font-size: .68rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
+    .badge-teal { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.2); }
+    .badge-red { background: rgba(220,38,38,.15); color: #f87171; border: 1px solid rgba(220,38,38,.25); }
+    .badge-amber { background: rgba(251,191,36,.12); color: #fbbf24; border: 1px solid rgba(251,191,36,.2); }
+
+    /* HIGHLIGHT BOX */
+    .highlight-box { background: linear-gradient(135deg, rgba(0,211,189,.08) 0%, rgba(96,165,250,.06) 100%); border: 1px solid rgba(0,211,189,.2); border-radius: calc(var(--radius)+2px); padding: 1.5rem; margin-bottom: 1.5rem; }
+    .highlight-box h3 { font-size: 1.05rem; font-weight: 800; margin-bottom: .75rem; color: var(--teal); }
+
+    /* SECTION SPACING */
+    .section-block { padding: 2rem 0; border-bottom: 1px solid var(--border); }
+    .section-block:last-child { border-bottom: none; }
+    .mt-1 { margin-top: .75rem; }
+    .mt-2 { margin-top: 1.5rem; }
+    .mb-1 { margin-bottom: .75rem; }
+    .mb-2 { margin-bottom: 1.5rem; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    /* DISCLAIMER */
+    .disclaimer { background: var(--muted); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 16px; font-size: .75rem; color: var(--muted-foreground); line-height: 1.6; margin-top: 1.5rem; }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 2rem 0; margin-top: 3rem; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-copy { font-size: .75rem; color: var(--muted-foreground); }
+
+    /* RESPONSIVE */
+    @media (max-width: 700px) {
+      .type-grid { grid-template-columns: 1fr; }
+      .drug-grid { grid-template-columns: 1fr; }
+      .target-grid { grid-template-columns: repeat(2, 1fr); }
+      .two-col { grid-template-columns: 1fr; }
+      .manifest-grid { grid-template-columns: 1fr 1fr; }
+      .nav-brand-sub { display: none; }
+    }
+    @media (max-width: 480px) {
+      .manifest-grid { grid-template-columns: 1fr; }
+      .target-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#">
+    <div class="nav-brand-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+    </div>
+    <div class="nav-brand-name">Lucas<span>Cardio</span></div>
+    <div class="nav-brand-sep"></div>
+    <div class="nav-brand-sub">Diabetes &amp; Coração</div>
+  </a>
+  <div class="nav-actions">
+    <span class="nav-badge">Guia para Pacientes</span>
+    <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      lucascardio.com.br
+    </a>
+  </div>
+</nav>
+
+<main>
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">Medicina Baseada em Evidências</div>
+    <h1>Diabetes e <em>Doença Cardiovascular</em></h1>
+    <p class="hero-sub">
+      O diabetes mellitus é um dos maiores fatores de risco cardiovascular modificáveis do nosso tempo. Entender seus diferentes tipos, mecanismos de dano ao coração, formas de diagnóstico e estratégias de tratamento é fundamental para prevenir infarto, insuficiência cardíaca e AVC. Este guia reúne a evidência mais atual para que você compreenda sua condição e tome decisões informadas junto ao seu médico.
+    </p>
+    <div class="hero-tags">
+      <span class="tag">DM Tipo 1</span>
+      <span class="tag">DM Tipo 2</span>
+      <span class="tag">LADA</span>
+      <span class="tag">DMG</span>
+      <span class="tag">SGLT2i</span>
+      <span class="tag">GLP-1 RA</span>
+      <span class="tag">ADA 2024</span>
+      <span class="tag">ESC 2023</span>
+      <span class="tag">EMPA-REG · LEADER</span>
+    </div>
+  </div>
+
+  <!-- TAB NAVIGATION -->
+  <div class="tab-strip">
+    <button class="tab-btn active" onclick="showTab('tipos')" id="btn-tipos"><span class="tab-icon">🔬</span>Tipos de Diabetes</button>
+    <button class="tab-btn" onclick="showTab('coracao')" id="btn-coracao"><span class="tab-icon">❤️</span>Diabetes &amp; o Coração</button>
+    <button class="tab-btn" onclick="showTab('diagnostico')" id="btn-diagnostico"><span class="tab-icon">🩺</span>Diagnóstico</button>
+    <button class="tab-btn" onclick="showTab('tratamento')" id="btn-tratamento"><span class="tab-icon">💊</span>Tratamento</button>
+    <button class="tab-btn" onclick="showTab('referencias')" id="btn-referencias"><span class="tab-icon">📚</span>Referências</button>
+  </div>
+
+  <div class="progress-bar"><div class="progress-fill" id="progress" style="width:20%"></div></div>
+
+  <!-- ═══════════════════════════════
+       TAB 1 — TIPOS DE DIABETES
+  ════════════════════════════════ -->
+  <div class="tab-pane active" id="pane-tipos">
+
+    <div class="section-block">
+      <div class="section-label">Classificação</div>
+      <div class="section-title">O que é Diabetes Mellitus?</div>
+      <p class="section-subtitle">O diabetes mellitus é um grupo heterogêneo de doenças metabólicas caracterizadas por hiperglicemia crônica, resultante de defeitos na secreção de insulina, na sua ação, ou em ambas. Hoje reconhecemos múltiplos tipos, cada um com fisiopatologia, curso clínico e implicações cardiovasculares distintas.</p>
+
+      <div class="info-teal info-box">
+        <span class="info-box-icon">📊</span>
+        <div><strong>Epidemia global:</strong> O diabetes afeta mais de 537 milhões de adultos no mundo (2021), com projeção de 783 milhões em 2045. No Brasil, estima-se 15,7 milhões de diabéticos. O tipo 2 representa mais de 90% dos casos. A doença cardiovascular é responsável por 50–80% das mortes em pacientes diabéticos.</div>
+      </div>
+    </div>
+
+    <div class="section-block">
+      <div class="section-label">Os 6 Principais Tipos</div>
+      <div class="type-grid">
+
+        <!-- DM1 -->
+        <div class="type-card t1">
+          <div class="type-badge">DM TIPO 1</div>
+          <div class="type-title">Diabetes Mellitus Tipo 1</div>
+          <div class="type-prev">~5–10% dos casos de diabetes</div>
+          <div class="type-desc">Doença autoimune onde o sistema imunológico ataca as células beta pancreáticas produtoras de insulina, levando à deficiência absoluta deste hormônio. Pode se manifestar em qualquer idade, mas é mais frequente em crianças e jovens adultos.</div>
+          <ul class="type-features">
+            <li>Destruição autoimune mediada por linfócitos T (anticorpos anti-GAD, anti-IA2, anti-ZnT8, anti-insulina)</li>
+            <li>Dependência absoluta de insulina exógena para sobrevivência</li>
+            <li>Cetoacidose diabética (CAD) é complicação aguda grave e característica</li>
+            <li>Predisposição genética (HLA DR3/DR4) com gatilhos ambientais (vírus, microbiota)</li>
+            <li>Fenótipo clínico clássico: poliúria, polidipsia, perda de peso, início abrupto</li>
+          </ul>
+          <div class="type-cv-risk risk-high">⚠ Risco CV 2–4× maior que a população geral</div>
+        </div>
+
+        <!-- DM2 -->
+        <div class="type-card t2">
+          <div class="type-badge">DM TIPO 2</div>
+          <div class="type-title">Diabetes Mellitus Tipo 2</div>
+          <div class="type-prev">&gt;90% de todos os casos</div>
+          <div class="type-desc">Resulta de uma combinação de resistência periférica à insulina e falência progressiva das células beta pancreáticas. Fortemente associado à obesidade central, sedentarismo, síndrome metabólica e envelhecimento. É uma doença heterogênea com múltiplos subtipos fisiopatológicos.</div>
+          <ul class="type-features">
+            <li>Resistência à insulina em músculo, fígado e tecido adiposo precede o diagnóstico por anos</li>
+            <li>Falência progressiva das células beta (~50% da função perdida ao diagnóstico)</li>
+            <li>Início insidioso, frequentemente assintomático por anos</li>
+            <li>Forte componente genético poligênico + fatores ambientais modificáveis</li>
+            <li>Síndrome metabólica: obesidade central, hipertensão, dislipidemia coexistem</li>
+          </ul>
+          <div class="type-cv-risk risk-high">⚠ Risco CV 2–4× maior; DCV = principal causa de morte</div>
+        </div>
+
+        <!-- LADA -->
+        <div class="type-card lada">
+          <div class="type-badge">LADA</div>
+          <div class="type-title">Diabetes Autoimune Latente do Adulto</div>
+          <div class="type-prev">~2–12% dos "DM2" adultos</div>
+          <div class="type-desc">Forma de diabetes autoimune de progressão lenta em adultos, frequentemente confundida com DM2 na apresentação inicial. Diagnóstico requer positividade de anticorpos (principalmente anti-GAD) após os 30 anos. É heterogêneo: LADAhigh (maior autoimunidade, fenótipo DM1-símile) vs. LADAlow (fenótipo mais próximo ao DM2).</div>
+          <ul class="type-features">
+            <li>Critérios diagnósticos: ≥30 anos, anti-GAD positivo, ausência de insulina por ≥6 meses após diagnóstico</li>
+            <li>C-peptídeo geralmente preservado inicialmente, declínio mais lento que DM1</li>
+            <li>Perfil metabólico intermediário: IMC menor que DM2, mas mais resistência que DM1 clássico</li>
+            <li>Mortalidade 44% maior que controles (HR 1,44; estudo sueco, 2023)</li>
+            <li>Alta prevalência de dislipidemia (90,6%) e hipertensão (77,7%) — registro alemão-austríaco 2025</li>
+          </ul>
+          <div class="type-cv-risk risk-var">◆ Risco CV variável: LADAhigh ≈ DM1 / LADAlow ≈ DM2</div>
+        </div>
+
+        <!-- DMG -->
+        <div class="type-card dmg">
+          <div class="type-badge">DMG</div>
+          <div class="type-title">Diabetes Gestacional</div>
+          <div class="type-prev">~6–9% das gestações</div>
+          <div class="type-desc">Hiperglicemia diagnosticada pela primeira vez durante a gestação, que não preenchia critérios de diabetes pré-gestacional. Além dos riscos materno-fetais imediatos, representa um marcador poderoso de risco cardiovascular futuro, mesmo em mulheres que normalizam a glicemia após o parto.</div>
+          <ul class="type-features">
+            <li>Risco 45% maior de doença cardiovascular global (RR 1,45) em meta-análise do BMJ 2022</li>
+            <li>Risco 72% maior de doença coronária (RR 1,72) e 40% maior de doença cerebrovascular</li>
+            <li>Risco persiste mesmo sem desenvolvimento de DM2 subsequente (RR 1,09–1,56)</li>
+            <li>Maior risco na 1ª década pós-parto (RR 2,31) — rastreamento CV precoce indicado</li>
+            <li>50% das mulheres com DMG desenvolvem DM2 em 10 anos sem intervenção</li>
+          </ul>
+          <div class="type-cv-risk risk-mod">⚡ Risco CV aumentado 45–72% mesmo pós-gravidez</div>
+        </div>
+
+        <!-- MODY -->
+        <div class="type-card mody">
+          <div class="type-badge">MODY / MONOGÊNICO</div>
+          <div class="type-title">Diabetes Monogênico (MODY)</div>
+          <div class="type-prev">1–2% de todos os casos</div>
+          <div class="type-desc">Grupo heterogêneo de doenças causadas por mutações em genes únicos que afetam a função ou desenvolvimento das células beta. Frequentemente confundido com DM1 ou DM2. O reconhecimento correto é crucial pois impacta diretamente o tratamento (alguns tipos respondem a sulfonilureias, outros dispensam medicação).</div>
+          <ul class="type-features">
+            <li>HNF1A-MODY (tipo 3) e GCK-MODY (tipo 2) são os mais comuns</li>
+            <li>GCK-MODY: hiperglicemia leve estável, geralmente não requer tratamento, sem complicações micro/macrovasculares significativas</li>
+            <li>HNF1A/HNF4A-MODY: progressivo, responde muito bem a sulfonilureias em baixas doses</li>
+            <li>Herança autossômica dominante: história familiar forte em múltiplas gerações</li>
+            <li>Suspeitar quando: DM em jovem sem autoimunidade, sem obesidade, história familiar dominante</li>
+          </ul>
+          <div class="type-cv-risk risk-mod">◆ Risco CV variável por subtipo; dados limitados na literatura</div>
+        </div>
+
+        <!-- Outros -->
+        <div class="type-card outros">
+          <div class="type-badge">OUTROS TIPOS</div>
+          <div class="type-title">Diabetes Secundário e Outras Causas</div>
+          <div class="type-prev">Causas específicas identificáveis</div>
+          <div class="type-desc">Hiperglicemia resultante de condições específicas, doenças pancreáticas ou uso de medicamentos. Incluem um espectro amplo de condições que requerem tratamento da causa de base.</div>
+          <ul class="type-features">
+            <li><strong>Diabetes pancreatogênico (tipo 3c):</strong> pancreatite crônica, pancreatectomia, fibrose cística, hemocromatose</li>
+            <li><strong>Diabetes por corticoides:</strong> muito comum, frequentemente subdiagnosticado em internados</li>
+            <li><strong>Diabetes por doença de Cushing:</strong> hipercortisolismo endógeno</li>
+            <li><strong>Diabetes por acromegalia:</strong> excesso de GH antagoniza a insulina</li>
+            <li><strong>Diabetes pós-transplante (NODAT):</strong> imunossupressores, infecções, risco CV muito elevado</li>
+          </ul>
+          <div class="type-cv-risk risk-mod">◆ Risco CV depende da causa subjacente e controle metabólico</div>
+        </div>
+
+      </div><!-- /type-grid -->
+
+      <div class="info-amber info-box">
+        <span class="info-box-icon">⚠️</span>
+        <div><strong>Diagnóstico diferencial importa para o tratamento:</strong> Classificar erroneamente um LADA como DM2 pode atrasar o início da insulinoterapia e piorar o controle glicêmico. Da mesma forma, tratar um MODY como DM2 pode expor o paciente desnecessariamente a medicações orais quando sulfonilureias específicas ou nenhum medicamento seriam adequados.</div>
+      </div>
+    </div>
+
+  </div><!-- /pane-tipos -->
+
+
+  <!-- ═══════════════════════════════
+       TAB 2 — DIABETES & O CORAÇÃO
+  ════════════════════════════════ -->
+  <div class="tab-pane" id="pane-coracao">
+
+    <div class="section-block">
+      <div class="section-label">Epidemiologia Cardiovascular</div>
+      <div class="section-title">O Peso do Diabetes no Coração</div>
+      <p class="section-subtitle">A relação entre diabetes e doença cardiovascular (DCV) vai muito além de "elevar o açúcar no sangue". O diabetes ativa múltiplas vias patogênicas simultâneas que aceleram a aterosclerose, danificam o miocárdio e predispõem a arritmias — frequentemente antes mesmo do diagnóstico formal.</p>
+
+      <div class="risk-table-wrap">
+        <table class="risk-table">
+          <thead>
+            <tr>
+              <th>Tipo de Diabetes</th>
+              <th>Risco CV Relativo</th>
+              <th>Principal Causa de Morte</th>
+              <th>Observação Chave</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>DM Tipo 1</strong></td>
+              <td><span class="badge badge-red">2–4× maior</span></td>
+              <td>DCV (&gt;50% das mortes)</td>
+              <td>Risco elevado mesmo com HbA1c ≤6,9%<span class="ref-sup">[1,2]</span></td>
+            </tr>
+            <tr>
+              <td><strong>DM Tipo 2</strong></td>
+              <td><span class="badge badge-red">2–4× maior</span></td>
+              <td>DCV (&gt;50% das mortes)</td>
+              <td>IC e DAP subdiagnosticadas; cada 1% de ↑HbA1c = ↑18% risco CV<span class="ref-sup">[4,5]</span></td>
+            </tr>
+            <tr>
+              <td><strong>LADA (LADAhigh)</strong></td>
+              <td><span class="badge badge-red">Comparável DM1</span></td>
+              <td>DCV + falência renal</td>
+              <td>Mortalidade 44% maior vs. controles; dislipidemia em 90,6%<span class="ref-sup">[11,12]</span></td>
+            </tr>
+            <tr>
+              <td><strong>LADA (LADAlow)</strong></td>
+              <td><span class="badge badge-amber">Comparável DM2</span></td>
+              <td>DCV</td>
+              <td>UKPDS 85: sem diferença vs. DM2 após ajuste de FRs (HR 0,90)<span class="ref-sup">[13]</span></td>
+            </tr>
+            <tr>
+              <td><strong>DMG</strong></td>
+              <td><span class="badge badge-amber">RR 1,45–1,72</span></td>
+              <td>DAC, AVC</td>
+              <td>Risco persiste mesmo sem DM2 futuro; maior na 1ª década pós-parto<span class="ref-sup">[15,16]</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="section-block">
+      <div class="section-label">Fisiopatologia</div>
+      <div class="section-title">Como o Diabetes Danifica o Coração?</div>
+      <p class="section-subtitle">Os mecanismos são múltiplos, simultâneos e se potencializam mutuamente. Cada um deles representa um alvo terapêutico potencial — e explica por que o tratamento moderno do diabetes vai muito além do controle glicêmico.</p>
+
+      <div class="accordion" id="mechAccordion">
+
+        <div class="acc-item open">
+          <div class="acc-header" onclick="toggleAcc(this)">
+            <div class="acc-icon-wrap" style="background:rgba(239,68,68,.15);color:#f87171;">🔥</div>
+            <div class="acc-title">1. Hiperglicemia Crônica e Estresse Oxidativo</div>
+            <div class="acc-toggle">▼</div>
+          </div>
+          <div class="acc-body">
+            <p>A hiperglicemia persistente ativa quatro vias patogênicas clássicas descritas por Brownlee: <strong>(1) via do poliol</strong> (acúmulo de sorbitol e frutose); <strong>(2) formação de produtos finais de glicação avançada (AGEs)</strong>, que se ligam a receptores RAGE e induzem inflamação e fibrose; <strong>(3) ativação da proteína quinase C (PKC)</strong>, que aumenta a permeabilidade vascular e promove vasoconstricção; <strong>(4) via da hexosamina</strong>.</p>
+            <p>O mecanismo unificador é o <strong>excesso de espécies reativas de oxigênio (ROS)</strong> gerado pela mitocôndria em resposta à sobrecarga de glicose. Esse estresse oxidativo inativa o óxido nítrico (NO), prejudicando a função endotelial e promovendo disfunção microvascular generalizada.</p>
+            <p>O estudo DCCT/EDIC demonstrou que cada 10% de redução na HbA1c se associa a redução de ~25% no risco de IAM e AVC no DM1, evidenciando a importância da "memória metabólica" — o dano acumulado persiste mesmo após melhora do controle.</p>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <div class="acc-header" onclick="toggleAcc(this)">
+            <div class="acc-icon-wrap" style="background:rgba(251,146,60,.15);color:#fb923c;">⚡</div>
+            <div class="acc-title">2. Resistência à Insulina e Disfunção Endotelial</div>
+            <div class="acc-toggle">▼</div>
+          </div>
+          <div class="acc-body">
+            <p>No DM2, a resistência à insulina cria um desequilíbrio crítico na sinalização endotelial: a <strong>via PI3K/Akt</strong> (responsável pela produção de NO vasodilatador via eNOS) fica inibida, enquanto a <strong>via MAPK/ERK</strong> (pro-inflamatória e mitogênica) permanece ativa e hiperativada.</p>
+            <p>O resultado é paradoxal: nos vasos, há <em>simultaneamente</em> redução da produção de NO (levando à vasoconstricção e disfunção endotelial) e aumento da produção de endotelina-1, moléculas de adesão (VCAM-1, ICAM-1) e citocinas pró-inflamatórias — o ambiente perfeito para o início e progressão da placa aterosclerótica.</p>
+            <p>A hiperinsulinemia compensatória também estimula a reabsorção renal de sódio, contribuindo para hipertensão, e promove proliferação de células musculares lisas vasculares, acelerando a aterosclerose.</p>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <div class="acc-header" onclick="toggleAcc(this)">
+            <div class="acc-icon-wrap" style="background:rgba(251,191,36,.12);color:#fbbf24;">🫀</div>
+            <div class="acc-title">3. Dislipidemia Diabética</div>
+            <div class="acc-toggle">▼</div>
+          </div>
+          <div class="acc-body">
+            <p>A dislipidemia do diabetes não se resume a "colesterol alto". O padrão característico é a <strong>tríade aterogênica</strong>: triglicerídeos elevados, HDL reduzido e predomínio de LDL pequenas e densas (sdLDL). Estas partículas são mais aterogênicas porque penetram mais facilmente a parede arterial e são mais suscetíveis à oxidação.</p>
+            <p>A hiperglicemia e a hiperinsulinemia aumentam a síntese hepática de VLDL. A lipase lipoproteica (LPL), dependente da ação da insulina, tem sua atividade reduzida — comprometendo o catabolismo de triglicerídeos e HDL. A glicação de apolipoproteínas também as torna mais aterogênicas e menos reconhecíveis pelos receptores hepáticos.</p>
+            <p>Importante: o risco cardiovascular residual da dislipidemia diabética não é completamente capturado pelo LDL-c isolado — motivo pelo qual a razão ApoB/ApoA1 e o LDL-p (número de partículas) são medidas mais precisas de risco aterogênico no diabético.</p>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <div class="acc-header" onclick="toggleAcc(this)">
+            <div class="acc-icon-wrap" style="background:rgba(220,38,38,.12);color:#f87171;">🩸</div>
+            <div class="acc-title">4. Estado Pró-Trombótico</div>
+            <div class="acc-toggle">▼</div>
+          </div>
+          <div class="acc-body">
+            <p>O diabetes cria um estado de hipercoagulabilidade por múltiplos mecanismos: <strong>aumento da atividade plaquetária</strong> (plaquetas mais reativas, com maior expressão de GP IIb/IIIa), <strong>redução da fibrinólise</strong> (aumento do PAI-1, inibidor do ativador do plasminogênio-1) e <strong>elevação do fibrinogênio</strong> circulante.</p>
+            <p>As plaquetas de pacientes diabéticos apresentam maior grau de ativação basal, desgranulação mais exuberante e formação de agregados plaquetário-leucocitários, resultando em trombo mais resistente à fibrinólise. Isso explica por que diabéticos têm pior prognóstico após IAM e maior risco de trombose de stent.</p>
+            <p>A glicação das proteínas da coagulação (fibrinogênio, fator XIII) também altera a estrutura do trombo, tornando-o mais denso e menos fibrinolisável. Esses mecanismos embasam o uso de antiagregação mais agressiva em diabéticos com doença coronária estabelecida.</p>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <div class="acc-header" onclick="toggleAcc(this)">
+            <div class="acc-icon-wrap" style="background:rgba(167,139,250,.12);color:#a78bfa;">🧬</div>
+            <div class="acc-title">5. Inflamação Sistêmica e Autoimunidade</div>
+            <div class="acc-toggle">▼</div>
+          </div>
+          <div class="acc-body">
+            <p>O DM2 é uma doença inflamatória crônica de baixo grau. Marcadores como PCR-us, IL-6, TNF-α e interleucina-18 estão cronicamente elevados, contribuindo para instabilidade da placa aterosclerótica, disfunção endotelial e fibrose miocárdica.</p>
+            <p>No DM1, um componente adicional é a <strong>disregulação imunológica</strong> própria da doença. O sistema imune disfuncional pode promover inflamação coronária por mecanismos independentes da hiperglicemia, explicando em parte por que mesmo DM1 bem controlados têm risco cardiovascular elevado.</p>
+            <p>O tecido adiposo perivascular e epicárdico, abundante em obesos com DM2, atua como fonte local de citocinas pró-inflamatórias (adipocinas) que difundem diretamente para a parede arterial — um mecanismo de dano local sem precedente em outras condições.</p>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <div class="acc-header" onclick="toggleAcc(this)">
+            <div class="acc-icon-wrap" style="background:var(--blue-dim);color:var(--blue);">💧</div>
+            <div class="acc-title">6. Ativação do SRAA e Retenção de Sódio</div>
+            <div class="acc-toggle">▼</div>
+          </div>
+          <div class="acc-body">
+            <p>O sistema renina-angiotensina-aldosterona (SRAA) está inapropriadamente ativado no diabetes, contribuindo para hipertensão, fibrose miocárdica e nefropatia. A angiotensina II promove vasoconstrição, estresse oxidativo, inflamação e apoptose de cardiomiócitos.</p>
+            <p>A aldosterona, além de aumentar a retenção de sódio, estimula diretamente a fibrose miocárdica via receptores de mineralocorticoides no coração — mecanismo-chave da cardiomiopatia diabética. A nefropatia resultante cria um ciclo vicioso: redução da filtração glomerular → maior ativação do SRAA → mais dano cardiovascular.</p>
+            <p>No DM2, a hiperglicemia estimula a co-expressão de SGLT2 e NHE3 no túbulo proximal, aumentando a reabsorção de sódio e glicose. Os inibidores de SGLT2 bloqueiam este mecanismo, com benefício hemodinâmico e cardioprotetor independente do controle glicêmico.</p>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <div class="acc-header" onclick="toggleAcc(this)">
+            <div class="acc-icon-wrap" style="background:rgba(134,239,172,.1);color:var(--green);">🫁</div>
+            <div class="acc-title">7. Cardiomiopatia Diabética</div>
+            <div class="acc-toggle">▼</div>
+          </div>
+          <div class="acc-body">
+            <p>A cardiomiopatia diabética é uma entidade clínica distinta: disfunção miocárdica na ausência de doença coronária, hipertensão ou valvopatia significativa. Manifesta-se inicialmente como <strong>disfunção diastólica</strong> (prejuízo no relaxamento), progredindo para disfunção sistólica.</p>
+            <p>Os mecanismos incluem: acúmulo intramiocárdico de lipídeos (lipotoxicidade), fibrose intersticial mediada por TGF-β e SRAA, disfunção mitocondrial com deficiência energética, alteração no metabolismo substrato (shift do metabolismo de glicose para ácidos graxos, menos eficiente), e rigidez da câmara ventricular por glicação do colágeno.</p>
+            <p>Clinicamente relevante: diabéticos têm incidência de insuficiência cardíaca com fração de ejeção preservada (ICFEp) significativamente maior. A ICFEp no diabético responde melhor a SGLT2 inibidores — dados dos ensaios EMPEROR-Preserved e DELIVER demonstram redução significativa de hospitalização por IC neste contexto.</p>
+          </div>
+        </div>
+
+      </div><!-- /accordion -->
+    </div>
+
+    <div class="section-block">
+      <div class="section-label">Manifestações Cardiovasculares</div>
+      <div class="section-title">Como o Diabetes Afeta o Sistema Cardiovascular?</div>
+
+      <div class="manifest-grid">
+        <div class="manifest-card">
+          <div class="manifest-icon">🫀</div>
+          <div class="manifest-title">Doença Arterial Coronária (DAC)</div>
+          <div class="manifest-desc">Aterosclerose acelerada e difusa. Placas mais instáveis e calcificadas. IAM com frequência silencioso (isquemia silenciosa — neuropatia autonômica). Maior extensão da doença na coronariografia.</div>
+        </div>
+        <div class="manifest-card">
+          <div class="manifest-icon">💔</div>
+          <div class="manifest-title">Insuficiência Cardíaca (IC)</div>
+          <div class="manifest-desc">Risco 2–4× maior que não-diabéticos. ICFEp predominante (disfunção diastólica). Cardiomiopatia diabética independe de DAC. DM2 piora prognóstico em IC de qualquer etiologia.</div>
+        </div>
+        <div class="manifest-card">
+          <div class="manifest-icon">⚡</div>
+          <div class="manifest-title">Fibrilação Atrial (FA)</div>
+          <div class="manifest-desc">Risco aumentado de FA em 40% no DM2. Fibrose atrial mediada pela hiperglicemia. Quando FA ocorre, risco de AVC ainda maior. Controle glicêmico melhora outcomes da ablação de FA.</div>
+        </div>
+        <div class="manifest-card">
+          <div class="manifest-icon">🧠</div>
+          <div class="manifest-title">AVC e Doença Cerebrovascular</div>
+          <div class="manifest-desc">Risco de AVC 2–4× maior. Tanto AVC isquêmico (aterosclerose carotídea, cardioembólico) quanto lacunar (doença de pequenos vasos). Pior recuperação neurológica pós-AVC.</div>
+        </div>
+        <div class="manifest-card">
+          <div class="manifest-icon">🦵</div>
+          <div class="manifest-title">Doença Arterial Periférica (DAP)</div>
+          <div class="manifest-desc">Aterosclerose preferencial em artérias infrapoplíteas. Isquemia crítica de membro. Pé diabético: neuropatia + isquemia + infecção. Principal causa de amputação não-traumática no mundo.</div>
+        </div>
+        <div class="manifest-card">
+          <div class="manifest-icon">🔬</div>
+          <div class="manifest-title">Doença Renal Diabética</div>
+          <div class="manifest-desc">Nefropatia diabética amplifica o risco cardiovascular (síndrome cardiorrenal). Microalbuminúria é marcador precoce de doença endotelial sistêmica, não apenas renal. TFG reduzida = risco CV muito elevado.</div>
+        </div>
+      </div>
+
+      <div class="info-teal info-box">
+        <span class="info-box-icon">💡</span>
+        <div><strong>Conceito de "equivalente de risco coronário":</strong> As diretrizes ESC 2023 e ADA 2024 classificam diabéticos com DCV estabelecida ou ≥3 fatores de risco como de <em>muito alto risco cardiovascular</em> — o mesmo nível de risco de quem já teve um infarto. Isso justifica metas mais agressivas de LDL, pressão arterial e o uso preferencial de medicações com evidência de proteção cardiovascular.</div>
+      </div>
+    </div>
+
+  </div><!-- /pane-coracao -->
+
+
+  <!-- ═══════════════════════════════
+       TAB 3 — DIAGNÓSTICO
+  ════════════════════════════════ -->
+  <div class="tab-pane" id="pane-diagnostico">
+
+    <div class="section-block">
+      <div class="section-label">Critérios ADA 2024</div>
+      <div class="section-title">Como o Diabetes é Diagnosticado?</div>
+      <p class="section-subtitle">O diagnóstico de diabetes requer a confirmação por um dos critérios abaixo, em geral em duas ocasiões distintas (exceto quando há sintomas clássicos + glicemia aleatória ≥200 mg/dL). A Associação Americana de Diabetes (ADA) revisou estes critérios mais recentemente em 2024, sem mudanças nos pontos de corte estabelecidos.</p>
+
+      <div class="diag-grid">
+        <div class="diag-card active-diag">
+          <div class="diag-num">≥126<span class="diag-unit"> mg/dL</span></div>
+          <div class="diag-label">Glicemia de Jejum</div>
+          <div class="diag-note">Jejum de ≥8 horas. Confirmar em 2ª amostra, a menos que sintomas + glicemia casual ≥200.</div>
+        </div>
+        <div class="diag-card active-diag">
+          <div class="diag-num">≥200<span class="diag-unit"> mg/dL</span></div>
+          <div class="diag-label">TOTG (2 horas)</div>
+          <div class="diag-note">Teste oral de tolerância à glicose com 75g. Padrão-ouro para rastreamento de DMG e pré-diabetes.</div>
+        </div>
+        <div class="diag-card active-diag">
+          <div class="diag-num">≥6,5<span class="diag-unit"> %</span></div>
+          <div class="diag-label">HbA1c</div>
+          <div class="diag-note">Reflete média glicêmica dos últimos 3 meses. Não válida em hemoglobinopatias, anemia hemolítica ou gestação.</div>
+        </div>
+        <div class="diag-card active-diag">
+          <div class="diag-num">≥200<span class="diag-unit"> mg/dL</span></div>
+          <div class="diag-label">Glicemia Aleatória + Sintomas</div>
+          <div class="diag-note">Poliúria, polidipsia, perda de peso inexplicada + glicemia casual ≥200 = diagnóstico único, sem necessidade de confirmação.</div>
+        </div>
+      </div>
+
+      <div class="section-label mt-2">Pré-Diabetes — Zona de Atenção</div>
+      <div class="info-amber info-box">
+        <span class="info-box-icon">⚠️</span>
+        <div>
+          <strong>Critérios para pré-diabetes (ADA 2024):</strong>
+          Glicemia de jejum 100–125 mg/dL ("glicemia de jejum alterada") <em>ou</em> TOTG 2h entre 140–199 mg/dL ("tolerância diminuída à glicose") <em>ou</em> HbA1c entre 5,7–6,4%. O pré-diabetes já confere risco cardiovascular aumentado e é reversível com mudança de estilo de vida. Programa de Prevenção do Diabetes: redução ≥5% do peso + 150 min/semana de exercício moderado reduz progressão para DM2 em ~58%.
+        </div>
+      </div>
+    </div>
+
+    <div class="section-block">
+      <div class="section-label">Diagnóstico Diferencial entre Tipos</div>
+      <div class="section-title">Como Diferenciar os Tipos de Diabetes?</div>
+
+      <div class="risk-table-wrap">
+        <table class="risk-table">
+          <thead>
+            <tr>
+              <th>Exame</th>
+              <th>DM Tipo 1</th>
+              <th>DM Tipo 2</th>
+              <th>LADA</th>
+              <th>MODY</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Anticorpos (anti-GAD, IA-2, ZnT8, IAA)</strong></td>
+              <td>✅ Positivos (≥1)</td>
+              <td>❌ Negativos</td>
+              <td>✅ Anti-GAD positivo (critério diagnóstico)</td>
+              <td>❌ Negativos</td>
+            </tr>
+            <tr>
+              <td><strong>Peptídeo C</strong></td>
+              <td>↓↓ Muito baixo ou indetectável</td>
+              <td>Normal ou ↑ (no início)</td>
+              <td>↓ Lentamente (meses a anos)</td>
+              <td>Normal ou levemente reduzido</td>
+            </tr>
+            <tr>
+              <td><strong>Idade no diagnóstico</strong></td>
+              <td>Qualquer (pico na infância/adolescência)</td>
+              <td>Geralmente &gt;35 anos (crescente em jovens)</td>
+              <td>&gt;30 anos por definição</td>
+              <td>Geralmente &lt;25 anos (qualquer geração)</td>
+            </tr>
+            <tr>
+              <td><strong>IMC/Obesidade</strong></td>
+              <td>Normal ou baixo</td>
+              <td>Frequentemente elevado</td>
+              <td>Intermediário (menor que DM2)</td>
+              <td>Geralmente normal (sem obesidade)</td>
+            </tr>
+            <tr>
+              <td><strong>História familiar</strong></td>
+              <td>Presente em 10–15% (1º grau)</td>
+              <td>Forte (poligênica)</td>
+              <td>Variável</td>
+              <td>Dominante (50% de herança) em múltiplas gerações</td>
+            </tr>
+            <tr>
+              <td><strong>Teste genético</strong></td>
+              <td>Não rotineiro (HLA de risco)</td>
+              <td>Não indicado</td>
+              <td>Não necessário</td>
+              <td>✅ Indicado (sequenciamento de genes específicos)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-teal info-box">
+        <span class="info-box-icon">🔬</span>
+        <div><strong>Quando solicitar anticorpos?</strong> A ADA 2024 recomenda rastreamento de anticorpos anti-GAD (e idealmente IA-2 e ZnT8) em adultos com diagnóstico de "DM2" que: (1) têm IMC &lt;25 kg/m²; (2) necessitam de insulina rapidamente (&lt;3–5 anos do diagnóstico); (3) têm história pessoal ou familiar de doenças autoimunes; (4) têm HbA1c difícil de controlar com medicação oral. Identificar LADA tem impacto direto no tratamento.</div>
+      </div>
+    </div>
+
+    <div class="section-block">
+      <div class="section-label">Rastreamento Cardiovascular</div>
+      <div class="section-title">Avaliação Cardíaca no Paciente Diabético</div>
+      <p class="section-subtitle">O paciente diabético deve ser avaliado sistematicamente para doença cardiovascular subclínica, pois a isquemia silenciosa é comum (até 35% dos diabéticos têm DAC sem sintomas angino­sos, pela neuropatia autonômica). O rastreamento deve ser individualizado pelo risco estimado.</p>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">🩺</div>
+          <div>
+            <div class="card-title">Avaliação Cardiovascular Mínima Anual (ADA 2024 + ESC 2023)</div>
+            <div class="card-subtitle">Para todos os pacientes diabéticos, independente de sintomas</div>
+          </div>
+        </div>
+        <div class="two-col">
+          <div>
+            <p style="font-size:.85rem;font-weight:700;margin-bottom:.5rem;">Avaliação Clínica</p>
+            <ul class="type-features">
+              <li>Pressão arterial (ambos os braços na 1ª avaliação)</li>
+              <li>IMC, circunferência abdominal, adiposidade visceral</li>
+              <li>Exame dos pés (pulsos, sensibilidade, Doppler se indicado)</li>
+              <li>Fundoscopia / retinografia para retinopatia</li>
+              <li>Sintomas: dispneia, angina, claudicação, síncope</li>
+            </ul>
+          </div>
+          <div>
+            <p style="font-size:.85rem;font-weight:700;margin-bottom:.5rem;">Exames Laboratoriais</p>
+            <ul class="type-features">
+              <li>HbA1c + glicemia de jejum</li>
+              <li>Lipidograma completo (LDL, TG, HDL, não-HDL)</li>
+              <li>Creatinina + TFGe (CKD-EPI 2021)</li>
+              <li>Relação albumina/creatinina urinária (RAC) — microalbuminúria</li>
+              <li>PCR-ultrassensível (em alto risco, para estratificação)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mt-2">
+        <div class="card-header">
+          <div class="card-icon">❤️</div>
+          <div>
+            <div class="card-title">Exames Cardiológicos Seletivos</div>
+            <div class="card-subtitle">Indicados conforme estratificação de risco individual</div>
+          </div>
+        </div>
+        <div class="accordion" style="margin-bottom:0;">
+          <div class="acc-item open">
+            <div class="acc-header" onclick="toggleAcc(this)">
+              <div class="acc-icon-wrap" style="background:var(--teal-dim);color:var(--teal);">📈</div>
+              <div class="acc-title">Escore de Cálcio Coronário (CAC)</div>
+              <div class="acc-toggle">▼</div>
+            </div>
+            <div class="acc-body">
+              <p>Altamente recomendado pela AHA/ACC em diabéticos de 40–75 anos para refinamento do risco cardiovascular. CAC = 0 indica risco muito baixo de eventos nos próximos 5–10 anos (permite considerar redução de intensidade da terapia). CAC &gt;100 = alto risco, indica intensificação da terapia. Mudou o manejo em ~1/3 dos diabéticos estratificados.</p>
+            </div>
+          </div>
+          <div class="acc-item">
+            <div class="acc-header" onclick="toggleAcc(this)">
+              <div class="acc-icon-wrap" style="background:var(--teal-dim);color:var(--teal);">🖥️</div>
+              <div class="acc-title">Ecocardiograma Transtorácico</div>
+              <div class="acc-toggle">▼</div>
+            </div>
+            <div class="acc-body">
+              <p>Indicado quando há: dispneia, edema, histórico de IAM, HAS de difícil controle, suspeita de IC. Avalia função sistólica (FEVE), disfunção diastólica (estágio E/e'), hipertrofia ventricular esquerda — marcadores precoces de cardiomiopatia diabética. O ecocardiograma com strain (GLS) detecta disfunção subclínica antes da queda da FEVE convencional.</p>
+            </div>
+          </div>
+          <div class="acc-item">
+            <div class="acc-header" onclick="toggleAcc(this)">
+              <div class="acc-icon-wrap" style="background:var(--teal-dim);color:var(--teal);">🏃</div>
+              <div class="acc-title">Teste Ergométrico / Cintilografia Miocárdica</div>
+              <div class="acc-toggle">▼</div>
+            </div>
+            <div class="acc-body">
+              <p>Rastreamento para isquemia silenciosa em: diabéticos sintomáticos (angina típica ou atípica), alterações eletrocardiográficas em repouso, múltiplos fatores de risco com risco global elevado, ou antes de iniciar programa de exercício de alta intensidade. Cintilografia ou eco-estresse têm melhor sensibilidade que o ergométrico isolado no diabético.</p>
+            </div>
+          </div>
+          <div class="acc-item">
+            <div class="acc-header" onclick="toggleAcc(this)">
+              <div class="acc-icon-wrap" style="background:var(--teal-dim);color:var(--teal);">🦵</div>
+              <div class="acc-title">Índice Tornozelo-Braquial (ITB / ABI)</div>
+              <div class="acc-toggle">▼</div>
+            </div>
+            <div class="acc-body">
+              <p>Indicado em diabéticos com: idade ≥50 anos, sintomas de claudicação, úlceras nos pés, ausência de pulsos. ITB &lt;0,9 confirma DAP e indica risco cardiovascular muito elevado (equivalente a DAC estabelecida). ITB &gt;1,3 também é anormal (calcificação da média arterial, comum no DM) e requer avaliação com Doppler completo.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-gray info-box mt-1">
+        <span class="info-box-icon">📌</span>
+        <div><strong>Biomarcadores úteis na prática:</strong> BNP/NT-proBNP elevado em diabético sem IC aparente deve levar à investigação de disfunção diastólica subclínica. Troponina ultrassensível cronicamente elevada pode indicar lesão miocárdica subclínica, predizendo eventos. Esses marcadores estão sendo incorporados em escores de risco dinâmico para diabéticos.</div>
+      </div>
+    </div>
+
+  </div><!-- /pane-diagnostico -->
+
+
+  <!-- ═══════════════════════════════
+       TAB 4 — TRATAMENTO
+  ════════════════════════════════ -->
+  <div class="tab-pane" id="pane-tratamento">
+
+    <div class="section-block">
+      <div class="section-label">Metas Terapêuticas — ADA 2024 + ESC 2023</div>
+      <div class="section-title">Para Onde Tratar? As Metas de Controle</div>
+      <p class="section-subtitle">O tratamento do diabetes moderno é muito mais do que reduzir a HbA1c. Metas cardiovasculares abrangentes — pressão arterial, LDL, peso e cessação do tabagismo — têm impacto proporcional ou superior ao controle glicêmico na redução de eventos.</p>
+
+      <div class="target-grid">
+        <div class="target-card">
+          <div class="target-val">&lt;7%</div>
+          <div class="target-label">HbA1c</div>
+          <div class="target-note">Meta padrão para a maioria. Individualizar: &lt;6,5% em jovens sem comorbidades; &lt;8% em idosos frágeis ou hipoglicemia frequente.</div>
+        </div>
+        <div class="target-card">
+          <div class="target-val">&lt;130</div>
+          <div class="target-label">PAS (mmHg)</div>
+          <div class="target-note">Alvo &lt;130/80 mmHg na maioria. Preferir IECA ou BRA em diabéticos com albuminúria ou nefropatia.</div>
+        </div>
+        <div class="target-card">
+          <div class="target-val">&lt;55</div>
+          <div class="target-label">LDL — Muito Alto Risco (mg/dL)</div>
+          <div class="target-note">DM + DCV estabelecida ou ≥3 FRs. Redução ≥50% do basal. Estatina alta intensidade ± ezetimiba ± iPCSK9.</div>
+        </div>
+        <div class="target-card">
+          <div class="target-val">&lt;70</div>
+          <div class="target-label">LDL — Alto Risco (mg/dL)</div>
+          <div class="target-note">DM sem DCV estabelecida mas com FRs adicionais. Estatina moderada a alta intensidade.</div>
+        </div>
+        <div class="target-card">
+          <div class="target-val">5–10%</div>
+          <div class="target-label">Perda de Peso</div>
+          <div class="target-note">Em sobrepeso/obesidade, cada 1 kg perdido reduz HbA1c ~0,1%. Perda ≥15% pode induzir remissão de DM2 (DiRECT trial).</div>
+        </div>
+        <div class="target-card">
+          <div class="target-val">0</div>
+          <div class="target-label">Tabagismo</div>
+          <div class="target-note">Cessar tabagismo reduz risco CV em ~50% nos primeiros anos. Tabagismo amplifica todos os mecanismos de dano vascular do diabetes.</div>
+        </div>
+      </div>
+
+      <div class="highlight-box">
+        <h3>⭐ Medicina do Estilo de Vida — A Base Inegociável</h3>
+        <div style="font-size:.85rem;line-height:1.7;color:var(--card-foreground);">
+          <strong>Exercício físico:</strong> 150 min/semana de aeróbico moderado + 2–3 sessões de resistência muscular. Reduz HbA1c em ~0,5–1%, melhora sensibilidade à insulina, reduz adiposidade visceral e melhora função endotelial independentemente da perda de peso.<br><br>
+          <strong>Alimentação:</strong> Padrão mediterrâneo e DASH têm maior evidência de benefício cardiovascular. Redução de carboidratos refinados, açúcar adicionado e ultraprocessados. Não existe uma "dieta única" para todos os diabéticos — individualização é essencial.<br><br>
+          <strong>Sono:</strong> Apneia obstrutiva do sono coexiste em &gt;50% dos DM2 obesos, agravando resistência à insulina e risco CV. CPAP melhora controle glicêmico e pressão arterial.
+        </div>
+      </div>
+    </div>
+
+    <div class="section-block">
+      <div class="section-label">Medicações com Evidência Cardiovascular</div>
+      <div class="section-title">Tratamentos que Protegem o Coração</div>
+      <p class="section-subtitle">A revolução no tratamento do DM2 das últimas décadas foi descobrir que algumas classes de medicamentos não apenas controlam a glicemia, mas reduzem diretamente eventos cardiovasculares, hospitalizações por insuficiência cardíaca e progressão da doença renal — benefícios demonstrados em grandes ensaios clínicos randomizados.</p>
+
+      <div class="drug-grid">
+
+        <!-- SGLT2 -->
+        <div class="drug-card sglt2">
+          <div class="drug-class-badge">SGLT2 INIBIDORES</div>
+          <div class="drug-name">Empagliflozina · Dapagliflozina · Canagliflozina</div>
+          <div class="drug-mechanism">Inibem o cotransportador SGLT2 no túbulo renal proximal, bloqueando a reabsorção de glicose e sódio → glicosúria, natriurese, redução da volemia e pressão intraglomerular. Benefício CV é multimecânico e parcialmente independente da glicemia.</div>
+          <div class="trial-pills">
+            <span class="trial-pill positive">EMPA-REG OUTCOME</span>
+            <span class="trial-pill positive">CANVAS</span>
+            <span class="trial-pill positive">DECLARE-TIMI 58</span>
+            <span class="trial-pill positive">CREDENCE</span>
+            <span class="trial-pill positive">DAPA-HF</span>
+            <span class="trial-pill positive">EMPEROR-Reduced</span>
+            <span class="trial-pill positive">EMPEROR-Preserved</span>
+            <span class="trial-pill positive">DELIVER</span>
+          </div>
+          <div class="drug-key-result">
+            <strong>EMPA-REG OUTCOME:</strong> Empagliflozina reduziu MACE em 14%, mortalidade CV em 38% e hospitalização por IC em 35% (n=7.020, DM2 + DCV estabelecida).<br><br>
+            <strong>DAPA-HF / EMPEROR-Reduced:</strong> Benefício em IC com FE reduzida <em>independente</em> da presença de diabetes — os primeiros agentes glicêmicos aprovados para IC.<br><br>
+            <strong>Mecanismos protetores:</strong> Redução da pré e pós-carga, efeitos hemodinâmicos (pseudo-diuréticos), melhora da eficiência energética miocárdica (corpos cetônicos como "superfuel"), redução da fibrose renal e cardíaca.
+          </div>
+          <span class="cv-indication">✅ Classe I ESC 2023 — DM2 com DCV ou alto risco CV</span>
+        </div>
+
+        <!-- GLP-1 -->
+        <div class="drug-card glp1">
+          <div class="drug-class-badge">GLP-1 AGONISTAS</div>
+          <div class="drug-name">Semaglutida · Liraglutida · Dulaglutida · Tirzepatida</div>
+          <div class="drug-mechanism">Mimetizam o hormônio GLP-1 (glucagon-like peptide-1), estimulando a secreção de insulina glicose-dependente, reduzindo o glucagon, retardando o esvaziamento gástrico (saciedade) e atuando diretamente no sistema cardiovascular e SNC. A semaglutida semanal (oral ou injetável) e a tirzepatida (GLP-1 + GIP) são as mais potentes para redução de peso.</div>
+          <div class="trial-pills">
+            <span class="trial-pill positive">LEADER (liraglutida)</span>
+            <span class="trial-pill positive">SUSTAIN-6 (semaglutida)</span>
+            <span class="trial-pill positive">HARMONY OUTCOMES</span>
+            <span class="trial-pill positive">REWIND (dulaglutida)</span>
+            <span class="trial-pill positive">SELECT (semaglutida)</span>
+          </div>
+          <div class="drug-key-result">
+            <strong>LEADER:</strong> Liraglutida reduziu MACE em 13% e mortalidade CV em 22% vs. placebo (n=9.340, DM2 + alto risco CV).<br><br>
+            <strong>SUSTAIN-6:</strong> Semaglutida SC reduziu MACE em 26%, com redução expressiva de AVC não fatal (39%).<br><br>
+            <strong>SELECT (2023, NEJM):</strong> Semaglutida 2,4 mg SC semanal reduziu MACE em 20% em obesos/sobrepeso <em>SEM diabetes</em> e com DCV estabelecida — abrindo nova indicação cardiovascular independente do diabetes.<br><br>
+            <strong>Benefícios adicionais:</strong> Perda de peso substancial (5–15%), melhora da esteatose hepática, redução da pressão arterial e triglicerídeos.
+          </div>
+          <span class="cv-indication">✅ Classe I ESC 2023 — DM2 com DCV ou alto risco CV</span>
+        </div>
+
+        <!-- Metformina -->
+        <div class="drug-card metf">
+          <div class="drug-class-badge">BIGUANIDA</div>
+          <div class="drug-name">Metformina</div>
+          <div class="drug-mechanism">Reduz a produção hepática de glicose (gliconeogênese), melhora a sensibilidade à insulina. Não causa hipoglicemia. Mecanismo molecular: ativação da AMPK via inibição do complexo I mitocondrial. Não tem benefício CV direto independente do controle glicêmico.</div>
+          <div class="trial-pills">
+            <span class="trial-pill positive">UKPDS (1998)</span>
+            <span class="trial-pill">Custo baixíssimo</span>
+          </div>
+          <div class="drug-key-result">
+            Primeira linha histórica para DM2. O UKPDS mostrou benefício CV com metformina em obesos com DM2 recente. Contudo, estudos posteriores não confirmaram benefício CV adicional além do controle glicêmico. Na era de SGLT2i e GLP-1 RA com benefício CV comprovado, a metformina mantém o papel como <strong>base do tratamento oral</strong>, mas não mais como a "primeira escolha universal" em pacientes com DCV ou alto risco.<br><br>
+            <strong>Limitações:</strong> Contraindicada em TFGe &lt;30 mL/min/1,73m². Cautela com TFGe 30–45. Pode reduzir absorção de vitamina B12 — monitorar.
+          </div>
+          <span class="cv-indication">📌 Base da terapia oral — adicionar SGLT2i ou GLP-1 RA com evidência CV</span>
+        </div>
+
+        <!-- Estatinas -->
+        <div class="drug-card statin">
+          <div class="drug-class-badge">ESTATINAS</div>
+          <div class="drug-name">Rosuvastatina · Atorvastatina (alta intensidade)</div>
+          <div class="drug-mechanism">Inibem a HMG-CoA redutase, reduzindo a síntese hepática de colesterol e aumentando a expressão de receptores LDL. Efeitos pleiotrópicos: anti-inflamatório, estabilização de placa, melhora da função endotelial. Base da terapia hipolipemiante em todos os diabéticos com risco CV elevado.</div>
+          <div class="trial-pills">
+            <span class="trial-pill positive">CTT Meta-analysis</span>
+            <span class="trial-pill positive">CARDS (atorva)</span>
+            <span class="trial-pill positive">4S · WOSCOPS · JUPITER</span>
+          </div>
+          <div class="drug-key-result">
+            Meta-análise do CTT (2008, ~90.000 pacientes): cada 1 mmol/L (≈39 mg/dL) de redução no LDL com estatina reduz eventos cardiovasculares maiores em 21%, com magnitude semelhante em diabéticos e não-diabéticos.<br><br>
+            <strong>CARDS:</strong> Em diabéticos tipo 2 sem DCV prévia, atorvastatina 10 mg reduziu eventos coronários em 37% e AVC em 48% vs. placebo.<br><br>
+            <strong>Combinação:</strong> Ezetimiba (IMPROVE-IT) e inibidores de PCSK9 (FOURIER, ODYSSEY) para atingir LDL &lt;55 mg/dL em muito alto risco.
+          </div>
+          <span class="cv-indication">✅ Classe I — Todos os diabéticos tipo 2 com alto ou muito alto risco CV</span>
+        </div>
+
+        <!-- RAAS -->
+        <div class="drug-card raas">
+          <div class="drug-class-badge">IECA / BRA</div>
+          <div class="drug-name">Ramipril · Enalapril · Losartana · Telmisartana</div>
+          <div class="drug-mechanism">Bloqueiam o eixo renina-angiotensina-aldosterona, reduzindo PA, fibrose renal e miocárdica, além de terem efeitos antiproteinúricos independentes da PA. Primeira escolha para hipertensão em diabéticos, especialmente com microalbuminúria ou nefropatia.</div>
+          <div class="trial-pills">
+            <span class="trial-pill positive">HOPE (ramipril)</span>
+            <span class="trial-pill positive">RENAAL (losartana)</span>
+            <span class="trial-pill positive">IDNT (irbesartana)</span>
+          </div>
+          <div class="drug-key-result">
+            <strong>HOPE:</strong> Ramipril reduziu MACE em 22% em pacientes de alto risco CV (incluindo diabéticos), <em>independente da redução de PA</em> — benefício vascular direto do bloqueio do SRAA.<br><br>
+            IECA e BRA <strong>não</strong> devem ser combinados (maior toxicidade renal sem benefício adicional). Na nefropatia diabética com macroalbuminúria, BRA é preferido. IECA ou BRA são contraindicados na gravidez.
+          </div>
+          <span class="cv-indication">✅ Classe I — Diabéticos com HAS, albuminúria, IC ou DRC</span>
+        </div>
+
+        <!-- Insulina -->
+        <div class="drug-card insulin">
+          <div class="drug-class-badge">INSULINOTERAPIA</div>
+          <div class="drug-name">Insulinas Basais · Análogos Rápidos · Bombas de Insulina</div>
+          <div class="drug-mechanism">Substitui ou suplementa a insulina endógena. Única opção no DM1 (indispensável para sobrevivência). No DM2, indicada quando o controle não é atingido com agentes orais ou quando há falência beta-celular avançada.</div>
+          <div class="trial-pills">
+            <span class="trial-pill">DEVOTE (degludeca)</span>
+            <span class="trial-pill">ORIGIN (glargina)</span>
+          </div>
+          <div class="drug-key-result">
+            <strong>ORIGIN:</strong> Insulina glargina vs. placebo em pré-DM e DM2 precoce — neutro para MACE, sem aumento de eventos CV, mas sem benefício adicional. Confirma que insulina não tem proteção CV independente.<br><br>
+            <strong>DM1:</strong> Insulina basal-bolus (ou bomba de insulina com monitorização contínua de glicose — CGM) é o padrão de cuidado. O sistema de loop fechado ("pâncreas artificial") está disponível e melhora significativamente o tempo no alvo glicêmico (TIR), reduzindo a variabilidade glicêmica — fator de risco CV independente.<br><br>
+            <strong>Atenção:</strong> Hipoglicemia grave é fator de risco independente para eventos CV (arritmias, AVC). Estratégias de prevenção de hipoglicemia são essenciais.
+          </div>
+          <span class="cv-indication">📌 Essencial no DM1; complementar no DM2 avançado</span>
+        </div>
+
+      </div><!-- /drug-grid -->
+
+      <div class="info-red info-box">
+        <span class="info-box-icon">🚫</span>
+        <div><strong>Aspirina para prevenção primária: NÃO mais recomendada rotineiramente.</strong> Os estudos ASPREE (2018, idosos) e ASCEND (2018, diabéticos) demonstraram que o benefício modesto da aspirina em prevenção primária é anulado pelo aumento de sangramento gastrointestinal e intracraniano. ADA 2024 e ESC 2023: <em>não utilizar aspirina em prevenção primária em diabéticos</em> (apenas se risco CV muito elevado e risco hemorrágico baixo, após discussão individual com o médico).</div>
+      </div>
+    </div>
+
+    <div class="section-block">
+      <div class="section-label">Algoritmo Simplificado</div>
+      <div class="section-title">Como Sequenciar o Tratamento no DM2?</div>
+      <p class="section-subtitle">As diretrizes ADA 2024 e ESC 2023 propõem um algoritmo centrado na proteção cardiovascular e renal, independente do nível de HbA1c inicial.</p>
+
+      <div class="algo-flow">
+        <div class="algo-step">
+          <div class="algo-connector"><div class="algo-circle">1</div><div class="algo-line"></div></div>
+          <div class="algo-content">
+            <div class="algo-title">Avaliar DCV estabelecida, IC, DRC ou risco CV alto/muito alto</div>
+            <div class="algo-desc">Esta avaliação determina a escolha do agente preferencial, independentemente da HbA1c. Presença de DCV, IC ou DRC define o uso prioritário de SGLT2i ou GLP-1 RA com benefício comprovado.</div>
+          </div>
+        </div>
+        <div class="algo-step">
+          <div class="algo-connector"><div class="algo-circle">2</div><div class="algo-line"></div></div>
+          <div class="algo-content">
+            <div class="algo-title">DCV aterosclerótica estabelecida ou alto risco aterosclerótico → GLP-1 RA preferido</div>
+            <div class="algo-desc">Semaglutida, liraglutida ou dulaglutida com evidência de redução de MACE. Combinar com SGLT2i se also indicado (DRC, IC). Ambos são preferíveis à adição de insulina ou sulfonilureia.</div>
+          </div>
+        </div>
+        <div class="algo-step">
+          <div class="algo-connector"><div class="algo-circle">3</div><div class="algo-line"></div></div>
+          <div class="algo-content">
+            <div class="algo-title">Insuficiência cardíaca ou DRC (TFGe &gt;20) → SGLT2i preferido</div>
+            <div class="algo-desc">Dapagliflozina e empagliflozina com evidência de redução de hospitalização por IC e progressão de DRC (DAPA-CKD, CREDENCE). Benefício em IC com qualquer FE (FEr, FEm, FEp).</div>
+          </div>
+        </div>
+        <div class="algo-step">
+          <div class="algo-connector"><div class="algo-circle">4</div><div class="algo-line"></div></div>
+          <div class="algo-content">
+            <div class="algo-title">Se HbA1c ainda acima da meta → adicionar (não substituir)</div>
+            <div class="algo-desc">Intensificar com outros agentes (sulfonilureias de última geração, inibidores de DPP-4, insulina basal). A lógica é <em>adicionar</em> proteção CV e intensificar controle glicêmico — não escolher entre um e outro.</div>
+          </div>
+        </div>
+        <div class="algo-step">
+          <div class="algo-connector"><div class="algo-circle">5</div><div class="algo-line"></div></div>
+          <div class="algo-content">
+            <div class="algo-title">Tratar todos os fatores de risco agressivamente</div>
+            <div class="algo-desc">Estatina de alta intensidade (LDL-alvo), IECA/BRA (PA-alvo + proteção renal), cessação do tabagismo, controle do peso, exercício. A redução de eventos CV no diabético é proporcional ao número de fatores de risco tratados — não apenas ao controle glicêmico.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-teal info-box">
+        <span class="info-box-icon">💡</span>
+        <div><strong>Perspectiva para DM1:</strong> Não há ensaio CV de larga escala em DM1. SGLT2i (especialmente sotagliflozina e dapagliflozina) estão em estudos e têm indicação off-label crescente em DM1 selecionados (risco de cetoacidose euglicêmica — monitorar). GLP-1 RA também podem ser usados adjuvantemente ao DM1, especialmente em obesidade. Controle intensivo de PA e LDL segue as mesmas premissas que no DM2. O estudo DCCT/EDIC é a maior evidência disponível: controle glicêmico intensivo precoce reduz eventos cardiovasculares a longo prazo em DM1.</div>
+      </div>
+
+      <div class="disclaimer">
+        <strong>⚠ Aviso importante:</strong> As informações apresentadas nesta página têm caráter educativo e informativo, destinadas a facilitar o entendimento do paciente sobre sua condição. Não substituem a consulta médica individualizada. Todo tratamento deve ser prescrito e monitorado pelo seu médico. O manejo do diabetes é complexo e requer avaliação clínica individual de cada caso.
+      </div>
+    </div>
+
+  </div><!-- /pane-tratamento -->
+
+
+  <!-- ═══════════════════════════════
+       TAB 5 — REFERÊNCIAS
+  ════════════════════════════════ -->
+  <div class="tab-pane" id="pane-referencias">
+
+    <div class="section-block">
+      <div class="section-label">Referências Bibliográficas</div>
+      <div class="section-title">Fontes e Evidências Científicas</div>
+      <p class="section-subtitle">Todas as afirmações clínicas desta página são fundamentadas nas referências abaixo, provenientes de periódicos indexados de alto impacto. As referências 1–17 foram as utilizadas nos dados sobre epidemiologia e fisiopatologia; as referências 18–26 fundamentam as recomendações terapêuticas.</p>
+
+      <div class="ref-list">
+
+        <div class="ref-item">
+          <div class="ref-num">[1]</div>
+          <div><div class="ref-title">Prevention of Cardiovascular Disease in Type 1 Diabetes.</div><span class="ref-authors">Manrique-Acevedo C, Hirsch IB, Eckel RH.</span> <span class="ref-journal">N Engl J Med.</span> 2024;390(13):1207–1217. doi:10.1056/NEJMra2311526</div>
+        </div>
+
+        <div class="ref-item">
+          <div class="ref-num">[2]</div>
+          <div><div class="ref-title">Cardiovascular Disease in Type 1 Diabetes: A Review of Epidemiological Data and Underlying Mechanisms.</div><span class="ref-authors">Vergès B.</span> <span class="ref-journal">Diabetes Metab.</span> 2020;46(6):442–449. doi:10.1016/j.diabet.2020.09.001</div>
+        </div>
+
+        <div class="ref-item">
+          <div class="ref-num">[3]</div>
+          <div><div class="ref-title">The CaRe-T1D Repository: An NIDDK Initiative to Advance Understanding of Mechanisms Underlying CVD in T1 vs T2 Diabetes.</div><span class="ref-authors">Jones TLZ et al.</span> <span class="ref-journal">Diabetes.</span> 2025;74(7):1078–1088. doi:10.2337/db25-0017</div>
+        </div>
+
+        <div class="ref-item">
+          <div class="ref-num">[4]</div>
+          <div><div class="ref-title">Type 2 Diabetes.</div><span class="ref-authors">Ahmad E, Lim S, Lamptey R, et al.</span> <span class="ref-journal">Lancet.</span> 2022;400(10365):1803–1820. doi:10.1016/S0140-6736(22)01655-5</div>
+        </div>
+
+        <div class="ref-item">
+          <div class="ref-num">[5]</div>
+          <div><div class="ref-title">Risk Factors, Mortality, and Cardiovascular Outcomes in Patients with Type 2 Diabetes.</div><span class="ref-authors">Rawshani A et al.</span> <span class="ref-journal">N Engl J Med.</span> 2018;379(7):633–644. doi:10.1056/NEJMoa1800256</div>
+        </div>
+
+        <div class="ref-item">
+          <div class="ref-num">[6]</div>
+          <div><div class="ref-title">Primary Prevention of Cardiovascular Disease in Diabetes Mellitus.</div><span class="ref-authors">Newman JD et al.</span> <span class="ref-journal">J Am Coll Cardiol.</span> 2017;70(7):883–893. doi:10.1016/j.jacc.2017.07.001</div>
+        </div>
+
+        <div class="ref-item">
+          <div class="ref-num">[7]</div>
+          <div><div class="ref-title">Cardiometabolic-Based Chronic Disease, Adiposity and Dysglycemia Drivers: JACC State-of-the-Art Review.</div><span class="ref-authors">Mechanick JI et al.</span> <span class="ref-journal">J Am Coll Cardiol.</span> 2020;75(5):525–538. doi:10.1016/j.jacc.2019.11.044</div>
+        </div>
+
+        <div class="ref-item">
+          <div class="ref-num">[8]</div>
+          <div><div class="ref-title">Molecular and Cellular Mechanisms of Cardiovascular Disorders in Diabetes.</div><span class="ref-authors">Shah MS, Brownlee M.</span> <span class="ref-journal">Circ Res.</span> 2016;118(11):1808–1829. doi:10.1161/CIRCRESAHA.116.306923</div>
+        </div>
+
+        <div class="ref-item">
+          <div class="ref-num">[9]</div>
+          <div><div class="ref-title">Molecular Understanding of Hyperglycemia's Adverse Effects for Diabetic Complications.</div><span class="ref-authors">Sheetz MJ, King GL.</span> <span class="ref-journal">JAMA.</span> 2002;288(20):2579–2588. doi:10.1001/jama.288.20.2579</div>
+        </div>
+
+        <div class="ref-item">
+          <div class="ref-num">[10]</div>
+          <div><div class="ref-title">Cardiorenal Outcomes in Middle-Aged and Older Adults With Type 1 and Type 2 Diabetes.</div><span class="ref-authors">Ostrominski JW et al.</span> <span class="ref-journal">J Am Coll Cardiol.</span> 2024;84(14):1363–1366. doi:10.1016/j.jacc.2024.06.024</div>
+        </div>
+
+        <div class="ref-item">
+          <div class="ref-num">[11]</div>
+          <div><div class="ref-title">All-Cause Mortality and Cardiovascular and Microvascular Diseases in Latent Autoimmune Diabetes in Adults.</div><span class="ref-authors">Wei Y et al.</span> <span class="ref-journal">Diabetes Care.</span> 2023;46(10):1857–1865. doi:10.2337/dc23-0739</div>
+        </div>
+
+        <div class="ref-item">
+          <div class="ref-num">[12]</div>
+          <div><div class="ref-title">Increased Cardiovascular Risk in People With LADA: Findings From the DPV Registry in Germany and Austria.</div><span class="ref-authors">Golomb RC et al.</span> <span class="ref-journal">Diabetes Obes Metab.</span> 2025;27(2):563–573. doi:10.1111/dom.16048</div>
+        </div>
+
+        <div class="ref-item">
+          <div class="ref-num">[13]</div>
+          <div><div class="ref-title">Long-Term Risk of Cardiovascular Disease in Individuals With LADA (UKPDS 85).</div><span class="ref-authors">Maddaloni E et al.</span> <span class="ref-journal">Diabetes Obes Metab.</span> 2019;21(9):2115–2122. doi:10.1111/dom.13788</div>
+        </div>
+
+        <div class="ref-item">
+          <div class="ref-num">[14]</div>
+          <div><div class="ref-title">Lower Mortality and Cardiovascular Event Rates in Patients With LADA Compared With Type 2 Diabetes and Insulin Deficient Diabetes.</div><span class="ref-authors">Wod M et al.</span> <span class="ref-journal">Diabetes Res Clin Pract.</span> 2018;139:107–113. doi:10.1016/j.diabres.2018.02.042</div>
+        </div>
+
+        <div class="ref-item">
+          <div class="ref-num">[15]</div>
+          <div><div class="ref-title">Association of Gestational Diabetes Mellitus With Overall and Type Specific Cardiovascular and Cerebrovascular Diseases: Systematic Review and Meta-Analysis.</div><span class="ref-authors">Xie W et al.</span> <span class="ref-journal">BMJ.</span> 2022;378:e070244. doi:10.1136/bmj-2022-070244</div>
+        </div>
+
+        <div class="ref-item">
+          <div class="ref-num">[16]</div>
+          <div><div class="ref-title">Gestational Diabetes and the Risk of Cardiovascular Disease in Women: Systematic Review and Meta-Analysis.</div><span class="ref-authors">Kramer CK et al.</span> <span class="ref-journal">Diabetologia.</span> 2019;62(6):905–914. doi:10.1007/s00125-019-4840-2</div>
+        </div>
+
+        <div class="ref-item">
+          <div class="ref-num">[17]</div>
+          <div><div class="ref-title">Gestational Diabetes Mellitus and the Risks of Overall and Type-Specific Cardiovascular Diseases: A Population- and Sibling-Matched Cohort Study.</div><span class="ref-authors">Yu Y et al.</span> <span class="ref-journal">Diabetes Care.</span> 2022;45(1):151–159. doi:10.2337/dc21-1018</div>
+        </div>
+
+        <div class="ref-item">
+          <div class="ref-num">[18]</div>
+          <div><div class="ref-title">Empagliflozin, Cardiovascular Outcomes, and Mortality in Type 2 Diabetes (EMPA-REG OUTCOME).</div><span class="ref-authors">Zinman B et al.</span> <span class="ref-journal">N Engl J Med.</span> 2015;373(22):2117–2128. doi:10.1056/NEJMoa1504720</div>
+        </div>
+
+        <div class="ref-item">
+          <div class="ref-num">[19]</div>
+          <div><div class="ref-title">Liraglutide and Cardiovascular Outcomes in Type 2 Diabetes (LEADER Trial).</div><span class="ref-authors">Marso SP et al.</span> <span class="ref-journal">N Engl J Med.</span> 2016;375(4):311–322. doi:10.1056/NEJMoa1603827</div>
+        </div>
+
+        <div class="ref-item">
+          <div class="ref-num">[20]</div>
+          <div><div class="ref-title">Semaglutide and Cardiovascular Outcomes in Patients with Type 2 Diabetes (SUSTAIN-6).</div><span class="ref-authors">Marso SP et al.</span> <span class="ref-journal">N Engl J Med.</span> 2016;375(19):1834–1844. doi:10.1056/NEJMoa1607141</div>
+        </div>
+
+        <div class="ref-item">
+          <div class="ref-num">[21]</div>
+          <div><div class="ref-title">Dapagliflozin in Patients with Heart Failure and Reduced Ejection Fraction (DAPA-HF).</div><span class="ref-authors">McMurray JJV et al.</span> <span class="ref-journal">N Engl J Med.</span> 2019;381(21):1995–2008. doi:10.1056/NEJMoa1911303</div>
+        </div>
+
+        <div class="ref-item">
+          <div class="ref-num">[22]</div>
+          <div><div class="ref-title">Cardiovascular and Renal Outcomes with Empagliflozin in Heart Failure (EMPEROR-Reduced).</div><span class="ref-authors">Packer M et al.</span> <span class="ref-journal">N Engl J Med.</span> 2020;383(15):1413–1424. doi:10.1056/NEJMoa2022190</div>
+        </div>
+
+        <div class="ref-item">
+          <div class="ref-num">[23]</div>
+          <div><div class="ref-title">Semaglutide and Cardiovascular Outcomes in Obesity without Diabetes (SELECT Trial).</div><span class="ref-authors">Lincoff AM et al.</span> <span class="ref-journal">N Engl J Med.</span> 2023;389(24):2221–2232. doi:10.1056/NEJMoa2307563</div>
+        </div>
+
+        <div class="ref-item">
+          <div class="ref-num">[24]</div>
+          <div><div class="ref-title">Standards of Care in Diabetes — 2024.</div><span class="ref-authors">American Diabetes Association.</span> <span class="ref-journal">Diabetes Care.</span> 2024;47(Suppl 1):S1–S321. doi:10.2337/dc24-Sint</div>
+        </div>
+
+        <div class="ref-item">
+          <div class="ref-num">[25]</div>
+          <div><div class="ref-title">2023 ESC Guidelines on Diabetes, Pre-Diabetes, and Cardiovascular Diseases.</div><span class="ref-authors">Marx N et al.</span> <span class="ref-journal">Eur Heart J.</span> 2023;44(39):4043–4140. doi:10.1093/eurheartj/ehad192</div>
+        </div>
+
+        <div class="ref-item">
+          <div class="ref-num">[26]</div>
+          <div><div class="ref-title">Aspirin in Patients with Type 2 Diabetes and Without Cardiovascular Disease (ASCEND).</div><span class="ref-authors">ASCEND Study Collaborative Group.</span> <span class="ref-journal">N Engl J Med.</span> 2018;379(16):1529–1539. doi:10.1056/NEJMoa1804988</div>
+        </div>
+
+      </div><!-- /ref-list -->
+
+      <div class="info-gray info-box mt-2">
+        <span class="info-box-icon">📌</span>
+        <div><strong>Atualização contínua:</strong> A ciência do diabetes e de suas relações com a doença cardiovascular avança rapidamente. Esta página é revisada periodicamente para incorporar novas evidências de grandes ensaios clínicos. Última revisão: 2025.</div>
+      </div>
+    </div>
+
+  </div><!-- /pane-referencias -->
+
+</div><!-- /container -->
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-copy">
+        © 2026 Dr. Lucas Silva · Cardiologia Intervencionista · São Paulo, SP - CRM 271.830<br>
+        Este conteúdo tem caráter educativo e não substitui consulta médica.
+      </div>
+      <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        lucascardio.com.br
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── TAB SYSTEM ────────────────────────── */
+const TAB_PROGRESS = { tipos:'20%', coracao:'40%', diagnostico:'60%', tratamento:'80%', referencias:'100%' };
+
+function showTab(id) {
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('pane-' + id).classList.add('active');
+  document.getElementById('btn-' + id).classList.add('active');
+  document.getElementById('progress').style.width = TAB_PROGRESS[id];
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ── ACCORDION ─────────────────────────── */
+function toggleAcc(header) {
+  const item = header.parentElement;
+  const wasOpen = item.classList.contains('open');
+  // optionally close others in same container
+  const container = item.parentElement;
+  container.querySelectorAll('.acc-item.open').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+</script>
+</body>
+</html>
