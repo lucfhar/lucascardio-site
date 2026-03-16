@@ -1,0 +1,1682 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>ECG na SCA — Interpretação Pragmática para Médicos | Dr. Lucas Silva</title>
+  <meta name="description" content="Guia interativo e baseado em evidências para interpretação do ECG na síndrome coronariana aguda: padrões de oclusão aguda, equivalentes de STEMI, estratificação invasiva emergente vs urgente." />
+  <meta name="author" content="Dr. Lucas Silva" />
+  <link rel="canonical" href="https://lucascardio.com.br/Medicos/ecg-sca.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;600;700&family=Lora:ital,wght@1,400;1,600&display=swap" rel="stylesheet" />
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "ECG na SCA — Interpretação Pragmática para Médicos",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Web Browser",
+    "url": "https://lucascardio.com.br/Medicos/ecg-sca.html",
+    "description": "Guia interativo e baseado em evidências para interpretação do ECG na síndrome coronariana aguda: padrões de oclusão aguda, equivalentes de STEMI.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "BRL"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Dr. Lucas Silva",
+      "url": "https://lucascardio.com.br"
+    },
+    "isAccessibleForFree": true,
+    "featureList": "Padrões de oclusão aguda, Equivalentes de STEMI, Estratificação invasiva"
+  }
+  </script>
+  
+  <style>
+    /* ── DESIGN TOKENS ────────────────────────────────────────── */
+    :root {
+      --primary: oklch(65% .18 195);
+      --primary-foreground: oklch(98% 0 0);
+      --background: oklch(11% .016 250);
+      --foreground: oklch(93% .01 250);
+      --card: oklch(17% .018 250);
+      --card-foreground: oklch(93% .01 250);
+      --muted: oklch(21% .018 250);
+      --muted-foreground: oklch(60% .02 250);
+      --border: oklch(27% .025 250);
+      --input: oklch(21% .02 250);
+      --destructive: oklch(60% .22 25);
+      --secondary: oklch(21% .022 250);
+      --teal: #d43c3c;
+      --teal-dim: rgba(0,211,189,.10);
+      --teal-dim2: rgba(0,211,189,.18);
+      --amber: oklch(82.8% .189 84.429);
+      --red: oklch(63.7% .237 25.331);
+      --green: oklch(79.2% .209 151.711);
+      --orange: oklch(72% .19 42);
+      --orange-dim: rgba(255,140,0,.10);
+      --red-raw: #ef4444;
+      --amber-raw: #fbbf24;
+      --green-raw: #4ade80;
+      --radius: 0.625rem;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-serif: 'Lora', Georgia, serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--background);
+      color: var(--foreground);
+      min-height: 100vh;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ──────────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(14,15,20,.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--foreground); }
+    .nav-brand-icon { width: 28px; height: 28px; border-radius: 7px; background: var(--teal); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .nav-brand-name { font-weight: 800; font-size: 1rem; letter-spacing: -.025em; line-height: 1; }
+    .nav-brand-name span { color: var(--teal); }
+    .nav-brand-sep { width: 1px; height: 14px; background: var(--border); margin: 0 6px; }
+    .nav-brand-sub { font-size: .7rem; font-weight: 500; color: var(--muted-foreground); }
+    .nav-tabs { display: flex; align-items: center; gap: .15rem; }
+    .nav-tab-btn { background: none; border: none; cursor: pointer; font-family: var(--font-sans); font-size: .78rem; font-weight: 500; color: var(--muted-foreground); padding: 5px 10px; border-radius: 7px; transition: background .15s, color .15s; white-space: nowrap; }
+    .nav-tab-btn:hover { background: oklch(24% .025 250); color: var(--foreground); }
+    .nav-tab-btn.active { color: var(--teal); background: var(--teal-dim); }
+    .nav-actions { display: flex; align-items: center; gap: .5rem; }
+    .nav-link { font-size: .75rem; font-weight: 600; padding: 5px 12px; border-radius: 8px; border: 1.5px solid var(--primary); color: var(--primary); background: transparent; text-decoration: none; transition: background .15s, color .15s; display: inline-flex; align-items: center; gap: 5px; }
+    .nav-link:hover { background: var(--primary); color: var(--primary-foreground); }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; color: var(--muted-foreground); padding: 4px; }
+    .mobile-menu { display: none; }
+
+    /* ── LAYOUT ───────────────────────────────────────────────── */
+    .container { max-width: 920px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* ── HERO ─────────────────────────────────────────────────── */
+    .hero { padding: 3.5rem 0 2.5rem; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; opacity: .04; pointer-events: none; background: repeating-linear-gradient(0deg, transparent, transparent 39px, var(--teal) 39px, var(--teal) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, var(--teal) 39px, var(--teal) 40px); }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 6px; font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); margin-bottom: 1rem; }
+    .hero-eyebrow::before { content: ''; display: block; width: 20px; height: 2px; background: var(--teal); border-radius: 1px; }
+    .hero h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800; line-height: 1.2; margin-bottom: .75rem; letter-spacing: -.02em; }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero-sub { color: var(--muted-foreground); font-size: .95rem; max-width: 660px; margin-bottom: 1.5rem; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag { font-size: .7rem; font-weight: 600; padding: 3px 10px; border-radius: 6px; border: 1px solid var(--border); color: var(--muted-foreground); background: var(--card); font-family: var(--font-mono); }
+    .tag.urgent { border-color: rgba(251,191,36,.3); color: var(--amber-raw); background: rgba(251,191,36,.08); }
+    .tag.emergent { border-color: rgba(239,68,68,.3); color: var(--red-raw); background: rgba(239,68,68,.07); }
+
+    /* ── MAIN TAB NAV ─────────────────────────────────────────── */
+    .tab-nav { display: flex; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: calc(var(--radius) + 2px); overflow: hidden; margin: 2rem 0; flex-wrap: wrap; }
+    .tab-btn { flex: 1; min-width: 110px; background: var(--card); border: none; cursor: pointer; font-family: var(--font-sans); padding: .9rem 1.1rem; text-align: left; transition: background .15s; position: relative; }
+    .tab-btn:hover { background: oklch(24% .025 250); }
+    .tab-btn.active { background: var(--teal-dim); }
+    .tab-btn.active::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--teal); }
+    .tab-num { font-size: .6rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted-foreground); margin-bottom: .3rem; font-family: var(--font-mono); display: flex; align-items: center; gap: 6px; }
+    .tab-dot { display: inline-flex; width: 17px; height: 17px; border-radius: 50%; background: var(--muted); color: var(--muted-foreground); font-size: .58rem; align-items: center; justify-content: center; font-family: var(--font-mono); font-weight: 700; }
+    .tab-btn.active .tab-dot { background: var(--teal); color: #000; }
+    .tab-title { font-weight: 700; font-size: .82rem; margin-bottom: .15rem; }
+    .tab-desc { font-size: .7rem; color: var(--muted-foreground); line-height: 1.4; }
+
+    /* ── PANELS ───────────────────────────────────────────────── */
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; animation: fadeUp .28s ease; padding-bottom: 4rem; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* ── SECTION HEADINGS ─────────────────────────────────────── */
+    .section-label { font-size: .67rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--teal); margin-bottom: .35rem; font-family: var(--font-mono); }
+    .section-title { font-size: 1.25rem; font-weight: 800; margin-bottom: .2rem; letter-spacing: -.01em; }
+    .section-sub { font-size: .88rem; color: var(--muted-foreground); margin-bottom: 1.75rem; line-height: 1.6; }
+    .section-divider { border: none; border-top: 1px solid var(--border); margin: 2.25rem 0; }
+    h3.sub-heading { font-size: 1rem; font-weight: 700; margin: 1.5rem 0 .75rem; display: flex; align-items: center; gap: .5rem; }
+    h3.sub-heading::before { content: ''; display: block; width: 3px; height: 1em; background: var(--teal); border-radius: 2px; }
+
+    /* ── CARDS ────────────────────────────────────────────────── */
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: calc(var(--radius) + 2px); padding: 1.4rem; margin-bottom: 1.1rem; }
+    .card.card-red { border-color: rgba(239,68,68,.3); background: rgba(239,68,68,.05); }
+    .card.card-amber { border-color: rgba(251,191,36,.25); background: rgba(251,191,36,.05); }
+    .card.card-teal { border-color: rgba(0,211,189,.25); background: var(--teal-dim); }
+    .card-header { display: flex; align-items: flex-start; gap: .75rem; margin-bottom: 1.1rem; padding-bottom: .9rem; border-bottom: 1px solid var(--border); }
+    .card-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; background: var(--teal-dim); color: var(--teal); }
+    .card-icon.red { background: rgba(239,68,68,.12); color: var(--red-raw); }
+    .card-icon.amber { background: rgba(251,191,36,.1); color: var(--amber-raw); }
+    .card-icon.green { background: rgba(74,222,128,.1); color: var(--green-raw); }
+    .card-title { font-weight: 700; font-size: 1rem; margin-bottom: 2px; }
+    .card-subtitle { font-size: .77rem; color: var(--muted-foreground); }
+    p.body-text { font-size: .87rem; line-height: 1.75; margin-bottom: .9rem; color: oklch(88% .012 250); }
+    p.body-text:last-child { margin-bottom: 0; }
+    strong.teal { color: var(--teal); }
+    strong.red { color: var(--red-raw); }
+    strong.amber { color: var(--amber-raw); }
+
+    /* ── INFO BOXES ───────────────────────────────────────────── */
+    .info-box { border-radius: var(--radius); padding: 11px 15px; font-size: .82rem; line-height: 1.65; display: flex; gap: 10px; margin-bottom: .75rem; }
+    .info-box-icon { flex-shrink: 0; font-size: 1rem; margin-top: 1px; }
+    .info-teal { background: var(--teal-dim); border-left: 3px solid var(--teal); }
+    .info-amber { background: rgba(251,191,36,.08); border-left: 3px solid rgba(251,191,36,.5); }
+    .info-red { background: rgba(239,68,68,.08); border-left: 3px solid rgba(239,68,68,.5); }
+    .info-green { background: rgba(74,222,128,.07); border-left: 3px solid rgba(74,222,128,.45); }
+    .info-gray { background: var(--muted); border-left: 3px solid var(--border); }
+    .info-orange { background: var(--orange-dim); border-left: 3px solid rgba(255,140,0,.5); }
+
+    /* ── BADGES ───────────────────────────────────────────────── */
+    .badge { display: inline-flex; align-items: center; gap: 4px; font-size: .67rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; white-space: nowrap; font-family: var(--font-mono); }
+    .badge-teal { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.25); }
+    .badge-red { background: rgba(239,68,68,.15); color: var(--red-raw); border: 1px solid rgba(239,68,68,.3); }
+    .badge-amber { background: rgba(251,191,36,.12); color: var(--amber-raw); border: 1px solid rgba(251,191,36,.25); }
+    .badge-green { background: rgba(74,222,128,.1); color: var(--green-raw); border: 1px solid rgba(74,222,128,.25); }
+    .badge-gray { background: var(--muted); color: var(--muted-foreground); border: 1px solid var(--border); }
+    .badge-orange { background: var(--orange-dim); color: var(--orange); border: 1px solid rgba(255,140,0,.25); }
+
+    /* ── GRIDS ────────────────────────────────────────────────── */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.1rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-bottom: 1.1rem; }
+    .mini-card { background: var(--muted); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.1rem; }
+    .mini-card-label { font-size: .67rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--muted-foreground); font-family: var(--font-mono); margin-bottom: .4rem; }
+    .mini-card-val { font-size: 1.35rem; font-weight: 800; font-family: var(--font-mono); color: var(--teal); line-height: 1.1; }
+    .mini-card-desc { font-size: .73rem; color: var(--muted-foreground); margin-top: .25rem; line-height: 1.4; }
+    .mini-card.red .mini-card-val { color: var(--red-raw); }
+    .mini-card.amber .mini-card-val { color: var(--amber-raw); }
+
+    /* ── ACCORDION ────────────────────────────────────────────── */
+    .accordion { border: 1px solid var(--border); border-radius: calc(var(--radius)+2px); overflow: hidden; margin-bottom: 1rem; }
+    .accordion-header { padding: 1rem 1.25rem; display: flex; align-items: center; gap: .75rem; cursor: pointer; transition: background .15s; user-select: none; background: var(--card); }
+    .accordion-header:hover { background: oklch(22% .02 250); }
+    .accordion-icon { width: 32px; height: 32px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: .9rem; flex-shrink: 0; }
+    .accordion-icon.red { background: rgba(239,68,68,.12); color: var(--red-raw); }
+    .accordion-icon.amber { background: rgba(251,191,36,.1); color: var(--amber-raw); }
+    .accordion-icon.teal { background: var(--teal-dim); color: var(--teal); }
+    .accordion-icon.gray { background: var(--muted); color: var(--muted-foreground); }
+    .accordion-title { font-weight: 700; font-size: .9rem; flex: 1; }
+    .accordion-arrow { color: var(--muted-foreground); font-size: .8rem; transition: transform .2s; flex-shrink: 0; }
+    .accordion.open .accordion-arrow { transform: rotate(180deg); }
+    .accordion-body { display: none; padding: 0 1.25rem 1.25rem; background: var(--card); border-top: 1px solid var(--border); }
+    .accordion.open .accordion-body { display: block; }
+
+    /* ── ECG WAVEFORM CARDS ───────────────────────────────────── */
+    .ecg-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+    .ecg-card { background: var(--card); border: 1px solid var(--border); border-radius: calc(var(--radius)+2px); overflow: hidden; transition: border-color .2s; }
+    .ecg-card:hover { border-color: var(--teal); }
+    .ecg-card.critical { border-color: rgba(239,68,68,.4); }
+    .ecg-card.critical:hover { border-color: var(--red-raw); }
+    .ecg-card.warning { border-color: rgba(251,191,36,.3); }
+    .ecg-card-header { padding: .75rem 1rem .5rem; display: flex; align-items: center; justify-content: space-between; }
+    .ecg-card-title { font-weight: 700; font-size: .85rem; }
+    .ecg-canvas { background: oklch(9.5% .015 250); padding: .5rem 1rem .75rem; display: flex; align-items: center; justify-content: center; }
+    .ecg-canvas svg { display: block; overflow: visible; }
+    .ecg-card-body { padding: .75rem 1rem 1rem; }
+    .ecg-card-desc { font-size: .78rem; line-height: 1.65; color: oklch(80% .015 250); }
+    .ecg-card-criteria { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .35rem; }
+
+    /* ── ALGORITHM FLOW ───────────────────────────────────────── */
+    .algo-step { display: flex; gap: 1rem; margin-bottom: 1rem; }
+    .algo-step-num { width: 32px; height: 32px; border-radius: 50%; background: var(--teal); color: #000; font-weight: 800; font-size: .82rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: var(--font-mono); margin-top: 2px; }
+    .algo-step-num.red { background: var(--red-raw); color: #fff; }
+    .algo-step-num.amber { background: var(--amber-raw); color: #000; }
+    .algo-step-num.gray { background: var(--muted); color: var(--muted-foreground); border: 1px solid var(--border); }
+    .algo-step-content { flex: 1; }
+    .algo-step-title { font-weight: 700; font-size: .9rem; margin-bottom: .3rem; }
+    .algo-step-body { font-size: .82rem; color: oklch(80% .015 250); line-height: 1.7; }
+    .algo-connector { width: 32px; display: flex; justify-content: center; flex-shrink: 0; }
+    .algo-connector-line { width: 2px; height: 20px; background: var(--border); margin: 0 auto; }
+
+    /* ── COMPARISON TABLE ─────────────────────────────────────── */
+    .compare-table { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid var(--border); border-radius: calc(var(--radius)+2px); overflow: hidden; margin-bottom: 1.5rem; font-size: .82rem; }
+    .compare-table th { padding: .75rem 1rem; font-weight: 700; font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; }
+    .compare-table th:first-child { background: var(--muted); color: var(--muted-foreground); width: 30%; border-right: 1px solid var(--border); }
+    .compare-table th.emergent-th { background: rgba(239,68,68,.12); color: var(--red-raw); border-right: 1px solid var(--border); }
+    .compare-table th.urgent-th { background: rgba(251,191,36,.08); color: var(--amber-raw); }
+    .compare-table td { padding: .7rem 1rem; vertical-align: top; line-height: 1.6; border-top: 1px solid var(--border); }
+    .compare-table td:first-child { background: var(--muted); font-weight: 600; font-size: .78rem; color: var(--muted-foreground); border-right: 1px solid var(--border); }
+    .compare-table td.emergent-td { background: rgba(239,68,68,.03); border-right: 1px solid var(--border); }
+    .compare-table td.urgent-td { background: rgba(251,191,36,.02); }
+    .compare-table tr:last-child td { border-bottom: none; }
+
+    /* ── SGARBOSSA RULE WIDGET ────────────────────────────────── */
+    .sgarbossa-rule { background: var(--muted); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.2rem; margin-bottom: .75rem; display: flex; align-items: flex-start; gap: 1rem; }
+    .sgarbossa-pts { font-size: 1.6rem; font-weight: 800; font-family: var(--font-mono); color: var(--teal); line-height: 1; min-width: 36px; text-align: center; padding-top: 2px; }
+    .sgarbossa-pts.na { font-size: .9rem; color: var(--muted-foreground); }
+    .sgarbossa-label { font-weight: 700; font-size: .85rem; margin-bottom: .2rem; }
+    .sgarbossa-desc { font-size: .78rem; color: var(--muted-foreground); line-height: 1.55; }
+
+    /* ── GRACE CALC ───────────────────────────────────────────── */
+    .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 5px; }
+    .form-label { font-size: .78rem; font-weight: 600; color: var(--muted-foreground); }
+    .form-input { background: var(--input); border: 1px solid var(--border); border-radius: var(--radius); color: var(--foreground); font-family: var(--font-mono); font-size: .85rem; padding: 8px 12px; transition: border-color .15s, box-shadow .15s; outline: none; width: 100%; }
+    .form-input:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(0,211,189,.12); }
+    .form-select { background: var(--input); border: 1px solid var(--border); border-radius: var(--radius); color: var(--foreground); font-family: var(--font-sans); font-size: .82rem; padding: 8px 12px; outline: none; width: 100%; cursor: pointer; }
+    .form-select:focus { border-color: var(--teal); }
+    .calc-result { background: var(--muted); border-radius: var(--radius); padding: 1.1rem 1.25rem; display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; margin-top: .5rem; }
+    .calc-val { font-size: 2.4rem; font-weight: 800; font-family: var(--font-mono); line-height: 1; min-width: 80px; }
+    .calc-label { font-weight: 700; font-size: .95rem; margin-bottom: 2px; }
+    .calc-note { font-size: .78rem; color: var(--muted-foreground); line-height: 1.5; }
+    .btn { padding: 8px 18px; border-radius: var(--radius); border: none; cursor: pointer; font-family: var(--font-sans); font-weight: 700; font-size: .82rem; transition: opacity .15s, transform .1s; }
+    .btn:active { transform: scale(.97); }
+    .btn-primary { background: var(--teal); color: #000; }
+    .btn-primary:hover { opacity: .88; }
+
+    /* ── RISK STRATIFICATION TIMELINE ────────────────────────── */
+    .timeline { display: flex; gap: 0; margin: 1.5rem 0; }
+    .timeline-item { flex: 1; text-align: center; position: relative; }
+    .timeline-item::before { content: ''; position: absolute; top: 16px; left: 50%; right: -50%; height: 2px; background: var(--border); z-index: 0; }
+    .timeline-item:last-child::before { display: none; }
+    .timeline-dot { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto .5rem; font-size: .7rem; font-weight: 800; position: relative; z-index: 1; font-family: var(--font-mono); }
+    .timeline-dot.red { background: var(--red-raw); color: #fff; }
+    .timeline-dot.amber { background: var(--amber-raw); color: #000; }
+    .timeline-dot.teal { background: var(--teal); color: #000; }
+    .timeline-dot.gray { background: var(--muted); color: var(--muted-foreground); border: 2px solid var(--border); }
+    .timeline-time { font-size: .68rem; font-weight: 800; font-family: var(--font-mono); margin-bottom: .2rem; }
+    .timeline-time.red { color: var(--red-raw); }
+    .timeline-time.amber { color: var(--amber-raw); }
+    .timeline-time.teal { color: var(--teal); }
+    .timeline-label { font-size: .72rem; color: var(--muted-foreground); line-height: 1.35; padding: 0 .25rem; }
+
+    /* ── PATTERN DETAIL ───────────────────────────────────────── */
+    .pattern-detail { background: var(--card); border: 1px solid var(--border); border-radius: calc(var(--radius)+2px); margin-bottom: 1.25rem; overflow: hidden; }
+    .pattern-detail-header { padding: 1rem 1.25rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: .75rem; cursor: pointer; transition: background .15s; }
+    .pattern-detail-header:hover { background: oklch(22% .02 250); }
+    .pattern-arrow { transition: transform .2s; font-size: .75rem; color: var(--muted-foreground); margin-left: auto; }
+    .pattern-detail.open .pattern-arrow { transform: rotate(180deg); }
+    .pattern-detail-body { display: none; padding: 1.25rem; }
+    .pattern-detail.open .pattern-detail-body { display: block; }
+    .pattern-badge-row { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: .75rem; }
+
+    /* ── REFS ─────────────────────────────────────────────────── */
+    .ref-list { list-style: none; }
+    .ref-item { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: .79rem; line-height: 1.6; display: flex; gap: 10px; }
+    .ref-item:last-child { border-bottom: none; }
+    .ref-num { font-family: var(--font-mono); font-size: .7rem; font-weight: 700; color: var(--teal); min-width: 22px; }
+    .ref-title { font-weight: 600; margin-bottom: 2px; }
+    .ref-meta { color: var(--muted-foreground); font-size: .74rem; }
+
+    /* ── DISCLAIMER ───────────────────────────────────────────── */
+    .disclaimer { background: var(--muted); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 16px; font-size: .74rem; color: var(--muted-foreground); line-height: 1.6; }
+
+    /* ── FOOTER ───────────────────────────────────────────────── */
+    footer { border-top: 1px solid var(--border); padding: 2rem 0; margin-top: 1rem; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-copy { font-size: .75rem; color: var(--muted-foreground); }
+
+    /* ── RESPONSIVE ───────────────────────────────────────────── */
+    @media (max-width: 700px) {
+      .grid-2 { grid-template-columns: 1fr; }
+      .grid-3 { grid-template-columns: 1fr 1fr; }
+      .ecg-grid { grid-template-columns: 1fr; }
+      .calc-grid { grid-template-columns: 1fr; }
+      .tab-btn { min-width: 90px; }
+      .nav-tabs { display: none; }
+      .hamburger { display: block; }
+      .mobile-menu { position: fixed; top: 56px; left: 0; right: 0; background: rgba(14,15,20,.98); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); padding: 1rem; display: none; flex-direction: column; gap: .5rem; z-index: 49; }
+      .mobile-menu.open { display: flex; }
+      .mobile-menu-btn { background: none; border: none; cursor: pointer; font-family: var(--font-sans); font-size: .85rem; font-weight: 500; color: var(--muted-foreground); padding: 8px 12px; border-radius: 8px; text-align: left; transition: background .15s, color .15s; }
+      .mobile-menu-btn:hover, .mobile-menu-btn.active { background: var(--teal-dim); color: var(--teal); }
+      .compare-table { font-size: .75rem; }
+      .timeline { flex-wrap: wrap; gap: 1rem; }
+      .timeline-item::before { display: none; }
+      .hero { padding: 2rem 0 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="https://lucascardio.com.br" class="nav-brand">
+    <div class="nav-brand-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+    </div>
+    <span class="nav-brand-name">Lucas<span>Cardio</span></span>
+    <span class="nav-brand-sep"></span>
+    <span class="nav-brand-sub">ECG na SCA</span>
+  </a>
+  <div class="nav-tabs">
+    <button class="nav-tab-btn active" onclick="switchTab(0,this)">Avaliação</button>
+    <button class="nav-tab-btn" onclick="switchTab(1,this)">Oclusão Aguda</button>
+    <button class="nav-tab-btn" onclick="switchTab(2,this)">Estratificação</button>
+    <button class="nav-tab-btn" onclick="switchTab(3,this)">Limitações</button>
+    <button class="nav-tab-btn" onclick="switchTab(4,this)">Protocolo Serial</button>
+    <button class="nav-tab-btn" onclick="switchTab(5,this)">IA no ECG</button>
+    <button class="nav-tab-btn" onclick="switchTab(6,this)">Referências</button>
+  </div>
+  <div class="nav-actions">
+    <a href="https://lucascardio.com.br" class="nav-link">← Site</a>
+  </div>
+  <button class="hamburger" onclick="toggleMobile()" aria-label="Menu">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-btn active" onclick="switchTab(0,this,true)">01 · Avaliação Sistemática</button>
+  <button class="mobile-menu-btn" onclick="switchTab(1,this,true)">02 · Padrões de Oclusão</button>
+  <button class="mobile-menu-btn" onclick="switchTab(2,this,true)">03 · Estratificação Invasiva</button>
+  <button class="mobile-menu-btn" onclick="switchTab(3,this,true)">04 · Limitações & Populações</button>
+  <button class="mobile-menu-btn" onclick="switchTab(4,this,true)">05 · Protocolo Serial</button>
+  <button class="mobile-menu-btn" onclick="switchTab(5,this,true)">06 · IA no ECG</button>
+  <button class="mobile-menu-btn" onclick="switchTab(6,this,true)">07 · Referências</button>
+</div>
+
+<main class="container">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-eyebrow">Cardiologia de Urgência</div>
+    <h1>ECG na <em>Síndrome Coronariana Aguda</em></h1>
+    <p class="hero-sub">Interpretação pragmática e baseada em evidências para o médico: do traçado ao cateterismo. Padrões de oclusão arterial aguda, equivalentes de STEMI, critérios de Sgarbossa, e quando estratificar com emergência ou urgência.</p>
+    <div class="hero-tags">
+      <span class="tag">ACC/AHA 2025</span>
+      <span class="tag">ESC Guidelines</span>
+      <span class="tag emergent">Emergência · &lt;2h</span>
+      <span class="tag urgent">Urgência · &lt;24h</span>
+      <span class="tag">STEMI Equivalentes</span>
+      <span class="tag">Sgarbossa Modificado</span>
+      <span class="tag">GRACE Score</span>
+    </div>
+  </section>
+
+  <!-- MAIN TAB NAV -->
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab(0,this)">
+      <div class="tab-num"><span class="tab-dot">1</span></div>
+      <div class="tab-title">Avaliação Sistemática</div>
+      <div class="tab-desc">Primeiros 10 min, eixo, intervalos</div>
+    </button>
+    <button class="tab-btn" onclick="switchTab(1,this)">
+      <div class="tab-num"><span class="tab-dot">2</span></div>
+      <div class="tab-title">Padrões de Oclusão</div>
+      <div class="tab-desc">STEMI, equivalentes, Sgarbossa</div>
+    </button>
+    <button class="tab-btn" onclick="switchTab(2,this)">
+      <div class="tab-num"><span class="tab-dot">3</span></div>
+      <div class="tab-title">Estratificação Invasiva</div>
+      <div class="tab-desc">Emergente vs urgente — critérios</div>
+    </button>
+    <button class="tab-btn" onclick="switchTab(3,this)">
+      <div class="tab-num"><span class="tab-dot">4</span></div>
+      <div class="tab-title">Limitações & Populações</div>
+      <div class="tab-desc">BRE, pericardite, idosos, DM, DRC</div>
+    </button>
+    <button class="tab-btn" onclick="switchTab(4,this)">
+      <div class="tab-num"><span class="tab-dot">5</span></div>
+      <div class="tab-title">Protocolo Serial</div>
+      <div class="tab-desc">Timing, troponina, ecocardiograma</div>
+    </button>
+    <button class="tab-btn" onclick="switchTab(5,this)">
+      <div class="tab-num"><span class="tab-dot">6</span></div>
+      <div class="tab-title">IA no ECG</div>
+      <div class="tab-desc">ROMIAE, deep learning, evidências</div>
+    </button>
+    <button class="tab-btn" onclick="switchTab(6,this)">
+      <div class="tab-num"><span class="tab-dot">7</span></div>
+      <div class="tab-title">Referências</div>
+      <div class="tab-desc">37 fontes primárias indexadas</div>
+    </button>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- TAB 1 — AVALIAÇÃO SISTEMÁTICA -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <div class="tab-panel active" id="panel-0">
+    <div class="section-label">Passo a Passo</div>
+    <h2 class="section-title">Avaliação Sistemática do ECG na SCA</h2>
+    <p class="section-sub">O guideline ACC/AHA 2025 para SCA estabelece que o ECG de 12 derivações deve ser obtido e interpretado em ≤10 minutos do primeiro contato médico, independentemente do cenário clínico. A comparação com traçados prévios é fortemente recomendada — alterações dinâmicas são o marcador cardinal de isquemia aguda, e anormalidades basais são prevalentes, especialmente em idosos.</p>
+
+    <div class="info-box info-red">
+      <span class="info-box-icon">⏱</span>
+      <div><strong>Meta de 10 minutos:</strong> A janela entre chegada do paciente e interpretação do primeiro ECG é um indicador de qualidade assistencial de nível I no guideline ACC/AHA 2025. Atrasos aumentam o tempo porta-balão e a mortalidade proporcionalmente.</div>
+    </div>
+
+    <h3 class="sub-heading">Algoritmo de Avaliação em 6 Passos</h3>
+
+    <div class="algo-step">
+      <div class="algo-step-num">1</div>
+      <div class="algo-step-content">
+        <div class="algo-step-title">Frequência, Ritmo e Condução</div>
+        <div class="algo-step-body">Identifique a frequência cardíaca (taquicardia sinusal sugere dor, ansiedade ou choque compensado; bradicardia pode indicar infarto inferior com envolvimento nodal). Avalie o ritmo: FA, flutter, TV ou bloqueio atrioventricular influenciam manejo imediato. Meça o intervalo PR (referência: 120–200 ms) e o QRS (&lt;120 ms). <strong class="teal">Novo BRE ou BRD pode ser manifestação direta de oclusão aguda</strong> — não ignore alterações de condução recentes.</div>
+      </div>
+    </div>
+    <div style="display:flex; gap:1rem; margin: -0.5rem 0 0.5rem 0; padding-left: 1rem;">
+      <div style="width:32px; display:flex; justify-content:center;"><div style="width:2px; height:20px; background: var(--border); margin:0 auto;"></div></div>
+    </div>
+
+    <div class="algo-step">
+      <div class="algo-step-num">2</div>
+      <div class="algo-step-content">
+        <div class="algo-step-title">Eixo Elétrico</div>
+        <div class="algo-step-body">Calcule o eixo a partir de DI e aVF. <strong class="amber">Desvio superior esquerdo do eixo</strong> (entre −30° e −90°) pode indicar BFAE ou oclusão de ramo diagonal. <strong class="amber">Desvio direito</strong> sugere sobrecarga do VD (embolia pulmonar, IAM de VD) ou padrão S1Q3T3. O eixo isolado raramente diagnostica SCA, mas contextualiza o achado principal.</div>
+      </div>
+    </div>
+    <div style="display:flex; gap:1rem; margin: -0.5rem 0 0.5rem 0; padding-left: 1rem;">
+      <div style="width:32px; display:flex; justify-content:center;"><div style="width:2px; height:20px; background: var(--border); margin:0 auto;"></div></div>
+    </div>
+
+    <div class="algo-step">
+      <div class="algo-step-num">3</div>
+      <div class="algo-step-content">
+        <div class="algo-step-title">Intervalo QT / QTc</div>
+        <div class="algo-step-body">Prolongação do QTc (>450 ms homens, >460 ms mulheres) pode surgir no contexto de isquemia miocárdica global, distúrbios eletrolíticos associados (hipocalemia, hipomagnesemia) ou como achado basal que complica o manejo (risco de Torsade). A <strong>fórmula de Bazett</strong> (QTc = QT/√RR) subestima em taquicardias — use Fridericia (QTc = QT/³√RR) nesses casos.</div>
+      </div>
+    </div>
+    <div style="display:flex; gap:1rem; margin: -0.5rem 0 0.5rem 0; padding-left: 1rem;">
+      <div style="width:32px; display:flex; justify-content:center;"><div style="width:2px; height:20px; background: var(--border); margin:0 auto;"></div></div>
+    </div>
+
+    <div class="algo-step">
+      <div class="algo-step-num red">4</div>
+      <div class="algo-step-content">
+        <div class="algo-step-title">Ponto J e Segmento ST — Critério Diagnóstico Principal</div>
+        <div class="algo-step-body">
+          Este é o <strong class="red">branchpoint primário</strong> do algoritmo. Meça o deslocamento do segmento ST no ponto J (junção QRS-ST), usando a linha isoelétrica do segmento TP como referência.<br><br>
+          <strong>STEMI:</strong> Supradesnivelamento ≥1 mm em ≥2 derivações contíguas em qualquer derivação, exceto V2–V3, onde os limiares são <strong>≥2 mm em homens ≥40 anos, ≥2,5 mm em homens &lt;40 anos e ≥1,5 mm em mulheres</strong>.<br><br>
+          <strong>IAMSEST:</strong> Infradesnivelamento horizontal ou descendente ≥0,5 mm em ≥2 derivações contíguas e/ou inversão de onda T >1 mm em ≥2 derivações contíguas com onda R proeminente ou relação R/S >1. Ou supradesnivelamento transitório ≥0,5 mm.<br><br>
+          Cerca de <strong class="amber">41% dos IAMSEST apresentam ECG normal ou não diagnóstico na chegada</strong> — a ausência de alteração não exclui SCA.
+        </div>
+      </div>
+    </div>
+    <div style="display:flex; gap:1rem; margin: -0.5rem 0 0.5rem 0; padding-left: 1rem;">
+      <div style="width:32px; display:flex; justify-content:center;"><div style="width:2px; height:20px; background: var(--border); margin:0 auto;"></div></div>
+    </div>
+
+    <div class="algo-step">
+      <div class="algo-step-num">5</div>
+      <div class="algo-step-content">
+        <div class="algo-step-title">Onda T e Ondas Q</div>
+        <div class="algo-step-body"><strong>Ondas T hiperagudas</strong> (largas, simétricas, amplitude aumentada) precedem a supradesnivelamento — representam o estágio mais precoce da isquemia epicárdica. <strong>Inversão de onda T</strong> com R proeminente em V2–V3 após período assintomático é o padrão de Wellens — não trivialize. <strong>Ondas Q patológicas</strong> (duração >40 ms e/ou amplitude >25% do QRS) indicam necrose estabelecida, associam-se a infartos maiores e aumentam o risco prognóstico. Ondas Q em derivações localizadas com ST elevado equivalem a oclusão transmural evoluindo.</div>
+      </div>
+    </div>
+    <div style="display:flex; gap:1rem; margin: -0.5rem 0 0.5rem 0; padding-left: 1rem;">
+      <div style="width:32px; display:flex; justify-content:center;"><div style="width:2px; height:20px; background: var(--border); margin:0 auto;"></div></div>
+    </div>
+
+    <div class="algo-step">
+      <div class="algo-step-num">6</div>
+      <div class="algo-step-content">
+        <div class="algo-step-title">Derivações Adicionais</div>
+        <div class="algo-step-body"><strong>V3R e V4R</strong> (derivações direitas): obrigatórias em infarto inferior para rastrear comprometimento do VD. A supradesnivelamento ≥1 mm em V4R tem sensibilidade de ~88% e especificidade de ~78% para oclusão de coronária direita proximal. <strong>V7–V9</strong> (derivações posteriores): indicadas quando há infradesnível isolado em V1–V3, suspeita de oclusão da artéria circunflexa ou infarto posterior. Critério: supradesnivelamento ≥0,5 mm em V7–V9 (≥1 mm em homens &lt;40 anos).</div>
+      </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <h3 class="sub-heading">Critérios Quantitativos — Tabela de Referência Rápida</h3>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+        <div>
+          <div class="card-title">Critérios Diagnósticos para Supradesnivelamento de ST (4ª Definição Universal de IAM)</div>
+          <div class="card-subtitle">Ponto J, derivações contíguas, limiares sexo/idade-específicos</div>
+        </div>
+      </div>
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Derivação / Grupo</th>
+            <th class="emergent-th" style="width:35%">Limiar de STEMI</th>
+            <th class="urgent-th" style="width:35%">Observações Clínicas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>V2–V3 · Homens ≥40 anos</td>
+            <td class="emergent-td"><span class="badge badge-red">≥2 mm</span></td>
+            <td class="urgent-td">Limiar mais elevado pela repolarização precoce frequente nessas derivações</td>
+          </tr>
+          <tr>
+            <td>V2–V3 · Homens &lt;40 anos</td>
+            <td class="emergent-td"><span class="badge badge-red">≥2,5 mm</span></td>
+            <td class="urgent-td">Jovens têm maior voltagem de repolarização basal</td>
+          </tr>
+          <tr>
+            <td>V2–V3 · Mulheres (qualquer idade)</td>
+            <td class="emergent-td"><span class="badge badge-red">≥1,5 mm</span></td>
+            <td class="urgent-td">Limiar menor — mulheres têm menor amplitude de ST basal</td>
+          </tr>
+          <tr>
+            <td>Demais derivações (DI, DII, DIII, aVL, aVF, V4–V6)</td>
+            <td class="emergent-td"><span class="badge badge-red">≥1 mm</span></td>
+            <td class="urgent-td">Independente de sexo e idade</td>
+          </tr>
+          <tr>
+            <td>aVR</td>
+            <td class="emergent-td"><span class="badge badge-amber">≥1 mm + contexto</span></td>
+            <td class="urgent-td">Isolado não define STEMI; em conjunto com infra ≥1 mm em ≥6 derivações = tronco ou TVC</td>
+          </tr>
+          <tr>
+            <td>V7–V9 (posteriores)</td>
+            <td class="emergent-td"><span class="badge badge-red">≥0,5 mm (≥1 mm em H &lt;40a)</span></td>
+            <td class="urgent-td">Confirmação de IAM posterior — equivalente de STEMI se &lt;0,5 mm mas V1–V3 com infra isolado</td>
+          </tr>
+          <tr>
+            <td>V4R (direita)</td>
+            <td class="emergent-td"><span class="badge badge-red">≥1 mm</span></td>
+            <td class="urgent-td">IAM de VD — contra-indicação relativa a nitrato e vasodilatadores</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid-3">
+      <div class="mini-card red">
+        <div class="mini-card-label">Sensib. inicial ECG</div>
+        <div class="mini-card-val">~60%</div>
+        <div class="mini-card-desc">Para SCA confirmada — até 41% de NSTE-ACS sem alterações na chegada</div>
+      </div>
+      <div class="mini-card">
+        <div class="mini-card-label">ECG não diagnóstico → STEMI</div>
+        <div class="mini-card-val">11%</div>
+        <div class="mini-card-desc">Evoluem para diagnóstico em ≤90 min com ECGs seriados</div>
+      </div>
+      <div class="mini-card amber">
+        <div class="mini-card-label">LR+ Infradesnível ST</div>
+        <div class="mini-card-val">5,3</div>
+        <div class="mini-card-desc">IC 95% 2,1–8,6 para diagnóstico de SCA (Nohria, AFP 2024)</div>
+      </div>
+    </div>
+
+    <div class="info-box info-amber">
+      <span class="info-box-icon">⚠️</span>
+      <div><strong>ECG isolado não exclui SCA.</strong> O guideline ACC/AHA 2021 de dor torácica é enfático: até 6% de pacientes com SCA em evolução recebem alta com ECG normal. A integração com troponina de alta sensibilidade e escore de risco (GRACE, HEART) é mandatória.</div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- TAB 2 — PADRÕES DE OCLUSÃO AGUDA -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <div class="tab-panel" id="panel-1">
+    <div class="section-label">Reconhecimento de Padrões</div>
+    <h2 class="section-title">Padrões de Oclusão Arterial Aguda</h2>
+    <p class="section-sub">Além do STEMI clássico, vários padrões eletrocardiográficos — denominados "equivalentes de STEMI" — indicam oclusão coronariana aguda e exigem reperfusão emergente mesmo na ausência de supradesnivelamento típico. O reconhecimento ativo desses padrões é determinante para não atrasar a intervenção.</p>
+
+    <div class="info-box info-red">
+      <span class="info-box-icon">🚨</span>
+      <div><strong>Princípio fundamental:</strong> O ECG diagnostica <em>oclusão arterial aguda</em>, não apenas STEMI. Um traçado sem supradesnivelamento clássico pode representar a mesma urgência hemodinâmica — e o tempo de isquemia corre igualmente. Cada padrão abaixo deve deflagrar o mesmo raciocínio: "Há uma artéria fechada?"</div>
+    </div>
+
+    <!-- SVG ECG Pattern Cards -->
+    <h3 class="sub-heading">Galeria de Padrões — Ilustrações das Morfologias Diagnósticas</h3>
+
+    <div class="ecg-grid">
+
+      <!-- STEMI Clássico -->
+      <div class="ecg-card critical">
+        <div class="ecg-card-header">
+          <div class="ecg-card-title">STEMI Clássico</div>
+          <span class="badge badge-red">Emergente</span>
+        </div>
+        <div class="ecg-canvas">
+          <svg width="220" height="70" viewBox="0 0 220 70">
+            <line x1="0" y1="45" x2="220" y2="45" stroke="#334" stroke-width="0.5"/>
+            <!-- Baseline -->
+            <path d="M0,45 L20,45 L25,40 L30,55 L38,10 L46,45 L58,45 L68,25 L78,45 L220,45" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- ST label -->
+            <text x="62" y="20" font-family="JetBrains Mono,monospace" font-size="8" fill="#ef4444">ST↑</text>
+            <text x="10" y="62" font-family="JetBrains Mono,monospace" font-size="7" fill="#555">reciprocal ↓</text>
+            <!-- Reciprocal hint -->
+            <path d="M140,45 L155,45 L160,50 L165,40 L170,52 L175,45 L220,45" fill="none" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="3,2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="ecg-card-body">
+          <div class="ecg-card-desc">Supradesnivelamento convexo ou "em abóbada" com infradesnivelamento recíproco em derivações opostas. O infradesnível recíproco diferencia STEMI de pericardite ou repolarização precoce com elevada especificidade.</div>
+          <div class="ecg-card-criteria">
+            <span class="badge badge-red">≥1 mm J-point</span>
+            <span class="badge badge-amber">Recíproco distingue</span>
+            <span class="badge badge-teal">2 deriv. contíguas</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Onda T Hiperaguda -->
+      <div class="ecg-card critical">
+        <div class="ecg-card-header">
+          <div class="ecg-card-title">Onda T Hiperaguda</div>
+          <span class="badge badge-red">Emergente</span>
+        </div>
+        <div class="ecg-canvas">
+          <svg width="220" height="70" viewBox="0 0 220 70">
+            <line x1="0" y1="50" x2="220" y2="50" stroke="#334" stroke-width="0.5"/>
+            <path d="M0,50 L20,50 L25,44 L30,60 L37,50 L46,50 L56,50 L60,48 L65,10 L70,48 L80,50 L220,50" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <text x="56" y="8" font-family="JetBrains Mono,monospace" font-size="8" fill="#ef4444">T hiperaguda</text>
+            <path d="M0,50 L20,50 L25,44 L30,60 L37,50 L100,50 L104,46 L108,38 L112,46 L118,50 L220,50" fill="none" stroke="#334" stroke-width="1" stroke-dasharray="3,2" stroke-linecap="round" stroke-linejoin="round"/>
+            <text x="100" y="36" font-family="JetBrains Mono,monospace" font-size="7" fill="#555">T normal (ref)</text>
+          </svg>
+        </div>
+        <div class="ecg-card-body">
+          <div class="ecg-card-desc">Onda T larga, simétrica e de alta amplitude — precede o supradesnivelamento de ST em minutos a horas. É o sinal mais precoce de oclusão epicárdica aguda. Comparar com traçado anterior é essencial para valorizar o achado.</div>
+          <div class="ecg-card-criteria">
+            <span class="badge badge-red">Larga + simétrica</span>
+            <span class="badge badge-red">Amplitude aumentada</span>
+            <span class="badge badge-amber">Fase pré-ST↑</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- de Winter -->
+      <div class="ecg-card critical">
+        <div class="ecg-card-header">
+          <div class="ecg-card-title">Padrão de de Winter</div>
+          <span class="badge badge-red">Emergente</span>
+        </div>
+        <div class="ecg-canvas">
+          <svg width="220" height="75" viewBox="0 0 220 75">
+            <line x1="0" y1="45" x2="220" y2="45" stroke="#334" stroke-width="0.5"/>
+            <!-- QRS -->
+            <path d="M0,45 L20,45 L24,50 L27,18 L31,45 L36,55 L42,50" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- upsloping ST dep + tall T -->
+            <path d="M42,50 L52,47 L60,45 L66,40 L70,10 L74,40 L80,45 L220,45" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <text x="34" y="68" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#ef4444">infra J ascendente</text>
+            <text x="60" y="8" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#ef4444">T alta</text>
+          </svg>
+        </div>
+        <div class="ecg-card-body">
+          <div class="ecg-card-desc">Infradesnível ascendente (upsloping) ≥1 mm no ponto J nas derivações precordiais, seguido de onda T positiva, simétrica e alta. Associado a oclusão proximal de DA em até 2% dos IAMs com oclusão total — sem supradesnivelamento. Ausência de ST↑ não exclui oclusão total.</div>
+          <div class="ecg-card-criteria">
+            <span class="badge badge-red">Infra J ascendente ≥1mm</span>
+            <span class="badge badge-red">T alta + simétrica</span>
+            <span class="badge badge-amber">Oclusão DA proximal</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Wellens Tipo A -->
+      <div class="ecg-card warning">
+        <div class="ecg-card-header">
+          <div class="ecg-card-title">Wellens — Tipo A (Bifásico)</div>
+          <span class="badge badge-amber">Emergente/Urgente</span>
+        </div>
+        <div class="ecg-canvas">
+          <svg width="220" height="70" viewBox="0 0 220 70">
+            <line x1="0" y1="40" x2="220" y2="40" stroke="#334" stroke-width="0.5"/>
+            <path d="M0,40 L18,40 L22,34 L26,50 L32,40 L40,40 L47,38 L52,33 L55,40 L60,47 L65,40 L220,40" fill="none" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <text x="44" y="62" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#fbbf24">T bifásica V2–V3</text>
+          </svg>
+        </div>
+        <div class="ecg-card-body">
+          <div class="ecg-card-desc"><strong>Ocorre durante período sem dor</strong> (pós-reperfusão espontânea). Onda T com deflexão inicial positiva seguida de inversão — bifásica (positivo-negativo) em V2–V3. Representa estenose crítica de DA proximal com alto risco de reoclusão. Cineangiocoronariografia indicada mesmo sem troponina elevada.</div>
+          <div class="ecg-card-criteria">
+            <span class="badge badge-amber">Bifásico pos→neg</span>
+            <span class="badge badge-amber">V2–V3 sem dor</span>
+            <span class="badge badge-red">DA proximal crítica</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Wellens Tipo B -->
+      <div class="ecg-card warning">
+        <div class="ecg-card-header">
+          <div class="ecg-card-title">Wellens — Tipo B (Inversão Profunda)</div>
+          <span class="badge badge-red">Emergente</span>
+        </div>
+        <div class="ecg-canvas">
+          <svg width="220" height="70" viewBox="0 0 220 70">
+            <line x1="0" y1="35" x2="220" y2="35" stroke="#334" stroke-width="0.5"/>
+            <path d="M0,35 L18,35 L22,28 L26,48 L32,35 L38,35 L45,36 L50,58 L55,36 L62,35 L220,35" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <text x="40" y="68" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#ef4444">T invertida profunda V2–V3</text>
+          </svg>
+        </div>
+        <div class="ecg-card-body">
+          <div class="ecg-card-desc">Inversão simétrica e profunda de onda T em V2–V3 (menos frequentemente até V4–V5) no período assintomático — padrão mais frequente da síndrome de Wellens (~75% dos casos). Representa reperfusão espontânea de estenose crítica ou suboclusão proximal da DA. Risco muito alto de evoluir para IAM anterior extenso.</div>
+          <div class="ecg-card-criteria">
+            <span class="badge badge-red">T neg profunda + simétrica</span>
+            <span class="badge badge-amber">Assintomático</span>
+            <span class="badge badge-teal">Troponina pode ser normal</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- IAM Posterior -->
+      <div class="ecg-card critical">
+        <div class="ecg-card-header">
+          <div class="ecg-card-title">IAM Posterior Isolado</div>
+          <span class="badge badge-red">Emergente</span>
+        </div>
+        <div class="ecg-canvas">
+          <svg width="220" height="70" viewBox="0 0 220 70">
+            <line x1="0" y1="35" x2="220" y2="35" stroke="#334" stroke-width="0.5"/>
+            <!-- Tall R in V1/V2 + ST depression -->
+            <path d="M0,35 L15,35 L18,30 L26,10 L34,30 L38,42 L48,38 L60,42 L72,35 L220,35" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <text x="14" y="8" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#ef4444">R alta V1–V2</text>
+            <text x="46" y="62" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#ef4444">ST↓ V1–V3 → ↑ V7–V9</text>
+          </svg>
+        </div>
+        <div class="ecg-card-body">
+          <div class="ecg-card-desc">Infradesnível isolado em V1–V3 com onda R alta (R/S >1 em V2) = espelho do supradesnivelamento posterior. Obtenha derivações posteriores V7–V9 imediatamente: critério diagnóstico é supra ≥0,5 mm (≥1 mm em homens &lt;40a). Causado tipicamente por oclusão da artéria circunflexa — frequentemente subdiagnosticado por não aparecer nas derivações padrão.</div>
+          <div class="ecg-card-criteria">
+            <span class="badge badge-red">Infra V1–V3 isolado</span>
+            <span class="badge badge-amber">R/S >1 em V2</span>
+            <span class="badge badge-teal">Confirmar V7–V9</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- aVR Pattern -->
+      <div class="ecg-card critical">
+        <div class="ecg-card-header">
+          <div class="ecg-card-title">Padrão de aVR — Tronco / TVC</div>
+          <span class="badge badge-red">Emergente</span>
+        </div>
+        <div class="ecg-canvas">
+          <svg width="220" height="70" viewBox="0 0 220 70">
+            <line x1="0" y1="45" x2="220" y2="45" stroke="#334" stroke-width="0.5"/>
+            <!-- aVR elevation -->
+            <path d="M0,45 L15,45 L18,50 L22,15 L28,45 L35,38 L50,38 L60,45 L220,45" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <text x="32" y="30" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#ef4444">supra aVR ≥1mm</text>
+            <!-- multilead depression hint -->
+            <path d="M100,45 L120,45 L125,50 L130,42 L135,52 L140,45 L220,45" fill="none" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="3,2"/>
+            <text x="100" y="62" font-family="JetBrains Mono,monospace" font-size="7" fill="#fbbf24">infra ≥6 deriv.</text>
+          </svg>
+        </div>
+        <div class="ecg-card-body">
+          <div class="ecg-card-desc">Supradesnivelamento ≥1 mm em aVR com infradesnível difuso (≥1 mm em ≥6 derivações), frequentemente associado a comprometimento hemodinâmico. Padrão altamente sugestivo de oclusão de tronco de coronária esquerda ou doença trivascular grave. Mortalidade hospitalar superior a 75% se não revascularizado. Diferencia-se de STEMI isolado pela extensão difusa do infradesnível.</div>
+          <div class="ecg-card-criteria">
+            <span class="badge badge-red">supra aVR ≥1mm</span>
+            <span class="badge badge-red">Infra ≥6 deriv.</span>
+            <span class="badge badge-amber">TCC ou TVC</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /ecg-grid -->
+
+    <hr class="section-divider">
+
+    <!-- SGARBOSSA -->
+    <h3 class="sub-heading">Critérios de Sgarbossa e Sgarbossa Modificado (BRE / Marcapasso)</h3>
+    <p class="body-text">O bloqueio de ramo esquerdo (BRE) e o ritmo de marcapasso ventricular alteram profundamente a repolarização, tornando a interpretação do segmento ST dependente de critérios específicos. Os critérios originais de Sgarbossa (1996) apresentavam sensibilidade limitada; o <strong class="teal">Sgarbossa Modificado por Smith et al. (2012)</strong> substituiu o terceiro critério absoluto por uma razão proporcional (ST/S), aumentando substancialmente a sensibilidade sem perda significativa de especificidade.</p>
+
+    <div class="info-box info-amber">
+      <span class="info-box-icon">⚠️</span>
+      <div><strong>Atenção — Guideline ACC/AHA 2025:</strong> BRE isolado <em>não</em> é mais considerado equivalente automático de STEMI e não justifica ativação de hemodinâmica por si só. A decisão deve integrar clínica + critérios de Sgarbossa + troponina + ecocardiograma à beira do leito.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon amber"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+        <div>
+          <div class="card-title">Critérios de Sgarbossa Modificados — Aplicar em BRE e Ritmo de Marcapasso</div>
+          <div class="card-subtitle">≥1 critério positivo → alta suspeição para oclusão aguda → cateterismo de emergência</div>
+        </div>
+      </div>
+      <div class="sgarbossa-rule">
+        <div class="sgarbossa-pts">I</div>
+        <div>
+          <div class="sgarbossa-label">Supradesnivelamento ST concordante ≥1 mm (derivação com QRS positivo)</div>
+          <div class="sgarbossa-desc">Em qualquer derivação onde o QRS é predominantemente positivo, supradesnivelamento ≥1 mm é anormal e altamente específico para oclusão aguda. Especificidade ~98% no estudo original de Sgarbossa. Mantido inalterado no critério modificado.</div>
+        </div>
+      </div>
+      <div class="sgarbossa-rule">
+        <div class="sgarbossa-pts">II</div>
+        <div>
+          <div class="sgarbossa-label">Infradesnível ST concordante ≥1 mm em V1–V3 (derivações com QRS negativo)</div>
+          <div class="sgarbossa-desc">Em derivações com QRS predominantemente negativo (como V1–V3 no BRE típico), infradesnível ≥1 mm é concordante e altamente suspeito. Também mantido no critério modificado. Considerado o segundo achado mais específico.</div>
+        </div>
+      </div>
+      <div class="sgarbossa-rule" style="border-color: rgba(0,211,189,.3);">
+        <div class="sgarbossa-pts" style="color: var(--teal);">III*</div>
+        <div>
+          <div class="sgarbossa-label">Supradesnivelamento excessivamente discordante — razão ST/S ≤ −0,25 <span class="badge badge-teal" style="margin-left:.5rem">Modificado</span></div>
+          <div class="sgarbossa-desc">O critério original exigia supra ≥5 mm discordante (baixa sensibilidade ~20%). Smith et al. (2012) substituiu pela razão ST/S: se o ponto J elevado for ≥25% da amplitude do QRS negativo (onda S), o desvio é excessivo e sugere oclusão. Sensibilidade aumentou para ~91%, especificidade 90%. Usar o maior pico da onda S para o denominador.</div>
+        </div>
+      </div>
+      <div class="info-box info-teal" style="margin-top: .75rem; margin-bottom: 0;">
+        <span class="info-box-icon">💡</span>
+        <div><strong>Score de Barcelona (2020):</strong> Uma alternativa validada por Aschauer et al. — qualquer desvio ST/QRS &gt;25% em qualquer derivação (concordante ou discordante) sugere isquemia aguda no BRE. Desempenho comparável ao Sgarbossa Modificado em estudos prospectivos.</div>
+      </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- PREDICTIVE VALUE TABLE -->
+    <h3 class="sub-heading">Valor Preditivo dos Padrões — Razões de Verossimilhança</h3>
+    <div class="card">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Achado ECG</th>
+            <th class="emergent-th">LR+ para SCA (IC 95%)</th>
+            <th class="urgent-th">Nível de Evidência</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Infradesnível ST</td>
+            <td class="emergent-td"><strong>5,3</strong> (2,1–8,6)</td>
+            <td class="urgent-td">Estudo Nohria & Viera, AFP 2024 · Metanálise</td>
+          </tr>
+          <tr>
+            <td>Ondas Q patológicas</td>
+            <td class="emergent-td"><strong>3,6</strong> (1,6–5,7)</td>
+            <td class="urgent-td">AFP 2024; 4ª Definição Universal de IAM</td>
+          </tr>
+          <tr>
+            <td>Supradesnivelamento ST</td>
+            <td class="emergent-td"><strong>3,6</strong> (1,6–5,7)</td>
+            <td class="urgent-td">AFP 2024; ACC/AHA 2025</td>
+          </tr>
+          <tr>
+            <td>Inversão de onda T</td>
+            <td class="emergent-td"><strong>1,8</strong> (1,3–2,7)</td>
+            <td class="urgent-td">AFP 2024 — sensibilidade >especificidade</td>
+          </tr>
+          <tr>
+            <td>Padrão de de Winter</td>
+            <td class="emergent-td"><strong>Alto</strong> (sem LR isolado)</td>
+            <td class="urgent-td">Tzimas et al., AJC 2019; alta PPV para oclusão proximal de DA</td>
+          </tr>
+          <tr>
+            <td>Sgarbossa modificado ≥1 critério</td>
+            <td class="emergent-td"><strong>Sensib. ~91% / Espec. ~90%</strong></td>
+            <td class="urgent-td">Smith et al. (2012); validação prospectiva em BRE</td>
+          </tr>
+          <tr>
+            <td>ECG dinâmico em série (mudança)</td>
+            <td class="emergent-td"><strong>Aumenta significativamente</strong></td>
+            <td class="urgent-td">ACC/AHA 2025; guideline de dor torácica 2021</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- TAB 3 — ESTRATIFICAÇÃO INVASIVA -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <div class="tab-panel" id="panel-2">
+    <div class="section-label">Decisão Clínica</div>
+    <h2 class="section-title">Estratificação Invasiva: Emergente vs Urgente</h2>
+    <p class="section-sub">A decisão sobre o timing da angiografia coronariana é central no manejo da SCA. O ACC/AHA 2025 e o ESC 2020 estratificam os pacientes em três horizontes temporais, baseados no risco de deterioração hemodinâmica, extensão isquêmica e prognóstico a médio prazo.</p>
+
+    <!-- Timeline visual -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon red">⏰</div>
+        <div>
+          <div class="card-title">Horizontes Temporais para Intervenção</div>
+          <div class="card-subtitle">Primeiro contato médico como ponto zero</div>
+        </div>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot red">⚡</div>
+          <div class="timeline-time red">Imediato</div>
+          <div class="timeline-label">STEMI + instabilidade elétrica/hemodinâmica</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot red">2h</div>
+          <div class="timeline-time red">&lt;2 horas</div>
+          <div class="timeline-label">STEMI, equivalentes, choque cardiogênico, IAMSEST instável</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot amber">24h</div>
+          <div class="timeline-time amber">&lt;24 horas</div>
+          <div class="timeline-label">IAMSEST alto risco — GRACE &gt;140, troponina positiva, ECG dinâmico</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot teal">72h</div>
+          <div class="timeline-time teal">&lt;72 horas</div>
+          <div class="timeline-label">IAMSEST risco intermediário — GRACE 109–140</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot gray">Eletivo</div>
+          <div class="timeline-time" style="color:var(--muted-foreground)">Eletivo</div>
+          <div class="timeline-label">Baixo risco — GRACE &lt;109, ECG/troponina normais</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Emergent vs Urgent table -->
+    <h3 class="sub-heading">Critérios Clínicos Comparativos</h3>
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Parâmetro</th>
+          <th class="emergent-th">🚨 Emergente (&lt;2 horas)</th>
+          <th class="urgent-th">⚠️ Urgente (&lt;24 horas)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Padrão ECG</td>
+          <td class="emergent-td">STEMI, Equivalentes de STEMI (de Winter, posterior, Wellens crítico, Sgarbossa ≥1), supra aVR + infra multilead, novo BRE com critérios</td>
+          <td class="urgent-td">Infradesnivelamento ST novo ou dinâmico ≥0,5 mm; inversão T nova; ECG com alterações transitórias resolvidas</td>
+        </tr>
+        <tr>
+          <td>Status Hemodinâmico</td>
+          <td class="emergent-td">Choque cardiogênico (PAS &lt;90 mmHg, sinais de hipoperfusão), IC aguda descompensada, instabilidade refratária a medidas iniciais</td>
+          <td class="urgent-td">Hemodinamicamente estável com dor recorrente ou troponina em ascensão</td>
+        </tr>
+        <tr>
+          <td>Arritmias</td>
+          <td class="emergent-td">TV sustentada, FV recorrente, bloqueio AV avançado (BAV 2° grau tipo II, BAV total novo), necessidade de cardioversão ou marcapasso</td>
+          <td class="urgent-td">TV não sustentada sem comprometimento hemodinâmico; bradiarritmias controladas</td>
+        </tr>
+        <tr>
+          <td>Escore de Risco</td>
+          <td class="emergent-td">Sem limiar numérico — indica clínica diretamente. GRACE não se aplica neste estrato — a decisão é clínica</td>
+          <td class="urgent-td"><strong>GRACE &gt;140</strong> (preferencial) ou TIMI ≥4. GRACE superior ao TIMI para discriminação — maior acurácia prognóstica validada em metanálises (Jobs et al., Lancet 2017)</td>
+        </tr>
+        <tr>
+          <td>Troponina</td>
+          <td class="emergent-td">Não aguardar resultado para decisão se ECG diagnóstico — reperfusão não deve ser retardada por ausência de troponina</td>
+          <td class="urgent-td">Elevação confirmada de hs-cTnI/T com padrão de ascensão e/ou queda (pelo menos 1 valor acima do percentil 99)</td>
+        </tr>
+        <tr>
+          <td>Anatomia Coronariana</td>
+          <td class="emergent-td">Suspeita de TCC ou lesão proximal da DA com comprometimento hemodinâmico</td>
+          <td class="urgent-td">Anatomia ameaçadora (TCC, DA proximal, multiarterial com FE reduzida) identificada em cateterismo prévio ou na apresentação atual</td>
+        </tr>
+        <tr>
+          <td>Dor Refratária</td>
+          <td class="emergent-td">Angina refratária à terapia clínica máxima (dupla antiagregação + anticoagulação + nitratos + morfina)</td>
+          <td class="urgent-td">Angina recorrente em repouso após estabilização inicial</td>
+        </tr>
+        <tr>
+          <td>Populações Especiais</td>
+          <td class="emergent-td">Qualquer das acima em idosos, diabéticos ou mulheres — atenção redobrada para apresentações atípicas</td>
+          <td class="urgent-td">Idade ≥75 anos, diabetes mellitus e disfunção renal são fatores agravantes que aumentam o peso de qualquer critério</td>
+        </tr>
+        <tr>
+          <td>Reperfusão se Sem Cateterismo</td>
+          <td class="emergent-td">Fibrinólise se ICPp não disponível em ≤120 min. Tenecteplase, alteplase ou reteplase dose completa se ≤12h de sintomas e sem contraindicações</td>
+          <td class="urgent-td">Não se aplica — fibrinólise não indicada em IAMSEST</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr class="section-divider">
+
+    <!-- STEMI door to balloon -->
+    <div class="grid-2">
+      <div class="card card-red">
+        <div class="card-header">
+          <div class="card-icon red">🚑</div>
+          <div>
+            <div class="card-title">STEMI — Metas de Tempo</div>
+            <div class="card-subtitle">Guideline ACC/AHA 2025</div>
+          </div>
+        </div>
+        <p class="body-text">A ICP primária é a estratégia de reperfusão preferida quando disponível dentro do prazo. Cada 30 minutos de atraso no tempo porta-balão associa-se a aumento de ~7,5% na mortalidade relativa em 1 ano.</p>
+        <div class="info-box info-red" style="margin-bottom:.5rem">
+          <span class="info-box-icon">🎯</span>
+          <div><strong>Porta-Balão (1° contato médico → abertura da artéria):</strong> Meta ≤90 min se apresentação direta ao centro com ICP; ≤120 min se transferência necessária.</div>
+        </div>
+        <div class="info-box info-amber" style="margin-bottom:0">
+          <span class="info-box-icon">💊</span>
+          <div><strong>Fibrinólise:</strong> Se ICP indisponível em ≤120 min → fibrinólise em ≤30 min da chegada (meta porta-agulha ≤30 min). Após fibrinólise bem-sucedida, angiografia nas próximas 3–24h.</div>
+        </div>
+      </div>
+
+      <div class="card card-amber">
+        <div class="card-header">
+          <div class="card-icon amber">📊</div>
+          <div>
+            <div class="card-title">IAMSEST Alto Risco — Evidência de Base</div>
+            <div class="card-subtitle">Estratégia invasiva precoce (&lt;24h)</div>
+          </div>
+        </div>
+        <p class="body-text">A metanálise de Jobs et al. (Lancet, 2017), incluindo dados individuais de ~5.000 pacientes de 8 RCTs (TIMACS, VERDICT, ELISA-3, entre outros), demonstrou que estratégia invasiva em ≤24h vs. 25–72h reduz isquemia recorrente e revascularização urgente, sem diferença significativa em mortalidade geral — mas com benefício de mortalidade em pacientes com GRACE &gt;140.</p>
+        <div class="info-box info-amber" style="margin-bottom:.5rem">
+          <span class="info-box-icon">📉</span>
+          <div>Bae et al. (JACC CI, 2023): em IAMSEST com sintomas &lt;6h, estratégia invasiva &lt;24h vs. 24–72h associou-se a menor taxa de eventos combinados (9,7% vs. 12,6%).</div>
+        </div>
+        <div class="info-box info-teal" style="margin-bottom:0">
+          <span class="info-box-icon">🔬</span>
+          <div>O benefício do GRACE &gt;140 como limiar para estratificação de urgência tem validação prospectiva consistente em múltiplos registros e guidelines ACC/AHA e ESC.</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- Fibrinolysis contraindications -->
+    <div class="accordion" id="acc-fibrin">
+      <div class="accordion-header" onclick="toggleAccordion('acc-fibrin')">
+        <div class="accordion-icon amber">💊</div>
+        <div class="accordion-title">Contraindicações à Fibrinólise no STEMI</div>
+        <div class="accordion-arrow">▼</div>
+      </div>
+      <div class="accordion-body">
+        <div class="grid-2" style="margin-top:.75rem">
+          <div>
+            <p style="font-size:.78rem; font-weight:700; color:var(--red-raw); margin-bottom:.5rem; text-transform:uppercase; letter-spacing:.06em;">Absolutas</p>
+            <div class="info-box info-red" style="margin-bottom:.5rem"><span class="info-box-icon">✗</span><div>AVC hemorrágico prévio em qualquer tempo</div></div>
+            <div class="info-box info-red" style="margin-bottom:.5rem"><span class="info-box-icon">✗</span><div>AVC isquêmico nos últimos 3 meses</div></div>
+            <div class="info-box info-red" style="margin-bottom:.5rem"><span class="info-box-icon">✗</span><div>Lesão estrutural intracraniana conhecida (MAV, neoplasia, aneurisma)</div></div>
+            <div class="info-box info-red" style="margin-bottom:.5rem"><span class="info-box-icon">✗</span><div>Trauma facial ou craniano grave recente (&lt;3 meses)</div></div>
+            <div class="info-box info-red" style="margin-bottom:.5rem"><span class="info-box-icon">✗</span><div>Cirurgia intracraniana ou intraespinhal &lt;3 meses</div></div>
+            <div class="info-box info-red" style="margin-bottom:.5rem"><span class="info-box-icon">✗</span><div>Suspeita de dissecção aórtica</div></div>
+            <div class="info-box info-red" style="margin-bottom:0"><span class="info-box-icon">✗</span><div>Sangramento interno ativo (exceto menstrual)</div></div>
+          </div>
+          <div>
+            <p style="font-size:.78rem; font-weight:700; color:var(--amber-raw); margin-bottom:.5rem; text-transform:uppercase; letter-spacing:.06em;">Relativas</p>
+            <div class="info-box info-amber" style="margin-bottom:.5rem"><span class="info-box-icon">⚠</span><div>PA ≥180/110 mmHg na apresentação (avaliar controle)</div></div>
+            <div class="info-box info-amber" style="margin-bottom:.5rem"><span class="info-box-icon">⚠</span><div>RCP prolongada ou traumática (&gt;10 min)</div></div>
+            <div class="info-box info-amber" style="margin-bottom:.5rem"><span class="info-box-icon">⚠</span><div>Cirurgia de grande porte &lt;3 semanas</div></div>
+            <div class="info-box info-amber" style="margin-bottom:.5rem"><span class="info-box-icon">⚠</span><div>Sangramento interno recente (2–4 semanas)</div></div>
+            <div class="info-box info-amber" style="margin-bottom:.5rem"><span class="info-box-icon">⚠</span><div>Uso de anticoagulante oral em dose terapêutica</div></div>
+            <div class="info-box info-amber" style="margin-bottom:.5rem"><span class="info-box-icon">⚠</span><div>Gravidez</div></div>
+            <div class="info-box info-amber" style="margin-bottom:0"><span class="info-box-icon">⚠</span><div>Úlcera péptica ativa · Doença hepática grave</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Heart Team note -->
+    <div class="info-box info-teal" style="margin-top:1rem">
+      <span class="info-box-icon">🫀</span>
+      <div><strong>Heart Team para anatomia complexa:</strong> Pacientes com SCA e doença multiarterial complexa, TCC, ou disfunção ventricular grave devem ter discussão em Heart Team após estabilização inicial. O SYNTAX Score e o EuroSCORE II guiam a escolha entre ICP e CRM — dados do EXCEL, NOBLE e SYNTAX II são fundamentais para esta discussão.</div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- TAB 4 — LIMITAÇÕES & POPULAÇÕES ESPECIAIS -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <div class="tab-panel" id="panel-3">
+    <div class="section-label">Armadilhas Diagnósticas</div>
+    <h2 class="section-title">Limitações, Confundidores e Populações Especiais</h2>
+    <p class="section-sub">O ECG é um método sensível a inúmeras condições não isquêmicas que podem simular ou mascarar alterações de SCA. O reconhecimento dessas armadilhas — e o ajuste interpretativo para populações específicas — é tão importante quanto conhecer os critérios diagnósticos primários.</p>
+
+    <div class="info-box info-red">
+      <span class="info-box-icon">🔴</span>
+      <div><strong>ECG normal não exclui SCA:</strong> Até 6% dos pacientes com SCA em evolução recebem alta do pronto-socorro com ECG normal. Em IAMSEST, 41% dos casos não apresentam nenhuma alteração diagnóstica no ECG inicial. A integração com troponina de alta sensibilidade é mandatória.</div>
+    </div>
+
+    <!-- Confounders -->
+    <h3 class="sub-heading">Condições que Simulam ou Mascaram Isquemia</h3>
+
+    <div class="accordion" id="acc-bre">
+      <div class="accordion-header" onclick="toggleAccordion('acc-bre')">
+        <div class="accordion-icon amber">⚡</div>
+        <div class="accordion-title">BRE e Ritmo de Marcapasso — O Grande Mascarador</div>
+        <div class="accordion-arrow">▼</div>
+      </div>
+      <div class="accordion-body">
+        <p class="body-text" style="margin-top:.75rem">O BRE altera completamente a morfologia do QRS e a repolarização ventricular, tornando a análise do segmento ST dependente de critérios específicos. A discordância fisiológica entre QRS e ST é esperada — o que é patológico é o desvio excessivo ou concordante.</p>
+        <p class="body-text">O guideline ACC/AHA 2025 é explícito: <strong class="teal">BRE novo isolado não é diagnóstico de STEMI e não justifica ativação automática de hemodinâmica</strong>. Essa atualização reverte orientação anterior e se baseia em evidências de que BRE novo ocorre frequentemente por causas não isquêmicas e que a ativação indiscriminada leva a cateterismos com anatomia normal em até 20–30% dos casos.</p>
+        <div class="info-box info-teal">
+          <span class="info-box-icon">✅</span>
+          <div><strong>Conduta recomendada:</strong> Aplicar critérios de Sgarbossa modificados. Se ≥1 critério positivo + clínica compatível → ativar hemodinâmica. Se critérios negativos → ecocardiograma à beira do leito para RWMA + troponina seriada. BRE alternante ou de surgimento simultâneo com a dor tem maior especificidade para isquemia aguda.</div>
+        </div>
+        <p class="body-text">O marcapasso ventricular gera morfologia semelhante ao BRE. O mesmo raciocínio com Sgarbossa Modificado aplica-se. Atenção especial ao "pacing overriding" — aumento da frequência de estimulação pode mascarar ritmo intrínseco que revelaria alterações de repolarização.</p>
+      </div>
+    </div>
+
+    <div class="accordion" id="acc-pericardite">
+      <div class="accordion-header" onclick="toggleAccordion('acc-pericardite')">
+        <div class="accordion-icon teal">🫀</div>
+        <div class="accordion-title">Pericardite Aguda — Diagnóstico Diferencial com STEMI</div>
+        <div class="accordion-arrow">▼</div>
+      </div>
+      <div class="accordion-body">
+        <p class="body-text" style="margin-top:.75rem">A pericardite produz supradesnivelamento de ST difuso e côncavo (em sela), sem distribuição anatômica coronariana. A diferenciação com STEMI tem impacto terapêutico direto: antiinflamatórios vs. anticoagulação + reperfusão.</p>
+        <div class="grid-2">
+          <div>
+            <p style="font-size:.78rem; font-weight:700; color:var(--red-raw); margin-bottom:.5rem;">Características de STEMI</p>
+            <div class="info-box info-red" style="margin-bottom:.5rem"><span class="info-box-icon">→</span><div>ST convexo ou horizontal ("em abóbada")</div></div>
+            <div class="info-box info-red" style="margin-bottom:.5rem"><span class="info-box-icon">→</span><div>Infradesnível recíproco em derivações opostas</div></div>
+            <div class="info-box info-red" style="margin-bottom:.5rem"><span class="info-box-icon">→</span><div>Distribuição coronariana territorial</div></div>
+            <div class="info-box info-red" style="margin-bottom:0"><span class="info-box-icon">→</span><div>Depressão de PR não proeminente</div></div>
+          </div>
+          <div>
+            <p style="font-size:.78rem; font-weight:700; color:var(--teal); margin-bottom:.5rem;">Características de Pericardite</p>
+            <div class="info-box info-teal" style="margin-bottom:.5rem"><span class="info-box-icon">→</span><div>ST côncavo (em sela) e difuso (múltiplas derivações)</div></div>
+            <div class="info-box info-teal" style="margin-bottom:.5rem"><span class="info-box-icon">→</span><div>Ausência de infradesnível recíproco (exceto aVR/V1)</div></div>
+            <div class="info-box info-teal" style="margin-bottom:.5rem"><span class="info-box-icon">→</span><div>Infradesnivelamento de PR (achado precoce patognomônico)</div></div>
+            <div class="info-box info-teal" style="margin-bottom:0"><span class="info-box-icon">→</span><div>Evolução para inversão difusa de T após normalização do ST</div></div>
+          </div>
+        </div>
+        <div class="info-box info-amber" style="margin-top:.75rem; margin-bottom:0">
+          <span class="info-box-icon">⚠️</span>
+          <div><strong>Atenção:</strong> Miocardite pode elevar troponina e causar alterações de ST semelhantes a STEMI. Ressonância cardíaca com gadolínio é o padrão-ouro para diferenciação. Em caso de dúvida com instabilidade hemodinâmica, cateterismo é justificável para excluir oclusão.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion" id="acc-rep-precoce">
+      <div class="accordion-header" onclick="toggleAccordion('acc-rep-precoce')">
+        <div class="accordion-icon gray">📈</div>
+        <div class="accordion-title">Repolarização Precoce, LVH e Brugada — Falso-Positivos de STEMI</div>
+        <div class="accordion-arrow">▼</div>
+      </div>
+      <div class="accordion-body" style="padding-top:.75rem">
+        <p class="body-text"><strong>Repolarização precoce:</strong> ST côncavo com entalhe (notch) ou esboço no ponto J, predominante em V2–V5 e derivações inferiores em adultos jovens. Tipicamente sem reciprocidade. O padrão de alto risco de Haissaguerre (supra ≥1 mm em derivações inferiores e/ou laterais com morfologia horizontal-descendente) associa-se a maior risco arrítmico — raramente um dilema com SCA aguda.</p>
+        <p class="body-text"><strong>Hipertrofia Ventricular Esquerda (HVE):</strong> Critérios de voltagem + repolarização secundária (strain pattern) — ST negativo assimétrico nas derivações de alta voltagem (V5–V6, DI, aVL). Pode mascarar isquemia subjacente ou simular lesão subendocárdica. Na vigência de HVE, qualquer alteração de ST dinâmica deve ser valorizada mesmo que não alcance os limiares absolutos.</p>
+        <p class="body-text"><strong>Síndrome de Brugada:</strong> Supra ≥2 mm descendente com onda T negativa em V1–V3 — padrão tipo 1. Pode ser convertido pelo febre, cocaína, antidepressivos tricíclicos, flecainida. Ausência de isquemia na distribuição esperada e contexto clínico diferencial são chaves. Isoproterenol ou quinidina revertem o padrão. <em>Não confundir com IAM anterior de parede alta.</em></p>
+        <p class="body-text"><strong>Embolia Pulmonar Maciça:</strong> Síndrome S1Q3T3, T negativa em V1–V4, taquicardia sinusal, BRD novo, eixo à direita. O STEMI anterior pode ser confundido quando existe T negativa precordial. A ausência de dor isquêmica típica, hipoxemia e contexto clínico orientam. Ecocardiograma é decisivo: dilatação aguda do VD vs. hipocinesia anterosseptal do VE.</p>
+      </div>
+    </div>
+
+    <div class="accordion" id="acc-outros">
+      <div class="accordion-header" onclick="toggleAccordion('acc-outros')">
+        <div class="accordion-icon gray">⚗️</div>
+        <div class="accordion-title">Distúrbios Eletrolíticos, Takotsubo e Eventos do SNC</div>
+        <div class="accordion-arrow">▼</div>
+      </div>
+      <div class="accordion-body" style="padding-top:.75rem">
+        <p class="body-text"><strong>Hipercalemia:</strong> Progressão característica — T apiculadas → alargamento de QRS → perda de onda P → padrão sinusoidal. Pode simular STEMI com QRS alargado e supra em derivações precordiais. Potássio sérico >6 mEq/L com QRS &gt;120 ms = urgência independentemente do ECG.</p>
+        <p class="body-text"><strong>Takotsubo (SCA sem obstrução — MINOCA):</strong> Hipocinesia apical reversível após estresse físico ou emocional, com supradesnivelamento difuso em derivações precordiais imitando STEMI anterior extenso. Angiografia frequentemente normal ou com espasmo. Ecocardiograma demonstra o "balonamento apical" típico. Suspeitar em mulheres pós-menopausa com gatilho emocional.</p>
+        <p class="body-text"><strong>Eventos do SNC (AVC, HSA):</strong> Alterações de repolarização difusas, ondas T gigantes negativas (neurogenic T waves), prolongamento de QT, arritmias. Elevação de troponina por lesão miocárdica neurogênica. A confusão com SCA é especialmente perigosa porque anticoagulação plena e cateterismo em hemorragia intracraniana têm consequências graves.</p>
+      </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- Special populations -->
+    <h3 class="sub-heading">Populações de Alto Risco Diagnóstico</h3>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon amber">👴</div>
+          <div>
+            <div class="card-title">Idosos (≥75 anos)</div>
+            <div class="card-subtitle">Prevalência de anormalidades basais ~70%</div>
+          </div>
+        </div>
+        <p class="body-text">Cerca de 70% dos pacientes com ≥75 anos apresentam anormalidades basais do ECG: HVE, distúrbios de condução, FA, ritmo de marcapasso, ondas Q antigas. Isso reduz tanto a sensibilidade quanto a especificidade do traçado para SCA. <strong class="amber">Comparação obrigatória com ECG prévio</strong> — pequenas variações dinâmicas têm maior peso do que valores absolutos.</p>
+        <p class="body-text">SCA em idosos frequentemente se manifesta com dispneia, fadiga ou confusão como sintoma predominante — sem dor torácica típica (apresentação atípica em até 40% dos casos). O guideline da AHA para SCA no idoso (Damluji et al., Circulation 2023) recomenda limiar baixo para ECG seriado e troponina mesmo com clínica inespecífica.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon amber">♀️</div>
+          <div>
+            <div class="card-title">Mulheres — Limiares e Apresentações Distintas</div>
+            <div class="card-subtitle">Limiares de ST sex-específicos</div>
+          </div>
+        </div>
+        <p class="body-text">Mulheres tendem a ter amplitudes menores de ST durante IAM agudo — especialmente em V2–V3, razão pela qual o limiar diagnóstico é ≥1,5 mm (vs. 2–2,5 mm em homens). A aplicação de limiares masculinos em mulheres subestima o grau de elevação relativa.</p>
+        <p class="body-text">A síndrome de MINOCA é mais frequente em mulheres, incluindo Takotsubo e espasmo coronariano — ambos podem apresentar supra de ST sem obstrução obstrutiva na angiografia. Mulheres também têm maior prevalência de SCA com anatomia "não obstrutiva" (INOCA — ischemia with non-obstructive coronary arteries). O uso de ECG como filtro único pode levar a subdiagnóstico.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon red">🩸</div>
+          <div>
+            <div class="card-title">Diabetes Mellitus — Silêncio Diagnóstico</div>
+            <div class="card-subtitle">IAM silencioso e troponina basalmente elevada</div>
+          </div>
+        </div>
+        <p class="body-text">A neuropatia autonômica diabética é responsável por IAM "silencioso" — sem dor torácica como queixa principal — em uma proporção significativa. ECG pode ser a primeira pista. Além disso, pacientes com DM frequentemente apresentam hs-cTnT basalmente elevada, o que reduz o valor preditivo positivo da elevação aguda.</p>
+        <p class="body-text">Haller et al. (Diabetes Care, 2020) demonstraram que o algoritmo ESC 0/1h mantém segurança comparável para rule-out de IAM em diabéticos, mas o algoritmo 0/3h tem valor preditivo negativo reduzido nessa população. Portanto, <strong class="red">não abreviar o período de observação em diabéticos com clínica suspeita e ECG não diagnóstico</strong>.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon red">🫘</div>
+          <div>
+            <div class="card-title">Doença Renal Crônica — Confundidores Múltiplos</div>
+            <div class="card-subtitle">ECG anormal prevalente; troponina elevada basal</div>
+          </div>
+        </div>
+        <p class="body-text">Na DRC, anormalidades de ECG são altamente prevalentes — HVE (por sobrecarga de volume e pressão), distúrbios eletrolíticos (hipercalemia), PR prolongado ≥200 ms, QRS alargado ≥100 ms e QTc prolongado são preditores independentes de morte cardiovascular (Deo et al., JASN 2016).</p>
+        <p class="body-text">A troponina hs-cTnT é cronicamente elevada na DRC por lesão miocárdica contínua — qualquer delta relativo de 20–30% em 1–2h é mais específico para IAM agudo do que valores absolutos acima do percentil 99. <strong class="amber">O padrão de ascensão/queda é mais informativo que o valor único na DRC avançada</strong>. Park et al. (J Clin Med, 2022) confirmaram que as anormalidades de ECG na DRC predizem MACE independentemente de outros fatores.</p>
+      </div>
+    </div>
+
+    <div class="info-box info-gray">
+      <span class="info-box-icon">📋</span>
+      <div><strong>Dica prática universal:</strong> Em qualquer condição que dificulte a interpretação do ECG (BRE, HVE, pacing, eletrólito alterado), o ecocardiograma à beira do leito para pesquisa de nova alteração de mobilidade segmentar regional (RWMA) é um adjunto diagnóstico de alta eficiência, rápido e disponível. Uma nova RWMA em território de artéria específica eleva substancialmente a probabilidade pré-teste de oclusão aguda independentemente do ECG.</div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- TAB 5 — PROTOCOLO SERIAL -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <div class="tab-panel" id="panel-4">
+    <div class="section-label">Protocolo Clínico</div>
+    <h2 class="section-title">ECG Seriado, Troponina e Integração Diagnóstica</h2>
+    <p class="section-sub">O ECG inicial é apenas o primeiro passo. A integração temporal de múltiplos ECGs com a cinética da troponina de alta sensibilidade e o escore GRACE constitui o framework diagnóstico moderno da SCA, com metas de tempo bem definidas pelos guidelines.</p>
+
+    <!-- Serial ECG protocol -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">🔄</div>
+        <div>
+          <div class="card-title">Protocolo de ECG Seriado — Frequência e Indicações</div>
+          <div class="card-subtitle">Baseado nos guidelines AHA/ACC 2014/2021/2025 e AHA Scientific Statement 2017</div>
+        </div>
+      </div>
+      <div class="algo-step">
+        <div class="algo-step-num">0'</div>
+        <div class="algo-step-content">
+          <div class="algo-step-title">ECG Inicial — Primeiros 10 Minutos</div>
+          <div class="algo-step-body">ECG de 12 derivações ao primeiro contato médico, com interpretação em ≤10 min. Se qualquer padrão de STEMI ou equivalente → ativar protocolo de emergência imediatamente. Registrar hora de obtenção no traçado.</div>
+        </div>
+      </div>
+      <div class="algo-step">
+        <div class="algo-step-num">15'</div>
+        <div class="algo-step-content">
+          <div class="algo-step-title">Primeira Série — a cada 15–30 minutos na 1ª hora</div>
+          <div class="algo-step-body">Se ECG inicial não diagnóstico com sintomas persistentes ou suspeita clínica elevada: ECGs repetidos a cada 15–30 minutos durante os primeiros 60 minutos. Até 11% dos STEMI têm ECG inicial não diagnóstico — a maioria evolui para diagnóstico neste intervalo. A presença de sintomas é o gatilho principal para nova coleta.</div>
+        </div>
+      </div>
+      <div class="algo-step">
+        <div class="algo-step-num">1–6h</div>
+        <div class="algo-step-content">
+          <div class="algo-step-title">Segunda Série — Guiado por Clínica</div>
+          <div class="algo-step-body">Após a primeira hora sem diagnóstico, a frequência passa a ser guiada pelo status clínico: ECG imediato a qualquer recorrência de sintomas, mudança hemodinâmica ou nova arritmia. Para pacientes assintomáticos com ECG não diagnóstico, novo ECG a cada 4–6h ou conforme indicação até completar o protocolo de rule-out.</div>
+        </div>
+      </div>
+      <div class="algo-step">
+        <div class="algo-step-num red">⚡</div>
+        <div class="algo-step-content">
+          <div class="algo-step-title">ECG de Emergência — Qualquer Mudança Clínica</div>
+          <div class="algo-step-body">Novo episódio de dor, dispneia aguda, queda de PA, novo sopro, instabilidade elétrica → ECG imediato, independentemente do tempo desde o último traçado. A mudança dinâmica de ST (elevação ou depressão nova, inversão de T transitória) é o elemento de maior impacto diagnóstico e muda o estrato de risco.</div>
+        </div>
+      </div>
+      <div class="algo-step">
+        <div class="algo-step-num">24–48h</div>
+        <div class="algo-step-content">
+          <div class="algo-step-title">Monitorização Contínua</div>
+          <div class="algo-step-body">A AHA recomenda monitorização contínua de ECG para detecção de arritmias e isquemia por no mínimo 24–48h em pacientes com suspeita intermediária ou alta de SCA, incluindo durante transporte intrahospitalar. Monitorização por telemetria adiciona vigilância sem substituir os ECGs de 12 derivações para análise de morfologia.</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- Troponin integration -->
+    <h3 class="sub-heading">Integração com Troponina de Alta Sensibilidade (hs-cTn)</h3>
+
+    <div class="info-box info-teal">
+      <span class="info-box-icon">🧬</span>
+      <div><strong>Princípio diagnóstico:</strong> Na presença de ECG diagnóstico de STEMI, <em>não aguardar resultado de troponina</em> para indicar reperfusão. O STEMI é uma emergência clínica-elétrica — a troponina confirma a extensão da necrose, mas não define o momento da intervenção.</div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">⏱</div>
+          <div>
+            <div class="card-title">Algoritmo ESC 0/1h (hs-cTn)</div>
+            <div class="card-subtitle">Rule-in e rule-out em 1 hora</div>
+          </div>
+        </div>
+        <p class="body-text">O protocolo 0/1h da ESC utiliza o valor absoluto da hs-cTn na chegada (t=0) e a variação (delta) em 1 hora para classificar os pacientes em três grupos:</p>
+        <div class="info-box info-green" style="margin-bottom:.5rem"><span class="info-box-icon">✅</span><div><strong>Rule-OUT (baixo risco):</strong> hs-cTn &lt; limiar de baixo risco E delta 0/1h &lt; limiar → alta segura com follow-up em 2–3 semanas</div></div>
+        <div class="info-box info-red" style="margin-bottom:.5rem"><span class="info-box-icon">🔴</span><div><strong>Rule-IN (IAM):</strong> hs-cTn muito elevada OU delta 0/1h acima do limiar de ascensão → internação e protocolo de SCA</div></div>
+        <div class="info-box info-amber" style="margin-bottom:0"><span class="info-box-icon">⚠️</span><div><strong>Zona cinza:</strong> Observação adicional e coleta em 3h. Integrar com ECG, escore HEART e clínica.</div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon amber">📐</div>
+          <div>
+            <div class="card-title">Confirmação de IAM — Critérios</div>
+            <div class="card-subtitle">4ª Definição Universal de Infarto (2018)</div>
+          </div>
+        </div>
+        <p class="body-text">Elevação de cTn com pelo menos 1 valor acima do percentil 99 do limite de referência superior (URL) E padrão de ascensão e/ou queda. A cinética importa — uma troponina elevada e estável (sem delta) sugere lesão miocárdica crônica, não IAM agudo.</p>
+        <div class="info-box info-teal" style="margin-bottom:.5rem"><span class="info-box-icon">📊</span><div><strong>Delta significativo:</strong> Variação &gt;20% entre medições em relação ao valor basal, com pelo menos 1 valor acima do percentil 99</div></div>
+        <div class="info-box info-amber" style="margin-bottom:0"><span class="info-box-icon">📌</span><div><strong>Na DRC:</strong> Usar delta relativo ≥20–30% em vez de valores absolutos — troponina basal cronicamente elevada reduz o valor do ponto de corte fixo</div></div>
+      </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- Posterior & RV leads -->
+    <h3 class="sub-heading">Derivações Adicionais — Quando e Por Quê</h3>
+    <div class="card">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Derivações</th>
+            <th class="emergent-th">Indicação</th>
+            <th class="urgent-th">Critério Diagnóstico / Implicação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>V3R–V4R (direitas)</td>
+            <td class="emergent-td">Infarto inferior (DII, DIII, aVF com supra) — obrigatório. Qualquer suspeita de IAM de VD</td>
+            <td class="urgent-td">Supra ≥1 mm em V4R = IAM de VD. Contra-indicação relativa a nitratos (risco de hipotensão grave por pré-carga VD reduzida). Indica necessidade de reposição volêmica cuidadosa</td>
+          </tr>
+          <tr>
+            <td>V7–V9 (posteriores)</td>
+            <td class="emergent-td">Infradesnível isolado em V1–V3 sem causa alternativa. Suspeita de oclusão de circunflexa ou coronária direita posterior</td>
+            <td class="urgent-td">Supra ≥0,5 mm (≥1 mm em H &lt;40a) confirma IAM posterior = equivalente de STEMI → reperfusão emergente. Ausência deste critério com infra V1–V3 ainda mantém alta suspeição</td>
+          </tr>
+          <tr>
+            <td>ECG de 15 derivações (V4R + V7–V9)</td>
+            <td class="emergent-td">Protocolo completo em infarto inferoposterior ou qualquer SCA com localização incerta</td>
+            <td class="urgent-td">Aumenta sensibilidade global da triagem para STEMI equivalente sem custo adicional significativo</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Echo and GRACE -->
+    <div class="grid-2">
+      <div class="card card-teal">
+        <div class="card-header">
+          <div class="card-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+          <div>
+            <div class="card-title">Ecocardiograma Point-of-Care</div>
+            <div class="card-subtitle">Adjunto essencial no ECG não diagnóstico</div>
+          </div>
+        </div>
+        <p class="body-text">O guideline ACC 2022 (Expert Consensus — dor torácica na emergência) recomenda ecocardiograma à beira do leito quando o ECG é suspeito mas não diagnóstico. A identificação de nova alteração de mobilidade segmentar regional (RWMA) em território coronariano específico eleva significativamente a probabilidade de oclusão aguda.</p>
+        <div class="info-box info-teal" style="margin-bottom:0">
+          <span class="info-box-icon">🎯</span>
+          <div>Ausência de RWMA em paciente estável com ECG/Tn inicialmente normais tem alto valor preditivo negativo. Presença de RWMA com ECG não diagnóstico = ativar protocolo de emergência.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon amber">📊</div>
+          <div>
+            <div class="card-title">Escore GRACE — Cálculo e Aplicação</div>
+            <div class="card-subtitle">Preferido sobre TIMI pela acurácia superior</div>
+          </div>
+        </div>
+        <p class="body-text">O GRACE 2.0 deve ser calculado na admissão e integrado com ECG e troponina. Variáveis: idade, FC, PA sistólica, creatinina, Killip, parada cardíaca na chegada, desvio de ST, elevação de marcadores cardíacos.</p>
+        <div class="mini-card red" style="margin-bottom:.5rem">
+          <div class="mini-card-label">GRACE &gt;140</div>
+          <div class="mini-card-val">Alto Risco</div>
+          <div class="mini-card-desc">Cateterismo em &lt;24h — Jobs et al., Lancet 2017; Bae et al., JACC CI 2023</div>
+        </div>
+        <div class="mini-card amber" style="margin-bottom:.5rem">
+          <div class="mini-card-label">GRACE 109–140</div>
+          <div class="mini-card-val">Intermediário</div>
+          <div class="mini-card-desc">Cateterismo em 24–72h</div>
+        </div>
+        <div class="mini-card" style="margin-bottom:0">
+          <div class="mini-card-label">GRACE &lt;109</div>
+          <div class="mini-card-val" style="color:var(--green-raw)">Baixo Risco</div>
+          <div class="mini-card-desc">Avaliação eletiva ou alta com follow-up precoce</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-box info-amber" style="margin-top:1rem">
+      <span class="info-box-icon">💊</span>
+      <div><strong>Anticoagulação e antiagregação inicial:</strong> AAS 162–325 mg mastigado na chegada para toda SCA suspeita sem contraindicação. <strong>O guideline ACC/AHA 2025 recomenda contra o pré-tratamento rotineiro com inibidor P2Y12 antes da angiografia em pacientes com estratégia invasiva precoce planejada</strong> — diferindo do que era recomendado anteriormente. Anticoagulação sistêmica (HNF, enoxaparina ou bivalirudina) deve ser iniciada imediatamente após diagnóstico de IAMSEST de alto risco.</div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- TAB 6 — IA NO ECG -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <div class="tab-panel" id="panel-5">
+    <div class="section-label">Fronteira do Conhecimento</div>
+    <h2 class="section-title">Inteligência Artificial na Interpretação do ECG em SCA</h2>
+    <p class="section-sub">A integração de modelos de aprendizado de máquina (ML) e aprendizado profundo (deep learning) com o ECG representa a mudança paradigmática mais significativa na diagnóstico eletrocardiográfico das últimas décadas. As evidências de 2024–2025 são robustas o suficiente para recomendar a implementação — mas como adjunto, nunca como substituto do julgamento clínico.</p>
+
+    <div class="info-box info-teal">
+      <span class="info-box-icon">🤖</span>
+      <div><strong>Posicionamento atual:</strong> Os guidelines da ESC (2023) e o consenso de especialistas ACC/AHA (2025) reconhecem a IA-ECG como ferramenta auxiliar válida para detecção de STEMI, predição de risco e otimização do triage. A decisão clínica final permanece com o médico responsável, especialmente em cenários de discordância entre IA e achados clínicos.</div>
+    </div>
+
+    <!-- Key studies -->
+    <h3 class="sub-heading">Evidências de Alto Impacto — Estudos Recentes</h3>
+
+    <div class="accordion" id="acc-romiae">
+      <div class="accordion-header" onclick="toggleAccordion('acc-romiae')">
+        <div class="accordion-icon teal">🔬</div>
+        <div class="accordion-title">Estudo ROMIAE — IA-ECG vs. GRACE e Escore HEART (EHJ 2025)</div>
+        <div class="accordion-arrow">▼</div>
+      </div>
+      <div class="accordion-body" style="padding-top:.75rem">
+        <p class="body-text">O ROMIAE (Lee et al., European Heart Journal, 2025) foi um estudo multicêntrico prospectivo que avaliou um modelo de IA aplicado ao ECG de 12 derivações para diagnóstico de IAM e predição de MACE em 30 dias. Os resultados são notáveis:</p>
+        <div class="grid-3" style="margin-top:.75rem">
+          <div class="mini-card">
+            <div class="mini-card-label">AUROC — Diagnóstico IAM</div>
+            <div class="mini-card-val">0,878</div>
+            <div class="mini-card-desc">Comparável ao escore HEART isolado (AUROC ~0,85)</div>
+          </div>
+          <div class="mini-card">
+            <div class="mini-card-label">AUROC — MACE 30 dias</div>
+            <div class="mini-card-val">0,866</div>
+            <div class="mini-card-desc">Superior ao GRACE 2.0 e avaliação médica</div>
+          </div>
+          <div class="mini-card">
+            <div class="mini-card-label">IA-ECG + HEART (C-index)</div>
+            <div class="mini-card-val">0,926</div>
+            <div class="mini-card-desc">NRI de +19,6% sobre HEART isolado — grande impacto clínico</div>
+          </div>
+        </div>
+        <p class="body-text" style="margin-top:.75rem"><strong>Implicação prática:</strong> A combinação de IA-ECG com escore clínico supera qualquer ferramenta isolada. O modelo processou sinais de ECG brutos (não interpretação automatizada convencional), o que lhe confere capacidade de detectar padrões subliminares não reconhecidos visualmente pelo médico.</p>
+      </div>
+    </div>
+
+    <div class="accordion" id="acc-stemi-ai">
+      <div class="accordion-header" onclick="toggleAccordion('acc-stemi-ai')">
+        <div class="accordion-icon teal">📡</div>
+        <div class="accordion-title">Registro Multicêntrico EUA — IA Reduz Ativações Falsas de STEMI (JACC CI 2026)</div>
+        <div class="accordion-arrow">▼</div>
+      </div>
+      <div class="accordion-body" style="padding-top:.75rem">
+        <p class="body-text">Herman et al. (JACC Cardiovascular Interventions, 2026) avaliaram prospectivamente o impacto de um sistema de IA-ECG integrado à triagem de STEMI em múltiplos centros norte-americanos. O problema das ativações falsas de hemodinâmica (pacientes sem oclusão culpada que ativam o sistema STEMI) é clinicamente relevante — gera custo, risco e desgaste da equipe.</p>
+        <div class="grid-2" style="margin-top:.75rem">
+          <div class="mini-card">
+            <div class="mini-card-label">Sensibilidade STEMI (sem IA → com IA)</div>
+            <div class="mini-card-val">71% → 92%</div>
+            <div class="mini-card-desc">Aumento significativo na detecção real de STEMI</div>
+          </div>
+          <div class="mini-card">
+            <div class="mini-card-label">Falsas ativações (sem IA → com IA)</div>
+            <div class="mini-card-val red">41,8% → 7,9%</div>
+            <div class="mini-card-desc">Redução dramática de cateterismos "brancos"</div>
+          </div>
+        </div>
+        <div class="info-box info-teal" style="margin-top:.75rem; margin-bottom:0">
+          <span class="info-box-icon">📈</span>
+          <div>AUROC de 0,94 — resultado de difícil alcance por interpretação humana isolada. A especificidade aumentou de 29% para 81%, sem perda proporcional de sensibilidade.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion" id="acc-dl-revasc">
+      <div class="accordion-header" onclick="toggleAccordion('acc-dl-revasc')">
+        <div class="accordion-icon teal">🧠</div>
+        <div class="accordion-title">Deep Learning para Predição de Revascularização — EHJ 2025</div>
+        <div class="accordion-arrow">▼</div>
+      </div>
+      <div class="accordion-body" style="padding-top:.75rem">
+        <p class="body-text">Büscher et al. (European Heart Journal, 2025) desenvolveram um modelo de deep learning para estratificar, diretamente do ECG de 12 derivações na emergência, o risco de necessidade de revascularização coronariana — ou seja, prever quem precisará de cateterismo antes mesmo do resultado da troponina.</p>
+        <div class="grid-3" style="margin-top:.75rem">
+          <div class="mini-card">
+            <div class="mini-card-label">AUROC (modelo DL)</div>
+            <div class="mini-card-val">0,91</div>
+            <div class="mini-card-desc">Coorte de teste independente</div>
+          </div>
+          <div class="mini-card amber">
+            <div class="mini-card-label">AUROC (médico, ECG)</div>
+            <div class="mini-card-val">0,65</div>
+            <div class="mini-card-desc">Interpretação humana isolada — gap enorme</div>
+          </div>
+          <div class="mini-card amber">
+            <div class="mini-card-label">AUROC (TnT convenc.)</div>
+            <div class="mini-card-val">0,71</div>
+            <div class="mini-card-desc">Superado pelo DL em detecção precoce</div>
+          </div>
+        </div>
+        <p class="body-text" style="margin-top:.75rem">Este estudo tem implicação direta para o triage pré-hospitalar e ativação antecipada de laboratório de hemodinâmica — o modelo pode funcionar no monitor cardíaco do SAMU, eliminando a latência entre a chegada e a decisão de cateterismo.</p>
+      </div>
+    </div>
+
+    <div class="accordion" id="acc-ml-rev">
+      <div class="accordion-header" onclick="toggleAccordion('acc-ml-rev')">
+        <div class="accordion-icon gray">📚</div>
+        <div class="accordion-title">Revisões Sistemáticas — Desempenho Global dos Modelos de ML</div>
+        <div class="accordion-arrow">▼</div>
+      </div>
+      <div class="accordion-body" style="padding-top:.75rem">
+        <p class="body-text">Zworth et al. (CJEM, 2023) revisaram sistematicamente modelos de ML para diagnóstico de SCA por ECG: AUROC variando entre 0,79 e 0,98, contra 0,67–0,78 para interpretação clínica humana. Bishop et al. (AJEMed, 2024) realizaram scoping review de redes neurais artificiais para ECG em SCA: sensibilidade 87–99%, especificidade 78–99% — desempenho consistentemente superior ao médico em cenários controlados.</p>
+        <div class="info-box info-amber">
+          <span class="info-box-icon">⚠️</span>
+          <div><strong>Limitação metodológica importante:</strong> A maioria dos estudos usa datasets retrospectivos com diagnósticos confirmados — o desempenho pode ser inferior em cenários prospectivos reais, especialmente para padrões raros (de Winter, Wellens) com poucos exemplos de treinamento. Generalização entre populações e equipamentos permanece um desafio.</div>
+        </div>
+        <p class="body-text">A revisão sistemática de Fatai & Sattayarom (IJMI, 2026) sobre IA no triage de SCA na emergência identificou que os melhores desempenhos ocorrem em integração multimodal (ECG + troponina + variáveis clínicas) — não em ECG isolado, reforçando o modelo de decisão clínica integrada.</p>
+      </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <div class="card card-teal">
+      <div class="card-header">
+        <div class="card-icon">🧩</div>
+        <div>
+          <div class="card-title">Posicionamento Clínico — Como Usar IA no ECG na Prática</div>
+          <div class="card-subtitle">Framework de implementação segura</div>
+        </div>
+      </div>
+      <div class="info-box info-teal" style="margin-bottom:.65rem"><span class="info-box-icon">1️⃣</span><div><strong>Detecção de STEMI:</strong> Usar IA como filtro de alta sensibilidade — um modelo que diz "STEMI" com AUROC 0,94 e sensibilidade 92% pode acionar o protocolo de ativação enquanto o médico avalia o traçado simultaneamente. Nunca aguardar a IA para iniciar a análise própria.</div></div>
+      <div class="info-box info-teal" style="margin-bottom:.65rem"><span class="info-box-icon">2️⃣</span><div><strong>Padrões subliminares:</strong> A IA pode sinalizar padrões precoces (hiperagudas incipientes, de Winter atípico) que o olho humano não valoriza — usar como alerta de segundo nível.</div></div>
+      <div class="info-box info-teal" style="margin-bottom:.65rem"><span class="info-box-icon">3️⃣</span><div><strong>Redução de viés:</strong> Estudos mostram que médicos com mais anos de experiência nem sempre superam modelos de IA — a fadiga, a pressão do pronto-socorro e apresentações atípicas criam gaps que algoritmos não têm. Usar IA como co-pilot, especialmente em turnos noturnos ou de alta demanda.</div></div>
+      <div class="info-box info-red" style="margin-bottom:0"><span class="info-box-icon">❌</span><div><strong>Nunca:</strong> Descartar suspeita clínica forte baseada em IA negativa. Se o médico vê Wellens e a IA diz "normal" — a IA está errada. O loop de feedback humano é insubstituível nos casos limítrofes.</div></div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- TAB 7 — REFERÊNCIAS -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <div class="tab-panel" id="panel-6">
+    <div class="section-label">Literatura Indexada</div>
+    <h2 class="section-title">Referências Bibliográficas</h2>
+    <p class="section-sub">37 fontes primárias indexadas — guidelines, RCTs, metanálises e consensos de especialistas que fundamentam o conteúdo desta página.</p>
+
+    <ul class="ref-list">
+      <li class="ref-item"><span class="ref-num">1</span><div><div class="ref-title">2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for the Management of Patients With Acute Coronary Syndromes</div><div class="ref-meta">Rao SV, O'Donoghue ML, Ruel M, et al. <em>J Am Coll Cardiol.</em> 2025;S0735-1097(24)10424-X. doi:10.1016/j.jacc.2024.11.009</div></div></li>
+      <li class="ref-item"><span class="ref-num">2</span><div><div class="ref-title">2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for the Management of Patients With Acute Coronary Syndromes</div><div class="ref-meta">Rao SV, et al. <em>Circulation.</em> 2025;151(13):e771-e862. doi:10.1161/CIR.0000000000001309</div></div></li>
+      <li class="ref-item"><span class="ref-num">3</span><div><div class="ref-title">2021 AHA/ACC Guideline for the Evaluation and Diagnosis of Chest Pain</div><div class="ref-meta">Gulati M, Levy PD, Mukherjee D, et al. <em>J Am Coll Cardiol.</em> 2021;78(22):e187-e285. doi:10.1016/j.jacc.2021.07.053</div></div></li>
+      <li class="ref-item"><span class="ref-num">4</span><div><div class="ref-title">2022 ACC Expert Consensus Decision Pathway on the Evaluation and Disposition of Acute Chest Pain In the Emergency Department</div><div class="ref-meta">Kontos MC, de Lemos JA, Deitelzweig SB, et al. <em>J Am Coll Cardiol.</em> 2022;80(20):1925-1960. doi:10.1016/j.jacc.2022.08.750</div></div></li>
+      <li class="ref-item"><span class="ref-num">5</span><div><div class="ref-title">Management of Acute Coronary Syndrome in the Older Adult Population: A Scientific Statement From the American Heart Association</div><div class="ref-meta">Damluji AA, Forman DE, Wang TY, et al. <em>Circulation.</em> 2023;147(3):e32-e62. doi:10.1161/CIR.0000000000001112</div></div></li>
+      <li class="ref-item"><span class="ref-num">6</span><div><div class="ref-title">Fourth Universal Definition of Myocardial Infarction (2018)</div><div class="ref-meta">Thygesen K, Alpert JS, Jaffe AS, et al. <em>J Am Coll Cardiol.</em> 2018;72(18):2231-2264. doi:10.1016/j.jacc.2018.08.1038</div></div></li>
+      <li class="ref-item"><span class="ref-num">7</span><div><div class="ref-title">Diagnosis and Treatment of Acute Coronary Syndromes: A Review</div><div class="ref-meta">Bhatt DL, Lopes RD, Harrington RA. <em>JAMA.</em> 2022;327(7):662-675. doi:10.1001/jama.2022.0358</div></div></li>
+      <li class="ref-item"><span class="ref-num">8</span><div><div class="ref-title">Acute Coronary Syndromes</div><div class="ref-meta">Bergmark BA, Mathenge N, Merlini PA, Lawrence-Wright MB, Giugliano RP. <em>Lancet.</em> 2022;399(10332):1347-1358. doi:10.1016/S0140-6736(21)02391-6</div></div></li>
+      <li class="ref-item"><span class="ref-num">9</span><div><div class="ref-title">2014 AHA/ACC Guideline for the Management of Patients With Non-ST-Elevation Acute Coronary Syndromes</div><div class="ref-meta">Amsterdam EA, Wenger NK, Brindis RG, et al. <em>J Am Coll Cardiol.</em> 2014;64(24):e139-e228. doi:10.1016/j.jacc.2014.09.017</div></div></li>
+      <li class="ref-item"><span class="ref-num">10</span><div><div class="ref-title">Atypical Electrocardiographic Presentations in Need of Primary Percutaneous Coronary Intervention</div><div class="ref-meta">Tzimas G, Antiochos P, Monney P, et al. <em>Am J Cardiol.</em> 2019;124(8):1305-1314. doi:10.1016/j.amjcard.2019.07.027</div></div></li>
+      <li class="ref-item"><span class="ref-num">11</span><div><div class="ref-title">Considerations on the Management of Acute Postoperative Ischemia After Cardiac Surgery: AHA Scientific Statement</div><div class="ref-meta">Gaudino M, Dangas GD, Angiolillo DJ, et al. <em>Circulation.</em> 2023;148(5):442-454. doi:10.1161/CIR.0000000000001154</div></div></li>
+      <li class="ref-item"><span class="ref-num">12</span><div><div class="ref-title">Acute Coronary Syndrome: Diagnosis and Initial Management</div><div class="ref-meta">Nohria R, Viera AJ. <em>Am Fam Physician.</em> 2024;109(1):34-42</div></div></li>
+      <li class="ref-item"><span class="ref-num">13</span><div><div class="ref-title">2021 ACC/AHA/SCAI Guideline for Coronary Artery Revascularization</div><div class="ref-meta">Lawton JS, Tamis-Holland JE, Bangalore S, et al. <em>J Am Coll Cardiol.</em> 2022;79(2):e21-e129. doi:10.1016/j.jacc.2021.09.006</div></div></li>
+      <li class="ref-item"><span class="ref-num">14</span><div><div class="ref-title">Acute Myocardial Infarction</div><div class="ref-meta">Reed GW, Rossi JE, Cannon CP. <em>Lancet.</em> 2017;389(10065):197-210. doi:10.1016/S0140-6736(16)30677-8</div></div></li>
+      <li class="ref-item"><span class="ref-num">15</span><div><div class="ref-title">FDA Orange Book — Fibrinolytics (Tenecteplase, Alteplase, Reteplase)</div><div class="ref-meta">U.S. Food and Drug Administration. <em>Orange Book.</em></div></div></li>
+      <li class="ref-item"><span class="ref-num">16</span><div><div class="ref-title">Acute Myocardial Infarction</div><div class="ref-meta">Anderson JL, Morrow DA. <em>N Engl J Med.</em> 2017;376(21):2053-2064. doi:10.1056/NEJMra1606915</div></div></li>
+      <li class="ref-item"><span class="ref-num">17</span><div><div class="ref-title">Optimal Timing of an Invasive Strategy in Patients With Non-ST-Elevation Acute Coronary Syndrome: A Meta-Analysis of Randomised Trials</div><div class="ref-meta">Jobs A, Mehta SR, Montalescot G, et al. <em>Lancet.</em> 2017;390(10096):737-746. doi:10.1016/S0140-6736(17)31490-3</div></div></li>
+      <li class="ref-item"><span class="ref-num">18</span><div><div class="ref-title">Management of Patients With NSTE-ACS: A Comparison of the Recent AHA/ACC and ESC Guidelines</div><div class="ref-meta">Rodriguez F, Mahaffey KW. <em>J Am Coll Cardiol.</em> 2016;68(3):313-321. doi:10.1016/j.jacc.2016.03.599</div></div></li>
+      <li class="ref-item"><span class="ref-num">19</span><div><div class="ref-title">Early Invasive Strategy Based on the Time of Symptom Onset of Non-ST-Segment Elevation Myocardial Infarction</div><div class="ref-meta">Bae S, Cha JJ, Lim S, et al. <em>JACC Cardiovasc Interv.</em> 2023;16(1):64-75. doi:10.1016/j.jcin.2022.09.039</div></div></li>
+      <li class="ref-item"><span class="ref-num">20</span><div><div class="ref-title">Universal Definition of Myocardial Infarction</div><div class="ref-meta">Thygesen K, Alpert JS, White HD. <em>J Am Coll Cardiol.</em> 2007;50(22):2173-95. doi:10.1016/j.jacc.2007.09.011</div></div></li>
+      <li class="ref-item"><span class="ref-num">21</span><div><div class="ref-title">2011 ACCF/AHA Focused Update Incorporated Into the ACC/AHA 2007 Guidelines for Unstable Angina/NSTEMI</div><div class="ref-meta">Wright RS, Anderson JL, Adams CD, et al. <em>J Am Coll Cardiol.</em> 2011;57(19):e215-367. doi:10.1016/j.jacc.2011.02.011</div></div></li>
+      <li class="ref-item"><span class="ref-num">22</span><div><div class="ref-title">Electrocardiogeriatrics: ECG in Advanced Age</div><div class="ref-meta">Vicent L, Martínez-Sellés M. <em>J Electrocardiol.</em> 2017;50(5):698-700. doi:10.1016/j.jelectrocard.2017.06.003</div></div></li>
+      <li class="ref-item"><span class="ref-num">23</span><div><div class="ref-title">Combined Effects of Age and Comorbidities on Electrocardiographic Parameters in a Large Non-Selected Population</div><div class="ref-meta">Giovanardi P, Vernia C, Tincani E, et al. <em>J Clin Med.</em> 2022;11(13):3737. doi:10.3390/jcm11133737</div></div></li>
+      <li class="ref-item"><span class="ref-num">24</span><div><div class="ref-title">How Can Computerized Interpretation Algorithms Adapt to Gender/Age Differences in ECG Measurements?</div><div class="ref-meta">Xue J, Farrell RM. <em>J Electrocardiol.</em> 2014;47(6):849-55. doi:10.1016/j.jelectrocard.2014.08.001</div></div></li>
+      <li class="ref-item"><span class="ref-num">25</span><div><div class="ref-title">2010 ACCF/AHA Guideline for Assessment of Cardiovascular Risk in Asymptomatic Adults</div><div class="ref-meta">Greenland P, Alpert JS, Beller GA, et al. <em>J Am Coll Cardiol.</em> 2010;56(25):e50-103. doi:10.1016/j.jacc.2010.09.001</div></div></li>
+      <li class="ref-item"><span class="ref-num">26</span><div><div class="ref-title">2023 AHA/ACC Guideline for the Management of Patients With Chronic Coronary Disease</div><div class="ref-meta">Virani SS, Newby LK, Arnold SV, et al. <em>J Am Coll Cardiol.</em> 2023;82(9):833-955. doi:10.1016/j.jacc.2023.04.003</div></div></li>
+      <li class="ref-item"><span class="ref-num">27</span><div><div class="ref-title">Prevalence and Clinical Impact of Electrocardiographic Abnormalities in Patients With Chronic Kidney Disease</div><div class="ref-meta">Park S, Yum Y, Cha JJ, et al. <em>J Clin Med.</em> 2022;11(18):5414. doi:10.3390/jcm11185414</div></div></li>
+      <li class="ref-item"><span class="ref-num">28</span><div><div class="ref-title">Electrocardiographic Measures and Prediction of Cardiovascular and Noncardiovascular Death in CKD</div><div class="ref-meta">Deo R, Shou H, Soliman EZ, et al. <em>J Am Soc Nephrol.</em> 2016;27(2):559-69. doi:10.1681/ASN.2014101045</div></div></li>
+      <li class="ref-item"><span class="ref-num">29</span><div><div class="ref-title">The Potential of Electrocardiography for Cardiac Risk Prediction in Chronic and End-Stage Kidney Disease</div><div class="ref-meta">Skampardoni S, et al. <em>Nephrol Dial Transplant.</em> 2019;34(7):1089-1098. doi:10.1093/ndt/gfy255</div></div></li>
+      <li class="ref-item"><span class="ref-num">30</span><div><div class="ref-title">Performance of the ESC 0/1-H and 0/3-H Algorithm for Rapid Identification of MI Without ST-Elevation in Patients With Diabetes</div><div class="ref-meta">Haller PM, Boeddinghaus J, Neumann JT, et al. <em>Diabetes Care.</em> 2020;43(2):460-467. doi:10.2337/dc19-1327</div></div></li>
+      <li class="ref-item"><span class="ref-num">31</span><div><div class="ref-title">Artificial Intelligence Applied to Electrocardiogram to Rule Out Acute Myocardial Infarction: The ROMIAE Multicentre Study</div><div class="ref-meta">Lee MS, Shin TG, Lee Y, et al. <em>Eur Heart J.</em> 2025;46(20):1917-1929. doi:10.1093/eurheartj/ehaf004</div></div></li>
+      <li class="ref-item"><span class="ref-num">32</span><div><div class="ref-title">AI-Enabled ECG Analysis Improves Diagnostic Accuracy and Reduces False STEMI Activations: A Multicenter U.S. Registry</div><div class="ref-meta">Herman R, Mumma BE, Hoyne JD, et al. <em>JACC Cardiovasc Interv.</em> 2026;19(2):145-156. doi:10.1016/j.jcin.2025.10.018</div></div></li>
+      <li class="ref-item"><span class="ref-num">33</span><div><div class="ref-title">Deep Learning Electrocardiogram Model for Risk Stratification of Coronary Revascularization Need in the Emergency Department</div><div class="ref-meta">Büscher A, Plagwitz L, Yildirim K, et al. <em>Eur Heart J.</em> 2025;ehaf254. doi:10.1093/eurheartj/ehaf254</div></div></li>
+      <li class="ref-item"><span class="ref-num">34</span><div><div class="ref-title">Machine Learning for the Diagnosis of Acute Coronary Syndrome Using a 12-Lead ECG: A Systematic Review</div><div class="ref-meta">Zworth M, Kareemi H, Boroumand S, et al. <em>CJEM.</em> 2023;25(10):818-827. doi:10.1007/s43678-023-00572-5</div></div></li>
+      <li class="ref-item"><span class="ref-num">35</span><div><div class="ref-title">Artificial Neural Networks for ECG Interpretation in Acute Coronary Syndrome: A Scoping Review</div><div class="ref-meta">Bishop AJ, Nehme Z, Nanayakkara S, et al. <em>Am J Emerg Med.</em> 2024;83:1-8. doi:10.1016/j.ajem.2024.06.026</div></div></li>
+      <li class="ref-item"><span class="ref-num">36</span><div><div class="ref-title">Artificial Intelligence Applications in Emergency Triage for Suspected Acute Coronary Syndrome: A Systematic Review</div><div class="ref-meta">Fatai A, Sattayarom C. <em>Int J Med Inform.</em> 2026;213:106368. doi:10.1016/j.ijmedinf.2026.106368</div></div></li>
+      <li class="ref-item"><span class="ref-num">37</span><div><div class="ref-title">Update to Practice Standards for Electrocardiographic Monitoring in Hospital Settings: AHA Scientific Statement</div><div class="ref-meta">Sandau KE, Funk M, Auerbach A, et al. <em>Circulation.</em> 2017;136(19):e273-e344. doi:10.1161/CIR.0000000000000527</div></div></li>
+    </ul>
+
+    <div class="disclaimer" style="margin-top:2rem">
+      <strong>Aviso:</strong> Este material é destinado exclusivamente a profissionais de saúde com treinamento em cardiologia e emergências cardiovasculares. Não se destina à automedicação ou tomada de decisão clínica sem avaliação médica individualizada. As recomendações refletem o estado da evidência publicada até 2025–2026 e podem ser atualizadas conforme novos dados se tornem disponíveis. Sempre consulte os guidelines completos e considere o contexto clínico individual de cada paciente.
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <p class="footer-copy">© 2025 Dr. Lucas Silva · Cardiologia Intervencionista · São Paulo</p>
+      <a href="https://lucascardio.com.br" class="nav-link" style="font-size:.7rem">lucascardio.com.br</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── TAB SWITCHING ────────────────────────────────────────────
+  const PANEL_COUNT = 7;
+  function switchTab(idx, btn, isMobile) {
+    // Deactivate all panels
+    for (let i = 0; i < PANEL_COUNT; i++) {
+      const p = document.getElementById('panel-' + i);
+      if (p) p.classList.remove('active');
+    }
+    // Activate target panel
+    const target = document.getElementById('panel-' + idx);
+    if (target) target.classList.add('active');
+
+    // Update desktop nav tab buttons
+    document.querySelectorAll('.nav-tab-btn').forEach((b, i) => {
+      b.classList.toggle('active', i === idx);
+    });
+    // Update main tab nav buttons
+    document.querySelectorAll('.tab-btn').forEach((b, i) => {
+      b.classList.toggle('active', i === idx);
+    });
+    // Update mobile buttons
+    document.querySelectorAll('.mobile-menu-btn').forEach((b, i) => {
+      b.classList.toggle('active', i === idx);
+    });
+
+    if (isMobile) {
+      document.getElementById('mobileMenu').classList.remove('open');
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ── MOBILE MENU ──────────────────────────────────────────────
+  function toggleMobile() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  // ── ACCORDION TOGGLE ─────────────────────────────────────────
+  function toggleAccordion(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.classList.toggle('open');
+  }
+
+  // ── PATTERN DETAIL (alias for accordion) ─────────────────────
+  function togglePattern(id) {
+    toggleAccordion(id);
+  }
+
+  // ── KEYBOARD NAV ─────────────────────────────────────────────
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      document.getElementById('mobileMenu').classList.remove('open');
+    }
+  });
+
+  // ── CLOSE MOBILE ON OUTSIDE CLICK ────────────────────────────
+  document.addEventListener('click', function(e) {
+    const menu = document.getElementById('mobileMenu');
+    const hamburger = document.querySelector('.hamburger');
+    if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
+      menu.classList.remove('open');
+    }
+  });
+</script>
+
+</body>
+</html>

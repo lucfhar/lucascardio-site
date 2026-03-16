@@ -1,0 +1,1201 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1"/>
+  <title>Doenças Pulmonares e Saúde Cardiovascular | Dr. Lucas Silva</title>
+  <meta name="description" content="Guia interativo sobre a relação entre doenças pulmonares e doenças cardiovasculares — epidemiologia, mecanismos fisiopatológicos, manejo clínico e evidências recentes."/>
+  <meta name="author" content="Dr. Lucas Silva"/>
+  <link rel="canonical" href="https://lucascardio.com.br/Pacientes/pulmo-cardio.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;600&family=Lora:ital,wght@0,600;1,500&display=swap" rel="stylesheet"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalWebPage",
+  "name": "Doenças Pulmonares e Saúde Cardiovascular",
+  "description": "Guia interativo sobre a relação entre doenças pulmonares e doenças cardiovasculares — epidemiologia, mecanismos fisiopatológicos, manejo clínico e evidências recentes.",
+  "url": "https://lucascardio.com.br/Pacientes/pulmo-cardio.html",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://lucascardio.com.br/Pacientes/pulmo-cardio.html"
+  },
+  "about": "Doenças Pulmonares e Saúde Cardiovascular",
+  "author": {
+    "@type": "Person",
+    "name": "Dr. Lucas Silva",
+    "url": "https://lucascardio.com.br",
+    "jobTitle": "Cardiologista Intervencionista"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dr. Lucas Silva - Cardiologia",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://lucascardio.com.br/assets/img/logo.png"
+    }
+  },
+  "medicalAudience": {
+    "@type": "MedicalAudience",
+    "audienceType": "Patient"
+  },
+  "specialty": "https://schema.org/Cardiovascular",
+  "inLanguage": "pt-BR"
+}
+</script>
+
+  <style>
+    :root {
+      --primary: oklch(65% .18 195);
+      --primary-foreground: oklch(98% 0 0);
+      --background: oklch(13% .018 250);
+      --foreground: oklch(93% .01 250);
+      --card: oklch(18.5% .018 250);
+      --card-foreground: oklch(93% .01 250);
+      --muted: oklch(22% .018 250);
+      --muted-foreground: oklch(62% .02 250);
+      --border: oklch(28% .025 250);
+      --input: oklch(22% .02 250);
+      --destructive: oklch(60% .22 25);
+      --secondary: oklch(22% .022 250);
+      --secondary-foreground: oklch(88% .01 250);
+      --accent: oklch(24% .025 250);
+      --accent-foreground: oklch(90% .01 250);
+      --teal: #00d3bd;
+      --teal-dim: rgba(0,211,189,.12);
+      --amber: oklch(82.8% .189 84.429);
+      --red: oklch(63.7% .237 25.331);
+      --green: oklch(79.2% .209 151.711);
+      --radius: 0.625rem;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-serif: 'Lora', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); background-color: var(--background); color: var(--foreground); min-height: 100vh; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    nav { position: sticky; top: 0; z-index: 50; background: rgba(18,20,27,.88); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); padding: 0 1.5rem; height: 56px; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .nav-brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--foreground); flex-shrink: 0; }
+    .nav-brand-icon { width: 28px; height: 28px; border-radius: 7px; background: var(--teal); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .nav-brand-name { font-weight: 800; font-size: 1rem; letter-spacing: -.025em; line-height: 1; }
+    .nav-brand-name span { color: var(--teal); }
+    .nav-brand-sep { width: 1px; height: 14px; background: var(--border); margin: 0 6px; }
+    .nav-brand-sub { font-size: .7rem; font-weight: 500; color: var(--muted-foreground); }
+    .nav-center { display: flex; align-items: center; gap: .15rem; overflow-x: auto; scrollbar-width: none; }
+    .nav-center::-webkit-scrollbar { display: none; }
+    .nav-center-btn { background: none; border: none; cursor: pointer; font-family: var(--font-sans); font-size: .75rem; font-weight: 500; color: var(--muted-foreground); padding: 5px 10px; border-radius: 7px; transition: background .15s, color .15s; white-space: nowrap; }
+    .nav-center-btn:hover { background: var(--accent); color: var(--foreground); }
+    .nav-center-btn.active { background: var(--teal-dim); color: var(--teal); font-weight: 600; }
+    .nav-actions { display: flex; align-items: center; gap: .5rem; flex-shrink: 0; }
+    .nav-link { font-size: .75rem; font-weight: 600; padding: 5px 12px; border-radius: 8px; border: 1.5px solid var(--primary); color: var(--primary); background: transparent; text-decoration: none; transition: background .15s, color .15s; display: inline-flex; align-items: center; gap: 5px; }
+    .nav-link:hover { background: var(--primary); color: var(--primary-foreground); }
+
+    /* LAYOUT */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+    .section { padding: 2.5rem 0; }
+
+    /* HERO */
+    .hero { padding: 3.5rem 0 2.5rem; border-bottom: 1px solid var(--border); }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 6px; font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); margin-bottom: 1rem; }
+    .hero-eyebrow::before { content: ''; display: block; width: 20px; height: 2px; background: var(--teal); border-radius: 1px; }
+    .hero h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800; line-height: 1.2; margin-bottom: .75rem; letter-spacing: -.02em; }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero-sub { color: var(--muted-foreground); font-size: .95rem; max-width: 640px; margin-bottom: 1.5rem; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag { font-size: .7rem; font-weight: 600; padding: 3px 10px; border-radius: 6px; border: 1px solid var(--border); color: var(--muted-foreground); background: var(--card); font-family: var(--font-mono); }
+
+    /* SECTION NAV TABS */
+    .sec-nav { display: flex; gap: .5rem; overflow-x: auto; scrollbar-width: none; padding: 1.5rem 0 0; margin-bottom: 2rem; border-bottom: 1px solid var(--border); }
+    .sec-nav::-webkit-scrollbar { display: none; }
+    .sec-tab { padding: 8px 16px; font-size: .82rem; font-weight: 600; border: none; background: none; color: var(--muted-foreground); cursor: pointer; border-bottom: 2px solid transparent; transition: color .15s, border-color .15s; white-space: nowrap; font-family: var(--font-sans); margin-bottom: -1px; }
+    .sec-tab:hover { color: var(--foreground); }
+    .sec-tab.active { color: var(--teal); border-bottom-color: var(--teal); }
+
+    /* SECTION PANELS */
+    .sec-panel { display: none; animation: fadeUp .3s ease; }
+    .sec-panel.active { display: block; }
+
+    /* CARDS */
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: calc(var(--radius) + 2px); padding: 1.5rem; margin-bottom: 1.5rem; }
+    .card-header { display: flex; align-items: flex-start; gap: .75rem; margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+    .card-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; background: var(--teal-dim); color: var(--teal); }
+    .card-title { font-weight: 700; font-size: 1rem; margin-bottom: 2px; }
+    .card-subtitle { font-size: .78rem; color: var(--muted-foreground); }
+
+    /* GRID */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .stat-card { background: var(--card); border: 1px solid var(--border); border-radius: calc(var(--radius) + 2px); padding: 1.25rem; }
+    .stat-val { font-family: var(--font-mono); font-size: 1.9rem; font-weight: 700; color: var(--teal); line-height: 1; margin-bottom: .25rem; }
+    .stat-label { font-size: .75rem; color: var(--muted-foreground); line-height: 1.4; }
+    .stat-card.red-accent .stat-val { color: #f87171; }
+    .stat-card.amber-accent .stat-val { color: #fbbf24; }
+
+    /* INFO BOXES */
+    .info-box { border-radius: var(--radius); padding: 12px 16px; font-size: .83rem; line-height: 1.65; display: flex; gap: 10px; margin-bottom: .75rem; }
+    .info-box-icon { flex-shrink: 0; font-size: 1rem; margin-top: 1px; }
+    .info-teal { background: var(--teal-dim); border-left: 3px solid var(--teal); }
+    .info-amber { background: rgba(251,191,36,.08); border-left: 3px solid rgba(251,191,36,.5); }
+    .info-red { background: rgba(220,38,38,.08); border-left: 3px solid rgba(220,38,38,.4); }
+    .info-gray { background: var(--muted); border-left: 3px solid var(--border); }
+    .info-green { background: rgba(34,197,94,.07); border-left: 3px solid rgba(34,197,94,.4); }
+
+    /* BADGES */
+    .badge { display: inline-flex; align-items: center; gap: 4px; font-size: .68rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; white-space: nowrap; vertical-align: middle; }
+    .badge-red { background: rgba(220,38,38,.15); color: #f87171; border: 1px solid rgba(220,38,38,.25); }
+    .badge-amber { background: rgba(251,191,36,.12); color: #fbbf24; border: 1px solid rgba(251,191,36,.2); }
+    .badge-teal { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.2); }
+    .badge-gray { background: var(--muted); color: var(--foreground); border: 1px solid var(--border); font-family: var(--font-mono); }
+    .badge-green { background: rgba(34,197,94,.1); color: #4ade80; border: 1px solid rgba(34,197,94,.25); }
+
+    /* SECTION TITLES */
+    .section-label { font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--teal); margin-bottom: .4rem; font-family: var(--font-mono); }
+    .section-title { font-size: 1.3rem; font-weight: 800; margin-bottom: .5rem; letter-spacing: -.01em; }
+    .section-lead { color: var(--muted-foreground); font-size: .92rem; margin-bottom: 1.5rem; line-height: 1.7; }
+    .section-divider { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+
+    /* BODY TEXT */
+    .prose p { margin-bottom: 1rem; font-size: .9rem; line-height: 1.75; }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose strong { color: var(--foreground); font-weight: 700; }
+    .prose cite { font-family: var(--font-mono); font-size: .78rem; color: var(--teal); font-style: normal; }
+    h3.sub-title { font-size: 1rem; font-weight: 700; margin: 1.5rem 0 .75rem; color: var(--foreground); display: flex; align-items: center; gap: .5rem; }
+    h3.sub-title::before { content: ''; display: block; width: 3px; height: 16px; background: var(--teal); border-radius: 2px; }
+
+    /* RISK TABLE */
+    .risk-table-wrap { overflow-x: auto; border-radius: calc(var(--radius) + 2px); border: 1px solid var(--border); }
+    .risk-table { width: 100%; border-collapse: collapse; font-size: .8rem; min-width: 680px; }
+    .risk-table th { background: var(--muted); padding: 10px 14px; text-align: left; font-weight: 700; font-size: .72rem; border-bottom: 1px solid var(--border); color: var(--muted-foreground); letter-spacing: .04em; text-transform: uppercase; white-space: nowrap; }
+    .risk-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: middle; line-height: 1.45; }
+    .risk-table tr:last-child td { border-bottom: none; }
+    .risk-table tr:hover td { background: var(--accent); }
+    .risk-table .risk-high { color: #f87171; font-family: var(--font-mono); font-weight: 700; }
+    .risk-table .risk-mod { color: #fbbf24; font-family: var(--font-mono); font-weight: 700; }
+    .risk-table .risk-val { font-family: var(--font-mono); font-size: .78rem; }
+
+    /* MECHANISM PATHWAY */
+    .pathway { display: flex; flex-direction: column; gap: .5rem; }
+    .pathway-step { display: flex; align-items: flex-start; gap: .75rem; }
+    .pathway-connector { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+    .pathway-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--teal); flex-shrink: 0; margin-top: 5px; }
+    .pathway-line { width: 2px; height: 24px; background: linear-gradient(var(--teal), var(--border)); margin: 3px 0; }
+    .pathway-content { background: var(--muted); border-radius: var(--radius); padding: 10px 14px; flex: 1; font-size: .82rem; line-height: 1.55; }
+    .pathway-content strong { font-weight: 700; display: block; margin-bottom: 2px; font-size: .85rem; }
+
+    /* DRUG TABLE */
+    .drug-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: .75rem; }
+    .drug-card { background: var(--muted); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; }
+    .drug-name { font-weight: 700; font-size: .9rem; margin-bottom: 4px; }
+    .drug-note { font-size: .78rem; color: var(--muted-foreground); line-height: 1.5; }
+    .drug-card.safe { border-left: 3px solid var(--teal); }
+    .drug-card.caution { border-left: 3px solid rgba(251,191,36,.5); }
+    .drug-card.avoid { border-left: 3px solid rgba(220,38,38,.4); }
+    .drug-card.emerging { border-left: 3px solid #818cf8; }
+
+    /* REFERENCES */
+    .ref-list { list-style: none; }
+    .ref-item { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: .79rem; line-height: 1.6; display: flex; gap: 10px; }
+    .ref-item:last-child { border-bottom: none; }
+    .ref-num { font-family: var(--font-mono); font-size: .7rem; font-weight: 700; color: var(--teal); min-width: 22px; padding-top: 2px; }
+    .ref-title { font-weight: 600; margin-bottom: 2px; }
+    .ref-meta { color: var(--muted-foreground); font-size: .74rem; }
+
+    /* BUTTONS */
+    .btn { display: inline-flex; align-items: center; gap: 8px; font-size: .85rem; font-weight: 600; padding: 10px 20px; border-radius: calc(var(--radius) + 2px); border: none; cursor: pointer; transition: all .15s; font-family: var(--font-sans); }
+    .btn-primary { background: var(--primary); color: #000; font-weight: 700; }
+    .btn-primary:hover { opacity: .9; transform: translateY(-1px); }
+    .btn-secondary { background: var(--muted); color: var(--foreground); border: 1px solid var(--border); }
+    .btn-secondary:hover { background: var(--accent); }
+
+    /* HIGHLIGHT QUOTE */
+    .highlight-quote { border-left: 4px solid var(--teal); padding: .75rem 1.25rem; background: var(--teal-dim); border-radius: 0 var(--radius) var(--radius) 0; font-family: var(--font-serif); font-size: .95rem; font-style: italic; line-height: 1.7; margin: 1.25rem 0; color: var(--foreground); }
+
+    /* ACCORDION */
+    .accordion { border: 1px solid var(--border); border-radius: calc(var(--radius) + 2px); overflow: hidden; margin-bottom: .75rem; }
+    .accordion-btn { width: 100%; background: var(--card); border: none; text-align: left; padding: 14px 16px; font-family: var(--font-sans); font-size: .87rem; font-weight: 600; color: var(--foreground); cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: .5rem; transition: background .15s; }
+    .accordion-btn:hover { background: var(--accent); }
+    .accordion-btn.open { background: var(--teal-dim); color: var(--teal); }
+    .accordion-arrow { font-size: .7rem; transition: transform .25s; flex-shrink: 0; }
+    .accordion-btn.open .accordion-arrow { transform: rotate(180deg); }
+    .accordion-body { display: none; padding: 16px; background: var(--muted); font-size: .85rem; line-height: 1.7; border-top: 1px solid var(--border); }
+    .accordion-body.open { display: block; animation: fadeUp .2s ease; }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 2rem 0; margin-top: 3rem; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-copy { font-size: .75rem; color: var(--muted-foreground); }
+
+    /* DISCLAIMER */
+    .disclaimer { background: var(--muted); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 16px; font-size: .75rem; color: var(--muted-foreground); line-height: 1.6; margin-top: 1.5rem; }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 680px) {
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .nav-brand-sub { display: none; }
+      .nav-brand-sep { display: none; }
+      .drug-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#">
+    <div class="nav-brand-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+        <path d="M8 14s-.5-2 2-4 4-1 4-4"/>
+        <path d="M12 20v-4"/>
+      </svg>
+    </div>
+    <div class="nav-brand-name">Pulmo<span>Card</span></div>
+    <div class="nav-brand-sep"></div>
+    <div class="nav-brand-sub">Doenças Pulmonares &amp; Saúde Cardiovascular</div>
+  </a>
+  <div class="nav-center" id="navCenter">
+    <button class="nav-center-btn active" onclick="showPanel('epi')">Epidemiologia</button>
+    <button class="nav-center-btn" onclick="showPanel('mechanisms')">Mecanismos</button>
+    <button class="nav-center-btn" onclick="showPanel('diseases')">Por Doença</button>
+    <button class="nav-center-btn" onclick="showPanel('management')">Manejo</button>
+    <button class="nav-center-btn" onclick="showPanel('disparities')">Disparidades</button>
+    <button class="nav-center-btn" onclick="showPanel('future')">Avanços</button>
+    <button class="nav-center-btn" onclick="showPanel('table')">Tabela Resumo</button>
+    <button class="nav-center-btn" onclick="showPanel('refs')">Referências</button>
+  </div>
+  <div class="nav-actions">
+    <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      lucascardio.com.br
+    </a>
+  </div>
+</nav>
+
+<main>
+<div class="container">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Medicina Cardiovascular · Multimorbidade</div>
+  <h1>Doenças Pulmonares e<br><em>Saúde Cardiovascular</em></h1>
+  <p class="hero-sub">
+    A comorbidade entre doenças pulmonares e cardiovasculares representa um dos padrões clínicos mais relevantes da medicina contemporânea. Este guia integra epidemiologia quantitativa, mecanismos fisiopatológicos e estratégias de manejo baseadas nas evidências mais recentes — incluindo diretrizes ESC/ERS, GOLD 2026, ATS 2024 e estudos até 2026.
+  </p>
+  <div class="hero-tags">
+    <span class="tag">GOLD 2026</span>
+    <span class="tag">ATS 2024</span>
+    <span class="tag">ESC/ERS 2022</span>
+    <span class="tag">ACC/AHA 2025</span>
+    <span class="tag">DPOC</span>
+    <span class="tag">Asma</span>
+    <span class="tag">DPI</span>
+    <span class="tag">HAP</span>
+    <span class="tag">SAOS</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     SECTION TABS
+════════════════════════════════════════════════ -->
+<div class="sec-nav" id="secNav">
+  <button class="sec-tab active" onclick="showPanel('epi')">📊 Epidemiologia</button>
+  <button class="sec-tab" onclick="showPanel('mechanisms')">🔬 Mecanismos</button>
+  <button class="sec-tab" onclick="showPanel('diseases')">🫁 Por Doença</button>
+  <button class="sec-tab" onclick="showPanel('management')">💊 Manejo</button>
+  <button class="sec-tab" onclick="showPanel('disparities')">⚖️ Disparidades</button>
+  <button class="sec-tab" onclick="showPanel('future')">🚀 Avanços</button>
+  <button class="sec-tab" onclick="showPanel('table')">📋 Tabela Resumo</button>
+  <button class="sec-tab" onclick="showPanel('refs')">📚 Referências</button>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     PANEL 1 — EPIDEMIOLOGIA
+════════════════════════════════════════════════ -->
+<div id="panel-epi" class="sec-panel active">
+  <div class="section-label">Associações Epidemiológicas</div>
+  <div class="section-title">Estimativas Quantitativas de Risco Cardiovascular</div>
+  <p class="section-lead">A relação entre as doenças pulmonares prevalentes e as doenças cardiovasculares (DCV) em adultos é um dos padrões de comorbidade clinicamente mais significativos da medicina moderna. Através de DPOC, asma, DPI, SAOS, hipertensão pulmonar, pneumonia e embolia pulmonar, as evidências demonstram consistentemente risco cardiovascular substancialmente elevado, independente de fatores de risco compartilhados.</p>
+
+  <div class="grid-3" style="margin-bottom:1.5rem;">
+    <div class="stat-card red-accent">
+      <div class="stat-val">OR 2,46</div>
+      <div class="stat-label">Risco geral de DCV na DPOC vs. não-DPOC (IC95%: 2,02–3,00) · Chen et al., Lancet Resp Med 2015</div>
+    </div>
+    <div class="stat-card amber-accent">
+      <div class="stat-val">~35%</div>
+      <div class="stat-label">Proporção de mortes em DPOC atribuída a eventos cardiovasculares · GOLD 2026</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-val">HR 1,25</div>
+      <div class="stat-label">Risco de MACE em DPOC — comparável ao conferido pelo diabetes · Maclagan et al., ERJ 2023</div>
+    </div>
+  </div>
+
+  <!-- DPOC -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🫁</div>
+      <div>
+        <div class="card-title">DPOC e Risco Cardiovascular</div>
+        <div class="card-subtitle">A comorbidade mais estudada na interface pulmonar–cardiovascular</div>
+      </div>
+    </div>
+    <div class="prose">
+      <p>A DPOC representa a comorbidade pulmonar–cardiovascular mais extensivamente estudada. Uma revisão sistemática e meta-análise seminal demonstrou <strong>OR geral de 2,46 (IC95%: 2,02–3,00)</strong> para doença cardiovascular em pacientes com DPOC, com riscos dois a cinco vezes maiores para doença isquêmica cardíaca, arritmias, insuficiência cardíaca, doenças da circulação pulmonar e doença vascular periférica. <cite>[1]</cite></p>
+      <p>Ao longo dos coortes estudados, a prevalência de insuficiência cardíaca na DPOC varia de <strong>7% a 42%</strong>, doença isquêmica cardiovascular de 2% a 18%, e arritmia de 3% a 21%. <cite>[2]</cite> A diretriz GOLD 2026 enfatiza que as DCV são causa proeminente de morte na DPOC, particularmente em pacientes com obstrução leve a moderada. <cite>[3]</cite></p>
+      <p>Em um grande coorte de prevenção primária canadense, o hazard ratio ajustado para eventos cardiovasculares adversos maiores (MACE) na DPOC foi <strong>1,25 (IC95%: 1,23–1,27)</strong>, comparável ao risco conferido pelo diabetes. <cite>[4]</cite> Dados do NHANES confirmam que pacientes com DPOC apresentam prevalência significativamente maior de DCV (59,6% vs. 28,4%), com ORs ajustados de 2,2 para uma DCV, 3,3 para duas e 4,3 para três ou mais. <cite>[5]</cite></p>
+    </div>
+  </div>
+
+  <!-- ASMA -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">💨</div>
+      <div>
+        <div class="card-title">Asma, Sobreposição e Risco Cardiovascular</div>
+        <div class="card-subtitle">Risco subestimado — fenótipo de sobreposição como o de maior risco entre as doenças obstrutivas</div>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Embora associada à DCV de forma menos intensa que a DPOC, a asma confere risco clinicamente relevante. O <strong>Framingham Offspring Study</strong> demonstrou HR ajustado de <strong>1,28 (IC95%: 1,07–1,54)</strong> para DCV incidente em adultos com asma. <cite>[6]</cite> Meta-análises reportam riscos aumentados para doença coronária (RR 1,33), infarto agudo do miocárdio (RR 1,39), insuficiência cardíaca (RR 2,10) e fibrilação atrial na asma ativa (RR 1,70). <cite>[7]</cite></p>
+      <p>A sobreposição asma–DPOC (ACO) carrega o maior risco cardiovascular entre os fenótipos de doença obstrutiva das vias aéreas, com OR de <strong>2,99 (IC95%: 2,47–3,61)</strong> e hazard ratio para DCV incidente de <strong>2,67 (IC95%: 2,21–3,24)</strong>. <cite>[8]</cite></p>
+    </div>
+    <div class="info-amber info-box" style="margin-top:.75rem;">
+      <span class="info-box-icon">⚠️</span>
+      <div><strong>Ponto clínico crítico:</strong> Pacientes com ACO representam um subgrupo de alto risco frequentemente subidentificado. A coexistência de características funcionais e clínicas de ambas as condições implica vigilância cardiovascular proativa.</div>
+    </div>
+  </div>
+
+  <!-- DPI e HAP -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🔴</div>
+      <div>
+        <div class="card-title">DPI, HAP e Risco Cardiovascular</div>
+        <div class="card-subtitle">Fibrose pulmonar, doenças do tecido conjuntivo e hipertensão pulmonar</div>
+      </div>
+    </div>
+    <div class="prose">
+      <p>A doença pulmonar intersticial (DPI), incluindo a fibrose pulmonar idiopática, é independentemente associada a doença isquêmica cardíaca (<strong>HR 1,85; IC95%: 1,56–2,18</strong>) e infarto do miocárdio (<strong>HR 1,74; IC95%: 1,44–2,11</strong>) após ajuste para fatores de risco cardiovascular estabelecidos. <cite>[9]</cite> A DPI associada a doença do tecido conjuntivo confere risco 1,65 vezes maior de DCV versus a doença do tecido conjuntivo isolada, com risco particularmente elevado para insuficiência cardíaca (RR 2,84) e arritmia (RR 1,55). <cite>[10]</cite></p>
+      <p>A hipertensão pulmonar (HP) afeta aproximadamente <strong>1% da população global</strong> e até 10% dos indivíduos acima de 65 anos, sendo as doenças cardíacas esquerdas e as doenças pulmonares crônicas as causas mais comuns. <cite>[11,12,13]</cite> As diretrizes ESC/ERS 2022 fornecem a classificação clínica atual da HP, estratificando cinco grupos com distintos mecanismos hemodinâmicos e implicações prognósticas. <cite>[11]</cite></p>
+    </div>
+  </div>
+
+  <!-- EXACERBAÇÕES -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">⚡</div>
+      <div>
+        <div class="card-title">Exacerbações Agudas como Gatilhos Cardiovasculares</div>
+        <div class="card-subtitle">Janela de vulnerabilidade: risco máximo nos primeiros 30 dias</div>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Eventos pulmonares agudos amplificam dramaticamente o risco cardiovascular. O <strong>estudo SUMMIT</strong> demonstrou HR de <strong>3,8 (IC95%: 2,7–5,5)</strong> para eventos cardiovasculares nos primeiros 30 dias após uma exacerbação aguda de DPOC (EADPOC), elevando-se para <strong>9,9 (IC95%: 6,6–14,9)</strong> após exacerbações hospitalizadas. <cite>[19]</cite></p>
+      <p>Uma revisão sistemática confirmou que esse risco persiste por até um ano, com maior magnitude nos primeiros 30 dias. <cite>[20]</cite> O risco é <em>dose-dependente</em>: exacerbações mais frequentes e graves conferem maior risco de longo prazo de IAM (HR subdistribuição até 1,82) e embolia pulmonar (HR subdistribuição até 2,62). <cite>[21]</cite></p>
+      <p>Para pneumonia, a incidência relativa de doença isquêmica cardíaca atinge pico de <strong>4,24 (IC95%: 2,92–6,15)</strong> nos primeiros 1–3 dias após hospitalização, permanecendo elevada por até um ano. <cite>[22]</cite> Em pacientes com DPOC e infecção por <em>Streptococcus pneumoniae</em>, o risco de MACE é 4,6 vezes maior e de IAM agudo 9,1 vezes maior nos primeiros 14 dias. <cite>[23]</cite></p>
+    </div>
+    <div class="grid-2" style="margin-top:1rem;gap:.75rem;">
+      <div class="info-red info-box" style="margin-bottom:0;">
+        <span class="info-box-icon">💔</span>
+        <div><strong>EADPOC Hospitalizada:</strong> HR cardiovascular de 9,9 nos primeiros 30 dias · SUMMIT trial <cite>[19]</cite></div>
+      </div>
+      <div class="info-amber info-box" style="margin-bottom:0;">
+        <span class="info-box-icon">🫀</span>
+        <div><strong>Pneumococo em DPOC:</strong> Risco de IAM 9,1× maior em 14 dias · Riisberg et al. JACC Adv 2025 <cite>[23]</cite></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     PANEL 2 — MECANISMOS FISIOPATOLÓGICOS
+════════════════════════════════════════════════ -->
+<div id="panel-mechanisms" class="sec-panel">
+  <div class="section-label">Fisiopatologia</div>
+  <div class="section-title">Mecanismos de Ligação Pulmonar–Cardiovascular</div>
+  <p class="section-lead">Os elos fisiopatológicos entre doenças pulmonares e cardiovasculares são multifatoriais, envolvendo mecanismos compartilhados e específicos de cada doença. Inflamação sistêmica, estresse oxidativo, hipóxia, disfunção endotelial, disautonomia e efeitos mecânicos diretos atuam de forma integrada.</p>
+
+  <div class="highlight-quote">
+    "Mecanismos endógenos e exógenos de estresse oxidativo promovem inflamação sistêmica crônica, disfunção endotelial e rigidez arterial, constituindo o eixo central da patogênese cardiovascular na DPOC."
+    <span style="display:block;font-size:.78rem;font-style:normal;font-family:var(--font-mono);color:var(--teal);margin-top:.4rem;">— Finks, Rumbak, Self · NEJM 2020 [14]</span>
+  </div>
+
+  <!-- MECANISMOS CRÔNICOS -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🔥</div>
+      <div>
+        <div class="card-title">Mecanismos Crônicos: DPOC e Doença Cardiovascular</div>
+        <div class="card-subtitle">Via inflamatória sistêmica, hipóxia e hiperinsuflação</div>
+      </div>
+    </div>
+    <div class="pathway">
+      <div class="pathway-step">
+        <div class="pathway-connector"><div class="pathway-dot"></div><div class="pathway-line"></div></div>
+        <div class="pathway-content"><strong>Inflamação Sistêmica Persistente</strong>Tabagismo e senescência celular ativam vias inflamatórias (TNF-α, IL-6, PCR, fibrinogênio) com dano direto a pulmões e coração. O transbordamento de mediadores pró-inflamatórios para a circulação sistêmica promove remodelamento vascular e rigidez arterial. <cite>[2,15,16]</cite></div>
+      </div>
+      <div class="pathway-step">
+        <div class="pathway-connector"><div class="pathway-dot"></div><div class="pathway-line"></div></div>
+        <div class="pathway-content"><strong>Disfunção Endotelial e Ativação Plaquetária</strong>A inflamação crônica leva à disfunção endotelial, ativação plaquetária e distúrbios da coagulação — contribuindo para o estado pró-aterogênico e pró-trombótico. Esses mesmos mecanismos são explorados por Finks et al. no NEJM 2020 como eixo central da patogênese cardiovascular na DPOC. <cite>[14]</cite></div>
+      </div>
+      <div class="pathway-step">
+        <div class="pathway-connector"><div class="pathway-dot"></div><div class="pathway-line"></div></div>
+        <div class="pathway-content"><strong>Hipoxemia Arterial e Hipóxia Miocárdica</strong>A troca gasosa pulmonar anormal resulta em hipoxemia arterial e hipóxia miocárdica. A hipóxia crônica estimula eritropoiese, aumenta viscosidade sanguínea e induz vasoconstrição pulmonar, precipitando cor pulmonale. <cite>[3]</cite></div>
+      </div>
+      <div class="pathway-step">
+        <div class="pathway-connector"><div class="pathway-dot"></div><div class="pathway-line"></div></div>
+        <div class="pathway-content"><strong>Hiperinsuflação Pulmonar</strong>A hiperinsuflação reduz o retorno venoso e comprime os vasos pulmonares, limitando o débito cardíaco. O aumento da pressão intratorácica também prejudica o enchimento diastólico do ventrículo direito e esquerdo. <cite>[3]</cite></div>
+      </div>
+      <div class="pathway-step">
+        <div class="pathway-connector"><div class="pathway-dot"></div></div>
+        <div class="pathway-content"><strong>Descondicionamento e Inatividade Física</strong>A dispneia de esforço leva à redução da atividade física, resultando em descondicionamento muscular, perda de massa magra, resistência insulínica e piora da capacidade cardiovascular — um ciclo vicioso que amplifica o risco cardiovascular. <cite>[3]</cite></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MECANISMOS POR CONDIÇÃO -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🧬</div>
+      <div>
+        <div class="card-title">Mecanismos Específicos por Condição Pulmonar</div>
+        <div class="card-subtitle">Vias moleculares distintas convergindo para comprometimento cardiovascular</div>
+      </div>
+    </div>
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">SAOS — Hipóxia Intermitente e Disautonomia <span class="accordion-arrow">▼</span></button>
+      <div class="accordion-body">
+        <p>Na <strong>Síndrome da Apneia Obstrutiva do Sono (SAOS)</strong>, a hipóxia intermitente é o mecanismo central. Cada episódio apneico desencadeia ativação simpática, liberação de catecolaminas e inflamação sistêmica. A hipóxia-reoxigenação repetida produz estresse oxidativo, disfunção endotelial e aceleração da aterosclerose. Além disso, a ativação simpática crônica contribui diretamente para hipertensão sistêmica — presente em 30–50% dos pacientes com SAOS — e para arritmias, especialmente fibrilação atrial. <cite>[17]</cite></p>
+        <div class="info-teal info-box" style="margin-top:.75rem;margin-bottom:0;">
+          <span class="info-box-icon">💡</span>
+          <div>A SAOS não tratada é um fator de risco independente para hipertensão resistente, AVC e morte cardiovascular súbita. O CPAP reduz pressão arterial mas evidência de redução de MACE permanece variável entre estudos.</div>
+        </div>
+      </div>
+    </div>
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">DPI — Mecanismos Fibróticos Compartilhados <span class="accordion-arrow">▼</span></button>
+      <div class="accordion-body">
+        <p>Na doença pulmonar intersticial, mecanismos fibróticos compartilhados envolvendo <strong>TGF-β, angiotensina II e endotelina-1</strong> conduzem tanto à fibrose pulmonar quanto à fibrose miocárdica. Esses mediadores promovem proliferação de fibroblastos, depósito de colágeno e remodelamento da matriz extracelular em ambos os órgãos. O TGF-β, em particular, é um regulador central da fibrose orgânica multissistêmica, com evidências crescentes de sua participação na fisiopatologia da miocardiopatia restritiva associada à DPI. <cite>[18]</cite></p>
+      </div>
+    </div>
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">Hipertensão Pulmonar — Comprometimento Hemodinâmico Progressivo <span class="accordion-arrow">▼</span></button>
+      <div class="accordion-body">
+        <p>A hipertensão pulmonar (HP), independentemente de ser primária ou secundária, representa uma consequência cardiovascular crítica da doença pulmonar. A classificação clínica da HP — com cinco grupos distintos segundo as diretrizes ESC/ERS 2022 — ilustra como condições pulmonares diversas levam ao comprometimento cardiovascular por vias hemodinâmicas distintas. <cite>[11,12]</cite></p>
+        <p style="margin-top:.75rem;">O aumento progressivo da resistência vascular pulmonar impõe sobrecarga ao ventrículo direito (VD), levando à dilatação e hipertrofia do VD, disfunção diastólica do VE por interdependência ventricular, e, em estágios avançados, falência biventricular. A HAP idiopática e a HP do grupo 3 (doenças pulmonares crônicas/hipóxia) compartilham vias de remodelamento vascular pulmonar mediadas por proliferação de células musculares lisas e disfunção da prostaciclina/óxido nítrico.</p>
+      </div>
+    </div>
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">Exacerbações Agudas — Tempestade Inflamatória e Trombose <span class="accordion-arrow">▼</span></button>
+      <div class="accordion-body">
+        <p>Durante exacerbações agudas de DPOC e pneumonia, há liberação maciça de citocinas pró-inflamatórias (IL-1β, IL-6, TNF-α), ativação do complemento e estado pró-trombótico sistêmico que precipitam eventos cardiovasculares. Na infecção pneumocócica, há evidência de <strong>microlesões miocárdicas diretas</strong> mediadas por pneumolisina — uma toxina bacteriana que cria poros na membrana celular dos cardiomiócitos, contribuindo para elevações de troponina e disfunção miocárdica mesmo na ausência de oclusão coronária. <cite>[24,25]</cite></p>
+        <p style="margin-top:.75rem;">Fuhr et al. documentaram alterações na função vascular e rigidez arterial durante hospitalização por EADPOC que persistem na recuperação, sugerindo dano endotelial duradouro além do evento agudo. <cite>[26]</cite></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-teal info-box">
+    <span class="info-box-icon">🔗</span>
+    <div><strong>Conceito integrador:</strong> A via inflamatória é o denominador comum entre DPOC, DPI, SAOS e HP. A inflamação pulmonar crônica não é confinada ao pulmão — "transborda" para a circulação sistêmica, promovendo aterosclerose acelerada, disfunção autonômica e remodelamento cardíaco independente da presença de fatores de risco cardiovascular clássicos. <cite>[15,16,18]</cite></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     PANEL 3 — POR DOENÇA
+════════════════════════════════════════════════ -->
+<div id="panel-diseases" class="sec-panel">
+  <div class="section-label">Doenças Pulmonares Específicas</div>
+  <div class="section-title">Perfil Cardiovascular por Condição Pulmonar</div>
+  <p class="section-lead">Cada doença pulmonar apresenta um perfil cardiovascular distinto em termos de associações predominantes, mecanismos fisiopatológicos e implicações terapêuticas. O entendimento dessas nuances é essencial para a estratificação de risco e o manejo individualizado.</p>
+
+  <!-- DPOC detalhado -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🫁</div>
+      <div>
+        <div class="card-title">DPOC — O Espectro Completo da Comorbidade Cardiovascular</div>
+        <div class="card-subtitle">Insuficiência cardíaca, doença isquêmica, arritmias e doença vascular periférica</div>
+      </div>
+    </div>
+    <h3 class="sub-title">Prevalências e Associações</h3>
+    <div class="prose">
+      <p>Pacientes com DPOC apresentam riscos duas a cinco vezes maiores para todas as principais categorias de DCV. As prevalências relatadas variam amplamente por coorte, refletindo diferenças em definições diagnósticas, método de captação e população estudada: <strong>insuficiência cardíaca 7–42%</strong>, doença isquêmica cardiovascular 2–18%, arritmia 3–21%. <cite>[2]</cite></p>
+      <p>O risco de MACE na DPOC (HR 1,25) é estatisticamente e clinicamente equivalente ao do diabetes mellitus em populações de prevenção primária — dado que deveria motivar o mesmo nível de vigilância cardiovascular. <cite>[4]</cite> A escala de risco é dose-dependente: quanto maior o grau de obstrução (VEF1 reduzido), maior o risco cardiovascular, com evidência de relação linear entre o declínio de VEF1 e o risco de eventos cardíacos. <cite>[3]</cite></p>
+    </div>
+    <h3 class="sub-title">Insuficiência Cardíaca e DPOC</h3>
+    <div class="prose">
+      <p>A coexistência de IC e DPOC é particularmente desafiadora. A IC pode estar mascarada pela DPOC (dispneia atribuída ao componente pulmonar), e vice-versa. Peptídeos natriuréticos (BNP/NT-proBNP) mantêm valor diagnóstico mesmo na DPOC, mas a hiperinsuflação e a HP podem elevar os valores basais — recomenda-se interpretação no contexto clínico global. <cite>[28]</cite></p>
+      <p>Em IC com FE reduzida (ICFEr) associada a DPOC, os betabloqueadores cardiosseletivos <strong>devem ser mantidos</strong> — evidência robusta apoia melhora de sobrevida sem deterioração clinicamente significativa da função pulmonar. <cite>[35,36]</cite></p>
+    </div>
+    <div class="info-amber info-box">
+      <span class="info-box-icon">⚠️</span>
+      <div><strong>Armadilha diagnóstica:</strong> A dispneia na DPOC pode mascarar IC ou vice-versa. Dados do NHANES mostram que 38% dos pacientes com DPOC e IC têm o diagnóstico de IC não reconhecido. Ecocardiografia e peptídeos natriuréticos devem ser utilizados sistematicamente em pacientes com sintomas desproporcionais. <cite>[2]</cite></div>
+    </div>
+  </div>
+
+  <!-- ASMA detalhada -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">💨</div>
+      <div>
+        <div class="card-title">Asma — Risco Cardiovascular e Fenótipos</div>
+        <div class="card-subtitle">Risco subestimado nas diretrizes — fibrilação atrial e insuficiência cardíaca como desfechos principais</div>
+      </div>
+    </div>
+    <div class="prose">
+      <p>A asma é frequentemente excluída das discussões sobre risco cardiovascular, mas os dados suportam uma associação independente e clinicamente relevante. Os mecanismos incluem inflamação sistêmica de baixo grau mediada por eosinófilos e mastócitos, efeitos das terapias (β2-agonistas de curta ação em altas doses, corticoides sistêmicos) e possíveis efeitos da hipóxia intermitente em asma grave não controlada.</p>
+      <p>O risco de <strong>insuficiência cardíaca</strong> é o mais elevado entre as associações cardiovasculares da asma (RR 2,10), seguido por fibrilação atrial (RR 1,70) e infarto do miocárdio (RR 1,39). <cite>[7]</cite> A fibrilação atrial na asma pode ser parcialmente mediada pela ativação adrenérgica e pelos efeitos dos β2-agonistas em doses elevadas.</p>
+      <p>Modelos de machine learning incorporando índices de função pulmonar superam os escores ASCVD e Framingham na predição de mortalidade cardiovascular em pacientes com asma — sugerindo que parâmetros espirométricos carregam informação prognóstica independente dos fatores de risco clássicos. <cite>[51]</cite></p>
+    </div>
+    <div class="info-teal info-box">
+      <span class="info-box-icon">💡</span>
+      <div><strong>ACO — Sobreposição Asma-DPOC:</strong> Representa o fenótipo de maior risco cardiovascular entre as doenças obstrutivas, com OR 2,99 para DCV e HR 2,67 para DCV incidente. <cite>[8]</cite> Identificação ativa desse fenótipo é clinicamente prioritária.</div>
+    </div>
+  </div>
+
+  <!-- DPI -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🧱</div>
+      <div>
+        <div class="card-title">Doença Pulmonar Intersticial</div>
+        <div class="card-subtitle">FPI, CTD-DPI e o impacto cardiovascular da fibrose multissistêmica</div>
+      </div>
+    </div>
+    <div class="prose">
+      <p>A DPI, especialmente a fibrose pulmonar idiopática (FPI), é associada independentemente a doença isquêmica cardíaca e infarto do miocárdio após ajuste rigoroso para fatores confundidores. <cite>[9]</cite> Em pacientes com DPI associada a CTD (CTD-DPI), o risco cardiovascular é incrementalmente maior em comparação à CTD isolada, com destaque para insuficiência cardíaca (RR 2,84) e arritmias (RR 1,55) — uma meta-análise de estudos observacionais de 2024 quantificou essas associações. <cite>[10]</cite></p>
+      <p>Os mecanismos compartilhados entre fibrose pulmonar e fibrose/remodelamento miocárdico — especialmente via TGF-β, sistema renina-angiotensina e endotelina-1 — colocam pacientes com FPI em risco particular de miocardiopatia restritiva e arritmias por fibrose do sistema de condução. <cite>[18]</cite> A HP (grupo 3) é uma complicação comum e prognóstica na DPI avançada.</p>
+    </div>
+    <div class="info-red info-box">
+      <span class="info-box-icon">🔴</span>
+      <div><strong>HAP associada à DPI:</strong> Quando HP coexiste com DPI, o prognóstico é significativamente pior. As diretrizes ESC/ERS 2022 recomendam triagem sistemática com ecocardiografia em DPI avançada, com cateterismo cardíaco direito para confirmação. Riociguate e treprostinil inalado têm evidência emergente nesse contexto. <cite>[11]</cite></div>
+    </div>
+  </div>
+
+  <!-- SAOS -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">😴</div>
+      <div>
+        <div class="card-title">Síndrome da Apneia Obstrutiva do Sono (SAOS)</div>
+        <div class="card-subtitle">Hipertensão, fibrilação atrial, AVC e aterosclerose acelerada</div>
+      </div>
+    </div>
+    <div class="prose">
+      <p>A SAOS é o único fator de risco cardiovascular que atua predominantemente durante o sono, tornando sua detecção passiva impossível pela sintomatologia clássica diurna. A hipóxia intermitente noturna promove ativação simpática repetida, inflação inflamatória sistêmica e estresse oxidativo que persiste durante as horas de vigília — perpetuando disfunção endotelial e aterosclerose ao longo do dia. <cite>[17]</cite></p>
+      <p>As associações cardiovasculares mais robustas incluem <strong>hipertensão sistêmica</strong> (presente em até 50% dos pacientes com SAOS grave), <strong>fibrilação atrial</strong> (prevalência 2–4× maior vs. população geral), <strong>AVC</strong> e <strong>hipertensão pulmonar</strong> (por vasoconstrição pulmonar hipóxica repetida). A associação com doença coronária, embora biologicamente plausível, é mais difícil de separar de confundidores como obesidade e síndrome metabólica. <cite>[17]</cite></p>
+    </div>
+    <div class="info-gray info-box">
+      <span class="info-box-icon">📊</span>
+      <div><strong>Nota sobre o CPAP:</strong> Os grandes ensaios randomizados (SAVE, ISAACC) não demonstraram redução de MACE com CPAP além do controle padrão em pacientes com SAOS e DCV estabelecida. Contudo, esses estudos têm limitações de adesão. O CPAP permanece indicado para alívio sintomático e tratamento da hipertensão resistente associada. A seleção criteriosa de pacientes com alta adesão esperada pode ser clinicamente relevante.</div>
+    </div>
+  </div>
+
+  <!-- HAP -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🩺</div>
+      <div>
+        <div class="card-title">Hipertensão Pulmonar — Classificação ESC/ERS 2022</div>
+        <div class="card-subtitle">Cinco grupos, mecanismos distintos, mesma consequência: falência cardíaca direita</div>
+      </div>
+    </div>
+    <div class="risk-table-wrap">
+      <table class="risk-table">
+        <thead>
+          <tr>
+            <th>Grupo</th>
+            <th>Denominação</th>
+            <th>Mecanismo Principal</th>
+            <th>Exemplo Clínico</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="badge badge-red">Grupo 1</span></td>
+            <td>Hipertensão Arterial Pulmonar (HAP)</td>
+            <td>Remodelamento arterial pulmonar, obstrução proliferativa</td>
+            <td>HAP idiopática, CTD, HIV, fármacos</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-amber">Grupo 2</span></td>
+            <td>HP por Doença Cardíaca Esquerda</td>
+            <td>Transmissão retrógrada de pressão elevada de câmaras esquerdas</td>
+            <td>ICFEr, ICFEp, valvopatia mitral/aórtica</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-teal">Grupo 3</span></td>
+            <td>HP por Doenças Pulmonares/Hipóxia</td>
+            <td>Vasoconstrição hipóxica, remodelamento vascular crônico</td>
+            <td>DPOC, FPI, síndrome hipoventilação</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-gray">Grupo 4</span></td>
+            <td>HP Tromboembólica Crônica (HPTEC)</td>
+            <td>Obstrução mecânica por tromboêmbolos organizados</td>
+            <td>Sequela de TEP recorrente</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-green">Grupo 5</span></td>
+            <td>HP por Mecanismos Incertos/Multifatoriais</td>
+            <td>Heterogêneo — hematológico, sistêmico, metabólico</td>
+            <td>Sarcoidose, doenças hematológicas</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:.78rem;color:var(--muted-foreground);margin-top:.75rem;">Classificação ESC/ERS 2022 <cite>[11]</cite> · Definição hemodinâmica revisada: PAPm &gt;20 mmHg + RVP &gt;2 WU (anteriormente 3 WU) para HAP.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     PANEL 4 — MANEJO CLÍNICO
+════════════════════════════════════════════════ -->
+<div id="panel-management" class="sec-panel">
+  <div class="section-label">Abordagem Clínica</div>
+  <div class="section-title">Diagnóstico, Estratificação e Tratamento Integrado</div>
+  <p class="section-lead">O manejo da comorbidade pulmonar–cardiovascular exige diagnóstico acurado, estratificação de risco refinada e tratamento simultâneo de ambas as condições. A sobreposição sintomática, o sub-reconhecimento diagnóstico e as interações fármaco-doença tornam essa interface clinicamente complexa.</p>
+
+  <!-- DIAGNÓSTICO -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🔍</div>
+      <div>
+        <div class="card-title">Abordagem Diagnóstica e Predição de Risco</div>
+        <div class="card-subtitle">Além dos escores clássicos — limitações do QRISK3 e Framingham na doença pulmonar</div>
+      </div>
+    </div>
+    <div class="prose">
+      <p>A sobreposição sintomática — principalmente dispneia, fadiga e intolerância ao esforço — torna o diagnóstico diferencial e etiológico desafiador. A ATS destaca que o subdiagnóstico e a subpredição de DCV na DPOC são frequentes. <cite>[2]</cite></p>
+      <p>A avaliação objetiva com <strong>espirometria, peptídeos natriuréticos, ecocardiografia e teste de esforço cardiopulmonar (TECP)</strong> é recomendada para clarificar as contribuições de cada doença. <cite>[27,28]</cite> A diretriz GOLD 2026 recomenda rastreamento de DAC com troponina de alta sensibilidade na apresentação do diagnóstico de DPOC e diante de mudanças sintomáticas inexplicadas. <cite>[3]</cite></p>
+    </div>
+
+    <div class="info-red info-box">
+      <span class="info-box-icon">📉</span>
+      <div><strong>Subestimação sistemática de risco:</strong> O QRISK3 subestima o risco cardiovascular em 10 anos na DPOC em <strong>52% no geral</strong> e em <strong>82% nos pacientes com menos de 65 anos</strong>. <cite>[29]</cite> Escores de risco convencionais não foram desenvolvidos para populações com doença pulmonar e não capturam o risco adicional conferido pela obstrução ao fluxo aéreo.</div>
+    </div>
+
+    <h3 class="sub-title">Estratégias de Melhoria na Predição de Risco</h3>
+    <div class="grid-2" style="gap:.75rem;">
+      <div class="stat-card">
+        <div class="stat-val" style="font-size:1.3rem;">AUC 0,724</div>
+        <div class="stat-label">Framingham + VEF1/CVF (vs. 0,646 sem espirometria) · Liu &amp; Chen, COPD 2026 <cite>[30]</cite></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val" style="font-size:1.3rem;">AUC 0,788</div>
+        <div class="stat-label">XGBoost com espirometria + PCR + ácido úrico + força de preensão · Xi et al., Medicine 2025 <cite>[31]</cite></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val" style="font-size:1.3rem;">AUC 0,72</div>
+        <div class="stat-label">Escore cardiovascular + escore de cálcio coronário (CAC) para MACE na DPOC <cite>[32,33]</cite></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val" style="font-size:1.3rem;">C-stat +0,038</div>
+        <div class="stat-label">TC6 melhora predição de hospitalizações cardiovasculares (0,689→0,727) · Fermont et al., BMJ Open 2020 <cite>[34]</cite></div>
+      </div>
+    </div>
+    <div class="info-teal info-box" style="margin-top:1rem;">
+      <span class="info-box-icon">🤖</span>
+      <div><strong>Machine learning e escores híbridos:</strong> A incorporação de parâmetros pulmonares (VEF1, VEF1/CVF), marcadores inflamatórios (PCR), metabólicos (ácido úrico) e funcionais (força de preensão, TC6) em modelos supervisionados supera os escores de risco cardiovascular convencionais na DPOC e asma. O AHA publicou em 2026 uma declaração científica com critérios padronizados para avaliação desses novos modelos. <cite>[52]</cite></div>
+    </div>
+  </div>
+
+  <!-- FARMACOLÓGICO -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">💊</div>
+      <div>
+        <div class="card-title">Estratégias Farmacológicas</div>
+        <div class="card-subtitle">Manejo simultâneo de ambas as condições — evidências e interações fármaco-doença</div>
+      </div>
+    </div>
+    <h3 class="sub-title">Fármacos Cardiovasculares na Doença Pulmonar</h3>
+    <div class="drug-grid">
+      <div class="drug-card safe">
+        <div class="drug-name">✅ Betabloqueadores Cardiosseletivos</div>
+        <div class="drug-note">Metoprolol succinato, bisoprolol, nebivolol são seguros e eficazes em IC com DPOC coexistente — melhoram sobrevida e podem reduzir exacerbações. <strong>Não devem ser suspensos por indicação cardíaca.</strong> Iniciar em baixa dose com titulação gradual. <cite>[35,36]</cite></div>
+      </div>
+      <div class="drug-card safe">
+        <div class="drug-name">✅ Estatinas</div>
+        <div class="drug-note">Redução de risco cardiovascular e potencial benefício em DPOC (redução de exacerbações em pacientes com DCV ou DM estabelecidos). Em DPOC sem DCV ou DM, não reduzem exacerbações. Indicadas por risco cardiovascular independentemente do diagnóstico pulmonar. <cite>[2,35]</cite></div>
+      </div>
+      <div class="drug-card safe">
+        <div class="drug-name">✅ IECAs / BRAs</div>
+        <div class="drug-note">Benéficos para redução de risco cardiovascular. Podem ter efeito adicional na DPOC (redução de exacerbações, proteção vascular pulmonar). A tosse induzida por IECA pode mimetizar ou exacerbar sintomas pulmonares — BRA como alternativa. <cite>[2,35]</cite></div>
+      </div>
+      <div class="drug-card emerging">
+        <div class="drug-name">🔬 Inibidores de SGLT2</div>
+        <div class="drug-note">Agentes emergentes com benefício cardiovascular e renal estabelecido (empagliflozina, dapagliflozina). ATS chama por ensaios pragmáticos em DPOC + IC. Redução de hospitalizações por IC e progressão de DRC — efeito em DM2 + DRC clinicamente relevante. <cite>[2,47]</cite></div>
+      </div>
+      <div class="drug-card caution">
+        <div class="drug-name">⚠️ Broncodilatadores (LABA/LAMA)</div>
+        <div class="drug-note">Pedra angular do tratamento da DPOC. Monitorar taquiarritmias em pacientes com IC, especialmente com LABAs em doses elevadas. LAMAs (tiotrópio, umeclidínio) têm perfil cardiovascular mais favorável. Cautela com β2-agonistas de curta ação em altas doses na asma. <cite>[2,28]</cite></div>
+      </div>
+      <div class="drug-card avoid">
+        <div class="drug-name">🚫 Amiodarona</div>
+        <div class="drug-note">Usar com extrema cautela: risco de toxicidade pulmonar (pneumonite, fibrose) — reversível em alguns casos mas potencialmente fatal. Considerar alternativas (dronedarona em pacientes sem IC avançada, ablação) antes de prescrever amiodarona em pacientes com doença pulmonar significativa. <cite>[2]</cite></div>
+      </div>
+      <div class="drug-card caution">
+        <div class="drug-name">⚠️ Betabloqueadores Não Seletivos</div>
+        <div class="drug-note">Evitar em asma e DPOC com componente broncospástico significativo. Carvedilol tem menor cardiosseletividade vs. bisoprolol/metoprolol. Em asma grave, qualquer betabloqueador pode precipitar broncoespasmo — avaliar risco-benefício individualmente. <cite>[35]</cite></div>
+      </div>
+      <div class="drug-card caution">
+        <div class="drug-name">⚠️ Corticosteroides Sistêmicos</div>
+        <div class="drug-note">Uso frequente em exacerbações amplifica risco cardiovascular: hiperglicemia, retenção hídrica, hipertensão, hipocalemia (arritmias). Em DPOC + IC, ciclos frequentes de corticosteroides oral aumentam risco de hospitalização por IC. Minimizar duração e dose. <cite>[2]</cite></div>
+      </div>
+    </div>
+
+    <h3 class="sub-title">Fármacos Pulmonares Específicos com Implicações Cardiovasculares</h3>
+    <div class="prose">
+      <p>Na <strong>HAP</strong>, inibidores da PDE-5 (sildenafila, tadalafila) são contraindicados em pacientes em uso de nitratos por risco de hipotensão grave. Riociguate (estimulador de guanilato ciclase) também é contraindicado com inibidores de PDE-5. Antagonistas dos receptores de endotelina (ambrisentana, macitentana, bosentana) podem causar edema e anemia — monitorar função hepática e hemoglobina. <cite>[11]</cite></p>
+      <p>Na <strong>FPI</strong>, nintedanibe (inibidor de tirosina quinase) e pirfenidona reduzem progressão da fibrose mas não têm efeito demonstrado em desfechos cardiovasculares diretos. Nintedanibe aumenta modestamente risco de eventos trombóticos e hipertensão — monitorar.</p>
+    </div>
+  </div>
+
+  <!-- NÃO FARMACOLÓGICO -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🏃</div>
+      <div>
+        <div class="card-title">Intervenções Não Farmacológicas</div>
+        <div class="card-subtitle">Cessação do tabagismo, vacinação, reabilitação e cuidados integrados</div>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Intervenções não farmacológicas são universalmente recomendadas e têm impacto cardiovascular comprovado. A <strong>cessação do tabagismo</strong> é a intervenção isolada de maior impacto modificador de risco, reduzindo taxas de declínio de VEF1 e risco cardiovascular — com benefícios que superam qualquer intervenção farmacológica disponível na DPOC. <cite>[37]</cite></p>
+      <p>A <strong>vacinação</strong> (influenza anual, pneumocócica conjugada, COVID-19, coqueluche) reduz o risco de exacerbações e seus gatilhos cardiovasculares associados. O raciocínio é direto: infecções respiratórias são gatilhos estabelecidos de MACE — preveni-las tem impacto cardiovascular indireto. <cite>[37,38]</cite></p>
+      <p>A <strong>reabilitação pulmonar</strong> melhora capacidade de exercício, qualidade de vida e, em metanálises, reduz hospitalizações — com benefícios cardiovasculares secundários ao condicionamento físico. Deve ser iniciada precocemente após exacerbações. <cite>[36]</cite></p>
+    </div>
+    <div class="info-teal info-box">
+      <span class="info-box-icon">🤝</span>
+      <div><strong>Cuidado Integrado e Teleassistência:</strong> O ensaio clínico randomizado ADAPT (JAMA 2024) demonstrou que equipes de cuidados paliativos com enfermagem e assistência social por teletransferência melhoram qualidade de vida em pacientes com DPOC, IC ou DPI. <cite>[39]</cite> Bundles assistenciais integrando protocolos padronizados para DPOC e IC reduzem exacerbações, readmissões e custos. <cite>[27]</cite></div>
+    </div>
+    <div class="info-gray info-box">
+      <span class="info-box-icon">📋</span>
+      <div><strong>ACC 2022 Expert Consensus:</strong> Propõe framework multidimensional e centrado no paciente integrando tratamento de ASCVD e multimorbidade — com atenção específica às interações fármaco-doença em pacientes com DCV + doenças pulmonares. <cite>[40]</cite></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     PANEL 5 — DISPARIDADES
+════════════════════════════════════════════════ -->
+<div id="panel-disparities" class="sec-panel">
+  <div class="section-label">Equidade em Saúde</div>
+  <div class="section-title">Disparidades, Multimorbidade e Determinantes Sociais</div>
+  <p class="section-lead">Sexo, raça, etnia e condição socioeconômica modulam profundamente o perfil de comorbidade cardiovascular nas doenças pulmonares. Compreender essas disparidades é essencial para intervenções equitativas e manejo individualizado.</p>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">⚖️</div>
+      <div>
+        <div class="card-title">Disparidades por Sexo, Raça e Localização</div>
+        <div class="card-subtitle">Dados quantificados de mortalidade e prevalência de comorbidade</div>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Mulheres com DPOC apresentam maior prevalência de IC e hipertensão, enquanto homens têm mais doença isquêmica cardíaca. <cite>[2]</cite> Mulheres negras com DPOC têm mortalidade cardiovascular significativamente maior em comparação a mulheres brancas (<strong>HR 1,44; IC95%: 1,06–1,95</strong>), atribuível a maior carga de fatores de risco cardiovascular não tratados. <cite>[41]</cite></p>
+      <p>Pacientes não-hispânicos negros com DPOC apresentam prevalência mais alta de hipertensão (70,2%), AVC (7,3%) e diabetes (23,3%), enquanto não-hispânicos brancos têm maiores taxas de dislipidemia (65,5%) e IAM (6,2%). <cite>[42]</cite> Esses dados evidenciam perfis distintos de comorbidade por etnia que demandam abordagens diferenciadas.</p>
+      <p>Dados nacionais de mortalidade dos EUA (1999–2020) mostram que áreas não metropolitanas (rurais) têm taxas de mortalidade ajustadas por idade para DPOC + DCV coexistentes <strong>35,6% maiores</strong> do que áreas metropolitanas (96,2 vs. 70,9 por 100.000). <cite>[43]</cite></p>
+    </div>
+    <div class="info-red info-box">
+      <span class="info-box-icon">📊</span>
+      <div><strong>Infratratamento por diagnóstico pulmonar:</strong> Pacientes com doença isquêmica cardíaca são <em>menos propensos</em> a receber betabloqueadores e revascularização se tiverem DPOC concomitante. Estatinas são menos prescritas em pacientes com DPOC + DCV do que em DCV isolada. <cite>[2,18]</cite> O diagnóstico pulmonar funciona como barreira ao tratamento cardiovascular ótimo.</div>
+    </div>
+    <div class="info-amber info-box">
+      <span class="info-box-icon">🏙️</span>
+      <div><strong>Barreiras identificadas em pesquisa qualitativa</strong> entre adultos negros com DPOC: multimorbidade e baixa autoeficácia (nível individual), fragmentação do cuidado (nível sistêmico) e racismo estrutural (nível social). <cite>[44]</cite> Intervenções culturalmente adaptadas e reformas estruturais são necessárias.</div>
+    </div>
+  </div>
+
+  <!-- MULTIMORBIDADE -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🔄</div>
+      <div>
+        <div class="card-title">Diabetes e DRC como Amplificadores de Risco</div>
+        <div class="card-subtitle">Tríade cardiorrenal-pulmonar: interações complexas e relevância prognóstica</div>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Aproximadamente 30–40% dos pacientes com diabetes desenvolvem DRC, e quase metade dos pacientes com DRC avançada desenvolve DCV — com 40–50% das mortes atribuídas a causas cardiovasculares. <cite>[45,46]</cite> Na coexistência com doença pulmonar, esse triplo risco cria um espectro de vulnerabilidade cardiovascular que supera em muito a soma de riscos individuais.</p>
+      <p>A ADA 2026 recomenda inibidores de SGLT2 e agonistas do receptor de GLP-1 como terapias de primeira linha em pacientes com diabetes e DRC para redução de eventos cardiovasculares e renais. <cite>[47]</cite> Esses agentes têm relevância particular em DPOC + IC + DM, um fenótipo crescentemente identificado em populações envelhecidas.</p>
+      <p>A DRC acelera aterosclerose por múltiplos mecanismos: hipertensão, dislipidemia, distúrbios do metabolismo cálcio-fósforo, estresse oxidativo urêmico e cardiomiopatia urêmica. <cite>[48,49]</cite> A combinação com DPOC cria interações fármaco-doença complexas — por exemplo, a redução da eliminação renal de metformina e algumas estatinas pode requerer ajuste de dose.</p>
+    </div>
+    <div class="info-teal info-box">
+      <span class="info-box-icon">🫀</span>
+      <div><strong>Interações cardiorrenal-pulmonares:</strong> Husain-Syed et al. (JACC 2015) descrevem as interações entre coração, pulmão e rim como um eixo multidirecional. <cite>[49]</cite> A disfunção de qualquer um dos três órgãos perpetua e amplifica a disfunção dos demais — tornando o manejo isolado por especialidade claramente insuficiente nessa população.</div>
+    </div>
+
+    <h3 class="sub-title">Competição Terapêutica — Exemplos Clínicos</h3>
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">Betabloqueadores: indicados para IC, contraindicados na asma broncospástica grave <span class="accordion-arrow">▼</span></button>
+      <div class="accordion-body">
+        <p>Betabloqueadores cardiosseletivos (bisoprolol, metoprolol succinato) são seguros e benéficos em ICFEr com DPOC — múltiplos ensaios clínicos e metanálises confirmam segurança sem broncoespasmo clinicamente significativo. Na asma, a contraindicação é mais restrita a broncoespasmo ativo e grave; em asma leve controlada com IC associada, a cardiosseletividade alta e dose inicial baixa permitem uso cauteloso com monitoramento espirométrico. <cite>[35,36]</cite></p>
+      </div>
+    </div>
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">Diuréticos de alça na IC: risco de hipocalemia com beta-agonistas <span class="accordion-arrow">▼</span></button>
+      <div class="accordion-body">
+        <p>Furosemida e bumetanida causam hipocalemia, que pode ser amplificada pelos beta-agonistas (SABA, LABA) utilizados para broncodilatação. Hipocalemia em pacientes com IC é um fator de risco arritmogênico — especialmente quando há uso de digoxina concomitante. Monitorar eletrólitos regularmente em pacientes com essa combinação farmacológica. <cite>[2]</cite></p>
+      </div>
+    </div>
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">Aspirina: benefício em DCV, potencial agravamento da asma sensível à aspirina <span class="accordion-arrow">▼</span></button>
+      <div class="accordion-body">
+        <p>Aproximadamente 10% dos adultos com asma têm hipersensibilidade à aspirina (doença respiratória exacerbada por AINEs / EREA). Nesses pacientes, a aspirina pode precipitar broncoespasmo grave. Em cardiopatas com EREA, a dessensibilização supervisionada à aspirina seguida de tratamento continuado é uma estratégia validada em centros experientes — ou substituição por clopidogrel conforme a indicação cardiovascular. <cite>[2]</cite></p>
+      </div>
+    </div>
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">Anticoagulação: FA na DPOC — riscos hemorrágicos pulmonares <span class="accordion-btn">▼</span></button>
+      <div class="accordion-body">
+        <p>A fibrilação atrial é frequente na DPOC. Anticoagulação oral é indicada pelo CHA₂DS₂-VASc, mas pacientes com DPOC têm maior risco de hemoptise e sangramento pulmonar. Os ACODs têm perfil de segurança superior à varfarina nessa população. Na presença de HP grave (pressão sistólica pulmonar >60 mmHg), anticoagulação pode aumentar risco de hemorragia pulmonar — avaliar individualmente. <cite>[2,11]</cite></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     PANEL 6 — AVANÇOS E FUTURO
+════════════════════════════════════════════════ -->
+<div id="panel-future" class="sec-panel">
+  <div class="section-label">Fronteiras do Conhecimento</div>
+  <div class="section-title">Avanços Recentes e Perspectivas (2024–2026)</div>
+  <p class="section-lead">O período 2024–2026 trouxe avanços significativos em modelos de cuidado integrado, estratégias terapêuticas emergentes e métodos de predição de risco. A ATS, ACC e AHA publicaram declarações e guidelines que redefinem o manejo dessa comorbidade.</p>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🤖</div>
+      <div>
+        <div class="card-title">Machine Learning e Predição de Risco Cardiovascular</div>
+        <div class="card-subtitle">Superando os limites dos escores clássicos em populações com doença pulmonar</div>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Modelos de machine learning representam um avanço transformador na predição de risco cardiovascular em doenças pulmonares. Modelos XGBoost integrando fatores de risco convencionais com indicadores de função pulmonar, IMC, PCR, ácido úrico e força de preensão alcançam <strong>AUC de 0,788</strong> para predição de DCV em pacientes com doença pulmonar crônica. <cite>[31]</cite></p>
+      <p>Em asma, modelos de ML incorporando índices de função pulmonar superam tanto o escore ASCVD quanto o Framingham Risk Score na predição de mortalidade cardiovascular. <cite>[51]</cite> A declaração científica do AHA de 2026 fornece critérios padronizados para avaliação de novos modelos de predição, enfatizando acurácia, utilidade clínica, escalabilidade e implicações para equidade em saúde. <cite>[52]</cite></p>
+    </div>
+    <div class="info-teal info-box">
+      <span class="info-box-icon">🔬</span>
+      <div><strong>Fenótipos e sub-populações:</strong> A ATS 2024 prioriza o refinamento do conhecimento sobre fenótipos dentro da população de DPOC para entender o risco individualizado de diferentes doenças cardiovasculares. <cite>[2]</cite> A abordagem de "uma DPOC" deve ceder espaço a estratificação fenotípica precisa.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🧪</div>
+      <div>
+        <div class="card-title">Terapias Emergentes</div>
+        <div class="card-subtitle">SGLT2, GLP-1, imunomodulação e abordagens moleculares</div>
+      </div>
+    </div>
+    <div class="prose">
+      <p><strong>Inibidores de SGLT2</strong> emergiram como agentes promissores para pacientes com DPOC e IC, particularmente com DM2 ou DRC. A ATS 2024 apela por ensaios pragmáticos de implementação gradual (stepped-wedge) para avaliar efetividade em populações com DPOC + IC. <cite>[2]</cite> A redução de hospitalizações por IC, progressão de DRC e morte cardiovascular já estabelecida em subgrupos específicos justifica sua adoção em pacientes com multimorbidade cardiorrenal.</p>
+      <p>Abordagens moleculares emergentes visando vias imuno-inflamatórias crônicas compartilhadas entre DPOC, doença cardíaca e doença arterial periférica estão sendo exploradas em manejo clínico multidisciplinar, embora sua aplicação permaneça em estágios iniciais. <cite>[53]</cite> A inflamação residual como alvo terapêutico — exemplificada pelo benefício da colchicina em doença coronária estável (LoDoCo2) — representa um horizonte relevante para populações com DPOC e DCV.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🏥</div>
+      <div>
+        <div class="card-title">Modelos de Cuidado Integrado</div>
+        <div class="card-subtitle">Care bundles, teletransferência e cuidados paliativos precoces</div>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Bundles assistenciais que integram protocolos padronizados para DPOC com/sem IC demonstraram melhora prognóstica e redução de readmissões hospitalares. <cite>[27]</cite> O ensaio ADAPT (JAMA 2024) estabeleceu que equipes paliativas de teletransferência com enfermagem e serviço social melhoram qualidade de vida em pacientes com DPOC, IC ou DPI — validando o modelo de cuidado paliativo precoce integrado ao tratamento convencional. <cite>[39]</cite></p>
+      <p>A ATS 2024 prioriza: (1) ensaios clínicos pragmáticos coletando dados pulmonares e cardíacos simultaneamente; (2) ensaios de efetividade no mundo real de medicamentos em populações de DPOC com DCV concomitante; (3) estratégias de "polipílula/polipuff" para reduzir carga de polifarmácia. <cite>[2]</cite></p>
+    </div>
+    <div class="info-amber info-box">
+      <span class="info-box-icon">🌍</span>
+      <div><strong>Equidade como prioridade:</strong> Pesquisas futuras devem priorizar diretrizes clínicas inclusivas, intervenções culturalmente adaptadas e reformas estruturais para abordar os determinantes sociais da saúde nessa população de alto risco. <cite>[2,43,44]</cite> Modelos de predição de risco precisam ser validados em populações diversas para evitar amplificar disparidades existentes.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     PANEL 7 — TABELA RESUMO
+════════════════════════════════════════════════ -->
+<div id="panel-table" class="sec-panel">
+  <div class="section-label">Referência Rápida</div>
+  <div class="section-title">Estimativas Quantitativas de Risco por Doença Pulmonar</div>
+  <p class="section-lead">A tabela abaixo consolida as principais estimativas de risco cardiovascular quantificadas nas doenças pulmonares mais prevalentes. Serve como referência rápida para estratificação de risco cardiovascular em pacientes pulmonares.</p>
+
+  <div class="risk-table-wrap" style="margin-bottom:1.5rem;">
+    <table class="risk-table">
+      <thead>
+        <tr>
+          <th>Doença Pulmonar</th>
+          <th>Desfecho Cardiovascular</th>
+          <th>Estimativa de Risco</th>
+          <th>Nível de Evidência</th>
+          <th>Ref.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>DPOC</strong></td>
+          <td>DCV (geral)</td>
+          <td class="risk-high">OR 2,46 (IC95%: 2,02–3,00)</td>
+          <td><span class="badge badge-teal">Meta-análise</span></td>
+          <td class="risk-val">[1]</td>
+        </tr>
+        <tr>
+          <td><strong>DPOC</strong></td>
+          <td>MACE (prevenção primária)</td>
+          <td class="risk-mod">HR 1,25 (IC95%: 1,23–1,27)</td>
+          <td><span class="badge badge-teal">Coorte prospectivo</span></td>
+          <td class="risk-val">[4]</td>
+        </tr>
+        <tr>
+          <td><strong>DPOC</strong></td>
+          <td>IC (prevalência)</td>
+          <td class="risk-high">7–42%</td>
+          <td><span class="badge badge-gray">Revisão sistemática</span></td>
+          <td class="risk-val">[2]</td>
+        </tr>
+        <tr>
+          <td><strong>DPOC</strong></td>
+          <td>Morte cardiovascular (proporção)</td>
+          <td class="risk-high">~35% das mortes</td>
+          <td><span class="badge badge-teal">GOLD 2026</span></td>
+          <td class="risk-val">[3]</td>
+        </tr>
+        <tr>
+          <td><strong>Asma</strong></td>
+          <td>DCV incidente</td>
+          <td class="risk-mod">HR 1,28 (IC95%: 1,07–1,54)</td>
+          <td><span class="badge badge-teal">Coorte prospectivo</span></td>
+          <td class="risk-val">[6]</td>
+        </tr>
+        <tr>
+          <td><strong>Asma</strong></td>
+          <td>Insuficiência cardíaca</td>
+          <td class="risk-high">RR 2,10</td>
+          <td><span class="badge badge-gray">Meta-análise</span></td>
+          <td class="risk-val">[7]</td>
+        </tr>
+        <tr>
+          <td><strong>Asma</strong></td>
+          <td>IAM</td>
+          <td class="risk-mod">RR 1,39</td>
+          <td><span class="badge badge-gray">Meta-análise</span></td>
+          <td class="risk-val">[7]</td>
+        </tr>
+        <tr>
+          <td><strong>Asma</strong></td>
+          <td>Fibrilação atrial (ativa)</td>
+          <td class="risk-high">RR 1,70</td>
+          <td><span class="badge badge-gray">Meta-análise</span></td>
+          <td class="risk-val">[7]</td>
+        </tr>
+        <tr>
+          <td><strong>ACO</strong></td>
+          <td>DCV (prevalência)</td>
+          <td class="risk-high">OR 2,99 (IC95%: 2,47–3,61)</td>
+          <td><span class="badge badge-gray">Coorte nacional</span></td>
+          <td class="risk-val">[8]</td>
+        </tr>
+        <tr>
+          <td><strong>ACO</strong></td>
+          <td>DCV incidente</td>
+          <td class="risk-high">HR 2,67 (IC95%: 2,21–3,24)</td>
+          <td><span class="badge badge-gray">Coorte nacional</span></td>
+          <td class="risk-val">[8]</td>
+        </tr>
+        <tr>
+          <td><strong>DPI</strong></td>
+          <td>Doença isquêmica cardíaca</td>
+          <td class="risk-high">HR 1,85 (IC95%: 1,56–2,18)</td>
+          <td><span class="badge badge-teal">Coorte prospectivo</span></td>
+          <td class="risk-val">[9]</td>
+        </tr>
+        <tr>
+          <td><strong>DPI</strong></td>
+          <td>IAM</td>
+          <td class="risk-high">HR 1,74 (IC95%: 1,44–2,11)</td>
+          <td><span class="badge badge-teal">Coorte prospectivo</span></td>
+          <td class="risk-val">[9]</td>
+        </tr>
+        <tr>
+          <td><strong>CTD-DPI</strong></td>
+          <td>Insuficiência cardíaca</td>
+          <td class="risk-high">RR 2,84</td>
+          <td><span class="badge badge-gray">Meta-análise</span></td>
+          <td class="risk-val">[10]</td>
+        </tr>
+        <tr>
+          <td><strong>CTD-DPI</strong></td>
+          <td>Arritmia</td>
+          <td class="risk-mod">RR 1,55</td>
+          <td><span class="badge badge-gray">Meta-análise</span></td>
+          <td class="risk-val">[10]</td>
+        </tr>
+        <tr>
+          <td><strong>EADPOC</strong></td>
+          <td>Evento cardiovascular (30 dias)</td>
+          <td class="risk-high">HR 3,8 (IC95%: 2,7–5,5)</td>
+          <td><span class="badge badge-teal">RCT (SUMMIT)</span></td>
+          <td class="risk-val">[19]</td>
+        </tr>
+        <tr>
+          <td><strong>EADPOC Hosp.</strong></td>
+          <td>Evento cardiovascular (30 dias)</td>
+          <td class="risk-high">HR 9,9 (IC95%: 6,6–14,9)</td>
+          <td><span class="badge badge-teal">RCT (SUMMIT)</span></td>
+          <td class="risk-val">[19]</td>
+        </tr>
+        <tr>
+          <td><strong>Pneumonia (hosp.)</strong></td>
+          <td>Doença isquêmica (1–3 dias)</td>
+          <td class="risk-high">Incidência relativa 4,24 (IC95%: 2,92–6,15)</td>
+          <td><span class="badge badge-gray">Coorte prospectivo</span></td>
+          <td class="risk-val">[22]</td>
+        </tr>
+        <tr>
+          <td><strong>Pneumococo em DPOC</strong></td>
+          <td>IAM agudo (14 dias)</td>
+          <td class="risk-high">Risco relativo 9,1×</td>
+          <td><span class="badge badge-gray">Coorte nacional</span></td>
+          <td class="risk-val">[23]</td>
+        </tr>
+        <tr>
+          <td><strong>DPOC (mulheres negras)</strong></td>
+          <td>Mortalidade cardiovascular</td>
+          <td class="risk-high">HR 1,44 (IC95%: 1,06–1,95) vs. brancas</td>
+          <td><span class="badge badge-gray">Coorte retrospectivo</span></td>
+          <td class="risk-val">[41]</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="info-gray info-box">
+    <span class="info-box-icon">📌</span>
+    <div><strong>Nota metodológica:</strong> As estimativas apresentadas provêm de desenhos de estudo heterogêneos (meta-análises, coortes prospectivos/retrospectivos, análises pós-hoc de RCTs). Comparações diretas entre grupos devem ser interpretadas com cautela dadas as diferenças populacionais, definições de desfecho e ajuste para confundidores. EADPOC = Exacerbação aguda de DPOC; ACO = Sobreposição Asma-DPOC; CTD-DPI = DPI associada a doença do tecido conjuntivo.</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     PANEL 8 — REFERÊNCIAS
+════════════════════════════════════════════════ -->
+<div id="panel-refs" class="sec-panel">
+  <div class="section-label">Bibliografia</div>
+  <div class="section-title">Referências Bibliográficas</div>
+  <p class="section-lead">53 referências selecionadas, priorizando meta-análises, ensaios clínicos randomizados, diretrizes atualizadas e declarações científicas publicadas entre 2019 e 2026.</p>
+
+  <div class="card">
+    <ul class="ref-list">
+      <li class="ref-item"><span class="ref-num">1</span><div><div class="ref-title">Risk of Cardiovascular Comorbidity in Patients With Chronic Obstructive Pulmonary Disease: A Systematic Review and Meta-Analysis</div><div class="ref-meta">Chen W, Thomas J, Sadatsafavi M, FitzGerald JM. <em>Lancet Respir Med.</em> 2015;3(8):631-9. doi:10.1016/S2213-2600(15)00241-6</div></div></li>
+      <li class="ref-item"><span class="ref-num">2</span><div><div class="ref-title">A Research Agenda to Improve Outcomes in Patients With COPD and Cardiovascular Disease: An Official ATS Research Statement</div><div class="ref-meta">Myers LC, Quint JK, Hawkins NM, et al. <em>Am J Respir Crit Care Med.</em> 2024;210(6):715-729. doi:10.1164/rccm.202407-1320ST</div></div></li>
+      <li class="ref-item"><span class="ref-num">3</span><div><div class="ref-title">2026 GOLD Report: Global Strategy for Prevention, Diagnosis, and Management of COPD</div><div class="ref-meta">Global Initiative for Chronic Obstructive Lung Disease. 2026.</div></div></li>
+      <li class="ref-item"><span class="ref-num">4</span><div><div class="ref-title">Quantifying COPD as a Risk Factor for Cardiac Disease in a Primary Prevention Cohort</div><div class="ref-meta">Maclagan LC, Croxford R, Chu A, et al. <em>Eur Respir J.</em> 2023;62(2):2202364. doi:10.1183/13993003.02364-2022</div></div></li>
+      <li class="ref-item"><span class="ref-num">5</span><div><div class="ref-title">Association Between COPD and Cardiovascular Disease in Adults Aged ≥40 Years: Data From NHANES 2013-2018</div><div class="ref-meta">Chen H, Luo X, Du Y, et al. <em>BMC Pulm Med.</em> 2023;23(1):318. doi:10.1186/s12890-023-02606-1</div></div></li>
+      <li class="ref-item"><span class="ref-num">6</span><div><div class="ref-title">The Relationship Between Asthma and Cardiovascular Disease: An Examination of the Framingham Offspring Study</div><div class="ref-meta">Pollevick ME, Xu KY, Mhango G, et al. <em>Chest.</em> 2021;159(4):1338-1345. doi:10.1016/j.chest.2020.11.053</div></div></li>
+      <li class="ref-item"><span class="ref-num">7</span><div><div class="ref-title">Bronchial Asthma and Risk of 4 Specific Cardiovascular Diseases and Cardiovascular Mortality: A Meta-Analysis of Cohort Studies</div><div class="ref-meta">Hua ML, Li L, Diao LL. <em>Eur Rev Med Pharmacol Sci.</em> 2022;26(14):5081-5091. doi:10.26355/eurrev_202207_29294</div></div></li>
+      <li class="ref-item"><span class="ref-num">8</span><div><div class="ref-title">Obstructive Airway Disease Is Associated With Increased Cardiovascular Disease Risk Independent of Phenotype</div><div class="ref-meta">Meng K, Zhang X, Dai H. <em>Int J COPD.</em> 2025;20:1435-1446. doi:10.2147/COPD.S522367</div></div></li>
+      <li class="ref-item"><span class="ref-num">9</span><div><div class="ref-title">Interstitial Lung Disease Is a Risk Factor for Ischaemic Heart Disease and Myocardial Infarction</div><div class="ref-meta">Clarson LE, Bajpai R, Whittle R, et al. <em>Heart.</em> 2020;106(12):916-922. doi:10.1136/heartjnl-2019-315511</div></div></li>
+      <li class="ref-item"><span class="ref-num">10</span><div><div class="ref-title">Cardiovascular Disease in Connective Tissue Disease-Associated ILD: A Systematic Review and Meta-Analysis</div><div class="ref-meta">Hu Z, Wang H, Huang J, et al. <em>Autoimmun Rev.</em> 2024;23(10):103614. doi:10.1016/j.autrev.2024.103614</div></div></li>
+      <li class="ref-item"><span class="ref-num">11</span><div><div class="ref-title">2022 ESC/ERS Guidelines for the Diagnosis and Treatment of Pulmonary Hypertension</div><div class="ref-meta">Humbert M, Kovacs G, Hoeper MM, et al. <em>Eur Respir J.</em> 2023;61(1):2200879. doi:10.1183/13993003.00879-2022</div></div></li>
+      <li class="ref-item"><span class="ref-num">12</span><div><div class="ref-title">Pulmonary Arterial Hypertension</div><div class="ref-meta">Hassoun PM. <em>N Engl J Med.</em> 2021;385(25):2361-2376. doi:10.1056/NEJMra2000348</div></div></li>
+      <li class="ref-item"><span class="ref-num">13</span><div><div class="ref-title">A Global View of Pulmonary Hypertension</div><div class="ref-meta">Hoeper MM, Humbert M, Souza R, et al. <em>Lancet Respir Med.</em> 2016;4(4):306-22. doi:10.1016/S2213-2600(15)00543-3</div></div></li>
+      <li class="ref-item"><span class="ref-num">14</span><div><div class="ref-title">Treating Hypertension in Chronic Obstructive Pulmonary Disease</div><div class="ref-meta">Finks SW, Rumbak MJ, Self TH. <em>N Engl J Med.</em> 2020;382(4):353-363. doi:10.1056/NEJMra1805377</div></div></li>
+      <li class="ref-item"><span class="ref-num">15</span><div><div class="ref-title">New Frontiers in the Treatment of Comorbid Cardiovascular Disease in Chronic Obstructive Pulmonary Disease</div><div class="ref-meta">Brassington K, Selemidis S, Bozinovski S, Vlahos R. <em>Clin Sci.</em> 2019;133(7):885-904. doi:10.1042/CS20180316</div></div></li>
+      <li class="ref-item"><span class="ref-num">16</span><div><div class="ref-title">Chronic Obstructive Pulmonary Disease and Atherosclerosis: Common Mechanisms and Novel Therapeutics</div><div class="ref-meta">Brassington K, Selemidis S, Bozinovski S, Vlahos R. <em>Clin Sci.</em> 2022;136(6):405-423. doi:10.1042/CS20210835</div></div></li>
+      <li class="ref-item"><span class="ref-num">17</span><div><div class="ref-title">Cardiovascular Disease in Patients With COPD, Obstructive Sleep Apnoea Syndrome and Overlap Syndrome</div><div class="ref-meta">Voulgaris A, Archontogeorgis K, Steiropoulos P, Papanas N. <em>Curr Vasc Pharmacol.</em> 2021;19(3):285-300. doi:10.2174/1570161118666200318103553</div></div></li>
+      <li class="ref-item"><span class="ref-num">18</span><div><div class="ref-title">Association of Cardiovascular Disease With Respiratory Disease</div><div class="ref-meta">Carter P, Lagan J, Fortune C, et al. <em>J Am Coll Cardiol.</em> 2019;73(17):2166-2177. doi:10.1016/j.jacc.2018.11.063</div></div></li>
+      <li class="ref-item"><span class="ref-num">19</span><div><div class="ref-title">Exacerbations of COPD and Cardiac Events. A Post Hoc Cohort Analysis From the SUMMIT RCT</div><div class="ref-meta">Kunisaki KM, Dransfield MT, Anderson JA, et al. <em>Am J Respir Crit Care Med.</em> 2018;198(1):51-57. doi:10.1164/rccm.201711-2239OC</div></div></li>
+      <li class="ref-item"><span class="ref-num">20</span><div><div class="ref-title">Risk Trajectory of Cardiovascular Events After an Exacerbation of COPD: A Systematic Review and Meta-Analysis</div><div class="ref-meta">Pirera E, Di Raimondo D, D'Anna L, Tuttolomondo A. <em>Eur J Intern Med.</em> 2025;135:74-82. doi:10.1016/j.ejim.2025.01.016</div></div></li>
+      <li class="ref-item"><span class="ref-num">21</span><div><div class="ref-title">Exacerbation History and Risk of Myocardial Infarction and Pulmonary Embolism in COPD</div><div class="ref-meta">Wallström O, Stridsman C, Lindberg A, Nyberg F, Vanfleteren LEGW. <em>Chest.</em> 2024;166(6):1347-1359. doi:10.1016/j.chest.2024.07.150</div></div></li>
+      <li class="ref-item"><span class="ref-num">22</span><div><div class="ref-title">Pneumonia Hospitalizations and the Subsequent Risk of Incident Ischaemic Cardiovascular Disease in Chinese Adults</div><div class="ref-meta">Hu Y, Yu C, Guo Y, et al. <em>Int J Epidemiol.</em> 2021;50(5):1698-1707. doi:10.1093/ije/dyab039</div></div></li>
+      <li class="ref-item"><span class="ref-num">23</span><div><div class="ref-title">Risk of Major Adverse Cardiovascular Events During Acute Streptococcus Pneumoniae Infection in COPD Patients</div><div class="ref-meta">Riisberg NM, Modin D, Bertelsen BB, et al. <em>JACC Adv.</em> 2025;4(10 Pt 2):102172. doi:10.1016/j.jacadv.2025.102172</div></div></li>
+      <li class="ref-item"><span class="ref-num">24</span><div><div class="ref-title">Pathogenesis and Prevention of Risk of Cardiovascular Events in Patients With Pneumococcal Community-Acquired Pneumonia</div><div class="ref-meta">Feldman C, Normark S, Henriques-Normark B, Anderson R. <em>J Intern Med.</em> 2019;285(6):635-652. doi:10.1111/joim.12875</div></div></li>
+      <li class="ref-item"><span class="ref-num">25</span><div><div class="ref-title">Pneumonia-Induced Inflammation, Resolution and Cardiovascular Disease: Causes, Consequences and Clinical Opportunities</div><div class="ref-meta">Stotts C, Corrales-Medina VF, Rayner KJ. <em>Circ Res.</em> 2023;132(6):751-774. doi:10.1161/CIRCRESAHA.122.321636</div></div></li>
+      <li class="ref-item"><span class="ref-num">26</span><div><div class="ref-title">Changes in Vascular Function, Arterial Stiffness and Systemic Inflammation During Hospitalization and Recovery From AECOPD</div><div class="ref-meta">Fuhr DP, Brotto AR, Rowe BH, et al. <em>Sci Rep.</em> 2023;13(1):12245. doi:10.1038/s41598-023-39001-z</div></div></li>
+      <li class="ref-item"><span class="ref-num">27</span><div><div class="ref-title">Implementation of the Care Bundle for the Management of COPD With/Without Heart Failure</div><div class="ref-meta">Bianco A, Canepa M, Catapano GA, et al. <em>J Clin Med.</em> 2024;13(6):1621. doi:10.3390/jcm13061621</div></div></li>
+      <li class="ref-item"><span class="ref-num">28</span><div><div class="ref-title">Heart Failure and Chronic Obstructive Pulmonary Disease. A Combination Not to Be Underestimated</div><div class="ref-meta">Magrì D, Fiori E, Agostoni P, et al. <em>Heart Fail Rev.</em> 2025. doi:10.1007/s10741-025-10566-3</div></div></li>
+      <li class="ref-item"><span class="ref-num">29</span><div><div class="ref-title">QRISK3 Underestimates the Risk of Cardiovascular Events in Patients With COPD</div><div class="ref-meta">Amegadzie JE, Gao Z, Quint JK, et al. <em>Thorax.</em> 2024;79(8):718-724. doi:10.1136/thorax-2023-220615</div></div></li>
+      <li class="ref-item"><span class="ref-num">30</span><div><div class="ref-title">Integrating Lung Function Parameters Into the Framingham Score for Improved CVD Risk Prediction in COPD</div><div class="ref-meta">Liu H, Chen AG. <em>COPD.</em> 2026;23(1):2628586. doi:10.1080/15412555.2026.2628586</div></div></li>
+      <li class="ref-item"><span class="ref-num">31</span><div><div class="ref-title">Machine Learning-Based Risk Assessment for Cardiovascular Diseases in Patients With Chronic Lung Diseases</div><div class="ref-meta">Xi H, Kang Q, Jiang X. <em>Medicine.</em> 2025;104(10):e41672. doi:10.1097/MD.0000000000041672</div></div></li>
+      <li class="ref-item"><span class="ref-num">32</span><div><div class="ref-title">Cardiovascular Events in COPD: Complementary Role of Cardiac Risk and Coronary Artery Calcium Scores</div><div class="ref-meta">de-Torres JP, Casanova C, Zagaceta J, et al. <em>Chest.</em> 2026;169(3):631-640. doi:10.1016/j.chest.2025.09.133</div></div></li>
+      <li class="ref-item"><span class="ref-num">33</span><div><div class="ref-title">Prospective Comparison of Non-Invasive Risk Markers of Major Cardiovascular Events in COPD Patients</div><div class="ref-meta">Zagaceta J, Bastarrika G, Zulueta JJ, et al. <em>Respir Res.</em> 2017;18(1):175. doi:10.1186/s12931-017-0658-y</div></div></li>
+      <li class="ref-item"><span class="ref-num">34</span><div><div class="ref-title">Cardiovascular Risk Prediction Using Physical Performance Measures in COPD: Results From a Multicentre Observational Study</div><div class="ref-meta">Fermont JM, Fisk M, Bolton CE, et al. <em>BMJ Open.</em> 2020;10(12):e038360. doi:10.1136/bmjopen-2020-038360</div></div></li>
+      <li class="ref-item"><span class="ref-num">35</span><div><div class="ref-title">Update in Diagnosis and Therapy of Coexistent COPD and Chronic Heart Failure</div><div class="ref-meta">Zeng Q, Jiang S. <em>J Thorac Dis.</em> 2012;4(3):310-5. doi:10.3978/j.issn.2072-1439.2012.01.09</div></div></li>
+      <li class="ref-item"><span class="ref-num">36</span><div><div class="ref-title">Noncardiac Comorbidities in Heart Failure With Reduced Versus Preserved Ejection Fraction</div><div class="ref-meta">Mentz RJ, Kelly JP, von Lueder TG, et al. <em>J Am Coll Cardiol.</em> 2014;64(21):2281-93. doi:10.1016/j.jacc.2014.08.036</div></div></li>
+      <li class="ref-item"><span class="ref-num">37</span><div><div class="ref-title">Comorbid Management of Chronic Obstructive Pulmonary Disease and Heart Failure</div><div class="ref-meta">Wu Z, Wang D, Tang C. <em>Respir Med.</em> 2025. doi:10.1016/j.rmed.2025.108575</div></div></li>
+      <li class="ref-item"><span class="ref-num">38</span><div><div class="ref-title">The Complex Relationship Between Heart Failure and Chronic Obstructive Pulmonary Disease: A Comprehensive Review</div><div class="ref-meta">Corneanu LE, Sîngeap MS, Mutruc V, et al. <em>J Clin Med.</em> 2025;14(13):4774. doi:10.3390/jcm14134774</div></div></li>
+      <li class="ref-item"><span class="ref-num">39</span><div><div class="ref-title">Nurse and Social Worker Palliative Telecare Team and Quality of Life in Patients With COPD, Heart Failure, or ILD: The ADAPT RCT</div><div class="ref-meta">Bekelman DB, Feser W, Morgan B, et al. <em>JAMA.</em> 2024;331(3):212-223. doi:10.1001/jama.2023.24035</div></div></li>
+      <li class="ref-item"><span class="ref-num">40</span><div><div class="ref-title">2022 ACC Expert Consensus Decision Pathway for Integrating ASCVD and Multimorbidity Treatment</div><div class="ref-meta">Birtcher KK, Allen LA, Anderson JL, et al. <em>J Am Coll Cardiol.</em> 2023;81(3):292-317. doi:10.1016/j.jacc.2022.08.754</div></div></li>
+      <li class="ref-item"><span class="ref-num">41</span><div><div class="ref-title">Race and Sex Differences in Mortality in Individuals With Chronic Obstructive Pulmonary Disease</div><div class="ref-meta">Krishnan JK, Rajan M, Banerjee S, et al. <em>Ann Am Thorac Soc.</em> 2022;19(10):1661-1668. doi:10.1513/AnnalsATS.202112-1346OC</div></div></li>
+      <li class="ref-item"><span class="ref-num">42</span><div><div class="ref-title">Racial Differences in Comorbidity Profile Among Patients With Chronic Obstructive Pulmonary Disease</div><div class="ref-meta">Lee H, Shin SH, Gu S, et al. <em>BMC Med.</em> 2018;16(1):178. doi:10.1186/s12916-018-1159-7</div></div></li>
+      <li class="ref-item"><span class="ref-num">43</span><div><div class="ref-title">Mortality Trends and Disparities for Coexisting COPD and Cardiovascular Disease: US Deaths 1999–2020</div><div class="ref-meta">Goyal A, Saeed H, Sultan W, et al. <em>PLoS One.</em> 2025;20(2):e0317592. doi:10.1371/journal.pone.0317592</div></div></li>
+      <li class="ref-item"><span class="ref-num">44</span><div><div class="ref-title">Perspectives of Black Adults With COPD on Barriers to Cardiovascular Disease Prevention</div><div class="ref-meta">Krishnan JK, Murphy ML, Edgar AS, et al. <em>Ann Am Thorac Soc.</em> 2024;21(5):706-715. doi:10.1513/AnnalsATS.202304-342OC</div></div></li>
+      <li class="ref-item"><span class="ref-num">45</span><div><div class="ref-title">Cardiovascular Outcomes in Patients With Diabetes and Kidney Disease: JACC Review Topic of the Week</div><div class="ref-meta">Morales J, Handelsman Y. <em>J Am Coll Cardiol.</em> 2023;82(2):161-170. doi:10.1016/j.jacc.2023.04.052</div></div></li>
+      <li class="ref-item"><span class="ref-num">46</span><div><div class="ref-title">Cardiovascular Disease in Diabetes and Chronic Kidney Disease</div><div class="ref-meta">Swamy S, Noor SM, Mathew RO. <em>J Clin Med.</em> 2023;12(22):6984. doi:10.3390/jcm12226984</div></div></li>
+      <li class="ref-item"><span class="ref-num">47</span><div><div class="ref-title">Cardiovascular Disease and Risk Management: Standards of Care in Diabetes—2026</div><div class="ref-meta">American Diabetes Association. <em>Diabetes Care.</em> 2026;49(Suppl_1):S216-S245. doi:10.2337/dc26-S010</div></div></li>
+      <li class="ref-item"><span class="ref-num">48</span><div><div class="ref-title">Cardiovascular Disease in Chronic Kidney Disease</div><div class="ref-meta">Marx-Schütt K, Cherney DZI, Jankowski J, et al. <em>Eur Heart J.</em> 2025;46(23):2148-2160. doi:10.1093/eurheartj/ehaf167</div></div></li>
+      <li class="ref-item"><span class="ref-num">49</span><div><div class="ref-title">Cardio-Pulmonary-Renal Interactions: A Multidisciplinary Approach</div><div class="ref-meta">Husain-Syed F, McCullough PA, Birk HW, et al. <em>J Am Coll Cardiol.</em> 2015;65(22):2433-48. doi:10.1016/j.jacc.2015.04.024</div></div></li>
+      <li class="ref-item"><span class="ref-num">50</span><div><div class="ref-title">Multimorbidity in Older Adults With Cardiovascular Disease</div><div class="ref-meta">Forman DE, Maurer MS, Boyd C, et al. <em>J Am Coll Cardiol.</em> 2018;71(19):2149-2161. doi:10.1016/j.jacc.2018.03.022</div></div></li>
+      <li class="ref-item"><span class="ref-num">51</span><div><div class="ref-title">Prediction Model for Cardiovascular Mortality Risk in Asthma Patients Based on Machine Learning</div><div class="ref-meta">Wang Y, Fang L, Liu Q, et al. <em>J Asthma.</em> 2026. doi:10.1080/02770903.2026.2618108</div></div></li>
+      <li class="ref-item"><span class="ref-num">52</span><div><div class="ref-title">Criteria to Assess the Predictive and Clinical Utility of Novel Models, Biomarkers, and Tools for Risk of CVD: An AHA Scientific Statement</div><div class="ref-meta">Khan SS, Greenland P, Hayman LL, et al. <em>Circulation.</em> 2026. doi:10.1161/CIR.0000000000001401</div></div></li>
+      <li class="ref-item"><span class="ref-num">53</span><div><div class="ref-title">COPD and Cardiovascular Comorbidities: Shedding Light on Key Interactions and Therapeutic Approaches</div><div class="ref-meta">Stella GM, Bertuccio FR, Conio V, et al. <em>Eur J Intern Med.</em> 2026. doi:10.1016/j.ejim.2026.106736</div></div></li>
+    </ul>
+  </div>
+</div>
+
+<!-- DISCLAIMER -->
+<div class="disclaimer">
+  <strong>Aviso:</strong> Este conteúdo é destinado a fins educacionais e de referência clínica para profissionais de saúde e pacientes bem informados. Não substitui a avaliação clínica individualizada nem a orientação de um médico especialista. Evidências citadas são provenientes de literatura indexada revisada por pares; a qualidade e aplicabilidade das evidências deve ser avaliada no contexto clínico individual. <strong>Dr. Lucas Silva — lucascardio.com.br</strong>
+</div>
+
+</div><!-- /container -->
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-copy">
+        © 2026 Dr. Lucas Silva · Cardiologia Intervencionista · São Paulo, Brasil<br>
+        Conteúdo baseado em evidências · Última revisão: 2026
+      </div>
+      <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">lucascardio.com.br</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── PANEL NAVIGATION ──────────────────────────────
+  function showPanel(id) {
+    document.querySelectorAll('.sec-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.sec-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.nav-center-btn').forEach(b => b.classList.remove('active'));
+    const panel = document.getElementById('panel-' + id);
+    if (panel) panel.classList.add('active');
+    document.querySelectorAll('.sec-tab').forEach(t => {
+      if (t.getAttribute('onclick') && t.getAttribute('onclick').includes("'" + id + "'")) t.classList.add('active');
+    });
+    document.querySelectorAll('.nav-center-btn').forEach(b => {
+      if (b.getAttribute('onclick') && b.getAttribute('onclick').includes("'" + id + "'")) b.classList.add('active');
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ── ACCORDION ─────────────────────────────────────
+  function toggleAccordion(btn) {
+    const body = btn.nextElementSibling;
+    const isOpen = btn.classList.contains('open');
+    btn.classList.toggle('open', !isOpen);
+    body.classList.toggle('open', !isOpen);
+  }
+</script>
+</body>
+</html>

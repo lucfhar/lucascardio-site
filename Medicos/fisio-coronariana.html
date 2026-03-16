@@ -1,0 +1,1042 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fisiologia Coronariana Invasiva | Dr. Lucas Silva</title>
+  <meta name="description" content="Avaliação fisiológica coronariana invasiva: FFR, iFR, QFR, CFR, IMR, pullback pressure gradient. Técnicas, indicações, evidências e limitações." />
+  <link rel="canonical" href="https://lucascardio.com.br/Medicos/fisio-coronariana.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalScholarlyArticle",
+    "headline": "Fisiologia Coronariana Invasiva",
+    "description": "Avaliação fisiológica coronariana invasiva: FFR, iFR, QFR, CFR, IMR, pullback pressure gradient. Técnicas, indicações, evidências e limitações.",
+    "author": {
+      "@type": "Person",
+      "name": "Dr. Lucas Silva",
+      "url": "https://lucascardio.com.br",
+      "jobTitle": "Cardiologista Intervencionista"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Dr. Lucas Silva - Cardiologia",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://lucascardio.com.br/assets/img/logo.png"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://lucascardio.com.br/Medicos/fisio-coronariana.html"
+    },
+    "audience": {
+      "@type": "MedicalAudience",
+      "audienceType": "Clinician"
+    },
+    "medicalSpecialty": "http://schema.org/Cardiovascular"
+  }
+  </script>
+  
+  <style>
+    :root {
+      --bg:        oklch(13% .018 250);
+      --fg:        oklch(93% .01 250);
+      --card:      oklch(18.5% .018 250);
+      --muted:     oklch(22% .018 250);
+      --muted-fg:  oklch(62% .02 250);
+      --border:    oklch(28% .025 250);
+      --teal:      #7e47ff;
+      --teal-dim:  rgba(0,211,189,.12);
+      --teal-dim2: rgba(0,211,189,.07);
+      --amber:     #fbbf24;
+      --red:       #f87171;
+      --green:     #4ade80;
+      --radius:    0.625rem;
+      --font:      'Plus Jakarta Sans', system-ui, sans-serif;
+      --mono:      'JetBrains Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); background: var(--bg); color: var(--fg); min-height: 100vh; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+
+    /* ── NAV ─────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(16,18,25,.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.25rem;
+      height: 54px;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    .nav-brand { display: flex; align-items: center; gap: .55rem; text-decoration: none; color: var(--fg); flex-shrink: 0; }
+    .nav-brand-icon { width: 28px; height: 28px; border-radius: 7px; background: var(--teal); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .nav-brand-name { font-weight: 800; font-size: .95rem; letter-spacing: -.025em; line-height: 1; }
+    .nav-brand-name span { color: var(--teal); }
+    .nav-sep { width: 1px; height: 14px; background: var(--border); margin: 0 5px; }
+    .nav-brand-sub { font-size: .68rem; font-weight: 500; color: var(--muted-fg); white-space: nowrap; }
+    .nav-right { display: flex; align-items: center; gap: .5rem; flex-shrink: 0; }
+    .nav-badge { font-size: .67rem; font-weight: 700; padding: 3px 9px; border-radius: 999px; background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.25); white-space: nowrap; }
+    .nav-ext { font-size: .72rem; font-weight: 600; padding: 4px 11px; border-radius: 7px; border: 1.5px solid rgba(0,211,189,.5); color: var(--teal); background: transparent; text-decoration: none; transition: background .15s; display: inline-flex; align-items: center; gap: 4px; }
+    .nav-ext:hover { background: var(--teal-dim); }
+
+    /* ── SIDEBAR NAV ──────────────────────────────────────── */
+    .layout { display: flex; min-height: calc(100vh - 54px); }
+
+    .sidebar {
+      width: 220px; flex-shrink: 0;
+      border-right: 1px solid var(--border);
+      background: oklch(15% .016 250);
+      padding: 1.5rem 0;
+      position: sticky; top: 54px;
+      height: calc(100vh - 54px);
+      overflow-y: auto;
+    }
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+    .sidebar-section-label {
+      font-size: .6rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--muted-fg); padding: 0 1.25rem; margin-bottom: .5rem;
+      font-family: var(--mono);
+    }
+    .sidebar-btn {
+      display: flex; align-items: center; gap: .6rem;
+      width: 100%; background: none; border: none; cursor: pointer;
+      font-family: var(--font); font-size: .8rem; font-weight: 500;
+      color: oklch(70% .015 250);
+      padding: .6rem 1.25rem;
+      border-left: 2px solid transparent;
+      transition: all .15s; text-align: left; line-height: 1.35;
+    }
+    .sidebar-btn:hover { background: var(--muted); color: var(--fg); }
+    .sidebar-btn.active {
+      color: var(--teal); background: var(--teal-dim2);
+      border-left-color: var(--teal); font-weight: 700;
+    }
+    .sidebar-btn .sb-num {
+      font-family: var(--mono); font-size: .65rem; font-weight: 700;
+      color: var(--muted-fg); min-width: 18px; flex-shrink: 0;
+    }
+    .sidebar-btn.active .sb-num { color: var(--teal); }
+    .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: .75rem 0; }
+
+    /* ── CONTENT ──────────────────────────────────────────── */
+    .content { flex: 1; min-width: 0; }
+    .section-page { display: none; padding: 2.5rem 2rem 4rem; max-width: 840px; }
+    .section-page.active { display: block; animation: fadeIn .25s ease; }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* ── TYPOGRAPHY ───────────────────────────────────────── */
+    .section-label { font-size: .62rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--teal); margin-bottom: .4rem; font-family: var(--mono); }
+    h2 { font-size: clamp(1.3rem, 3vw, 1.8rem); font-weight: 800; letter-spacing: -.02em; margin-bottom: .3rem; line-height: 1.2; }
+    h2 em { font-style: normal; color: var(--teal); }
+    .page-lead { color: var(--muted-fg); font-size: .88rem; margin-bottom: 2rem; }
+    h3 { font-size: 1rem; font-weight: 700; margin: 1.75rem 0 .6rem; letter-spacing: -.01em; }
+    h4 { font-size: .88rem; font-weight: 700; margin: 1.25rem 0 .45rem; color: var(--fg); }
+    p { margin-bottom: .85rem; font-size: .875rem; line-height: 1.78; }
+    p:last-child { margin-bottom: 0; }
+    strong { font-weight: 700; }
+
+    /* ── CARD ─────────────────────────────────────────────── */
+    .card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 3px); padding: 1.4rem;
+      margin-bottom: 1.25rem;
+    }
+    .card-header {
+      display: flex; align-items: flex-start; gap: .7rem;
+      margin-bottom: 1.1rem; padding-bottom: .9rem; border-bottom: 1px solid var(--border);
+    }
+    .card-icon {
+      width: 34px; height: 34px; border-radius: 8px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .95rem; background: var(--teal-dim); color: var(--teal);
+    }
+    .card-icon.amber { background: rgba(251,191,36,.12); color: var(--amber); }
+    .card-icon.red   { background: rgba(220,38,38,.1); color: var(--red); }
+    .card-title { font-weight: 700; font-size: .95rem; margin-bottom: 1px; }
+    .card-sub { font-size: .75rem; color: var(--muted-fg); line-height: 1.4; }
+
+    /* ── INFO BOXES ───────────────────────────────────────── */
+    .info { border-radius: var(--radius); padding: .85rem 1rem; font-size: .83rem; line-height: 1.72; display: flex; align-items: flex-start; gap: .6rem; margin-bottom: .75rem; }
+    .info-icon { flex-shrink: 0; flex-grow: 0; font-size: .9rem; line-height: 1.72; }
+    .info > div:not(.info-icon) { flex: 1; min-width: 0; }
+    .info.teal  { background: var(--teal-dim); border-left: 3px solid var(--teal); }
+    .info.amber { background: rgba(251,191,36,.08); border-left: 3px solid rgba(251,191,36,.45); }
+    .info.red   { background: rgba(220,38,38,.08); border-left: 3px solid rgba(220,38,38,.4); }
+    .info.gray  { background: var(--muted); border-left: 3px solid var(--border); }
+    .info.green { background: rgba(74,222,128,.06); border-left: 3px solid rgba(74,222,128,.3); }
+
+    /* ── FORMULA ──────────────────────────────────────────── */
+    .formula {
+      background: oklch(17% .016 250); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1rem 1.2rem; margin: 1rem 0;
+      font-family: var(--mono); font-size: .83rem; line-height: 2;
+    }
+    .formula .fl { font-size: .6rem; font-weight: 700; color: var(--teal); letter-spacing: .1em; text-transform: uppercase; margin-bottom: .4rem; }
+    .formula .fv { color: var(--teal); font-weight: 600; }
+    .formula .fn { font-size: .73rem; color: var(--muted-fg); font-family: var(--font); margin-top: .4rem; line-height: 1.5; }
+
+    /* ── BADGE ────────────────────────────────────────────── */
+    .badge { display: inline-flex; align-items: center; font-size: .67rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; white-space: nowrap; margin: 1px; }
+    .b-teal  { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.25); }
+    .b-amber { background: rgba(251,191,36,.1); color: var(--amber); border: 1px solid rgba(251,191,36,.25); }
+    .b-red   { background: rgba(220,38,38,.1); color: var(--red); border: 1px solid rgba(220,38,38,.25); }
+    .b-gray  { background: var(--muted); color: var(--muted-fg); border: 1px solid var(--border); font-family: var(--mono); }
+    .b-green { background: rgba(74,222,128,.1); color: var(--green); border: 1px solid rgba(74,222,128,.2); }
+
+    /* ── STAT GRID ────────────────────────────────────────── */
+    .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: .65rem; margin: 1rem 0; }
+    .stat { background: var(--muted); border: 1px solid var(--border); border-radius: var(--radius); padding: .75rem .9rem; text-align: center; }
+    .stat-val { font-family: var(--mono); font-size: 1.35rem; font-weight: 700; color: var(--teal); line-height: 1; margin-bottom: 4px; }
+    .stat-val.warn { color: var(--amber); }
+    .stat-val.danger { color: var(--red); }
+    .stat-val.ok { color: var(--green); }
+    .stat-lbl { font-size: .68rem; color: var(--muted-fg); line-height: 1.3; }
+
+    /* ── TRIALS ───────────────────────────────────────────── */
+    .trial { display: grid; grid-template-columns: 130px 1fr; gap: .75rem; margin-bottom: .65rem; align-items: start; }
+    .trial-name { font-family: var(--mono); font-size: .75rem; font-weight: 700; color: var(--teal); padding-top: 2px; }
+    .trial-data { font-size: .83rem; line-height: 1.65; }
+    @media (max-width: 580px) {
+      .trial { grid-template-columns: 1fr; gap: .2rem; }
+    }
+
+    /* ── STEPS LIST ───────────────────────────────────────── */
+    .steps { list-style: none; counter-reset: s; display: flex; flex-direction: column; gap: .55rem; }
+    .steps li { counter-increment: s; display: flex; gap: .7rem; font-size: .845rem; line-height: 1.65; align-items: flex-start; }
+    .steps li::before { content: counter(s); background: var(--teal); color: #000; font-weight: 800; font-size: .65rem; width: 19px; height: 19px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 3px; font-family: var(--mono); }
+
+    /* ── BULLET LIST ──────────────────────────────────────── */
+    .bullets { list-style: none; display: flex; flex-direction: column; gap: .45rem; }
+    .bullets li { display: flex; gap: .65rem; font-size: .845rem; line-height: 1.65; align-items: flex-start; }
+    .bullets li .bl { flex-shrink: 0; font-weight: 700; margin-top: 2px; }
+    .bullets li .bl.ok { color: var(--teal); }
+    .bullets li .bl.no { color: var(--red); }
+    .bullets li .bl.arr { color: var(--teal); }
+
+    /* ── TWO COLS ─────────────────────────────────────────── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin: .75rem 0; }
+    @media (max-width: 520px) { .two-col { grid-template-columns: 1fr; } }
+
+    /* ── TABLE ────────────────────────────────────────────── */
+    .table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: calc(var(--radius)+2px); margin: .75rem 0; }
+    table { width: 100%; border-collapse: collapse; font-size: .79rem; }
+    th { background: var(--muted); padding: 8px 12px; text-align: left; font-weight: 700; font-size: .71rem; border-bottom: 1px solid var(--border); color: var(--muted-fg); letter-spacing: .03em; text-transform: uppercase; }
+    td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: var(--muted); }
+
+    /* ── ACCORDION ────────────────────────────────────────── */
+    .acc-item { border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: .45rem; overflow: hidden; }
+    .acc-btn { width: 100%; background: var(--card); border: none; padding: .9rem 1.1rem; display: flex; align-items: center; justify-content: space-between; cursor: pointer; font-family: var(--font); font-size: .855rem; font-weight: 700; color: var(--fg); transition: background .15s; text-align: left; gap: 1rem; }
+    .acc-btn:hover { background: oklch(22% .018 250); }
+    .acc-btn.open { background: oklch(21% .02 250); }
+    .acc-chevron { transition: transform .2s; flex-shrink: 0; color: var(--muted-fg); }
+    .acc-btn.open .acc-chevron { transform: rotate(180deg); }
+    .acc-body { display: none; padding: 1.1rem; background: var(--muted); border-top: 1px solid var(--border); font-size: .845rem; line-height: 1.75; }
+    .acc-body.open { display: block; animation: fadeIn .2s ease; }
+
+    /* ── ENDOTYPES ────────────────────────────────────────── */
+    .endotype-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: .7rem; margin: .9rem 0; }
+    .endotype { background: var(--muted); border: 1px solid var(--border); border-radius: var(--radius); padding: .95rem 1rem; }
+    .endotype.e-vaso  { border-color: rgba(251,191,36,.35); }
+    .endotype.e-micro { border-color: rgba(0,211,189,.3); }
+    .endotype.e-mixed { border-color: rgba(220,38,38,.3); }
+    .endotype-title { font-weight: 700; font-size: .85rem; margin-bottom: .3rem; }
+    .endotype.e-vaso  .endotype-title { color: var(--amber); }
+    .endotype.e-micro .endotype-title { color: var(--teal); }
+    .endotype.e-mixed .endotype-title { color: var(--red); }
+    .endotype-body { font-size: .78rem; line-height: 1.6; color: var(--muted-fg); }
+    .endotype-rx { font-size: .75rem; margin-top: .5rem; padding: .35rem .55rem; border-radius: 5px; }
+    .endotype.e-vaso  .endotype-rx { background: rgba(251,191,36,.07); color: var(--amber); }
+    .endotype.e-micro .endotype-rx { background: var(--teal-dim); color: var(--teal); }
+    .endotype.e-mixed .endotype-rx { background: rgba(220,38,38,.07); color: var(--red); }
+
+    /* ── PATTERN CARDS ────────────────────────────────────── */
+    .pattern-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: .7rem; margin: .9rem 0; }
+    .pattern { background: var(--muted); border-radius: var(--radius); padding: .95rem 1rem; border: 1px solid var(--border); }
+    .pattern.p-focal  { border-color: rgba(0,211,189,.3); }
+    .pattern.p-serial { border-color: rgba(251,191,36,.3); }
+    .pattern.p-diff   { border-color: rgba(220,38,38,.3); }
+    .pattern-title { font-weight: 700; font-size: .82rem; margin-bottom: .3rem; }
+    .pattern.p-focal  .pattern-title { color: var(--teal); }
+    .pattern.p-serial .pattern-title { color: var(--amber); }
+    .pattern.p-diff   .pattern-title { color: var(--red); }
+    .pattern-body { font-size: .77rem; line-height: 1.6; color: var(--muted-fg); }
+
+    /* ── REFS ─────────────────────────────────────────────── */
+    .refs { list-style: none; }
+    .ref { padding: .75rem 0; border-bottom: 1px solid var(--border); font-size: .775rem; display: flex; gap: .75rem; }
+    .ref:last-child { border-bottom: none; }
+    .ref-n { font-family: var(--mono); font-size: .68rem; font-weight: 700; color: var(--teal); min-width: 22px; }
+    .ref-title { font-weight: 600; margin-bottom: 1px; }
+    .ref-meta { color: var(--muted-fg); font-size: .72rem; }
+
+    /* ── DISCLAIMER ───────────────────────────────────────── */
+    .disclaimer { background: var(--muted); border: 1px solid var(--border); border-radius: var(--radius); padding: .85rem 1rem; font-size: .73rem; color: var(--muted-fg); line-height: 1.6; margin-top: 1.5rem; }
+
+    /* ── DIVIDER ──────────────────────────────────────────── */
+    .divider { border: none; border-top: 1px solid var(--border); margin: 1.75rem 0; }
+
+    /* ── BACK TO TOP ──────────────────────────────────────── */
+    #back-top {
+      position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 200;
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--teal); color: #000;
+      border: none; cursor: pointer; display: none;
+      align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px rgba(0,211,189,.35);
+      transition: transform .2s, opacity .2s;
+      font-size: 1rem;
+    }
+    #back-top.show { display: flex; }
+    #back-top:hover { transform: translateY(-2px); }
+
+    /* ── RESPONSIVE ───────────────────────────────────────── */
+    @media (max-width: 720px) {
+      .sidebar { display: none; }
+      .section-page { padding: 1.75rem 1rem 3rem; }
+      .mobile-nav { display: flex; }
+    }
+    @media (min-width: 721px) {
+      .mobile-nav { display: none; }
+    }
+    .mobile-nav {
+      overflow-x: auto; gap: .35rem;
+      padding: .6rem 1rem; border-bottom: 1px solid var(--border);
+      background: oklch(15% .016 250);
+    }
+    .mobile-btn {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: 6px; color: var(--fg);
+      font-family: var(--font); font-size: .72rem; font-weight: 600;
+      padding: 5px 10px; cursor: pointer; white-space: nowrap; flex-shrink: 0;
+      transition: background .15s;
+    }
+    .mobile-btn.active { background: var(--teal-dim); color: var(--teal); border-color: rgba(0,211,189,.3); }
+
+    /* ── HOME GRID ────────────────────────────────────────── */
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: calc(var(--radius)+3px); overflow: hidden; margin: 2rem 0; }
+    .home-card { background: var(--card); padding: 1.1rem 1.2rem 1.4rem; cursor: pointer; transition: background .15s; }
+    .home-card:hover { background: var(--muted); }
+    .hc-icon { font-size: 1.4rem; margin-bottom: .45rem; line-height: 1; }
+    .hc-num { font-family: var(--mono); font-size: .62rem; font-weight: 700; color: var(--teal); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 2px; }
+    .hc-title { font-size: .85rem; font-weight: 700; line-height: 1.35; }
+    .hc-sub { font-size: .73rem; color: var(--muted-fg); margin-top: .2rem; line-height: 1.4; }
+
+    /* highlight class for signal */
+    .signal-box { background: rgba(220,38,38,.08); border: 1px solid rgba(220,38,38,.3); border-radius: var(--radius); padding: 1rem 1.1rem; margin: 1rem 0; font-size: .84rem; line-height: 1.75; }
+    .signal-title { font-weight: 700; color: var(--red); margin-bottom: .4rem; font-size: .88rem; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#" onclick="showPage('home'); return false;">
+    <div class="nav-brand-icon">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+    </div>
+    <div class="nav-brand-name">Fisio<span>CAT</span></div>
+    <div class="nav-sep"></div>
+    <div class="nav-brand-sub">Fisiologia Coronariana Invasiva</div>
+  </a>
+  <div class="nav-right">
+    <span class="nav-badge">Evidência 2025–26</span>
+    <a class="nav-ext" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      lucascardio.com.br
+    </a>
+  </div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobile-nav">
+  <button class="mobile-btn active" onclick="showPage('home')">Início</button>
+  <button class="mobile-btn" onclick="showPage('indicacoes')">Indicações</button>
+  <button class="mobile-btn" onclick="showPage('ffr')">FFR</button>
+  <button class="mobile-btn" onclick="showPage('ifr')">iFR / NHPRs</button>
+  <button class="mobile-btn" onclick="showPage('adp')">ADP / QFR</button>
+  <button class="mobile-btn" onclick="showPage('pullback')">Pullback</button>
+  <button class="mobile-btn" onclick="showPage('micro')">Microcirculação</button>
+  <button class="mobile-btn" onclick="showPage('tabela')">Tabela</button>
+  <button class="mobile-btn" onclick="showPage('refs')">Referências</button>
+</div>
+
+<div class="layout">
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-section-label">Módulos</div>
+    <button class="sidebar-btn active" data-page="home" onclick="showPage('home')">
+      <span class="sb-num">—</span> Início
+    </button>
+    <hr class="sidebar-divider">
+    <div class="sidebar-section-label" style="margin-top:.25rem">Avaliação Epicárdica</div>
+    <button class="sidebar-btn" data-page="indicacoes" onclick="showPage('indicacoes')">
+      <span class="sb-num">01</span> Indicações
+    </button>
+    <button class="sidebar-btn" data-page="ffr" onclick="showPage('ffr')">
+      <span class="sb-num">02</span> FFR
+    </button>
+    <button class="sidebar-btn" data-page="ifr" onclick="showPage('ifr')">
+      <span class="sb-num">03</span> iFR &amp; NHPRs
+    </button>
+    <button class="sidebar-btn" data-page="adp" onclick="showPage('adp')">
+      <span class="sb-num">04</span> ADP / QFR
+    </button>
+    <button class="sidebar-btn" data-page="pullback" onclick="showPage('pullback')">
+      <span class="sb-num">05</span> Pullback &amp; PPG
+    </button>
+    <hr class="sidebar-divider">
+    <div class="sidebar-section-label">Microcirculação</div>
+    <button class="sidebar-btn" data-page="micro" onclick="showPage('micro')">
+      <span class="sb-num">06</span> CFR, IMR &amp; MRR
+    </button>
+    <hr class="sidebar-divider">
+    <div class="sidebar-section-label">Síntese</div>
+    <button class="sidebar-btn" data-page="tabela" onclick="showPage('tabela')">
+      <span class="sb-num">07</span> Tabela Comparativa
+    </button>
+    <button class="sidebar-btn" data-page="especiais" onclick="showPage('especiais')">
+      <span class="sb-num">08</span> Pop. Especiais
+    </button>
+    <button class="sidebar-btn" data-page="refs" onclick="showPage('refs')">
+      <span class="sb-num">—</span> Referências
+    </button>
+  </aside>
+
+  <!-- CONTENT AREA -->
+  <main class="content" id="main-content">
+
+    <!-- ══ HOME PAGE ══ -->
+    <div class="section-page active" id="page-home">
+      <div class="section-label">Referência para Médicos</div>
+      <h2>Fisiologia Coronariana <em>Invasiva</em><br>Avaliação Isquêmica e Microvascular</h2>
+      <p class="page-lead">Técnicas, indicações, fisiopatologia, protocolos, achados, limitações e evidências para avaliação fisiológica completa no laboratório de hemodinâmica — da estenose epicárdica à disfunção microvascular.</p>
+
+      <div style="display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:2rem">
+        <span class="badge b-gray">FFR · iFR · NHPRs</span>
+        <span class="badge b-gray">QFR · vFFR · FFRangio</span>
+        <span class="badge b-gray">CFR · IMR · MRR</span>
+        <span class="badge b-gray">Pullback Pressure Gradient</span>
+        <span class="badge b-gray">INOCA / ANOCA</span>
+        <span class="badge b-teal">ACC/AHA/ESC 2024–2025</span>
+      </div>
+
+      <div class="home-grid">
+        <div class="home-card" onclick="showPage('indicacoes')">
+          <div class="hc-icon">📋</div>
+          <div class="hc-num">01</div>
+          <div class="hc-title">Indicações &amp; Classe de Recomendação</div>
+          <div class="hc-sub">ACC/AHA/SCAI 2021 · ESC 2024 · AHA SS 2025</div>
+        </div>
+        <div class="home-card" onclick="showPage('ffr')">
+          <div class="hc-icon">🫀</div>
+          <div class="hc-num">02</div>
+          <div class="hc-title">FFR — Princípios, Técnica &amp; Evidência</div>
+          <div class="hc-sub">FAME · FAME 2 · Protocolo padronizado</div>
+        </div>
+        <div class="home-card" onclick="showPage('ifr')">
+          <div class="hc-icon">⚡</div>
+          <div class="hc-num">03</div>
+          <div class="hc-title">iFR &amp; NHPRs</div>
+          <div class="hc-sub">Vantagens · Sinal de mortalidade 5 anos</div>
+        </div>
+        <div class="home-card" onclick="showPage('adp')">
+          <div class="hc-icon">🖥️</div>
+          <div class="hc-num">04</div>
+          <div class="hc-title">Fisiologia Derivada de Angiografia</div>
+          <div class="hc-sub">QFR · vFFR · FFRangio · FAVOR III</div>
+        </div>
+        <div class="home-card" onclick="showPage('pullback')">
+          <div class="hc-icon">📈</div>
+          <div class="hc-num">05</div>
+          <div class="hc-title">Pullback &amp; Padrões de Doença</div>
+          <div class="hc-sub">PPG · Focal vs Difusa · PPG Global Registry</div>
+        </div>
+        <div class="home-card" onclick="showPage('micro')">
+          <div class="hc-icon">🔬</div>
+          <div class="hc-num">06</div>
+          <div class="hc-title">CFR, IMR &amp; Microcirculação</div>
+          <div class="hc-sub">INOCA · CorMicA · Endotipos · Acetilcolina</div>
+        </div>
+        <div class="home-card" onclick="showPage('tabela')">
+          <div class="hc-icon">📊</div>
+          <div class="hc-num">07</div>
+          <div class="hc-title">Tabela Comparativa</div>
+          <div class="hc-sub">10 modalidades · Guideline class · AUC · Desfechos</div>
+        </div>
+        <div class="home-card" onclick="showPage('especiais')">
+          <div class="hc-icon">👥</div>
+          <div class="hc-num">08</div>
+          <div class="hc-title">Populações Especiais</div>
+          <div class="hc-sub">SCA · Bifurcações · DRC · Lesões diferidas</div>
+        </div>
+      </div>
+
+      <div class="info teal">
+        <div class="info-icon">ℹ️</div>
+        <div>Selecione um módulo no menu lateral ou nos cartões acima para navegar. Cada seção é independente e pode ser consultada isoladamente.</div>
+      </div>
+    </div>
+
+
+    <!-- ══ PAGE 01: INDICAÇÕES ══ -->
+    <div class="section-page" id="page-indicacoes">
+      <div class="section-label">Módulo 01</div>
+      <h2>Indicações para Avaliação <em>Fisiológica</em> Invasiva</h2>
+      <p class="page-lead">Classes de recomendação conforme ACC/AHA/SCAI 2021, ESC CCS 2024 e AHA Scientific Statement 2025.</p>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">📋</div>
+          <div><div class="card-title">Avaliação Fisiológica Epicárdica (FFR / iFR)</div>
+          <div class="card-sub">Recomendação de maior força — estenoses intermediárias com angina ou equivalente anginoso</div></div>
+        </div>
+        <div class="info teal">
+          <div class="info-icon">✦</div>
+          <div><strong>Classe 1 / Nível de Evidência A</strong> — ACC/AHA/SCAI 2021 &amp; ESC CCS 2024<br>
+          Avaliação fisiológica invasiva com FFR ou iFR em pacientes com angina ou equivalente anginoso, isquemia não documentada objetivamente, e estenoses angiograficamente <strong>intermediárias (40–70% de estenose de diâmetro)</strong> para guiar decisão de ICP. O não uso de FFR/iFR em estenoses &lt;70% com isquemia não documentada é <em>Classe 3: Sem Benefício</em> (Nível B-R).</div>
+        </div>
+        <h4>Indicações Específicas</h4>
+        <ul class="bullets">
+          <li><span class="bl arr">→</span> Estenose de diâmetro 40–70% — zona de incerteza entre necessidade de revascularizar e segurança de diferir</li>
+          <li><span class="bl arr">→</span> Discordância entre anatomia angiográfica e sintomas clínicos</li>
+          <li><span class="bl arr">→</span> Doença multivascular — identificar lesões culpadas e priorizar revascularização</li>
+          <li><span class="bl arr">→</span> Lesões em tronco de coronária esquerda não protegido (interpretação cautelosa)</li>
+          <li><span class="bl arr">→</span> Lesões em tandem ou seriadas — pullback para identificar lesão culpada hemodinamicamente</li>
+          <li><span class="bl arr">→</span> Avaliação pós-ICP — FFR pós-angioplastia &lt;0,88 associado a maior TVF</li>
+          <li><span class="bl arr">→</span> SCA multivascular — fisiologia para lesões não-culpadas (<span class="badge b-teal">Classe 1</span> ACC/AHA/SCAI ACS 2025)</li>
+        </ul>
+        <div class="info amber" style="margin-top:1rem">
+          <div class="info-icon">⚠️</div>
+          <div><strong>Utilização ainda subótima na prática:</strong> Registro nacional demonstrou uso de FFR em apenas 6,1% dos pacientes com DAC isquêmica estável submetidos a cateterismo (variação 0–26% entre hospitais). Pacientes que receberam FFR tiveram taxas de revascularização significativamente menores (45,9% vs 61,5%; Parikh et al., JACC 2020).</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon amber">🔬</div>
+          <div><div class="card-title">Avaliação Microvascular Invasiva (CFR / IMR)</div>
+          <div class="card-sub">INOCA/ANOCA — coronárias sem obstrução com angina persistente</div></div>
+        </div>
+        <div class="info amber">
+          <div class="info-icon">📌</div>
+          <div><strong>Classe IIa / Nível B</strong> — ESC CCS 2024 &amp; ACC/AHA Chest Pain 2021<br>
+          Medições de CFR e/ou IMR em pacientes sem DAC obstrutiva com dor torácica persistente. Teste de provocação com acetilcolina para diagnóstico de espasmo epicárdico e microvascular.</div>
+        </div>
+        <div class="info gray">
+          <div class="info-icon">👥</div>
+          <div><strong>Populações de maior risco para CMD:</strong> Mulheres, hipertensão, diabetes e resistência à insulina, HVE, vasos de menor calibre, cardiomiopatias, pós-STEMI (no-reflow), pós-transplante cardíaco, HFpEF. Registro prospectivo multicêntrico: 25,3% dos sintomáticos com DAC não obstrutiva apresentaram CMD na avaliação invasiva (Case BC et al., Am J Cardiol 2023).</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">🖥️</div>
+          <div><div class="card-title">Fisiologia Derivada de Angiografia (ADP)</div>
+          <div class="card-sub">QFR, vFFR, FFRangio — sem fio de pressão, sem adenosina</div></div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.8rem">
+          <span class="badge b-teal">ESC 2024: QFR Classe I / B</span>
+          <span class="badge b-gray">ACC/AHA/SCAI: sem endosso formal</span>
+          <span class="badge b-amber">vFFR / FFRangio: ESC Classe IIb / C</span>
+        </div>
+        <p>A ESC CCS 2024 concedeu ao QFR Classe I, Nível B. O ACC/AHA/SCAI mantém FFR e iFR como modalidades de primeira linha. A discordância regional é parcialmente explicada pelo fracasso do QFR em atingir não-inferioridade frente ao FFR no FAVOR III Europe (2024). O SCAI 2026 Expert Roundtable antecipa incorporação de recomendações nas próximas atualizações das diretrizes norte-americanas.</p>
+      </div>
+    </div>
+
+
+    <!-- ══ PAGE 02: FFR ══ -->
+    <div class="section-page" id="page-ffr">
+      <div class="section-label">Módulo 02</div>
+      <h2><em>FFR</em> — Reserva de Fluxo Fracionada</h2>
+      <p class="page-lead">Padrão-ouro da fisiologia coronariana invasiva. <span class="badge b-teal">Classe 1 / A — ACC/AHA/SCAI &amp; ESC 2024</span></p>
+
+      <div class="card">
+        <div class="card-header"><div class="card-icon">⚙️</div><div><div class="card-title">Fisiopatologia e Princípio Hemodinâmico</div></div></div>
+        <p>FFR é definida como a <strong>razão entre o fluxo sanguíneo máximo em uma artéria estenótica e o fluxo máximo teórico na ausência da estenose</strong>. Durante hiperemia máxima, a resistência microvascular atinge seu nadir e torna-se relativamente constante, permitindo que a pressão seja usada como substituto direto do fluxo (Lei de Ohm coronariana).</p>
+        <div class="formula">
+          <div class="fl">Fórmula</div>
+          <span class="fv">FFR = Pd / Pa</span> &nbsp;(durante hiperemia máxima)<br>
+          Pd = pressão coronariana distal à estenose &nbsp;|&nbsp; Pa = pressão aórtica proximal<br>
+          <div class="fn">Valor normal = 1,0. FFR 0,75 → o vaso fornece apenas 75% do fluxo máximo teórico. <strong>Ponto de corte: ≤ 0,80 define isquemia significativa.</strong> Zona cinzenta: 0,75–0,80 (requer julgamento clínico integrado).</div>
+        </div>
+        <div class="info teal">
+          <div class="info-icon">🎯</div>
+          <div><strong>Acurácia diagnóstica:</strong> Sensibilidade 88%, especificidade 100%, acurácia 93% (FFR &lt;0,75) e 95% (FFR &gt;0,80) vs testes de estresse funcionais. AUC 0,78–0,85 vs PET miocárdico.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><div class="card-icon">🛠️</div><div><div class="card-title">Protocolo Técnico Padronizado</div><div class="card-sub">AHA Scientific Statement 2025 — Bangalore et al., Circulation</div></div></div>
+        <ol class="steps">
+          <li><strong>Equipamento:</strong> Cateter guia 5–7F <em>sem orifícios laterais</em>. Fio-guia com sensor de pressão (Abbott PressureWire X, Philips OmniWire, Boston COMET II, Insight TruePhysio, ACIST Navvus II).</li>
+          <li><strong>Zeragem e equalização:</strong> Sensor zerado ao nível da válvula aórtica; equalizado com pressão aórtica na ponta do cateter-guia. Confirmar Pa = Pd antes de avançar.</li>
+          <li><strong>Posicionamento:</strong> Terço distal da artéria, <em>pelo menos 20–30 mm distal à lesão</em>. Cautela em vasos tortuosos ou artérias distais menores.</li>
+          <li><strong>Nitrato IC:</strong> 100–200 µg antes de cada medição para eliminar espasmo epicárdico.</li>
+          <li><strong>Hiperemia:</strong> Adenosina IV 140 µg/kg/min (via periférica/central) por ≥ 2 min para estado estacionário. Alternativa: papaverina IC (10–15 mg VE; 8–12 mg VD).</li>
+          <li><strong>Medição:</strong> Média dos valores mais baixos de 3 batimentos consecutivos durante hiperemia máxima.</li>
+          <li><strong>Verificação de drift:</strong> Retirar sensor ao cateter-guia. Drift &gt; ±0,02 ou &gt; 3 mmHg → re-equalização e repetição obrigatória.</li>
+        </ol>
+        <div class="info amber" style="margin-top:1rem">
+          <div class="info-icon">⚠️</div>
+          <div><strong>Artefatos (análise de laboratório central):</strong> Afetaram quase 1/3 de todos os rastreamentos — drift de sinal (~1/5 dos pacientes), ventriculização de pressão aórtica e distorção de forma de onda. Cada um pode alterar decisão clínica. Sensores piezoelétricos têm maior drift que sensores ópticos (Matsumura et al., JACC CI 2017).</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><div class="card-icon">📊</div><div><div class="card-title">Evidência Clínica — Ensaios Principais</div></div></div>
+        <div class="trial"><span class="trial-name">DEFER (2001–07)</span><span class="trial-data">FFR &gt;0,75 seguro para diferimento: eventos a 5 anos 3,3% (diferido) vs 31,3% (ICP). Prova de princípio: ICP de lesões funcionalmente não-significativas não melhora prognóstico.</span></div>
+        <div class="trial"><span class="trial-name">FAME (2009)</span><span class="trial-data">FFR vs angiografia em doença multivascular: MACE de 18,3% → 13,2% (HR 0,72; P=0,02), com menor número de stents implantados e menor custo.</span></div>
+        <div class="trial"><span class="trial-name">FAME 2 — 11,2 anos</span><span class="trial-data">FFR-PCI + OMT vs OMT isolada em DAC estável (FFR ≤ 0,80). Seguimento mediano 11,2 anos: redução do composto morte/IM/revasc urgente (win ratio 1,25; IC 95% 1,01–1,56; P=0,043; <strong>NNT = 17</strong>). Mortalidade por qualquer causa: sem diferença significativa (win ratio 0,88). <em>Nature Medicine</em> 2026.</span></div>
+        <div class="trial"><span class="trial-name">Meta-análise 2025</span><span class="trial-data">Yin et al., PloS One: FFR-guided PCI reduziu MACE (OR 0,76; IC95% 0,60–0,96) e IM (OR 0,65; IC95% 0,45–0,93) em análises de longo prazo e populações não-SCA. Sem benefício demonstrado em SCA.</span></div>
+        <div class="stat-grid" style="margin-top:1rem">
+          <div class="stat"><div class="stat-val ok">0,76</div><div class="stat-lbl">OR MACE (meta-análise 2025)</div></div>
+          <div class="stat"><div class="stat-val ok">0,65</div><div class="stat-lbl">OR Infarto (meta-análise 2025)</div></div>
+          <div class="stat"><div class="stat-val">NNT 17</div><div class="stat-lbl">FAME 2 — 11,2 anos</div></div>
+          <div class="stat"><div class="stat-val">$1.600</div><div class="stat-lbl">Por QALY — 3 anos</div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><div class="card-icon red">⚠️</div><div><div class="card-title">Limitações do FFR</div></div></div>
+        <ul class="bullets">
+          <li><span class="bl no">✗</span> Adenosina obrigatória → dispneia, bradicardia transitória, broncospasmo; prolonga procedimento</li>
+          <li><span class="bl no">✗</span> Hiperemia submáxima pode superestimar FFR (falso negativo)</li>
+          <li><span class="bl no">✗</span> Drift de pressão, ventriculização aórtica, amortecimento de onda — artefatos em ~1/3 dos rastreamentos</li>
+          <li><span class="bl no">✗</span> Interdependência hemodinâmica em lesões seriadas — FFR proximal subestimado pela lesão distal</li>
+          <li><span class="bl no">✗</span> Não avalia microcirculação isoladamente; CMD pode elevar FFR falsamente</li>
+          <li><span class="bl no">✗</span> Custo do fio de pressão; risco de dissecção/perfuração em anatomia complexa</li>
+        </ul>
+      </div>
+    </div>
+
+
+    <!-- ══ PAGE 03: iFR ══ -->
+    <div class="section-page" id="page-ifr">
+      <div class="section-label">Módulo 03</div>
+      <h2><em>iFR</em> &amp; Índices Não-Hiperêmicos</h2>
+      <p class="page-lead">Sem adenosina, sem desconforto — <span class="badge b-teal">Classe 1 / A — ACC/AHA/SCAI &amp; ESC 2024</span> — mas com sinal de mortalidade a 5 anos não resolvido.</p>
+
+      <div class="card">
+        <div class="card-header"><div class="card-icon">⚡</div><div><div class="card-title">Princípio — Período Livre de Ondas</div></div></div>
+        <p>iFR mede a razão Pd/Pa durante o <strong>período livre de ondas</strong> — janela diastólica específica onde a resistência microvascular é naturalmente mínima e estável, sem agentes hiperêmicos.</p>
+        <div class="formula">
+          <div class="fl">Definição do Período Livre de Ondas</div>
+          Início: 25% após início da diástole (incisura dicrótica)<br>
+          Fim: 5 ms antes do final da diástole<br>
+          <span class="fv">iFR = Pd<sub>wave-free</sub> / Pa<sub>wave-free</sub></span><br>
+          <div class="fn">Ponto de corte: iFR ≤ 0,89 → hemodinamicamente significativo. Melhor concordância com CFR do que FFR (AUC 0,82 vs 0,72).</div>
+        </div>
+        <h4>Ensaios de Validação (1–2 anos)</h4>
+        <div class="trial"><span class="trial-name">DEFINE-FLAIR</span><span class="trial-data">2.492 pacientes, 38 centros. iFR não-inferior a FFR para MACE a 1 ano (6,8% vs 7,0%; OR 0,95; IC95% 0,68–1,33). Menor tempo de procedimento, menor custo de drogas, melhor tolerância. NEJM 2017.</span></div>
+        <div class="trial"><span class="trial-name">iFR-SWEDEHEART</span><span class="trial-data">2.037 pacientes. iFR não-inferior a FFR para MACE a 12 meses (6,3% vs 6,3%; diferença 0,0%; IC95% −1,7 a +1,8%). Confirmou vantagens procedimentais. NEJM 2017.</span></div>
+        <div class="info green" style="margin-top:.5rem">
+          <div class="info-icon">✅</div>
+          <div><strong>Vantagens operacionais:</strong> Sem adenosina → sem dispneia/bradicardia. Economia ~9 min/lesão. <strong>Avaliação de lesões seriadas</strong> sem interdependência hemodinâmica (período wave-free minimiza o efeito). iFR Scout pullback com co-registro angiografia–fisiologia (SyncVision, Philips).</div>
+        </div>
+      </div>
+
+      <div class="signal-box">
+        <div class="signal-title">🚨 Sinal de Mortalidade a 5 Anos — Controvérsia Não Resolvida</div>
+        <p style="margin-bottom:.6rem"><strong>Meta-análise estudo-nível (Eftekhari et al., Eur Heart J 2023)</strong> — iFR-SWEDEHEART + DEFINE-FLAIR: iFR-guided revascularização associada a <strong>maior mortalidade por todas as causas (8,3% vs 6,3%; HR 1,34; IC95% 1,08–1,67)</strong> e maior MACE (21,5% vs 18,6%; HR 1,18; IC95% 1,04–1,34).</p>
+        <p style="margin-bottom:.6rem"><strong>DEFINE-FLAIR 5 anos isolado (Escaned et al., JAMA Cardiology 2025):</strong> mortalidade por todas as causas significativamente maior com iFR (<strong>HR 1,56; IC95% 1,16–2,09</strong>), impulsionada por morte cardiovascular. Curvas de Kaplan-Meier divergem progressivamente a partir de 2 anos.</p>
+        <p style="margin-bottom:.6rem"><strong>Contraponto:</strong> Seguimento de 5 anos do iFR-SWEDEHEART isolado não demonstrou diferença significativa (HR 1,09; IC95% 0,90–1,33). Análise de registro SWEDEHEART confirmou maior risco de morte por qualquer causa (RR 1,34), mas sem diferenças em morte cardiovascular confirmada, revascularização não planejada ou IM não fatal.</p>
+        <p style="margin-bottom:0"><strong>Estado atual:</strong> Discrepância entre estudos sem explicação mecanicista. As diretrizes atuais ainda endossam ambas as modalidades como equivalentes — situação que requer reavaliação crítica.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><div class="card-icon">📐</div><div><div class="card-title">Outros Índices Não-Hiperêmicos (NHPRs)</div></div></div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Índice</th><th>Ponto de Corte</th><th>AUC vs FFR</th><th>Observação</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Pd/Pa repouso</strong></td><td>≤ 0,91–0,92</td><td>0,75–0,93 <small style="color:var(--muted-fg)">(vs FFR)</small></td><td>Mais simples; sensib. 64,7%, especif. 75,0% quando <em>CFR</em> é usado como referência (Hwang et al., JACC CI 2017) — desempenho menor quando o padrão-ouro é o FFR</td></tr>
+              <tr><td><strong>dPR</strong></td><td>≤ 0,89</td><td>~0,84</td><td>Janela diastólica fixa; correlaciona bem com iFR</td></tr>
+              <tr><td><strong>RFR</strong></td><td>≤ 0,89</td><td>~0,84</td><td>Ciclo cardíaco completo; sem diferença clínica vs iFR</td></tr>
+              <tr><td><strong>cFFR</strong></td><td>≤ 0,83</td><td><strong>0,95</strong></td><td>Contraste IC substitui adenosina; maior correlação com FFR dentre NHPRs; dados de desfechos limitados</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="info gray" style="margin-top:.65rem">
+          <div class="info-icon">💡</div>
+          <div>NHPRs úteis em pacientes que não toleram adenosina (broncospasmo, BAV de alto grau) e para avaliação rápida. Sem evidência de desfechos de longo prazo comparável ao FFR para nenhum NHPR além do iFR.</div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ══ PAGE 04: ADP ══ -->
+    <div class="section-page" id="page-adp">
+      <div class="section-label">Módulo 04</div>
+      <h2>Fisiologia Derivada de <em>Angiografia</em></h2>
+      <p class="page-lead">QFR, vFFR e FFRangio — sem fio de pressão, sem adenosina, com algoritmos computacionais sobre angiografia convencional.</p>
+
+      <div class="card">
+        <div class="card-header"><div class="card-icon">🖥️</div><div><div class="card-title">Princípio e Acurácia Diagnóstica</div></div></div>
+        <p>Plataformas ADP utilizam modelos de fluxo computacional sobre angiogramas padrão (2 projeções ortogonais) para estimar FFR, eliminando fio de pressão e agentes vasodilatadores. Potencialmente reduzem custo, tempo de procedimento e irradiação.</p>
+        <div class="stat-grid">
+          <div class="stat"><div class="stat-val ok">0,987</div><div class="stat-lbl">AUC QFR vs FFR ≤0,80</div></div>
+          <div class="stat"><div class="stat-val ok">92,2%</div><div class="stat-lbl">Acurácia QFR</div></div>
+          <div class="stat"><div class="stat-val">0,95</div><div class="stat-lbl">AUC meta-análise ADP vs NHPRs</div></div>
+          <div class="stat"><div class="stat-val warn">0,86</div><div class="stat-lbl">AUC vFFR vs FFR</div></div>
+        </div>
+        <p style="margin-top:.75rem">Em SCA de alto risco: FFRangio correlação com FFR (R=0,76) superior ao QFR (R=0,61), com sensibilidade 91%, especificidade 100%, acurácia 96,8% (Skalidis et al., Int J Cardiol 2024). Meta-análise: AUC de ADP superior aos NHPRs para estimar FFR por fio (0,95 vs 0,85).</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><div class="card-icon">📊</div><div><div class="card-title">Evidência de Desfechos — Ensaios Principais</div></div></div>
+        <div class="trial"><span class="trial-name">FAVOR III China (2021)</span><span class="trial-data">QFR-guided vs angiography-guided PCI, n=3.825. QFR reduziu MACE a 1 ano em 35% (HR 0,66 a 2 anos; IC95% 0,54–0,81), com menor uso de stents e menor tempo de procedimento. Base da recomendação ESC Classe I/B. Lancet 2021.</span></div>
+        <div class="trial"><span class="trial-name">FAVOR III Europe (2024)</span><span class="trial-data">QFR vs FFR, n=2.000, 34 centros europeus. QFR <strong>NÃO atingiu margem de não-inferioridade pré-especificada:</strong> 6,7% vs 4,2% (HR 1,63; IC95% 1,11–2,41). Maior taxa de revascularização com QFR. Contradição direta com recomendação ESC. Lancet 2024.</span></div>
+        <div class="trial"><span class="trial-name">PROVISION (FFRangio)</span><span class="trial-data">FFRangio-guided PCI não-inferior a FFR por fio em taxa de revascularização, com ~20% menos irradiação. Dados de MACE a longo prazo pendentes.</span></div>
+        <div class="trial"><span class="trial-name">ALL-RISE (em andamento)</span><span class="trial-data">n=1.924. FFRangio vs FFR por fio para MACE a 1 ano. Estudo definitivo para FFRangio — resultados aguardados.</span></div>
+        <div class="trial"><span class="trial-name">FLAVOUR II (2025)</span><span class="trial-data">μQFR (Murray law, single-view) vs IVUS para guiar PCI. Alta reprodutibilidade entre centro e laboratório central. Lancet 2025.</span></div>
+        <div class="trial"><span class="trial-name">Network meta-análise (2024)</span><span class="trial-data">15 trials, 16.000+ pacientes: QFR associado à menor MACE vs angiografia (RR 0,68), FFR (RR 0,73) e iFR (RR 0,63). <em>Achados hipótese-geradores</em> pelo caráter indireto da análise.</span></div>
+        <div class="info amber" style="margin-top:.75rem">
+          <div class="info-icon">⚠️</div>
+          <div><strong>Discordância regional crítica:</strong> FAVOR III Europe contradiz diretamente o endosso ESC Classe I/B para QFR. A maior taxa de revascularização com QFR pode neutralizar economias com fio de pressão. O SCAI 2026 Expert Roundtable antecipa incorporação de evidências emergentes nas próximas diretrizes norte-americanas.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><div class="card-icon red">⚠️</div><div><div class="card-title">Limitações das Plataformas ADP</div></div></div>
+        <ul class="bullets">
+          <li><span class="bl no">✗</span> <strong>Não validadas</strong> em bifurcações, tronco de coronária esquerda, enxertos de bypass, lesões ostiais severas</li>
+          <li><span class="bl no">✗</span> Requerem duas projeções angiográficas ortogonais de boa qualidade (exceto μQFR single-view)</li>
+          <li><span class="bl no">✗</span> μQFR em calcificação severa: sensibilidade 75%, especificidade 77,8%, VPN 57,1% (DIAMOND study)</li>
+          <li><span class="bl no">✗</span> A maior taxa de revascularização observada com QFR pode offsetar economias procedimentais</li>
+          <li><span class="bl no">✗</span> Sem pullback validado para avaliação de padrão focal/difuso</li>
+        </ul>
+      </div>
+    </div>
+
+
+    <!-- ══ PAGE 05: PULLBACK ══ -->
+    <div class="section-page" id="page-pullback">
+      <div class="section-label">Módulo 05</div>
+      <h2>Pullback Pressure Gradient <em>(PPG)</em></h2>
+      <p class="page-lead">Doença focal vs difusa — determinante crítico do benefício da ICP e dos desfechos pós-procedimento.</p>
+
+      <div class="card">
+        <div class="card-header"><div class="card-icon">📈</div><div><div class="card-title">Conceito e Cálculo do PPG</div></div></div>
+        <p>O PPG quantifica o <strong>padrão de distribuição longitudinal da resistência epicárdica</strong> ao invés das perdas totais de pressão. Incorpora tanto a focalidade da estenose quanto a extensão do vaso afetado, fornecendo avaliação padronizada em um contínuo de doença predominantemente focal a predominantemente difusa.</p>
+        <div class="formula">
+          <div class="fl">Fórmula do PPG Index</div>
+          PPG = { [<span class="fv">MaxPPG₂₀mm</span> / <span class="fv">ΔFFRvessel</span>] + [1 − (comprimento com doença funcional / comprimento total)] } ÷ 2<br><br>
+          <strong>MaxPPG₂₀mm</strong> = variação máxima de FFR em 20 mm de vaso<br>
+          <strong>ΔFFRvessel</strong> = diferença de pressão entre óstio e vaso distal<br>
+          <strong>Doença funcional</strong> = comprimento com queda de FFR ≥ 0,0015/mm<br>
+          <div class="fn">PPG próximo a 1 → focal | próximo a 0 → difuso | Focal ≥ 0,65 | Difuso ≤ 0,47 | Intermediário/Seriado: 0,47–0,65</div>
+        </div>
+        <div class="info teal">
+          <div class="info-icon">📌</div>
+          <div><strong>PPG Global Registry</strong> (Munhoz et al., Am Heart J 2023): 993 pacientes, 23 centros mundiais. Objetivo: PPG prediz FFR pós-ICP ótima (≥ 0,88) com AUC ≥ 0,80. Resultados de desfechos publicados em meta-análise 2026.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><div class="card-icon">🔀</div><div><div class="card-title">Padrões de Doença</div></div></div>
+        <div class="pattern-grid">
+          <div class="pattern p-focal">
+            <div class="pattern-title">🎯 Doença Focal — PPG ≥ 0,65</div>
+            <div class="pattern-body">Queda abrupta e localizada de FFR/iFR durante pullback. Placa discreta hemodinamicamente significativa. <strong>ICP provavelmente restaurará fisiologia e aliviará isquemia.</strong></div>
+          </div>
+          <div class="pattern p-serial">
+            <div class="pattern-title">〰️ Doença Seriada — PPG 0,47–0,65</div>
+            <div class="pattern-body">Múltiplas quedas discretas. Requer avaliação de interdependência hemodinâmica. iFR pullback particularmente útil para separar contribuição individual.</div>
+          </div>
+          <div class="pattern p-diff">
+            <div class="pattern-title">📉 Doença Difusa — PPG ≤ 0,47</div>
+            <div class="pattern-body">Queda gradual e contínua ao longo do comprimento arterial. Aterosclerose distribuída. <strong>Benefício de ICP focal questionável</strong> — stenting focal não corrige perda de pressão difusa.</div>
+          </div>
+        </div>
+        <div class="info amber" style="margin-top:.75rem">
+          <div class="info-icon">⚠️</div>
+          <div><strong>Consequência clínica:</strong> ~1/3 dos pacientes permanece com FFR pós-ICP subótimo (&lt;0,88), fortemente associado a eventos adversos. Pacientes com padrão difuso residual têm VOCO significativamente pior comparado a padrões focais (Dai et al., JACC CI 2022; RR 1,71 na meta-análise 2026).</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><div class="card-icon">📊</div><div><div class="card-title">Evidência — PPG e Desfechos</div></div></div>
+        <div class="trial"><span class="trial-name">Meta-análise 2026</span><span class="trial-data">Bednarek et al., Atherosclerosis. 13 estudos: lesões difusas com FFR pós-ICP menor (diferença média −0,05; IC95% −0,07 a −0,04) e maior risco de MACE (<strong>RR 1,71; IC95% 1,34–2,20; P&lt;0,001</strong>) comparado a lesões focais.</span></div>
+        <div class="trial"><span class="trial-name">dFFR(t)/dt</span><span class="trial-data">Algoritmo automatizado usando pullback motorizado (10 ms/amostra). Prediz resultado fisiológico pós-ICP com erro médio de apenas 1,4%. Fornece valor prognóstico incremental além de FFR pós-ICP convencional (Lee et al., JACC CI 2020–2021).</span></div>
+        <div class="trial"><span class="trial-name">%FFR e Prognóstico</span><span class="trial-data">Mudança percentual de FFR (%FFR) fornece informação prognóstica adicional crucial. Pacientes com FFR pós-ICP baixo + pequena %FFR = pior prognóstico (doença difusa residual não abordada por stenting focal). Kobayashi &amp; Fearon, JACC CI 2018.</span></div>
+        <h4>Interdependência Hemodinâmica em Lesões Seriadas</h4>
+        <p>Quando o sensor é posicionado entre duas lesões, a lesão distal prejudica o fluxo máximo — resultando em FFR falsamente elevado para a lesão proximal. Esta interferência é mais pronunciada com FFR (hiperemia) do que com iFR (período wave-free) e piora conforme as lesões se tornam mais graves.</p>
+        <div class="info teal">
+          <div class="info-icon">💡</div>
+          <div><strong>Recomendação prática (AHA SS 2025):</strong> Pullback de pressão deve ser realizado <em>rotineiramente</em> em lesões seriadas. Sensor no terço distal (≥20–30 mm distal à lesão). Pullback pós-ICP identifica problemas no stent, lesões negligenciadas e doença difusa residual.</div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ══ PAGE 06: MICROCIRCULAÇÃO ══ -->
+    <div class="section-page" id="page-micro">
+      <div class="section-label">Módulo 06</div>
+      <h2>CFR, IMR &amp; <em>Microcirculação</em></h2>
+      <p class="page-lead">Da fisiopatologia ao diagnóstico de endotipos de INOCA/ANOCA — reserva de fluxo, resistência microvascular e teste de acetilcolina.</p>
+
+      <div class="card">
+        <div class="card-header"><div class="card-icon">🔬</div><div><div class="card-title">Fisiopatologia da Disfunção Microvascular (CMD)</div></div></div>
+        <div class="acc-item">
+          <button class="acc-btn" onclick="toggleAcc(this)"><span>⚙️ Mecanismos Funcionais — Vasodilatação Prejudicada</span><svg class="acc-chevron" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="acc-body"><strong>Endotélio-dependentes:</strong> Produção reduzida / degradação aumentada de NO. Fatores de risco cardiovascular → disfunção endotelial → vasoconstrição paradoxal a ACh (endotélio saudável vasodilataria). Na CMD, acetilcolina pode causar vasoconstricção epicárdica e microvascular.<br><br><strong>Endotélio-independentes:</strong> Respostas atenuadas à papaverina, adenosina ou dipiridamol → relaxamento prejudicado de VSMCs. Aumento de endotelina-1, hipersensibilidade a vasoconstritores, atividade simpática anormal.</div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-btn" onclick="toggleAcc(this)"><span>🏗️ Alterações Estruturais — Remodelamento Microvascular</span><svg class="acc-chevron" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="acc-body">Remodelamento interno de arteríolas (↑relação parede-lúmen), rarefação capilar miocárdica, ou ambos → ↑ resistência microvascular mínima (MVR) → ↓ condutância microcirculatória → entrega de O₂ prejudicada. Causas: tabagismo, HAS, hiperlipidemia, DM, aterosclerose obstrutiva, HVE, cardiomiopatias.</div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-btn" onclick="toggleAcc(this)"><span>⚡ Espasmo Microvascular</span><svg class="acc-chevron" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="acc-body">Parte do espectro de CMD, ligado à disfunção endotelial. Espasmo induzido por ACh relatado em ~50% dos pacientes com dor torácica estável sem DAC obstrutiva. <strong>Definição:</strong> alterações eletrocardiográficas isquêmicas + reprodução dos sintomas + ausência de espasmo epicárdico angiograficamente visível.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><div class="card-icon">📏</div><div><div class="card-title">CFR — Reserva de Fluxo Coronariano</div></div></div>
+        <div class="formula">
+          <div class="fl">Cálculo da CFR</div>
+          <span class="fv">CFR (Doppler)</span> = APV hiperêmica / APV repouso<br>
+          <span class="fv">CFR (Termodiluição bolus)</span> = Tmn repouso / Tmn hiperêmico<br>
+          <div class="fn">Valores normais: &gt;2,5 (termodiluição) e &gt;2,0 (Doppler). Hiperemia: adenosina IV 140 µg/kg/min ou papaverina IC.</div>
+        </div>
+        <div class="info red">
+          <div class="info-icon">⚠️</div>
+          <div><strong>Limitação crítica:</strong> Não distingue doença microvascular de epicárdica. Dependente de hemodinâmica sistêmica (FC, contratilidade, PA). Método de bolus manual tem grande variabilidade intraobservador e pode superestimar CFR em valores altos.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><div class="card-icon">⚗️</div><div><div class="card-title">IMR — Índice de Resistência Microcirculatória</div></div></div>
+        <p>Primeiro índice desenvolvido especificamente para avaliar a microcirculação independente da doença epicárdica.</p>
+        <div class="formula">
+          <div class="fl">Fórmula do IMR</div>
+          <span class="fv">IMR = Pd × Tmn</span> (durante hiperemia máxima)<br>
+          <strong>Correção de Yong</strong> (na presença de estenose epicárdica):<br>
+          <span class="fv">IMRcorr = Pa × Tmn × ([1,35 × Pd/Pa] − 0,32)</span><br>
+          <div class="fn">Valores normais: IMR &lt;25. Suda et al. (JACC 2019): corte ótimo IMR = 18,0 em angina com DAC não obstrutiva. Reprodutibilidade: r = 0,957.</div>
+        </div>
+        <h4>Protocolo Padronizado</h4>
+        <ol class="steps">
+          <li>Cateter guia 5–7F sem orifícios laterais.</li>
+          <li>Fio-guia de pressão-temperatura com sensor no segmento distal.</li>
+          <li>Nitrato IC (100–200 µg) antes de cada medição.</li>
+          <li>Tmn repouso: 3 injeções manuais de 4 mL de salina à temperatura ambiente.</li>
+          <li>Adenosina IV (140 µg/kg/min) para hiperemia sustentada.</li>
+          <li>Medir Pa, Pd e Tmn hiperêmico durante hiperemia estacionária.</li>
+          <li>IMR = Pd × Tmn. Se estenose epicárdica: aplicar fórmula de Yong.</li>
+        </ol>
+        <div class="two-col" style="margin-top:1rem">
+          <div>
+            <h4>Vantagens vs CFR</h4>
+            <ul class="bullets">
+              <li><span class="bl ok">✓</span> Específico para microcirculação — independente de DAC epicárdica</li>
+              <li><span class="bl ok">✓</span> Independente de hemodinâmica de repouso</li>
+              <li><span class="bl ok">✓</span> Mensurável simultaneamente ao FFR</li>
+              <li><span class="bl ok">✓</span> Maior reprodutibilidade (r=0,957)</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Limitações</h4>
+            <ul class="bullets">
+              <li><span class="bl no">✗</span> Tmn por injeção manual — variabilidade</li>
+              <li><span class="bl no">✗</span> Varia com posição do sensor</li>
+              <li><span class="bl no">✗</span> Valores de corte debatidos (18 vs 25)</li>
+              <li><span class="bl no">✗</span> Operador-dependente</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><div class="card-icon amber">🌡️</div><div><div class="card-title">MRR &amp; Termodiluição Contínua</div></div></div>
+        <p><strong>Termodiluição contínua:</strong> Mede fluxo coronariano absoluto sem injeções manuais. Técnica de "duas corridas": infusão de salina a 10 mL/min repouso e 20 mL/min hiperemia — elimina necessidade de adenosina IV adicional.</p>
+        <p><strong>MRR (Reserva de Resistência Microvascular):</strong> MRR = Rµ(repouso) / Rµ(hiperemia). No contexto de STEMI: MRR e IMR são preditores independentes de mortalidade ou hospitalização por IC, com efeito sinérgico. MRR baixa é forte preditora de morte cardíaca (Eerdekens et al., JACC 2024).</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><div class="card-icon">💊</div><div><div class="card-title">Teste Provocativo com Acetilcolina</div></div></div>
+        <div class="formula">
+          <div class="fl">Protocolo</div>
+          Doses incrementais IC: 2 µg → 20 µg → 100 µg → 200 µg<br>
+          Monitorar ECG contínuo, PA e sintomas em cada dose<br>
+          <div class="fn">Espasmo microvascular: alterações eletrocardiográficas isquêmicas + reprodução dos sintomas + ausência de espasmo epicárdico visível. Espasmo epicárdico: ≥90% de redução luminal + isquemia.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><div class="card-icon">📈</div><div><div class="card-title">Prognóstico e Implicações Clínicas</div></div></div>
+        <div class="trial"><span class="trial-name">Meta-análise CFR (2022)</span><span class="trial-data">Kelshiker et al., Eur Heart J. 79 estudos, 59.740 pacientes: CFR anormal → mortalidade por todas as causas <strong>HR 3,78 (IC95% 2,39–5,97)</strong> e MACE <strong>HR 3,42 (IC95% 2,92–3,99)</strong>. Cada −0,1 unidade de CFR → HR 1,16 para mortalidade.</span></div>
+        <div class="trial"><span class="trial-name">Hong et al. (2023)</span><span class="trial-data">4 grupos por CFR/IMR: morte CV ou admissão por IC: 20,1% → 18,8% → 33,9% → <strong>45,0%</strong> (CFR baixa + IMR alto). CFR ajustada por IMR foi o preditor contínuo mais forte.</span></div>
+        <div class="trial"><span class="trial-name">CorMicA (2018–20)</span><span class="trial-data">391 pacientes INOCA. Terapia estratificada por avaliação invasiva (FFR + CFR + IMR + ACh) vs cuidado de rotina: <strong>melhora de 11,7 unidades no SAQ</strong> e qualidade de vida (EQ-5D) aos 6 meses, sustentada em 1 ano, sem aumento de eventos adversos.</span></div>
+        <div class="trial"><span class="trial-name">FlowLab (2025)</span><span class="trial-data">JACC Advances. IMR elevado (≥25): maior prescrição de antianginosos e terapias preventivas. IMR normal: encaminhamento a especialistas não-cardiovasculares — validando utilidade clínica na prática real.</span></div>
+        <hr class="divider">
+        <h4>Endotipos de INOCA e Terapia Estratificada</h4>
+        <div class="endotype-grid">
+          <div class="endotype e-vaso">
+            <div class="endotype-title">⚡ Angina Vasoespástica</div>
+            <div class="endotype-body">Espasmo epicárdico e/ou microvascular por ACh + sintomas + ECG. CFR tipicamente preservada.</div>
+            <div class="endotype-rx">💊 BCC (diltiazem ou anlodipino) ± nitratos. <strong>Evitar betabloqueadores.</strong></div>
+          </div>
+          <div class="endotype e-micro">
+            <div class="endotype-title">🔬 Angina Microvascular</div>
+            <div class="endotype-body">CFR reduzida (&lt;2,0–2,5) e/ou IMR elevado (≥18–25) sem espasmo. Disfunção vasodilatadora.</div>
+            <div class="endotype-rx">💊 Betabloqueadores + iECA/BRA. Ranolazina, ivabradina. Estatinas de alta intensidade.</div>
+          </div>
+          <div class="endotype e-mixed">
+            <div class="endotype-title">🔀 Endotipo Misto</div>
+            <div class="endotype-body">Vasoespasmo + CMD. Pior prognóstico. Estatística C: 0,75 → 0,90 com combinação IMR+VSA (Suda et al., JACC 2019).</div>
+            <div class="endotype-rx">💊 Combinação cuidadosa BCC + betabloqueador. Terapia preventiva intensiva.</div>
+          </div>
+        </div>
+        <div class="info amber" style="margin-top:.75rem">
+          <div class="info-icon">⚠️</div>
+          <div><strong>Limitações de evidência:</strong> CorMicA pequeno (n=151 intervenção), sem diferença em MACE. Ausência de RCTs grandes com desfechos duros guiados por IMR/CFR. Maioria dos estudos prognósticos observacional. Incerteza sobre benefício do tratamento de CMD assintomática.</div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ══ PAGE 07: TABELA ══ -->
+    <div class="section-page" id="page-tabela">
+      <div class="section-label">Módulo 07</div>
+      <h2>Tabela <em>Comparativa</em> de Modalidades</h2>
+      <p class="page-lead">Resumo integrado — recomendações de diretrizes, acurácia diagnóstica, desfechos e características procedimentais (2024–2026).</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Modalidade</th><th>Classe/NE</th><th>AUC / Acurácia</th><th>Desfechos Chave</th><th>Características</th></tr></thead>
+          <tbody>
+            <tr><td><strong style="color:var(--teal)">FFR</strong></td><td><span class="badge b-teal">1/A</span> ACC/AHA/SCAI<br><span class="badge b-teal">1/A</span> ESC</td><td>AUC 0,78–0,85 vs PET; acurácia 93–95%</td><td>↓MACE e IM vs angiografia/OMT; NNT 17 a 11,2a; ICER $1.600/QALY</td><td>Fio pressão + adenosina IV; padrão-ouro</td></tr>
+            <tr><td><strong style="color:var(--teal)">iFR</strong></td><td><span class="badge b-teal">1/A</span> ACC/AHA/SCAI<br><span class="badge b-teal">1/A</span> ESC</td><td>AUC 0,74–0,86 vs PET/CFR</td><td>Não-inferior FFR em 1–2a; <strong>possível ↑mortalidade 5a (HR 1,34–1,56)</strong></td><td>Fio pressão; sem adenosina; pullback seriadas</td></tr>
+            <tr><td><strong>Pd/Pa, dPR, RFR</strong></td><td><span class="badge b-gray">Razoável</span></td><td>AUC 0,75–0,93 vs FFR</td><td>Desfechos similares a FFR/iFR em registros</td><td>Fio pressão; sem adenosina; rápido</td></tr>
+            <tr><td><strong>cFFR</strong></td><td><span class="badge b-gray">Não endossado</span></td><td>AUC 0,95 vs FFR</td><td>Dados de desfechos limitados</td><td>Fio pressão + contraste IC</td></tr>
+            <tr><td><strong style="color:var(--teal)">QFR</strong></td><td><span class="badge b-teal">1/B</span> ESC<br><span class="badge b-gray">Não endossado</span> ACC/AHA</td><td>AUC 0,987; sens 87,2%, esp 96,4%</td><td>FAVOR III China: −35% MACE; FAVOR III Europe: <strong>NÃO não-inferior a FFR</strong></td><td>Sem fio/adenosina; 2 projeções; não bifurcações</td></tr>
+            <tr><td><strong>vFFR</strong></td><td><span class="badge b-amber">IIb/C</span> ESC</td><td>AUC 0,86; acurácia 80,9%</td><td>Dados de desfechos limitados</td><td>Sem fio/adenosina; menor correlação em SCA</td></tr>
+            <tr><td><strong>FFRangio</strong></td><td><span class="badge b-amber">IIb/C</span> ESC</td><td>R=0,76 vs FFR em SCA; acurácia 96,8%</td><td>PROVISION: não-inferior revascularização; ALL-RISE em andamento</td><td>Sem fio/adenosina; melhor desempenho em SCA</td></tr>
+            <tr><td><strong>μQFR</strong></td><td><span class="badge b-gray">Não endossado</span></td><td>AUC 0,813; VPN 57,1% em calcificação</td><td>Em investigação (FLAVOUR II)</td><td>Single-view; IA; menor acurácia em calcificação</td></tr>
+            <tr><td><strong style="color:var(--teal)">CFR / IMR</strong></td><td><span class="badge b-teal">IIa/B</span> ESC<br><span class="badge b-teal">2a/B</span> ACC/AHA</td><td>IMR: r=0,957 reprodutibilidade</td><td>CFR anormal: HR 3,78 mortalidade; IMR+CFR: até 45% morte CV/IC a longo prazo</td><td>Fio pressão-temperatura + adenosina; INOCA</td></tr>
+            <tr><td><strong>MRR</strong></td><td><span class="badge b-gray">Em investigação</span></td><td>—</td><td>Preditor de mortalidade e IC pós-STEMI (JACC 2024)</td><td>Termodiluição contínua; sem injeção manual</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ══ PAGE 08: POP. ESPECIAIS ══ -->
+    <div class="section-page" id="page-especiais">
+      <div class="section-label">Módulo 08</div>
+      <h2>Populações <em>Especiais</em> e Controvérsias</h2>
+      <p class="page-lead">Cenários clínicos que exigem adaptação da estratégia fisiológica padrão.</p>
+
+      <div class="card">
+        <div class="card-header"><div class="card-icon">🚨</div><div><div class="card-title">SCA com Doença Multivascular</div></div></div>
+        <div class="info teal"><div class="info-icon">📌</div><div><span class="badge b-teal">Classe 1</span> ACC/AHA/SCAI ACS 2025: ICP de lesões não-culpadas hemodinamicamente significativas para reduzir MACE, com avaliação fisiológica considerada para guiar decisões.</div></div>
+        <p>Meta-análise 2025 (Calderone et al.): 11 RCTs, 10.150 pacientes — revascularização completa em SCA reduziu mortalidade por todas as causas (RR 0,86; IC95% 0,74–1,00) e mortalidade cardiovascular em 26%, com benefício particular em diabéticos. Em deferência por FFR em SCA: o limiar ótimo de FFR é <em>mais elevado</em> que em pacientes estáveis — IAMSST com FFR não-isquêmico ainda exibe as maiores taxas de eventos.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><div class="card-icon">🌿</div><div><div class="card-title">Bifurcações e Tronco de Coronária Esquerda</div></div></div>
+        <p>FFR e iFR podem ser usados em lesões de TCE, mas desafios técnicos e doença a jusante requerem interpretação cuidadosa. IVUS/OCT recomendados para guia procedimental em ICP de TCE (Classe 1/A). Plataformas ADP <strong>não validadas em bifurcações, TCE ou enxertos de bypass.</strong> Em bifurcações, avaliação fisiológica é recomendada antes, durante e após intervenção — atenção ao "branch steal effect" que pode subestimar isquemia em ramos laterais (Lunardi et al., JACC 2022).</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><div class="card-icon">⏳</div><div><div class="card-title">Lesões Diferidas por FFR — Risco de Longo Prazo</div></div></div>
+        <p>Mesmo com FFR &gt;0,80, há aumento incremental de desfechos adversos baseado em características do paciente e da placa (Cho et al., JACC CI 2020). Pacientes com alto risco trombótico: MACCE e morte de ~50% e ~30%, respectivamente, aos 5 anos. <strong>Alto delta-FFR (&gt;0,06)</strong> identificado como preditor hemodinâmico de SCA futura — lesões epicárdicas com grandes perdas de pressão parecem estar em maior risco de ruptura de placa.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><div class="card-icon">🔗</div><div><div class="card-title">Doença Renal Crônica</div></div></div>
+        <p>ICP pode ser preferida a CABG na DRC pelo menor risco de IRA. Estratégias de minimização de contraste são especialmente relevantes — plataformas ADP que reduzem uso de contraste podem ter papel nesta população, embora evidências específicas sejam escassas. Duração mínima de DAPT em DAC estável: 6 meses (3 meses em alto risco de sangramento).</p>
+      </div>
+    </div>
+
+    <!-- ══ PAGE REFS ══ -->
+    <div class="section-page" id="page-refs">
+      <div class="section-label">Referências Bibliográficas</div>
+      <h2>Referências <em>Selecionadas</em></h2>
+      <p class="page-lead">Diretrizes, ensaios e declarações científicas — 2017–2026.</p>
+      <div class="card" style="padding:1.1rem">
+        <ul class="refs">
+          <li class="ref"><span class="ref-n">1</span><div><div class="ref-title">Bangalore S et al. Evidence-Based Practices: Invasive Epicardial Coronary Physiologic Assessment.</div><div class="ref-meta">AHA Scientific Statement. Circulation 2025. doi:10.1161/CIR.0000000000001389</div></div></li>
+          <li class="ref"><span class="ref-n">2</span><div><div class="ref-title">Lawton JS et al. 2021 ACC/AHA/SCAI Guideline for Coronary Artery Revascularization.</div><div class="ref-meta">JACC 2022;79(2):e21–e129.</div></div></li>
+          <li class="ref"><span class="ref-n">3</span><div><div class="ref-title">Virani SS et al. 2023 AHA/ACC/ACCP/ASPC/NLA/PCNA Guideline — Chronic Coronary Disease.</div><div class="ref-meta">JACC 2023;82(9):833–955.</div></div></li>
+          <li class="ref"><span class="ref-n">4</span><div><div class="ref-title">Rao SV et al. 2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline — Acute Coronary Syndromes.</div><div class="ref-meta">Circulation 2025;151(13):e771–e862.</div></div></li>
+          <li class="ref"><span class="ref-n">5</span><div><div class="ref-title">Collet C et al. FFR-Guided PCI vs Medical Therapy for Stable CAD: FAME 2 Long-Term (11.2 years).</div><div class="ref-meta">Nature Medicine 2026. doi:10.1038/s41591-025-04132-5</div></div></li>
+          <li class="ref"><span class="ref-n">6</span><div><div class="ref-title">Yin F et al. Updated Meta-Analysis of FFR vs Coronary Angiography for Guiding PCI.</div><div class="ref-meta">PloS One 2025;20(10):e0334019.</div></div></li>
+          <li class="ref"><span class="ref-n">7</span><div><div class="ref-title">Götberg M et al. Instantaneous Wave-free Ratio versus FFR to Guide PCI (DEFINE-FLAIR / iFR-SWEDEHEART).</div><div class="ref-meta">NEJM 2017;376(19):1813–1823.</div></div></li>
+          <li class="ref"><span class="ref-n">8</span><div><div class="ref-title">Eftekhari A et al. iFR vs FFR and 5-Year Mortality: iFR SWEDEHEART and DEFINE FLAIR.</div><div class="ref-meta">Eur Heart J 2023;44(41):4376–4384.</div></div></li>
+          <li class="ref"><span class="ref-n">9</span><div><div class="ref-title">Escaned J et al. Revascularization Guided With FFR or iFR: 5-Year Follow-Up of DEFINE FLAIR.</div><div class="ref-meta">JAMA Cardiology 2025;10(1):25–31.</div></div></li>
+          <li class="ref"><span class="ref-n">10</span><div><div class="ref-title">Andersen BK et al. Quantitative Flow Ratio vs FFR for Coronary Revascularisation (FAVOR III Europe).</div><div class="ref-meta">Lancet 2024;404(10465):1835–1846.</div></div></li>
+          <li class="ref"><span class="ref-n">11</span><div><div class="ref-title">Xu B et al. Angiographic QFR-Guided Coronary Intervention (FAVOR III China).</div><div class="ref-meta">Lancet 2021;398(10317):2149–2159.</div></div></li>
+          <li class="ref"><span class="ref-n">12</span><div><div class="ref-title">Hu X et al. μQFR vs IVUS to Guide PCI (FLAVOUR II).</div><div class="ref-meta">Lancet 2025;405(10488):1491–1504.</div></div></li>
+          <li class="ref"><span class="ref-n">13</span><div><div class="ref-title">Bednarek A et al. Impact of CAD Patterns Assessed With PPG on Clinical Outcomes: Meta-Analysis.</div><div class="ref-meta">Atherosclerosis 2026;415:120688.</div></div></li>
+          <li class="ref"><span class="ref-n">14</span><div><div class="ref-title">Kelshiker MA et al. Coronary Flow Reserve and Cardiovascular Outcomes: Systematic Review and Meta-Analysis.</div><div class="ref-meta">Eur Heart J 2022;43(16):1582–1593.</div></div></li>
+          <li class="ref"><span class="ref-n">15</span><div><div class="ref-title">Hong D et al. Prognostic Impact of CMD According to Invasive Physiologic Indexes.</div><div class="ref-meta">Circ Cardiovasc Interv 2023;16(3):e012621.</div></div></li>
+          <li class="ref"><span class="ref-n">16</span><div><div class="ref-title">Bergmark BA et al. Multicenter Prospective Assessment of CMD: FlowLab Study.</div><div class="ref-meta">JACC Advances 2025;4(11):102179.</div></div></li>
+          <li class="ref"><span class="ref-n">17</span><div><div class="ref-title">Eerdekens R et al. Prognostic Value of Microvascular Resistance Reserve After PCI in MI.</div><div class="ref-meta">JACC 2024. doi:10.1016/j.jacc.2024.02.052</div></div></li>
+          <li class="ref"><span class="ref-n">18</span><div><div class="ref-title">Calderone D et al. Complete vs Culprit-Only PCI in ACS: Meta-Analysis of 10,150 subjects.</div><div class="ref-meta">Catheter Cardiovasc Interv 2025. doi:10.1002/ccd.70185</div></div></li>
+          <li class="ref"><span class="ref-n">19</span><div><div class="ref-title">Carvalho PEP et al. The Pullback Pressure Gradient: Focal From Diffuse CAD.</div><div class="ref-meta">JACC Advances 2025;4(5):101679.</div></div></li>
+          <li class="ref"><span class="ref-n">20</span><div><div class="ref-title">Suda A et al. Coronary Functional Abnormalities in Patients With Angina and Nonobstructive CAD.</div><div class="ref-meta">JACC 2019;74(19):2350–2360.</div></div></li>
+        </ul>
+      </div>
+      <div class="disclaimer">⚕️ <strong>Aviso:</strong> Material destinado exclusivamente a profissionais de saúde para fins educacionais. Não substitui diretrizes institucionais, julgamento clínico individualizado ou protocolos locais. Evidências até início de 2026.</div>
+    </div>
+
+
+  </main>
+</div><!-- /layout -->
+
+<!-- BACK TO TOP -->
+<button id="back-top" title="Voltar ao topo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<script>
+  // ── PAGE NAVIGATION ──────────────────────────────────────
+  function showPage(id) {
+    // hide all
+    document.querySelectorAll('.section-page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.sidebar-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.mobile-btn').forEach(b => b.classList.remove('active'));
+
+    // show target
+    const page = document.getElementById('page-' + id);
+    if (page) {
+      page.classList.add('active');
+      // scroll content to top
+      document.getElementById('main-content').scrollTop = 0;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // highlight sidebar btn
+    const sbtn = document.querySelector('.sidebar-btn[data-page="' + id + '"]');
+    if (sbtn) sbtn.classList.add('active');
+
+    // highlight mobile btn
+    document.querySelectorAll('.mobile-btn').forEach(b => {
+      if (b.getAttribute('onclick').includes("'" + id + "'")) b.classList.add('active');
+    });
+  }
+
+  // ── ACCORDION ────────────────────────────────────────────
+  function toggleAcc(btn) {
+    btn.classList.toggle('open');
+    btn.nextElementSibling.classList.toggle('open');
+  }
+
+  // ── BACK TO TOP ──────────────────────────────────────────
+  window.addEventListener('scroll', () => {
+    const btn = document.getElementById('back-top');
+    btn.classList.toggle('show', window.scrollY > 300);
+  });
+</script>
+</body>
+</html>

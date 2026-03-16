@@ -1,0 +1,1969 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>Intervenção Percutânea na Valvopatia Mitral | Dr. Lucas Silva</title>
+  <meta name="description" content="Guia clínico interativo sobre TEER, TMVR e comissurotomia mitral percutânea. Indicações, técnica, eco intraprocedimental, evidências e complicações." />
+  <meta name="author" content="Dr. Lucas Silva" />
+  <link rel="canonical" href="https://lucascardio.com.br/Medicos/valvopatia_mitral_percutanea.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalScholarlyArticle",
+    "headline": "Valvopatia Tricúspide Percutânea",
+    "description": "Referência clínica interativa sobre tratamento percutâneo da valvopatia mitral: fisiopatologia, indicações, dispositivos TEER, TMVR e comissurotomia mitral percutânea. Indicações, técnica, eco intraprocedimental, evidências e complicações.",
+    "author": {
+      "@type": "Person",
+      "name": "Dr. Lucas Silva",
+      "url": "https://lucascardio.com.br",
+      "jobTitle": "Cardiologista Intervencionista"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Dr. Lucas Silva - Cardiologia",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://lucascardio.com.br/assets/img/logo.png"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://lucascardio.com.br/Medicos/valvopatia_mitral_percutanea.html"
+    },
+    "audience": {
+      "@type": "MedicalAudience",
+      "audienceType": "Clinician"
+    },
+    "medicalSpecialty": "http://schema.org/Cardiovascular"
+  }
+  </script>
+  
+  <style>
+    :root {
+      --primary: oklch(65% .18 195);
+      --primary-foreground: oklch(98% 0 0);
+      --background: oklch(13% .018 250);
+      --foreground: oklch(93% .01 250);
+      --card: oklch(18.5% .018 250);
+      --card-foreground: oklch(93% .01 250);
+      --muted: oklch(22% .018 250);
+      --muted-foreground: oklch(62% .02 250);
+      --border: oklch(28% .025 250);
+      --input: oklch(22% .02 250);
+      --destructive: oklch(60% .22 25);
+      --secondary: oklch(22% .022 250);
+      --secondary-foreground: oklch(88% .01 250);
+      --accent: oklch(24% .025 250);
+      --accent-foreground: oklch(90% .01 250);
+      --teal: #00d3bd;
+      --teal-dim: rgba(0,211,189,.12);
+      --amber: oklch(82.8% .189 84.429);
+      --red: oklch(63.7% .237 25.331);
+      --green: oklch(79.2% .209 151.711);
+      --radius: 0.625rem;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--background);
+      color: var(--foreground);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(18,20,27,.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--foreground); }
+    .nav-brand-icon {
+      width: 28px; height: 28px; border-radius: 7px;
+      background: var(--teal); display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .nav-brand-name { font-weight: 800; font-size: 1rem; letter-spacing: -.025em; line-height: 1; }
+    .nav-brand-name span { color: var(--teal); }
+    .nav-brand-sep { width: 1px; height: 14px; background: var(--border); margin: 0 6px; }
+    .nav-brand-sub { font-size: .7rem; font-weight: 500; color: var(--muted-foreground); }
+    .nav-center { display: flex; align-items: center; gap: .15rem; }
+    .nav-center-btn {
+      background: none; border: none; cursor: pointer; font-family: var(--font-sans);
+      font-size: .75rem; font-weight: 500; color: var(--muted-foreground);
+      padding: 5px 10px; border-radius: 7px; transition: background .15s, color .15s;
+    }
+    .nav-center-btn:hover { background: var(--accent); color: var(--foreground); }
+    .nav-actions { display: flex; align-items: center; gap: .5rem; }
+    .nav-badge {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px; border-radius: 999px;
+      background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.25); white-space: nowrap;
+    }
+    .nav-link {
+      font-size: .75rem; font-weight: 600; padding: 5px 12px; border-radius: 8px;
+      border: 1.5px solid var(--primary); color: var(--primary); background: transparent;
+      text-decoration: none; transition: background .15s, color .15s;
+      display: inline-flex; align-items: center; gap: 5px;
+    }
+    .nav-link:hover { background: var(--primary); color: var(--primary-foreground); }
+    /* LAYOUT */
+    .container { max-width: 940px; margin: 0 auto; padding: 0 1.5rem; }
+    .section { padding: 2.5rem 0; }
+    /* HERO */
+    .hero { padding: 3.5rem 0 2.5rem; border-bottom: 1px solid var(--border); }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .7rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--teal); margin-bottom: 1rem;
+    }
+    .hero-eyebrow::before { content: ''; display: block; width: 20px; height: 2px; background: var(--teal); border-radius: 1px; }
+    .hero h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800; line-height: 1.2; margin-bottom: .75rem; letter-spacing: -.02em; }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero-sub { color: var(--muted-foreground); font-size: .95rem; max-width: 660px; margin-bottom: 1.5rem; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px; border-radius: 6px;
+      border: 1px solid var(--border); color: var(--muted-foreground); background: var(--card);
+      font-family: var(--font-mono);
+    }
+    /* TAB NAV */
+    .tab-nav {
+      display: flex; gap: 2px; background: var(--muted);
+      border: 1px solid var(--border); border-radius: calc(var(--radius)+2px);
+      padding: 4px; margin: 2rem 0 1.5rem; flex-wrap: wrap;
+    }
+    .tab-btn {
+      flex: 1; min-width: 100px; padding: 8px 14px; border: none; background: transparent;
+      border-radius: var(--radius); font-family: var(--font-sans); font-size: .78rem; font-weight: 600;
+      color: var(--muted-foreground); cursor: pointer; transition: all .15s; white-space: nowrap;
+    }
+    .tab-btn:hover { background: var(--accent); color: var(--foreground); }
+    .tab-btn.active { background: var(--card); color: var(--teal); border: 1px solid var(--border); }
+    /* TAB PANELS */
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; animation: fadeUp .3s ease; }
+    /* CARD */
+    .card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: calc(var(--radius)+2px); padding: 1.5rem; margin-bottom: 1.5rem;
+    }
+    .card-header {
+      display: flex; align-items: flex-start; gap: .75rem; margin-bottom: 1.25rem;
+      padding-bottom: 1rem; border-bottom: 1px solid var(--border);
+    }
+    .card-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0; background: var(--teal-dim); color: var(--teal);
+    }
+    .card-title { font-weight: 700; font-size: 1rem; margin-bottom: 2px; }
+    .card-subtitle { font-size: .78rem; color: var(--muted-foreground); }
+    /* SECTION TITLES */
+    .section-label {
+      font-size: .68rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--teal); margin-bottom: .4rem; font-family: var(--font-mono);
+    }
+    .section-title { font-size: 1.25rem; font-weight: 800; margin-bottom: .5rem; letter-spacing: -.01em; }
+    .section-divider { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+    /* INFO BOXES */
+    .info-box {
+      border-radius: var(--radius); padding: 12px 16px; font-size: .82rem; line-height: 1.65;
+      display: flex; gap: 10px; margin-bottom: .75rem;
+    }
+    .info-box-icon { flex-shrink: 0; font-size: 1rem; margin-top: 1px; }
+    .info-teal { background: var(--teal-dim); border-left: 3px solid var(--teal); }
+    .info-amber { background: rgba(251,191,36,.08); border-left: 3px solid rgba(251,191,36,.5); }
+    .info-red { background: rgba(220,38,38,.08); border-left: 3px solid rgba(220,38,38,.4); }
+    .info-gray { background: var(--muted); border-left: 3px solid var(--border); }
+    .info-green { background: rgba(34,197,94,.08); border-left: 3px solid rgba(34,197,94,.4); }
+    /* BADGES */
+    .badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: .68rem; font-weight: 700; padding: 2px 8px;
+      border-radius: 999px; white-space: nowrap;
+    }
+    .badge-teal { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.25); }
+    .badge-amber { background: rgba(251,191,36,.12); color: #fbbf24; border: 1px solid rgba(251,191,36,.2); }
+    .badge-red { background: rgba(220,38,38,.15); color: #f87171; border: 1px solid rgba(220,38,38,.25); }
+    .badge-green { background: rgba(34,197,94,.12); color: #4ade80; border: 1px solid rgba(34,197,94,.2); }
+    .badge-gray { background: var(--muted); color: var(--foreground); border: 1px solid var(--border); font-family: var(--font-mono); }
+    /* GRID */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
+    /* STAT BOX */
+    .stat-box {
+      background: var(--muted); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+    }
+    .stat-val { font-size: 1.8rem; font-weight: 800; font-family: var(--font-mono); color: var(--teal); line-height: 1; margin-bottom: 4px; }
+    .stat-label { font-size: .75rem; font-weight: 600; color: var(--muted-foreground); }
+    .stat-desc { font-size: .72rem; color: var(--muted-foreground); margin-top: 2px; }
+    /* COMPARE TABLE */
+    .compare-table { width: 100%; border-collapse: collapse; font-size: .82rem; border-radius: var(--radius); overflow: hidden; }
+    .compare-table th {
+      background: var(--muted); padding: 10px 14px; text-align: left;
+      font-weight: 700; font-size: .75rem; border-bottom: 1px solid var(--border);
+      color: var(--muted-foreground); letter-spacing: .03em;
+    }
+    .compare-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table tr:hover td { background: var(--accent); }
+    .compare-table .col-device { font-weight: 700; color: var(--teal); font-family: var(--font-mono); font-size: .8rem; }
+    /* ACCORDION */
+    .accordion { border: 1px solid var(--border); border-radius: calc(var(--radius)+2px); overflow: hidden; margin-bottom: 1rem; }
+    .accordion-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 1.25rem; cursor: pointer; background: var(--card);
+      transition: background .15s; user-select: none;
+    }
+    .accordion-header:hover { background: var(--accent); }
+    .accordion-header.open { background: var(--teal-dim); border-bottom: 1px solid var(--border); }
+    .accordion-title { font-weight: 700; font-size: .92rem; display: flex; align-items: center; gap: 10px; }
+    .accordion-icon { font-size: 1.1rem; }
+    .accordion-chevron { transition: transform .2s; color: var(--muted-foreground); }
+    .accordion-header.open .accordion-chevron { transform: rotate(180deg); }
+    .accordion-body { display: none; padding: 1.25rem; background: var(--card); }
+    .accordion-body.open { display: block; }
+    /* STEP LIST */
+    .step-list { list-style: none; }
+    .step-item {
+      display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border);
+    }
+    .step-item:last-child { border-bottom: none; }
+    .step-num-badge {
+      min-width: 26px; height: 26px; border-radius: 50%;
+      background: var(--teal); color: #000; font-size: .72rem; font-weight: 800;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;
+    }
+    .step-content { font-size: .83rem; line-height: 1.6; }
+    .step-content strong { font-weight: 700; display: block; margin-bottom: 2px; }
+    /* TRIAL CARD */
+    .trial-card {
+      border: 1px solid var(--border); border-radius: calc(var(--radius)+2px);
+      overflow: hidden; margin-bottom: 1rem;
+    }
+    .trial-header {
+      padding: .75rem 1.25rem; background: var(--muted);
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    }
+    .trial-name { font-weight: 800; font-size: .95rem; font-family: var(--font-mono); color: var(--teal); }
+    .trial-body { padding: 1.25rem; background: var(--card); }
+    .trial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: .75rem; margin-top: 1rem; }
+    .trial-stat { background: var(--muted); border-radius: var(--radius); padding: .75rem; text-align: center; }
+    .trial-stat-val { font-size: 1.3rem; font-weight: 800; color: var(--teal); font-family: var(--font-mono); }
+    .trial-stat-label { font-size: .7rem; color: var(--muted-foreground); font-weight: 600; margin-top: 2px; }
+    /* WILKINS CALCULATOR */
+    .wilkins-row { display: flex; gap: .5rem; align-items: center; margin-bottom: .5rem; flex-wrap: wrap; }
+    .wilkins-label { font-size: .8rem; font-weight: 600; min-width: 160px; }
+    .wilkins-btns { display: flex; gap: 4px; }
+    .w-btn {
+      width: 34px; height: 30px; border-radius: 6px; border: 1px solid var(--border);
+      background: var(--muted); color: var(--muted-foreground); font-size: .8rem; font-weight: 700;
+      cursor: pointer; transition: all .15s; font-family: var(--font-mono);
+    }
+    .w-btn:hover { background: var(--accent); color: var(--foreground); }
+    .w-btn.sel { background: var(--teal); color: #000; border-color: var(--teal); }
+    .wilkins-result {
+      background: var(--muted); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 1rem 1.25rem; margin-top: 1rem; display: flex; align-items: center; gap: 1rem;
+    }
+    .wilkins-score-val { font-size: 2.5rem; font-weight: 800; font-family: var(--font-mono); color: var(--teal); }
+    /* ECHO DIAGRAM */
+    .echo-view {
+      background: var(--muted); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 1rem; text-align: center; margin-bottom: .75rem;
+    }
+    .echo-view svg { max-width: 100%; }
+    /* REFERENCES */
+    .ref-list { list-style: none; }
+    .ref-item {
+      padding: 10px 0; border-bottom: 1px solid var(--border);
+      font-size: .8rem; line-height: 1.6; display: flex; gap: 10px;
+    }
+    .ref-item:last-child { border-bottom: none; }
+    .ref-num { font-family: var(--font-mono); font-size: .7rem; font-weight: 700; color: var(--teal); min-width: 24px; }
+    .ref-title { font-weight: 600; margin-bottom: 2px; }
+    .ref-meta { color: var(--muted-foreground); font-size: .75rem; }
+    .ref-ev {
+      display: inline-block; font-size: .65rem; font-weight: 700; padding: 1px 6px; border-radius: 4px;
+      margin-left: 6px; background: var(--teal-dim); color: var(--teal);
+    }
+    /* DISCLAIMER */
+    .disclaimer {
+      background: var(--muted); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 12px 16px; font-size: .75rem; color: var(--muted-foreground); line-height: 1.6; margin-top: 1.5rem;
+    }
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 2rem 0; margin-top: 3rem; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-copy { font-size: .75rem; color: var(--muted-foreground); }
+    /* ANIMATIONS */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    /* TOOLTIPS */
+    [data-tip] { position: relative; cursor: help; border-bottom: 1px dotted var(--teal); color: var(--teal); }
+    [data-tip]:hover::after {
+      content: attr(data-tip); position: absolute; bottom: 125%; left: 50%; transform: translateX(-50%);
+      background: oklch(20% .02 250); border: 1px solid var(--border); border-radius: 6px;
+      padding: 6px 10px; font-size: .72rem; white-space: pre-wrap; max-width: 260px; z-index: 100;
+      color: var(--foreground); box-shadow: 0 4px 16px rgba(0,0,0,.4); line-height: 1.5;
+    }
+    /* ANATOMY GRID */
+    .anatomy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .anatomy-block {
+      background: var(--muted); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem;
+    }
+    .anatomy-block h4 { font-size: .85rem; font-weight: 700; margin-bottom: .5rem; color: var(--teal); }
+    .anatomy-block ul { list-style: none; }
+    .anatomy-block li { font-size: .8rem; padding: 3px 0; display: flex; align-items: flex-start; gap: 6px; }
+    .anatomy-block li::before { content: '▸'; color: var(--teal); flex-shrink: 0; font-size: .7rem; margin-top: 3px; }
+    /* COMPLICATION LIST */
+    .compl-list { list-style: none; }
+    .compl-item {
+      display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); align-items: flex-start;
+    }
+    .compl-item:last-child { border-bottom: none; }
+    .compl-freq {
+      min-width: 52px; text-align: right; font-family: var(--font-mono); font-size: .8rem; font-weight: 700; margin-top: 2px;
+    }
+    .compl-name { font-weight: 700; font-size: .85rem; margin-bottom: 2px; }
+    .compl-desc { font-size: .78rem; color: var(--muted-foreground); line-height: 1.5; }
+    /* RESPONSIVE */
+    @media (max-width: 650px) {
+      .grid-2, .grid-3, .anatomy-grid { grid-template-columns: 1fr; }
+      .nav-center { display: none; }
+      .wilkins-row { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="https://lucascardio.com.br">
+    <div class="nav-brand-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+    </div>
+    <div class="nav-brand-name">Lucas<span>Cardio</span></div>
+    <div class="nav-brand-sep"></div>
+    <div class="nav-brand-sub">Valvopatia Mitral Percutânea</div>
+  </a>
+  <div class="nav-center">
+    <button class="nav-center-btn" onclick="switchTab('fisio')">Fisiopatologia</button>
+    <button class="nav-center-btn" onclick="switchTab('indicacoes')">Indicações</button>
+    <button class="nav-center-btn" onclick="switchTab('dispositivos')">Dispositivos</button>
+    <button class="nav-center-btn" onclick="switchTab('tecnica')">Técnica &amp; ECO</button>
+    <button class="nav-center-btn" onclick="switchTab('resultados')">Resultados</button>
+    <button class="nav-center-btn" onclick="switchTab('complicacoes')">Complicações</button>
+    <button class="nav-center-btn" onclick="switchTab('refs')">Referências</button>
+  </div>
+  <div class="nav-actions">
+    <span class="nav-badge">ACC/AHA 2020 · ESC 2021 · COAPT · MATTERHORN</span>
+    <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      lucascardio.com.br
+    </a>
+  </div>
+</nav>
+
+<main>
+<div class="container">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Cardiologia Intervencionista Estrutural</div>
+  <h1>Intervenção Percutânea na<br><em>Valvopatia Mitral</em></h1>
+  <p class="hero-sub">
+    Guia clínico abrangente sobre TEER (MitraClip/PASCAL), TMVR (Tendyne/Intrepid), anuloplastia percutânea e comissurotomia mitral por balão. Indicações, anatomia favorável, técnica guiada por ecocardiograma, evidências dos grandes estudos e gestão de complicações.
+  </p>
+  <div class="hero-tags">
+    <span class="tag">TEER · MitraClip G4</span>
+    <span class="tag">PASCAL</span>
+    <span class="tag">TMVR · Tendyne</span>
+    <span class="tag">COAPT 5 anos</span>
+    <span class="tag">MATTERHORN</span>
+    <span class="tag">EVEREST II</span>
+    <span class="tag">MITRA-FR</span>
+    <span class="tag">Wilkins Score</span>
+    <span class="tag">TEE 3D</span>
+    <span class="tag">ACC/AHA 2020</span>
+    <span class="tag">ESC 2021</span>
+  </div>
+</div>
+
+<!-- TAB NAV -->
+<div class="tab-nav" id="mainTabNav">
+  <button class="tab-btn active" onclick="switchTab('fisio')" data-tab="fisio">🫀 Fisiopatologia</button>
+  <button class="tab-btn" onclick="switchTab('indicacoes')" data-tab="indicacoes">✅ Indicações</button>
+  <button class="tab-btn" onclick="switchTab('dispositivos')" data-tab="dispositivos">🔧 Dispositivos</button>
+  <button class="tab-btn" onclick="switchTab('tecnica')" data-tab="tecnica">🔬 Técnica &amp; ECO</button>
+  <button class="tab-btn" onclick="switchTab('resultados')" data-tab="resultados">📊 Resultados</button>
+  <button class="tab-btn" onclick="switchTab('complicacoes')" data-tab="complicacoes">⚠️ Complicações</button>
+  <button class="tab-btn" onclick="switchTab('refs')" data-tab="refs">📚 Referências</button>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     TAB 1 — FISIOPATOLOGIA
+══════════════════════════════════════════════════════════ -->
+<div id="tab-fisio" class="tab-panel active">
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🫀</div>
+      <div>
+        <div class="card-title">Anatomia Funcional do Aparelho Mitral</div>
+        <div class="card-subtitle">Complexo integrado de seis componentes — intervenção percutânea age predominantemente nos folhetos e anular</div>
+      </div>
+    </div>
+    <p style="font-size:.85rem;margin-bottom:1rem;line-height:1.7">
+      O aparelho mitral é uma unidade funcional composta por: <strong>anel mitral</strong> (sela de cavalo, contração sistólica de ~25%), <strong>folheto anterior</strong> (A1-A2-A3, ~2/3 da área do orifício), <strong>folheto posterior</strong> (P1-P2-P3, maior comprimento mas menor área), <strong>cordas tendíneas</strong> (primárias à beira livre, secundárias ao corpo, terciárias ao anel), <strong>músculos papilares</strong> (anterolateral irrigado por diagonal/marginal obtusa; posteromedial mais vulnerável — único suprimento por coronária direita ou circunflexa) e <strong>ventrículo esquerdo</strong>. A competência valvar depende da coaptação adequada (≥7 mm de extensão, ≥2 mm de profundidade) ao longo da linha de coaptação anterior-posterior.
+    </p>
+    <div class="info-teal info-box">
+      <span class="info-box-icon">💡</span>
+      <div><strong>Nomenclatura de Carpentier:</strong> Tipo I = movimento normal dos folhetos (ex: dilatação anular), Tipo II = movimento excessivo (prolapso/flail — TEER favorável), Tipo IIIa = restrição diastólica (reumático — TEER contraindicada), Tipo IIIb = restrição sistólica (funcional/isquêmica — TEER após falha de GDMT).</div>
+    </div>
+  </div>
+
+  <!-- ACCORDION IM PRIMÁRIA -->
+  <div class="accordion">
+    <div class="accordion-header open" onclick="toggleAccordion(this)">
+      <div class="accordion-title"><span class="accordion-icon">🔴</span> Insuficiência Mitral Primária (Degenerativa) — Carpentier Tipo II</div>
+      <svg class="accordion-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="accordion-body open">
+      <div class="grid-2" style="gap:1.25rem">
+        <div>
+          <p style="font-size:.83rem;line-height:1.7;margin-bottom:1rem">
+            A IM degenerativa abrange desde o <strong>prolapso de Barlow</strong> (degeneração mixomatosa difusa, excesso tecidual, anel muito dilatado, múltiplos segmentos, Carpentier IIb) até a <strong>deficiência fibroelástica</strong> (tecido escasso, chorda única rota, geralmente P2, Carpentier IIa — anatomia mais favorável para TEER). O mecanismo central é a <strong>malcoaptação sistólica</strong> por movimento excessivo do(s) folheto(s), gerando jato regurgitante no átrio esquerdo.
+          </p>
+          <p style="font-size:.83rem;line-height:1.7;margin-bottom:1rem">
+            A sobrecarga de volume crônica leva a: <strong>remodelamento excêntrico</strong> do VE (Lei de Laplace: aumento do raio → aumento do estresse parietal), <strong>disfunção subclínica</strong> precoce (detectable por strain longitudinal global ≤ −20% mesmo com FE preservada), e progressão para disfunção sistólica irreversível se FEVE cair para ≤60% ou DSVE atingir ≥40 mm. Dados do registro MIDA demonstraram que sobrevida em 20 anos com reparo (41%) é significativamente superior à troca valvar (24%, p &lt;0,001).
+          </p>
+          <div class="info-amber info-box">
+            <span class="info-box-icon">⚠️</span>
+            <div><strong>Armadilha diagnóstica:</strong> A FEVE superestima função miocárdica na IM severa porque a fração ejetada inclui o volume regurgitante de baixa pós-carga. Usar longitudinal strain (GLS) e índice de esfericidade para detecção precoce de disfunção subclínica (Anand et al., JAMA Cardiology 2025).</div>
+          </div>
+        </div>
+        <div>
+          <div class="stat-box" style="margin-bottom:.75rem">
+            <div class="stat-val">&gt;90%</div>
+            <div class="stat-label">Mortalidade ou IC em 10 anos sem tratamento</div>
+            <div class="stat-desc">IM severa sintomática não tratada — história natural adversa</div>
+          </div>
+          <div class="stat-box" style="margin-bottom:.75rem">
+            <div class="stat-val">6–10%</div>
+            <div class="stat-label">Mortalidade cirúrgica (troca valvar)</div>
+            <div class="stat-desc">vs &lt;1% para reparo em centros de alto volume</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-val">90%</div>
+            <div class="stat-label">Liberdade de reoperação em 20–25 anos</div>
+            <div class="stat-desc">Reparo cirúrgico — padrão-ouro de durabilidade (Glower et al., JACC 2012)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACCORDION IM SECUNDÁRIA -->
+  <div class="accordion">
+    <div class="accordion-header open" onclick="toggleAccordion(this)">
+      <div class="accordion-title"><span class="accordion-icon">🟡</span> Insuficiência Mitral Secundária (Funcional) — Carpentier Tipo IIIb</div>
+      <svg class="accordion-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="accordion-body open">
+      <p style="font-size:.83rem;line-height:1.7;margin-bottom:1rem">
+        Na IM secundária, a válvula em si é estruturalmente normal — o problema é o <strong>remodelamento do VE</strong>. A dilatação ventricular desloca os músculos papilares apical e lateralmente, aumentando o tethering (tração) dos folhetos, enquanto o anular dilata por perda de contração do anel. O resultado é restrição sistólica da motilidade dos folhetos e coaptação incompleta.
+      </p>
+      <div class="info-teal info-box" style="margin-bottom:1rem">
+        <span class="info-box-icon">🔑</span>
+        <div>
+          <strong>Conceito de Proporcionalidade (Packer &amp; Grayburn, Circulation 2019):</strong> A IM é <em>proporcional</em> quando o volume regurgitante é proporcional ao grau de dilatação do VE (EROA &lt;0,30 cm² por VDVE ≥96 mL/m²) — intervenção direta na valva tem benefício incerto. A IM é <em>desproporcional</em> quando o volume regurgitante excede o que o tamanho do VE prevê (EROA ≥0,30 cm² com VDVE menor) — esses pacientes são os que mais se beneficiam de TEER, conforme modelo explicativo para o aparente conflito entre COAPT e MITRA-FR.
+        </div>
+      </div>
+      <div class="grid-2" style="gap:1rem">
+        <div class="anatomy-block">
+          <h4>Mecanismos fisiopatológicos</h4>
+          <ul>
+            <li>Deslocamento apical/lateral dos músculos papilares</li>
+            <li>Aumento das forças de tethering (tração das cordas)</li>
+            <li>Redução das forças de fechamento (disfunção sistólica)</li>
+            <li>Dilatação do anel mitral (perda de contração anular)</li>
+            <li>Assincronia do VE (BCRE — piora do tethering lateral)</li>
+            <li>Remodelamento esférico do VE → maior deslocamento papilar</li>
+          </ul>
+        </div>
+        <div class="anatomy-block">
+          <h4>IM isquêmica vs não-isquêmica</h4>
+          <ul>
+            <li>Isquêmica: predomina músculo papilar posteromedial (infarto inferior)</li>
+            <li>Geometria assimétrica → tethering assimétrico, P3 mais restrito</li>
+            <li>Não-isquêmica (DCM): tethering simétrico bilateral, anel mais dilatado</li>
+            <li>Ambas: GDMT (BB, IECA/ARNi, MRA, SGLT2i) pode reduzir IM em 20–30%</li>
+            <li>TRC reverte remodelamento → redução da IM em 40–50% dos casos</li>
+            <li>Definir IM residual após 3–6 meses de GDMT otimizada antes de indicar TEER</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACCORDION ESTENOSE MITRAL -->
+  <div class="accordion">
+    <div class="accordion-header open" onclick="toggleAccordion(this)">
+      <div class="accordion-title"><span class="accordion-icon">🔵</span> Estenose Mitral Reumática — Fisiopatologia e Candidatura à CMB</div>
+      <svg class="accordion-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="accordion-body open">
+      <div class="grid-2" style="gap:1.25rem">
+        <div>
+          <p style="font-size:.83rem;line-height:1.7;margin-bottom:1rem">
+            O processo reumático resulta de <strong>fusão comissural</strong>, espessamento/fibrose dos folhetos e fusão/encurtamento das cordas tendíneas. A área valvar normal é 4–6 cm²; sintomas surgem quando AVMi cai para <strong>≤1,5 cm²</strong> (estenose severa). A obstrução ao fluxo transmitral eleva a pressão atrial esquerda → hipertensão venocapilar pulmonar → hipertensão arterial pulmonar → eventual disfunção do VD.
+          </p>
+          <p style="font-size:.83rem;line-height:1.7;margin-bottom:1rem">
+            A <strong>gravidez</strong> é contexto especial: débito cardíaco aumenta 40% no 2º trimestre; AVMi &lt;1,5 cm² sintomática é indicação classe I para CMB (IIa se assintomática), preferencialmente no 2º trimestre para minimizar irradiação fetal, embora o procedimento possa ser realizado com shield de radiação e TEE como guia primário.
+          </p>
+          <div class="info-teal info-box">
+            <span class="info-box-icon">📐</span>
+            <div><strong>Gradiente transmitral e AVMi:</strong> Gradiente médio &gt;10 mmHg com FC normal indica estenose severa. AVMi pela equação da continuidade é mais precisa; área por planimetria 3D TEE tem boa correlação. PSAP &gt;50 mmHg em repouso ou &gt;60 mmHg no esforço confere Classe IIa para intervenção mesmo assintomática (ACC/AHA 2020).</div>
+          </div>
+        </div>
+        <div>
+          <div class="anatomy-block">
+            <h4>Score de Wilkins — Calculadora</h4>
+            <p style="font-size:.75rem;color:var(--muted-foreground);margin-bottom:.75rem">Avalia mobilidade, espessamento, calcificação (folhetos) e comprometimento subvalvar (1–4 cada). Score ≤8 = candidato favorável à CMB.</p>
+          </div>
+          <!-- WILKINS CALCULATOR -->
+          <div id="wilkinsCalc" style="margin-top:.5rem">
+            <div class="wilkins-row">
+              <span class="wilkins-label">Mobilidade dos folhetos</span>
+              <div class="wilkins-btns" id="wMob">
+                <button class="w-btn" onclick="setWilkins('mob',1,this)">1</button>
+                <button class="w-btn" onclick="setWilkins('mob',2,this)">2</button>
+                <button class="w-btn" onclick="setWilkins('mob',3,this)">3</button>
+                <button class="w-btn" onclick="setWilkins('mob',4,this)">4</button>
+              </div>
+            </div>
+            <div class="wilkins-row">
+              <span class="wilkins-label">Espessamento dos folhetos</span>
+              <div class="wilkins-btns" id="wThick">
+                <button class="w-btn" onclick="setWilkins('thick',1,this)">1</button>
+                <button class="w-btn" onclick="setWilkins('thick',2,this)">2</button>
+                <button class="w-btn" onclick="setWilkins('thick',3,this)">3</button>
+                <button class="w-btn" onclick="setWilkins('thick',4,this)">4</button>
+              </div>
+            </div>
+            <div class="wilkins-row">
+              <span class="wilkins-label">Calcificação dos folhetos</span>
+              <div class="wilkins-btns" id="wCalc">
+                <button class="w-btn" onclick="setWilkins('calc',1,this)">1</button>
+                <button class="w-btn" onclick="setWilkins('calc',2,this)">2</button>
+                <button class="w-btn" onclick="setWilkins('calc',3,this)">3</button>
+                <button class="w-btn" onclick="setWilkins('calc',4,this)">4</button>
+              </div>
+            </div>
+            <div class="wilkins-row">
+              <span class="wilkins-label">Comprometimento subvalvar</span>
+              <div class="wilkins-btns" id="wSub">
+                <button class="w-btn" onclick="setWilkins('sub',1,this)">1</button>
+                <button class="w-btn" onclick="setWilkins('sub',2,this)">2</button>
+                <button class="w-btn" onclick="setWilkins('sub',3,this)">3</button>
+                <button class="w-btn" onclick="setWilkins('sub',4,this)">4</button>
+              </div>
+            </div>
+            <div class="wilkins-result" id="wilkinsResult">
+              <div>
+                <div class="wilkins-score-val" id="wilkinsTotal">—</div>
+                <div style="font-size:.72rem;color:var(--muted-foreground)">Score de Wilkins (máx 16)</div>
+              </div>
+              <div style="flex:1">
+                <div id="wilkinsVerdict" style="font-size:.83rem;font-weight:700;margin-bottom:3px">Selecione os critérios acima</div>
+                <div id="wilkinsDesc" style="font-size:.75rem;color:var(--muted-foreground)">Cada variável vai de 1 (normal/leve) a 4 (grave)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="disclaimer">
+    <strong>Referências fisiopatológicas:</strong> Packer &amp; Grayburn, Circulation 2019 (proporcionalidade); Anand et al., JAMA Cardiology 2025 (disfunção subclínica); Kumar et al., Circulation 2020 (doença reumática); Remenyi et al., Lancet 2016; Dougherty et al., JACC 2023.
+  </div>
+</div><!-- /tab-fisio -->
+
+
+<!-- ══════════════════════════════════════════════════════════
+     TAB 2 — INDICAÇÕES
+══════════════════════════════════════════════════════════ -->
+<div id="tab-indicacoes" class="tab-panel">
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">✅</div>
+      <div>
+        <div class="card-title">Indicações por Etiologia — ACC/AHA 2020 &amp; ESC 2021</div>
+        <div class="card-subtitle">Seleção criteriosa é determinante — Heart Team obrigatório para todos os casos</div>
+      </div>
+    </div>
+    <div class="info-amber info-box">
+      <span class="info-box-icon">⚠️</span>
+      <div><strong>Heart Team é mandatório (Classe I, LOE C).</strong> A decisão deve integrar cardiologista clínico, intervencionista, cirurgião cardíaco, ecocardiografista e, quando pertinente, outros especialistas (oncologia, nefrologia). Documentação formal da discussão multidisciplinar é recomendada (AATS/ACC/SCAI/STS 2019 Expert Consensus).</div>
+    </div>
+  </div>
+
+  <!-- INDICAÇÕES IM PRIMÁRIA -->
+  <div class="accordion">
+    <div class="accordion-header open" onclick="toggleAccordion(this)">
+      <div class="accordion-title"><span class="accordion-icon">🔴</span> TEER na IM Primária (Degenerativa) — Classe IIa, LOE B-NR</div>
+      <svg class="accordion-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="accordion-body open">
+      <div class="grid-2" style="gap:1.25rem">
+        <div>
+          <p style="font-size:.83rem;line-height:1.7;margin-bottom:1rem">
+            O reparo cirúrgico permanece o padrão-ouro para IM primária severa sintomática em pacientes com risco cirúrgico operatório. A TEER é indicada quando o risco cirúrgico é <strong>alto ou proibitivo</strong> e a anatomia valvar é favorável. A mortalidade cirúrgica de referência para reparo de folheto posterior isolado em centros de alto volume é &lt;1%; para troca valvar mitral, 3–8% dependendo da comorbidade.
+          </p>
+          <div class="anatomy-grid">
+            <div class="anatomy-block">
+              <h4>✅ Anatomia FAVORÁVEL para TEER</h4>
+              <ul>
+                <li>Patologia central A2/P2 (deficiência fibroelástica)</li>
+                <li>AVMi &gt;4 cm² (pós-clip ≥2,5 cm²)</li>
+                <li>Gap de flail ≤10 mm e largura ≤15 mm</li>
+                <li>Folhetos sem calcificação na zona de grasping</li>
+                <li>Comprimento do folheto posterior ≥7–10 mm</li>
+                <li>Ausência de fenda ou perfuração</li>
+                <li>Prolápso único de segmento (A2/P2)</li>
+              </ul>
+            </div>
+            <div class="anatomy-block">
+              <h4>❌ Anatomia DESFAVORÁVEL / Contraindicações</h4>
+              <ul>
+                <li>Barlow extenso (múltiplos segmentos)</li>
+                <li>Calcificação severa na zona de grasping</li>
+                <li>Flail gap &gt;10 mm ou largura &gt;15 mm</li>
+                <li>AVMi &lt;4 cm² (risco de estenose pós-clip)</li>
+                <li>Folheto posterior curto (&lt;7 mm) — grasping difícil</li>
+                <li>Doença reumática (Carpentier IIIa)</li>
+                <li>IM de causa não-degenerativa favorável a cirurgia</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="info-teal info-box" style="margin-bottom:1rem">
+            <span class="info-box-icon">🔑</span>
+            <div><strong>Critério central (ACC/AHA 2020, Classe IIa):</strong> IM severa sintomática (graus 3–4+), risco cirúrgico alto ou proibitivo (STS ≥8% ou EUROSCORE II ≥6%, ou condições não capturadas pelos scores), anatomia favorável, expectativa de vida ≥1 ano e qualidade de vida aceitável.</div>
+          </div>
+          <div class="info-gray info-box" style="margin-bottom:1rem">
+            <span class="info-box-icon">📊</span>
+            <div><strong>EVEREST II (Feldman et al., NEJM 2011 / JACC 2015):</strong> Primeiro RCT — percutâneo vs cirurgia em pacientes de risco cirúrgico moderado. Desfecho primário (morte + cirurgia + IM ≥3+) em 5 anos: 44,2% percutâneo vs 64,3% cirurgia. Mortalidade em 5 anos NÃO diferiu (20,8% vs 26,8%). A inferioridade foi em eficácia anatômica, não em sobrevida. 78% das reoperações pós-TEER ocorreram nos primeiros 6 meses; após 6 meses, taxas de reintervenção foram comparáveis.</div>
+          </div>
+          <div class="info-amber info-box">
+            <span class="info-box-icon">🔬</span>
+            <div><strong>Bakir et al., Ann Thorac Surg 2025:</strong> Estudo propensão-matched em prolapso degenerativo — IM moderada-severa aos 3 anos: 43% TEER vs 3,4% reparo cirúrgico. Liberdade de reintervenção: 96% vs 100%. Dado reforça a superioridade anatômica do reparo cirúrgico quando factível.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INDICAÇÕES IM SECUNDÁRIA -->
+  <div class="accordion">
+    <div class="accordion-header open" onclick="toggleAccordion(this)">
+      <div class="accordion-title"><span class="accordion-icon">🟡</span> TEER na IM Secundária — Classe IIa, LOE B-R (COAPT)</div>
+      <svg class="accordion-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="accordion-body open">
+      <div class="info-red info-box" style="margin-bottom:1.25rem">
+        <span class="info-box-icon">‼️</span>
+        <div><strong>Pré-requisito absoluto:</strong> GDMT otimizada por pelo menos 3–6 meses antes da indicação de TEER. Inclui: betabloqueador, IECA/ARNi (sacubitril-valsartana preferencial), antagonista de aldosterona, SGLT2i (empagliflozina/dapagliflozina — Classe I na IC com FE reduzida). Avaliação de elegibilidade para TRC em pacientes com QRS ≥150 ms e BCRE. Otimização de volemia (BNP-guiada quando disponível).</div>
+      </div>
+      <div class="compare-table" style="margin-bottom:1.25rem">
+        <table class="compare-table">
+          <thead><tr><th>Critério</th><th>COAPT (favorável para TEER)</th><th>MITRA-FR (desfavorável)</th></tr></thead>
+          <tbody>
+            <tr><td>FEVE</td><td>20–50%</td><td>15–40%</td></tr>
+            <tr><td>DSVE</td><td>≤70 mm</td><td>&gt;70 mm (média 74 mm)</td></tr>
+            <tr><td>EROA</td><td>≥0,20 cm² (média 0,31 cm²)</td><td>≥0,20 cm² (média 0,31 cm²)</td></tr>
+            <tr><td>Volume regurgitante</td><td>Médio 45 mL</td><td>Médio 31 mL</td></tr>
+            <tr><td>VDVE indexado</td><td>101 mL/m²</td><td>135 mL/m²</td></tr>
+            <tr><td>PSAP ≤70 mmHg</td><td>Sim (requisito)</td><td>Sem exclusão</td></tr>
+            <tr><td>Proporção IM/VE</td><td><strong>Desproporcional</strong> (mais IM p/ tamanho VE)</td><td><strong>Proporcional</strong> (VE muito grande)</td></tr>
+            <tr><td>Resultado TEER</td><td><strong>Redução 38% mortalidade, 47% hospitalização IC (5 anos)</strong></td><td>Sem benefício (HR 1,01; p=0,99)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="info-teal info-box">
+        <span class="info-box-icon">💡</span>
+        <div><strong>Critérios COAPT (ACC/AHA 2020, Classe IIa):</strong> FEVE 20–50% + DSVE ≤70 mm + PSAP ≤70 mmHg + IM severa (≥3+) + sintomas persistentes (CF NYHA II–IV) + GDMT otimizada. A combinação EROA ≥0,30 cm² com VDVE &lt;96 mL/m² (IM desproporcional) representa o fenótipo de maior benefício.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MATTERHORN -->
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <div class="accordion-title"><span class="accordion-icon">🟡</span> MATTERHORN: TEER vs Cirurgia na IM Secundária de Alto Risco</div>
+      <svg class="accordion-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="accordion-body">
+      <p style="font-size:.83rem;line-height:1.7;margin-bottom:1rem">
+        <strong>MATTERHORN (Baldus et al., NEJM 2024)</strong> — RCT multicêntrico alemão comparando TEER vs cirurgia mitral (reparo ou troca) em pacientes com IM secundária severa e IC. Critério de inclusão: FEVE 20–50%, IM severa secundária, sintomática, decisão de Heart Team favorável a ambas as abordagens (risco cirúrgico não proibitivo).
+      </p>
+      <div class="trial-grid">
+        <div class="trial-stat">
+          <div class="trial-stat-val">47,3% vs 49,6%</div>
+          <div class="trial-stat-label">Desfecho primário em 1 ano (morte + IC hosp. + reintervenção + DAV + AVC)</div>
+        </div>
+        <div class="trial-stat">
+          <div class="trial-stat-val">60%↓</div>
+          <div class="trial-stat-label">Risco relativo de eventos de segurança em 30 dias com TEER</div>
+        </div>
+        <div class="trial-stat">
+          <div class="trial-stat-val">2 vs 4 dias</div>
+          <div class="trial-stat-label">Internação hospitalar (TEER vs cirurgia)</div>
+        </div>
+        <div class="trial-stat">
+          <div class="trial-stat-val">NI</div>
+          <div class="trial-stat-label">Não-inferioridade TEER vs cirurgia no desfecho primário (Δ = −2,3%; p-NI &lt;0,001)</div>
+        </div>
+      </div>
+      <div class="info-amber info-box" style="margin-top:1rem">
+        <span class="info-box-icon">⚠️</span>
+        <div>MATTERHORN não deve ser extrapolado para pacientes com risco cirúrgico proibitivo (esses foram excluídos) nem para IM primária. O benefício foi principalmente em segurança precoce; a eficácia anatômica a longo prazo ainda favorece a cirurgia. Estudo de seguimento de 2 anos necessário para consolidar conclusões.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INDICAÇÕES ESTENOSE MITRAL -->
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <div class="accordion-title"><span class="accordion-icon">🔵</span> Comissurotomia Mitral por Balão (CMB) — Estenose Mitral Reumática</div>
+      <svg class="accordion-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="accordion-body">
+      <div class="grid-2" style="gap:1.25rem">
+        <div>
+          <div class="info-teal info-box" style="margin-bottom:1rem">
+            <span class="info-box-icon">🥇</span>
+            <div><strong>CMB é preferencial</strong> para EM severa sintomática com anatomia favorável (Wilkins ≤8, Cormier/Padial) — Classe I, LOE A (ACC/AHA 2020 e ESC 2021). Resultados com alívio sintomático por até 20 anos e sobrevida livre de eventos comparável à comissurotomia cirúrgica.</div>
+          </div>
+          <table class="compare-table">
+            <thead><tr><th>Indicação</th><th>Classe</th><th>LOE</th></tr></thead>
+            <tbody>
+              <tr><td>EM severa sintomática, anatomia favorável, sem trombo AE, IM ≤2+</td><td><span class="badge badge-teal">I</span></td><td>A</td></tr>
+              <tr><td>EM severa assintomática, PSAP &gt;50 mmHg em repouso (ou &gt;60 no esforço)</td><td><span class="badge badge-amber">IIa</span></td><td>C</td></tr>
+              <tr><td>EM severa, gestação sintomática (2º trimestre), anatomia favorável</td><td><span class="badge badge-teal">I</span></td><td>C</td></tr>
+              <tr><td>EM moderada-severa (AVMi 1,5–2,0 cm²) + Nova FA sintomática</td><td><span class="badge badge-amber">IIa</span></td><td>C</td></tr>
+              <tr><td>EM severa, anatomia desfavorável, alto risco cirúrgico (alternativa à cirurgia)</td><td><span class="badge badge-amber">IIb</span></td><td>C</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <div class="anatomy-block" style="margin-bottom:.75rem">
+            <h4>Contraindicações absolutas à CMB</h4>
+            <ul>
+              <li>Trombo em apêndice atrial esquerdo (obrigatório TEE pré-procedimento)</li>
+              <li>IM moderada-severa (≥ Grau 2+) — risco de IM grave pós-CMB</li>
+              <li>Calcificação comissural bilateral extensa (score de Wilkins &gt;10–12)</li>
+              <li>Doença aórtica ou tricúspide associada grave necessitando cirurgia</li>
+            </ul>
+          </div>
+          <div class="anatomy-block">
+            <h4>Score de Cormier/Padial (complementar)</h4>
+            <ul>
+              <li>Grupo 1: Calcificação ≤ Grau 1, folhetos não espessados — melhor prognóstico</li>
+              <li>Grupo 2: Calcificação ≤ Grau 1, folhetos espessados — prognóstico intermediário</li>
+              <li>Grupo 3: Calcificação bilateral ≥ Grau 2 — piores resultados</li>
+              <li>Importante para completar avaliação além do Wilkins</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INDICAÇÕES TMVR -->
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <div class="accordion-title"><span class="accordion-icon">🟣</span> TMVR — Indicações Emergentes e Valve-in-Valve</div>
+      <svg class="accordion-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="accordion-body">
+      <p style="font-size:.83rem;line-height:1.7;margin-bottom:1rem">
+        O TMVR é indicado principalmente para pacientes com anatomia não adequada para TEER (calcificação anular extensa, Barlow multissegmento, falha prévia de TEER) e risco cirúrgico alto/proibitivo. A abordagem <strong>valve-in-valve</strong> (ViV) é o contexto atual com maior evidência, representando a indicação mais estabelecida para próteses biológicas mitrais degeneradas.
+      </p>
+      <div class="grid-2" style="gap:1rem">
+        <div class="anatomy-block">
+          <h4>Indicações atuais de TMVR</h4>
+          <ul>
+            <li><strong>Valve-in-Valve mitral</strong> — bioprótese degenerada, risco cirúrgico alto: melhor resultado atual</li>
+            <li>Valve-in-Ring — anel protético degenerado (maior risco de LVOT obstruction)</li>
+            <li>IM nativa complexa inacessível à TEER ou cirurgia</li>
+            <li>Calcificação anular mitral severa (MAC) — alto risco técnico e de obstrução do LVOT</li>
+            <li>Falha prévia de reparo percutâneo (TEER)</li>
+          </ul>
+        </div>
+        <div class="anatomy-block">
+          <h4>Limitações do TMVR nativo</h4>
+          <ul>
+            <li>Obstrução do LVOT pós-implante (neo-LVOT &lt;1,7–2,0 cm² = alto risco)</li>
+            <li>Necessidade de ACT na maioria dos dispositivos transapicais</li>
+            <li>Ausência de dados de durabilidade a longo prazo (além de 5 anos)</li>
+            <li>Risco de vazamento paravalvar (ainda significativo)</li>
+            <li>Acesso transapical: morbidade associada à ventriculotomia</li>
+            <li>TMVR transseptal em desenvolvimento — menor morbidade</li>
+          </ul>
+        </div>
+      </div>
+      <div class="info-teal info-box" style="margin-top:1rem">
+        <span class="info-box-icon">📊</span>
+        <div><strong>Guerrero et al., Lancet 2025 (TMVR prospectivo multicêntrico):</strong> Em pacientes com IM não candidatos à TEER ou cirurgia — mortalidade em 30 dias de 0,7%, 96% mantendo IM ≤2+ em 1 ano, melhora de 18,4 pontos no KCCQ-OS. Confirma viabilidade clínica como ponte para candidatos altamente selecionados.</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /tab-indicacoes -->
+
+
+<!-- ══════════════════════════════════════════════════════════
+     TAB 3 — DISPOSITIVOS
+══════════════════════════════════════════════════════════ -->
+<div id="tab-dispositivos" class="tab-panel">
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🔧</div>
+      <div>
+        <div class="card-title">Arsenal de Dispositivos Mitrais Percutâneos</div>
+        <div class="card-subtitle">Quatro categorias principais — diferentes mecanismos de ação, indicações e graus de evidência</div>
+      </div>
+    </div>
+    <div class="info-teal info-box">
+      <span class="info-box-icon">📌</span>
+      <div>Apenas o <strong>MitraClip</strong> (TEER) possui aprovação FDA e extensa evidência de RCTs para IM primária e secundária. O PASCAL está em fase de pivotal trials (CLASP IID/IIF). Os demais dispositivos são investigacionais ou em uso compassivo/CE Mark europeu.</div>
+    </div>
+  </div>
+
+  <!-- TEER DEVICES -->
+  <div class="section-label">Sistemas de Reparo Borda-a-Borda (TEER)</div>
+
+  <div class="accordion">
+    <div class="accordion-header open" onclick="toggleAccordion(this)">
+      <div class="accordion-title"><span class="accordion-icon">⚙️</span> MitraClip — Sistema NTR/XTR/G4 (Abbott Vascular)</div>
+      <svg class="accordion-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="accordion-body open">
+      <div class="grid-2" style="gap:1.25rem">
+        <div>
+          <p style="font-size:.83rem;line-height:1.7;margin-bottom:1rem">
+            O MitraClip é um dispositivo de cobalto-cromo recoberto por poliéster, implantado via acesso transseptal retrógrado. Ao aproximar A2 e P2 (ou o segmento responsável pelo jato regurgitante), cria uma válvula de duplo orifício tipo <em>Alfieri stitch</em> percutâneo. A geração G4 (lançada 2019) introduziu braços independentes (<strong>Independent Leaflet Technology — ILT</strong>), permitindo grasping separado de cada folheto — fundamental em assimetria de comprimento dos folhetos (muito comum na IM secundária funcional).
+          </p>
+          <p style="font-size:.83rem;line-height:1.7;margin-bottom:1rem">
+            Disponível em 4 tamanhos: <strong>NTR</strong> (braços 23 mm), <strong>XTR</strong> (braços 40 mm — para flail gap maior), <strong>NT</strong> e <strong>XT</strong> (versões G4 com ILT). Múltiplos clips podem ser implantados na mesma sessão; a limitação prática é a AVMi residual (meta ≥2,5 cm² pós-procedimento).
+          </p>
+          <div class="info-teal info-box">
+            <span class="info-box-icon">🔬</span>
+            <div><strong>Mecanismo tecidual:</strong> Após implante, processo de cicatrização (neointimalização) ancora o clip ao tecido valvar em 4–6 semanas. Durante esse período, o clip pode ser liberado e repositionado se necessário antes do release final.</div>
+          </div>
+        </div>
+        <div>
+          <div class="anatomy-block" style="margin-bottom:.75rem">
+            <h4>Seleção do tamanho do clip (G4)</h4>
+            <ul>
+              <li><strong>NT (NTR equiv.):</strong> Folheto posterior curto (&lt;10 mm), gap de coaptação pequeno, anatomia restrita</li>
+              <li><strong>XT (XTR equiv.):</strong> Folheto posterior longo (&gt;10 mm), flail gap 5–10 mm, IM secundária (tethering)</li>
+              <li><strong>ILT (G4 exclusivo):</strong> Folhetos com diferença de comprimento &gt;3 mm, IM secundária com assimetria, necesidade de grasping independente</li>
+              <li>Medir comprimento do folheto posterior na vista ME comissural (120–135°) no TEE 3D</li>
+            </ul>
+          </div>
+          <div class="anatomy-block">
+            <h4>Critérios ecográficos de sucesso</h4>
+            <ul>
+              <li>IM residual ≤ Grau 2+ por integração multiparamétrica</li>
+              <li>AVMi residual ≥ 2,5 cm² (planimetria 3D ou PHMT)</li>
+              <li>Gradiente transmitral médio &lt;5 mmHg</li>
+              <li>Captura folheto ≥ 2 mm de tecido em cada braço</li>
+              <li>Coaptação mantida ao longo de toda a linha de coaptação</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <div class="accordion-title"><span class="accordion-icon">⚙️</span> PASCAL (Edwards Lifesciences) — Pivotal Trials CLASP IID/IIF</div>
+      <svg class="accordion-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="accordion-body">
+      <p style="font-size:.83rem;line-height:1.7;margin-bottom:1rem">
+        O sistema PASCAL difere do MitraClip em três aspectos técnicos: <strong>(1)</strong> Elemento central de coaptação (<em>spacer</em>) que preenche o gap de coaptação — útil em gaps amplos. <strong>(2)</strong> Braços mais longos (18 mm) com paddles de grasping independentes. <strong>(3)</strong> Mecanismo de bloqueio e liberação separados para cada folheto — permite repositionamento após grasping bilateral.
+      </p>
+      <div class="grid-2" style="gap:1rem">
+        <div class="anatomy-block">
+          <h4>Vantagens potenciais do PASCAL</h4>
+          <ul>
+            <li>Spacer central — efetivo em grandes gaps de coaptação (IM secundária grave)</li>
+            <li>Braços mais longos — maior área de captura tecidual</li>
+            <li>Grasping independente — maior controle em anatomias assimétricas</li>
+            <li>PASCAL Ace (versão menor) — para anatomias com restrição de espaço</li>
+            <li>Perfil de entrega: cateter de 22F — similar ao MitraClip G4</li>
+          </ul>
+        </div>
+        <div class="anatomy-block">
+          <h4>Status regulatório e evidência</h4>
+          <ul>
+            <li>CE Mark Europa para IM degenerativa e funcional</li>
+            <li>CLASP IID (vs MitraClip, IM degenerativa) — em andamento</li>
+            <li>CLASP IIF (vs MitraClip, IM funcional) — em andamento</li>
+            <li>Dados de registros sugerem resultados comparáveis ao MitraClip</li>
+            <li>Sem aprovação FDA como de 2025 — uso off-label nos EUA em algumas indicações</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ANNULOPLASTY DEVICES -->
+  <hr class="section-divider" />
+  <div class="section-label">Anuloplastia Percutânea</div>
+
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <div class="accordion-title"><span class="accordion-icon">🔩</span> Cardioband (Edwards) · Carillon (Cardiac Dimensions) · Mitralign</div>
+      <svg class="accordion-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="accordion-body">
+      <table class="compare-table">
+        <thead><tr><th>Dispositivo</th><th>Mecanismo</th><th>Acesso</th><th>Status</th><th>Evidência</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="col-device">Cardioband</td>
+            <td>Anuloplastia direta — banda ancorada no anel posterior via transseptal, tensionada por cabo</td>
+            <td>Transseptal, com TEE 3D guiando cada âncora</td>
+            <td><span class="badge badge-amber">CE Mark</span></td>
+            <td>ACTIVE trial (NCT03016442): ↓ EROA e ↑ KCCQ em 1 ano (n=61); aguarda RCT</td>
+          </tr>
+          <tr>
+            <td class="col-device">Carillon</td>
+            <td>Anuloplastia indireta — implante no seio coronário (SC) para compressão do anel posterior</td>
+            <td>Veia jugular → SC (sem punção transseptal)</td>
+            <td><span class="badge badge-amber">CE Mark</span></td>
+            <td>CARILLON AMADEUS/TITAN II: ↓ EROA ~30%, mas anatomia do SC limita aplicabilidade (artéria circunflexa pode ser comprimida)</td>
+          </tr>
+          <tr>
+            <td class="col-device">Mitralign</td>
+            <td>Plicatura do anel posterior via cateter transseptal — 2 pares de fios implantados no anel fibromuscular</td>
+            <td>Transseptal</td>
+            <td><span class="badge badge-red">Estudo Interrompido</span></td>
+            <td>Trial ALIGN-AR encerrado por recrutamento insuficiente; tecnologia em revisão</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="info-amber info-box" style="margin-top:1rem">
+        <span class="info-box-icon">⚠️</span>
+        <div>Nenhum dispositivo de anuloplastia percutânea possui evidência de RCT demonstrando benefício clínico relevante (mortalidade ou hospitalização por IC). Uso atual é restrito a centros de experiência e contexto investigacional. A anuloplastia cirúrgica combinada ao reparo continua sendo o padrão para IM secundária cirúrgica.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHORDAL REPAIR -->
+  <hr class="section-divider" />
+  <div class="section-label">Reparo de Cordas Tendíneas (Transapical)</div>
+
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <div class="accordion-title"><span class="accordion-icon">🧵</span> NeoChord DS1000 &amp; Harpoon — Implante de Cordas Artificiais</div>
+      <svg class="accordion-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="accordion-body">
+      <p style="font-size:.83rem;line-height:1.7;margin-bottom:1rem">
+        Ambos os sistemas implanttam cordas de ePTFE via acesso transapical no coração batendo, com guia ecocardiográfico. São desenhados para prolapso/flail isolado do <strong>folheto posterior</strong> (principalmente P2), evitando CEC. O NeoChord implanta cordas com âncora no ápice do VE e ajuste extracorpóreo da tensão da corda; o Harpoon é semelhante mas com âncora helicoidal no folheto.
+      </p>
+      <div class="grid-2" style="gap:1rem">
+        <div class="anatomy-block">
+          <h4>Candidato ideal</h4>
+          <ul>
+            <li>Prolapso/flail isolado folheto posterior (P2 predominante)</li>
+            <li>Folheto posterior com comprimento adequado ≥ 10 mm</li>
+            <li>Sem calcificação significativa no ponto de inserção da corda</li>
+            <li>VE de geometria adequada (acesso apical)</li>
+            <li>Ausência de doença multissegmento extensa</li>
+          </ul>
+        </div>
+        <div class="anatomy-block">
+          <h4>Limitações</h4>
+          <ul>
+            <li>Acesso transapical → risco de sangramento, derrame pericárdico</li>
+            <li>Sem CEC mas com equipe cirúrgica disponível (conversão em ~3–5%)</li>
+            <li>Resultados de durabilidade ainda limitados (3–5 anos)</li>
+            <li>Restrição à anatomia posterior — patologia anterior/comissural inacessível</li>
+            <li>Não disponível no Brasil como dispositivo regularmente aprovado</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TMVR DEVICES -->
+  <hr class="section-divider" />
+  <div class="section-label">Substituição Valvar Mitral Transcateter (TMVR)</div>
+
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <div class="accordion-title"><span class="accordion-icon">🫀</span> Tendyne (Abbott) · Intrepid (Medtronic) · Tiara (Neovasc)</div>
+      <svg class="accordion-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="accordion-body">
+      <table class="compare-table">
+        <thead><tr><th>Dispositivo</th><th>Design / Âncora</th><th>Acesso</th><th>Sizing</th><th>Status (2025)</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="col-device">Tendyne (Abbott)</td>
+            <td>Duplo anel autoexpansível (nitinol), pericárdio bovino; âncora apical por fio passado pelo ápice do VE</td>
+            <td>Transapical</td>
+            <td>MDCT obrigatório: área anular, IC, neo-LVOT; 15 tamanhos disponíveis</td>
+            <td><span class="badge badge-amber">CE Mark · FDA Breakthrough</span></td>
+          </tr>
+          <tr>
+            <td class="col-device">Intrepid (Medtronic)</td>
+            <td>Stent externo de nitinol com fricção ativa + válvula tricúspide bovina interna; sem âncora apical</td>
+            <td>Transapical (SUMMIT trial) / Transseptal (versão transseptal em desenvolvimento)</td>
+            <td>MDCT: anular + neo-LVOT; 4 tamanhos</td>
+            <td><span class="badge badge-amber">CE Mark · SUMMIT trial em andamento (FDA)</span></td>
+          </tr>
+          <tr>
+            <td class="col-device">Tiara (Neovasc)</td>
+            <td>Prótese em forma de D com três âncoras nos folhetos anterior/posterior e VSIV</td>
+            <td>Transapical</td>
+            <td>MDCT: morfologia em D do anel mitral; 2 tamanhos (35/40 mm)</td>
+            <td><span class="badge badge-red">Ensaios suspensos / Neovasc adquirida</span></td>
+          </tr>
+          <tr>
+            <td class="col-device">ViV Mitral (via Tendyne / Sapien 3)</td>
+            <td>Prótese balão-expansível (Sapien 3/XT) em bioprótese degenerada</td>
+            <td>Transseptal anterógrado (acesso venoso)</td>
+            <td>Diâmetro interno da bioprótese + neo-LVOT (TC obrigatório)</td>
+            <td><span class="badge badge-green">FDA Aprovado · Melhor evidência atual de TMVR</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="info-amber info-box" style="margin-top:1rem">
+        <span class="info-box-icon">🔑</span>
+        <div><strong>Obstrução do LVOT (neo-LVOT):</strong> Principal limitação do TMVR nativo. O folheto anterior mitral, ao ser deslocado pela prótese, pode criar obstrução dinâmica ou fixa do LVOT. TC pré-operatório com simulação virtual (<em>virtual TAVR/TMVR</em>) é obrigatório para calcular área predita do neo-LVOT; valores &lt;1,7 cm² contraindicam o procedimento. Estratégias alternativas incluem LAMPOON (ablação do folheto anterior a laser) para expandir o neo-LVOT.</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /tab-dispositivos -->
+
+
+<!-- ══════════════════════════════════════════════════════════
+     TAB 4 — TÉCNICA E GUIA ECOCARDIOGRÁFICO
+══════════════════════════════════════════════════════════ -->
+<div id="tab-tecnica" class="tab-panel">
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🔬</div>
+      <div>
+        <div class="card-title">Técnica Passo a Passo e Guia Ecocardiográfico (TEE 3D)</div>
+        <div class="card-subtitle">TEER via MitraClip — procedimento de referência; CMB incluída</div>
+      </div>
+    </div>
+    <div class="info-teal info-box">
+      <span class="info-box-icon">📌</span>
+      <div>A colaboração entre operador e ecocardiografista é crítica para o sucesso da TEER. O TEE 3D em tempo real guia todas as etapas — da punção transeptal ao release do clip. A American Society of Echocardiography (Zoghbi et al., JASE 2019) estabelece parâmetros integrativos para avaliação de IM residual pós-clip que diferem da avaliação da IM nativa.</div>
+    </div>
+  </div>
+
+  <!-- PUNÇÃO TRANSSEPTAL -->
+  <div class="section-label" style="margin-top:1rem">Etapas do Procedimento TEER (MitraClip)</div>
+
+  <ol class="step-list">
+    <li class="step-item">
+      <div class="step-num-badge">1</div>
+      <div class="step-content">
+        <strong>Preparação e Acesso Vascular</strong>
+        Anestesia geral (controle de VA e apneia para manobras críticas) + TEE pré-procedimento para revisão da anatomia. Acesso venoso femoral direito (usualmente). Anticoagulação sistêmica: heparina não fracionada — alvo TCA ≥250–300 s durante todo o procedimento. Posição do paciente: decúbito dorsal, braços ao lado do corpo.
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-num-badge">2</div>
+      <div class="step-content">
+        <strong>Punção Transeptal — O Passo Mais Crítico</strong>
+        Avançar bainha de Mullins + agulha de Brockenbrough ao septo interatrial. <em>Localização ideal da punção:</em> região <strong>posterior-superior</strong> do septo, especificamente na fossa oval; alvo de <strong>3,5–4,0 cm acima do plano anular mitral</strong> (medido pelo TEE bicaval). Punção muito anterior → dificuldade de manobrar o clip; muito posterior → proximidade à aorta; muito inferior → altura insuficiente para orientação do clip. Vista TEE bicaval (90°) para posição superior-inferior; vista ME 4 câmaras (0°) para posição anterior-posterior. Confirmação com injeção de microbolhas ou TEE 3D mostrando bainha no AE.
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-num-badge">3</div>
+      <div class="step-content">
+        <strong>Orientação do Sistema de Entrega no AE</strong>
+        Após punção bem-sucedida, introduzir a guia e avançar o cateter-guia (22F) para o AE. Orientação do sistema <em>perpendicular à linha de coaptação</em> é fundamental: usar TEE 3D "en face" (visão cirúrgica — câmera no AE olhando para a valva mitral) para confirmar alinhamento. O angulo do clip deve ser perpendicular ao eixo A–P da coaptação. Manobras de deflexão medial-lateral e anterior-posterior do cateter-guia permitem posicionamento fino.
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-num-badge">4</div>
+      <div class="step-content">
+        <strong>Cruzamento da Valva e Posicionamento no VE</strong>
+        Abrir os braços do clip (180°), avançar para o VE sob orientação biplanar TEE (0° + 60°). O clip deve cruzar a valva mitral durante a diástole, com braços abertos paralelos ao fluxo transmitral. Vista TEE em 60–75° ("long axis" transmitral) para confirmar posição do clip abaixo dos folhetos. Evitar contato inadvertido com subvalvar durante essa etapa.
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-num-badge">5</div>
+      <div class="step-content">
+        <strong>Grasping dos Folhetos — Etapa Técnica Central</strong>
+        Retrair o clip do VE para o AE com braços abertos, capturando os folhetos. Verificar no TEE que ambos os folhetos estão capturados: <em>"tissue bridges"</em> — pontes de tecido de pelo menos 2 mm em cada braço visíveis no TEE 2D biplanar. Com o sistema G4/ILT: possibilidade de grasping sequencial (um folheto de cada vez). Vista ME em 60° + 120° para confirmar captura bilateral. Fechar parcialmente o clip e avaliar IM residual com Doppler colorido antes do fechamento completo.
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-num-badge">6</div>
+      <div class="step-content">
+        <strong>Avaliação Ecocardiográfica Pós-Grasping (antes do release)</strong>
+        Esta é a janela de oportunidade para ajuste — <strong>antes</strong> de soltar o clip definitivamente. Avaliar: (a) Redução da IM (Doppler colorido — múltiplas vistas; vena contracta; parâmetros quantitativos); (b) AVMi residual (planimetria 3D ou PHMT — meta ≥2,5 cm²); (c) Gradiente transmitral médio (&lt;5 mmHg); (d) Geometria do duplo orifício (vistas 3D en face); (e) Anatomy de captura (tissue bridges presentes). Se IM residual ≥3+ ou gradiente &gt;5 mmHg: reposicionar antes do release.
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-num-badge">7</div>
+      <div class="step-content">
+        <strong>Release e Avaliação Pós-Procedimento Final</strong>
+        Após confirmação de sucesso, liberar o clip (travar mecanismo de lock, soltar a guia). Realizar avaliação ecocardiográfica completa: IM residual (todos os parâmetros), AVMi, gradiente, função do VE, pressão pulmonar (estimativa pelo IT), derrame pericárdico. Retirar o sistema sob TEE. Fechar o septo transeptal se punção >8F (usualmente com plug de colágeno ou sutura Proglide). Hemostasia femoral. Monitorização em UTI por 24h.
+      </div>
+    </li>
+  </ol>
+
+  <hr class="section-divider" />
+
+  <!-- ECO GUIDANCE DETAIL -->
+  <div class="section-label">Parâmetros Ecocardiográficos Críticos (TEE Intraprocedimental)</div>
+
+  <div class="grid-2" style="gap:1rem;margin-bottom:1.5rem">
+    <div class="card" style="margin-bottom:0">
+      <div class="card-header" style="margin-bottom:.75rem;padding-bottom:.75rem">
+        <div class="card-icon" style="font-size:.9rem">📐</div>
+        <div><div class="card-title" style="font-size:.9rem">Punção Transeptal — Vistas TEE</div></div>
+      </div>
+      <ul style="list-style:none;font-size:.8rem;line-height:1.8">
+        <li><span style="color:var(--teal);font-weight:700">0° (4C ME):</span> Posição mediolateral (anterior = aorta / posterior = parede livre)</li>
+        <li><span style="color:var(--teal);font-weight:700">90° (Bicaval ME):</span> Posição superior-inferior (alvo: superior na fossa oval)</li>
+        <li><span style="color:var(--teal);font-weight:700">3D Live:</span> Visão en face do septo — confirma tenting e posição precisa da agulha</li>
+        <li><span style="color:var(--teal);font-weight:700">Altura pré-cálculo:</span> Medir distância punção → plano anular na vista bicaval (alvo 3,5–4 cm)</li>
+      </ul>
+    </div>
+    <div class="card" style="margin-bottom:0">
+      <div class="card-header" style="margin-bottom:.75rem;padding-bottom:.75rem">
+        <div class="card-icon" style="font-size:.9rem">🔍</div>
+        <div><div class="card-title" style="font-size:.9rem">Avaliação de IM Residual Pós-Clip (Zoghbi et al., JASE 2019)</div></div>
+      </div>
+      <ul style="list-style:none;font-size:.8rem;line-height:1.8">
+        <li><span style="color:var(--teal);font-weight:700">Doppler colorido:</span> Área do jato / vena contracta — interpretação modificada no duplo orifício</li>
+        <li><span style="color:var(--teal);font-weight:700">CW Doppler:</span> Velocidade de pico e padrão da curva (sinal denso/triangular = IM severa)</li>
+        <li><span style="color:var(--teal);font-weight:700">Vena contracta 3D:</span> Mais precisa pós-TEER — soma dos dois orifícios</li>
+        <li><span style="color:var(--teal);font-weight:700">PISA:</span> Limitado pós-TEER por duplo orifício — subestima IM residual; usar com cautela</li>
+        <li><span style="color:var(--teal);font-weight:700">Método volumétrico:</span> VE por 3D + VAS Doppler = mais preciso mas tempo-dependente</li>
+        <li><span style="color:var(--teal);font-weight:700">Fluxo venoso pulmonar:</span> Inversão sistólica = IM severa residual</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="info-amber info-box">
+    <span class="info-box-icon">⚠️</span>
+    <div><strong>Armadilha pós-TEER:</strong> A anestesia geral e a redução aguda da pós-carga (vasodilatação) podem subestimar a IM residual durante o procedimento. IM ≤1+ intraprocedimental pode progredir para ≥2+ após acordar e recuperação da pressão arterial basal. Alvo mais conservador de IM residual ≤1+ reduz esse risco.</div>
+  </div>
+
+  <hr class="section-divider" />
+
+  <!-- CMB TECHNIQUE -->
+  <div class="section-label">Técnica da Comissurotomia Mitral por Balão (Inoue)</div>
+
+  <ol class="step-list">
+    <li class="step-item">
+      <div class="step-num-badge">1</div>
+      <div class="step-content">
+        <strong>Sizing do Balão Inoue</strong>
+        Fórmula de Nobuyoshi: Diâmetro do balão (mm) = Altura (cm)/10 + 10. Exemplo: 160 cm → 26 mm de balão. Estratégia stepwise: iniciar com diâmetro 2–4 mm menor que o alvo, avaliando AVMi e IM após cada insuflação (incremento de 1 mm por vez).
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-num-badge">2</div>
+      <div class="step-content">
+        <strong>Punção Transeptal e Guia para o AE</strong>
+        Técnica similar à TEER. Após punção, dilatar o septo com dilatador 14F. Introduzir cateter-guia e avançar o balão Inoue (deflacionado) para o AE.
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-num-badge">3</div>
+      <div class="step-content">
+        <strong>Cruzamento da Estenose e Posicionamento</strong>
+        Com auxílio de guia em J, avançar o balão para o VE via orifício estenótico. Inflar a porção distal do balão para ancorar no VE. Retrair até posicionar a cintura na área comissural. Vista TEE ou fluoroscopia confirma posição antes da insuflação completa.
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-num-badge">4</div>
+      <div class="step-content">
+        <strong>Insuflação e Avaliação Ecocardiográfica Imediata</strong>
+        Insuflação rápida e esvaziamento imediato para evitar oclusão prolongada. TEE confirma: AVMi resultante (planimetria/PHMT), gradiente transmitral, grau de IM induzida. Se AVMi ≥1,5 cm² e IM ≤ Grau 2+: proceder ou considerar incremento. Se IM ≥3+ após insuflação: não insuflação adicional (risco de IM grave por ruptura de corda ou comissura).
+      </div>
+    </li>
+  </ol>
+
+  <!-- TMVR SIZING -->
+  <hr class="section-divider" />
+  <div class="section-label">Sizing para TMVR — Protocolo de TC Cardíaco</div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📏</div>
+      <div>
+        <div class="card-title">Protocolo de Aquisição e Medidas Essenciais (Pulerwitz et al., JACC CI 2020)</div>
+        <div class="card-subtitle">TC com ECG-gating em múltiplas fases sistólica e diastólica é obrigatório</div>
+      </div>
+    </div>
+    <div class="grid-3" style="gap:1rem">
+      <div class="anatomy-block">
+        <h4>Medidas Anulares</h4>
+        <ul>
+          <li>Área anular (planimetria em fase sistólica — maior dimensão)</li>
+          <li>Perímetro anular</li>
+          <li>Diâmetro intercomissural (IC)</li>
+          <li>Diâmetro antero-posterior (AP)</li>
+          <li>Profundidade em sela (saddle shape)</li>
+        </ul>
+      </div>
+      <div class="anatomy-block">
+        <h4>Neo-LVOT (Crítico)</h4>
+        <ul>
+          <li>Simular posição da prótese no anel (virtual implante)</li>
+          <li>Medir área do neo-LVOT na sístole (menor espaço entre prótese e VSIV)</li>
+          <li>Alvo: neo-LVOT ≥1,7–2,0 cm² (abaixo deste limiar = alto risco de obstrução)</li>
+          <li>LAMPOON preventivo se &lt;2,0 cm²</li>
+        </ul>
+      </div>
+      <div class="anatomy-block">
+        <h4>Planejamento de Acesso</h4>
+        <ul>
+          <li>Comprimento da abordagem transapical</li>
+          <li>Angulo cardíaco (coaxialidade ápice-anel)</li>
+          <li>Calcificação subvalvar e cordoalha</li>
+          <li>Diâmetros aortofemoroilíacos para acesso transseptal</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /tab-tecnica -->
+
+
+<!-- ══════════════════════════════════════════════════════════
+     TAB 5 — RESULTADOS vs CIRURGIA
+══════════════════════════════════════════════════════════ -->
+<div id="tab-resultados" class="tab-panel">
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📊</div>
+      <div>
+        <div class="card-title">Evidências Clínicas — TEER vs Cirurgia vs Tratamento Clínico</div>
+        <div class="card-subtitle">Dados de RCTs e estudos de coorte propensão-ajustados por etiologia</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EVEREST II -->
+  <div class="trial-card">
+    <div class="trial-header">
+      <div>
+        <div class="trial-name">EVEREST II</div>
+        <span style="font-size:.78rem;color:var(--muted-foreground)">Feldman et al., NEJM 2011 — Seguimento 5 anos: JACC 2015</span>
+      </div>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+        <span class="badge badge-amber">IM Primária + Secundária</span>
+        <span class="badge badge-gray">RCT 2:1 TEER vs Cirurgia</span>
+        <span class="badge badge-gray">n=279</span>
+      </div>
+    </div>
+    <div class="trial-body">
+      <p style="font-size:.83rem;line-height:1.7;margin-bottom:1rem">
+        Primeiro RCT comparando TEER percutânea (MitraClip) versus cirurgia mitral (reparo ou troca) em pacientes de risco moderado. Desfecho primário: morte, cirurgia ou IM ≥3+ em 12 meses. <strong>Importante:</strong> 73% dos pacientes apresentavam IM primária; o grupo cirúrgico recebeu principalmente reparo (74%).
+      </p>
+      <div class="trial-grid">
+        <div class="trial-stat">
+          <div class="trial-stat-val">44,2% vs 64,3%</div>
+          <div class="trial-stat-label">Liberdade de morte/cirurgia/IM≥3+ em 5 anos (TEER vs cirurgia, p=0,01)</div>
+        </div>
+        <div class="trial-stat">
+          <div class="trial-stat-val">27,9% vs 8,9%</div>
+          <div class="trial-stat-label">Reoperation em 5 anos (TEER vs cirurgia, p=0,003)</div>
+        </div>
+        <div class="trial-stat">
+          <div class="trial-stat-val">20,8% vs 26,8%</div>
+          <div class="trial-stat-label">Mortalidade em 5 anos (NS, p=0,36)</div>
+        </div>
+        <div class="trial-stat">
+          <div class="trial-stat-val">78%</div>
+          <div class="trial-stat-label">Reoperações pós-TEER ocorridas nos primeiros 6 meses</div>
+        </div>
+      </div>
+      <div class="info-gray info-box" style="margin-top:1rem">
+        <span class="info-box-icon">📌</span>
+        <div><strong>Interpretação clínica:</strong> TEER foi inferior à cirurgia em eficácia anatômica (mais IM residual e reoperação), mas mortalidade foi equivalente. O estudo usou tecnologia de 1ª geração. A maioria das reoperações foi eletiva (reparo bem-sucedido). Em pacientes de risco cirúrgico baixo/moderado com IM primária, a cirurgia (especialmente reparo) permanece preferencial.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COAPT -->
+  <div class="trial-card">
+    <div class="trial-header">
+      <div>
+        <div class="trial-name">COAPT — Seguimento 5 Anos</div>
+        <span style="font-size:.78rem;color:var(--muted-foreground)">Stone et al., NEJM 2023 (5 anos) — Original: Stone et al., NEJM 2018</span>
+      </div>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+        <span class="badge badge-teal">IM Secundária</span>
+        <span class="badge badge-gray">RCT TEER vs GDMT</span>
+        <span class="badge badge-gray">n=614</span>
+      </div>
+    </div>
+    <div class="trial-body">
+      <p style="font-size:.83rem;line-height:1.7;margin-bottom:1rem">
+        Marco divisor na IM secundária. Pacientes com IC, FEVE 20–50%, DSVE ≤70 mm, PSAP ≤70 mmHg, IM secundária severa persistente após GDMT otimizada foram randomizados para TEER + GDMT vs GDMT isolada.
+      </p>
+      <div class="trial-grid">
+        <div class="trial-stat">
+          <div class="trial-stat-val">45,7% vs 67,9%</div>
+          <div class="trial-stat-label">Hospitalização por IC em 5 anos (TEER vs GDMT, p&lt;0,001) — redução de 47%</div>
+        </div>
+        <div class="trial-stat">
+          <div class="trial-stat-val">57,3% vs 67,2%</div>
+          <div class="trial-stat-label">Mortalidade por todas as causas em 5 anos (TEER vs GDMT, p=0,009) — redução de 38%</div>
+        </div>
+        <div class="trial-stat">
+          <div class="trial-stat-val">+18,9 pts</div>
+          <div class="trial-stat-label">Melhora sustentada do KCCQ-OS em 24 meses (Arnold et al., JACC 2019)</div>
+        </div>
+        <div class="trial-stat">
+          <div class="trial-stat-val">3,4% vs 14,6%</div>
+          <div class="trial-stat-label">IM ≥3+ em 5 anos (TEER vs GDMT) — manutenção da redução de IM</div>
+        </div>
+      </div>
+      <div class="info-green info-box" style="margin-top:1rem">
+        <span class="info-box-icon">✅</span>
+        <div><strong>Impacto prático:</strong> COAPT definiu o fenótipo de paciente que se beneficia de TEER na IM secundária. Os benefícios foram consistentes em todos os subgrupos pré-especificados incluindo FEVE, etiologia (isquêmica vs não-isquêmica) e uso de TRC. Benefício foi MAIOR em pacientes com IM mais severa (EROA ≥0,30 cm²) relativa ao tamanho do VE (fenótipo desproporcional).</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MITRA-FR -->
+  <div class="trial-card">
+    <div class="trial-header">
+      <div>
+        <div class="trial-name">MITRA-FR</div>
+        <span style="font-size:.78rem;color:var(--muted-foreground)">Obadia et al., NEJM 2018</span>
+      </div>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+        <span class="badge badge-amber">IM Secundária</span>
+        <span class="badge badge-gray">RCT TEER vs GDMT</span>
+        <span class="badge badge-gray">n=304</span>
+      </div>
+    </div>
+    <div class="trial-body">
+      <p style="font-size:.83rem;line-height:1.7;margin-bottom:1rem">
+        Aparente contradição com o COAPT — sem benefício da TEER em 12 meses. Diferenças explicativas centrais: (1) população com VE muito mais dilatado (VDVE médio 135 vs 101 mL/m²) e IM relativamente <strong>proporcional</strong>; (2) GDMT pouco otimizada no grupo controle (apenas 58% em betabloqueador ideal); (3) EROA média 31 mL vs volume regurgitante médio 31 mL — fenótipo de IM proporcional ao tamanho do VE; (4) Falha técnica do clip maior (20% permaneceram com IM ≥3+ após procedimento).
+      </p>
+      <div class="trial-grid">
+        <div class="trial-stat">
+          <div class="trial-stat-val">54,6% vs 51,3%</div>
+          <div class="trial-stat-label">Morte ou hosp. por IC em 12 meses (TEER vs GDMT, HR 1,16; p=NS)</div>
+        </div>
+        <div class="trial-stat">
+          <div class="trial-stat-val">135 mL/m²</div>
+          <div class="trial-stat-label">VDVE médio (população proporcional — VE demasiado dilatado)</div>
+        </div>
+      </div>
+      <div class="info-amber info-box" style="margin-top:1rem">
+        <span class="info-box-icon">📋</span>
+        <div><strong>Lição clínica:</strong> A IM secundária proporcional (VE muito dilatado, IM "esperada" para aquele VE) não se beneficia de intervenção direta na valva. Esses pacientes precisam de otimização agressiva de GDMT, TRC quando elegíveis, e avaliação individualizada de DAV ou transplante cardíaco se refratários.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MATTERHORN -->
+  <div class="trial-card">
+    <div class="trial-header">
+      <div>
+        <div class="trial-name">MATTERHORN</div>
+        <span style="font-size:.78rem;color:var(--muted-foreground)">Baldus et al., NEJM 2024</span>
+      </div>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+        <span class="badge badge-amber">IM Secundária — TEER vs Cirurgia</span>
+        <span class="badge badge-gray">RCT</span>
+        <span class="badge badge-gray">n=210</span>
+      </div>
+    </div>
+    <div class="trial-body">
+      <p style="font-size:.83rem;line-height:1.7;margin-bottom:1rem">
+        Primeiro RCT comparando TEER diretamente com cirurgia mitral na IM secundária grave. Pacientes com FEVE 20–50%, IM secundária severa, sintomáticos, elegíveis para ambas as abordagens (risco cirúrgico não proibitivo). Desfecho primário composto: morte + IC hospitaliz. + reintervenção + implante de DAV + AVC em 12 meses.
+      </p>
+      <div class="trial-grid">
+        <div class="trial-stat">
+          <div class="trial-stat-val">Não-inferior</div>
+          <div class="trial-stat-label">TEER não-inferior à cirurgia no desfecho composto em 1 ano (Δ = −2,3%; p-NI &lt;0,001)</div>
+        </div>
+        <div class="trial-stat">
+          <div class="trial-stat-val">60% ↓</div>
+          <div class="trial-stat-label">Risco de eventos adversos graves em 30 dias com TEER vs cirurgia</div>
+        </div>
+        <div class="trial-stat">
+          <div class="trial-stat-val">2 vs 4 dias</div>
+          <div class="trial-stat-label">Internação total (TEER vs cirurgia)</div>
+        </div>
+        <div class="trial-stat">
+          <div class="trial-stat-val">Sim</div>
+          <div class="trial-stat-label">Maior IM residual ≥2+ com TEER (como esperado) — sem impacto no desfecho clínico em 1 ano</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CIRURGIA MITRAL -->
+  <div class="trial-card">
+    <div class="trial-header">
+      <div>
+        <div class="trial-name">Padrão-Ouro Cirúrgico — Reparo vs Troca</div>
+        <span style="font-size:.78rem;color:var(--muted-foreground)">MIDA Registry · Lazam et al., Circulation 2017 · Truong et al., Int J Cardiol 2025</span>
+      </div>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+        <span class="badge badge-green">IM Primária</span>
+        <span class="badge badge-gray">Registro Multicêntrico 20 anos</span>
+      </div>
+    </div>
+    <div class="trial-body">
+      <p style="font-size:.83rem;line-height:1.7;margin-bottom:1rem">
+        O reparo mitral cirúrgico permanece o <strong>padrão-ouro de durabilidade</strong> para IM primária em centros de alto volume. Dados do registro MIDA (20 anos, prospectivo multicêntrico) e de coortes nacionais estabelecem os benchmarks:
+      </p>
+      <div class="trial-grid">
+        <div class="trial-stat">
+          <div class="trial-stat-val">41% vs 24%</div>
+          <div class="trial-stat-label">Sobrevida em 20 anos: reparo vs troca valvar (p&lt;0,001) — MIDA Registry</div>
+        </div>
+        <div class="trial-stat">
+          <div class="trial-stat-val">90%</div>
+          <div class="trial-stat-label">Liberdade de reoperação em 20–25 anos após reparo em centros de alto volume</div>
+        </div>
+        <div class="trial-stat">
+          <div class="trial-stat-val">7% vs 6%</div>
+          <div class="trial-stat-label">Incidência de reoperação em 15 anos: reparo vs mecânica (coorte nacional dinamarquesa)</div>
+        </div>
+        <div class="trial-stat">
+          <div class="trial-stat-val">43% vs 3,4%</div>
+          <div class="trial-stat-label">IM mod-severa em 3 anos: TEER vs reparo cirúrgico (Bakir et al., Ann Thorac Surg 2025)</div>
+        </div>
+      </div>
+      <div class="info-teal info-box" style="margin-top:1rem">
+        <span class="info-box-icon">💡</span>
+        <div><strong>Qualidade de vida pós-cirurgia:</strong> Patel et al. (J Thorac Cardiovasc Surg 2026 — CTSNet) demonstraram melhora do KCCQ-OS de 18,5 pontos aos 6 meses após cirurgia mitral (recuperação completa vs queda inicial em 1 mês). Resultados comparáveis aos 18,9 pontos do COAPT, mas com cinética diferente (recuperação mais lenta com cirurgia).</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COST-EFFECTIVENESS TABLE -->
+  <hr class="section-divider" />
+  <div class="section-label">Custo-Efetividade</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">💰</div>
+      <div>
+        <div class="card-title">Análises Farmacoeconômicas</div>
+        <div class="card-subtitle">Cenário europeu e americano</div>
+      </div>
+    </div>
+    <table class="compare-table">
+      <thead><tr><th>Comparação</th><th>ICER / Resultado</th><th>Horizonte</th><th>Referência</th></tr></thead>
+      <tbody>
+        <tr><td>TEER vs GDMT (IM secundária)</td><td>€31.227–€38.123/QALY (custo-efetivo em países europeus)</td><td>Lifetime</td><td>Connock et al., PLoS ONE 2023</td></tr>
+        <tr><td>TEER vs Cirurgia (IM primária)</td><td>$178.109 vs $157.146 (custo hospitalar total); TEER tem internação menor (2 vs 4 dias)</td><td>Hospitalar</td><td>Kay et al., Mayo Clin Proc 2021</td></tr>
+        <tr><td>Reparo vs Troca (IM isquêmica)</td><td>Reparo dominante em 10 anos; mecânica pode ser mais custo-efetiva em 20 anos</td><td>10 e 20 anos</td><td>Ferket et al., Circ CVQO 2018</td></tr>
+        <tr><td>ViV-TMVR vs Reoperação cirúrgica</td><td>Menor morbidade, menor sangramento, menor tempo de internação; mortalidade equivalente</td><td>180 dias</td><td>Zogg et al., Am J Cardiol 2023</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div><!-- /tab-resultados -->
+
+
+<!-- ══════════════════════════════════════════════════════════
+     TAB 6 — COMPLICAÇÕES
+══════════════════════════════════════════════════════════ -->
+<div id="tab-complicacoes" class="tab-panel">
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">⚠️</div>
+      <div>
+        <div class="card-title">Complicações das Intervenções Mitrais Percutâneas</div>
+        <div class="card-subtitle">Frequências baseadas nos grandes estudos e no TVT Registry — incidências variam com experiência do centro</div>
+      </div>
+    </div>
+    <div class="info-teal info-box">
+      <span class="info-box-icon">📌</span>
+      <div>Volume institucional impacta diretamente os resultados. A curva de aprendizado da TEER é estimada em 50–80 procedimentos para proficiência técnica. Centros de alto volume (&gt;50 casos/ano) apresentam menor mortalidade, menor conversão e maior taxa de sucesso técnico.</div>
+    </div>
+  </div>
+
+  <div class="section-label" style="margin-top:1rem">Complicações da TEER (MitraClip)</div>
+
+  <ul class="compl-list">
+    <li class="compl-item">
+      <div class="compl-freq"><span class="badge badge-red">3–5%</span></div>
+      <div>
+        <div class="compl-name">Detachment / Single Leaflet Device Attachment (SLDA)</div>
+        <div class="compl-desc">Desapego de um dos folhetos do clip após implante — resulta em IM severa aguda. Pode ocorrer intra ou pós-procedimento. Diagnóstico: TEE mostrando clip preso em apenas um folheto com jato central ou medial residual. Manejo: novo clip se anatomia permitir, ou conversão cirúrgica urgente. Fator de risco: tecido friável, flail extenso, clip muito pequeno para a anatomia.</div>
+      </div>
+    </li>
+    <li class="compl-item">
+      <div class="compl-freq"><span class="badge badge-amber">2–4%</span></div>
+      <div>
+        <div class="compl-name">Estenose Mitral Iatrogênica</div>
+        <div class="compl-desc">AVMi residual &lt;1,5 cm² após implante de clip(s). Risco aumentado com: múltiplos clips, anatomia com AVMi basal limítrofe (3–4 cm²), folheto posterior curto. Prevenção: planimetria 3D pós-cada clip. Clínicamente relevante se gradiente médio &gt;5 mmHg com FC normal. Sem tratamento eficaz percutâneo — avaliação cirúrgica se sintomático.</div>
+      </div>
+    </li>
+    <li class="compl-item">
+      <div class="compl-freq"><span class="badge badge-amber">1–3%</span></div>
+      <div>
+        <div class="compl-name">Tamponamento Cardíaco</div>
+        <div class="compl-desc">Perfuração do AE ou VE durante manipulação do cateter ou punção transeptal errada. Complicação mais temida — pode levar a colapso hemodinâmico rápido. Monitorização hemodinâmica contínua e TEE durante todo o procedimento permitem diagnóstico precoce. Manejo: pericardiocentese imediata; raramente cirurgia. Fator de risco: punção transeptal superior ao ideal, manipulação agressiva no VE.</div>
+      </div>
+    </li>
+    <li class="compl-item">
+      <div class="compl-freq"><span class="badge badge-red">1–3%</span></div>
+      <div>
+        <div class="compl-name">AVC ou AIT Periprocedimental</div>
+        <div class="compl-desc">Embolização de ar, coágulo ou material calcificado. Anticoagulação adequada (TCA ≥250 s) é prevenção primária fundamental. Atenção ao flushing do cateter-guia. Ocorrência de FA novo durante o procedimento eleva risco. Monitorização neurológica pós-procedimento nas primeiras 24h.</div>
+      </div>
+    </li>
+    <li class="compl-item">
+      <div class="compl-freq"><span class="badge badge-amber">1–2%</span></div>
+      <div>
+        <div class="compl-name">Comunicação Interatrial (CIA) Residual</div>
+        <div class="compl-desc">O cateter de 22F cria um orifício transeptal que pode persistir após o procedimento. Shunt E→D geralmente hemodinamicamente insignificante. Shunt D→E só ocorre se PAD &gt; PAE (HAP severa). Fechamento percutâneo indicado se CIA sintomática ou shunt significativo (Qp/Qs &gt;1,5).</div>
+      </div>
+    </li>
+    <li class="compl-item">
+      <div class="compl-freq"><span class="badge badge-green">&lt;1%</span></div>
+      <div>
+        <div class="compl-name">Embolização do Clip</div>
+        <div class="compl-desc">Extremamente rara (&lt;0,1% em séries contemporâneas). Clip pode migrar para o VE, aorta ou câmaras direitas. Cirurgia cardíaca de emergência para extração. Técnica adequada de implante e inspeção pós-release previnem.</div>
+      </div>
+    </li>
+    <li class="compl-item">
+      <div class="compl-freq"><span class="badge badge-green">&lt;1%</span></div>
+      <div>
+        <div class="compl-name">Lesão do Tecido Subvalvar / Chordas</div>
+        <div class="compl-desc">Entrelaçamento do clip com cordas durante a travessia do VE, causando ruptura ou disfunção. TEE contínuo e uso de fluoroscopia ajudam na prevenção. Maior risco em anatomias com cordas espessadas (reumático) ou calcificação subvalvar extensa.</div>
+      </div>
+    </li>
+    <li class="compl-item">
+      <div class="compl-freq"><span class="badge badge-amber">5–8%</span></div>
+      <div>
+        <div class="compl-name">IM Residual ≥2+ (Resultado Subótimo)</div>
+        <div class="compl-desc">Não é complicação técnica stricto sensu, mas é o desfecho mais frequente limitando o benefício da TEER. Causas: grasping incompleto, anatomia desfavorável não antecipada, IM multissegmento. Manejo: avaliação de clip adicional vs alta com seguimento. A aceitabilidade de IM 2+ depende do contexto clínico e da etiologia.</div>
+      </div>
+    </li>
+  </ul>
+
+  <hr class="section-divider" />
+  <div class="section-label">Complicações Específicas da CMB (Comissurotomia por Balão)</div>
+
+  <ul class="compl-list">
+    <li class="compl-item">
+      <div class="compl-freq"><span class="badge badge-red">2–5%</span></div>
+      <div>
+        <div class="compl-name">Insuficiência Mitral Grave Aguda</div>
+        <div class="compl-desc">Principal complicação — ocorre por ruptura assimétrica da comissura, ruptura de cordas ou lacração de folheto calcificado. Critério de parada: IM ≥3+ após qualquer insuflação. Abordagem: cirurgia de urgência (reparo ou troca). Score de Wilkins &gt;10, calcificação comissural bilateral, e anatomia assimétrica são preditores. Estratégia stepwise (incrementos de 1 mm) reduz risco.</div>
+      </div>
+    </li>
+    <li class="compl-item">
+      <div class="compl-freq"><span class="badge badge-amber">1–4%</span></div>
+      <div>
+        <div class="compl-name">AVC Embólico</div>
+        <div class="compl-desc">Embolização de trombo (excluir trombo por TEE pré-procedimento — obrigatório!) ou material calcificado. Anticoagulação plena (TCA ≥250 s) durante o procedimento. FA associada é fator de risco adicional.</div>
+      </div>
+    </li>
+    <li class="compl-item">
+      <div class="compl-freq"><span class="badge badge-amber">1–2%</span></div>
+      <div>
+        <div class="compl-name">Tamponamento por Perfuração</div>
+        <div class="compl-desc">Perfuração do AE ou VE durante punção transeptal ou manipulação do balão Inoue. Pericardiocentese de emergência. Baixa incidência em mãos experientes.</div>
+      </div>
+    </li>
+    <li class="compl-item">
+      <div class="compl-freq"><span class="badge badge-green">&lt;1%</span></div>
+      <div>
+        <div class="compl-name">CIA Residual Hemodinamicamente Significativa</div>
+        <div class="compl-desc">Orifício transeptal de 14F pode persistir. Maioria fecha espontaneamente em 3–6 meses. Fechamento percutâneo se significativo.</div>
+      </div>
+    </li>
+    <li class="compl-item">
+      <div class="compl-freq"><span class="badge badge-amber">5–10%</span></div>
+      <div>
+        <div class="compl-name">Resultado Subótimo / Reestenose a Longo Prazo</div>
+        <div class="compl-desc">AVMi final &lt;1,5 cm² ou gradiente persistentemente elevado. Reestenose ocorre em 20–40% em 10 anos, especialmente em anatomias desfavoráveis (Wilkins &gt;8), jovens com doença ativa e populações de alta prevalência reumática. Repetição de CMB é viável se nova anatomia favorável e ausência de IM ≥2+.</div>
+      </div>
+    </li>
+  </ul>
+
+  <hr class="section-divider" />
+  <div class="section-label">Complicações Específicas do TMVR</div>
+
+  <ul class="compl-list">
+    <li class="compl-item">
+      <div class="compl-freq"><span class="badge badge-red">5–20%</span></div>
+      <div>
+        <div class="compl-name">Obstrução do LVOT (neo-LVOT)</div>
+        <div class="compl-desc">Complicação mais temida e mais específica do TMVR. O folheto anterior mitral, ao ser aprisionado/deslocado pela prótese, obstrui o TSVE. Gradiente LVOT &gt;30 mmHg = obstrução significativa. Pré-operatório: cálculo obrigatório do neo-LVOT por TC (contraindicado se &lt;1,7 cm²). LAMPOON profilático pode ser usado para ablação por laser do folheto anterior antes do implante.</div>
+      </div>
+    </li>
+    <li class="compl-item">
+      <div class="compl-freq"><span class="badge badge-amber">5–15%</span></div>
+      <div>
+        <div class="compl-name">Vazamento Paravalvar (PVL)</div>
+        <div class="compl-desc">Mais comum no TMVR nativo (anel calcificado irregular) que no ViV. PVL significativo pode levar a hemólise e IC residual. Técnicas de ancoragem e designs específicos de cada dispositivo visam minimizar. No ViV, a bioprótese oferece assentamento mais regular.</div>
+      </div>
+    </li>
+    <li class="compl-item">
+      <div class="compl-freq"><span class="badge badge-amber">3–8%</span></div>
+      <div>
+        <div class="compl-name">Sangramento Relacionado ao Acesso Transapical</div>
+        <div class="compl-desc">Hematoma de parede torácica, hemotórax, derrame pericárdico por ventriculotomia apical. Fator limitante do acesso transapical — principal motivação para desenvolvimento de sistemas transseptais.</div>
+      </div>
+    </li>
+    <li class="compl-item">
+      <div class="compl-freq"><span class="badge badge-amber">3–7%</span></div>
+      <div>
+        <div class="compl-name">Migração / Embolização da Prótese</div>
+        <div class="compl-desc">Prótese pode migrar para o AE ou VE se ancoragem insuficiente. Mais risco em anatomias sem subvalvar para ancoragem (calcificação anular mitral — MAC) e em tamanho incorreto da prótese. Cirurgia de resgate necessária.</div>
+      </div>
+    </li>
+  </ul>
+
+</div><!-- /tab-complicacoes -->
+
+
+<!-- ══════════════════════════════════════════════════════════
+     TAB 7 — REFERÊNCIAS
+══════════════════════════════════════════════════════════ -->
+<div id="tab-refs" class="tab-panel">
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📚</div>
+      <div>
+        <div class="card-title">Referências Bibliográficas</div>
+        <div class="card-subtitle">Literatura selecionada — RCTs, guidelines, metanálises e estudos de registro. Evidência grau A-B quando disponível.</div>
+      </div>
+    </div>
+  </div>
+
+  <ul class="ref-list">
+    <li class="ref-item">
+      <div class="ref-num">1</div>
+      <div>
+        <div class="ref-title">2020 ACC/AHA Guideline for the Management of Patients With Valvular Heart Disease<span class="ref-ev">Diretriz</span></div>
+        <div class="ref-meta">Otto CM, Nishimura RA, Bonow RO, et al. <em>JACC</em>. 2021;77(4):e25–e197.</div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <div class="ref-num">2</div>
+      <div>
+        <div class="ref-title">2021 ESC/EACTS Guidelines for the Management of Valvular Heart Diseases<span class="ref-ev">Diretriz</span></div>
+        <div class="ref-meta">Vahanian A, Beyersdorf F, Praz F, et al. <em>Eur Heart J</em>. 2022;43(7):561–632.</div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <div class="ref-num">3</div>
+      <div>
+        <div class="ref-title">Five-Year Follow-up after Transcatheter Repair of Secondary Mitral Regurgitation (COAPT)<span class="ref-ev">RCT LOE A</span></div>
+        <div class="ref-meta">Stone GW, Abraham WT, Lindenfeld J, et al. <em>NEJM</em>. 2023;388(22):2037–2048.</div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <div class="ref-num">4</div>
+      <div>
+        <div class="ref-title">Transcatheter Repair versus Mitral-Valve Surgery for Secondary Mitral Regurgitation (MATTERHORN)<span class="ref-ev">RCT</span></div>
+        <div class="ref-meta">Baldus S, Doenst T, Pfister R, et al. <em>NEJM</em>. 2024;391(19):1787–1798.</div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <div class="ref-num">5</div>
+      <div>
+        <div class="ref-title">Percutaneous Repair or Medical Treatment for Secondary Mitral Regurgitation (MITRA-FR)<span class="ref-ev">RCT LOE A</span></div>
+        <div class="ref-meta">Obadia JF, Messika-Zeitoun D, Leurent G, et al. <em>NEJM</em>. 2018;379(24):2297–2306.</div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <div class="ref-num">6</div>
+      <div>
+        <div class="ref-title">Randomized Comparison of Percutaneous Repair and Surgery for Mitral Regurgitation: 5-Year Results of EVEREST II<span class="ref-ev">RCT LOE B</span></div>
+        <div class="ref-meta">Feldman T, Kar S, Elmariah S, et al. <em>JACC</em>. 2015;66(25):2844–2854.</div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <div class="ref-num">7</div>
+      <div>
+        <div class="ref-title">Percutaneous Repair or Surgery for Mitral Regurgitation (EVEREST II original)<span class="ref-ev">RCT LOE B</span></div>
+        <div class="ref-meta">Feldman T, Foster E, Glower DD, et al. <em>NEJM</em>. 2011;364(15):1395–1406.</div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <div class="ref-num">8</div>
+      <div>
+        <div class="ref-title">Contrasting Effects of Pharmacological, Procedural, and Surgical Interventions on Proportionate and Disproportionate Functional Mitral Regurgitation<span class="ref-ev">Fisiopatologia</span></div>
+        <div class="ref-meta">Packer M, Grayburn PA. <em>Circulation</em>. 2019;140(9):779–789.</div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <div class="ref-num">9</div>
+      <div>
+        <div class="ref-title">Durability of Surgical Mitral Repair vs. Transcatheter Edge-to-Edge Repair in Degenerative MR<span class="ref-ev">Propensity-Matched</span></div>
+        <div class="ref-meta">Bakir NH, Bernabei A, Burns DJP, et al. <em>Ann Thorac Surg</em>. 2025;S0003-4975(25)00762-3.</div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <div class="ref-num">10</div>
+      <div>
+        <div class="ref-title">Percutaneous Transcatheter Valve Replacement in Individuals With MR Unsuitable for Surgery or TEER (TMVR Multicêntrico)<span class="ref-ev">Prospectivo LOE B</span></div>
+        <div class="ref-meta">Guerrero ME, Daniels DV, Makkar RR, et al. <em>Lancet</em>. 2025;406(10519):2541–2550.</div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <div class="ref-num">11</div>
+      <div>
+        <div class="ref-title">Guidelines for the Evaluation of Valvular Regurgitation After Percutaneous Valve Repair or Replacement (ASE/SCAI)<span class="ref-ev">Diretriz Eco</span></div>
+        <div class="ref-meta">Zoghbi WA, Asch FM, Bruce C, et al. <em>JASE</em>. 2019;32(4):431–475.</div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <div class="ref-num">12</div>
+      <div>
+        <div class="ref-title">Transcatheter Interventions for Mitral Regurgitation: Multimodality Imaging for Patient Selection and Procedural Guidance<span class="ref-ev">Revisão</span></div>
+        <div class="ref-meta">Bax JJ, Debonnaire P, Lancellotti P, et al. <em>JACC Cardiovasc Imaging</em>. 2019;12(10):2029–2048.</div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <div class="ref-num">13</div>
+      <div>
+        <div class="ref-title">Transcatheter Treatment of Valvular Heart Disease: A Review<span class="ref-ev">Revisão JAMA</span></div>
+        <div class="ref-meta">Davidson LJ, Davidson CJ. <em>JAMA</em>. 2021;325(24):2480–2494.</div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <div class="ref-num">14</div>
+      <div>
+        <div class="ref-title">Twenty-Year Outcome After Mitral Repair Versus Replacement for Severe Degenerative MR (MIDA Registry)<span class="ref-ev">Registro LOE B</span></div>
+        <div class="ref-meta">Lazam S, Vanoverschelde JL, Tribouilloy C, et al. <em>Circulation</em>. 2017;135(5):410–422.</div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <div class="ref-num">15</div>
+      <div>
+        <div class="ref-title">Health Status After Transcatheter Mitral-Valve Repair in Heart Failure and Secondary Mitral Regurgitation: COAPT Trial<span class="ref-ev">Qualidade de Vida</span></div>
+        <div class="ref-meta">Arnold SV, Chinnakondepalli KM, Spertus JA, et al. <em>JACC</em>. 2019;73(17):2123–2132.</div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <div class="ref-num">16</div>
+      <div>
+        <div class="ref-title">Quality of Life After Mitral Valve Surgery: Results From the Cardiothoracic Surgical Trials Network<span class="ref-ev">Qualidade de Vida</span></div>
+        <div class="ref-meta">Patel SG, Spertus JA, Fu Z, et al. <em>J Thorac Cardiovasc Surg</em>. 2026;171(3):615–622.</div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <div class="ref-num">17</div>
+      <div>
+        <div class="ref-title">Myocardial Dysfunction in Primary Mitral Regurgitation<span class="ref-ev">Revisão JAMA Cardiol</span></div>
+        <div class="ref-meta">Anand V, Bonow RO, Nishimura RA, et al. <em>JAMA Cardiology</em>. 2025;doi:10.1001/jamacardio.2025.4561.</div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <div class="ref-num">18</div>
+      <div>
+        <div class="ref-title">Structural Cardiac Interventions in Patients With Heart Failure: JACC Scientific Statement<span class="ref-ev">Scientific Statement</span></div>
+        <div class="ref-meta">Hahn RT, Lindenfeld J, Lim SD, Mack MJ, Burkhoff D. <em>JACC</em>. 2024;84(9):832–847.</div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <div class="ref-num">19</div>
+      <div>
+        <div class="ref-title">Transcatheter Mitral Valve Repair and Replacement. A Critical Review of Current Real-World Practice<span class="ref-ev">Revisão</span></div>
+        <div class="ref-meta">Fiocco A, Besola L, De Carlo M, Whitlock RP, Colli A. <em>Eur J Cardiothorac Surg</em>. 2025;ezaf373.</div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <div class="ref-num">20</div>
+      <div>
+        <div class="ref-title">Optimizing Cardiac CT Protocols for Comprehensive Acquisition Prior to Percutaneous MV and TV Repair/Replacement<span class="ref-ev">TC Cardíaco</span></div>
+        <div class="ref-meta">Pulerwitz TC, Khalique OK, Leb J, et al. <em>JACC Cardiovasc Imaging</em>. 2020;13(3):836–850.</div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <div class="ref-num">21</div>
+      <div>
+        <div class="ref-title">Rheumatic Heart Disease: JACC Focus Seminar<span class="ref-ev">Revisão</span></div>
+        <div class="ref-meta">Dougherty S, Okello E, Mwangi J, Kumar RK. <em>JACC</em>. 2023;81(1):81–94.</div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <div class="ref-num">22</div>
+      <div>
+        <div class="ref-title">Incidence and Factors Associated With Mitral Valve Reoperation After Surgery for MR (Coorte Nacional)<span class="ref-ev">Registro</span></div>
+        <div class="ref-meta">Truong S, Petersen J, Schmiegelow MDS, et al. <em>Int J Cardiol</em>. 2025;418:132608.</div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <div class="ref-num">23</div>
+      <div>
+        <div class="ref-title">Valvular Heart Disease: From Mechanisms to Management<span class="ref-ev">Revisão Lancet</span></div>
+        <div class="ref-meta">Praz F, Beyersdorf F, Haugaa K, Prendergast B. <em>Lancet</em>. 2024;403(10436):1576–1589.</div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <div class="ref-num">24</div>
+      <div>
+        <div class="ref-title">2019 AATS/ACC/SCAI/STS Expert Consensus Systems of Care: Operator and Institutional Recommendations for Transcatheter Mitral Valve Intervention<span class="ref-ev">Consenso</span></div>
+        <div class="ref-meta">Bonow RO, O'Gara PT, Adams DH, et al. <em>JACC</em>. 2020;76(1):96–117.</div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <div class="ref-num">25</div>
+      <div>
+        <div class="ref-title">Imaging for Mitral Interventions: Methods and Efficacy<span class="ref-ev">Revisão Eco</span></div>
+        <div class="ref-meta">Wunderlich NC, Beigel R, Ho SY, et al. <em>JACC Cardiovasc Imaging</em>. 2018;11(6):872–901.</div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <div class="ref-num">26</div>
+      <div>
+        <div class="ref-title">Comparison of Postdischarge Outcomes Between Valve-in-Valve TMVR and Reoperative Surgical Mitral Valve Replacement<span class="ref-ev">Coorte</span></div>
+        <div class="ref-meta">Zogg CK, Hirji SA, Percy ED, et al. <em>Am J Cardiol</em>. 2023;201:200–210.</div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <div class="ref-num">27</div>
+      <div>
+        <div class="ref-title">ACC/AHA and ESC/EACTS Guidelines For the Management of Valvular Heart Diseases: JACC Guideline Comparison<span class="ref-ev">Comparação de Diretrizes</span></div>
+        <div class="ref-meta">Coisne A, Lancellotti P, Habib G, et al. <em>JACC</em>. 2023;82(8):721–734.</div>
+      </div>
+    </li>
+  </ul>
+
+  <div class="disclaimer">
+    <strong>⚠️ Aviso Médico-Legal:</strong> Este material destina-se exclusivamente à educação médica continuada de profissionais de saúde. Não substitui o julgamento clínico individualizado, a avaliação presencial do paciente, nem as diretrizes institucionais vigentes. As frequências de complicações citadas são estimativas baseadas em literatura indexada e podem variar conforme o centro, a experiência da equipe e as características do paciente. Decisões de intervenção devem sempre ser tomadas em Heart Team multidisciplinar. Última atualização bibliográfica: agosto de 2025.
+  </div>
+
+</div><!-- /tab-refs -->
+
+
+</div><!-- /container -->
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-copy">
+        &copy; 2025 Dr. Lucas Silva — Cardiologia Intervencionista | <a href="https://lucascardio.com.br" style="color:var(--teal);text-decoration:none">lucascardio.com.br</a>
+      </div>
+      <div style="font-size:.72rem;color:var(--muted-foreground)">
+        Evidência até ago/2025 · ACC/AHA 2020 · ESC 2021 · COAPT 5y · MATTERHORN · EVEREST II
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── TAB SWITCHER ─────────────────────────────────────────────
+  function switchTab(tabId) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    const panel = document.getElementById('tab-' + tabId);
+    if (panel) panel.classList.add('active');
+    document.querySelectorAll('.tab-btn').forEach(b => {
+      if (b.dataset.tab === tabId) b.classList.add('active');
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Nav center buttons
+  document.querySelectorAll('.nav-center-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const label = this.textContent.trim().toLowerCase();
+      if (label.includes('fisio')) switchTab('fisio');
+      else if (label.includes('indica')) switchTab('indicacoes');
+      else if (label.includes('disp')) switchTab('dispositivos');
+      else if (label.includes('t') && label.includes('cnica')) switchTab('tecnica');
+      else if (label.includes('result')) switchTab('resultados');
+      else if (label.includes('complic')) switchTab('complicacoes');
+      else if (label.includes('ref')) switchTab('refs');
+    });
+  });
+
+  // ── ACCORDION ────────────────────────────────────────────────
+  function toggleAccordion(header) {
+    const body = header.nextElementSibling;
+    header.classList.toggle('open');
+    body.classList.toggle('open');
+  }
+
+  // ── WILKINS SCORE CALCULATOR ─────────────────────────────────
+  const wilkinsData = { mob: 0, thick: 0, calc: 0, sub: 0 };
+  function setWilkins(param, val, btn) {
+    wilkinsData[param] = val;
+    const container = btn.parentElement;
+    container.querySelectorAll('.w-btn').forEach(b => b.classList.remove('sel'));
+    btn.classList.add('sel');
+    updateWilkins();
+  }
+  function updateWilkins() {
+    const total = wilkinsData.mob + wilkinsData.thick + wilkinsData.calc + wilkinsData.sub;
+    const filled = Object.values(wilkinsData).filter(v => v > 0).length;
+    const totalEl = document.getElementById('wilkinsTotal');
+    const verdictEl = document.getElementById('wilkinsVerdict');
+    const descEl = document.getElementById('wilkinsDesc');
+    if (filled < 4) {
+      totalEl.textContent = filled > 0 ? total + '…' : '—';
+      verdictEl.textContent = 'Selecione todos os 4 critérios';
+      verdictEl.style.color = '';
+      descEl.textContent = filled + '/4 critérios selecionados';
+      return;
+    }
+    totalEl.textContent = total;
+    if (total <= 8) {
+      verdictEl.textContent = '✅ Anatomia FAVORÁVEL — Candidato a CMB';
+      verdictEl.style.color = 'var(--teal)';
+      descEl.textContent = 'Score ≤8: alta probabilidade de sucesso com CMB (resultados comparáveis à cirurgia)';
+    } else if (total <= 10) {
+      verdictEl.textContent = '⚠️ Anatomia INTERMEDIÁRIA — Avaliar individualmente';
+      verdictEl.style.color = '#fbbf24';
+      descEl.textContent = 'Score 9–10: CMB com maior risco de resultado subótimo; Heart Team necessário';
+    } else {
+      verdictEl.textContent = '❌ Anatomia DESFAVORÁVEL — Preferir cirurgia ou TMVR';
+      verdictEl.style.color = '#f87171';
+      descEl.textContent = 'Score >10: alta probabilidade de reestenose precoce e mau resultado; cirurgia mitral preferencial';
+    }
+  }
+</script>
+</body>
+</html>

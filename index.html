@@ -17,8 +17,8 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Dr. Lucas Silva — Cardiologia Intervencionista em São Paulo" />
     <meta property="og:description" content="Cardiologista especializado em cardiologia clínica, intervencionista e medicina preventiva com abordagem baseada em evidências científicas." />
-    <meta property="og:url" content="https://www.lucascardio.com.br/" />
-    <meta property="og:image" content="https://www.lucascardio.com.br/assets/img/og-image.jpg" />
+    <meta property="og:url" content="https://lucascardio.com.br/" />
+    <meta property="og:image" content="https://lucascardio.com.br/assets/img/og-image.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="pt_BR" />
@@ -28,7 +28,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Dr. Lucas Silva — Cardiologia Intervencionista" />
     <meta name="twitter:description" content="Cardiologista especializado em cardiologia clínica, intervencionista e medicina preventiva." />
-    <meta name="twitter:image" content="https://www.lucascardio.com.br/assets/img/og-image.jpg" />
+    <meta name="twitter:image" content="https://lucascardio.com.br/assets/img/og-image.jpg" />
 
     <!-- Mobile / PWA -->
     <meta name="theme-color" content="#64a19d" />
@@ -38,7 +38,7 @@
     <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
 
     <!-- Canonical & Alternate -->
-    <link rel="canonical" href="https://www.lucascardio.com.br/" />
+    <link rel="canonical" href="https://lucascardio.com.br/" />
     <link rel="alternate" hreflang="pt-br" href="https://www.lucascardio.com.br/" />
 
     <title>Dr. Lucas Silva — Cardiologista Intervencionista em São Paulo | Cardiologia Clínica e Preventiva</title>
@@ -67,11 +67,16 @@
         "@context": "https://schema.org",
         "@type": "Physician",
         "name": "Dr. Lucas Silva",
-        "image": "https://www.lucascardio.com.br/assets/img/og-image.jpg",
+        "image": "https://lucascardio.com.br/assets/img/og-image.jpg",
         "description": "Cardiologista especializado em cardiologia clínica, intervencionista e medicina preventiva baseada em evidências científicas.",
-        "url": "https://www.lucascardio.com.br",
+        "url": "https://lucascardio.com.br",
         "telephone": "+5531975347267",
-        "email": "lucascardio@gmail.com",
+        "email": "dr.cardio.lucas@gmail.com",
+        "sameAs": [
+            "https://www.linkedin.com/in/lucas-ferreira-04307817a/",
+            "https://lattes.cnpq.br/7645519433006627",
+            "https://www.instagram.com/dr_lucas.cardio/"
+        ],
         "address": {
             "@type": "PostalAddress",
             "streetAddress": "Rua Bagé 20",
@@ -85,21 +90,39 @@
             "Cardiologia Intervencionista",
             "Medicina Preventiva"
         ],
-        "alumniOf": [
+        "hasCredential": [
             {
-                "@type": "CollegeOrUniversity",
-                "name": "Universidade Federal de Minas Gerais (UFMG)"
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "degree",
+            "recognizedBy": {
+                "@type": "Organization",
+                "name": "Universidade Federal de Minas Gerais (UFMG )"
+            }
             },
             {
-                "@type": "Hospital",
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "residency",
+            "recognizedBy": {
+                "@type": "Organization",
                 "name": "Instituto Dante Pazzanese de Cardiologia"
+            }
+            }
+        ],
+        "alumniOf": [
+            {
+            "@type": "CollegeOrUniversity",
+            "name": "Universidade Federal de Minas Gerais (UFMG)"
+            },
+            {
+            "@type": "Hospital",
+            "name": "Instituto Dante Pazzanese de Cardiologia"
             }
         ],
         "areaServed": {
             "@type": "City",
             "name": "São Paulo"
         },
-        "knowsAbout": ["Cateterismo Cardíaco","Angioplastia","Hemodinâmica","Medicina Baseada em Evidências"],
+        "knowsAbout": ["Cateterismo Cardíaco", "Angioplastia", "Hemodinâmica", "Cardiologia", "Medicina Baseada em Evidências"],
         "priceRange": "$$"
     }
     </script>
@@ -110,9 +133,87 @@
         "@context": "https://schema.org",
         "@type": "WebSite",
         "name": "Dr. Lucas Silva — Cardiologia Intervencionista",
-        "url": "https://www.lucascardio.com.br"
+        "url": "https://lucascardio.com.br"
     }
     </script>
+
+    <!-- Category filter styles -->
+    <style>
+    /* ─── Tool Filter Pill Buttons ────────────────────────────────── */
+    .tool-filter-btn {
+        display: inline-flex; align-items: center; gap: .35rem;
+        padding: .42rem 1rem; font-size: .78rem; font-weight: 700;
+        letter-spacing: .03em; border: 2px solid #dee2e6;
+        border-radius: 2rem; background: transparent; color: #6c757d;
+        cursor: pointer; transition: all .2s ease; white-space: nowrap;
+        line-height: 1.3;
+    }
+    .tool-filter-btn:hover {
+        border-color: var(--lc-accent,#c9a96e);
+        color: var(--lc-accent,#c9a96e);
+        background: rgba(201,169,110,.08);
+    }
+    .tool-filter-btn.active {
+        border-color: var(--lc-accent,#c9a96e);
+        background: var(--lc-accent,#c9a96e); color: #fff;
+    }
+    .filter-count {
+        background: rgba(0,0,0,.15); border-radius: 1rem;
+        padding: 0 .42rem; font-size: .72rem; font-weight: 800;
+        min-width: 1.2rem; text-align: center;
+    }
+    .tool-filter-btn.active .filter-count { background: rgba(255,255,255,.28); }
+    /* ─── Category tag labels on cards ───────────────────────────── */
+    .cat-tag {
+        display: inline-flex; align-items: center; gap: .28rem;
+        font-size: .67rem; font-weight: 700; letter-spacing: .06em;
+        text-transform: uppercase; padding: .18rem .55rem;
+        border-radius: .22rem; margin-bottom: .7rem; border-left: 3px solid;
+    }
+    .cat-proc      { background:rgba(201,169,110,.14); color:#8a6a28; border-color:#c9a96e; }
+    .cat-condicoes { background:rgba(210,55,55,.1);   color:#aa2828; border-color:#d43737; }
+    .cat-meds      { background:rgba(40,155,90,.12);  color:#1e6e42; border-color:#289b5a; }
+    .cat-estilo    { background:rgba(40,110,220,.1);  color:#1e55a0; border-color:#286edc; }
+    .cat-sistemas  { background:rgba(130,80,200,.12); color:#6a3898; border-color:#8250c8; }
+    .cat-calc      { background:rgba(201,169,110,.14); color:#8a6a28; border-color:#c9a96e; }
+    .cat-coronaria { background:rgba(210,55,55,.1);   color:#aa2828; border-color:#d43737; }
+    .cat-ecg       { background:rgba(40,110,220,.1);  color:#1e55a0; border-color:#286edc; }
+    .cat-estrutural{ background:rgba(130,80,200,.12); color:#6a3898; border-color:#8250c8; }
+    .cat-educ      { background:rgba(40,155,90,.12);  color:#1e6e42; border-color:#289b5a; }
+    /* dark mode ── cat-tags */
+    .dark-mode .cat-proc      { background:rgba(201,169,110,.22); color:#c9a96e; }
+    .dark-mode .cat-condicoes { background:rgba(220,80,80,.22);   color:#e06060; }
+    .dark-mode .cat-meds      { background:rgba(50,180,110,.2);   color:#50d090; }
+    .dark-mode .cat-estilo    { background:rgba(70,150,240,.2);   color:#70aaff; }
+    .dark-mode .cat-sistemas  { background:rgba(160,110,220,.22); color:#c090ff; }
+    .dark-mode .cat-calc      { background:rgba(201,169,110,.22); color:#c9a96e; }
+    .dark-mode .cat-coronaria { background:rgba(220,80,80,.22);   color:#e06060; }
+    .dark-mode .cat-ecg       { background:rgba(70,150,240,.2);   color:#70aaff; }
+    .dark-mode .cat-estrutural{ background:rgba(160,110,220,.22); color:#c090ff; }
+    .dark-mode .cat-educ      { background:rgba(50,180,110,.2);   color:#50d090; }
+    /* dark mode ── filter pills */
+    .dark-mode .tool-filter-btn { border-color:#444; color:#aaa; }
+    .dark-mode .tool-filter-btn:hover { border-color:var(--lc-accent,#c9a96e); color:var(--lc-accent,#c9a96e); }
+    /* ─── Navbar dropdowns ───────────────────────────────────────── */
+    #mainNav .dropdown-menu {
+        border-radius: .5rem; border:1px solid rgba(0,0,0,.1);
+        box-shadow: 0 6px 24px rgba(0,0,0,.13); min-width:220px; padding:.4rem 0;
+    }
+    #mainNav .dropdown-item {
+        font-size:.85rem; padding:.48rem 1.1rem;
+        transition: background .15s, color .15s;
+    }
+    #mainNav .dropdown-item:hover, #mainNav .dropdown-item:focus {
+        background:rgba(201,169,110,.12); color:var(--lc-accent,#c9a96e);
+    }
+    #mainNav .dropdown-item i { width:1.1rem; opacity:.6; }
+    #mainNav .dropdown-divider { margin:.3rem 0; }
+    /* shrink state dropdown fix */
+    #mainNav.navbar-shrink .dropdown-menu { margin-top:.2rem; }
+    .dark-mode #mainNav .dropdown-menu { background:#1c1e2a; border-color:#333; }
+    .dark-mode #mainNav .dropdown-item { color:#ccc; }
+    .dark-mode #mainNav .dropdown-item:hover { background:rgba(201,169,110,.15); color:var(--lc-accent,#c9a96e); }
+    </style>
 </head>
 
 <body id="page-top">
@@ -130,8 +231,49 @@
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link" href="#about">Sobre mim</a></li>
                 <li class="nav-item"><a class="nav-link" href="#projects">Projetos</a></li>
-                <li class="nav-item"><a class="nav-link" href="#pacientes">Para pacientes</a></li>
-                <li class="nav-item"><a class="nav-link" href="#medicos">Para médicos</a></li>
+
+                <!-- Para Pacientes dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#pacientes" id="ddPac" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">Para Pacientes</a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="ddPac">
+                        <li><a class="dropdown-item" href="#pacientes" data-section="pac" data-cat="all">
+                            <i class="fas fa-th-large"></i> Ver Todos</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#pacientes" data-section="pac" data-cat="proc">
+                            <i class="fas fa-stethoscope"></i> Procedimentos &amp; Exames</a></li>
+                        <li><a class="dropdown-item" href="#pacientes" data-section="pac" data-cat="condicoes">
+                            <i class="fas fa-heart"></i> Condições Cardiológicas</a></li>
+                        <li><a class="dropdown-item" href="#pacientes" data-section="pac" data-cat="meds">
+                            <i class="fas fa-pills"></i> Medicamentos</a></li>
+                        <li><a class="dropdown-item" href="#pacientes" data-section="pac" data-cat="estilo">
+                            <i class="fas fa-dumbbell"></i> Estilo de Vida</a></li>
+                        <li><a class="dropdown-item" href="#pacientes" data-section="pac" data-cat="sistemas">
+                            <i class="fas fa-network-wired"></i> Coração &amp; Outros Sistemas</a></li>
+                    </ul>
+                </li>
+
+                <!-- Para Médicos dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#medicos" id="ddMed" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">Para Médicos</a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="ddMed">
+                        <li><a class="dropdown-item" href="#medicos" data-section="med" data-cat="all">
+                            <i class="fas fa-th-large"></i> Ver Todos</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#medicos" data-section="med" data-cat="calc">
+                            <i class="fas fa-calculator"></i> Calculadoras &amp; Scores</a></li>
+                        <li><a class="dropdown-item" href="#medicos" data-section="med" data-cat="coronaria">
+                            <i class="fas fa-heart-pulse"></i> Intervenção Coronária</a></li>
+                        <li><a class="dropdown-item" href="#medicos" data-section="med" data-cat="ecg">
+                            <i class="fas fa-wave-square"></i> ECG</a></li>
+                        <li><a class="dropdown-item" href="#medicos" data-section="med" data-cat="estrutural">
+                            <i class="fas fa-heart-circle-plus"></i> Cardiologia Estrutural</a></li>
+                        <li><a class="dropdown-item" href="#medicos" data-section="med" data-cat="educ">
+                            <i class="fas fa-book-medical"></i> Educação &amp; Referência</a></li>
+                    </ul>
+                </li>
+
                 <li class="nav-item"><a class="nav-link" href="#contact">Contato</a></li>
             </ul>
         </div>
@@ -284,207 +426,258 @@
                     </p>
                 </div>
 
-                <!-- Patient Tools -->
-                <div class="row g-4 mt-4 reveal-stagger">
+                <!-- Patient Tools: Categorizados -->
 
-                    <div class="col-md-6 reveal">
+                <!-- Filter pills -->
+                <div class="d-flex flex-wrap justify-content-center gap-2 mt-5 mb-4"
+                     aria-label="Filtrar por categoria">
+                    <button class="tool-filter-btn active" data-section="pac" data-cat="all">
+                        <i class="fas fa-th-large"></i> Todos <span class="filter-count">20</span>
+                    </button>
+                    <button class="tool-filter-btn" data-section="pac" data-cat="proc">
+                        <i class="fas fa-stethoscope"></i> Procedimentos &amp; Exames <span class="filter-count">4</span>
+                    </button>
+                    <button class="tool-filter-btn" data-section="pac" data-cat="condicoes">
+                        <i class="fas fa-heart"></i> Condições Cardiológicas <span class="filter-count">3</span>
+                    </button>
+                    <button class="tool-filter-btn" data-section="pac" data-cat="meds">
+                        <i class="fas fa-pills"></i> Medicamentos <span class="filter-count">2</span>
+                    </button>
+                    <button class="tool-filter-btn" data-section="pac" data-cat="estilo">
+                        <i class="fas fa-dumbbell"></i> Estilo de Vida <span class="filter-count">6</span>
+                    </button>
+                    <button class="tool-filter-btn" data-section="pac" data-cat="sistemas">
+                        <i class="fas fa-network-wired"></i> Coração &amp; Outros Sistemas <span class="filter-count">5</span>
+                    </button>
+                </div>
+
+                <!-- Grid de ferramentas -->
+                <div class="row g-4" id="pac-tool-grid">
+
+                    <!-- ─ PROCEDIMENTOS & EXAMES ──────────────── -->
+                    <div class="col-md-6 tool-item reveal" data-section="pac" data-cat="proc">
                         <div class="tool-card h-100">
+                            <span class="cat-tag cat-proc"><i class="fas fa-stethoscope"></i>Procedimentos &amp; Exames</span>
                             <a class="btn-med-custom" href="Pacientes/pacientes-exames.html" title="Guia completo de exames cardiológicos">
                                 Guia de exames cardiológicos
                             </a>
                             <p class="small text-black-50 mt-3 mb-0">18 exames explicados: indicações, procedimentos, preparo e informações práticas.</p>
-                            <span class="badge"> Todos os exames. Um só lugar. </span>
+                            <span class="badge">Todos os exames. Um só lugar.</span>
                         </div>
                     </div>
 
-                    <div class="col-md-6 reveal">
+                    <div class="col-md-6 tool-item reveal" data-section="pac" data-cat="proc">
                         <div class="tool-card h-100">
+                            <span class="cat-tag cat-proc"><i class="fas fa-stethoscope"></i>Procedimentos &amp; Exames</span>
                             <a class="btn-med-custom" href="cateinfo/cateterismo-info.html" title="Informativo sobre cateterismo cardíaco">
                                 Tudo sobre o cateterismo cardíaco
                             </a>
                             <p class="small text-black-50 mt-3 mb-0">O que é? Quando fazer? Quanto tempo de jejum? Dói? Tire todas as suas dúvidas.</p>
-                            <span class="badge"> A curiosidade deixou o gato esperto! </span>
+                            <span class="badge">A curiosidade deixou o gato esperto!</span>
                         </div>
                     </div>
 
-                    <div class="col-md-6 reveal">
+                    <div class="col-md-6 tool-item reveal" data-section="pac" data-cat="proc">
                         <div class="tool-card h-100">
+                            <span class="cat-tag cat-proc"><i class="fas fa-stethoscope"></i>Procedimentos &amp; Exames</span>
                             <a class="btn-med-custom" href="faq/hemodinamica-faq.html" title="FAQ sobre cardiologia intervencionista">
                                 FAQ sobre cardiologia intervencionista
                             </a>
                             <p class="small text-black-50 mt-3 mb-0">Perguntas frequentes com mecanismo de busca para encontrar rápido o que procura.</p>
-                            <span class="badge"> Pesquisa facilitada </span>
+                            <span class="badge">Pesquisa facilitada</span>
                         </div>
                     </div>
 
-                    <div class="col-md-6 reveal">
+                    <div class="col-md-6 tool-item reveal" data-section="pac" data-cat="proc">
                         <div class="tool-card h-100">
-                            <a class="btn-med-custom" href="Pacientes/atividade-fisica-cardiovascular.html" title="Ferramenta interativa para entender tudo sobre atividade física e sua relação com a saúde">
-                                Ferramenta interativa para aprender tudo sobre atividade física
+                            <span class="cat-tag cat-proc"><i class="fas fa-stethoscope"></i>Procedimentos &amp; Exames</span>
+                            <a class="btn-med-custom" href="Pacientes/periodicolucas.html" title="Exame periódico de saúde baseado em evidências">
+                                Será que aqueles 37 exames que te pediram, precisavam mesmo?
                             </a>
-                            <p class="small text-black-50 mt-3 mb-0">
-                                Entenda a importânica, o que tem e o que não tem evidência, o que fazer e o que não fazer em relação à atividade física!
-                            </p>
-                            <span class="badge"> Informações que você não encontraria em nenhum outro lugar! </span>
+                            <p class="small text-black-50 mt-3 mb-0">Clique aqui para aprender que nem tudo é exame, é ouro.</p>
+                            <span class="badge">Cuidado, você pode aprender muito clicando aqui.</span>
                         </div>
                     </div>
 
-                    <div class="col-md-6 reveal">
+                    <!-- ─ CONDIÇÕES CARDIOLÓGICAS ─────────────── -->
+                    <div class="col-md-6 tool-item reveal" data-section="pac" data-cat="condicoes">
                         <div class="tool-card h-100">
-                            <a class="btn-med-custom" href="Pacientes/condicoes-cardiologicas.html" title="Ferramenta interativa para entender tudo sobre as condições cardiológicas mais comuns">
+                            <span class="cat-tag cat-condicoes"><i class="fas fa-heart"></i>Condições Cardiológicas</span>
+                            <a class="btn-med-custom" href="Pacientes/condicoes-cardiologicas.html" title="Ferramenta interativa sobre as condições cardiológicas mais comuns">
                                 Quais as condições cardiológicas mais comuns?
                             </a>
-                            <p class="small text-black-50 mt-3 mb-0">
-                                Tudo o que você sempre quis (e precisada de saber) sobre as condições cardiológicas mais pravalentes no mundo!
-                            </p>
-                            <span class="badge"> O que você procura, completo e baseado em evidências! </span>
+                            <p class="small text-black-50 mt-3 mb-0">Tudo o que você sempre quis (e precisava de saber) sobre as condições cardiológicas mais prevalentes no mundo!</p>
+                            <span class="badge">O que você procura, completo e baseado em evidências!</span>
                         </div>
                     </div>
 
-                    <div class="col-md-6 reveal">
+                    <div class="col-md-6 tool-item reveal" data-section="pac" data-cat="condicoes">
                         <div class="tool-card h-100">
-                            <a class="btn-med-custom" href="Pacientes/dieta-cardiovascular.html" title="Ferramenta interativa para entender tudo sobre dietas na medicina">
-                                Tudo o que você precisa saber sobre dietas dentro da medicina!
+                            <span class="cat-tag cat-condicoes"><i class="fas fa-heart"></i>Condições Cardiológicas</span>
+                            <a class="btn-med-custom" href="Pacientes/sinais-alarme-cardiologico.html" title="Emergências e urgências cardiológicas: sinais de alarme">
+                                Quais os sinais de alarme mais importantes e o que fazer se acontecerem?
                             </a>
-                            <p class="small text-black-50 mt-3 mb-0">
-                                Entenda de uma vez por todas quais os tipos de dieta realmente estudados pela ciência, quais tem benefício real e os riscos das dietas da "Moda"!
-                            </p>
-                            <span class="badge"> Dietas da moda? Que tal, dieta com evidência? </span>
+                            <p class="small text-black-50 mt-3 mb-0">Informações completas sobre emergências e urgências cardiológicas mais prevalentes. Proteja sua família!</p>
+                            <span class="badge">Utilidade pública!</span>
                         </div>
                     </div>
 
-                    <div class="col-md-6 reveal">
+                    <div class="col-md-6 tool-item reveal" data-section="pac" data-cat="condicoes">
                         <div class="tool-card h-100">
-                            <a class="btn-med-custom" href="Pacientes/drogas-risco-cardiovascular.html" title="Ferramenta interativa para entender tudo sobre drogas lícitas ou ilícitas e seu risco para sua saúde">
-                                Tudo o que você precisa saber sobre drogas ilícitas e lícitas e sua relação com a sua saúde! 
-                            </a>
-                            <p class="small text-black-50 mt-3 mb-0">
-                                Enteda o efeito do álcool, cigarro, maconha e diversas outras substâncias na sua saúde. Existe quantidade segura? Melhor clicar e ler!
-                            </p>
-                            <span class="badge"> Existe dose segura de álcool? </span>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 reveal">
-                        <div class="tool-card h-100">
-                            <a class="btn-med-custom" href="Pacientes/guia-medicamentos-cardiologicos.html" title="Ferramenta interativa sobre as drogas mais usadas na cardiologia">
-                                Simplesmente o manual mais completo de remédidos da cardiologia, para pacientes, do mundo!
-                            </a>
-                            <p class="small text-black-50 mt-3 mb-0">
-                                Você sabe o por quê está tomando seus remédios? Sabe explicar os efeitos colaterais e o que ficar de olho ao estar fazendo uso deles? Se você quer saber, clique aqui!
-                            </p>
-                            <span class="badge"> Todo paciente tem de saber o porquê toma tal medicamento. Você sabe? </span>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 reveal">
-                        <div class="tool-card h-100">
-                            <a class="btn-med-custom" href="Pacientes/obesidade-sindrome-metabolica.html" title="Ferramenta interativa para entender os riscos, patofisiologia e até tratamento da obesidade!">
-                                Única ferramenta do mundo que permite a você entender, sem firulas, a doença obesidade e suas implicações clínicas.
-                            </a>
-                            <p class="small text-black-50 mt-3 mb-0">
-                                Guia completo para que conscientização a respeito da epidemia global de obesidade no mundo, e como evitá-la!
-                            </p>
-                            <span class="badge"> Décadas de conhecimento condensadas para você! </span>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 reveal">
-                        <div class="tool-card h-100">
-                            <a class="btn-med-custom" href="Pacientes/sinais-alarme-cardiologico.html" title="Ferramenta interativa para saber como lidar com as emergências cardiológicas mais comunes">
-                                Quais os sinais de alarme mais importantes a saber e o que fazer se eles acontecerem?
-                            </a>
-                            <p class="small text-black-50 mt-3 mb-0">
-                                Clique aqui para informações completas e detalhadas sobre as emergências e urgências cardiológicas mais prevalentes e proteja sua família!
-                            </p>
-                            <span class="badge"> Utilidade pública! </span>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 reveal">
-                        <div class="tool-card h-100">
-                            <a class="btn-med-custom" href="Pacientes/autoimune_cardiovascular.html" title="Ferramenta interativa para saber entender a relação de doenças autoimune e a saúde cardiovascular">
-                                O que lúpus, artrite reumatóide, psoríase e hipotireoidismo tem a ver com o coração?
-                            </a>
-                            <p class="small text-black-50 mt-3 mb-0">
-                                Clique aqui para entender porque doenças autoimunes tem relação direta com a sua saúde cardiovascular
-                            </p>
-                            <span class="badge"> Com análise das drogas imunossupressoras! </span>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 reveal">
-                        <div class="tool-card h-100">
-                            <a class="btn-med-custom" href="Pacientes/cafe-coracao.html" title="Ferramenta interativa para entender sobre o efeitos dos estimulantes na saúde cardiovascular">
-                                Café faz mal? Energético faz mal? Chá faz mal?
-                            </a>
-                            <p class="small text-black-50 mt-3 mb-0">
-                                Clique aqui para entender de uma vez por todas se você pode ou não tomar café e se o saboooor energético faz mal pra você!
-                            </p>
-                            <span class="badge"> "Redbull pode te dar mais que asas" </span>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 reveal">
-                        <div class="tool-card h-100">
-                            <a class="btn-med-custom" href="Pacientes/diabetes-doenca-cardiovascular.html" title="Ferramenta interativa para entender como diabetes se relaciona diretamente com doença cardiovascular">
+                            <span class="cat-tag cat-condicoes"><i class="fas fa-heart"></i>Condições Cardiológicas</span>
+                            <a class="btn-med-custom" href="Pacientes/diabetes-doenca-cardiovascular.html" title="Diabetes e doença cardiovascular">
                                 Por que diabetes e o coração andam tão juntos?
                             </a>
-                            <p class="small text-black-50 mt-3 mb-0">
-                                Clique aqui para informações completas e detalhadas sobre a relação intrínseca de todos os tipos de diabetes com a sua saúde cardiovascular!
-                            </p>
-                            <span class="badge"> Coração e pâncreas nunca estiveram tão juntos! </span>
+                            <p class="small text-black-50 mt-3 mb-0">Informações completas sobre a relação intrínseca de todos os tipos de diabetes com a sua saúde cardiovascular!</p>
+                            <span class="badge">Coração e pâncreas nunca estiveram tão juntos!</span>
                         </div>
                     </div>
 
-                    <div class="col-md-6 reveal">
+                    <!-- ─ MEDICAMENTOS ────────────────────────── -->
+                    <div class="col-md-6 tool-item reveal" data-section="pac" data-cat="meds">
                         <div class="tool-card h-100">
-                            <a class="btn-med-custom" href="Pacientes/eaa-risco-cardiovascular.html" title="Ferramenta interativa para entender tudo sobre esteroides anabolizantes e sua relação com a saúde cardiovascular.">
-                                Todo anabolizante faz mal? Existe dose segura? Depois que parar de usar, volta tudo ao normal?
+                            <span class="cat-tag cat-meds"><i class="fas fa-pills"></i>Medicamentos</span>
+                            <a class="btn-med-custom" href="Pacientes/guia-medicamentos-cardiologicos.html" title="Manual de medicamentos cardiológicos para pacientes">
+                                Simplesmente o manual mais completo de remédios da cardiologia para pacientes!
                             </a>
-                            <p class="small text-black-50 mt-3 mb-0">
-                                Clique aqui para tirar todas as suas dúvidas sobre anabolizantes e a sua saúde cardiovascular.
-                            </p>
-                            <span class="badge"> Quem vê shape não vê coração! </span>
+                            <p class="small text-black-50 mt-3 mb-0">Você sabe por que está tomando seus remédios? Sabe os efeitos colaterais? Se quer saber, clique aqui!</p>
+                            <span class="badge">Todo paciente tem de saber o porquê toma tal medicamento. Você sabe?</span>
                         </div>
                     </div>
 
-                    <div class="col-md-6 reveal">
+                    <div class="col-md-6 tool-item reveal" data-section="pac" data-cat="meds">
                         <div class="tool-card h-100">
-                            <a class="btn-med-custom" href="Pacientes/humor-cardiovascular.html" title="Ferramenta interativa para entender a relação não muito conhecida entre saúde mental e coração">
-                                Saúde mental nunca esteve tão próxima da saúde do seu coração.
-                            </a>
-                            <p class="small text-black-50 mt-3 mb-0">
-                                Clique aqui para aprender porque depressão, ansiedade, bipolaridade e outras, aumentam o seu risco cardiovascular de maneira significativa!
-                            </p>
-                            <span class="badge"> Saúde mental e coração, tudo a ver </span>
-                        </div>
-                    </div>
-
-                     <div class="col-md-6 reveal">
-                        <div class="tool-card h-100">
-                            <a class="btn-med-custom" href="Pacientes/medicamentos-otc-cardio.html" title="Ferramenta interativa para entender que não é porque não precisa de receita que não faz mal.">
+                            <span class="cat-tag cat-meds"><i class="fas fa-pills"></i>Medicamentos</span>
+                            <a class="btn-med-custom" href="Pacientes/medicamentos-otc-cardio.html" title="Medicamentos sem receita e riscos cardiovasculares">
                                 Remédio sem receita na farmácia é seguro. É mesmo?
                             </a>
-                            <p class="small text-black-50 mt-3 mb-0">
-                                Clique aqui para saber que nem tudo que você compra sem receita não é isento de riscos ao seu coração.
-                            </p>
-                            <span class="badge"> Hmmm ibuprofeno em promoção! </span>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-6 reveal">
-                        <div class="tool-card h-100">
-                            <a class="btn-med-custom" href="Pacientes/periodicolucas.html" title="Ferramenta interativa para entender que não há check up, há exame periódico.">
-                                Será que aqueles 37 exames que te pediram, precisava mesmo?
-                            </a>
-                            <p class="small text-black-50 mt-3 mb-0">
-                                Clique aqui para aprender que nem tudo é exame, é ouro.
-                            </p>
-                            <span class="badge"> Cuidado, você pode aprender muito clicando aqui. </span>
+                            <p class="small text-black-50 mt-3 mb-0">Nem tudo que você compra sem receita é isento de riscos ao seu coração.</p>
+                            <span class="badge">Hmmm, ibuprofeno em promoção!</span>
                         </div>
                     </div>
 
+                    <!-- ─ ESTILO DE VIDA ──────────────────────── -->
+                    <div class="col-md-6 tool-item reveal" data-section="pac" data-cat="estilo">
+                        <div class="tool-card h-100">
+                            <span class="cat-tag cat-estilo"><i class="fas fa-dumbbell"></i>Estilo de Vida</span>
+                            <a class="btn-med-custom" href="Pacientes/atividade-fisica-cardiovascular.html" title="Atividade física e saúde cardiovascular">
+                                Ferramenta interativa para aprender tudo sobre atividade física
+                            </a>
+                            <p class="small text-black-50 mt-3 mb-0">Entenda a importância, o que tem e o que não tem evidência, o que fazer e o que não fazer em relação à atividade física!</p>
+                            <span class="badge">Informações que você não encontraria em nenhum outro lugar!</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 tool-item reveal" data-section="pac" data-cat="estilo">
+                        <div class="tool-card h-100">
+                            <span class="cat-tag cat-estilo"><i class="fas fa-dumbbell"></i>Estilo de Vida</span>
+                            <a class="btn-med-custom" href="Pacientes/dieta-cardiovascular.html" title="Dietas e saúde cardiovascular">
+                                Tudo o que você precisa saber sobre dietas dentro da medicina!
+                            </a>
+                            <p class="small text-black-50 mt-3 mb-0">Quais tipos de dieta são realmente estudados pela ciência, quais têm benefício real e os riscos das dietas da "Moda"!</p>
+                            <span class="badge">Dietas da moda? Que tal, dieta com evidência?</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 tool-item reveal" data-section="pac" data-cat="estilo">
+                        <div class="tool-card h-100">
+                            <span class="cat-tag cat-estilo"><i class="fas fa-dumbbell"></i>Estilo de Vida</span>
+                            <a class="btn-med-custom" href="Pacientes/drogas-risco-cardiovascular.html" title="Drogas lícitas e ilícitas e risco cardiovascular">
+                                Tudo o que você precisa saber sobre drogas ilícitas e lícitas e sua relação com a sua saúde!
+                            </a>
+                            <p class="small text-black-50 mt-3 mb-0">Entenda o efeito do álcool, cigarro, maconha e diversas outras substâncias. Existe quantidade segura?</p>
+                            <span class="badge">Existe dose segura de álcool?</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 tool-item reveal" data-section="pac" data-cat="estilo">
+                        <div class="tool-card h-100">
+                            <span class="cat-tag cat-estilo"><i class="fas fa-dumbbell"></i>Estilo de Vida</span>
+                            <a class="btn-med-custom" href="Pacientes/obesidade-sindrome-metabolica.html" title="Obesidade e síndrome metabólica">
+                                Única ferramenta do mundo que permite entender, sem firulas, a doença obesidade e suas implicações clínicas.
+                            </a>
+                            <p class="small text-black-50 mt-3 mb-0">Guia completo para conscientização sobre a epidemia global de obesidade e como evitá-la!</p>
+                            <span class="badge">Décadas de conhecimento condensadas para você!</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 tool-item reveal" data-section="pac" data-cat="estilo">
+                        <div class="tool-card h-100">
+                            <span class="cat-tag cat-estilo"><i class="fas fa-dumbbell"></i>Estilo de Vida</span>
+                            <a class="btn-med-custom" href="Pacientes/eaa-risco-cardiovascular.html" title="Anabolizantes e risco cardiovascular">
+                                Todo anabolizante faz mal? Existe dose segura? Depois que parar, volta ao normal?
+                            </a>
+                            <p class="small text-black-50 mt-3 mb-0">Tire todas as suas dúvidas sobre anabolizantes e a sua saúde cardiovascular.</p>
+                            <span class="badge">Quem vê shape não vê coração!</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 tool-item reveal" data-section="pac" data-cat="estilo">
+                        <div class="tool-card h-100">
+                            <span class="cat-tag cat-estilo"><i class="fas fa-dumbbell"></i>Estilo de Vida</span>
+                            <a class="btn-med-custom" href="Pacientes/cafe-coracao.html" title="Café, energéticos e estimulantes: efeitos cardiovasculares">
+                                Café faz mal? Energético faz mal? Chá faz mal?
+                            </a>
+                            <p class="small text-black-50 mt-3 mb-0">Entenda de uma vez por todas se você pode ou não tomar café e se o energético faz mal pra você!</p>
+                            <span class="badge">"Redbull pode te dar mais que asas"</span>
+                        </div>
+                    </div>
+
+                    <!-- ─ CORAÇÃO & OUTROS SISTEMAS ──────────── -->
+                    <div class="col-md-6 tool-item reveal" data-section="pac" data-cat="sistemas">
+                        <div class="tool-card h-100">
+                            <span class="cat-tag cat-sistemas"><i class="fas fa-network-wired"></i>Coração &amp; Outros Sistemas</span>
+                            <a class="btn-med-custom" href="Pacientes/autoimune_cardiovascular.html" title="Doenças autoimunes e saúde cardiovascular">
+                                O que lúpus, artrite reumatóide, psoríase e hipotireoidismo têm a ver com o coração?
+                            </a>
+                            <p class="small text-black-50 mt-3 mb-0">Entenda porque doenças autoimunes têm relação direta com a sua saúde cardiovascular.</p>
+                            <span class="badge">Com análise das drogas imunossupressoras!</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 tool-item reveal" data-section="pac" data-cat="sistemas">
+                        <div class="tool-card h-100">
+                            <span class="cat-tag cat-sistemas"><i class="fas fa-network-wired"></i>Coração &amp; Outros Sistemas</span>
+                            <a class="btn-med-custom" href="Pacientes/humor-cardiovascular.html" title="Saúde mental e coração">
+                                Saúde mental nunca esteve tão próxima da saúde do seu coração.
+                            </a>
+                            <p class="small text-black-50 mt-3 mb-0">Aprenda porque depressão, ansiedade, bipolaridade e outras condições aumentam o risco cardiovascular!</p>
+                            <span class="badge">Saúde mental e coração, tudo a ver</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 tool-item reveal" data-section="pac" data-cat="sistemas">
+                        <div class="tool-card h-100">
+                            <span class="cat-tag cat-sistemas"><i class="fas fa-network-wired"></i>Coração &amp; Outros Sistemas</span>
+                            <a class="btn-med-custom" href="Pacientes/figado-coracao.html" title="Doenças hepáticas e coração">
+                                Qual a relação da doença hepática e a doença cardíaca?
+                            </a>
+                            <p class="small text-black-50 mt-3 mb-0">Clique aqui para entender porque o fígado é o órgão sólido mais importante do corpo.</p>
+                            <span class="badge">Não faça seu fígado trabalhar dobrado!</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 tool-item reveal" data-section="pac" data-cat="sistemas">
+                        <div class="tool-card h-100">
+                            <span class="cat-tag cat-sistemas"><i class="fas fa-network-wired"></i>Coração &amp; Outros Sistemas</span>
+                            <a class="btn-med-custom" href="Pacientes/pele-cardiovascular.html" title="Doenças de pele e coração">
+                                A pele não tem nada a ver com o coração... Ou será que tem?!
+                            </a>
+                            <p class="small text-black-50 mt-3 mb-0">Aprenda que o maior órgão do corpo (pele) também toca no coração.</p>
+                            <span class="badge">Aposto que você não sabia dessa!</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 tool-item reveal" data-section="pac" data-cat="sistemas">
+                        <div class="tool-card h-100">
+                            <span class="cat-tag cat-sistemas"><i class="fas fa-network-wired"></i>Coração &amp; Outros Sistemas</span>
+                            <a class="btn-med-custom" href="Pacientes/pulmo-cardio.html" title="Doenças pulmonares e coração">
+                                Qual a relação da doença pulmonar e o coração?
+                            </a>
+                            <p class="small text-black-50 mt-3 mb-0">Aprenda que o pulmão está mais perto do coração, não só fisicamente.</p>
+                            <span class="badge">Pulmão é tão chique que tem uma hipertensão para chamar de sua!</span>
+                        </div>
+                    </div>
 
                 </div>
             </div>
@@ -520,31 +713,38 @@
                     </p>
                 </div>
 
-                <!-- Doctor Tools -->
-                <div class="row g-4 mt-4 reveal-stagger">
+                <!-- Doctor Tools: Categorizados -->
 
-                    <div class="col-md-6 col-lg-4 reveal">
-                        <div class="tool-card h-100">
-                            <a class="btn-med-custom" href="Medicos/paramedicos.html" title="Artigos e análises para médicos">
-                                Análises críticas de artigos
-                            </a>
-                            <p class="small text-black-50 mt-3 mb-0">Textos de opinião sobre cardiologia. Sempre com a medicina baseada em evidências como alicerce principal.</p>
-                            <span class="badge">Um artigo novo por semana!</span>
-                        </div>
-                    </div>
+                <!-- Filter pills -->
+                <div class="d-flex flex-wrap justify-content-center gap-2 mt-5 mb-4"
+                     aria-label="Filtrar por categoria">
+                    <button class="tool-filter-btn active" data-section="med" data-cat="all">
+                        <i class="fas fa-th-large"></i> Todos <span class="filter-count">22</span>
+                    </button>
+                    <button class="tool-filter-btn" data-section="med" data-cat="calc">
+                        <i class="fas fa-calculator"></i> Calculadoras &amp; Scores <span class="filter-count">5</span>
+                    </button>
+                    <button class="tool-filter-btn" data-section="med" data-cat="coronaria">
+                        <i class="fas fa-heart-pulse"></i> Intervenção Coronária <span class="filter-count">9</span>
+                    </button>
+                    <button class="tool-filter-btn" data-section="med" data-cat="ecg">
+                        <i class="fas fa-wave-square"></i> ECG <span class="filter-count">2</span>
+                    </button>
+                    <button class="tool-filter-btn" data-section="med" data-cat="estrutural">
+                        <i class="fas fa-heart-circle-plus"></i> Cardiologia Estrutural <span class="filter-count">3</span>
+                    </button>
+                    <button class="tool-filter-btn" data-section="med" data-cat="educ">
+                        <i class="fas fa-book-medical"></i> Educação &amp; Referência <span class="filter-count">3</span>
+                    </button>
+                </div>
 
-                    <div class="col-md-6 col-lg-4 reveal">
-                        <div class="tool-card h-100">
-                            <a class="btn-med-custom" href="Manual/manual_hemodinamica.html" title="Ebook de hemodinâmica para residentes">
-                                <strong>Ebook:</strong> Hemodinâmica — Evidências
-                            </a>
-                            <p class="small text-black-50 mt-3">Acesso sem custo, baseado nas melhores referências e sempre atualizado!</p>
-                            <span class="badge">Versão 2.0 em breve — Angioplastia e estruturais!</span>
-                        </div>
-                    </div>
+                <!-- Grid de ferramentas -->
+                <div class="row g-4" id="med-tool-grid">
 
-                    <div class="col-md-6 col-lg-4 reveal">
+                    <!-- ─ CALCULADORAS & SCORES ───────────────── -->
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="calc">
                         <div class="tool-card h-100">
+                            <span class="cat-tag cat-calc"><i class="fas fa-calculator"></i>Calculadoras &amp; Scores</span>
                             <a class="btn-med-custom" href="catedireito/catedireitolucas.html" title="Calculadora de cateterismo direito">
                                 Calculadora: Cateterismo Direito
                             </a>
@@ -553,103 +753,238 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-lg-4 mx-auto reveal">
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="calc">
                         <div class="tool-card h-100">
+                            <span class="cat-tag cat-calc"><i class="fas fa-calculator"></i>Calculadoras &amp; Scores</span>
                             <a class="btn-med-custom" href="calculadorachoque/hemodynamic_choque.html" title="Calculadora para manejo de choque">
-                                Calculadora: Manejo de choque
+                                Calculadora: Manejo de Choque
                             </a>
                             <p class="small text-black-50 mt-3">Cálculos hemodinâmicos para otimizar o manejo do paciente chocado.</p>
                             <span class="badge">Em breve — Estimativa de PVC!</span>
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-lg-4 mx-auto reveal">
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="calc">
                         <div class="tool-card h-100">
-                            <a class="btn-med-custom" href="calculadora-risco-cv/index.html" title="Calculadora do Risco Cardiovascular Completa">
-                                Calculadora de Risco Cardiovascular: GloboRisk, ASCVD e PREVENT em um único lugar.
+                            <span class="cat-tag cat-calc"><i class="fas fa-calculator"></i>Calculadoras &amp; Scores</span>
+                            <a class="btn-med-custom" href="calculadora-risco-cv/index.html" title="Calculadora de Risco Cardiovascular: GloboRisk, ASCVD e PREVENT">
+                                Risco CV: GloboRisk, ASCVD e PREVENT em um único lugar
                             </a>
-                            <p class="small text-black-50 mt-3"> A única no mundo com os três scores simultaneamente em português!</p>
-                            <span class="badge"> Inédita! </span>
+                            <p class="small text-black-50 mt-3">A única no mundo com os três scores simultaneamente em português!</p>
+                            <span class="badge">Inédita!</span>
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-lg-4 mx-auto reveal">
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="calc">
                         <div class="tool-card h-100">
-                            <a class="btn-med-custom" href="Medicos/dapt-pos-pci-sca.html" title="Calculadora de duração de DAPT">
-                                Calculadora que integra todas as ferramentas atuais para definição do tempo de DAPT após SCA.
+                            <span class="cat-tag cat-calc"><i class="fas fa-calculator"></i>Calculadoras &amp; Scores</span>
+                            <a class="btn-med-custom" href="Medicos/dapt-pos-pci-sca.html" title="DAPT pós-PCI/SCA: PRECISE-DAPT, ARC-HBR e DAPT Score">
+                                DAPT pós-PCI/SCA: PRECISE-DAPT, ARC-HBR e DAPT Score integrados
                             </a>
-                            <p class="small text-black-50 mt-3"> A única no mundo com intregração de PRECISE-DAPT, ARC-HBR e DAPT Score em um só lugar</p>
-                            <span class="badge"> Inédita! </span>
+                            <p class="small text-black-50 mt-3">A única no mundo com integração de PRECISE-DAPT, ARC-HBR e DAPT Score em um só lugar.</p>
+                            <span class="badge">Inédita!</span>
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-lg-4 mx-auto reveal">
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="calc">
                         <div class="tool-card h-100">
-                            <a class="btn-med-custom" href="Medicos/bifurcacao-stent.html" title="Algoritmo decisório para tratamento de bifurcações">
-                                Algoritmo interativo para definir a melhor estratégia para tratamento de bifurcações coronarianas.
+                            <span class="cat-tag cat-calc"><i class="fas fa-calculator"></i>Calculadoras &amp; Scores</span>
+                            <a class="btn-med-custom" href="Medicos/calculadora_intubacao.html" title="Calculadora de doses e seleção de tubo para IOT">
+                                IOT: algoritmo para seleção de tubo + doses por peso em tempo real
                             </a>
-                            <p class="small text-black-50 mt-3"> Único algoritmo interativo do mundo!</p>
-                            <span class="badge"> Inédita! </span>
+                            <p class="small text-black-50 mt-3">Tudo em um só lugar.</p>
+                            <span class="badge">Única com algoritmo para tubo e dose de drogas em tempo real</span>
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-lg-4 mx-auto reveal">
+                    <!-- ─ INTERVENÇÃO CORONÁRIA ───────────────── -->
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="coronaria">
                         <div class="tool-card h-100">
-                            <a class="btn-med-custom" href="quiz/index.html" title="Questões para cardiologistas intervencionistas ou curiosos!">
-                                Banco de questões com referências e explicações. Perfeito para seu estudo!
+                            <span class="cat-tag cat-coronaria"><i class="fas fa-heart-pulse"></i>Intervenção Coronária</span>
+                            <a class="btn-med-custom" href="Medicos/heart_team_calculator.html" title="Heart Team: PCI vs CABG na doença coronariana estável">
+                                Heart Team: PCI vs. CABG — algoritmo interativo para DAC estável
                             </a>
-                            <p class="small text-black-50 mt-3"> Questões comentadas das melhores referências bibliográficas.</p>
-                            <span class="badge"> Mais de 1000 perguntas comentadas! </span>
+                            <p class="small text-black-50 mt-3">Único algoritmo interativo do mundo!</p>
+                            <span class="badge">Geração de gráfico de desfechos em tempo real!</span>
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-lg-4 mx-auto reveal">
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="coronaria">
                         <div class="tool-card h-100">
-                            <a class="btn-med-custom" href="Medicos/calculadora_intubacao.html" title="Calculadora de doses e muito mais para IOT">
-                                Algoritmo para escolha do tubo e calculadora baseado no peso do paciente, para procedimento mais seguro!
+                            <span class="cat-tag cat-coronaria"><i class="fas fa-heart-pulse"></i>Intervenção Coronária</span>
+                            <a class="btn-med-custom" href="Medicos/bifurcacao-stent.html" title="Algoritmo decisório para tratamento de bifurcações coronarianas">
+                                Algoritmo decisório: melhor estratégia para bifurcações coronarianas
                             </a>
-                            <p class="small text-black-50 mt-3"> Tudo em um só lugar.</p>
-                            <span class="badge"> Única com algoritmo para tubo e dose de drogas em tempo real </span>
+                            <p class="small text-black-50 mt-3">Único algoritmo interativo do mundo!</p>
+                            <span class="badge">Inédita!</span>
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-lg-4 mx-auto reveal">
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="coronaria">
                         <div class="tool-card h-100">
-                            <a class="btn-med-custom" href="Medicos/heart_team_calculator.html" title="Algoritmo decisório para escolha PCI e CABG">
-                                Algoritmo interativo para definir a melhor estratégia para tratamento de doença coronariana estável!
+                            <span class="cat-tag cat-coronaria"><i class="fas fa-heart-pulse"></i>Intervenção Coronária</span>
+                            <a class="btn-med-custom" href="Medicos/bifurcacao-coronariana.html" title="Step-by-step técnicas de bifurcação coronariana">
+                                Step-by-step: técnicas de bifurcação coronariana com 2 stents
                             </a>
-                            <p class="small text-black-50 mt-3"> Único algoritmo interativo do mundo!</p>
-                            <span class="badge"> Geração de gráfico de desfechos em tempo real! </span>
+                            <p class="small text-black-50 mt-3">Único algoritmo interativo do mundo!</p>
+                            <span class="badge">Step-by-step das técnicas que você precisa entender!</span>
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-lg-4 mx-auto reveal">
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="coronaria">
                         <div class="tool-card h-100">
-                            <a class="btn-med-custom" href="Medicos/sos_hemodinamica.html" title="Algoritmo decisório lidar com complicações do laboratório de hemodinâmica">
-                                Algoritmo interativo para se nortear nas mais temidas complicações intraprocedimentos no cath lab!
+                            <span class="cat-tag cat-coronaria"><i class="fas fa-heart-pulse"></i>Intervenção Coronária</span>
+                            <a class="btn-med-custom" href="Medicos/intravascular-imaging-atlas.html" title="IVUS e OCT: algoritmo e calculadora interativa">
+                                Imagem Intravascular (IVUS/OCT): algoritmo e calculadora interativa
                             </a>
-                            <p class="small text-black-50 mt-3"> Único algoritmo interativo do mundo!</p>
-                            <span class="badge"> Doses de drogas, classificação Ellis e muito mais </span>
+                            <p class="small text-black-50 mt-3">Único algoritmo interativo do mundo!</p>
+                            <span class="badge">Quiz, indicações, tabelas comparativas e muito mais!</span>
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-lg-4 mx-auto reveal">
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="coronaria">
                         <div class="tool-card h-100">
-                            <a class="btn-med-custom" href="Medicos/intravascular-imaging-atlas.html" title="Algoritmo e calculadora para otimizar o uso de imagem intravscular no laboratório de hemodinâmica">
-                                Algoritmo e calculadora interativa para aproveitar ao máximo a utilização de imagem intravascular
+                            <span class="cat-tag cat-coronaria"><i class="fas fa-heart-pulse"></i>Intervenção Coronária</span>
+                            <a class="btn-med-custom" href="Medicos/fisio-coronariana.html" title="Fisiologia coronariana e microvascular">
+                                Fisiologia Coronariana e Microvascular: ferramenta interativa
                             </a>
-                            <p class="small text-black-50 mt-3"> Único algoritmo interativo do mundo!</p>
-                            <span class="badge"> Quiz, indicações, tabelas comparativas e muito mais! </span>
+                            <p class="small text-black-50 mt-3">O tema que mais cresce na pesquisa isquêmica coronária.</p>
+                            <span class="badge">Entenda tudo sobre fisiologia coronariana!</span>
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-lg-4 mx-auto reveal">
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="coronaria">
                         <div class="tool-card h-100">
-                            <a class="btn-med-custom" href="Medicos/probabilidade-pre-teste-dor-toracica.html" title="Algoritmo e calculadora para avaliação de pacientes com dor torácica aguda ou crônica">
-                                Ferramenta criada para cálculo de probabilidade pré teste, tanto na emergência, quanto no consultório
+                            <span class="cat-tag cat-coronaria"><i class="fas fa-heart-pulse"></i>Intervenção Coronária</span>
+                            <a class="btn-med-custom" href="Medicos/probabilidade-pre-teste-dor-toracica.html" title="Probabilidade pré-teste em dor torácica: emergência e consultório">
+                                Probabilidade pré-teste na dor torácica: emergência e consultório
                             </a>
-                            <p class="small text-black-50 mt-3"> Único algoritmo interativo do mundo!</p>
-                            <span class="badge"> Inédito! Só tem aqui! </span>
+                            <p class="small text-black-50 mt-3">Único algoritmo interativo do mundo!</p>
+                            <span class="badge">Inédito! Só tem aqui!</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="coronaria">
+                        <div class="tool-card h-100">
+                            <span class="cat-tag cat-coronaria"><i class="fas fa-heart-pulse"></i>Intervenção Coronária</span>
+                            <a class="btn-med-custom" href="Medicos/sos_hemodinamica.html" title="SOS Hemodinâmica: complicações no cath lab">
+                                SOS Hemodinâmica: complicações intraprocedimento no cath lab
+                            </a>
+                            <p class="small text-black-50 mt-3">Único algoritmo interativo do mundo!</p>
+                            <span class="badge">Doses de drogas, classificação Ellis e muito mais</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="coronaria">
+                        <div class="tool-card h-100">
+                            <span class="cat-tag cat-coronaria"><i class="fas fa-heart-pulse"></i>Intervenção Coronária</span>
+                            <a class="btn-med-custom" href="Medicos/cateterismo-cardiaco-guia-medico.html" title="Cateterismo cardíaco: indicação, preparo e contraindicação">
+                                Cateterismo cardíaco: quando solicitar, preparar e contraindicar
+                            </a>
+                            <p class="small text-black-50 mt-3">Único algoritmo interativo do mundo!</p>
+                            <span class="badge">Guia completo e atualizado!</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="coronaria">
+                        <div class="tool-card h-100">
+                            <span class="cat-tag cat-coronaria"><i class="fas fa-heart-pulse"></i>Intervenção Coronária</span>
+                            <a class="btn-med-custom" href="Medicos/curvas_pressao.html" title="Curvas de pressão intracavitárias cardíacas e pulmonar">
+                                Curvas de pressão intracavitárias: cardíacas e pulmonar
+                            </a>
+                            <p class="small text-black-50 mt-3">Único algoritmo interativo do mundo!</p>
+                            <span class="badge">Com representação das curvas!</span>
+                        </div>
+                    </div>
+
+                    <!-- ─ ECG ─────────────────────────────────── -->
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="ecg">
+                        <div class="tool-card h-100">
+                            <span class="cat-tag cat-ecg"><i class="fas fa-wave-square"></i>ECG</span>
+                            <a class="btn-med-custom" href="Medicos/ecg-interpretacao.html" title="ECG: interpretação pragmática e sistematizada">
+                                ECG: interpretação pragmática e sistematizada em repouso
+                            </a>
+                            <p class="small text-black-50 mt-3">ECG é um estudo constante e consistente na vida do cardiologista.</p>
+                            <span class="badge">Tenha sempre à mão!</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="ecg">
+                        <div class="tool-card h-100">
+                            <span class="cat-tag cat-ecg"><i class="fas fa-wave-square"></i>ECG</span>
+                            <a class="btn-med-custom" href="Medicos/ecg-sca.html" title="ECG em SCA: oclusão arterial aguda e indicação de cate urgente">
+                                ECG em SCA: oclusão arterial aguda e indicação de cate urgente
+                            </a>
+                            <p class="small text-black-50 mt-3">Oclusão arterial aguda? CATE de urgência ou emergência?</p>
+                            <span class="badge">Tire as dúvidas frequentes aqui!</span>
+                        </div>
+                    </div>
+
+                    <!-- ─ CARDIOLOGIA ESTRUTURAL ──────────────── -->
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="estrutural">
+                        <div class="tool-card h-100">
+                            <span class="cat-tag cat-estrutural"><i class="fas fa-heart-circle-plus"></i>Cardiologia Estrutural</span>
+                            <a class="btn-med-custom" href="Medicos/tavi-guia-completo.html" title="TAVI: tratamento percutâneo da estenose aórtica">
+                                TAVI: guia completo para tratamento percutâneo da estenose aórtica
+                            </a>
+                            <p class="small text-black-50 mt-3">Evidência de qualidade e algoritmo interativo!</p>
+                            <span class="badge">O procedimento estrutural mais realizado no mundo.</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="estrutural">
+                        <div class="tool-card h-100">
+                            <span class="cat-tag cat-estrutural"><i class="fas fa-heart-circle-plus"></i>Cardiologia Estrutural</span>
+                            <a class="btn-med-custom" href="Medicos/valvopatia_mitral_percutanea.html" title="Valvopatia mitral: tratamento percutâneo">
+                                Valvopatia Mitral Percutânea: complexidades e desafios do procedimento
+                            </a>
+                            <p class="small text-black-50 mt-3">Entenda as complexidades e desafios do procedimento.</p>
+                            <span class="badge">Esteja pronto para o futuro da intervenção estrutural.</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="estrutural">
+                        <div class="tool-card h-100">
+                            <span class="cat-tag cat-estrutural"><i class="fas fa-heart-circle-plus"></i>Cardiologia Estrutural</span>
+                            <a class="btn-med-custom" href="Medicos/valvopatia-tricuspide-percutanea.html" title="Valvopatia tricúspide: do reparo ao TricValve">
+                                Valvopatia Tricúspide Percutânea: do reparo ao TricValve
+                            </a>
+                            <p class="small text-black-50 mt-3">Desde reparo a TricValve, entenda tudo.</p>
+                            <span class="badge">De indicações a complicações, página completa e atualizada.</span>
+                        </div>
+                    </div>
+
+                    <!-- ─ EDUCAÇÃO & REFERÊNCIA ───────────────── -->
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="educ">
+                        <div class="tool-card h-100">
+                            <span class="cat-tag cat-educ"><i class="fas fa-book-medical"></i>Educação &amp; Referência</span>
+                            <a class="btn-med-custom" href="Medicos/paramedicos.html" title="Análises críticas de artigos para médicos">
+                                Análises críticas de artigos
+                            </a>
+                            <p class="small text-black-50 mt-3 mb-0">Textos de opinião sobre cardiologia. Sempre com a medicina baseada em evidências como alicerce principal.</p>
+                            <span class="badge">Um artigo novo por semana!</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="educ">
+                        <div class="tool-card h-100">
+                            <span class="cat-tag cat-educ"><i class="fas fa-book-medical"></i>Educação &amp; Referência</span>
+                            <a class="btn-med-custom" href="Manual/manual_hemodinamica.html" title="Ebook: Hemodinâmica e Evidências">
+                                <strong>Ebook:</strong> Hemodinâmica — Evidências
+                            </a>
+                            <p class="small text-black-50 mt-3">Acesso sem custo, baseado nas melhores referências e sempre atualizado!</p>
+                            <span class="badge">Versão 2.0 em breve — Angioplastia e estruturais!</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="educ">
+                        <div class="tool-card h-100">
+                            <span class="cat-tag cat-educ"><i class="fas fa-book-medical"></i>Educação &amp; Referência</span>
+                            <a class="btn-med-custom" href="quiz/index.html" title="Banco de questões comentadas de cardiologia intervencionista">
+                                Banco de questões comentadas: mais de 1000 perguntas com referências
+                            </a>
+                            <p class="small text-black-50 mt-3">Questões comentadas das melhores referências bibliográficas.</p>
+                            <span class="badge">Mais de 1000 perguntas comentadas!</span>
                         </div>
                     </div>
 
@@ -719,7 +1054,7 @@
                         <h3 class="text-uppercase m-0">Email</h3>
                         <hr class="my-4 mx-auto" />
                         <div class="small text-black-50">
-                            <a href="mailto:dr.cardio.lucas@gmail.com" title="Enviar email">dr.cardio.lucas@gmail.com</a>
+                            <a href="/cdn-cgi/l/email-protection#c2a6b0eca1a3b0a6abadecaeb7a1a3b182a5afa3abaeeca1adaf" title="Enviar email"><span class="__cf_email__" data-cfemail="7a1e0854191b081e131554160f191b093a1d171b131654191517">[email&#160;protected]</span></a>
                         </div>
                     </div>
                 </div>
@@ -768,7 +1103,7 @@
 </button>
 
 <!-- Scripts (deferred) -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" defer></script>
 <script src="js/scripts.js" defer></script>
 <script>
@@ -786,12 +1121,43 @@
   if (saved !== null) {
     applyMode(saved === '1');
   } else {
-    applyMode(window.matchMedia('(prefers-color-scheme: dark)').matches);
+    applyMode(false);
   }
-  if (btn) btn.addEventListener('click', function() {
+  btn.addEventListener('click', function() {
     applyMode(!document.body.classList.contains('dark-mode'));
   });
 })();
 </script>
+
+
+<script>
+// ─── Tool Category Filter ───────────────────────────────────────────────────
+function filterTools(section, cat) {
+    document.querySelectorAll('.tool-filter-btn[data-section="' + section + '"]').forEach(function(btn) {
+        btn.classList.toggle('active', btn.dataset.cat === cat);
+    });
+    document.querySelectorAll('.tool-item[data-section="' + section + '"]').forEach(function(item) {
+        item.style.display = (cat === 'all' || item.dataset.cat === cat) ? '' : 'none';
+    });
+}
+document.addEventListener('DOMContentLoaded', function() {
+    // Filter pill buttons
+    document.querySelectorAll('.tool-filter-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            filterTools(this.dataset.section, this.dataset.cat);
+        });
+    });
+    // Navbar dropdown links with data-section
+    document.querySelectorAll('.dropdown-item[data-section]').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+            var section = this.dataset.section;
+            var cat     = this.dataset.cat;
+            // Pequeno delay para a página rolar antes de filtrar
+            setTimeout(function() { filterTools(section, cat); }, 120);
+        });
+    });
+});
+</script>
+
 </body>
 </html>

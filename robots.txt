@@ -1,49 +1,160 @@
 # robots.txt — Dr. Lucas Silva — Cardiologia Intervencionista
-# https://www.lucascardio.com.br
+# https://lucascardio.com.br
+# Última atualização: Março 2026
 
-# Default access for all crawlers
+# ============================================================================
+# DEFAULT RULES FOR ALL CRAWLERS
+# ============================================================================
+
 User-agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /private/
 Disallow: /temp/
 Disallow: /cgi-bin/
-Disallow: /wp-admin/ # Block WordPress admin area
+Disallow: /wp-admin/
+Disallow: /*.pdf$ # Block direct PDF access if not needed
+Disallow: /search?
+Disallow: /tag/
+Crawl-delay: 1
 
-# Google
+# ============================================================================
+# GOOGLE CRAWLERS
+# ============================================================================
+
 User-agent: Googlebot
 Allow: /
 Crawl-delay: 0
 
-# Google Images
 User-agent: Googlebot-Image
 Allow: /
 
-# Bing
+User-agent: Googlebot-Mobile
+Allow: /
+
+# ============================================================================
+# BING CRAWLERS
+# ============================================================================
+
 User-agent: Bingbot
 Allow: /
 Crawl-delay: 1
 
-# Yandex
+User-agent: Bingbot-Mobile
+Allow: /
+
+# ============================================================================
+# OTHER SEARCH ENGINES
+# ============================================================================
+
 User-agent: Yandex
 Allow: /
 Crawl-delay: 1
 
-# Baidu
 User-agent: Baiduspider
 Allow: /
 Crawl-delay: 1
 
-# DuckDuckGo
 User-agent: DuckDuckBot
 Allow: /
 
-# Ahrefs (SEO tool)
+# ============================================================================
+# SEO ANALYSIS TOOLS (ALLOWED WITH CRAWL-DELAY)
+# ============================================================================
+
 User-agent: AhrefsBot
-Disallow: /
+Allow: /
+Crawl-delay: 2
 
-# SEMrush (SEO tool)
+User-agent: AhrefsSiteAudit
+Allow: /
+Crawl-delay: 2
+
 User-agent: SEMrushBot
+Allow: /
+Crawl-delay: 2
+
+User-agent: SEMrushBot-SA
+Allow: /
+Crawl-delay: 2
+
+User-agent: MJ12bot
+Allow: /
+Crawl-delay: 1
+
+User-agent: DotBot
+Allow: /
+Crawl-delay: 1
+
+# ============================================================================
+# SOCIAL MEDIA CRAWLERS (ALLOWED)
+# ============================================================================
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# ============================================================================
+# AI/LLM CRAWLERS (OPTIONAL - BLOCK IF YOU PREFER)
+# ============================================================================
+
+# Uncomment to block AI crawlers
+# User-agent: GPTBot
+# Disallow: /
+
+# User-agent: CCBot
+# Disallow: /
+
+# User-agent: anthropic-ai
+# Disallow: /
+
+# User-agent: Claude-Web
+# Disallow: /
+
+# ============================================================================
+# UNWANTED CRAWLERS (BLOCKED)
+# ============================================================================
+
+User-agent: MojeekBot
 Disallow: /
 
-Sitemap: https://www.lucascardio.com.br/sitemap.xml
+User-agent: PetalBot
+Disallow: /
+
+User-agent: SemrushBot-BA
+Disallow: /
+
+User-agent: SemrushBot-BLRT
+Disallow: /
+
+User-agent: AhrefsBot-Ahrefs
+Disallow: /
+
+# ============================================================================
+# SITEMAP LOCATION
+# ============================================================================
+
+Sitemap: https://lucascardio.com.br/sitemap.xml
+Sitemap: https://lucascardio.com.br/sitemap-news.xml
+
+# ============================================================================
+# CRAWL-DELAY EXPLANATION
+# ============================================================================
+# Crawl-delay: 0 = No delay (fastest crawling)
+# Crawl-delay: 1 = 1 second between requests (recommended for most)
+# Crawl-delay: 2 = 2 seconds between requests (for heavy crawlers)
+#
+# Note: These are recommendations. Crawlers may not follow them.
+# Use robots.txt to control access, not to manage server load.
+# For server load management, use .htaccess or server configuration.

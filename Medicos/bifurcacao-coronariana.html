@@ -1,0 +1,2028 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Técnicas de Bifurcação Coronariana | Dr. Lucas Silva</title>
+  <meta name="description" content="Guia interativo passo a passo das técnicas de tratamento percutâneo de bifurcações coronarianas. Provisional, DK Crush, Culotte, TAP. Baseado nas mais recentes evidências."/>
+  <meta name="author" content="Dr. Lucas Silva"/>
+  <link rel="canonical" href="https://lucascardio.com.br/Medicos/bifurcacao-coronariana.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet"/>
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Técnicas de Bifurcação Coronariana",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Web Browser",
+    "url": "https://lucascardio.com.br/Medicos/bifurcacao-coronariana.html",
+    "description": "Guia interativo passo a passo das técnicas de tratamento percutâneo de bifurcações coronarianas: Provisional, DK Crush, Culotte, TAP.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "BRL"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Dr. Lucas Silva",
+      "url": "https://lucascardio.com.br"
+    },
+    "isAccessibleForFree": true,
+    "featureList": "Técnica Provisional, DK Crush, Culotte, TAP"
+  }
+</script>
+
+  <style>
+    /* ── DESIGN TOKENS ─────────────────────────────────────────── */
+    :root {
+      --primary:            oklch(65% .18 195);
+      --primary-foreground: oklch(98% 0 0);
+      --background:         oklch(13% .018 250);
+      --foreground:         oklch(93% .01 250);
+      --card:               oklch(18.5% .018 250);
+      --card-foreground:    oklch(93% .01 250);
+      --muted:              oklch(22% .018 250);
+      --muted-foreground:   oklch(62% .02 250);
+      --border:             oklch(28% .025 250);
+      --input:              oklch(22% .02 250);
+      --destructive:        oklch(60% .22 25);
+      --secondary:          oklch(22% .022 250);
+      --accent:             oklch(24% .025 250);
+      --teal:               #046077;
+      --teal-dim:           rgba(0,211,189,.12);
+      --teal-dim2:          rgba(0,211,189,.06);
+      --amber:              oklch(82.8% .189 84.429);
+      --amber-dim:          rgba(251,191,36,.08);
+      --red:                oklch(63.7% .237 25.331);
+      --red-dim:            rgba(220,38,38,.08);
+      --green:              oklch(79.2% .209 151.711);
+      --green-dim:          rgba(134,239,172,.1);
+      --violet:             oklch(72% .18 290);
+      --violet-dim:         rgba(167,139,250,.1);
+      --radius:             0.625rem;
+      --font-sans:          'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono:          'JetBrains Mono', monospace;
+      --font-display:       'Playfair Display', Georgia, serif;
+      --sidebar-w:          260px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--background);
+      color: var(--foreground);
+      min-height: 100vh;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ───────────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(18,20,27,.9);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: .6rem;
+      text-decoration: none; color: var(--foreground);
+    }
+    .nav-brand-icon {
+      width: 28px; height: 28px; border-radius: 7px;
+      background: var(--teal); display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .nav-brand-name { font-weight: 800; font-size: .98rem; letter-spacing: -.025em; }
+    .nav-brand-name span { color: var(--teal); }
+    .nav-brand-sep { width: 1px; height: 14px; background: var(--border); margin: 0 6px; }
+    .nav-brand-sub { font-size: .7rem; font-weight: 500; color: var(--muted-foreground); }
+    .nav-actions { display: flex; align-items: center; gap: .5rem; }
+    .nav-badge {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 999px; background: var(--teal-dim);
+      color: var(--teal); border: 1px solid rgba(0,211,189,.25);
+    }
+    .nav-link {
+      font-size: .75rem; font-weight: 600; padding: 5px 12px;
+      border-radius: 8px; border: 1.5px solid var(--primary);
+      color: var(--primary); background: transparent;
+      text-decoration: none;
+      transition: background .15s, color .15s;
+      display: inline-flex; align-items: center; gap: 5px;
+    }
+    .nav-link:hover { background: var(--primary); color: #000; }
+
+    /* ── LAYOUT SHELL ──────────────────────────────────────────── */
+    .app-shell {
+      display: flex;
+      min-height: calc(100vh - 56px);
+    }
+
+    /* ── SIDEBAR ───────────────────────────────────────────────── */
+    .sidebar {
+      width: var(--sidebar-w);
+      flex-shrink: 0;
+      border-right: 1px solid var(--border);
+      background: oklch(15.5% .018 250);
+      position: sticky;
+      top: 56px;
+      height: calc(100vh - 56px);
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 1.25rem 0 2rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border) transparent;
+    }
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-track { background: transparent; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+    .sidebar-group { margin-bottom: 1.5rem; }
+    .sidebar-group-label {
+      font-size: .62rem; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--muted-foreground);
+      padding: 0 1rem 6px; font-family: var(--font-mono);
+    }
+    .sidebar-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 9px 1rem;
+      font-size: .82rem; font-weight: 500;
+      color: var(--muted-foreground);
+      cursor: pointer;
+      transition: background .12s, color .12s;
+      border-left: 3px solid transparent;
+      position: relative;
+    }
+    .sidebar-item:hover { background: var(--muted); color: var(--foreground); }
+    .sidebar-item.active {
+      background: var(--teal-dim2);
+      color: var(--teal);
+      border-left-color: var(--teal);
+      font-weight: 600;
+    }
+    .sidebar-item-icon {
+      width: 22px; height: 22px; border-radius: 5px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .9rem; flex-shrink: 0;
+      background: var(--muted);
+    }
+    .sidebar-item.active .sidebar-item-icon { background: var(--teal-dim); }
+    .sidebar-badge {
+      margin-left: auto; font-size: .62rem; font-weight: 700;
+      padding: 1px 6px; border-radius: 4px;
+      background: var(--teal-dim); color: var(--teal);
+    }
+    .sidebar-badge.amber { background: var(--amber-dim); color: var(--amber); }
+    .sidebar-badge.red   { background: var(--red-dim);   color: var(--red); }
+
+    /* ── MOBILE SIDEBAR TOGGLE ─────────────────────────────────── */
+    .mob-menu-btn {
+      display: none; background: var(--muted); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 6px 12px;
+      font-size: .8rem; font-weight: 600; color: var(--foreground);
+      cursor: pointer; align-items: center; gap: 6px;
+    }
+    .mob-sidebar-overlay {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,.6); backdrop-filter: blur(4px);
+    }
+    .mob-sidebar {
+      position: fixed; left: 0; top: 0; bottom: 0; width: 280px; z-index: 201;
+      background: oklch(15.5% .018 250); border-right: 1px solid var(--border);
+      overflow-y: auto; padding: 1.5rem 0 2rem;
+      transform: translateX(-100%); transition: transform .25s ease;
+    }
+    .mob-sidebar.open { transform: translateX(0); }
+    .mob-sidebar-header {
+      padding: 0 1rem 1rem; border-bottom: 1px solid var(--border);
+      margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center;
+    }
+    .mob-close { background: none; border: none; color: var(--muted-foreground);
+      font-size: 1.2rem; cursor: pointer; line-height: 1; }
+
+    /* ── MAIN CONTENT ──────────────────────────────────────────── */
+    .main-content {
+      flex: 1;
+      overflow-x: hidden;
+    }
+    .container { max-width: 800px; margin: 0 auto; padding: 0 2rem; }
+
+    /* ── HERO ──────────────────────────────────────────────────── */
+    .hero {
+      padding: 3rem 0 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .7rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--teal);
+      margin-bottom: .9rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 20px; height: 2px;
+      background: var(--teal); border-radius: 1px;
+    }
+    .hero h1 {
+      font-size: clamp(1.7rem, 4vw, 2.5rem);
+      font-weight: 800; line-height: 1.18;
+      margin-bottom: .75rem; letter-spacing: -.025em;
+    }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero-sub {
+      color: var(--muted-foreground); font-size: .92rem;
+      max-width: 600px; margin-bottom: 1.4rem;
+    }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 6px; border: 1px solid var(--border);
+      color: var(--muted-foreground); background: var(--card);
+      font-family: var(--font-mono);
+    }
+
+    /* ── PAGE SECTIONS ─────────────────────────────────────────── */
+    .page-section { display: none; padding: 2.5rem 0 3rem; }
+    .page-section.active { display: block; animation: fadeUp .3s ease; }
+
+    /* ── SECTION HEADINGS ──────────────────────────────────────── */
+    .sec-label {
+      font-size: .68rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--teal);
+      margin-bottom: .4rem; font-family: var(--font-mono);
+    }
+    .sec-title {
+      font-family: var(--font-display); font-size: clamp(1.4rem, 3vw, 1.9rem);
+      font-weight: 700; line-height: 1.25; letter-spacing: -.01em;
+      margin-bottom: .5rem;
+    }
+    .sec-lead {
+      color: var(--muted-foreground); font-size: .9rem;
+      max-width: 580px; margin-bottom: 1.75rem; line-height: 1.7;
+    }
+    .sec-divider { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+
+    /* ── CARDS ─────────────────────────────────────────────────── */
+    .card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px);
+      padding: 1.4rem; margin-bottom: 1.25rem;
+    }
+    .card-header {
+      display: flex; align-items: flex-start; gap: .75rem;
+      margin-bottom: 1.1rem; padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .card-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+      background: var(--teal-dim); color: var(--teal);
+    }
+    .card-title  { font-weight: 700; font-size: .98rem; margin-bottom: 2px; }
+    .card-subtitle { font-size: .77rem; color: var(--muted-foreground); }
+
+    /* ── INFO BOXES ────────────────────────────────────────────── */
+    .info-box {
+      border-radius: var(--radius); padding: 11px 14px;
+      font-size: .82rem; line-height: 1.65;
+      display: flex; gap: 10px; margin-bottom: .75rem;
+    }
+    .info-box-icon { flex-shrink: 0; font-size: 1rem; margin-top: 1px; }
+    .info-teal   { background: var(--teal-dim);   border-left: 3px solid var(--teal); }
+    .info-amber  { background: var(--amber-dim);  border-left: 3px solid rgba(251,191,36,.5); }
+    .info-red    { background: var(--red-dim);    border-left: 3px solid rgba(220,38,38,.4); }
+    .info-gray   { background: var(--muted);      border-left: 3px solid var(--border); }
+    .info-green  { background: var(--green-dim);  border-left: 3px solid rgba(134,239,172,.4); }
+    .info-violet { background: var(--violet-dim); border-left: 3px solid rgba(167,139,250,.4); }
+
+    /* ── STEP PIPELINE ─────────────────────────────────────────── */
+    .pipeline {
+      position: relative;
+      padding-left: 0;
+    }
+    .pipeline-item {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 0 1rem;
+      margin-bottom: 0;
+      position: relative;
+    }
+    .pipeline-item:last-child .pipe-line { display: none; }
+    .pipe-left {
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .pipe-num {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: var(--muted); border: 2px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-mono); font-size: .75rem; font-weight: 700;
+      color: var(--muted-foreground); flex-shrink: 0;
+      transition: all .2s;
+      z-index: 1;
+    }
+    .pipeline-item.key .pipe-num {
+      background: var(--teal-dim); border-color: var(--teal);
+      color: var(--teal);
+    }
+    .pipeline-item.critical .pipe-num {
+      background: var(--red-dim); border-color: rgba(220,38,38,.5);
+      color: var(--red);
+    }
+    .pipeline-item.warning .pipe-num {
+      background: var(--amber-dim); border-color: rgba(251,191,36,.4);
+      color: var(--amber);
+    }
+    .pipe-line {
+      width: 2px; flex: 1; min-height: 20px;
+      background: var(--border);
+      margin: 2px 0;
+    }
+    .pipe-right {
+      padding-bottom: 1.4rem;
+    }
+    .pipe-step-label {
+      font-size: .65rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--muted-foreground);
+      font-family: var(--font-mono); margin-bottom: 3px;
+    }
+    .pipeline-item.key   .pipe-step-label { color: var(--teal); }
+    .pipeline-item.critical .pipe-step-label { color: var(--red); }
+    .pipeline-item.warning  .pipe-step-label { color: var(--amber); }
+    .pipe-step-title {
+      font-weight: 700; font-size: .92rem; margin-bottom: 5px;
+      line-height: 1.35;
+    }
+    .pipe-step-body {
+      font-size: .83rem; color: var(--muted-foreground);
+      line-height: 1.7;
+    }
+    .pipe-step-body strong { color: var(--foreground); font-weight: 600; }
+    .pipe-step-body code {
+      font-family: var(--font-mono); font-size: .78rem;
+      background: var(--muted); padding: 1px 5px; border-radius: 3px;
+      color: var(--teal);
+    }
+
+    /* ── TECHNIQUE META ROW ────────────────────────────────────── */
+    .tech-meta {
+      display: flex; flex-wrap: wrap; gap: .5rem;
+      margin-bottom: 1.5rem;
+    }
+    .meta-pill {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: .74rem; font-weight: 600; padding: 4px 10px;
+      border-radius: 999px; border: 1px solid var(--border);
+      color: var(--muted-foreground); background: var(--card);
+      font-family: var(--font-mono);
+    }
+    .meta-pill.green  { background: var(--green-dim);  border-color: rgba(134,239,172,.3); color: var(--green); }
+    .meta-pill.amber  { background: var(--amber-dim);  border-color: rgba(251,191,36,.3);  color: var(--amber); }
+    .meta-pill.red    { background: var(--red-dim);    border-color: rgba(220,38,38,.3);   color: var(--red); }
+    .meta-pill.teal   { background: var(--teal-dim);   border-color: rgba(0,211,189,.3);   color: var(--teal); }
+    .meta-pill.violet { background: var(--violet-dim); border-color: rgba(167,139,250,.3); color: var(--violet); }
+
+    /* ── TWO COLUMN GRID ───────────────────────────────────────── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem; }
+    .one-col { margin-bottom: 1.25rem; }
+
+    /* ── EVIDENCE PILL BADGES ──────────────────────────────────── */
+    .badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: .68rem; font-weight: 700; padding: 2px 8px;
+      border-radius: 999px; white-space: nowrap;
+      font-family: var(--font-mono);
+    }
+    .badge-rct  { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.25); }
+    .badge-meta { background: var(--violet-dim); color: var(--violet); border: 1px solid rgba(167,139,250,.25); }
+    .badge-obs  { background: var(--amber-dim); color: var(--amber); border: 1px solid rgba(251,191,36,.2); }
+    .badge-bench{ background: var(--muted); color: var(--muted-foreground); border: 1px solid var(--border); }
+
+    /* ── KEY FINDING BLOCK ─────────────────────────────────────── */
+    .key-finding {
+      background: oklch(16% .025 195 / .5);
+      border: 1px solid oklch(40% .1 195 / .3);
+      border-radius: calc(var(--radius) + 2px);
+      padding: 1.1rem 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .key-finding-title {
+      font-size: .7rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--teal); margin-bottom: .35rem;
+      font-family: var(--font-mono);
+    }
+    .key-finding p { font-size: .84rem; line-height: 1.7; }
+    .key-finding strong { color: var(--teal); font-weight: 700; }
+
+    /* ── COMPARISON TABLE ──────────────────────────────────────── */
+    .tbl-wrap { overflow-x: auto; border-radius: calc(var(--radius)+2px); border: 1px solid var(--border); }
+    table.compare {
+      width: 100%; border-collapse: collapse;
+      font-size: .79rem;
+    }
+    table.compare th {
+      background: var(--muted); padding: 10px 13px;
+      text-align: left; font-weight: 700; font-size: .73rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted-foreground); letter-spacing: .03em;
+      white-space: nowrap;
+    }
+    table.compare th:first-child { color: var(--foreground); }
+    table.compare td {
+      padding: 10px 13px; border-bottom: 1px solid var(--border);
+      vertical-align: top; line-height: 1.55;
+    }
+    table.compare tr:last-child td { border-bottom: none; }
+    table.compare tr:hover td { background: var(--accent); }
+    table.compare td:first-child { font-weight: 600; color: var(--foreground); }
+    .cell-green { color: var(--green); font-weight: 700; }
+    .cell-red   { color: var(--red);   font-weight: 700; }
+    .cell-amber { color: var(--amber); font-weight: 700; }
+    .cell-teal  { color: var(--teal);  font-weight: 700; }
+    .cell-muted { color: var(--muted-foreground); }
+
+    /* ── TRIALS TABLE ──────────────────────────────────────────── */
+    .trial-row { padding: 1.1rem; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: .75rem; }
+    .trial-row-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: .5rem; }
+    .trial-name { font-weight: 800; font-size: .92rem; color: var(--foreground); }
+    .trial-meta { font-size: .77rem; color: var(--muted-foreground); margin-top: 2px; }
+    .trial-finding { font-size: .83rem; line-height: 1.65; }
+    .trial-finding strong { color: var(--teal); }
+
+    /* ── ALGORITHM BOXES ───────────────────────────────────────── */
+    .algo-node {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: .85rem 1rem;
+      font-size: .82rem; text-align: center; font-weight: 600;
+      position: relative;
+    }
+    .algo-node.decision {
+      background: var(--teal-dim); border-color: rgba(0,211,189,.4);
+      color: var(--teal);
+    }
+    .algo-node.result-prov { background: var(--green-dim); border-color: rgba(134,239,172,.35); color: var(--green); }
+    .algo-node.result-dk   { background: var(--red-dim);   border-color: rgba(220,38,38,.35);   color: var(--red); }
+    .algo-node.result-cul  { background: var(--violet-dim);border-color: rgba(167,139,250,.35); color: var(--violet); }
+    .algo-node.result-tap  { background: var(--amber-dim); border-color: rgba(251,191,36,.35);  color: var(--amber); }
+    .algo-arrow { text-align: center; font-size: .75rem; color: var(--muted-foreground); padding: .3rem 0; line-height: 1; }
+    .algo-row { display: grid; gap: .75rem; margin-bottom: .5rem; }
+    .algo-row.cols-2 { grid-template-columns: 1fr 1fr; }
+    .algo-row.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+    .algo-label { font-size: .68rem; font-weight: 600; text-align: center; color: var(--muted-foreground); font-family: var(--font-mono); }
+
+    /* ── REFERENCES ────────────────────────────────────────────── */
+    .ref-list { list-style: none; }
+    .ref-item {
+      padding: 10px 0; border-bottom: 1px solid var(--border);
+      font-size: .79rem; line-height: 1.65;
+      display: flex; gap: 10px;
+    }
+    .ref-item:last-child { border-bottom: none; }
+    .ref-num {
+      font-family: var(--font-mono); font-size: .7rem; font-weight: 700;
+      color: var(--teal); min-width: 22px;
+    }
+    .ref-title { font-weight: 600; margin-bottom: 2px; }
+    .ref-meta { color: var(--muted-foreground); font-size: .74rem; }
+
+    /* ── QUICK COMPARISON GRID ─────────────────────────────────── */
+    .tech-overview-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(175px,1fr));
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border); border-radius: calc(var(--radius)+2px);
+      overflow: hidden; margin-bottom: 2rem;
+    }
+    .tov-cell {
+      background: var(--card); padding: 1.1rem 1rem;
+      cursor: pointer; transition: background .12s;
+    }
+    .tov-cell:hover { background: var(--accent); }
+    .tov-cell-icon { font-size: 1.4rem; margin-bottom: .4rem; }
+    .tov-cell-name { font-weight: 800; font-size: .9rem; margin-bottom: .25rem; }
+    .tov-cell-desc { font-size: .75rem; color: var(--muted-foreground); line-height: 1.5; }
+    .tov-cell-badge { margin-top: .5rem; }
+
+    /* ── FOOTER ────────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border); padding: 1.5rem 0; margin-top: 2rem;
+    }
+    .footer-inner {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-copy { font-size: .73rem; color: var(--muted-foreground); }
+
+    /* ── DISCLAIMER ────────────────────────────────────────────── */
+    .disclaimer {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 11px 14px;
+      font-size: .73rem; color: var(--muted-foreground);
+      line-height: 1.6; margin-top: 1.5rem;
+    }
+
+    /* ── ANIMATIONS ────────────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(10px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    /* ── RESPONSIVE ────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .mob-menu-btn { display: flex; }
+      .container { padding: 0 1.1rem; }
+      .two-col { grid-template-columns: 1fr; }
+      .algo-row.cols-3 { grid-template-columns: 1fr; }
+      .algo-row.cols-2 { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 500px) {
+      .tech-overview-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ─────────────────────────────────────────────────────── -->
+<nav>
+  <a class="nav-brand" href="#">
+    <div class="nav-brand-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="3"/><path d="M12 2v3m0 14v3M4.22 4.22l2.12 2.12m11.32 11.32 2.12 2.12M2 12h3m14 0h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/>
+      </svg>
+    </div>
+    <div class="nav-brand-name">Bifur<span>CAD</span></div>
+    <div class="nav-brand-sep"></div>
+    <div class="nav-brand-sub">Técnicas de Bifurcação Coronariana</div>
+  </a>
+  <div class="nav-actions">
+    <button class="mob-menu-btn" onclick="openMobSidebar()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      Menu
+    </button>
+    <span class="nav-badge">EBC 2022 · DKCRUSH-V · CRABBIS</span>
+    <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      lucascardio.com.br
+    </a>
+  </div>
+</nav>
+
+<!-- ── MOBILE SIDEBAR ───────────────────────────────────────────── -->
+<div class="mob-sidebar-overlay" id="mobOverlay" onclick="closeMobSidebar()"></div>
+<div class="mob-sidebar" id="mobSidebar">
+  <div class="mob-sidebar-header">
+    <span style="font-weight:800;font-size:.9rem;">BifurCAD</span>
+    <button class="mob-close" onclick="closeMobSidebar()">✕</button>
+  </div>
+  <div id="mobSidebarContent"></div>
+</div>
+
+<!-- ── APP SHELL ────────────────────────────────────────────────── -->
+<div class="app-shell">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="mainSidebar">
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">Início</div>
+      <div class="sidebar-item active" onclick="showSection('overview')" data-sec="overview">
+        <div class="sidebar-item-icon">🗺️</div>
+        Visão Geral
+      </div>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">Técnicas Principais</div>
+      <div class="sidebar-item" onclick="showSection('provisional')" data-sec="provisional">
+        <div class="sidebar-item-icon">①</div>
+        Provisional
+        <span class="sidebar-badge">1ª linha</span>
+      </div>
+      <div class="sidebar-item" onclick="showSection('dkcrush')" data-sec="dkcrush">
+        <div class="sidebar-item-icon">②</div>
+        DK Crush
+        <span class="sidebar-badge red">Complexo</span>
+      </div>
+      <div class="sidebar-item" onclick="showSection('culotte')" data-sec="culotte">
+        <div class="sidebar-item-icon">③</div>
+        Culotte
+      </div>
+      <div class="sidebar-item" onclick="showSection('tap')" data-sec="tap">
+        <div class="sidebar-item-icon">④</div>
+        TAP / T-stenting
+      </div>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">Otimização</div>
+      <div class="sidebar-item" onclick="showSection('pot')" data-sec="pot">
+        <div class="sidebar-item-icon">⚙️</div>
+        POT · PKP · PSP
+        <span class="sidebar-badge amber">CRABBIS</span>
+      </div>
+      <div class="sidebar-item" onclick="showSection('rewiring')" data-sec="rewiring">
+        <div class="sidebar-item-icon">🔄</div>
+        Seleção de Célula
+      </div>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">Evidências</div>
+      <div class="sidebar-item" onclick="showSection('evidence')" data-sec="evidence">
+        <div class="sidebar-item-icon">📊</div>
+        Tabela Comparativa
+      </div>
+      <div class="sidebar-item" onclick="showSection('refs')" data-sec="refs">
+        <div class="sidebar-item-icon">📚</div>
+        Referências
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main-content">
+    <div class="container">
+
+      <!-- HERO -->
+      <div class="hero">
+        <div class="hero-eyebrow">Intervenção Coronária Percutânea</div>
+        <h1>Técnicas de <em>Bifurcação</em><br>Coronariana</h1>
+        <p class="hero-sub">
+          Guia passo a passo baseado em evidências das principais estratégias de tratamento percutâneo de lesões de bifurcação coronariana. European Bifurcation Club 2022 · DKCRUSH-V · CRABBIS 2025.
+        </p>
+        <div class="hero-tags">
+          <span class="tag">EBC 2022</span>
+          <span class="tag">DKCRUSH-V</span>
+          <span class="tag">CRABBIS 2025</span>
+          <span class="tag">EXCEL · NOBLE</span>
+          <span class="tag">Provisional</span>
+          <span class="tag">DK Crush</span>
+          <span class="tag">Culotte</span>
+          <span class="tag">TAP</span>
+          <span class="tag">POT · PKP · PSP</span>
+        </div>
+      </div>
+
+      <!-- ═══════════════════ VISÃO GERAL ═══════════════════════ -->
+      <div id="sec-overview" class="page-section active">
+
+        <div class="sec-label">Introdução</div>
+        <div class="sec-title">Visão Geral das Estratégias</div>
+        <p class="sec-lead">
+          Lesões de bifurcação coronariana representam 15–20% de todas as PCIs e estão associadas a maiores taxas de falha da lesão-alvo, reestenose e oclusão do ramo lateral. A seleção técnica deve ser individualizada conforme anatomia, complexidade e experiência do operador.
+        </p>
+
+        <!-- Quick nav grid -->
+        <div class="tech-overview-grid">
+          <div class="tov-cell" onclick="showSection('provisional')">
+            <div class="tov-cell-icon">①</div>
+            <div class="tov-cell-name">Provisional</div>
+            <div class="tov-cell-desc">Estratégia de 1ª linha para a maioria das bifurcações</div>
+            <div class="tov-cell-badge"><span class="meta-pill green" style="font-size:.65rem;">✓ Padrão-ouro</span></div>
+          </div>
+          <div class="tov-cell" onclick="showSection('dkcrush')">
+            <div class="tov-cell-icon">②</div>
+            <div class="tov-cell-name">DK Crush</div>
+            <div class="tov-cell-desc">Bifurcações complexas de TCE com ângulo ≥90°</div>
+            <div class="tov-cell-badge"><span class="meta-pill red" style="font-size:.65rem;">Avançado</span></div>
+          </div>
+          <div class="tov-cell" onclick="showSection('culotte')">
+            <div class="tov-cell-icon">③</div>
+            <div class="tov-cell-name">Culotte</div>
+            <div class="tov-cell-desc">Vasos distais de calibre similar, ângulo estreito</div>
+            <div class="tov-cell-badge"><span class="meta-pill violet" style="font-size:.65rem;">2 stents</span></div>
+          </div>
+          <div class="tov-cell" onclick="showSection('tap')">
+            <div class="tov-cell-icon">④</div>
+            <div class="tov-cell-name">TAP</div>
+            <div class="tov-cell-desc">Ângulo ~90° (formato T) ou resgate provisional</div>
+            <div class="tov-cell-badge"><span class="meta-pill amber" style="font-size:.65rem;">Resgate</span></div>
+          </div>
+        </div>
+
+        <!-- Algoritmo de seleção -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">🔀</div>
+            <div>
+              <div class="card-title">Algoritmo de Seleção de Técnica</div>
+              <div class="card-subtitle">Baseado no EBC 2022, Di Gioia et al. JACC CI 2020 e Chen et al. JACC 2017</div>
+            </div>
+          </div>
+
+          <div class="algo-node decision">Lesão de Bifurcação Coronariana</div>
+          <div class="algo-arrow">↓ Avaliar anatomia e complexidade</div>
+
+          <div class="algo-row cols-2">
+            <div>
+              <div class="algo-label">Ramo lateral &lt;2.5mm OU estenose ostial &lt;50%</div>
+              <div class="algo-node result-prov" style="margin-top:.4rem;">✓ Provisional<br><small style="font-weight:500;opacity:.85;">Stent VP + POT ± KBI</small></div>
+            </div>
+            <div>
+              <div class="algo-label">Ramo lateral ≥2.5mm COM estenose ostial significativa</div>
+              <div class="algo-node" style="margin-top:.4rem;background:var(--muted);">Avaliar estratégia de 2 stents →</div>
+            </div>
+          </div>
+
+          <div class="algo-arrow" style="text-align:right;padding-right:0;">↓</div>
+
+          <div class="algo-row cols-3">
+            <div>
+              <div class="algo-label">TCE distal + ângulo ≥90°<br>ou discrepância calibre</div>
+              <div class="algo-node result-dk" style="margin-top:.4rem;">DK Crush<br><small style="font-weight:500;">Evidência máxima TCE</small></div>
+            </div>
+            <div>
+              <div class="algo-label">Calibres similares<br>+ ângulo estreito (&lt;60°)</div>
+              <div class="algo-node result-cul" style="margin-top:.4rem;">Culotte<br><small style="font-weight:500;">Cobertura uniforme</small></div>
+            </div>
+            <div>
+              <div class="algo-label">Ângulo ~90°<br>ou resgate provisional</div>
+              <div class="algo-node result-tap" style="margin-top:.4rem;">TAP<br><small style="font-weight:500;">Neocarina única</small></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Princípios gerais -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">📐</div>
+            <div>
+              <div class="card-title">Princípios Universais em Bifurcações</div>
+              <div class="card-subtitle">Aplicáveis a todas as técnicas</div>
+            </div>
+          </div>
+          <div class="info-box info-teal">
+            <span class="info-box-icon">📏</span>
+            <div><strong>Dimensionamento pelo vaso distal:</strong> O stent do vaso principal deve ser dimensionado 1:1 para o segmento <em>distal</em> do vaso principal (menor calibre), não para o segmento proximal. O POT subsequente expande o segmento proximal adequadamente.</div>
+          </div>
+          <div class="info-box info-teal">
+            <span class="info-box-icon">🎯</span>
+            <div><strong>POT (Proximal Optimization Technique):</strong> Etapa fundamental em todas as técnicas. Dilatação do segmento proximal do stent com balão não-complacente dimensionado 1:1 para o vaso principal proximal, com marcador distal exatamente em frente à carina. Restaura geometria circular, facilita recateterização.</div>
+          </div>
+          <div class="info-box info-amber">
+            <span class="info-box-icon">🔬</span>
+            <div><strong>Imagem intracoronária (IVUS/OCT):</strong> Encorajada em <em>todas</em> as técnicas de bifurcação, especialmente TCE. OCT oferece maior resolução para confirmar seleção de célula, expansão de stent e malapposição. Classe IIa nas diretrizes ESC 2023.</div>
+          </div>
+          <div class="info-box info-gray">
+            <span class="info-box-icon">⚠️</span>
+            <div><strong>Classificação MADS-2:</strong> Sistema que categoriza técnicas em quatro famílias — <strong>M</strong>ini-crush, <strong>A</strong>nother crush (DK), <strong>D</strong>istale (Culotte), <strong>S</strong>imultaneous kissing. A maioria dos operadores trabalha com Provisional, DK Crush, Culotte e TAP.</div>
+          </div>
+        </div>
+
+        <div class="disclaimer">
+          ⚕️ Este material é direcionado exclusivamente a profissionais médicos para fins educacionais. As indicações devem ser individualizadas conforme as características clínicas e anatômicas de cada paciente, respeitando as diretrizes vigentes.
+        </div>
+      </div>
+
+      <!-- ═══════════════════ PROVISIONAL ═══════════════════════ -->
+      <div id="sec-provisional" class="page-section">
+        <div class="sec-label">Técnica 1 — Estratégia de Primeira Linha</div>
+        <div class="sec-title">Técnica Provisional</div>
+        <p class="sec-lead">
+          A técnica provisional (single-stent) é a estratégia de primeira linha para a maioria das lesões de bifurcação, independentemente do grau de envolvimento do ramo lateral. A decisão de implantar um segundo stent ocorre de forma contingente após avaliação do ramo lateral.
+        </p>
+
+        <div class="tech-meta">
+          <span class="meta-pill green">✓ 1ª linha EBC 2022</span>
+          <span class="meta-pill teal">1–2 stents</span>
+          <span class="meta-pill">Menor volume de contraste</span>
+          <span class="meta-pill">Menor tempo de procedimento</span>
+        </div>
+
+        <!-- Indicações / Contraindicações -->
+        <div class="two-col">
+          <div class="card" style="margin-bottom:0;">
+            <div class="card-header" style="margin-bottom:.8rem;padding-bottom:.8rem;">
+              <div class="card-icon" style="background:var(--green-dim);color:var(--green);">✓</div>
+              <div><div class="card-title">Indicações</div></div>
+            </div>
+            <div style="font-size:.82rem;line-height:1.75;">
+              ✔ Ramo lateral &lt;2.5 mm de referência<br>
+              ✔ Estenose ostial do RL &lt;50% na angiografia<br>
+              ✔ Ângulo de bifurcação &lt;70°<br>
+              ✔ Bifurcações não-TCE de baixa complexidade<br>
+              ✔ RL com território limitado ou colaterais<br>
+              ✔ Operadores com menor experiência em 2 stents
+            </div>
+          </div>
+          <div class="card" style="margin-bottom:0;">
+            <div class="card-header" style="margin-bottom:.8rem;padding-bottom:.8rem;">
+              <div class="card-icon" style="background:var(--amber-dim);color:var(--amber);">⚡</div>
+              <div><div class="card-title">Considerar 2 stents</div></div>
+            </div>
+            <div style="font-size:.82rem;line-height:1.75;">
+              ⚠ RL ≥2.5 mm com estenose ostial ≥50%<br>
+              ⚠ TCE distal com ângulo ≥90° (preferir DK Crush)<br>
+              ⚠ Oclusão total ou suboclusão do RL<br>
+              ⚠ Após dissecção ≥Tipo B no RL<br>
+              ⚠ Fluxo TIMI &lt;2 pós-dilatação do RL<br>
+              ⚠ Estenose residual &gt;75% no RL
+            </div>
+          </div>
+        </div>
+
+        <hr class="sec-divider"/>
+
+        <!-- Passo a passo -->
+        <div class="sec-label">Protocolo Passo a Passo</div>
+        <p style="font-size:.85rem;color:var(--muted-foreground);margin-bottom:1.5rem;">Baseado no EBC Expert Consensus 2022 (Albiero et al. EuroIntervention) e EBC White Paper 2020 (Burzotta et al. CCInt).</p>
+
+        <div class="pipeline">
+          <div class="pipeline-item">
+            <div class="pipe-left">
+              <div class="pipe-num">1</div>
+              <div class="pipe-line"></div>
+            </div>
+            <div class="pipe-right">
+              <div class="pipe-step-label">Acesso Vascular</div>
+              <div class="pipe-step-title">Cateterização bilateral com guias 0.014"</div>
+              <div class="pipe-step-body">
+                Posicionar guia coronariana no <strong>vaso principal distal</strong> (VP) e segundo guia no <strong>ramo lateral</strong> (RL). O guia do RL serve como âncora para recateterização e proteção contra oclusão. Cateter-guia ≥6F recomendado para técnicas com dois balões; 5F viável para provisional simples. Utilizar guia extra-support no VP quando a anatomia for complexa.
+              </div>
+            </div>
+          </div>
+
+          <div class="pipeline-item warning">
+            <div class="pipe-left">
+              <div class="pipe-num">2</div>
+              <div class="pipe-line"></div>
+            </div>
+            <div class="pipe-right">
+              <div class="pipe-step-label">Atenção — Pré-dilatação</div>
+              <div class="pipe-step-title">Pré-dilatação seletiva do vaso principal</div>
+              <div class="pipe-step-body">
+                Realizar pré-dilatação do VP conforme necessário (lesão calcificada, resistente). <strong>Evitar pré-dilatação rotineira do RL</strong> — aumenta risco de edema e lesão ostial, podendo dificultar a recateterização. Pré-dilatar RL apenas se houver oclusão, lesão severa &gt;90% ou fluxo TIMI &lt;3 de base.
+              </div>
+            </div>
+          </div>
+
+          <div class="pipeline-item key">
+            <div class="pipe-left">
+              <div class="pipe-num">3</div>
+              <div class="pipe-line"></div>
+            </div>
+            <div class="pipe-right">
+              <div class="pipe-step-label">Etapa Central — Implante do Stent</div>
+              <div class="pipe-step-title">Implante do stent no vaso principal (relação stent/artéria 1.1:1 para vaso distal)</div>
+              <div class="pipe-step-body">
+                Dimensionar o stent <strong>1:1 para o VP distal</strong> (menor calibre), não para o VP proximal. Stent subdimensionado em relação ao proximal será corrigido pelo POT. O stent deve cobrir o óstio do RL sem protruir desnecessariamente no VP proximal. Posicionar stent cruzando adequadamente a carina. Implante a <strong>≥14 atm</strong> com balão não-complacente.
+                <br><br>
+                <code>Exemplo: VP proximal 3.5mm / VP distal 2.75mm → stent 2.75mm</code>
+              </div>
+            </div>
+          </div>
+
+          <div class="pipeline-item key">
+            <div class="pipe-left">
+              <div class="pipe-num">4</div>
+              <div class="pipe-line"></div>
+            </div>
+            <div class="pipe-right">
+              <div class="pipe-step-label">Etapa Central — POT</div>
+              <div class="pipe-step-title">POT (Proximal Optimization Technique)</div>
+              <div class="pipe-step-body">
+                Inflar balão <strong>não-complacente</strong> dimensionado 1:1 para o VP proximal. O marcador distal do balão deve ser posicionado <strong>exatamente em frente à carina</strong>. Inflação a pressão nominal ou levemente acima (não supranominal). O POT: (1) expande adequadamente o segmento proximal do stent, (2) aponta a célula do stent em direção ao RL facilitando recateterização, (3) reduz risco de malapposição proximal.
+                <br><br>
+                <code>Balão POT = diâmetro VP proximal × 1.0–1.1</code>
+              </div>
+            </div>
+          </div>
+
+          <div class="pipeline-item">
+            <div class="pipe-left">
+              <div class="pipe-num">5</div>
+              <div class="pipe-line"></div>
+            </div>
+            <div class="pipe-right">
+              <div class="pipe-step-label">Avaliação</div>
+              <div class="pipe-step-title">Avaliação angiográfica do ramo lateral</div>
+              <div class="pipe-step-body">
+                Após POT, avaliar o RL com angiografia em múltiplas projeções. <strong>Critérios para abordagem do RL:</strong> estenose residual &gt;75% no óstio, dissecção ≥Tipo B, fluxo TIMI &lt;3, evidência de oclusão ou suboclusão. Se RL satisfatório (estenose ≤50%, TIMI 3), manter estratégia provisional sem intervenção adicional no RL — resultado considerado ótimo.
+              </div>
+            </div>
+          </div>
+
+          <div class="pipeline-item">
+            <div class="pipe-left">
+              <div class="pipe-num">6</div>
+              <div class="pipe-line"></div>
+            </div>
+            <div class="pipe-right">
+              <div class="pipe-step-label">Se necessário</div>
+              <div class="pipe-step-title">Recateterização do RL através da célula DISTAL do stent (Técnica Pullback)</div>
+              <div class="pipe-step-body">
+                <strong>Retirar o guia do RL</strong> e recateterizar através da <strong>célula mais distal do stent</strong> (próxima à carina). Utilizar a técnica de pullback: avançar o guia além da carina e tracionar gentilmente até engajar a célula correta. A confirmação por OCT é ideal. O cruzamento pela célula distal é biomechanicamente superior: otimiza scaffolding do óstio lateral e minimiza malapposição periostal.
+                <br><br>
+                <div class="info-box info-amber" style="margin-top:.75rem;margin-bottom:0;">
+                  <span class="info-box-icon">⚠️</span>
+                  <div>Cruzamento pela célula <strong>proximal</strong> no provisional reduz área livre de hastes no óstio do RL de ~85–90% para ~60–70% e aumenta risco de malapposição e hastes projetadas na frente da carina (Antoniadis et al. JACC CI 2015).</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pipeline-item">
+            <div class="pipe-left">
+              <div class="pipe-num">7</div>
+              <div class="pipe-line"></div>
+            </div>
+            <div class="pipe-right">
+              <div class="pipe-step-label">Otimização do RL</div>
+              <div class="pipe-step-title">Sequência PKP ou PSP para tratamento do RL (se indicado)</div>
+              <div class="pipe-step-body">
+                Após recateterização distal, seguir a sequência de otimização (ver seção "POT · PKP · PSP"). O estudo CRABBIS (2025) demonstra superioridade da sequência PKP (POT–Kissing–POT) vs PSP (POT–Side-POT) para otimização do VP distal em bifurcações grandes. Se necessário um segundo stent, proceder com técnica TAP (ângulo ≥70°) ou T-stenting simples (ângulo próximo a 90°).
+              </div>
+            </div>
+          </div>
+
+          <div class="pipeline-item key">
+            <div class="pipe-left">
+              <div class="pipe-num">8</div>
+              <div class="pipe-line"></div>
+            </div>
+            <div class="pipe-right">
+              <div class="pipe-step-label">Finalização</div>
+              <div class="pipe-step-title">POT final (re-POT)</div>
+              <div class="pipe-step-body">
+                Após qualquer manobra no RL (dilatação, kissing balloon, segundo stent), realizar <strong>POT final</strong> com balão não-complacente dimensionado para o VP proximal. O POT final restaura a geometria circular do stent após distorção induzida pelo kissing balloon e garante expansão adequada do segmento proximal. Verificar resultado final por OCT quando disponível.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Key finding -->
+        <div class="key-finding">
+          <div class="key-finding-title">📊 Evidência-Chave — Provisional vs 2 Stents</div>
+          <p>
+            Meta-análise em rede (Di Gioia et al. JACC CI 2020, n=5.711) demonstrou que a estratégia provisional não foi inferior às técnicas de 2 stents em bifurcações não-TCE para o desfecho de falha da lesão-alvo. Para bifurcações de TCE complexas, o DK Crush foi superior ao provisional (DKCRUSH-V: TLF 6,1% vs 10,7%, p=0,02). A escolha entre provisional e 2 stents deve considerar: diâmetro e extensão do RL, ângulo de bifurcação e estenose ostial do RL.
+          </p>
+        </div>
+      </div>
+
+      <!-- ═══════════════════ DK CRUSH ═══════════════════════════ -->
+      <div id="sec-dkcrush" class="page-section">
+        <div class="sec-label">Técnica 2 — Double Kissing Crush</div>
+        <div class="sec-title">Técnica DK Crush</div>
+        <p class="sec-lead">
+          O DK Crush (Double Kissing Crush) é a técnica de dois stents com maior base de evidências em ensaios clínicos randomizados. Demonstrou superioridade sobre provisional e culotte em bifurcações complexas de TCE distal. Técnicamente exigente — requer duas etapas de kissing balloon.
+        </p>
+
+        <div class="tech-meta">
+          <span class="meta-pill red">TCE complexo</span>
+          <span class="meta-pill amber">2 stents obrigatórios</span>
+          <span class="meta-pill">Cateter-guia 7F recomendado</span>
+          <span class="meta-pill teal">DKCRUSH-V superiority</span>
+        </div>
+
+        <div class="two-col">
+          <div class="card" style="margin-bottom:0;">
+            <div class="card-header" style="margin-bottom:.8rem;padding-bottom:.8rem;">
+              <div class="card-icon" style="background:var(--red-dim);color:var(--red);">★</div>
+              <div><div class="card-title">Indicações Preferenciais</div></div>
+            </div>
+            <div style="font-size:.82rem;line-height:1.8;">
+              ✔ TCE distal com envolvimento de DA e/ou Cx<br>
+              ✔ Ângulo de bifurcação ≥90°<br>
+              ✔ Grande discrepância de calibre entre ramos<br>
+              ✔ Ramo lateral ≥2.5mm com estenose ostial ≥50%<br>
+              ✔ Bifurcações complexas Medina 1,1,1 de não-TCE<br>
+              ✔ Resgate de provisional com dissecção/oclusão RL
+            </div>
+          </div>
+          <div class="card" style="margin-bottom:0;">
+            <div class="card-header" style="margin-bottom:.8rem;padding-bottom:.8rem;">
+              <div class="card-icon" style="background:var(--amber-dim);color:var(--amber);">⚡</div>
+              <div><div class="card-title">Desafios Técnicos</div></div>
+            </div>
+            <div style="font-size:.82rem;line-height:1.8;">
+              ⚠ Requer cateter-guia 7F (ou 8F para RL curvo)<br>
+              ⚠ Dois kissing balloons obrigatórios<br>
+              ⚠ Recateterização proximal em ambas etapas<br>
+              ⚠ Maior carga metálica no óstio do RL<br>
+              ⚠ Curva de aprendizado significativa<br>
+              ⚠ Maior tempo de procedimento e contraste
+            </div>
+          </div>
+        </div>
+
+        <hr class="sec-divider"/>
+        <div class="sec-label">Protocolo Passo a Passo</div>
+        <p style="font-size:.85rem;color:var(--muted-foreground);margin-bottom:1.5rem;">Baseado em Chen et al. JACC 2017 (DKCRUSH-V), Raphael et al. JACC CI 2021 e EBC White Paper 2020.</p>
+
+        <div class="pipeline">
+          <div class="pipeline-item">
+            <div class="pipe-left"><div class="pipe-num">1</div><div class="pipe-line"></div></div>
+            <div class="pipe-right">
+              <div class="pipe-step-label">Preparação</div>
+              <div class="pipe-step-title">Cateterização bilateral + pré-dilatação de ambos os ramos</div>
+              <div class="pipe-step-body">
+                Posicionar guias em VP e RL. Cateter-guia <strong>7F</strong> obrigatório (8F se RL com angulação extrema). Pré-dilatar ambos os ramos com balões semicomplacentes dimensionados para o respectivo vaso. Em casos calcificados, aterectomia rotacional ou IVL (intravascular litotripsia) pode ser necessária <em>antes</em> da técnica DK Crush para garantir expansão adequada.
+              </div>
+            </div>
+          </div>
+
+          <div class="pipeline-item key">
+            <div class="pipe-left"><div class="pipe-num">2</div><div class="pipe-line"></div></div>
+            <div class="pipe-right">
+              <div class="pipe-step-label">Etapa Central</div>
+              <div class="pipe-step-title">Implante do stent no ramo lateral com protrusão mínima (~2mm) no VP</div>
+              <div class="pipe-step-body">
+                Implantar o stent do RL deixando <strong>protrusão mínima de 2–3mm no VP</strong>. A protrusão excessiva aumenta a carga metálica e dificulta o kissing balloon; protrusão insuficiente compromete a cobertura do óstio. Dimensionamento stent/RL: 1:1 para o RL distal. Manter o guia do VP na posição durante implante do stent do RL.
+              </div>
+            </div>
+          </div>
+
+          <div class="pipeline-item critical">
+            <div class="pipe-left"><div class="pipe-num">3</div><div class="pipe-line"></div></div>
+            <div class="pipe-right">
+              <div class="pipe-step-label">Etapa Crítica — Crushing</div>
+              <div class="pipe-step-title">1º Crushing — esmagamento do stent do RL com balão não-complacente no VP</div>
+              <div class="pipe-step-body">
+                Retirar o stent do RL e avançar balão <strong>não-complacente dimensionado para o VP proximal</strong> até a bifurcação. Inflar a <strong>≥16 atm</strong> para esmagar completamente as hastes projetadas do stent do RL contra a parede do VP. Este crushing cria uma tripla camada de metal no óstio do RL (parede vascular + stent RL esmagado + futuro stent VP). O crushing completo é confirmado por ausência de resistência ao avançar balão e pela angiografia.
+              </div>
+            </div>
+          </div>
+
+          <div class="pipeline-item key">
+            <div class="pipe-left"><div class="pipe-num">4</div><div class="pipe-line"></div></div>
+            <div class="pipe-right">
+              <div class="pipe-step-label">Recateterização — SEMPRE PROXIMAL</div>
+              <div class="pipe-step-title">1ª Recateterização do RL pela célula PROXIMAL do stent esmagado</div>
+              <div class="pipe-step-body">
+                Recruzar o RL pela <strong>célula mais proximal do stent esmagado</strong>. Este cruzamento proximal é crítico para evitar passagem do guia entre o stent esmagado e a parede vascular, o que resultaria em cobertura inadequada do óstio e compressão durante o kissing balloon. OCT é altamente recomendado para confirmar o cruzamento intraluminal.
+                <br><br>
+                <div class="info-box info-red" style="margin-top:.75rem;margin-bottom:0;">
+                  <span class="info-box-icon">🚫</span>
+                  <div>Cruzamento pela célula distal no DK Crush causa passagem extraluminal do guia (entre stent e parede), resultando em gaps de cobertura no óstio do RL e falha técnica do kissing balloon.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pipeline-item key">
+            <div class="pipe-left"><div class="pipe-num">5</div><div class="pipe-line"></div></div>
+            <div class="pipe-right">
+              <div class="pipe-step-label">Etapa Distintiva do DK Crush</div>
+              <div class="pipe-step-title">1º Kissing Balloon (KBI) — característica exclusiva da técnica DK</div>
+              <div class="pipe-step-body">
+                Avançar balão no RL (dimensionado 1:1 para o RL) e balão no VP (1:1 VP distal). Realizar <strong>kissing balloon simultâneo</strong>: primeiro inflações sequenciais de alta pressão (&gt;12 atm) individualmente em cada ramo, depois inflação simultânea. Este 1º KBI é a característica que distingue o DK Crush do Classic Crush — ele "abre" as hastes do stent esmagado no óstio do RL, criando uma camada única bem aposta antes do implante do stent do VP, melhorando substancialmente a geometria final.
+              </div>
+            </div>
+          </div>
+
+          <div class="pipeline-item">
+            <div class="pipe-left"><div class="pipe-num">6</div><div class="pipe-line"></div></div>
+            <div class="pipe-right">
+              <div class="pipe-step-label">Implante do Stent Principal</div>
+              <div class="pipe-step-title">Implante do stent no VP (tronco → DA ou DA → tronco)</div>
+              <div class="pipe-step-body">
+                Implantar o stent no VP cruzando completamente a bifurcação e cobrindo o stent do RL esmagado. Em TCE, stent de tronco → DA ou DA → tronco conforme anatomia. Dimensionamento 1:1 para o VP distal. O stent do VP cria o <strong>segundo esmagamento</strong> (crushing) das hastes do stent do RL que ainda projetam no VP.
+              </div>
+            </div>
+          </div>
+
+          <div class="pipeline-item critical">
+            <div class="pipe-left"><div class="pipe-num">7</div><div class="pipe-line"></div></div>
+            <div class="pipe-right">
+              <div class="pipe-step-label">Etapa Crítica — Re-crushing</div>
+              <div class="pipe-step-title">2º Crushing com balão não-complacente no VP ≥16 atm</div>
+              <div class="pipe-step-body">
+                Após implante do stent no VP, inflar balão <strong>não-complacente no VP a ≥16 atm</strong> para garantir expansão e apposição ideais do stent do VP contra as hastes do stent do RL previamente esmagadas. Este é o "segundo crushing" que completa o empilhamento das camadas metálicas.
+              </div>
+            </div>
+          </div>
+
+          <div class="pipeline-item key">
+            <div class="pipe-left"><div class="pipe-num">8</div><div class="pipe-line"></div></div>
+            <div class="pipe-right">
+              <div class="pipe-step-label">Recateterização — SEMPRE PROXIMAL</div>
+              <div class="pipe-step-title">2ª Recateterização do RL pela célula PROXIMAL (através do stent do VP)</div>
+              <div class="pipe-step-body">
+                Recruzar o RL novamente pela <strong>célula proximal</strong> do stent do VP (que agora cobre o stent do RL esmagado). Mesma lógica biomecânica da primeira recateterização. O OCT pode confirmar passagem intraluminal.
+              </div>
+            </div>
+          </div>
+
+          <div class="pipeline-item">
+            <div class="pipe-left"><div class="pipe-num">9</div><div class="pipe-line"></div></div>
+            <div class="pipe-right">
+              <div class="pipe-step-label">Pós-dilatação Sequencial</div>
+              <div class="pipe-step-title">Inflações alternadas de alta pressão em RL e VP (balões NC ≥16 atm)</div>
+              <div class="pipe-step-body">
+                Antes do 2º KBI, realizar inflações sequenciais de <strong>alta pressão (≥16 atm)</strong> com balões NC individualmente em cada ramo para garantir total expansão dos stents. Esta etapa é fundamental para otimizar a geometria antes do kissing balloon final.
+              </div>
+            </div>
+          </div>
+
+          <div class="pipeline-item key">
+            <div class="pipe-left"><div class="pipe-num">10</div><div class="pipe-line"></div></div>
+            <div class="pipe-right">
+              <div class="pipe-step-label">2º Kissing Balloon — Definitivo</div>
+              <div class="pipe-step-title">Kissing balloon final (simultâneo) em ambos os ramos</div>
+              <div class="pipe-step-body">
+                Realizar o <strong>2º kissing balloon simultâneo</strong>: balão NC no RL (1:1 RL) + balão NC no VP (1:1 VP distal), inflados simultaneamente. Este KBI final é a etapa mais crítica do DK Crush — garante cobertura completa do óstio do RL com uma camada de stent bem aposta e sem gaps. DKCRUSH-V demonstrou que a aderência ao protocolo do 2º KBI é o principal preditor de sucesso técnico.
+              </div>
+            </div>
+          </div>
+
+          <div class="pipeline-item key">
+            <div class="pipe-left"><div class="pipe-num">11</div><div class="pipe-line"></div></div>
+            <div class="pipe-right">
+              <div class="pipe-step-label">Finalização</div>
+              <div class="pipe-step-title">POT final</div>
+              <div class="pipe-step-body">
+                POT final com balão NC dimensionado 1:1 para o VP proximal, marcador distal exatamente em frente à carina. Restaura geometria circular do VP proximal após distorção induzida pelo kissing balloon. Esta etapa é considerada obrigatória no DK Crush. Confirmar resultado com OCT quando disponível — verificar expansão mínima do stent (MSA), apposição e cobertura do óstio do RL.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="key-finding">
+          <div class="key-finding-title">📊 Evidência-Chave — DKCRUSH-V (Chen et al. JACC 2017)</div>
+          <p>
+            Ensaio randomizado com 482 pacientes com bifurcação de TCE distal. DK Crush vs Provisional: falha da lesão-alvo em 12 meses <strong>6,1% vs 10,7%</strong> (p=0,02), reestenose em RL <strong>1,6% vs 7,5%</strong> (p=0,002), trombose de stent definitiva <strong>0% vs 0,4%</strong>. Este trial estabeleceu o DK Crush como estratégia preferida para TCE distal complexo com ângulo ≥70° ou 2 ramos com discrepância significativa. A superioridade foi mantida em análises de subgrupo incluindo idade avançada, diabetes e baixa fração de ejeção.
+          </p>
+        </div>
+      </div>
+
+      <!-- ═══════════════════ CULOTTE ════════════════════════════ -->
+      <div id="sec-culotte" class="page-section">
+        <div class="sec-label">Técnica 3 — Cobertura Uniforme</div>
+        <div class="sec-title">Técnica Culotte</div>
+        <p class="sec-lead">
+          A técnica culotte (em referência à forma de bermuda) utiliza dois stents posicionados de maneira que ambos cubram completamente a bifurcação com sobreposição no segmento proximal. Resulta em cobertura uniforme do óstio do RL, mas gera maior carga metálica no VP proximal.
+        </p>
+
+        <div class="tech-meta">
+          <span class="meta-pill violet">2 stents</span>
+          <span class="meta-pill">Calibres distais similares</span>
+          <span class="meta-pill amber">Ângulo &lt;60°</span>
+          <span class="meta-pill">Maior sobreposição proximal</span>
+        </div>
+
+        <div class="two-col">
+          <div class="card" style="margin-bottom:0;">
+            <div class="card-header" style="margin-bottom:.8rem;padding-bottom:.8rem;">
+              <div class="card-icon" style="background:var(--violet-dim);color:var(--violet);">✓</div>
+              <div><div class="card-title">Anatomia Ideal</div></div>
+            </div>
+            <div style="font-size:.82rem;line-height:1.8;">
+              ✔ Diâmetros dos ramos distais <strong>similares</strong> (&lt;0.5mm de diferença)<br>
+              ✔ Ângulo de bifurcação estreito <strong>(&lt;60°)</strong><br>
+              ✔ TCE distal com DA e Cx de calibre similar<br>
+              ✔ Bifurcações Medina 0,1,1 ou 1,1,1<br>
+              ✔ Preferível quando provisional não é opção
+            </div>
+          </div>
+          <div class="card" style="margin-bottom:0;">
+            <div class="card-header" style="margin-bottom:.8rem;padding-bottom:.8rem;">
+              <div class="card-icon" style="background:var(--red-dim);color:var(--red);">✗</div>
+              <div><div class="card-title">Desvantagens</div></div>
+            </div>
+            <div style="font-size:.82rem;line-height:1.8;">
+              ✗ Maior carga metálica no VP proximal (2 camadas)<br>
+              ✗ Risco de snow-plowing do segundo stent<br>
+              ✗ Recateterização pelo segundo stent pode ser difícil<br>
+              ✗ BBK-II: reestenose 17% vs 6,5% no TAP<br>
+              ✗ Tecnicamente mais exigente que provisional<br>
+              ✗ Não ideal quando ângulo ≥70°
+            </div>
+          </div>
+        </div>
+
+        <hr class="sec-divider"/>
+        <div class="sec-label">Protocolo Passo a Passo</div>
+        <p style="font-size:.85rem;color:var(--muted-foreground);margin-bottom:1.5rem;">Baseado no EBC White Paper 2020 (Burzotta et al.) e Sawaya et al. JACC CI 2016.</p>
+
+        <div class="pipeline">
+          <div class="pipeline-item">
+            <div class="pipe-left"><div class="pipe-num">1</div><div class="pipe-line"></div></div>
+            <div class="pipe-right">
+              <div class="pipe-step-label">Acesso</div>
+              <div class="pipe-step-title">Cateterização e pré-dilatação de ambos os ramos distais</div>
+              <div class="pipe-step-body">
+                Posicionar guias nos dois ramos distais. Pré-dilatar ambos conforme necessário. Cateter-guia 7F fortemente recomendado para facilitar o trabalho com dois stents simultaneamente.
+              </div>
+            </div>
+          </div>
+
+          <div class="pipeline-item key">
+            <div class="pipe-left"><div class="pipe-num">2</div><div class="pipe-line"></div></div>
+            <div class="pipe-right">
+              <div class="pipe-step-label">1º Stent</div>
+              <div class="pipe-step-title">Implante do 1º stent no ramo que se deseja tratar primeiro (geralmente o VP distal principal)</div>
+              <div class="pipe-step-body">
+                O primeiro stent cobre o <strong>vaso principal proximal + vaso principal distal</strong>, cruzando completamente a bifurcação. Dimensionado 1:1 para o VP distal. Deve cobrir a origem do RL com as hastes do stent.
+                <br><br>
+                <strong>Culotte Invertido:</strong> Em anatomias onde há risco de perder acesso ao RL, o primeiro stent pode ser implantado do tronco para o RL (ao invés do VP), garantindo acesso preservado ao RL durante o procedimento.
+              </div>
+            </div>
+          </div>
+
+          <div class="pipeline-item key">
+            <div class="pipe-left"><div class="pipe-num">3</div><div class="pipe-line"></div></div>
+            <div class="pipe-right">
+              <div class="pipe-step-label">POT</div>
+              <div class="pipe-step-title">1º POT após implante do primeiro stent</div>
+              <div class="pipe-step-body">
+                POT com balão NC 1:1 para VP proximal, marcador distal na carina. Abre as células do stent em direção ao RL, facilitando a recateterização subsequente.
+              </div>
+            </div>
+          </div>
+
+          <div class="pipeline-item">
+            <div class="pipe-left"><div class="pipe-num">4</div><div class="pipe-line"></div></div>
+            <div class="pipe-right">
+              <div class="pipe-step-label">Troca de Guias</div>
+              <div class="pipe-step-title">Retirar guia do RL, manter no VP; recateterizar o RL através das hastes do stent</div>
+              <div class="pipe-step-body">
+                Retirar o guia que estava no RL e, utilizando a técnica de pullback, recruzar o RL <strong>através das hastes do stent</strong> já implantado. Confirmar posição intraluminal — importante para evitar passagem extraluminal. POT facilita a abertura das células.
+              </div>
+            </div>
+          </div>
+
+          <div class="pipeline-item">
+            <div class="pipe-left"><div class="pipe-num">5</div><div class="pipe-line"></div></div>
+            <div class="pipe-right">
+              <div class="pipe-step-label">Abertura de Células</div>
+              <div class="pipe-step-title">Dilatação das hastes do stent em direção ao RL</div>
+              <div class="pipe-step-body">
+                Inflar balão no RL através das hastes do stent para abrir a câmara lateral. Balão dimensionado 1:1 para o RL. Esta dilatação cria espaço adequado para o implante do segundo stent no RL sem deformação significativa do primeiro stent.
+              </div>
+            </div>
+          </div>
+
+          <div class="pipeline-item key">
+            <div class="pipe-left"><div class="pipe-num">6</div><div class="pipe-line"></div></div>
+            <div class="pipe-right">
+              <div class="pipe-step-label">2º Stent</div>
+              <div class="pipe-step-title">Implante do 2º stent do RL em direção ao VP proximal (dimensionado para RL distal)</div>
+              <div class="pipe-step-body">
+                O segundo stent é implantado <strong>do RL para o VP proximal</strong>, sobrepondo-se ao primeiro stent no segmento proximal. Dimensionado 1:1 para o RL distal. O stent deve cobrir completamente o óstio do RL e protrair adequadamente no VP proximal para criar sobreposição. Esta sobreposição é a característica-chave do culotte — garante que o óstio do RL esteja completamente coberto sem gaps.
+              </div>
+            </div>
+          </div>
+
+          <div class="pipeline-item">
+            <div class="pipe-left"><div class="pipe-num">7</div><div class="pipe-line"></div></div>
+            <div class="pipe-right">
+              <div class="pipe-step-label">2º POT</div>
+              <div class="pipe-step-title">Segundo POT após implante do 2º stent</div>
+              <div class="pipe-step-body">
+                POT com balão NC dimensionado para VP proximal. Expande as sobreposições dos dois stents no segmento proximal e facilita a recateterização do VP distal que ficou parcialmente coberto pelo segundo stent.
+              </div>
+            </div>
+          </div>
+
+          <div class="pipeline-item">
+            <div class="pipe-left"><div class="pipe-num">8</div><div class="pipe-line"></div></div>
+            <div class="pipe-right">
+              <div class="pipe-step-label">Troca de Guias</div>
+              <div class="pipe-step-title">Retirar guia do VP, recateterizar o VP distal através das hastes do 2º stent</div>
+              <div class="pipe-step-body">
+                Retirar o guia do VP e recateterizar o VP distal através das hastes do segundo stent. Este cruzamento pode ser mais difícil dependendo da angulação — utilizar guia mais rígido ou hidrofílico se necessário.
+              </div>
+            </div>
+          </div>
+
+          <div class="pipeline-item key">
+            <div class="pipe-left"><div class="pipe-num">9</div><div class="pipe-line"></div></div>
+            <div class="pipe-right">
+              <div class="pipe-step-label">Kissing Balloon</div>
+              <div class="pipe-step-title">Kissing balloon final (simultâneo)</div>
+              <div class="pipe-step-body">
+                Kissing balloon simultâneo com balões NC em ambos os ramos. Garante expansão adequada dos dois stents e alinhamento do segmento proximal sobrepostos. Balões: NC 1:1 VP distal + NC 1:1 RL.
+              </div>
+            </div>
+          </div>
+
+          <div class="pipeline-item">
+            <div class="pipe-left"><div class="pipe-num">10</div><div class="pipe-line"></div></div>
+            <div class="pipe-right">
+              <div class="pipe-step-label">Finalização</div>
+              <div class="pipe-step-title">POT final (opcional mas recomendado)</div>
+              <div class="pipe-step-body">
+                POT final com balão NC 1:1 VP proximal para restaurar geometria circular após distorção do kissing balloon. Verificar resultado final por OCT — atenção especial à MSA na área de sobreposição dos stents no VP proximal.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="key-finding">
+          <div class="key-finding-title">📊 Evidência-Chave — BBK-II (Ferenc et al. EHJ 2016)</div>
+          <p>
+            Ensaio randomizado comparando Culotte vs TAP em bifurcações com necessidade de stent no RL (n=300). Reestenose angiográfica em 9 meses: <strong>Culotte 17% vs TAP 6,5%</strong> (p=0,001). A maior carga metálica no VP proximal com dupla camada de stent e maior distorção após kissing balloon foram as hipóteses propostas para explicar a diferença. Este resultado posicionou o TAP como preferível ao Culotte quando ambas as técnicas são tecnicamente viáveis.
+          </p>
+        </div>
+      </div>
+
+      <!-- ═══════════════════ TAP ════════════════════════════════ -->
+      <div id="sec-tap" class="page-section">
+        <div class="sec-label">Técnica 4 — T-Stenting and Protrusion</div>
+        <div class="sec-title">Técnica TAP</div>
+        <p class="sec-lead">
+          O TAP (T-stenting and small Protrusion) é uma técnica de 2 stents preferida para bifurcações com ângulo próximo a 90°, que permite protrusão mínima do stent do RL no VP, criando uma neocarina de camada única. Frequentemente utilizada como resgate após estratégia provisional fracassada.
+        </p>
+
+        <div class="tech-meta">
+          <span class="meta-pill amber">Ângulo ~70–90°</span>
+          <span class="meta-pill teal">Resgate provisional</span>
+          <span class="meta-pill">Neocarina de camada única</span>
+          <span class="meta-pill green">BBK-II superior ao Culotte</span>
+        </div>
+
+        <div class="info-box info-teal">
+          <span class="info-box-icon">💡</span>
+          <div><strong>Diferença TAP vs T-stenting clássico:</strong> O T-stenting clássico posiciona o stent do RL exatamente no óstio sem protrusão no VP — resulta frequentemente em gap de cobertura no óstio. O TAP resolve isso permitindo uma <strong>protrusão mínima (~1–2mm)</strong> do stent do RL no VP, criando uma neocarina de camada única que garante cobertura óstial completa.</div>
+        </div>
+
+        <hr class="sec-divider"/>
+        <div class="sec-label">Protocolo Passo a Passo</div>
+
+        <div class="pipeline">
+          <div class="pipeline-item">
+            <div class="pipe-left"><div class="pipe-num">1</div><div class="pipe-line"></div></div>
+            <div class="pipe-right">
+              <div class="pipe-step-label">Stent do VP</div>
+              <div class="pipe-step-title">Implante do stent no VP (da lesão proximal ao VP distal) + POT</div>
+              <div class="pipe-step-body">
+                Implantar o stent no VP cruzando a bifurcação, dimensionado 1:1 para o VP distal. POT imediato com balão NC 1:1 VP proximal. O POT facilita a recateterização do RL e posiciona as células do stent de forma ótima.
+              </div>
+            </div>
+          </div>
+
+          <div class="pipeline-item">
+            <div class="pipe-left"><div class="pipe-num">2</div><div class="pipe-line"></div></div>
+            <div class="pipe-right">
+              <div class="pipe-step-label">Recateterização</div>
+              <div class="pipe-step-title">Recateterização do RL pela célula distal do stent</div>
+              <div class="pipe-step-body">
+                No TAP, o guia para o RL atravessa pela célula mais distal do stent do VP. Esta posição distal é fundamental para o resultado final: permite que o stent do RL seja posicionado com angulação correta em relação ao óstio, minimizando a necessidade de protrusão.
+              </div>
+            </div>
+          </div>
+
+          <div class="pipeline-item key">
+            <div class="pipe-left"><div class="pipe-num">3</div><div class="pipe-line"></div></div>
+            <div class="pipe-right">
+              <div class="pipe-step-label">Etapa Central</div>
+              <div class="pipe-step-title">Posicionamento do stent do RL com protrusão mínima (~1–2mm) no VP</div>
+              <div class="pipe-step-body">
+                Avançar o stent do RL (dimensionado 1:1 para RL) até a posição com <strong>protrusão mínima de 1–2mm no VP</strong>. A quantidade ideal de protrusão depende do ângulo de bifurcação: ângulos muito agudos (&lt;70°) requerem ligeiramente mais protrusão para cobrir o óstio adequadamente; ângulos de 90° permitem protrusão mínima. A protrusão cria a "neocarina" de camada única.
+                <br><br>
+                <strong>Não implantar o stent ainda.</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="pipeline-item warning">
+            <div class="pipe-left"><div class="pipe-num">4</div><div class="pipe-line"></div></div>
+            <div class="pipe-right">
+              <div class="pipe-step-label">Atenção</div>
+              <div class="pipe-step-title">Manter balão não-inflado no VP durante implante do stent do RL</div>
+              <div class="pipe-step-body">
+                Antes de implantar o stent do RL, posicionar um balão <strong>não-inflado no VP</strong> (jailado pelo stent do RL). Este balão serve como referência de posição e estará pronto para o kissing balloon simultâneo. Implantar o stent do RL com a protrusão planejada enquanto o balão do VP está em posição mas não inflado.
+              </div>
+            </div>
+          </div>
+
+          <div class="pipeline-item key">
+            <div class="pipe-left"><div class="pipe-num">5</div><div class="pipe-line"></div></div>
+            <div class="pipe-right">
+              <div class="pipe-step-label">Kissing Balloon Simultâneo</div>
+              <div class="pipe-step-title">Kissing balloon simultâneo — "jailed balloon technique"</div>
+              <div class="pipe-step-body">
+                Inflar simultaneamente o balão do RL (1:1 RL) e o balão do VP (1:1 VP distal). A inflação simultânea com o balão do VP preso pelo stent do RL (jailed) garante: (1) expansão adequada do stent do RL, (2) abertura correta do cuff protruso no VP, (3) geometria ideal da neocarina. Inflação a ≥12 atm nos dois balões.
+              </div>
+            </div>
+          </div>
+
+          <div class="pipeline-item">
+            <div class="pipe-left"><div class="pipe-num">6</div><div class="pipe-line"></div></div>
+            <div class="pipe-right">
+              <div class="pipe-step-label">Finalização</div>
+              <div class="pipe-step-title">Resultado: neocarina de camada única + POT final</div>
+              <div class="pipe-step-body">
+                O resultado ideal do TAP é uma <strong>neocarina de camada única</strong> formada pela protrusão mínima do stent do RL no VP. Diferente do crush (que cria múltiplas camadas), o TAP cria apenas uma camada de stent no óstio do RL. POT final com balão NC 1:1 VP proximal para restaurar geometria circular.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="key-finding">
+          <div class="key-finding-title">📊 TAP como Resgate após Provisional</div>
+          <p>
+            O TAP é frequentemente utilizado como técnica de resgate após provisional quando um segundo stent é necessário (dissecção, estenose residual grave, TIMI &lt;3). A vantagem é que o óstio do RL já foi aberto pelo POT e pela dilatação do RL, facilitando o posicionamento do stent do TAP. BBK-II (Ferenc et al. EHJ 2016) demonstrou reestenose de <strong>6,5% com TAP vs 17% com Culotte</strong> (p=0,001) em bifurcações com necessidade de stent no RL, tornando TAP a técnica de resgate preferred quando Culotte ou DK Crush não são obrigatórias pela anatomia.
+          </p>
+        </div>
+      </div>
+
+      <!-- ═══════════════════ POT / PKP / PSP ════════════════════ -->
+      <div id="sec-pot" class="page-section">
+        <div class="sec-label">Otimização de Stent</div>
+        <div class="sec-title">POT · PKP · PSP</div>
+        <p class="sec-lead">
+          A otimização após implante do stent no vaso principal é fundamental para o resultado das bifurcações. As duas principais sequências são PKP (POT–Kissing–POT) e PSP (POT–Side-POT), com evidências recentes do estudo CRABBIS 2025 favorecendo o PKP para bifurcações grandes.
+        </p>
+
+        <!-- POT -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">⚙️</div>
+            <div>
+              <div class="card-title">POT — Proximal Optimization Technique</div>
+              <div class="card-subtitle">Fundamentação biomecânica e técnica de execução</div>
+            </div>
+          </div>
+          <div class="info-box info-teal">
+            <span class="info-box-icon">💡</span>
+            <div><strong>Princípio:</strong> O stent do VP é dimensionado para o vaso distal (menor). O segmento proximal permanece subexpandido e circular após o implante. O POT corrige isso inflando um balão NC dimensionado para o VP <em>proximal</em>, posicionado para que o marcador distal fique exatamente em frente à carina.</div>
+          </div>
+
+          <div class="two-col" style="margin-top:1rem;">
+            <div>
+              <div class="info-box info-green" style="margin-bottom:.5rem;">
+                <span class="info-box-icon">✓</span>
+                <div><strong>Efeitos do POT:</strong><br>
+                • Expande o VP proximal para calibre adequado<br>
+                • Abre as células do stent em direção ao RL<br>
+                • Facilita recateterização do RL (pullback)<br>
+                • Reduz malapposição proximal<br>
+                • Melhora a geometria final da bifurcação
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="info-box info-amber">
+                <span class="info-box-icon">⚠️</span>
+                <div><strong>Erros comuns:</strong><br>
+                • Balão POT muito distal → não expande área proximal<br>
+                • Marcador distal além da carina → dilata RL inadvertidamente<br>
+                • Pressão excessiva no POT → distorção da carina<br>
+                • Omitir o POT → recateterização difícil, malapposição
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PKP -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon" style="background:var(--green-dim);color:var(--green);">▶</div>
+            <div>
+              <div class="card-title">Sequência PKP — POT → Kissing → POT</div>
+              <div class="card-subtitle">Padrão-ouro para bifurcações grandes segundo CRABBIS 2025 <span class="badge badge-rct">RCT 2025</span></div>
+            </div>
+          </div>
+
+          <div class="pipeline" style="margin-top:.5rem;">
+            <div class="pipeline-item key">
+              <div class="pipe-left"><div class="pipe-num">P</div><div class="pipe-line"></div></div>
+              <div class="pipe-right">
+                <div class="pipe-step-label">POT Inicial</div>
+                <div class="pipe-step-title">Dilatação proximal com balão NC 1:1 VP proximal</div>
+                <div class="pipe-step-body">Marcador distal exatamente em frente à carina. Expande VP proximal e orienta células do stent em direção ao RL.</div>
+              </div>
+            </div>
+            <div class="pipeline-item">
+              <div class="pipe-left"><div class="pipe-num">K</div><div class="pipe-line"></div></div>
+              <div class="pipe-right">
+                <div class="pipe-step-label">Recateterização Distal + Kissing Balloon</div>
+                <div class="pipe-step-title">Cruzamento célula distal → inflação simultânea</div>
+                <div class="pipe-step-body">
+                  Recateterizar RL pela <strong>célula distal</strong> (pullback). Kissing balloon: balão curto NC 1:1 VP distal no VP + balão NC 1:1 RL no RL. Inflação sequencial de alta pressão (≥12 atm) em cada ramo individualmente, depois inflação <strong>simultânea</strong>. Sobreposição mínima dos dois balões no VP proximal.
+                </div>
+              </div>
+            </div>
+            <div class="pipeline-item key">
+              <div class="pipe-left"><div class="pipe-num">P</div><div class="pipe-line"></div></div>
+              <div class="pipe-right">
+                <div class="pipe-step-label">POT Final (re-POT)</div>
+                <div class="pipe-step-title">Redilatação proximal para restaurar geometria circular</div>
+                <div class="pipe-step-body">O kissing balloon cria distorção ovalizada no VP proximal. O POT final restaura a geometria circular. Balão NC 1:1 VP proximal, marcador distal na carina. <strong>Esta etapa é obrigatória após qualquer kissing balloon.</strong></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="key-finding" style="margin-top:.75rem;">
+            <div class="key-finding-title">📊 CRABBIS Trial — PKP vs PSP (Bianchini et al. JACC CI 2025)</div>
+            <p>OCT em bifurcações de TCE e bifurcações grandes (n=60, 20 bifurcações/grupo). PKP demonstrou expansão do stent no <strong>VP distal significativamente superior ao PSP</strong> (99,3% vs 83,8%, p=0,001). Taxa de malapposição no VP proximal foi comparável entre as técnicas após refinamento do PKP com balões curtos. PKP deve ser considerado o <strong>novo padrão para bifurcações grandes</strong> em estratégia provisional quando intervenção no RL é necessária.</p>
+          </div>
+        </div>
+
+        <!-- PSP -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon" style="background:var(--amber-dim);color:var(--amber);">▶</div>
+            <div>
+              <div class="card-title">Sequência PSP — POT → Side → POT (re-POT)</div>
+              <div class="card-subtitle">Alternativa viável para bifurcações não-TCE com limitação técnica</div>
+            </div>
+          </div>
+
+          <div class="pipeline" style="margin-top:.5rem;">
+            <div class="pipeline-item key">
+              <div class="pipe-left"><div class="pipe-num">P</div><div class="pipe-line"></div></div>
+              <div class="pipe-right">
+                <div class="pipe-step-label">POT Inicial</div>
+                <div class="pipe-step-title">Idêntico ao PKP</div>
+                <div class="pipe-step-body">Balão NC 1:1 VP proximal, marcador distal na carina.</div>
+              </div>
+            </div>
+            <div class="pipeline-item">
+              <div class="pipe-left"><div class="pipe-num">S</div><div class="pipe-line"></div></div>
+              <div class="pipe-right">
+                <div class="pipe-step-label">Dilatação Isolada do Ramo Lateral</div>
+                <div class="pipe-step-title">Balão NC 1:1 RL com protrusão mínima no VP</div>
+                <div class="pipe-step-body">Inflar balão no RL através da célula do stent. Balão NC dimensionado 1:1 para o RL, com protrusão mínima no VP. Sem balão simultâneo no VP. <strong>Limitação:</strong> a dilatação isolada desloca a carina em direção ao VP, criando distorção assimétrica e expansão incompleta do stent próximo à carina.</div>
+              </div>
+            </div>
+            <div class="pipeline-item">
+              <div class="pipe-left"><div class="pipe-num">P</div><div class="pipe-line"></div></div>
+              <div class="pipe-right">
+                <div class="pipe-step-label">POT Final</div>
+                <div class="pipe-step-title">Re-POT para corrigir distorção induzida pela dilatação do RL</div>
+                <div class="pipe-step-body">A eficácia do POT final em corrigir a distorção do PSP é <strong>imprevisível</strong> — depende criticamente do posicionamento do balão e da elasticidade vascular. CRABBIS demonstrou que mesmo após POT final, o PSP resulta em expansão inferior no VP distal comparado ao PKP.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-box info-amber" style="margin-top:1rem;">
+            <span class="info-box-icon">⚠️</span>
+            <div><strong>Quando considerar PSP:</strong> Cateter-guia 5F sem capacidade para dois balões simultâneos, bifurcações não-TCE de baixa complexidade, limitações de suporte ou navigabilidade. PROPOT (2018) não encontrou diferenças significativas em bifurcações não-grandes — PSP continua sendo uma opção razoável neste contexto.</div>
+          </div>
+        </div>
+
+        <!-- Tabela comparativa PKP vs PSP -->
+        <div class="sec-label" style="margin-top:1.5rem;">Comparação Direta: PKP vs PSP</div>
+        <div class="tbl-wrap">
+          <table class="compare">
+            <thead>
+              <tr>
+                <th>Critério</th>
+                <th>PKP (POT-Kissing-POT)</th>
+                <th>PSP (POT-Side-POT)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Expansão VP distal (CRABBIS)</td>
+                <td class="cell-green">99,3% — Superior</td>
+                <td class="cell-red">83,8% — Inferior</td>
+              </tr>
+              <tr>
+                <td>Malapposição VP proximal</td>
+                <td class="cell-teal">Baixa com POT final</td>
+                <td class="cell-teal">Baixa com POT final</td>
+              </tr>
+              <tr>
+                <td>Complexidade técnica</td>
+                <td class="cell-amber">Moderada (2 balões simultâneos)</td>
+                <td class="cell-green">Menor (1 balão por vez)</td>
+              </tr>
+              <tr>
+                <td>Requisito de cateter-guia</td>
+                <td>≥6F (bifurcações grandes)</td>
+                <td class="cell-green">5F compatível</td>
+              </tr>
+              <tr>
+                <td>Distorção da carina</td>
+                <td class="cell-green">Mínima</td>
+                <td class="cell-red">Maior (deslocamento da carina)</td>
+              </tr>
+              <tr>
+                <td>Cobertura do óstio do RL</td>
+                <td class="cell-green">Ótima</td>
+                <td>Dependente do posicionamento</td>
+              </tr>
+              <tr>
+                <td>Recomendação EBC</td>
+                <td class="cell-teal">Preferido para bifurcações grandes</td>
+                <td>Alternativa em limitações técnicas</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ═══════════════════ SELEÇÃO DE CÉLULA ═════════════════ -->
+      <div id="sec-rewiring" class="page-section">
+        <div class="sec-label">Biomecânica da Bifurcação</div>
+        <div class="sec-title">Seleção de Célula do Stent</div>
+        <p class="sec-lead">
+          A seleção correta da célula do stent para recateterização do ramo lateral é fundamentalmente diferente entre as técnicas provisional e DK Crush. O erro de seleção é uma das principais causas de falha técnica nas bifurcações.
+        </p>
+
+        <div class="two-col">
+          <div class="card" style="margin-bottom:0;">
+            <div class="card-header" style="margin-bottom:.9rem;padding-bottom:.9rem;">
+              <div class="card-icon" style="background:var(--green-dim);color:var(--green);">↙</div>
+              <div>
+                <div class="card-title">Provisional → Célula DISTAL</div>
+                <div class="card-subtitle">Técnica de pullback</div>
+              </div>
+            </div>
+            <div style="font-size:.82rem;line-height:1.8;margin-bottom:1rem;">
+              <strong>Por que distal?</strong>
+              <ul style="margin-top:.5rem;margin-left:1rem;line-height:2;">
+                <li>Cobertura ótima do óstio do RL</li>
+                <li>Minimiza hastes mal-apostas na frente da carina</li>
+                <li>Preserva área livre de hastes: <strong>85–90%</strong></li>
+                <li>T-stenting adequado se necessário segundo stent</li>
+                <li>Geometria natural da bifurcação preservada</li>
+              </ul>
+            </div>
+            <div class="info-box info-red" style="margin-bottom:0;">
+              <span class="info-box-icon">🚫</span>
+              <div>Cruzamento proximal no provisional: área livre de hastes reduz para 60–70%, hastes projetadas na frente da carina, malapposição periostal.</div>
+            </div>
+          </div>
+
+          <div class="card" style="margin-bottom:0;">
+            <div class="card-header" style="margin-bottom:.9rem;padding-bottom:.9rem;">
+              <div class="card-icon" style="background:var(--red-dim);color:var(--red);">↖</div>
+              <div>
+                <div class="card-title">DK Crush → Célula PROXIMAL</div>
+                <div class="card-subtitle">1ª e 2ª recateterização</div>
+              </div>
+            </div>
+            <div style="font-size:.82rem;line-height:1.8;margin-bottom:1rem;">
+              <strong>Por que proximal?</strong>
+              <ul style="margin-top:.5rem;margin-left:1rem;line-height:2;">
+                <li>Evita passagem do guia extraluminal (entre stent e parede)</li>
+                <li>Garante cobertura uniforme do óstio do RL</li>
+                <li>Permite kissing balloon técnicamente correto</li>
+                <li>Mantém camada única de metal no óstio após KBI</li>
+                <li>Reprodutibilidade e consistência técnica</li>
+              </ul>
+            </div>
+            <div class="info-box info-red" style="margin-bottom:0;">
+              <span class="info-box-icon">🚫</span>
+              <div>Cruzamento distal no DK Crush: guia passa extraluminalmente entre stent esmagado e parede → gaps de cobertura no óstio do RL, falha técnica do kissing balloon.</div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="sec-divider"/>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">🔬</div>
+            <div>
+              <div class="card-title">Técnica de Pullback para Cruzamento Distal</div>
+              <div class="card-subtitle">Gold standard para recateterização em provisional</div>
+            </div>
+          </div>
+          <div class="pipeline" style="margin-top:.5rem;">
+            <div class="pipeline-item">
+              <div class="pipe-left"><div class="pipe-num">1</div><div class="pipe-line"></div></div>
+              <div class="pipe-right">
+                <div class="pipe-step-label">Preparação</div>
+                <div class="pipe-step-title">Retirar o guia do RL após o POT</div>
+                <div class="pipe-step-body">Após realização do POT, o guia que estava protegendo o RL é retirado. As células do stent foram orientadas em direção ao RL pelo POT, facilitando o cruzamento.</div>
+              </div>
+            </div>
+            <div class="pipeline-item key">
+              <div class="pipe-left"><div class="pipe-num">2</div><div class="pipe-line"></div></div>
+              <div class="pipe-right">
+                <div class="pipe-step-label">Manobra Principal</div>
+                <div class="pipe-step-title">Avançar o guia além da bifurcação (no VP distal) e tracionar de volta</div>
+                <div class="pipe-step-body">
+                  Avançar o guia até o VP distal <em>além</em> da carina. Tracionar gentilmente o guia proximal ("pullback") enquanto se aplica torque. O guia naturalmente engajará a célula mais distal do stent voltada para o RL. <strong>Confirmar cruzamento intraluminal</strong> — o guia deve seguir trajeto intraluminal no RL distal sem loop ou resistência.
+                </div>
+              </div>
+            </div>
+            <div class="pipeline-item">
+              <div class="pipe-left"><div class="pipe-num">3</div><div class="pipe-line"></div></div>
+              <div class="pipe-right">
+                <div class="pipe-step-label">Confirmação</div>
+                <div class="pipe-step-title">Verificar posição com angiografia ou OCT</div>
+                <div class="pipe-step-body">
+                  Confirmar que o guia está no RL distal em posição intraluminal. OCT é o método preferido para confirmar cruzamento pela célula distal vs proximal. Na angiografia: o guia deve seguir o trajeto anatômico do RL sem angulação anormal. Avançar microcateter para facilitar troca de guia se necessário.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="key-finding">
+          <div class="key-finding-title">📊 Evidência Biomecânica (Antoniadis et al. JACC CI 2015)</div>
+          <p>
+            Estudos biomecânicos com micro-CT e modelos in vitro demonstraram diferenças significativas dependentes da seleção de célula. Provisional com cruzamento distal: área livre de hastes no óstio do RL de <strong>85–90%</strong> após kissing balloon. Provisional com cruzamento proximal: redução para <strong>60–70%</strong>, com hastes mal-apostas em frente à carina. DK Crush com cruzamento distal: gaps de cobertura no óstio do RL. DK Crush com cruzamento proximal: cobertura uniforme sem gaps. DKCRUSH-V enfatizou a aderência ao cruzamento proximal como variável técnica crítica para o sucesso.
+          </p>
+        </div>
+      </div>
+
+      <!-- ═══════════════════ EVIDÊNCIAS ═════════════════════════ -->
+      <div id="sec-evidence" class="page-section">
+        <div class="sec-label">Base de Evidências</div>
+        <div class="sec-title">Tabela Comparativa de Técnicas</div>
+        <p class="sec-lead">
+          Síntese das principais evidências dos ensaios clínicos randomizados e meta-análises que embasam a seleção de técnica em lesões de bifurcação coronariana.
+        </p>
+
+        <!-- Tabela principal -->
+        <div class="tbl-wrap" style="margin-bottom:1.5rem;">
+          <table class="compare">
+            <thead>
+              <tr>
+                <th>Técnica</th>
+                <th>Tipo de Lesão</th>
+                <th>TLF / MACE</th>
+                <th>Reestenose RL</th>
+                <th>Complexidade</th>
+                <th>Recomendação</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Provisional</td>
+                <td>Maioria das bifurcações</td>
+                <td class="cell-green">Mais baixo geral</td>
+                <td>Variável</td>
+                <td class="cell-green">Menor</td>
+                <td class="cell-teal">1ª linha universal</td>
+              </tr>
+              <tr>
+                <td>DK Crush</td>
+                <td>TCE distal complexo</td>
+                <td class="cell-green">6,1% vs 10,7%<br><small class="cell-muted">DKCRUSH-V vs Provisional</small></td>
+                <td class="cell-green">1,6% vs 7,5%<br><small class="cell-muted">DKCRUSH-V, p=0.002</small></td>
+                <td class="cell-red">Alta</td>
+                <td class="cell-teal">TCE complexo</td>
+              </tr>
+              <tr>
+                <td>Culotte</td>
+                <td>Calibres similares, ângulo &lt;60°</td>
+                <td class="cell-amber">Intermediário</td>
+                <td class="cell-red">17% (BBK-II)</td>
+                <td class="cell-amber">Alta</td>
+                <td class="cell-amber">Selecionado</td>
+              </tr>
+              <tr>
+                <td>TAP</td>
+                <td>Ângulo ~90°, resgate</td>
+                <td class="cell-amber">Intermediário</td>
+                <td class="cell-green">6,5% (BBK-II)</td>
+                <td class="cell-amber">Moderada</td>
+                <td class="cell-green">Preferido ao Culotte</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Principais Trials -->
+        <div class="sec-label">Principais Ensaios Clínicos</div>
+
+        <div class="trial-row">
+          <div class="trial-row-header">
+            <div>
+              <div class="trial-name">DKCRUSH-V (2017)</div>
+              <div class="trial-meta">Chen et al. JACC 2017 · n=482 · TCE distal</div>
+            </div>
+            <span class="badge badge-rct">RCT</span>
+          </div>
+          <div class="trial-finding">
+            DK Crush vs Provisional em bifurcações de TCE distal. TLF em 12 meses: <strong>6,1% vs 10,7%</strong> (HR 0,55; p=0,02). Reestenose no RL: <strong>1,6% vs 7,5%</strong> (p=0,002). Trombose de stent definitiva: 0% vs 0,4%. <strong>Conclusão: DK Crush superior ao provisional para TCE distal complexo.</strong>
+          </div>
+        </div>
+
+        <div class="trial-row">
+          <div class="trial-row-header">
+            <div>
+              <div class="trial-name">BBK-II (2016)</div>
+              <div class="trial-meta">Ferenc et al. EHJ 2016 · n=300 · Bifurcações com necessidade de stent no RL</div>
+            </div>
+            <span class="badge badge-rct">RCT</span>
+          </div>
+          <div class="trial-finding">
+            Culotte vs TAP em bifurcações de nova lesão requerendo stent no RL. Reestenose angiográfica em 9 meses: <strong>Culotte 17% vs TAP 6,5%</strong> (p=0,001). Revascularização da lesão-alvo: Culotte 13% vs TAP 5% (p=0,024). <strong>Conclusão: TAP preferível ao Culotte quando duas técnicas são equipolentes anatomicamente.</strong>
+          </div>
+        </div>
+
+        <div class="trial-row">
+          <div class="trial-row-header">
+            <div>
+              <div class="trial-name">CRABBIS (2025)</div>
+              <div class="trial-meta">Bianchini et al. JACC CI 2025 · n=60 · TCE e bifurcações grandes, OCT</div>
+            </div>
+            <span class="badge badge-rct">RCT 2025</span>
+          </div>
+          <div class="trial-finding">
+            PKP vs PSP em bifurcações grandes (provisional). Avaliação por OCT. Expansão do stent no VP distal: <strong>PKP 99,3% vs PSP 83,8%</strong> (p=0,001). Malapposição proximal: comparável com POT final adequado. <strong>Conclusão: PKP é o novo padrão-ouro para otimização do RL em bifurcações grandes na estratégia provisional.</strong>
+          </div>
+        </div>
+
+        <div class="trial-row">
+          <div class="trial-row-header">
+            <div>
+              <div class="trial-name">Di Gioia Meta-análise em rede (2020)</div>
+              <div class="trial-meta">JACC CI 2020 · n=5.711 · Bifurcações coronarianas</div>
+            </div>
+            <span class="badge badge-meta">Meta-análise</span>
+          </div>
+          <div class="trial-finding">
+            Meta-análise em rede com 5.711 pacientes comparando todas as técnicas. Provisional não foi inferior às técnicas de 2 stents para bifurcações não-TCE em TLF. DK Crush apresentou melhor desempenho global para TCE. <strong>Conclusão: Provisional = 1ª linha; DK Crush = preferido em TCE complexo.</strong>
+          </div>
+        </div>
+
+        <div class="trial-row">
+          <div class="trial-row-header">
+            <div>
+              <div class="trial-name">EBC Expert Consensus 2022</div>
+              <div class="trial-meta">Albiero et al. EuroIntervention 2022 · Documento de consenso</div>
+            </div>
+            <span class="badge badge-obs">Consenso</span>
+          </div>
+          <div class="trial-finding">
+            Documento de consenso do European Bifurcation Club com recomendações detalhadas sobre implante do primeiro stent na via provisional. Enfatiza: dimensionamento pelo VP distal, POT sistemático, recateterização pela célula distal (pullback), PKP ou PSP para RL. <strong>Conclusão: Provisional com POT + PKP é a estratégia mais validada para bifurcações.</strong>
+          </div>
+        </div>
+
+        <div class="trial-row">
+          <div class="trial-row-header">
+            <div>
+              <div class="trial-name">Raphael et al. — Evolução do Crush (2021)</div>
+              <div class="trial-meta">JACC CI 2021 · Revisão narrativa da técnica</div>
+            </div>
+            <span class="badge badge-obs">Revisão</span>
+          </div>
+          <div class="trial-finding">
+            Revisão da evolução histórica da técnica crush: Classic Crush → Mini Crush → Step Crush → DK Crush. Demonstra que a adição do 1º KBI (tornando Classic em DK) foi o avanço técnico que reduziu a reestenose no RL de ~25% para &lt;5%. <strong>Conclusão: O 1º KBI é o elemento diferenciador crítico do DK Crush.</strong>
+          </div>
+        </div>
+
+        <div class="trial-row">
+          <div class="trial-row-header">
+            <div>
+              <div class="trial-name">Antoniadis et al. — Biomecânica (2015)</div>
+              <div class="trial-meta">JACC CI 2015 · Estudos de bancada e modelos computacionais</div>
+            </div>
+            <span class="badge badge-bench">Bancada</span>
+          </div>
+          <div class="trial-finding">
+            Estudos biomecânicos com micro-CT e modelos in vitro sobre seleção de célula e kissing balloon. Confirmou superioridade do cruzamento distal no provisional (85–90% área livre vs 60–70% cruzamento proximal) e necessidade de cruzamento proximal no DK Crush para evitar passagem extraluminal. <strong>Conclusão: A seleção de célula não é indiferente — tem impacto biomecânico significativo na geometria final.</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════ REFERÊNCIAS ════════════════════════ -->
+      <div id="sec-refs" class="page-section">
+        <div class="sec-label">Bibligrafia</div>
+        <div class="sec-title">Referências</div>
+        <p class="sec-lead">Todas as afirmações clínicas neste guia são fundamentadas nas referências abaixo, priorizando ensaios clínicos randomizados, meta-análises e documentos de consenso de sociedades científicas.</p>
+
+        <div class="card">
+          <ul class="ref-list">
+            <li class="ref-item">
+              <span class="ref-num">1</span>
+              <div>
+                <div class="ref-title">Treatment of Coronary Bifurcation Lesions, Part I: Implanting the First Stent in the Provisional Pathway. EBC 16th Expert Consensus Document.</div>
+                <div class="ref-meta">Albiero R, Burzotta F, Lassen JF, et al. <em>EuroIntervention</em>. 2022;18(5):e362-e376. doi:10.4244/EIJ-D-22-00165.</div>
+              </div>
+            </li>
+            <li class="ref-item">
+              <span class="ref-num">2</span>
+              <div>
+                <div class="ref-title">European Bifurcation Club White Paper on Stenting Techniques for Patients With Bifurcated Coronary Artery Lesions.</div>
+                <div class="ref-meta">Burzotta F, Lassen JF, Louvard Y, et al. <em>Catheter Cardiovasc Interv</em>. 2020;96(5):1067-1079. doi:10.1002/ccd.29071.</div>
+              </div>
+            </li>
+            <li class="ref-item">
+              <span class="ref-num">3</span>
+              <div>
+                <div class="ref-title">Contemporary Approach to Coronary Bifurcation Lesion Treatment.</div>
+                <div class="ref-meta">Sawaya FJ, Lefèvre T, Chevalier B, et al. <em>JACC Cardiovasc Interv</em>. 2016;9(18):1861-1878. doi:10.1016/j.jcin.2016.06.056.</div>
+              </div>
+            </li>
+            <li class="ref-item">
+              <span class="ref-num">4</span>
+              <div>
+                <div class="ref-title">Double Kissing Crush Versus Provisional Stenting for Left Main Distal Bifurcation Lesions: DKCRUSH-V Randomized Trial.</div>
+                <div class="ref-meta">Chen SL, Zhang JJ, Han Y, et al. <em>J Am Coll Cardiol</em>. 2017;70(21):2605-2617. doi:10.1016/j.jacc.2017.09.1066.</div>
+              </div>
+            </li>
+            <li class="ref-item">
+              <span class="ref-num">5</span>
+              <div>
+                <div class="ref-title">Clinical Outcomes Following Coronary Bifurcation PCI Techniques: A Systematic Review and Network Meta-Analysis Comprising 5,711 Patients.</div>
+                <div class="ref-meta">Di Gioia G, Sonck J, Ferenc M, et al. <em>JACC Cardiovasc Interv</em>. 2020;13(12):1432-1444. doi:10.1016/j.jcin.2020.03.054.</div>
+              </div>
+            </li>
+            <li class="ref-item">
+              <span class="ref-num">6</span>
+              <div>
+                <div class="ref-title">Evolution of the Crush Technique for Bifurcation Stenting.</div>
+                <div class="ref-meta">Raphael CE, O'Kane PD, Johnson TW, et al. <em>JACC Cardiovasc Interv</em>. 2021;14(21):2315-2326. doi:10.1016/j.jcin.2021.08.048.</div>
+              </div>
+            </li>
+            <li class="ref-item">
+              <span class="ref-num">7</span>
+              <div>
+                <div class="ref-title">Culotte Stenting vs. TAP Stenting for Treatment of De-Novo Coronary Bifurcation Lesions With the Need for Side-Branch Stenting: BBK-II Angiographic Trial.</div>
+                <div class="ref-meta">Ferenc M, Gick M, Comberg T, et al. <em>Eur Heart J</em>. 2016;37(45):3399-3405. doi:10.1093/eurheartj/ehw345.</div>
+              </div>
+            </li>
+            <li class="ref-item">
+              <span class="ref-num">8</span>
+              <div>
+                <div class="ref-title">Comparison of Stent Geometry Achieved by Different Side-Branch Ballooning Techniques for Bifurcation Provisional Stenting: The CRABBIS Trial.</div>
+                <div class="ref-meta">Bianchini F, Romagnoli E, Aurigemma C, et al. <em>JACC Cardiovasc Interv</em>. 2025;18(9):1103-1115. doi:10.1016/j.jcin.2025.02.007.</div>
+              </div>
+            </li>
+            <li class="ref-item">
+              <span class="ref-num">9</span>
+              <div>
+                <div class="ref-title">Systematic Proximal Optimization Technique During Bifurcation Stenting: Where Is the Evidence?</div>
+                <div class="ref-meta">Giustino G, Sharma SK, Kini A. <em>JACC Cardiovasc Interv</em>. 2024;17(6):801-806. doi:10.1016/j.jcin.2024.01.071.</div>
+              </div>
+            </li>
+            <li class="ref-item">
+              <span class="ref-num">10</span>
+              <div>
+                <div class="ref-title">Biomechanical Modeling to Improve Coronary Artery Bifurcation Stenting: Expert Review Document.</div>
+                <div class="ref-meta">Antoniadis AP, Mortier P, Kassab G, et al. <em>JACC Cardiovasc Interv</em>. 2015;8(10):1281-1296. doi:10.1016/j.jcin.2015.06.015.</div>
+              </div>
+            </li>
+            <li class="ref-item">
+              <span class="ref-num">11</span>
+              <div>
+                <div class="ref-title">Comparative Analysis of Sequential POT Versus Kissing Balloon Inflation Technique in Provisional Bifurcation Stenting: Fractal Coronary Bifurcation Bench Test.</div>
+                <div class="ref-meta">Finet G, Derimay F, Motreff P, et al. <em>JACC Cardiovasc Interv</em>. 2015;8(10):1308-1317. doi:10.1016/j.jcin.2015.05.016.</div>
+              </div>
+            </li>
+            <li class="ref-item">
+              <span class="ref-num">12</span>
+              <div>
+                <div class="ref-title">Percutaneous Management of Coronary Bifurcation Lesions: Current Perspective.</div>
+                <div class="ref-meta">Wassef AWA, Liu S, Yanagawa B, Verma S, Cheema AN. <em>Curr Opin Cardiol</em>. 2020;35(5):574-582. doi:10.1097/HCO.0000000000000775.</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="disclaimer">
+          ⚕️ Este material é destinado exclusivamente a médicos intervencionistas para fins educacionais e de revisão técnica. As técnicas descritas devem ser executadas por profissionais com treinamento adequado. As indicações devem ser individualizadas conforme o perfil clínico-anatômico de cada paciente e as diretrizes vigentes das sociedades cardiológicas. Dr. Lucas Silva — lucascardio.com.br
+        </div>
+      </div>
+
+    </div><!-- /container -->
+
+    <footer>
+      <div class="container">
+        <div class="footer-inner">
+          <span class="footer-copy">© 2025 Dr. Lucas Silva · Cardiologia Intervencionista · lucascardio.com.br</span>
+          <span class="footer-copy">EBC 2022 · DKCRUSH-V · CRABBIS 2025 · BBK-II · Medicina Baseada em Evidências</span>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+</div><!-- /app-shell -->
+
+<script>
+  // ── SECTION NAV ─────────────────────────────────────────────────
+  function showSection(id) {
+    // Hide all sections
+    document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+    // Deactivate all sidebar items
+    document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+    // Show target
+    const sec = document.getElementById('sec-' + id);
+    if (sec) sec.classList.add('active');
+    // Activate sidebar item
+    document.querySelectorAll('[data-sec="' + id + '"]').forEach(i => i.classList.add('active'));
+    // Close mobile sidebar
+    closeMobSidebar();
+    // Scroll to top of content
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ── MOBILE SIDEBAR ─────────────────────────────────────────────
+  function openMobSidebar() {
+    const sidebar = document.getElementById('mainSidebar');
+    const mob = document.getElementById('mobSidebar');
+    const overlay = document.getElementById('mobOverlay');
+    // Clone sidebar content
+    mob.querySelector('#mobSidebarContent').innerHTML = sidebar.innerHTML;
+    // Attach click handlers to cloned items
+    mob.querySelectorAll('.sidebar-item').forEach(item => {
+      const sec = item.getAttribute('data-sec');
+      if (sec) {
+        item.addEventListener('click', () => showSection(sec));
+      }
+    });
+    mob.classList.add('open');
+    overlay.style.display = 'block';
+  }
+
+  function closeMobSidebar() {
+    document.getElementById('mobSidebar').classList.remove('open');
+    document.getElementById('mobOverlay').style.display = 'none';
+  }
+</script>
+</body>
+</html>

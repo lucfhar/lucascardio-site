@@ -1,0 +1,2066 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>Interpretação do ECG de Repouso – Algoritmo Passo a Passo | Dr. Lucas Silva</title>
+  <meta name="description" content="Algoritmo estruturado e baseado em evidências para interpretação pragmática do eletrocardiograma de repouso. Ritmo, eixo, intervalos, morfologia, isquemia, canalopatias, integração clínica." />
+  <meta name="author" content="Dr. Lucas Silva" />
+  <link rel="canonical" href="https://lucascardio.com.br/Medicos/ecg-interpretacao.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Interpretação do ECG de Repouso – Algoritmo Passo a Passo",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Web Browser",
+    "url": "https://lucascardio.com.br/Medicos/ecg-interpretacao.html",
+    "description": "Algoritmo estruturado e baseado em evidências para interpretação pragmática do eletrocardiograma de repouso.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "BRL"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Dr. Lucas Silva",
+      "url": "https://lucascardio.com.br"
+    },
+    "isAccessibleForFree": true,
+    "featureList": "Ritmo, eixo, intervalos, morfologia, isquemia, canalopatias"
+  }
+</script>
+
+  <style>
+    :root {
+      --primary: oklch(65% .18 195);
+      --primary-foreground: oklch(98% 0 0);
+      --background: oklch(13% .018 250);
+      --foreground: oklch(93% .01 250);
+      --card: oklch(18.5% .018 250);
+      --card-foreground: oklch(93% .01 250);
+      --muted: oklch(22% .018 250);
+      --muted-foreground: oklch(62% .02 250);
+      --border: oklch(28% .025 250);
+      --input: oklch(22% .02 250);
+      --destructive: oklch(60% .22 25);
+      --secondary: oklch(22% .022 250);
+      --secondary-foreground: oklch(88% .01 250);
+      --accent: oklch(24% .025 250);
+      --accent-foreground: oklch(90% .01 250);
+      --teal: #6effcf;
+      --teal-dim: rgba(0,211,189,.12);
+      --amber: oklch(82.8% .189 84.429);
+      --red: oklch(63.7% .237 25.331);
+      --green: oklch(79.2% .209 151.711);
+      --radius: 0.625rem;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-serif: 'Instrument Serif', Georgia, serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--background);
+      color: var(--foreground);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(18,20,27,.9);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--foreground); }
+    .nav-brand-icon {
+      width: 28px; height: 28px; border-radius: 7px;
+      background: var(--teal); display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: .9rem;
+    }
+    .nav-brand-name { font-weight: 800; font-size: 1rem; letter-spacing: -.025em; line-height: 1; }
+    .nav-brand-name span { color: var(--teal); }
+    .nav-brand-sep { width: 1px; height: 14px; background: var(--border); margin: 0 6px; }
+    .nav-brand-sub { font-size: .7rem; font-weight: 500; color: var(--muted-foreground); }
+    .nav-badge {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 999px; background: var(--teal-dim);
+      color: var(--teal); border: 1px solid rgba(0,211,189,.25); white-space: nowrap;
+    }
+    .nav-link {
+      font-size: .75rem; font-weight: 600; padding: 5px 12px;
+      border-radius: 8px; border: 1.5px solid var(--primary);
+      color: var(--primary); background: transparent;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 5px;
+      transition: background .15s, color .15s;
+    }
+    .nav-link:hover { background: var(--primary); color: #000; }
+    .nav-actions { display: flex; align-items: center; gap: .5rem; }
+
+    /* LAYOUT */
+    .container { max-width: 960px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* HERO */
+    .hero { padding: 3.5rem 0 2.5rem; border-bottom: 1px solid var(--border); }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .7rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--teal); margin-bottom: 1rem;
+    }
+    .hero-eyebrow::before { content: ''; display: block; width: 20px; height: 2px; background: var(--teal); border-radius: 1px; }
+    .hero h1 { font-size: clamp(1.6rem, 4vw, 2.5rem); font-weight: 800; line-height: 1.2; margin-bottom: .75rem; letter-spacing: -.02em; }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero-sub { color: var(--muted-foreground); font-size: .95rem; max-width: 680px; margin-bottom: 1.5rem; line-height: 1.7; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 6px; border: 1px solid var(--border);
+      color: var(--muted-foreground); background: var(--card); font-family: var(--font-mono);
+    }
+
+    /* STEP NAV */
+    /* ── PILL NAV MENU ──────────────────────────────────────────── */
+    .step-nav-wrap {
+      margin: 2.5rem auto 0;
+      max-width: 860px;
+    }
+    .step-nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
+    }
+    .step-nav-btn {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 6px 14px 6px 7px;
+      transition: background .15s, border-color .15s, color .15s;
+      white-space: nowrap;
+    }
+    .step-nav-btn:hover {
+      background: var(--accent);
+      border-color: oklch(36% .025 250);
+      color: var(--foreground);
+    }
+    .step-nav-btn.active {
+      background: var(--teal-dim);
+      border-color: rgba(0,211,189,.4);
+      color: var(--teal);
+    }
+    .step-num-circle {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--muted);
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: .6rem; font-weight: 700; font-family: var(--font-mono);
+      color: var(--muted-foreground);
+      flex-shrink: 0; transition: background .15s, color .15s;
+    }
+    .step-nav-btn.active .step-num-circle {
+      background: var(--teal); color: #000;
+    }
+    .step-nav-label {
+      font-size: .78rem; font-weight: 600;
+      color: var(--muted-foreground);
+      transition: color .15s;
+    }
+    .step-nav-btn.active .step-nav-label { color: var(--teal); }
+    .step-nav-btn:hover .step-nav-label { color: var(--foreground); }
+
+    /* MAIN CONTENT SECTIONS */
+    .main-content { padding: 2.5rem 0 4rem; }
+    .content-section { display: none; animation: fadeUp .3s ease; }
+    .content-section.active { display: block; }
+
+    /* CARDS */
+    .card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px);
+      padding: 1.5rem; margin-bottom: 1.5rem;
+    }
+    .card-header {
+      display: flex; align-items: flex-start; gap: .75rem;
+      margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border);
+    }
+    .card-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0; background: var(--teal-dim); color: var(--teal);
+    }
+    .card-title { font-weight: 700; font-size: 1.05rem; margin-bottom: 2px; }
+    .card-subtitle { font-size: .78rem; color: var(--muted-foreground); }
+
+    /* SECTION HEADINGS */
+    .section-label {
+      font-size: .68rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--teal); margin-bottom: .4rem;
+      font-family: var(--font-mono);
+    }
+    .section-title { font-size: 1.3rem; font-weight: 800; margin-bottom: .25rem; letter-spacing: -.01em; }
+    .section-desc { font-size: .88rem; color: var(--muted-foreground); margin-bottom: 1.5rem; line-height: 1.7; }
+    .section-divider { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+
+    /* INFO BOXES */
+    .info-box {
+      border-radius: var(--radius); padding: 12px 16px;
+      font-size: .82rem; line-height: 1.65; display: flex; gap: 10px; margin-bottom: .75rem;
+    }
+    .info-box-icon { flex-shrink: 0; font-size: 1rem; margin-top: 1px; }
+    .info-teal { background: var(--teal-dim); border-left: 3px solid var(--teal); }
+    .info-amber { background: rgba(251,191,36,.08); border-left: 3px solid rgba(251,191,36,.5); }
+    .info-red { background: rgba(220,38,38,.08); border-left: 3px solid rgba(220,38,38,.4); }
+    .info-gray { background: var(--muted); border-left: 3px solid var(--border); }
+    .info-green { background: rgba(34,197,94,.08); border-left: 3px solid rgba(34,197,94,.4); }
+
+    /* BADGES */
+    .badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: .67rem; font-weight: 700; padding: 2px 8px;
+      border-radius: 999px; white-space: nowrap; vertical-align: middle;
+    }
+    .badge-red { background: rgba(220,38,38,.15); color: #f87171; border: 1px solid rgba(220,38,38,.3); }
+    .badge-amber { background: rgba(251,191,36,.12); color: #fbbf24; border: 1px solid rgba(251,191,36,.25); }
+    .badge-teal { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.25); }
+    .badge-gray { background: var(--muted); color: var(--muted-foreground); border: 1px solid var(--border); font-family: var(--font-mono); }
+    .badge-green { background: rgba(34,197,94,.1); color: #4ade80; border: 1px solid rgba(34,197,94,.25); }
+    .badge-purple { background: rgba(167,139,250,.1); color: #a78bfa; border: 1px solid rgba(167,139,250,.25); }
+
+    /* CRITERIA TABLE */
+    .criteria-table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+    .criteria-table th {
+      background: var(--muted); padding: 9px 14px; text-align: left;
+      font-weight: 700; font-size: .74rem; border-bottom: 1px solid var(--border);
+      color: var(--muted-foreground); letter-spacing: .03em;
+    }
+    .criteria-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
+    .criteria-table tr:last-child td { border-bottom: none; }
+    .criteria-table tr:hover td { background: var(--accent); }
+    .criteria-table .mono { font-family: var(--font-mono); font-size: .8rem; color: var(--teal); }
+
+    /* CRITERION ROW */
+    .crit-row {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 11px 14px; border-bottom: 1px solid var(--border);
+      font-size: .83rem; line-height: 1.5; transition: background .12s;
+    }
+    .crit-row:last-child { border-bottom: none; }
+    .crit-row:hover { background: var(--accent); border-radius: var(--radius); }
+    .crit-label { font-weight: 700; min-width: 180px; flex-shrink: 0; }
+    .crit-val { color: var(--muted-foreground); flex: 1; }
+    .crit-val strong { color: var(--foreground); font-weight: 600; }
+    .crit-mono { font-family: var(--font-mono); font-size: .78rem; color: var(--teal); min-width: 130px; flex-shrink: 0; }
+    @media (max-width: 600px) {
+      .crit-row { flex-direction: column; gap: 3px; }
+      .crit-label { min-width: unset; }
+      .crit-mono { min-width: unset; }
+      .criteria-table thead { display: none; }
+      .criteria-table tr { display: block; border-bottom: 1px solid var(--border); padding: 6px 0; }
+      .criteria-table tr:last-child { border-bottom: none; }
+      .criteria-table td { display: block; padding: 3px 14px; border: none; }
+    }
+
+    /* ACCORDION */
+    .accordion { border: 1px solid var(--border); border-radius: calc(var(--radius) + 2px); overflow: hidden; margin-bottom: 1rem; }
+    .accordion-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 13px 16px; cursor: pointer; background: var(--card);
+      transition: background .15s; user-select: none;
+    }
+    .accordion-header:hover { background: var(--accent); }
+    .accordion-header.open { background: var(--accent); border-bottom: 1px solid var(--border); }
+    .accordion-title { font-weight: 700; font-size: .88rem; display: flex; align-items: center; gap: 8px; }
+    .accordion-chevron { transition: transform .2s; color: var(--muted-foreground); font-size: .8rem; }
+    .accordion-header.open .accordion-chevron { transform: rotate(180deg); }
+    .accordion-body { display: none; padding: 14px 16px; background: var(--muted); font-size: .83rem; line-height: 1.7; }
+    .accordion-body.open { display: block; animation: fadeUp .2s ease; }
+
+    /* TWO-COLUMN GRID */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
+    .three-col { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
+    @media (max-width: 720px) { .three-col { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .three-col { grid-template-columns: 1fr; } }
+
+    /* table overflow on mobile */
+    .card { overflow-x: hidden; }
+    .criteria-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+    /* STAT BOX */
+    .stat-box {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px); padding: 1rem 1.2rem;
+    }
+    .stat-box-label { font-size: .7rem; font-weight: 600; color: var(--muted-foreground); text-transform: uppercase; letter-spacing: .07em; margin-bottom: .35rem; }
+    .stat-box-val { font-size: 1.5rem; font-weight: 800; font-family: var(--font-mono); color: var(--teal); line-height: 1; }
+    .stat-box-sub { font-size: .72rem; color: var(--muted-foreground); margin-top: .3rem; }
+
+    /* FORMULA BOX */
+    .formula-box {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 14px 18px;
+      font-family: var(--font-mono); font-size: .88rem;
+      margin: .75rem 0; text-align: center; line-height: 2;
+    }
+    .formula-box .var { color: var(--teal); font-weight: 600; }
+    .formula-box .op { color: var(--muted-foreground); }
+
+    /* PRIORITY TIERS */
+    .priority-tier {
+      border-radius: var(--radius); padding: 12px 16px; margin-bottom: .75rem;
+      display: flex; gap: 12px; align-items: flex-start;
+    }
+    .pt-red { background: rgba(220,38,38,.08); border: 1px solid rgba(220,38,38,.3); }
+    .pt-amber { background: rgba(251,191,36,.07); border: 1px solid rgba(251,191,36,.25); }
+    .pt-teal { background: var(--teal-dim); border: 1px solid rgba(0,211,189,.25); }
+    .pt-gray { background: var(--muted); border: 1px solid var(--border); }
+    .pt-icon { font-size: 1.3rem; flex-shrink: 0; line-height: 1.3; }
+    .pt-label { font-weight: 700; font-size: .82rem; margin-bottom: 2px; }
+    .pt-list { font-size: .8rem; color: var(--muted-foreground); line-height: 1.7; }
+
+    /* REFERENCE LIST */
+    .ref-list { list-style: none; }
+    .ref-item { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: .79rem; line-height: 1.6; display: flex; gap: 10px; }
+    .ref-item:last-child { border-bottom: none; }
+    .ref-num { font-family: var(--font-mono); font-size: .7rem; font-weight: 700; color: var(--teal); min-width: 24px; padding-top: 1px; }
+    .ref-title { font-weight: 600; margin-bottom: 2px; }
+    .ref-meta { color: var(--muted-foreground); font-size: .74rem; }
+
+    /* DISCLAIMER */
+    .disclaimer {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 12px 16px;
+      font-size: .75rem; color: var(--muted-foreground); line-height: 1.6; margin-top: 1.5rem;
+    }
+
+    /* ECG WAVE VISUAL */
+    .ecg-wave { width: 100%; overflow: hidden; opacity: .18; pointer-events: none; }
+    .hero-ecg { margin-top: 1.5rem; margin-bottom: -.5rem; }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes ecgDraw {
+      from { stroke-dashoffset: 2000; }
+      to { stroke-dashoffset: 0; }
+    }
+    .ecg-path {
+      stroke-dasharray: 2000; stroke-dashoffset: 2000;
+      animation: ecgDraw 3s ease forwards;
+    }
+
+    /* LEAD GRID */
+    .lead-grid {
+      display: grid; grid-template-columns: repeat(4,1fr);
+      gap: 8px; margin: .75rem 0;
+    }
+    @media (max-width: 600px) { .lead-grid { grid-template-columns: repeat(2,1fr); } }
+    .lead-cell {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 8px 12px;
+      font-size: .75rem; text-align: center;
+    }
+    .lead-cell .lead-name { font-family: var(--font-mono); color: var(--teal); font-weight: 700; font-size: .7rem; display: block; margin-bottom: 2px; }
+    .lead-cell .lead-desc { color: var(--muted-foreground); font-size: .7rem; }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 2rem 0; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-brand { font-weight: 800; font-size: .88rem; }
+    .footer-brand span { color: var(--teal); }
+    .footer-meta { font-size: .75rem; color: var(--muted-foreground); }
+    .footer-links { display: flex; gap: 1rem; }
+    .footer-links a { font-size: .75rem; color: var(--muted-foreground); text-decoration: none; transition: color .15s; }
+    .footer-links a:hover { color: var(--teal); }
+
+    /* SCROLL PROGRESS */
+    #scroll-progress {
+      position: fixed; top: 0; left: 0; height: 2px;
+      background: var(--teal); z-index: 100;
+      transition: width .1s linear;
+    }
+
+    p { margin-bottom: .65rem; }
+    p:last-child { margin-bottom: 0; }
+    ul.content-list { padding-left: 1.1rem; line-height: 1.8; font-size: .84rem; color: var(--foreground); }
+    ul.content-list li { margin-bottom: .25rem; }
+    strong.teal { color: var(--teal); }
+    strong.amber { color: var(--amber); }
+    strong.red { color: var(--red); }
+    .serif { font-family: var(--font-serif); font-style: italic; font-size: 1.05em; }
+  </style>
+</head>
+<body>
+
+<div id="scroll-progress"></div>
+
+<nav>
+  <a href="https://lucascardio.com.br" class="nav-brand">
+    <div class="nav-brand-icon">🫀</div>
+    <span class="nav-brand-name">lucas<span>cardio</span></span>
+    <div class="nav-brand-sep"></div>
+    <span class="nav-brand-sub">lucascardio.com.br</span>
+  </a>
+  <div class="nav-actions">
+    <span class="nav-badge">Referência Médica</span>
+    <a href="https://lucascardio.com.br" class="nav-link">← Início</a>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="hero">
+    <div class="hero-eyebrow">Cardiologia Clínica · Diagnóstico por ECG</div>
+    <h1>Interpretação Sistemática do <em>ECG de Repouso</em></h1>
+    <p class="hero-sub">Algoritmo passo a passo baseado em evidências atualizadas (AHA/ACC/HRS/ESC) para a avaliação pragmática do eletrocardiograma de 12 derivações. Do controle de qualidade técnico à integração clínica e estratificação de risco.</p>
+    <div class="hero-tags">
+      <span class="tag">AHA/ACC/HRS 2007–2024</span>
+      <span class="tag">4ª Definição Universal de IAM</span>
+      <span class="tag">ESC 2022</span>
+      <span class="tag">JAMA Internal Medicine 2024</span>
+      <span class="tag">Público: Médicos</span>
+    </div>
+    <div class="hero-ecg ecg-wave">
+      <svg viewBox="0 0 900 60" fill="none" xmlns="http://www.w3.org/2000/svg" height="60" width="100%">
+        <path class="ecg-path" d="M0,30 L60,30 L70,30 L75,20 L80,30 L100,30 L105,5 L110,55 L115,25 L120,25 L130,30 L200,30 L210,30 L215,20 L220,30 L240,30 L245,5 L250,55 L255,25 L260,25 L270,30 L340,30 L350,30 L355,20 L360,30 L380,30 L385,5 L390,55 L395,25 L400,25 L410,30 L480,30 L490,30 L495,20 L500,30 L520,30 L525,5 L530,55 L535,25 L540,25 L550,30 L620,30 L630,30 L635,20 L640,30 L660,30 L665,5 L670,55 L675,25 L680,25 L690,30 L760,30 L770,30 L775,20 L780,30 L800,30 L805,5 L810,55 L815,25 L820,25 L830,30 L900,30"
+          stroke="#00d3bd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="main-content">
+
+    <!-- ── PILL NAV MENU ──────────────────────────────────────── -->
+    <div class="step-nav-wrap" id="stepNav">
+      <div class="step-nav">
+        <button class="step-nav-btn active" onclick="showSection(0)" data-idx="0"><span class="step-num-circle">1</span><span class="step-nav-label">Calibração</span></button>
+        <button class="step-nav-btn" onclick="showSection(1)" data-idx="1"><span class="step-num-circle">2</span><span class="step-nav-label">Ritmo</span></button>
+        <button class="step-nav-btn" onclick="showSection(2)" data-idx="2"><span class="step-num-circle">3</span><span class="step-nav-label">FC &amp; Eixo</span></button>
+        <button class="step-nav-btn" onclick="showSection(3)" data-idx="3"><span class="step-num-circle">4</span><span class="step-nav-label">Intervalos</span></button>
+        <button class="step-nav-btn" onclick="showSection(4)" data-idx="4"><span class="step-num-circle">5</span><span class="step-nav-label">Morfologia</span></button>
+        <button class="step-nav-btn" onclick="showSection(5)" data-idx="5"><span class="step-num-circle">6</span><span class="step-nav-label">Hipertrofia</span></button>
+        <button class="step-nav-btn" onclick="showSection(6)" data-idx="6"><span class="step-num-circle">7</span><span class="step-nav-label">Isquemia &amp; Infarto</span></button>
+        <button class="step-nav-btn" onclick="showSection(7)" data-idx="7"><span class="step-num-circle">8</span><span class="step-nav-label">Canalopatias</span></button>
+        <button class="step-nav-btn" onclick="showSection(8)" data-idx="8"><span class="step-num-circle">9</span><span class="step-nav-label">Drogas &amp; Eletrólitos</span></button>
+        <button class="step-nav-btn" onclick="showSection(9)" data-idx="9"><span class="step-num-circle">10</span><span class="step-nav-label">Integração Clínica</span></button>
+        <button class="step-nav-btn" onclick="showSection(10)" data-idx="10"><span class="step-num-circle">★</span><span class="step-nav-label">Referências</span></button>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════
+         SEÇÃO 1 · CALIBRAÇÃO E QUALIDADE TÉCNICA
+    ═══════════════════════════════════════════════════════════════ -->
+    <div class="content-section active" id="section-0">
+      <div class="section-label">Etapa 1 de 10</div>
+      <h2 class="section-title">Calibração Técnica e Controle de Qualidade</h2>
+      <p class="section-desc">A etapa mais frequentemente negligenciada da interpretação. Artefatos e desvios de calibração podem simular arritmias malignas, IAMCSST, hipertrofia ou prolongamento do QT, gerando intervenções desnecessárias ou omissões diagnósticas.</p>
+
+      <div class="info-box info-red">
+        <span class="info-box-icon">⚠️</span>
+        <div><strong>Princípio fundamental:</strong> Nenhuma análise clínica deve preceder a confirmação da adequação técnica do traçado. A AHA recomenda explicitamente verificar calibração, velocidade e ausência de artefatos antes de qualquer diagnóstico eletrocardiográfico.<sup>[1,2]</sup></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">📐</div>
+          <div><div class="card-title">Parâmetros de Calibração Padrão</div>
+          <div class="card-subtitle">Verificação obrigatória em todo traçado — AHA/ACC/HRS Scientific Statement 2007<sup>[2]</sup></div></div>
+        </div>
+        <div class="three-col">
+          <div class="stat-box">
+            <div class="stat-box-label">Velocidade do papel</div>
+            <div class="stat-box-val">25 mm/s</div>
+            <div class="stat-box-sub">1 quadrado pequeno = 40 ms · 1 grande = 200 ms</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-label">Amplitude (ganho)</div>
+            <div class="stat-box-val">10 mm/mV</div>
+            <div class="stat-box-sub">1 quadrado pequeno = 0,1 mV · 1 grande = 0,5 mV</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-label">Marca de calibração</div>
+            <div class="stat-box-val">10 mm</div>
+            <div class="stat-box-sub">Onda quadrada de 1 mV visível em todo traçado</div>
+          </div>
+        </div>
+        <div class="info-box info-amber" style="margin-top:1rem;">
+          <span class="info-box-icon">📌</span>
+          <div>Velocidades não padrão (50 mm/s ou 12,5 mm/s) são utilizadas em situações específicas mas devem ser explicitamente anotadas. Ganho reduzido (5 mm/mV) falsamente diminui voltagem, podendo mascarar critérios de HVE. Ganho aumentado falsamente amplia voltagem, gerando falsos positivos para hipertrofia.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">📡</div>
+          <div><div class="card-title">Artefatos: Reconhecimento e Gestão</div>
+          <div class="card-subtitle">Update to Practice Standards for ECG Monitoring — AHA 2017<sup>[4]</sup></div></div>
+        </div>
+        <p style="font-size:.85rem;margin-bottom:1rem;">Artefatos são fonte frequente de erro diagnóstico com consequências clínicas graves. O Statement da AHA enfatiza que artefatos podem simular fibrilação atrial, taquicardia ventricular e IAMCSST, potencialmente desencadeando cateterismos ou implante de dispositivos desnecessários.<sup>[4]</sup></p>
+
+        <div class="accordion">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <div class="accordion-title">🔴 Artefatos de Tremor Muscular (Miotremor)</div>
+            <span class="accordion-chevron">▼</span>
+          </div>
+          <div class="accordion-body">
+            <p><strong>Aparência:</strong> Oscilações irregulares de alta frequência sobrepostas ao traçado, mais proeminentes em derivações de membros. Frequência típica 6–8 Hz (tremor essencial/Parkinson) ou &gt;50 Hz (tremor fino).</p>
+            <p><strong>Simulam:</strong> FA (ritmo irregularmente irregular sem ondas P visíveis), flutter atrial (oscilações regulares), FV em casos extremos.</p>
+            <p><strong>Diagnóstico diferencial:</strong> Verdadeira FA preserva morfologia QRS consistente e ausência de atividade elétrica organizada entre os QRS. Artefato de tremor tipicamente é inconsistente entre derivações — derivações de membro ipsilateral ao membro acometido mostram artefato, enquanto derivações contralaterais e precordiais são preservadas.<sup>[5]</sup></p>
+            <p><strong>Conduta:</strong> Posicionar eletrodos em superfícies ósseas estáveis (tornozelos, punhos), solicitar relaxamento muscular, repetir o traçado com membros apoiados.</p>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <div class="accordion-title">🟡 Artefato de Linha de Base (Deriva da Linha de Base)</div>
+            <span class="accordion-chevron">▼</span>
+          </div>
+          <div class="accordion-body">
+            <p><strong>Aparência:</strong> Ondulação lenta da linha isoelétrica (0,5–1 Hz), relacionada à respiração ou movimentação do paciente.</p>
+            <p><strong>Simulam:</strong> Elevação ou depressão de ST, onda T anormal, flutter atrial de baixa amplitude.</p>
+            <p><strong>Mecanismo:</strong> Impedância variável eletrodo-pele por movimento ou respiração. Mais comum com eletrodos de má qualidade ou gel ressecado.</p>
+            <p><strong>Conduta:</strong> Melhorar contato eletrodo-pele (limpeza da pele com álcool, abrasão leve se necessário), substituir eletrodos, solicitar apneia durante o registro quando clinicamente viável.</p>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <div class="accordion-title">🟡 Interferência Elétrica (60 Hz)</div>
+            <span class="accordion-chevron">▼</span>
+          </div>
+          <div class="accordion-body">
+            <p><strong>Aparência:</strong> Espessamento uniforme e regular da linha de base com aspecto "aveludado" à frequência de 60 Hz (CA da rede elétrica). Afeta todas as derivações de forma relativamente homogênea.</p>
+            <p><strong>Simulam:</strong> Pode mascarar amplitude real de ondas, dificultar medida de segmento ST e morfologia de onda T.</p>
+            <p><strong>Conduta:</strong> Verificar se eletrodo terra está adequadamente conectado. Afastar equipamentos eletrônicos. Os sistemas digitais modernos possuem filtro de 60 Hz — verificar se está habilitado (cautela: pode alterar morfologia de ondas agudas).</p>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <div class="accordion-title">🔴 Inversão de Derivações (Lead Misplacement)</div>
+            <span class="accordion-chevron">▼</span>
+          </div>
+          <div class="accordion-body">
+            <p><strong>Inversão RA/LA (braços trocados):</strong> Produz onda P negativa em D1, eixo direito aparente, inversão de QRS em D1. Simula dextrocardia ou infarto lateral.<sup>[6]</sup></p>
+            <p><strong>Inversão RA/LL (braço direito/pé esquerdo):</strong> Gera padrão pseudo-D2 em D3, complexos bifásicos em D1/D2/D3, pode simular infarto inferior.</p>
+            <p><strong>Dextrocardia verdadeira vs. troca de eletrodos:</strong> Na dextrocardia verdadeira, derivações precordiais mostram progressão R decrescente de V1–V6 e ausência de onda R em precordiais esquerdas. Na troca de braços com coração normal, apenas derivações de membros são afetadas; precordiais são normais.</p>
+            <p><strong>Eletrodos precordiais mal posicionados:</strong> V1–V2 posicionados acima do 4º EIC (erro mais comum) produzem ondas Q em V1–V2 simulando pseudo-necrose septal ou padrão de BRD incompleto. V5–V6 deslocados para baixo podem simular padrão de repolarização precoce.</p>
+            <div class="info-box info-amber" style="margin-top:.5rem;">
+              <span class="info-box-icon">📌</span>
+              <div>A AHA recomenda treinamento regular dos operadores e sistemas de detecção automatizada de troca de eletrodos. Algoritmos de detecção automática no UK Biobank demonstraram sensibilidade de 84,9% e especificidade de 100%.<sup>[8]</sup> A responsabilidade final, entretanto, permanece com o médico interpretador.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">✅</div>
+          <div><div class="card-title">Checklist de Qualidade Técnica</div>
+          <div class="card-subtitle">A ser completado antes de qualquer análise clínica</div></div>
+        </div>
+        <div style="font-size:.83rem; line-height:1.8;">
+          <div class="crit-row"><div class="crit-label">☐ Velocidade confirmada</div><div class="crit-val">25 mm/s (ou documentar desvio)</div></div>
+          <div class="crit-row"><div class="crit-label">☐ Calibração confirmada</div><div class="crit-val">10 mm/mV — onda quadrada visível e de altura correta</div></div>
+          <div class="crit-row"><div class="crit-label">☐ 12 derivações presentes</div><div class="crit-val">I, II, III, aVR, aVL, aVF, V1–V6 com qualidade adequada</div></div>
+          <div class="crit-row"><div class="crit-label">☐ Ausência de artefatos</div><div class="crit-val">Linha de base estável, sem interferência de 60 Hz ou miotremor</div></div>
+          <div class="crit-row"><div class="crit-label">☐ Posição dos eletrodos</div><div class="crit-label">V1–V2: 4º EIC paraesternal · V3–V4: entre V2 e V5 · V5–V6: linha axilar anterior/média</div></div>
+          <div class="crit-row"><div class="crit-label">☐ Identificação do paciente</div><div class="crit-val">Nome, data de nascimento, data/hora do exame, identificação do operador</div></div>
+          <div class="crit-row"><div class="crit-label">☐ Comparação com ECG prévio</div><div class="crit-val">Quando disponível — fundamental para deteção de mudanças evolutivas</div></div>
+        </div>
+      </div>
+
+      <div class="disclaimer">⚕️ <strong>Nota metodológica:</strong> Este conteúdo reflete as recomendações das declarações científicas AHA/ACC/HRS para padronização e interpretação do ECG (Kligfield et al., JACC 2007; Mason et al., JACC 2007) e a atualização da AHA para monitoramento eletrocardiográfico hospitalar (Sandau et al., Circulation 2017). Evidências de algoritmos automatizados baseiam-se em Bukhari et al., Computers in Biology and Medicine 2025.</div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════
+         SEÇÃO 2 · RITMO
+    ═══════════════════════════════════════════════════════════════ -->
+    <div class="content-section" id="section-1">
+      <div class="section-label">Etapa 2 de 10</div>
+      <h2 class="section-title">Análise do Ritmo Cardíaco</h2>
+      <p class="section-desc">A determinação do ritmo é o segundo passo após a confirmação da qualidade técnica. Envolve identificar a origem da atividade elétrica, a regularidade dos ciclos e a relação atrioventricular. A derivação DII longa (tira de ritmo) e aVR são fundamentais.</p>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">💓</div>
+          <div><div class="card-title">Ritmo Sinusal Normal</div>
+          <div class="card-subtitle">Critérios obrigatórios — Mason et al., JACC 2007<sup>[9]</sup></div></div>
+        </div>
+        <div class="crit-row"><div class="crit-label">Onda P positiva em DI e DII</div><div class="crit-val">Origens sinoatrial → vetor atrial de cima para baixo e da direita para a esquerda</div></div>
+        <div class="crit-row"><div class="crit-label">P negativa em aVR</div><div class="crit-val">Confirmação do vetor P normal</div></div>
+        <div class="crit-row"><div class="crit-label">P precede cada QRS</div><div class="crit-val">Relação P:QRS = 1:1 com morfologia P constante</div></div>
+        <div class="crit-row"><div class="crit-label">Intervalo PR constante</div><div class="crit-val">120–200 ms; qualquer variação deve ser investigada</div></div>
+        <div class="crit-row"><div class="crit-label">Frequência sinusal</div><div class="crit-val">Bradicardia sinusal &lt;60 bpm · Normal 60–100 bpm · Taquicardia sinusal &gt;100 bpm</div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">⚡</div>
+          <div><div class="card-title">Abordagem Sistemática do Ritmo</div>
+          <div class="card-subtitle">Algoritmo diagnóstico baseado em morfologia e regularidade</div></div>
+        </div>
+
+        <div class="accordion">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <div class="accordion-title"><span class="badge badge-red">Urgência</span> &nbsp;Fibrilação Atrial (FA)</div>
+            <span class="accordion-chevron">▼</span>
+          </div>
+          <div class="accordion-body">
+            <p><strong>Critérios diagnósticos (AHA/ACC/ACCP/HRS 2023):<sup>[11,12]</sup></strong></p>
+            <ul class="content-list">
+              <li><strong>Irregularidade irregular</strong> absoluta dos intervalos RR (ausência de padrão repetitivo)</li>
+              <li><strong>Ausência de ondas P distintas</strong> — substituídas por atividade atrial desorganizada (ondas f irregulares de 350–600 ciclos/min), mais visíveis em V1</li>
+              <li>QRS geralmente estreito (exceto se aberrância ou BRE/BRD associado)</li>
+              <li>Resposta ventricular variável conforme condução AV</li>
+            </ul>
+            <div class="info-box info-amber" style="margin-top:.5rem;">
+              <span class="info-box-icon">📌</span>
+              <div><strong>Atenção:</strong> FA com condução acessória (WPW) produz QRS largo, bizarro e irregularmente irregular — aspecto de "FA pré-excitada". É emergência (risco de FV). Evitar adenosina, diltiazem e digoxina; a cardioversão elétrica é preferencial.</div>
+            </div>
+            <p style="margin-top:.5rem;"><strong>Contexto clínico:</strong> A guideline de 2023 introduz formato modular de atualização contínua, enfatiza detecção precoce com tecnologias de monitoramento ambulatorial (dispositivos vestíveis, loop recorders) e estratificação de risco de AVC com CHA₂DS₂-VASc.</p>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <div class="accordion-title"><span class="badge badge-amber">Atenção</span> &nbsp;Flutter Atrial</div>
+            <span class="accordion-chevron">▼</span>
+          </div>
+          <div class="accordion-body">
+            <p><strong>Flutter típico (istmo cavotricuspídeo dependente):</strong></p>
+            <ul class="content-list">
+              <li>Atividade atrial regular a <strong>≈300 bpm</strong> (250–350 bpm)</li>
+              <li><strong>Ondas F</strong> em padrão serrilhado ("dente de serra") em DII, DIII, aVF — morfologia negativa no flutter anti-horário (forma mais comum), positiva no horário</li>
+              <li>Condução AV geralmente 2:1 (FC ventricular ≈150 bpm), podendo ser 3:1, 4:1 ou variável</li>
+              <li>QRS estreito (exceto aberrância)</li>
+            </ul>
+            <div class="info-box info-teal" style="margin-top:.5rem;">
+              <span class="info-box-icon">💡</span>
+              <div><strong>Dica prática:</strong> Flutter 2:1 com QRS normal e FC ~150 bpm deve sempre ser considerado até que se prove o contrário. A manobra vagal ou adenosina pode desmascarar o padrão ao aumentar transitoriamente o bloqueio AV, tornando as ondas F visíveis.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <div class="accordion-title"><span class="badge badge-amber">Atenção</span> &nbsp;Taquicardias Supraventriculares (TSV)</div>
+            <span class="accordion-chevron">▼</span>
+          </div>
+          <div class="accordion-body">
+            <p><strong>Abordagem inicial:</strong> Toda taquicardia de QRS estreito (&lt;120 ms) com FC &gt;100 bpm é supraventricular por definição (exceto condução aberrante). Investigar regularidade, morfologia P, relação P-QRS e resposta a manobras vagais.</p>
+            <table class="criteria-table" style="margin-top:.5rem;">
+              <tr><th>Arritmia</th><th>FC atrial</th><th>Onda P</th><th>Intervalo RP</th></tr>
+              <tr><td><strong>TRNAV (forma típica)</strong></td><td>150–250</td><td>Pseudo-r' em V1; P negativa em DII no interior ou logo após QRS</td><td>Curto (&lt;70 ms) ou P = fim do QRS</td></tr>
+              <tr><td><strong>TRAV (via acessória)</strong></td><td>150–250</td><td>P negativa após QRS em DII (RP &lt; PR)</td><td>Curto (70–120 ms)</td></tr>
+              <tr><td><strong>Taquicardia atrial focal</strong></td><td>100–250</td><td>Morfologia P diferente do sinusal; pode haver bloqueio AV</td><td>Variável, geralmente longo</td></tr>
+              <tr><td><strong>Taquicardia juncional</strong></td><td>60–130</td><td>Ausente ou retroatrial (P negativa em DII após QRS)</td><td>Variável</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <div class="accordion-title"><span class="badge badge-red">Urgência</span> &nbsp;Taquicardias Ventriculares (TV)</div>
+            <span class="accordion-chevron">▼</span>
+          </div>
+          <div class="accordion-body">
+            <p><strong>Diagnóstico de TV:</strong> Taquicardia com QRS &gt;120 ms é ventricular até que se prove o contrário. Os critérios de Brugada (1991) e o algoritmo de Vereckei (2008) são os mais utilizados clinicamente.</p>
+            <p><strong>Critérios de Brugada para TV (qualquer um presente = TV):</strong></p>
+            <ul class="content-list">
+              <li>Ausência de padrão RS em todas as derivações precordiais</li>
+              <li>Intervalo R ao nadir S &gt;100 ms em qualquer derivação precordial com RS</li>
+              <li>Dissociação AV (ondas P independentes dos QRS — sinal patognomônico)</li>
+              <li>Critérios morfológicos: padrão de BRE com eixo direito, ou padrão de BRD com critérios específicos em V1 e V6</li>
+            </ul>
+            <div class="info-box info-teal" style="margin-top:.5rem;">
+              <span class="info-box-icon">💡</span>
+              <div><strong>Achados sugestivos de TV:</strong> Batimentos de captura (QRS estreito isolado durante taquicardia = atividade sinusal capturando ventrículo), batimentos de fusão, dissociação AV, eixo NO (northwest — entre −90° e ±180°), concordância negativa precordial.</div>
+            </div>
+            <div class="info-box info-red" style="margin-top:.25rem;">
+              <span class="info-box-icon">🚨</span>
+              <div><strong>Nunca assuma TSV com aberrância</strong> em paciente instável hemodinamicamente ou com cardiopatia estrutural conhecida. A TV é muito mais frequente que TSV com aberrância nesse contexto.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <div class="accordion-title"><span class="badge badge-teal">Atenção</span> &nbsp;Ritmos de Escape e Bloqueios Sinusais</div>
+            <span class="accordion-chevron">▼</span>
+          </div>
+          <div class="accordion-body">
+            <p><strong>Pausa sinusal vs. bloqueio sinoatrial (BSA):</strong> A pausa sinusal não é múltiplo do PP basal; o BSA de 2º grau Tipo II produz pausa exatamente igual ao dobro (ou mais) do PP basal.</p>
+            <p><strong>Ritmo juncional de escape:</strong> QRS estreito (similar ao sinusal), FC 40–60 bpm, onda P ausente, retrógrada (negativa em DII) ou dissociada. Ocorre quando marcapasso sinusal falha ou condução AV está bloqueada acima da junção.</p>
+            <p><strong>Ritmo idioventricular:</strong> QRS largo e bizarro, FC 20–40 bpm — ritmo de escape ventricular. Indica colapso da automaticidade supraventricular e juncional.</p>
+            <p><strong>Síndrome do nó sinusal doente:</strong> Bradicardia sinusal sintomática, paradas sinusais, síndrome bradicardia-taquicardia (alternância FA e períodos de pause após término da FA), incompetência cronotrópica.</p>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <div class="accordion-title"><span class="badge badge-gray">Diagnóstico</span> &nbsp;Extrassístoles Atriais e Ventriculares</div>
+            <span class="accordion-chevron">▼</span>
+          </div>
+          <div class="accordion-body">
+            <p><strong>Extrassístoles atriais (EAs):</strong> QRS prematuro com morfologia semelhante ao sinusal, precedido por onda P de morfologia diferente (origem atrial ectópica). Pode ser conduzido com aberrância (QRS largo). Pausa compensatória incompleta (marcapasso sinusal é redefinido).</p>
+            <p><strong>Extrassístoles ventriculares (EVs):</strong> QRS prematuro, largo (&gt;120 ms), bizarro, sem onda P precedente. Pausa compensatória completa (o marcapasso sinusal não é redefinido). Morfologia de BRE sugere origem no VD (mais comum, geralmente benigno); morfologia de BRD sugere origem no VE (mais relevante clinicamente — avaliar cardiopatia estrutural).</p>
+            <div class="info-box info-amber" style="margin-top:.5rem;">
+              <span class="info-box-icon">📌</span>
+              <div><strong>Fenômeno R sobre T:</strong> EV com acoplamento curto incidindo na fase vulnerável da repolarização ventricular (ascendente da onda T) pode desencadear FV, especialmente na fase aguda do IAM ou em canalopatias (SQTC, SQT1). Requer avaliação clínica urgente.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="disclaimer">⚕️ Critérios de ritmo baseados em: Mason et al. (JACC 2007), Joglar et al. 2023 ACC/AHA/ACCP/HRS Guideline for AF (JACC/Circulation 2024), Nielsen et al. EHRA/HRS/APHRS/LAHRS Expert Consensus (Heart Rhythm 2020). Critérios de TV: Brugada et al. Circulation 1991; Vereckei et al. Heart Rhythm 2008.</div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════
+         SEÇÃO 3 · FREQUÊNCIA E EIXO
+    ═══════════════════════════════════════════════════════════════ -->
+    <div class="content-section" id="section-2">
+      <div class="section-label">Etapa 3 de 10</div>
+      <h2 class="section-title">Frequência Cardíaca e Eixo Elétrico</h2>
+      <p class="section-desc">O eixo elétrico médio do QRS no plano frontal reflete o vetor de despolarização ventricular resultante. Desvios fornecem pistas para bloqueios fasciculares, sobrecarga de câmaras, infarto antigo e ritmos ectópicos.</p>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">⏱️</div>
+          <div><div class="card-title">Cálculo da Frequência Cardíaca</div>
+          <div class="card-subtitle">Métodos validados — Mason et al., JACC 2007<sup>[9]</sup></div></div>
+        </div>
+        <div class="two-col">
+          <div>
+            <p class="section-label" style="margin-bottom:.5rem;">Ritmo Regular</p>
+            <div class="formula-box">
+              <span class="var">FC</span> <span class="op">=</span> <span class="var">300</span> <span class="op">÷</span> <span class="var">nº de quadrados grandes entre RR</span>
+            </div>
+            <table class="criteria-table" style="margin-top:.5rem;">
+              <tr><th>Quadrados grandes</th><th>FC (bpm)</th></tr>
+              <tr><td class="mono">1</td><td>300</td></tr>
+              <tr><td class="mono">2</td><td>150</td></tr>
+              <tr><td class="mono">3</td><td>100</td></tr>
+              <tr><td class="mono">4</td><td>75</td></tr>
+              <tr><td class="mono">5</td><td>60</td></tr>
+              <tr><td class="mono">6</td><td>50</td></tr>
+              <tr><td class="mono">7</td><td>43</td></tr>
+            </table>
+          </div>
+          <div>
+            <p class="section-label" style="margin-bottom:.5rem;">Ritmo Irregular (ex: FA)</p>
+            <div class="formula-box">
+              <span class="var">FC</span> <span class="op">=</span> nº de QRS em 10 s <span class="op">×</span> <span class="var">6</span>
+            </div>
+            <div class="info-box info-teal" style="margin-top:.5rem;">
+              <span class="info-box-icon">💡</span>
+              <div>Para maior precisão em ritmos irregulares: contar QRS em uma tira de 6 segundos (30 quadrados grandes) e multiplicar por 10. Os sistemas digitais modernos fornecem FC média e instantânea automaticamente, mas o clínico deve verificar o método utilizado.</div>
+            </div>
+            <div class="info-box info-gray">
+              <span class="info-box-icon">📌</span>
+              <div><strong>Taquicardia sinusal</strong> &gt;100 bpm — sempre buscar causa (febre, dor, hipovolemia, hipertireoidismo, TEP, ICC). Raramente é diagnóstico primário.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">🧭</div>
+          <div><div class="card-title">Eixo Elétrico do QRS (Plano Frontal)</div>
+          <div class="card-subtitle">Surawicz et al., AHA/ACCF/HRS Statement — JACC 2009<sup>[13]</sup></div></div>
+        </div>
+
+        <div class="info-box info-gray">
+          <span class="info-box-icon">📐</span>
+          <div><strong>Método rápido — derivações DI e aVF:</strong> QRS positivo em DI e aVF = eixo normal. QRS positivo em DI e negativo em aVF = desvio para esquerda. QRS negativo em DI e positivo em aVF = desvio para direita. QRS negativo em ambos = desvio extremo (northwest).</div>
+        </div>
+
+        <table class="criteria-table" style="margin-top:1rem;">
+          <tr>
+            <th>Eixo</th>
+            <th>Graus</th>
+            <th>DI</th>
+            <th>aVF</th>
+            <th>Causas Principais</th>
+          </tr>
+          <tr>
+            <td><span class="badge badge-green">Normal</span></td>
+            <td class="mono">−30° a +90°</td>
+            <td>Positivo</td>
+            <td>Positivo (ou var.)</td>
+            <td>Normal para adultos</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-amber">ESQUERDO</span></td>
+            <td class="mono">−30° a −90°</td>
+            <td>Positivo</td>
+            <td>Negativo</td>
+            <td>HBAE, HVE, IAM inferior antigo, hiperpotassemia, BCRE, obesidade, gravidez</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-amber">DIREITO</span></td>
+            <td class="mono">+90° a +180°</td>
+            <td>Negativo</td>
+            <td>Positivo</td>
+            <td>HBPE, HVD, TEP, DPOC, CIA, Cor pulmonale, dextrocardia, criança normal</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-red">EXTREMO (NW)</span></td>
+            <td class="mono">−90° a ±180°</td>
+            <td>Negativo</td>
+            <td>Negativo</td>
+            <td>TV, hiperpotassemia grave, BRD + HBAE, troca de eletrodos (RA/LA + RL/LL)</td>
+          </tr>
+        </table>
+
+        <div class="section-divider"></div>
+
+        <div class="section-label">Bloqueios Fasciculares e Eixo</div>
+        <div class="two-col" style="margin-top:.75rem;">
+          <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              <div class="accordion-title">HBAE — Hemibloqueio Anterior Esquerdo</div>
+              <span class="accordion-chevron">▼</span>
+            </div>
+            <div class="accordion-body">
+              <ul class="content-list">
+                <li>Eixo ≤ <strong>−45°</strong> (alguns guidelines −30°)</li>
+                <li>Padrão <strong>qR em aVL</strong></li>
+                <li>Padrão <strong>rS em DII, DIII, aVF</strong></li>
+                <li>QRS &lt;120 ms (na ausência de BRD associado)</li>
+                <li>Excluir outras causas de desvio esquerdo (IAM inferior, HVE com desvio)</li>
+              </ul>
+              <div class="info-box info-teal" style="margin-top:.5rem;">
+                <span class="info-box-icon">💡</span>
+                <div>HBAE é o bloqueio fascicular mais comum (prevalência ~1–4% na população geral). Isolado tem prognóstico benigno, mas quando associado ao BRD completo (bloqueio bifascicular) sugere doença do sistema de condução.</div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              <div class="accordion-title">HBPE — Hemibloqueio Posterior Esquerdo</div>
+              <span class="accordion-chevron">▼</span>
+            </div>
+            <div class="accordion-body">
+              <ul class="content-list">
+                <li>Eixo ≥ <strong>+120°</strong></li>
+                <li>Padrão <strong>rS em DI e aVL</strong></li>
+                <li>Padrão <strong>qR em DIII e aVF</strong></li>
+                <li>QRS &lt;120 ms</li>
+                <li>Excluir HVD, DPOC, troca de eletrodos — diagnóstico de exclusão</li>
+              </ul>
+              <div class="info-box info-amber" style="margin-top:.5rem;">
+                <span class="info-box-icon">⚠️</span>
+                <div>HBPE é raro isolado pois a divisão posterior do ramo esquerdo tem suprimento vascular duplo. Sua presença sugere doença coronária extensa ou miocardiopatia. Sempre excluir desvio direito por HVD ou DPOC.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-box info-gray" style="margin-top:1rem;">
+          <span class="info-box-icon">📌</span>
+          <div><strong>Eixo da onda P:</strong> Normal entre 0° e +75°. P negativa em DI pode indicar dextrocardia, inversão RA/LA, ou ritmo atrial ectópico esquerdo. P positiva em aVR indica ativação atrial retrógrada (ritmo juncional ou atrial baixo).</div>
+        </div>
+      </div>
+
+      <div class="disclaimer">⚕️ Critérios de eixo e bloqueios fasciculares baseados em: Surawicz B et al. AHA/ACCF/HRS Recommendations for Standardization and Interpretation of the ECG: Part III, JACC 2009; Mason JW et al. AHA/ACC/HRS Scientific Statement, JACC 2007.</div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════
+         SEÇÃO 4 · INTERVALOS
+    ═══════════════════════════════════════════════════════════════ -->
+    <div class="content-section" id="section-3">
+      <div class="section-label">Etapa 4 de 10</div>
+      <h2 class="section-title">Intervalos: PR, QRS e QT</h2>
+      <p class="section-desc">A medida precisa dos intervalos constitui o núcleo da análise eletrocardiográfica. Erros de 20–40 ms na medida do QTc são clinicamente relevantes para o risco de torsades de pointes. Use a derivação com início mais precoce do QRS e término mais tardio da onda T.</p>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">📏</div>
+          <div><div class="card-title">Intervalo PR</div>
+          <div class="card-subtitle">Início da onda P ao início do QRS — Mason et al., JACC 2007<sup>[9]</sup> · Surawicz et al., JACC 2009<sup>[13]</sup></div></div>
+        </div>
+        <div class="three-col">
+          <div class="stat-box">
+            <div class="stat-box-label">Normal</div>
+            <div class="stat-box-val">120–200</div>
+            <div class="stat-box-sub">ms · 3–5 quadrhinhos pequenos</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-label">Prolongado (&gt;200 ms)</div>
+            <div class="stat-box-val">BAV 1º grau</div>
+            <div class="stat-box-sub">ou infiltrativo, vagotonia, digital</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-label">Curto (&lt;120 ms)</div>
+            <div class="stat-box-val">Pré-excitação</div>
+            <div class="stat-box-sub">WPW, LGL, via acessória</div>
+          </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <table class="criteria-table">
+          <tr><th>Achado</th><th>Critério</th><th>Significado</th></tr>
+          <tr><td><strong>BAV 1º grau</strong></td><td class="mono">PR &gt;200 ms, todos P conduzidos</td><td>Frequentemente benigno; descartar hiperpotassemia, digital, doença de Lyme, sarcoidose, vagotonia</td></tr>
+          <tr><td><strong>BAV 2º Grau Mobitz I (Wenckebach)</strong></td><td class="mono">↑ progressivo do PR → QRS bloqueado</td><td>Geralmente no nó AV; pode ser fisiológico (atletas, sono); infarto inferior agudo</td></tr>
+          <tr><td><strong>BAV 2º Grau Mobitz II</strong></td><td class="mono">PR fixo → QRS bloqueado súbito</td><td>Infra-hissiano — alto risco de progressão para BAV total; considerar marca-passo</td></tr>
+          <tr><td><strong>BAV 2:1</strong></td><td class="mono">Alternância conduzioouo/bloqueado</td><td>Não classifica como Mobitz I ou II — avaliar contexto; ECG de esforço pode ajudar</td></tr>
+          <tr><td><strong>BAV 3º grau (total)</strong></td><td class="mono">Dissociação AV completa</td><td>Emergência — instabilidade hemodinâmica, síncope, necessidade urgente de marca-passo</td></tr>
+          <tr><td><strong>Pré-excitação (WPW)</strong></td><td class="mono">PR &lt;120 ms + onda δ + QRS &gt;120 ms</td><td>Via acessória: risco de morte súbita (especialmente com FA). Evitar adenosina se FA pré-excitada</td></tr>
+        </table>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">📏</div>
+          <div><div class="card-title">Duração do QRS</div>
+          <div class="card-subtitle">Início ao fim do complexo ventricular — Surawicz et al., AHA/ACCF/HRS 2009<sup>[13]</sup></div></div>
+        </div>
+
+        <div class="three-col">
+          <div class="stat-box">
+            <div class="stat-box-label">Normal</div>
+            <div class="stat-box-val">&lt;120 ms</div>
+            <div class="stat-box-sub">&lt;3 quadrhinhos; condução rápida</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-label">Atraso intraventricular</div>
+            <div class="stat-box-val">100–119</div>
+            <div class="stat-box-sub">ms — BRD/BRE incompletos</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-label">Bloqueio completo</div>
+            <div class="stat-box-val">≥120 ms</div>
+            <div class="stat-box-sub">BRD ou BRE completo</div>
+          </div>
+        </div>
+
+        <div class="section-divider"></div>
+        <div class="two-col">
+          <div>
+            <p class="section-label">BRD — Bloqueio do Ramo Direito</p>
+            <div class="info-box info-gray">
+              <span class="info-box-icon">📋</span>
+              <div>
+                <strong>Critérios (completo):</strong>
+                <ul class="content-list" style="margin-top:.3rem;">
+                  <li>QRS ≥120 ms</li>
+                  <li>Padrão <strong>rSR'</strong> em V1–V2 ("orelha de coelho")</li>
+                  <li>Onda S larga e empastada em DI e V6</li>
+                  <li>Alterações de repolarização secundárias: ST↓ e T negativa em V1–V3</li>
+                </ul>
+                <strong style="display:block;margin-top:.5rem;">BRD incompleto:</strong> Mesmo padrão rSR' em V1, QRS 100–119 ms. Frequente em atletas (benigno) ou CIA.
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="section-label">BRE — Bloqueio do Ramo Esquerdo</p>
+            <div class="info-box info-amber">
+              <span class="info-box-icon">⚠️</span>
+              <div>
+                <strong>Critérios (completo):</strong>
+                <ul class="content-list" style="margin-top:.3rem;">
+                  <li>QRS ≥120 ms</li>
+                  <li>Onda R <strong>larga e entalhada</strong> em DI, aVL, V5–V6</li>
+                  <li>Ausência de ondas Q em DI, V5, V6</li>
+                  <li>Padrão QS ou rS em V1–V2</li>
+                  <li>Alterações de repolarização opostas ao QRS (discordância)</li>
+                </ul>
+                <strong style="display:block;margin-top:.5rem;">⚠️ BRE novo:</strong> Na suspeita de SCA aguda, BRE de início indeterminado ou novo = equivalente de IAMCSST pelos critérios de Sgarbossa.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-box info-red" style="margin-top:1rem;">
+          <span class="info-box-icon">🚨</span>
+          <div><strong>Critérios de Sgarbossa para IAM no BRE (e no ritmo de marca-passo):</strong>
+            <ul class="content-list" style="margin-top:.3rem;">
+              <li><strong>Elevação de ST concordante ≥1 mm</strong> (mesmo sentido do QRS) — 5 pontos, especificidade 90%+</li>
+              <li><strong>Depressão de ST concordante ≥1 mm em V1–V3</strong> — 3 pontos</li>
+              <li><strong>Elevação de ST discordante ≥5 mm</strong> (sentido oposto ao QRS) — 2 pontos (menor especificidade; versão modificada usa razão ST/S ≥0,25)</li>
+            </ul>
+            Score ≥3 pontos: sensibilidade 36%, especificidade 96% para IAM. A versão modificada de Smith (2012) usando razão ≥0,25 tem maior sensibilidade.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">📏</div>
+          <div><div class="card-title">Intervalo QT e QTc</div>
+          <div class="card-subtitle">Do início do QRS ao fim da onda T — Rijnbeek et al., J Electrocardiology 2014<sup>[16]</sup> · Nielsen et al., Heart Rhythm 2020<sup>[10]</sup></div></div>
+        </div>
+
+        <div class="info-box info-amber">
+          <span class="info-box-icon">⚠️</span>
+          <div><strong>Medida do QT:</strong> Medir nas derivações DII e V5 (maior onda T visível). O fim da onda T é onde retorna à linha isoelétrica — onda U não deve ser incluída. Em FC muito lenta ou variável, usar a derivação mais longa disponível.</div>
+        </div>
+
+        <div class="two-col" style="margin-top:1rem;">
+          <div>
+            <p class="section-label">Fórmula de Bazett</p>
+            <div class="formula-box">
+              <span class="var">QTc</span> <span class="op">=</span> <span class="var">QT</span> <span class="op">÷ √</span><span class="var">RR</span>
+            </div>
+            <p style="font-size:.78rem; color:var(--muted-foreground);">RR em segundos. Mais usada clinicamente. Supercorrige em taquicardia e subcorrige em bradicardia.</p>
+          </div>
+          <div>
+            <p class="section-label">Fórmula de Fridericia (preferida em extremos de FC)</p>
+            <div class="formula-box">
+              <span class="var">QTc</span> <span class="op">=</span> <span class="var">QT</span> <span class="op">÷ RR<sup>1/3</sup></span>
+            </div>
+            <p style="font-size:.78rem; color:var(--muted-foreground);">Melhor desempenho em FC fora de 60–100 bpm. Recomendada para ensaios clínicos e avaliações farmacológicas (ICH E14).</p>
+          </div>
+        </div>
+
+        <table class="criteria-table" style="margin-top:1rem;">
+          <tr><th>Achado</th><th>Critério (Bazett)</th><th>Implicação</th></tr>
+          <tr><td><strong>Normal — Homens</strong></td><td class="mono">&lt;450 ms</td><td>Sem risco aumentado de TdP pela QTc</td></tr>
+          <tr><td><strong>Normal — Mulheres</strong></td><td class="mono">&lt;470 ms</td><td>Mulheres têm QTc intrinsecamente mais longo (efeito estrogênico)</td></tr>
+          <tr><td><span class="badge badge-amber">Limítrofe</span></td><td class="mono">450–500 ms (H) / 470–500 ms (M)</td><td>Monitorar; avaliar causas corrigíveis; reavaliação com FC mais baixa</td></tr>
+          <tr><td><span class="badge badge-red">Prolongado</span></td><td class="mono">≥500 ms</td><td>Risco significativo de TdP e morte súbita. Avaliar causas: SQTL congênito, drogas, eletrólitos</td></tr>
+          <tr><td><span class="badge badge-purple">Curto</span></td><td class="mono">&lt;340 ms</td><td>SQTC — risco de FA e FV. Extremamente raro. T alta e pontiaguda.</td></tr>
+        </table>
+
+        <div class="info-box info-red" style="margin-top:1rem;">
+          <span class="info-box-icon">🚨</span>
+          <div><strong>QTc ≥500 ms:</strong> Risco substancial de torsades de pointes (TdP). Avaliar e descontinuar qualquer droga prolongadora do QT, corrigir hipopotassemia e hipomagnesemia, considerar monitoramento contínuo. O risco é multiplicativo quando múltiplos fatores coexistem (droga + hipopotassemia + sexo feminino + cardiopatia).<sup>[10,17]</sup></div>
+        </div>
+      </div>
+
+      <div class="disclaimer">⚕️ Valores de referência baseados em: Rijnbeek et al. J Electrocardiology 2014; Mason et al. JACC 2007; Surawicz et al. JACC 2009; Nielsen et al. Heart Rhythm 2020. Critérios de Sgarbossa: Sgarbossa EB et al. NEJM 1996; Smith SW et al. Ann Emerg Med 2012.</div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════
+         SEÇÃO 5 · MORFOLOGIA DAS ONDAS
+    ═══════════════════════════════════════════════════════════════ -->
+    <div class="content-section" id="section-4">
+      <div class="section-label">Etapa 5 de 10</div>
+      <h2 class="section-title">Morfologia das Ondas P, QRS e T/U</h2>
+      <p class="section-desc">Após os intervalos, a análise morfológica detalha amplitude, duração, polaridade e configuração de cada componente do ciclo cardíaco, identificando dilatação atrial, necrose, repolarização anormal e padrões diagnósticos específicos.</p>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">〜</div>
+          <div><div class="card-title">Análise da Onda P — Dilatação Atrial</div>
+          <div class="card-subtitle">Mason et al., JACC 2007<sup>[9]</sup></div></div>
+        </div>
+
+        <div class="two-col">
+          <div>
+            <p class="section-label" style="margin-bottom:.75rem;">Sobrecarga Atrial Esquerda (P Mitrale)</p>
+            <div class="info-box info-gray">
+              <span class="info-box-icon">📋</span>
+              <div>
+                <ul class="content-list">
+                  <li>P bifásica em V1 com componente terminal negativo <strong>≥1 mm de profundidade E ≥40 ms de duração</strong> (área terminal negativa ≥0,04 mm·s)</li>
+                  <li>P larga e entalhada ("P mitrale") em DII — duração ≥120 ms</li>
+                  <li>Atraso ≥20 ms do pico da P em V4–V6 vs. V1–V2</li>
+                  <li>Causas: estenose/insuficiência mitral, HAS, disfunção diastólica, FA paroxística</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="section-label" style="margin-bottom:.75rem;">Sobrecarga Atrial Direita (P Pulmonale)</p>
+            <div class="info-box info-gray">
+              <span class="info-box-icon">📋</span>
+              <div>
+                <ul class="content-list">
+                  <li>Amplitude da onda P <strong>&gt;2,5 mm em DII</strong> (P pontiaguda, alta)</li>
+                  <li>P positiva em V1 <strong>&gt;1,5 mm</strong></li>
+                  <li>Eixo da onda P &gt;75°</li>
+                  <li>Causas: DPOC, cor pulmonale, hipertensão pulmonar, estenose tricúspide, TEP</li>
+                  <li>Biatrial: critérios de ambas presentes simultaneamente</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">⚡</div>
+          <div><div class="card-title">Progressão da Onda R nas Precordiais</div>
+          <div class="card-subtitle">Análise sistemática da transição R/S</div></div>
+        </div>
+
+        <div class="lead-grid">
+          <div class="lead-cell"><span class="lead-name">V1</span><span class="lead-desc">r pequeno, S dominante (rS)</span></div>
+          <div class="lead-cell"><span class="lead-name">V2</span><span class="lead-desc">r progressivamente maior (rS)</span></div>
+          <div class="lead-cell"><span class="lead-name">V3</span><span class="lead-desc">Zona de transição (RS ou rs)</span></div>
+          <div class="lead-cell"><span class="lead-name">V4</span><span class="lead-desc">R ≥ S — zona de transição</span></div>
+          <div class="lead-cell"><span class="lead-name">V5</span><span class="lead-desc">R dominante, S pequeno</span></div>
+          <div class="lead-cell"><span class="lead-name">V6</span><span class="lead-desc">R dominante, S mínimo</span></div>
+          <div class="lead-cell" style="grid-column:span 2; background:rgba(220,38,38,.08); border-color:rgba(220,38,38,.3);"><span class="lead-name" style="color:#f87171;">ANORMAL</span><span class="lead-desc">Progressão R pobre: R &lt;3 mm em V3, ou ausência de progressão V1–V4. Causas: IAM anterior, BCRE, HVD, DPOC, misposicionamento precordial</span></div>
+        </div>
+
+        <div class="info-box info-amber" style="margin-top:1rem;">
+          <span class="info-box-icon">📌</span>
+          <div><strong>Padrão QS em V1–V2:</strong> Pode ser normal em adultos. QS em V3 ou além, ou complexo QS em ≥2 derivações precordiais contíguas, é sempre patológico e sugere necrose septal ou anterior antiga. Diferenciar de troca de eletrodos (V1/V2 trocados com V3/V4).</div>
+        </div>
+
+        <div class="section-divider"></div>
+        <p class="section-label">Ondas Q Patológicas</p>
+        <div class="info-box info-red" style="margin-top:.5rem;">
+          <span class="info-box-icon">🔴</span>
+          <div>
+            <strong>Critério diagnóstico (4ª Definição Universal de IAM):<sup>[18]</sup></strong>
+            <ul class="content-list" style="margin-top:.3rem;">
+              <li>Q ≥40 ms de largura <strong>OU</strong> Q ≥25% da amplitude da onda R na mesma derivação</li>
+              <li>Q ≥2 mm de profundidade em ≥2 derivações contíguas</li>
+              <li>Padrão QS em V2–V3 (V1 isolada pode ser normal)</li>
+            </ul>
+            <strong>Ondas Q fisiológicas normais:</strong> Q pequenas (&lt;30 ms, &lt;25% do R) em DI, aVL, V5–V6 = despolarização septal normal. Q em aVR é sempre normal.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">〰️</div>
+          <div><div class="card-title">Ondas T e U — Repolarização Ventricular</div>
+          <div class="card-subtitle">Mason et al., JACC 2007<sup>[9]</sup> · Wagner et al., JACC 2009<sup>[46]</sup></div></div>
+        </div>
+
+        <p class="section-label" style="margin-bottom:.75rem;">Onda T</p>
+        <table class="criteria-table">
+          <tr><th>Achado</th><th>Derivações</th><th>Significado</th></tr>
+          <tr><td><strong>T positiva normal</strong></td><td>DI, DII, V3–V6</td><td>Repolarização normal. T em V1 e aVR pode ser negativa normalmente</td></tr>
+          <tr><td><strong>T negativa em DIII, aVF</strong></td><td>DIII, aVF</td><td>Frequentemente normal (variante posicional). Clinicamente relevante se associada a ST↓ ou Q patológica</td></tr>
+          <tr><td><span class="badge badge-amber">Inversão T significativa</span></td><td>≥2 derivações contíguas</td><td>Isquemia (subendocárdica ou subepicárdica), sobrecarga ventricular ("strain"), DAVD (V1–V3), MCH, SNC, embolia pulmonar</td></tr>
+          <tr><td><span class="badge badge-red">T hiperaguda</span></td><td>Território coronário</td><td>Fase hiperaguda do IAMCSST — T ampla, simétrica, pontiaguda. Frequentemente precede a elevação do ST</td></tr>
+          <tr><td><strong>T bifásica</strong></td><td>V2–V4</td><td>Síndrome de Wellens (lesão proximal de DA): Type A = T bifásica; Type B = T profundamente negativa. Indica estenose crítica da DA — não realizar teste ergométrico!</td></tr>
+          <tr><td><strong>T alta, pontiaguda e simétrica</strong></td><td>Precordiais</td><td>Hiperpotassemia (fase inicial), isquemia hiperaguda, repolarização precoce benigna (assimétrica)</td></tr>
+        </table>
+
+        <div class="section-divider"></div>
+        <p class="section-label" style="margin-bottom:.75rem;">Onda U</p>
+        <div class="two-col">
+          <div class="info-box info-teal">
+            <span class="info-box-icon">💡</span>
+            <div><strong>Onda U proeminente (positiva):</strong> Deflexão após a onda T, melhor vista em V2–V3. Causas: bradicardia, hipopotassemia (sinal precoce), hipomagnasemia, drogas prolongadoras do QT (antiarrítmicos Classe IA e III), repolarização ventricular normal.</div>
+          </div>
+          <div class="info-box info-amber">
+            <span class="info-box-icon">⚠️</span>
+            <div><strong>Onda U negativa (invertida):</strong> Patológica quando presente em DI, aVL, V4–V6. Associada a isquemia miocárdica (especialmente estenose da DA proximal), HVE com sobrecarga pressórica. É sinal subestimado de isquemia em pacientes com angina.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="disclaimer">⚕️ Morfologia das ondas baseada em: Mason JW et al. JACC 2007; Wagner GS et al. AHA/ACCF/HRS Recommendations Part VI, JACC 2009; Thygesen K et al. Fourth Universal Definition of MI, JACC 2018.</div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════
+         SEÇÃO 6 · HIPERTROFIA
+    ═══════════════════════════════════════════════════════════════ -->
+    <div class="content-section" id="section-5">
+      <div class="section-label">Etapa 6 de 10</div>
+      <h2 class="section-title">Hipertrofia Ventricular e Sobrecarga</h2>
+      <p class="section-desc">Os critérios eletrocardiográficos de hipertrofia ventricular têm sensibilidade limitada (40–60% para HVE) mas alta especificidade quando associados a alterações de repolarização ("strain"). O padrão strain é preditor independente de eventos cardiovasculares e mortalidade.</p>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">💪</div>
+          <div><div class="card-title">Hipertrofia Ventricular Esquerda (HVE)</div>
+          <div class="card-subtitle">Chandra et al., JACC 2014<sup>[15]</sup> · Greenland et al., JACC 2010<sup>[21]</sup></div></div>
+        </div>
+
+        <div class="info-box info-amber">
+          <span class="info-box-icon">⚠️</span>
+          <div><strong>Limitações dos critérios de voltagem:</strong> Falsos positivos em adultos jovens e magros, atletas, pessoas de etnia negra (maior voltagem basal). Falsos negativos em obesidade, DPOC, derrame pericárdico. A sensibilidade do ECG para HVE ecocardiográfica é de apenas 40–60%; a especificidade, porém, excede 90%.</div>
+        </div>
+
+        <table class="criteria-table" style="margin-top:1rem;">
+          <tr><th>Critério</th><th>Fórmula / Limiar</th><th>Sensibilidade</th><th>Especificidade</th></tr>
+          <tr>
+            <td><strong>Sokolow-Lyon</strong></td>
+            <td class="mono">SV1 + RV5 ou RV6 ≥ 35 mm</td>
+            <td>22–35%</td>
+            <td>95–100%</td>
+          </tr>
+          <tr>
+            <td><strong>Cornell voltagem</strong></td>
+            <td class="mono">RaVL + SV3 &gt;28 mm (H) / &gt;20 mm (M)</td>
+            <td>21–42%</td>
+            <td>~90%</td>
+          </tr>
+          <tr>
+            <td><strong>Cornell produto</strong></td>
+            <td class="mono">(RaVL + SV3) × duração QRS &gt;2440 mm·ms</td>
+            <td>51%</td>
+            <td>~90%</td>
+          </tr>
+          <tr>
+            <td><strong>R em aVL isolada</strong></td>
+            <td class="mono">R &gt;11 mm em aVL</td>
+            <td>11–38%</td>
+            <td>~95%</td>
+          </tr>
+          <tr>
+            <td><strong>R em DI + S em DIII</strong></td>
+            <td class="mono">&gt;25 mm</td>
+            <td>~24%</td>
+            <td>~96%</td>
+          </tr>
+          <tr>
+            <td><strong>Índice de Romhilt-Estes</strong></td>
+            <td class="mono">Score ≥5 pontos (probabilidade), ≥4 (sugestivo)</td>
+            <td>54%</td>
+            <td>97%</td>
+          </tr>
+        </table>
+
+        <div class="section-divider"></div>
+        <p class="section-label">Padrão Strain (Sobrecarga Sistólica)</p>
+        <div class="info-box info-red">
+          <span class="info-box-icon">🔴</span>
+          <div><strong>Definição:</strong> Depressão do segmento ST e inversão assimétrica da onda T em V5–V6 (e/ou DI, aVL) em um ECG com critérios de HVE. Representa repolarização anormal pelo aumento da massa miocárdica e comprometimento da microcirculação.
+          <br><strong>Significado prognóstico:</strong> HVE com padrão strain é preditor independente de mortalidade cardiovascular e coronária — HR para eventos cardiovasculares estimado em 2,1–2,7 em comparação a HVE por voltagem sem strain. Greenland et al. (ACCF/AHA 2010) classifica como achado de alto risco para estratificação em adultos assintomáticos.<sup>[21]</sup></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">🫁</div>
+          <div><div class="card-title">Hipertrofia Ventricular Direita (HVD)</div>
+          <div class="card-subtitle">Critérios de sobrecarga pressórica do VD</div></div>
+        </div>
+
+        <div class="crit-row"><div class="crit-label">R/S em V1 &gt; 1</div><div class="crit-val">R dominante em V1 após excluir BRD, WPW e IAM posterior</div></div>
+        <div class="crit-row"><div class="crit-label">RV1 + SV5 ≥ 10,5 mm</div><div class="crit-val">Critério de voltagem mais específico para HVD</div></div>
+        <div class="crit-row"><div class="crit-label">Desvio do eixo para direita</div><div class="crit-val">Eixo ≥+90° em adulto na ausência de outras causas</div></div>
+        <div class="crit-row"><div class="crit-label">Strain VD</div><div class="crit-val">ST↓ e T negativa em V1–V3 (e às vezes até V4) + critérios de HVD</div></div>
+        <div class="crit-row"><div class="crit-label">P pulmonale associada</div><div class="crit-val">Frequentemente acompanha HVD — sugere etiologia pulmonar ou tromboembolica</div></div>
+        <div class="crit-row"><div class="crit-label">Progressão R lenta + eixo direito</div><div class="crit-val">Padrão SISISIII (S em DI, DII, DIII): DPOC, cor pulmonale crônico</div></div>
+
+        <div class="info-box info-teal" style="margin-top:1rem;">
+          <span class="info-box-icon">💡</span>
+          <div><strong>TEP agudo:</strong> O padrão S1Q3T3 (S em DI, Q em DIII, T negativa em DIII) ocorre em apenas 10–20% dos casos de TEP, mas quando presente é sugestivo. Mais sensível: taquicardia sinusal + BRD incompleto + T negativa em V1–V3 (strain do VD agudo). A combinação de múltiplos achados aumenta a probabilidade diagnóstica.</div>
+        </div>
+      </div>
+
+      <div class="disclaimer">⚕️ Critérios de hipertrofia baseados em: Chandra N et al. JACC 2014; Greenland P et al. ACCF/AHA 2010 Guideline for Risk Assessment; Mason JW et al. JACC 2007. Dados de sensibilidade/especificidade compilados de múltiplas séries.</div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════
+         SEÇÃO 7 · ISQUEMIA E INFARTO
+    ═══════════════════════════════════════════════════════════════ -->
+    <div class="content-section" id="section-6">
+      <div class="section-label">Etapa 7 de 10</div>
+      <h2 class="section-title">Isquemia, Lesão e Infarto do Miocárdio</h2>
+      <p class="section-desc">O reconhecimento de padrões isquêmicos é a aplicação mais crítica do ECG. A 4ª Definição Universal de IAM (ESC/ACC/AHA/WHF 2018) padroniza os critérios diagnósticos. O reconhecimento de equivalentes de IAMCSST pode salvar vidas frequentemente omitidas na triagem inicial.</p>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">🔴</div>
+          <div><div class="card-title">Critérios para Elevação de ST — IAMCSST</div>
+          <div class="card-subtitle">4ª Definição Universal de IAM — Thygesen et al., JACC 2018<sup>[18]</sup></div></div>
+        </div>
+
+        <div class="info-box info-red">
+          <span class="info-box-icon">🚨</span>
+          <div><strong>Limiar de ST no ponto J (nova elevação ou presumivelmente nova):</strong>
+            <ul class="content-list" style="margin-top:.3rem;">
+              <li>≥1 mm em todas as derivações, exceto V2–V3</li>
+              <li>Em V2–V3: <strong>≥2,5 mm em homens &lt;40 anos</strong></li>
+              <li>Em V2–V3: <strong>≥2 mm em homens ≥40 anos</strong></li>
+              <li>Em V2–V3: <strong>≥1,5 mm em mulheres</strong> (de qualquer idade)</li>
+              <li>Em V7–V9 (IAM posterior): ≥0,5 mm (≥1 mm em homens &lt;40 anos)</li>
+            </ul>
+            <strong>Importante:</strong> Critério de ≥2 derivações contíguas é obrigatório para diagnóstico.</div>
+        </div>
+
+        <table class="criteria-table" style="margin-top:1rem;">
+          <tr><th>Derivações afetadas</th><th>Território</th><th>Artéria culpada (habitual)</th></tr>
+          <tr><td class="mono">V1–V4</td><td>Anterior (anterosseptal)</td><td>DA — ramos septais e diagonais</td></tr>
+          <tr><td class="mono">V1–V6, DI, aVL</td><td>Anterolateral extenso</td><td>DA proximal ou TCE</td></tr>
+          <tr><td class="mono">DI, aVL, V5–V6</td><td>Lateral alto</td><td>Cx ou diagonal da DA</td></tr>
+          <tr><td class="mono">DII, DIII, aVF</td><td>Inferior</td><td>CD (85%) ou Cx (15%)</td></tr>
+          <tr><td class="mono">DII, DIII, aVF + V4R</td><td>Inferior + VD</td><td>CD proximal (oclusão antes da marginal)</td></tr>
+          <tr><td class="mono">V7–V9 (ST↑) + V1–V3 (ST↓ espelhado)</td><td>Posterior</td><td>CD ou Cx — ramo póstero-lateral</td></tr>
+        </table>
+
+        <div class="info-box info-amber" style="margin-top:1rem;">
+          <span class="info-box-icon">📌</span>
+          <div><strong>IAM do VD:</strong> Deve ser investigado em todo IAM inferior (ST↑ em DII/DIII/aVF). Realizar V4R obrigatoriamente: ST↑ ≥1 mm em V4R é diagnóstico. Implicação terapêutica: nitrato é contraindicado (risco de hipotensão grave). Dependente de pré-carga do VD.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">🟡</div>
+          <div><div class="card-title">Equivalentes de IAMCSST — Não Perca Esses Padrões</div>
+          <div class="card-subtitle">Kontos et al., ACC 2022<sup>[20]</sup> · Wagner et al., JACC 2009<sup>[46]</sup></div></div>
+        </div>
+
+        <div class="accordion">
+          <div class="accordion-header open" onclick="toggleAccordion(this)">
+            <div class="accordion-title">🔴 Síndrome de Wellens — Lesão Crítica da DA Proximal</div>
+            <span class="accordion-chevron">▼</span>
+          </div>
+          <div class="accordion-body open">
+            <p><strong>Contexto:</strong> ECG obtido no intervalo livre de dor em paciente com angina instável prévia. Indica estenose crítica da DA proximal com risco elevado de IAM anterior extenso nas próximas horas/dias.</p>
+            <div class="two-col">
+              <div class="info-box info-red">
+                <span class="info-box-icon">⚠️</span>
+                <div><strong>Tipo A (25%):</strong> Onda T bifásica em V2–V3 (positivo-negativo). Lesão mais proximal, risco maior de IAM extenso.</div>
+              </div>
+              <div class="info-box info-amber">
+                <span class="info-box-icon">⚠️</span>
+                <div><strong>Tipo B (75%):</strong> Inversão profunda e simétrica da onda T em V2–V3 (e às vezes V4–V5). Padrão mais característico.</div>
+              </div>
+            </div>
+            <div class="info-box info-red" style="margin-top:.5rem;">
+              <span class="info-box-icon">🚨</span>
+              <div><strong>CONTRAINDICADO:</strong> Teste de esforço em paciente com síndrome de Wellens. Pode precipitar IAM anterior extenso com FV. Encaminhar para cateterismo urgente/eletivo conforme estabilidade clínica.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <div class="accordion-title">🔴 Sinal de De Winter — Oclusão Proximal da DA</div>
+            <span class="accordion-chevron">▼</span>
+          </div>
+          <div class="accordion-body">
+            <p><strong>Padrão:</strong> Depressão do segmento ST de 1–3 mm no ponto J nas precordiais (V1–V6) com infradesnivelamento de ST de caráter ascendente, seguido de onda T positiva, alta e simétrica (T hiperaguda). Sem elevação de ST.</p>
+            <p>Presente em ~2% dos IAMs por oclusão da DA proximal. Padrão estático (não evolui para ST↑ típico em muitos casos). Indica oclusão aguda da DA proximal e requer ativação do laboratório de hemodinâmica imediatamente.</p>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <div class="accordion-title">🔴 BCRE Novo ou Presumivelmente Novo + Critérios de Sgarbossa</div>
+            <span class="accordion-chevron">▼</span>
+          </div>
+          <div class="accordion-body">
+            <p>BRE novo em contexto de dor precordial aguda = equivalente de IAMCSST e deve ser tratado como tal (ativação de hemodinâmica de emergência), a menos que outra causa explique o BRE.</p>
+            <p><strong>Critérios de Sgarbossa modificados (Smith 2012):</strong></p>
+            <ul class="content-list">
+              <li><strong>ST concordante ≥1 mm:</strong> (mesmo sentido do QRS) — maior especificidade (≥90%)</li>
+              <li><strong>ST concordante ≥1 mm em V1–V3:</strong> (ST↓ com QRS negativo) — IAM posterior associado</li>
+              <li><strong>Razão ST/S ≥0,25 em derivação com discordância:</strong> Versão modificada — maior sensibilidade que o critério de ≥5 mm absolutos de Smith et al.</li>
+            </ul>
+            <div class="info-box info-teal" style="margin-top:.5rem;">
+              <span class="info-box-icon">💡</span>
+              <div>O mesmo princípio de Sgarbossa se aplica ao ritmo de marca-passo ventricular: discordância excessiva ou concordância de ST indica isquemia aguda subjacente.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <div class="accordion-title">🟡 IAM Posterior Isolado</div>
+            <span class="accordion-chevron">▼</span>
+          </div>
+          <div class="accordion-body">
+            <p><strong>ECG padrão (V1–V4):</strong> Depressão horizontal ou descendente do ST em V1–V4, com R alta e T positiva em V1–V2 — "imagem em espelho" do IAM anterior. Pode ser erroneamente interpretado como IAMSST.</p>
+            <p><strong>Confirmação:</strong> Derivações posteriores V7–V9: eletrodo V7 (linha axilar posterior), V8 (ponta da escápula), V9 (paravertebral). ST↑ ≥0,5 mm (≥1 mm em homens jovens) confirma o diagnóstico. Recomendadas pela AHA/ACC quando há ST↓ em V1–V4 sem explicação alternativa.<sup>[29]</sup></p>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <div class="accordion-title">🟡 Depressão de ST em aVR — Obstrução do Tronco Comum ou DA Proximal</div>
+            <span class="accordion-chevron">▼</span>
+          </div>
+          <div class="accordion-body">
+            <p>ST↑ em aVR (≥1 mm) com ST↓ difusa em ≥6–8 outras derivações é padrão de isquemia circunferencial e indica obstrução do TCE ou DA proximal. Mortalidade elevada. Requer cuidado intensivo imediato com estratégia invasiva urgente conforme estabilidade hemodinâmica.</p>
+            <p><strong>Diagnóstico diferencial:</strong> BCRE novo (padrão ST em aVR diferente), espasmo coronário difuso, hiperpotassemia grave (diferente morfologia).</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">🟠</div>
+          <div><div class="card-title">IAMSST — Depressão de ST e Isquemia Subendocárdica</div>
+          <div class="card-subtitle">Wright et al., ACCF/AHA 2011<sup>[19]</sup> · Thygesen et al., JACC 2018<sup>[18]</sup></div></div>
+        </div>
+
+        <div class="crit-row"><div class="crit-label">ST↓ ≥0,5 mm em ≥2 derivações contíguas</div><div class="crit-val">Sugestivo de isquemia subendocárdica; avaliar contexto clínico</div></div>
+        <div class="crit-row"><div class="crit-label">ST↓ ≥1 mm em ≥3 derivações</div><div class="crit-val">Alto risco para IAM — associado à depressão máxima ≥0,2 mV</div></div>
+        <div class="crit-row"><div class="crit-label">ST↓ horizontal ou descendente</div><div class="crit-val">Maior especificidade para isquemia vs. ST↓ ascendente</div></div>
+        <div class="crit-row"><div class="crit-label">Inversão T ≥2 mm em ≥2 derivações</div><div class="crit-val">Excluindo aVR, V1 e DIII — isquemia subepicárdica ou síndrome de Wellens</div></div>
+        <div class="crit-row"><div class="crit-label">ECG normal na dor</div><div class="crit-val">Não exclui SCA — sensibilidade do ECG inicial para IAMSST é ~50%. Realizar ECG seriados a cada 30–60 min.</div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">📊</div>
+          <div><div class="card-title">Evolução Temporal do ECG no IAMCSST</div>
+          <div class="card-subtitle">Sequência evolutiva clássica — referência diagnóstica</div></div>
+        </div>
+        <table class="criteria-table">
+          <tr><th>Fase</th><th>Tempo (aprox.)</th><th>Achados ECG</th></tr>
+          <tr><td><strong>Hiperaguda</strong></td><td class="mono">0–30 min</td><td>T hiperaguda (alta, larga, simétrica), ST começa a elevar</td></tr>
+          <tr><td><strong>Aguda</strong></td><td class="mono">30 min – 6 h</td><td>ST elevado com morfologia convexa (em abóbada) ou côncava; onda T ainda positiva; Q pode surgir</td></tr>
+          <tr><td><strong>Subaguda</strong></td><td class="mono">6–24 h</td><td>ST ainda elevado (pode persistir dias em aneurisma); Q estabelecida; T começa a inverter</td></tr>
+          <tr><td><strong>Crônica</strong></td><td class="mono">Dias–semanas</td><td>ST normaliza; Q patológica persiste; T negativa evolui para normalização (meses)</td></tr>
+          <tr><td><strong>Indeterminada (cicatriz)</strong></td><td class="mono">Meses–anos</td><td>Q patológica persistente com ou sem T negativa residual; ST em linha de base</td></tr>
+        </table>
+      </div>
+
+      <div class="disclaimer">⚕️ Seção baseada em: Thygesen K et al. Fourth Universal Definition of MI, JACC 2018; Wagner GS et al. AHA/ACCF/HRS Recommendations Part VI, JACC 2009; Kontos MC et al. ACC Expert Consensus 2022; Gulati M et al. AHA/ACC 2021 Guideline for Chest Pain. Síndrome de Wellens: Wellens HJ et al. Am J Cardiol 1982. Sinal de De Winter: de Winter RJ et al. NEJM 2008.</div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════
+         SEÇÃO 8 · CANALOPATIAS E MIOCARDIOPATIAS
+    ═══════════════════════════════════════════════════════════════ -->
+    <div class="content-section" id="section-7">
+      <div class="section-label">Etapa 8 de 10</div>
+      <h2 class="section-title">Canalopatias, Miocardiopatias e Padrões Raros</h2>
+      <p class="section-desc">Estas condições respondem por uma proporção desproporcional de mortes súbitas em corações estruturalmente normais ou com alterações sutis. O ECG de repouso, interpretado com rigor, é frequentemente o único exame que alerta para o diagnóstico antes do evento fatal.</p>
+
+      <div class="info-box info-amber">
+        <span class="info-box-icon">⚠️</span>
+        <div>A AHA, ACC, HRS e EHRA enfatizam que estes diagnósticos são de alta relevância clínica e exigem avaliação por especialista em eletrofisiologia ou genética cardiovascular. O ECG de repouso pode ser normal em até 25% dos portadores de SQTL genotipicamente confirmados.<sup>[10,17,25]</sup></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">🧬</div>
+          <div><div class="card-title">Síndrome do QT Longo (SQTL) Congênito</div>
+          <div class="card-subtitle">Nielsen et al., Heart Rhythm 2020<sup>[10]</sup> · Erickson et al., Pediatrics 2021<sup>[17]</sup></div></div>
+        </div>
+
+        <div class="crit-row"><div class="crit-label">QTc ≥480 ms (diagnóstico)</div><div class="crit-val">Na ausência de causas adquiridas. Limiar diagnóstico segundo Schwartz Score</div></div>
+        <div class="crit-row"><div class="crit-label">QTc 460–479 ms (suspeito)</div><div class="crit-val">Avaliar Score de Schwartz, história familiar, genética. QTc pode ser normal em 25% dos portadores em repouso</div></div>
+        <div class="crit-row"><div class="crit-label">Morfologia T característica</div><div class="crit-val">LQT1: T larga de base, lisa · LQT2: T bifásica ou entalhada · LQT3: QT longo com T tardia pontiaguda</div></div>
+        <div class="crit-row"><div class="crit-label">T alternans</div><div class="crit-val">Alternância de amplitude/morfologia da onda T — marcador de instabilidade elétrica grave</div></div>
+
+        <div class="info-box info-teal" style="margin-top:1rem;">
+          <span class="info-box-icon">💡</span>
+          <div><strong>Gatilhos arrítmicos por subtipo:</strong> LQT1 → exercício (especialmente natação); LQT2 → barulho súbito (alarme, telefone); LQT3 → sono/repouso. Implicações para restrições de atividade física e manejo com betabloqueadores (LQT1 e LQT2) vs. mexiletine/flecainida (LQT3).</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">⚡</div>
+          <div><div class="card-title">Síndrome de Brugada</div>
+          <div class="card-subtitle">Nielsen et al., Heart Rhythm 2020<sup>[10]</sup> · Marcus FI, J Electrocardiology 2000<sup>[26]</sup></div></div>
+        </div>
+
+        <div class="info-box info-red">
+          <span class="info-box-icon">🚨</span>
+          <div><strong>Padrão tipo 1 (diagnóstico — o único que firma diagnóstico de síndrome de Brugada):</strong>
+            <ul class="content-list" style="margin-top:.3rem;">
+              <li>Elevação de ST em abóbada (coved type) <strong>≥2 mm</strong> em ≥1 derivação de V1–V2</li>
+              <li>Posicionamento convencional ou <strong>precordial alto (V1–V2 no 2º ou 3º EIC)</strong> — derivações altas aumentam sensibilidade</li>
+              <li>Geralmente acompanhada por padrão de BRD</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="two-col" style="margin-top:1rem;">
+          <div class="info-box info-amber">
+            <span class="info-box-icon">⚠️</span>
+            <div><strong>Padrão tipo 2 (sela):</strong> ST ≥0,5 mm (ou ≥2 mm em altas) com morfologia em sela — indica teste de provocação com ajmalina/flecainida para confirmação diagnóstica.</div>
+          </div>
+          <div class="info-box info-gray">
+            <span class="info-box-icon">📌</span>
+            <div><strong>Desmascaradores:</strong> Febre (principal — solicitar ECG em todo Brugada com febre), bloqueadores de canal de sódio (ajmalina, flecainida, procainamida), cocaína, intoxicação por antidepressivos tricíclicos, hipotermia, isquemia do RVOT.</div>
+          </div>
+        </div>
+
+        <div class="info-box info-teal" style="margin-top:.5rem;">
+          <span class="info-box-icon">💡</span>
+          <div><strong>Estratificação de risco:</strong> Padrão espontâneo tipo 1 + síncope/FV sobrevivida = alto risco → CDI. Padrão farmacológico isolado = baixo risco, especialmente sem história familiar de morte súbita. Estudo eletrofisiológico controverso. A genética (mutação SCN5A) não determina o risco de forma confiável.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">⚡</div>
+          <div><div class="card-title">Outras Canalopatias e Síndromes Arrítmicas</div>
+          <div class="card-subtitle">Al-Khatib et al., AHA/ACC/HRS 2017<sup>[24]</sup> · Erickson et al., Pediatrics 2021<sup>[17]</sup></div></div>
+        </div>
+
+        <div class="accordion">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <div class="accordion-title">Síndrome do QT Curto (SQTC)</div>
+            <span class="accordion-chevron">▼</span>
+          </div>
+          <div class="accordion-body">
+            <p><strong>Critério:</strong> QTc &lt;340 ms (diagnóstico definitivo). Alguns autores propõem &lt;360 ms como suspeito.</p>
+            <p><strong>Morfologia:</strong> T alta, estreita, simétrica e pontiaguda em precordiais, com intervalo ST praticamente ausente (T começa logo após o QRS). Padrão característico em V2–V3.</p>
+            <p><strong>Clínica:</strong> FA paroxística (pode ser a primeira manifestação), FV, morte súbita. Pode ocorrer em qualquer idade, incluindo lactentes.</p>
+            <p><strong>Epidemiologia:</strong> Extremamente rara. Diagnóstico diferencial: hipercalcemia, acidose, digital, hiperpotassemia (todas causas adquiridas de QT curto).</p>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <div class="accordion-title">TVPC — Taquicardia Ventricular Polimórfica Catecolaminérgica</div>
+            <span class="accordion-chevron">▼</span>
+          </div>
+          <div class="accordion-body">
+            <p><strong>ECG de repouso:</strong> Frequentemente <strong>normal</strong> — este é o traçado desafiador. Bradicardia sinusal discreta pode estar presente. QTc normal.</p>
+            <p><strong>ECG de esforço (diagnóstico):</strong> TV bidirecional ou polimórfica induzida por esforço a FC ≥130 bpm. TV bidirecional = QRS que alterna de eixo batida a batida (diferencial com intoxicação digitálica).</p>
+            <p><strong>Risco:</strong> Alta mortalidade. Afeta crianças/adolescentes. Síncope de esforço em jovem sem alteração estrutural cardíaca exige teste ergométrico guiado.</p>
+            <p><strong>Tratamento:</strong> Betabloqueador (nadolol, propranolol). Flecainida adjuvante. CDI em sobreviventes de parada cardíaca.<sup>[10,17,27]</sup></p>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <div class="accordion-title">Repolarização Precoce — Benigna vs. Maligna</div>
+            <span class="accordion-chevron">▼</span>
+          </div>
+          <div class="accordion-body">
+            <p><strong>Definição:</strong> Elevação do ponto J ≥1 mm em ≥2 derivações contíguas nas derivações inferiores ou laterais, com entalhe ou empastamento do ponto J.</p>
+            <p><strong>Prevalência:</strong> 5–13% da população geral. Altamente prevalente em atletas e jovens.</p>
+            <p><strong>Benign vs. Maligno (Benito et al., JACC 2010):<sup>[28]</sup></strong></p>
+            <ul class="content-list">
+              <li><strong>Padrão descendente ou horizontal de ST</strong> após o entalhe: associado a risco aumentado de FV idiopática (HR ~3–11 em séries de casos)</li>
+              <li><strong>ST ascendente</strong> (concavidade superior para cima): praticamente benigno</li>
+              <li>Localização <strong>inferior ou inferolateral</strong>: maior risco que lateral isolado</li>
+              <li>Entalhe &gt;0,2 mV: sinal de maior risco</li>
+            </ul>
+            <div class="info-box info-amber" style="margin-top:.5rem;">
+              <span class="info-box-icon">⚠️</span>
+              <div>A imensa maioria dos casos de repolarização precoce é benigna. Nunca diagnosticar "síndrome de repolarização precoce maligna" sem FV documentada ou história familiar de morte súbita jovem. O achado isolado não justifica CDI profilático.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">🫀</div>
+          <div><div class="card-title">Miocardiopatias com Padrão ECG Característico</div>
+          <div class="card-subtitle">Al-Khatib et al., AHA/ACC/HRS 2017<sup>[24]</sup> · Marcus FI, J Electrocardiology 2000<sup>[26]</sup></div></div>
+        </div>
+
+        <div class="accordion">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <div class="accordion-title">CAVD/DAVD — Cardiomiopatia Arritmogênica do VD</div>
+            <span class="accordion-chevron">▼</span>
+          </div>
+          <div class="accordion-body">
+            <p><strong>Critérios maiores e menores de Task Force (2010):</strong></p>
+            <ul class="content-list">
+              <li><strong>Onda epsilon:</strong> Deflexão de baixa amplitude ao final do QRS em V1–V3 (critério maior de Task Force) — melhor vista com ganho aumentado ou filtragem</li>
+              <li><strong>Inversão de onda T em V1–V3</strong> (além de V1) na ausência de BRD completo — critério menor</li>
+              <li><strong>Duração do QRS em V1 ≥110 ms</strong> sem BRD completo — critério menor</li>
+              <li>Extrassístoles ventriculares com morfologia de BRE (origem no VD) — especialmente TV de saída do RVOT</li>
+              <li><strong>Ativação terminal retardada</strong> em V1–V3 (duração da ativação terminal, DAT ≥55 ms)</li>
+            </ul>
+            <div class="info-box info-amber" style="margin-top:.5rem;">
+              <span class="info-box-icon">⚠️</span>
+              <div>CAVD não é diagnóstico pela onda epsilon isolada. Os critérios de Task Force 2010 exigem pontuação combinada de critérios maiores e menores das categorias: morfofuncional, tecidual, arrítmica, ECG e genética/familiar.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <div class="accordion-title">Miocardiopatia Hipertrófica (MCH)</div>
+            <span class="accordion-chevron">▼</span>
+          </div>
+          <div class="accordion-body">
+            <p><strong>Padrões ECG na MCH (inespecíficos, mas prevalentes):</strong></p>
+            <ul class="content-list">
+              <li>Voltagem aumentada para HVE (presente em ~90% dos casos)</li>
+              <li><strong>Ondas Q profundas e estreitas</strong> em derivações laterais e inferiores (DII, DIII, aVF, V5–V6) — padrão pseudo-necrose septal por despolarização septal assimétrica</li>
+              <li>Inversão difusa de onda T (especialmente nas formas apicais — MCH apical de Yamaguchi: T profundamente negativa V3–V5 em japoneses)</li>
+              <li>Padrão de sobrecarga (strain) VE</li>
+              <li>Ondas P alargadas (envolvimento biatrial)</li>
+              <li>ECG pode ser normal em ~5% dos casos confirmados por RM</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <div class="accordion-title">Anomalias Congênitas e Dextrocardia</div>
+            <span class="accordion-chevron">▼</span>
+          </div>
+          <div class="accordion-body">
+            <p><strong>Dextrocardia verdadeira:</strong> P e QRS negativos em DI, eixo direito extremo, progressão R decrescente V1→V6 (imagem espelhada). Confirmar com derivações de membro trocadas + precordiais V1R–V6R. Diferenciar da troca de eletrodos (precordiais normais na troca de braços).</p>
+            <p><strong>CIA (Comunicação Interatrial):</strong> BRD incompleto em jovem assintomático + padrão rSR' em V1 + eixo direito ou normal. CIA ostium primum pode ter HBAE associado.</p>
+            <p><strong>Anomalia de Ebstein:</strong> BRD (geralmente bizarro e largo), HBAE frequente, ondas P gigantes ("P himalaia"), PR longo, potencialmente com pré-excitação (WPW) do lado direito.</p>
+            <p><strong>Síndrome de Eisenmenger:</strong> HVD marcada, P pulmonale, eixo direito extremo.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="disclaimer">⚕️ Seção baseada em: Al-Khatib SM et al. AHA/ACC/HRS 2017 Guideline for Ventricular Arrhythmias and Prevention of SCD, JACC 2018; Nielsen JC et al. EHRA/HRS/APHRS/LAHRS Expert Consensus, Heart Rhythm 2020; Marcus FI. J Electrocardiology 2000; Benito B et al. JACC 2010; Erickson CC et al. Pediatrics 2021.</div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════
+         SEÇÃO 9 · DROGAS E ELETRÓLITOS
+    ═══════════════════════════════════════════════════════════════ -->
+    <div class="content-section" id="section-8">
+      <div class="section-label">Etapa 9 de 10</div>
+      <h2 class="section-title">Alterações por Drogas e Distúrbios Eletrolíticos</h2>
+      <p class="section-desc">O ECG é um sensor de distúrbios metabólicos e toxicológicos em tempo real. Reconhecer estes padrões com rapidez pode ser literalmente salvo de vidas, especialmente em distúrbios do potássio e em intoxicações medicamentosas.</p>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">🧪</div>
+          <div><div class="card-title">Distúrbios do Potássio — Sequência Evolutiva</div>
+          <div class="card-subtitle">Rafique et al., IJERPH 2022<sup>[32]</sup> · Bukhari et al., IEEE TBME 2021<sup>[34]</sup></div></div>
+        </div>
+
+        <div class="info-box info-red">
+          <span class="info-box-icon">🚨</span>
+          <div><strong>Em pacientes com DRC em estágio avançado:</strong> QRS ≥120 ms é o preditor ECG mais confiável de hiperpotassemia grave. A correlação entre achados ECG e potássio sérico tem alta variabilidade interindividual — as alterações morfológicas podem ocorrer em diferentes níveis de potássio em diferentes pacientes.<sup>[32,34,35]</sup></div>
+        </div>
+
+        <table class="criteria-table" style="margin-top:1rem;">
+          <tr><th>K⁺ sérico (aprox.)</th><th>Achados ECG (progressão)</th><th>Risco</th></tr>
+          <tr><td class="mono">&gt;5,5 mEq/L</td><td><strong>T alta, pontiaguda, simétrica</strong> ("tent T") — especialmente precordiais. Base estreita (diferencia de T hiperaguda isquêmica)</td><td><span class="badge badge-amber">Moderado</span></td></tr>
+          <tr><td class="mono">&gt;6,5 mEq/L</td><td>PR prolongado, <strong>alargamento do QRS</strong> (bloqueio intraventricular), achatamento/desaparecimento da onda P ("P escondida")</td><td><span class="badge badge-amber">Alto</span></td></tr>
+          <tr><td class="mono">&gt;7,0–8,0 mEq/L</td><td><strong>Padrão sinusoidal</strong> — fusão de QRS e T em onda ondulante. P ausente</td><td><span class="badge badge-red">Crítico</span></td></tr>
+          <tr><td class="mono">&gt;8,0–10 mEq/L</td><td>FV ou assistolia</td><td><span class="badge badge-red">Fatal</span></td></tr>
+          <tr><td class="mono">&lt;3,5 mEq/L</td><td><strong>Onda U proeminente</strong> (≥25% da onda T), achatamento da onda T, aparente prolongamento do QT (QU)</td><td><span class="badge badge-amber">Moderado</span></td></tr>
+          <tr><td class="mono">&lt;2,5 mEq/L</td><td>T invertida, ST↓, onda U gigante, TdP, TV polimórfica</td><td><span class="badge badge-red">Alto</span></td></tr>
+        </table>
+
+        <div class="info-box info-amber" style="margin-top:1rem;">
+          <span class="info-box-icon">⚠️</span>
+          <div><strong>Hipocalemia e QT:</strong> A onda U proeminente pode ser confundida com prolongamento do QT verdadeiro. Medir o QT até o fim da onda T (excluindo U). O "QU" é diferente do "QT" — a onda U reflete repolarização de células de Purkinje, não ventricular. Hipocalemia e hipomagnasemia aumentam drasticamente o risco de TdP em pacientes com QT limítrofe ou sob drogas prolongadoras.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">🧪</div>
+          <div><div class="card-title">Outros Distúrbios Eletrolíticos</div></div>
+        </div>
+
+        <div class="crit-row"><div class="crit-label">Hipercalcemia</div><div class="crit-mono">QT curto</div><div class="crit-val">Encurtamento do ST/QT proporcional ao cálcio. Bradicardia, bloqueio AV em casos graves. T pode ser alta e pontiaguda (DD: hiperpotassemia)</div></div>
+        <div class="crit-row"><div class="crit-label">Hipocalcemia</div><div class="crit-mono">QT longo (ST longo)</div><div class="crit-val">Prolongamento do segmento ST (não da onda T em si). QTc pode exceder 500 ms. Risco de TdP.</div></div>
+        <div class="crit-row"><div class="crit-label">Hipermagnesemia</div><div class="crit-mono">PR longo, QRS largo</div><div class="crit-val">Bloqueio AV variável. Usualmente iatrogênico (sulfato de Mg IV). ECG semelhante à hiperpotassemia.</div></div>
+        <div class="crit-row"><div class="crit-label">Hipomagnesemia</div><div class="crit-mono">QT longo, T achatada</div><div class="crit-val">Potencializa a hipocalemia. Fator de risco independente para TdP. Corrigir antes de qualquer droga prolongadora do QT.</div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">💊</div>
+          <div><div class="card-title">Drogas com Efeitos ECG Clinicamente Relevantes</div>
+          <div class="card-subtitle">Kadish et al., ACC/AHA Clinical Competence Statement<sup>[3]</sup></div></div>
+        </div>
+
+        <div class="accordion">
+          <div class="accordion-header open" onclick="toggleAccordion(this)">
+            <div class="accordion-title">Prolongamento do QT — Classes de Risco</div>
+            <span class="accordion-chevron">▼</span>
+          </div>
+          <div class="accordion-body open">
+            <p><strong>Risco conhecido de TdP (consultar CredibleMeds/AZCert):</strong></p>
+            <ul class="content-list">
+              <li><strong>Antiarrítmicos Classe IA:</strong> Quinidina, procainamida, disopiramida</li>
+              <li><strong>Antiarrítmicos Classe III:</strong> Sotalol, amiodarona (menos frequente apesar do QT longo), dofetilide, ibutilide</li>
+              <li><strong>Antibióticos:</strong> Azitromicina, claritromicina, fluoroquinolonas (especialmente moxifloxacino), cloroquina/hidroxicloroquina</li>
+              <li><strong>Antipsicóticos:</strong> Haloperidol (IV), ziprasidona, quetiapina, risperidona, tioridazina</li>
+              <li><strong>Antidepressivos:</strong> Tricíclicos (amitriptilina, imipramina), citalopram/escitalopram (dose-dependente)</li>
+              <li><strong>Antihistamínicos:</strong> Terfenadina, astemizol (retirados do mercado por esse motivo)</li>
+              <li><strong>Oncológicos:</strong> Vandetanib, vemurafenib, osimertinib, arsenic trioxide</li>
+              <li><strong>Antifúngicos azólicos:</strong> Fluconazol, voriconazol (especialmente combinados a outros QT-prolongadores)</li>
+            </ul>
+            <div class="info-box info-red" style="margin-top:.5rem;">
+              <span class="info-box-icon">🚨</span>
+              <div><strong>Fatores de risco para TdP farmacológico:</strong> Sexo feminino, hipopotassemia, hipomagnesemia, bradicardia, cardiopatia estrutural, QTc basal longo, polifarmácia com múltiplos QT-prolongadores. O risco é multiplicativo.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <div class="accordion-title">Antidepressivos Tricíclicos — Intoxicação Aguda</div>
+            <span class="accordion-chevron">▼</span>
+          </div>
+          <div class="accordion-body">
+            <p><strong>Bloqueio de canais de sódio:</strong> Mecanismo dominante na intoxicação grave</p>
+            <ul class="content-list">
+              <li>QRS alargado (&gt;100 ms é sinal de alerta; &gt;160 ms = risco de FV)</li>
+              <li><strong>Onda R terminal em aVR &gt;3 mm</strong> (ou razão R/S em aVR &gt;0,7) — marcador de gravidade e preditor de arritmias</li>
+              <li>Padrão tipo Brugada em V1–V2 (bloqueio de sódio)</li>
+              <li>QTc prolongado (efeito antimuscarínico e bloqueio de hERG)</li>
+              <li>Taquicardia sinusal por efeito anticolinérgico</li>
+            </ul>
+            <p><strong>Tratamento:</strong> Bicarbonato de sódio IV para QRS &gt;100 ms (alcalinização e sódio competitivo ao canal bloqueado). Meta pH 7,45–7,55.</p>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <div class="accordion-title">Toxicidade Digitálica</div>
+            <span class="accordion-chevron">▼</span>
+          </div>
+          <div class="accordion-body">
+            <p><strong>Efeito terapêutico vs. toxicidade:</strong> O "efeito digitálico" (ST descendente côncavo em abóbada invertida — "escavação em colher" — em V5–V6) é esperado com níveis terapêuticos e NÃO indica toxicidade.</p>
+            <p><strong>Sinais de toxicidade (qualquer arritmia pode ocorrer, mas clássicos incluem):</strong></p>
+            <ul class="content-list">
+              <li><strong>Taquicardia atrial com bloqueio AV</strong> (parassístole, taquicardia juncional com bloqueio) — combinação patognomônica</li>
+              <li>TV bidirecional (diagnóstico diferencial: CPVT)</li>
+              <li>FA com resposta ventricular muito regular (bloqueio AV de alto grau)</li>
+              <li>Ritmos juncionais acelerados</li>
+              <li>Extrassístoles ventriculares bigeminadas</li>
+            </ul>
+            <div class="info-box info-teal" style="margin-top:.5rem;">
+              <span class="info-box-icon">💡</span>
+              <div>A hipopotassemia potencializa drasticamente a toxicidade digitálica. Sempre verificar potássio em pacientes em uso de digitálicos com qualquer arritmia nova.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <div class="accordion-title">Amiodarona — Efeitos Crônicos</div>
+            <span class="accordion-chevron">▼</span>
+          </div>
+          <div class="accordion-body">
+            <p>A amiodarona produz um padrão ECG característico em uso crônico que não deve ser confundido com toxicidade ou doença aguda:</p>
+            <ul class="content-list">
+              <li>QTc longo (frequentemente 500–600 ms) — efeito de Classe III esperado; TdP é rara com amiodarona apesar do QTc longo</li>
+              <li>Bradicardia sinusal (efeito de Classe II)</li>
+              <li>PR prolongado (efeito de Classe IV — bloqueio de cálcio)</li>
+              <li>QRS pode se alargar levemente</li>
+              <li>T larga com entalhe (bifásica) — padrão característico</li>
+            </ul>
+            <div class="info-box info-amber" style="margin-top:.5rem;">
+              <span class="info-box-icon">⚠️</span>
+              <div>QTc longo isolado com amiodarona não é indicação de suspensão. Monitorar especialmente se QTc &gt;550 ms ou se houver hipopotassemia associada. O risco de TdP com amiodarona é estimado em &lt;1% — muito menor que com outros agentes Classe III como sotalol ou quinidina.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="disclaimer">⚕️ Seção baseada em: Kadish AH et al. ACC/AHA Clinical Competence Statement on ECG, JACC 2001; Rafique Z et al. IJERPH 2022; Bukhari HA et al. IEEE TBME 2021; Bukhari HA et al. Frontiers in Physiology 2023. Lista de drogas prolongadoras do QT: CredibleMeds (www.crediblemeds.org — recurso validado por AHA/ACC).</div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════
+         SEÇÃO 10 · INTEGRAÇÃO CLÍNICA
+    ═══════════════════════════════════════════════════════════════ -->
+    <div class="content-section" id="section-9">
+      <div class="section-label">Etapa 10 de 10</div>
+      <h2 class="section-title">Integração Clínica e Estratificação de Risco</h2>
+      <p class="section-desc">A interpretação final do ECG não é um exercício isolado — é a síntese de todos os achados anteriores no contexto clínico do paciente. Evidências recentes de grandes coortes estabelecem o impacto prognóstico mesmo de anormalidades menores.</p>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">🏥</div>
+          <div><div class="card-title">Hierarquia de Priorização Diagnóstica</div>
+          <div class="card-subtitle">Kontos et al., ACC Expert Consensus 2022<sup>[20]</sup> · Gulati et al., AHA/ACC 2021<sup>[29]</sup></div></div>
+        </div>
+
+        <div class="priority-tier pt-red">
+          <div class="pt-icon">🚨</div>
+          <div>
+            <div class="pt-label">TIER 1 — Emergência (ativar protocolo imediato)</div>
+            <div class="pt-list">IAMCSST ou equivalente (Wellens, De Winter, BCRE novo, posterior, VD) · BAV 3º grau sintomático · TV sustentada / FV · TdP · Brugada tipo 1 na crise · Padrão sinusoidal (hiperpotassemia)</div>
+          </div>
+        </div>
+
+        <div class="priority-tier pt-amber">
+          <div class="pt-icon">⚡</div>
+          <div>
+            <div class="pt-label">TIER 2 — Urgência (avaliação imediata em horas)</div>
+            <div class="pt-list">ST↓ ou T↓ nova em contexto de dor precordial · FA com RVR · Mobitz II ou BAV 2:1 · QTc &gt;500 ms · TV não sustentada · Bradicardia sintomática · FA pré-excitada</div>
+          </div>
+        </div>
+
+        <div class="priority-tier pt-teal">
+          <div class="pt-icon">⚠️</div>
+          <div>
+            <div class="pt-label">TIER 3 — Relevante (avaliação ambulatorial em dias)</div>
+            <div class="pt-list">BAV 1º grau, BCRD/BCRE novo sem isquemia, HBAE isolado, FA em paciente estável, SQTL suspeito, CAVD suspeita, repolarização precoce com padrão descendente</div>
+          </div>
+        </div>
+
+        <div class="priority-tier pt-gray">
+          <div class="pt-icon">📋</div>
+          <div>
+            <div class="pt-label">TIER 4 — Registro e acompanhamento</div>
+            <div class="pt-list">HVE por voltagem sem strain, BAV 1º grau isolado em assintomático, BCRD isolado em jovem (benigno), FA paroxística controlada conhecida, T negativa isolada em DIII/aVR</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">📊</div>
+          <div><div class="card-title">Impacto Prognóstico das Anormalidades do ECG</div>
+          <div class="card-subtitle">Yagi et al., JAMA Internal Medicine 2024<sup>[30]</sup></div></div>
+        </div>
+
+        <p style="font-size:.85rem;margin-bottom:1rem;">Em coorte nacional japonesa ampla, as anormalidades do ECG de repouso foram preditores independentes de desfechos cardiovasculares maiores, mesmo após ajuste para fatores de risco clínicos:<sup>[30]</sup></p>
+
+        <div class="three-col">
+          <div class="stat-box">
+            <div class="stat-box-label">Anorm. Maiores — HR (desfecho composto)</div>
+            <div class="stat-box-val">1,56</div>
+            <div class="stat-box-sub">IC 95%: 1,47–1,66 vs. ECG normal</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-label">Anorm. Menores — HR (desfecho composto)</div>
+            <div class="stat-box-val">1,23</div>
+            <div class="stat-box-sub">IC 95%: 1,17–1,29 vs. ECG normal</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-label">Progressão: menores → maiores</div>
+            <div class="stat-box-val">↑ sig.</div>
+            <div class="stat-box-sub">Anorm. menores predizem desenvolvimento de maiores ao longo do tempo</div>
+          </div>
+        </div>
+
+        <div class="info-box info-amber" style="margin-top:1rem;">
+          <span class="info-box-icon">📌</span>
+          <div><strong>Implicação clínica:</strong> Mesmo anormalidades menores (1º grau BAV, BRD incompleto, ondas T levemente invertidas) conferem risco aumentado e justificam atenção clínica, acompanhamento programado e reavaliação de fatores de risco modificáveis — não devem ser simplesmente descartadas como "normais variantes" sem contexto.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">🌍</div>
+          <div><div class="card-title">Populações Especiais e Variantes Normais</div>
+          <div class="card-subtitle">Walsh et al., J Electrocardiology 2019<sup>[31]</sup> · Deo et al., JASN 2016<sup>[33]</sup></div></div>
+        </div>
+
+        <div class="accordion">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <div class="accordion-title">Adultos Negros — Padrões ECG Distintos</div>
+            <span class="accordion-chevron">▼</span>
+          </div>
+          <div class="accordion-body">
+            <p>Em adultos negros saudáveis, vários padrões ECG considerados patológicos em outras populações podem ser variantes normais da etnia:<sup>[31]</sup></p>
+            <ul class="content-list">
+              <li><strong>Maior voltagem QRS:</strong> Frequentemente excede critérios de HVE (Sokolow-Lyon) sem HVE ecocardiográfica — ajuste de referência é necessário</li>
+              <li><strong>Elevação benigna de ST anterior (V1–V3):</strong> ST convexo-para-cima com T positiva — pode simular padrão de Brugada ou IAMCSST</li>
+              <li><strong>Repolarização precoce:</strong> Alta prevalência de entalhe do ponto J em derivações inferiores e laterais</li>
+              <li><strong>Inversão de T em V1–V4:</strong> Persistência de padrão juvenil — em adultos jovens negros, T negativa em V1–V3 pode ser normal</li>
+            </ul>
+            <div class="info-box info-amber" style="margin-top:.5rem;">
+              <span class="info-box-icon">⚠️</span>
+              <div><strong>Atenção:</strong> Inversão de T lateral (V4–V6, DI, aVL) com empastamento terminal do QRS (end-QRS slurring) NÃO pode ser presumida benigna e justifica investigação adicional, independentemente da etnia.<sup>[31]</sup></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <div class="accordion-title">Atletas — Padrões de Adaptação vs. Doença</div>
+            <span class="accordion-chevron">▼</span>
+          </div>
+          <div class="accordion-body">
+            <p>Os critérios internacionais de interpretação do ECG em atletas (Critérios de Seattle 2013, revisão 2017) distinguem adaptações normais ao treinamento de achados que requerem investigação adicional.</p>
+            <p><strong>Normais (relacionadas ao treinamento, sem investigação adicional necessária):</strong></p>
+            <ul class="content-list">
+              <li>Bradicardia sinusal ≥30 bpm assintomática</li>
+              <li>PR longo (BAV 1º grau) · Wenckebach em repouso (desaparece com exercício)</li>
+              <li>BRD incompleto · Repolarização precoce benigna (ST ascendente)</li>
+              <li>Voltagem aumentada isolada (Sokolow-Lyon excedido sem outros critérios de HVE)</li>
+            </ul>
+            <p><strong>Anormais (requerem investigação):</strong> T negativa além de V1–V2/V3 em &lt;35 anos, ST↓, Q patológica, BRE, BCRD com eixo extremo, HBAE isolado, padrão de Brugada, QTc &gt;480 ms ou &lt;340 ms.</p>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <div class="accordion-title">Doença Renal Crônica (DRC) — Risco Aumentado</div>
+            <span class="accordion-chevron">▼</span>
+          </div>
+          <div class="accordion-body">
+            <p>Anormalidades do ECG na DRC são preditores independentes de morte cardiovascular (Deo et al., JASN 2016):<sup>[33]</sup></p>
+            <ul class="content-list">
+              <li>PR prolongado: <strong>HR 1,62</strong> (IC95% 1,19–2,19) para morte cardiovascular</li>
+              <li>QRS 100–119 ms: <strong>HR 1,64</strong> (IC95% 1,20–2,25)</li>
+              <li>QRS ≥120 ms: <strong>HR 1,75</strong> (IC95% 1,17–2,62)</li>
+              <li>QTc prolongado: <strong>HR 1,72</strong> (IC95% 1,19–2,49)</li>
+            </ul>
+            <div class="info-box info-amber" style="margin-top:.5rem;">
+              <span class="info-box-icon">⚠️</span>
+              <div>Em pacientes em hemodiálise, a variabilidade interindividual na resposta ECG aos eletrólitos é alta — o mesmo potássio sérico pode produzir alterações ECG marcadas em um paciente e quase nenhuma em outro, dependendo da composição celular do miocárdio e do nível de potássio intracelular basal.<sup>[34,35]</sup> ECGs seriados e baseline individualizado são essenciais.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">🔬</div>
+          <div><div class="card-title">Acurácia da Interpretação e Abordagens Estruturadas</div>
+          <div class="card-subtitle">Cook et al., JAMA Internal Medicine 2020<sup>[40]</sup> · Pallikadavath et al., J Electrocardiology 2022<sup>[45]</sup></div></div>
+        </div>
+
+        <div class="three-col">
+          <div class="stat-box">
+            <div class="stat-box-label">Cardiologistas — acurácia pooled</div>
+            <div class="stat-box-val">74,9%</div>
+            <div class="stat-box-sub">Meta-análise Cook et al. JAMA IM 2020</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-label">Pós-graduandos — acurácia</div>
+            <div class="stat-box-val">~55%</div>
+            <div class="stat-box-sub">Médicos em formação especializada</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-label">Melhora com ferramenta interativa</div>
+            <div class="stat-box-val">+13,4%</div>
+            <div class="stat-box-sub">Accuracy improvement — Cairns et al. 2016</div>
+          </div>
+        </div>
+
+        <div class="info-box info-teal" style="margin-top:1rem;">
+          <span class="info-box-icon">💡</span>
+          <div>O algoritmo de Pallikadavath et al. (J Electrocardiology 2022) alcançou <strong>93,4% de concordância entre especialistas</strong> (consenso Delphi), confirmando a segurança e utilidade de abordagens estruturadas passo a passo para interpretação do ECG na prática clínica.<sup>[45]</sup></div>
+        </div>
+
+        <div class="info-box info-gray" style="margin-top:.5rem;">
+          <span class="info-box-icon">📌</span>
+          <div><strong>ECG dentro de 10 minutos:</strong> A AHA/ACC recomenda interpretação do ECG em até 10 minutos da chegada em pacientes com dor precordial aguda.<sup>[29]</sup> ECGs seriados são indicados quando o initial é não-diagnóstico e a suspeita clínica permanece. Um ECG normal não exclui SCA, miocardite ou outras patologias graves.<sup>[29,36]</sup></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">📋</div>
+          <div><div class="card-title">Triagem ECG Populacional — Posição das Diretrizes</div>
+          <div class="card-subtitle">USPSTF 2018<sup>[43]</sup> · Yagi et al., JAMA Internal Medicine 2024<sup>[30]</sup></div></div>
+        </div>
+
+        <div class="two-col">
+          <div class="info-box info-amber">
+            <span class="info-box-icon">⚠️</span>
+            <div><strong>USPSTF (2018):</strong> Recomenda <em>contra</em> a triagem ECG de rotina em adultos assintomáticos de <em>baixo risco</em> cardiovascular — evidências insuficientes de benefício em desfechos clínicos.<sup>[43]</sup> Esta recomendação se baseia na ausência de ensaios clínicos randomizados demonstrando que a triagem ECG melhora desfechos nessa população.</div>
+          </div>
+          <div class="info-box info-teal">
+            <span class="info-box-icon">💡</span>
+            <div><strong>Evidência recente (2024):</strong> Yagi et al. demonstraram que anormalidades maiores E menores conferem risco aumentado independente de fatores clínicos. Isso sugere que uma abordagem personalizada baseada em risco cardiovascular basal e achados ECG específicos pode ter valor de estratificação incremental.<sup>[30]</sup></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="disclaimer">⚕️ Seção baseada em: Kontos MC et al. ACC Expert Consensus 2022; Gulati M et al. AHA/ACC 2021 Guideline for Chest Pain; Yagi R et al. JAMA Internal Medicine 2024; Walsh B et al. J Electrocardiology 2019; Deo R et al. JASN 2016; Cook DA et al. JAMA Internal Medicine 2020; USPSTF 2018; Pallikadavath S et al. J Electrocardiology 2022.</div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════
+         SEÇÃO 11 · REFERÊNCIAS
+    ═══════════════════════════════════════════════════════════════ -->
+    <div class="content-section" id="section-10">
+      <div class="section-label">Referências Bibliográficas</div>
+      <h2 class="section-title">Fontes e Evidências</h2>
+      <p class="section-desc">Todas as recomendações e critérios diagnósticos nesta página estão lastreados em diretrizes e publicações científicas peer-reviewed. As referências a seguir constituem o corpo de evidências que fundamenta o algoritmo.</p>
+
+      <div class="card">
+        <ol class="ref-list">
+          <li class="ref-item"><span class="ref-num">1</span><div><div class="ref-title">Standardization in Performing and Interpreting Electrocardiograms</div><div class="ref-meta">Ajmal M, Marcus F. <em>The American Journal of Medicine.</em> 2021;134(4):430-434. doi:10.1016/j.amjmed.2020.10.042</div></div></li>
+          <li class="ref-item"><span class="ref-num">2</span><div><div class="ref-title">Recommendations for the Standardization and Interpretation of the Electrocardiogram: Part I — AHA/ACCF/HRS Scientific Statement</div><div class="ref-meta">Kligfield P, Gettes LS, Bailey JJ, et al. <em>JACC.</em> 2007;49(10):1109-27. doi:10.1016/j.jacc.2007.01.024</div></div></li>
+          <li class="ref-item"><span class="ref-num">3</span><div><div class="ref-title">ACC/AHA Clinical Competence Statement on Electrocardiography and Ambulatory Electrocardiography</div><div class="ref-meta">Kadish AH, Buxton AE, Kennedy HL, et al. <em>JACC.</em> 2001;38(7):2091-100. doi:10.1016/s0735-1097(01)01680-1</div></div></li>
+          <li class="ref-item"><span class="ref-num">4</span><div><div class="ref-title">Update to Practice Standards for Electrocardiographic Monitoring in Hospital Settings — AHA Scientific Statement</div><div class="ref-meta">Sandau KE, Funk M, Auerbach A, et al. <em>Circulation.</em> 2017;136(19):e273-e344. doi:10.1161/CIR.0000000000000527</div></div></li>
+          <li class="ref-item"><span class="ref-num">5</span><div><div class="ref-title">Electrocardiographic Artifact</div><div class="ref-meta">Littmann L. <em>Journal of Electrocardiology.</em> 2021 Jan-Feb;64:23-29. doi:10.1016/j.jelectrocard.2020.11.006</div></div></li>
+          <li class="ref-item"><span class="ref-num">6</span><div><div class="ref-title">Electrocardiographic Electrode Misplacement, Misconnection, and Artifact</div><div class="ref-meta">Harrigan RA, Chan TC, Brady WJ. <em>The Journal of Emergency Medicine.</em> 2012;43(6):1038-44. doi:10.1016/j.jemermed.2012.02.024</div></div></li>
+          <li class="ref-item"><span class="ref-num">7</span><div><div class="ref-title">Assessment of the 12-Lead ECG as a Screening Test — AHA/ACC Scientific Statement</div><div class="ref-meta">Maron BJ, Friedman RA, Kligfield P, et al. <em>Circulation.</em> 2014;130(15):1303-34. doi:10.1161/CIR.0000000000000025</div></div></li>
+          <li class="ref-item"><span class="ref-num">8</span><div><div class="ref-title">Automated Detection of Non-Physiological Artifacts on ECG Signal: UK Biobank and CRIC</div><div class="ref-meta">Bukhari HA, Kewalramani S, Witzigreuter L, et al. <em>Computers in Biology and Medicine.</em> 2025;196(Pt B):110787. doi:10.1016/j.compbiomed.2025.110787</div></div></li>
+          <li class="ref-item"><span class="ref-num">9</span><div><div class="ref-title">Recommendations for the Standardization and Interpretation of the ECG: Part II — Electrocardiography Diagnostic Statement List</div><div class="ref-meta">Mason JW, Hancock EW, Gettes LS, et al. <em>JACC.</em> 2007;49(10):1128-35. doi:10.1016/j.jacc.2007.01.025</div></div></li>
+          <li class="ref-item"><span class="ref-num">10</span><div><div class="ref-title">EHRA/HRS/APHRS/LAHRS Expert Consensus on Risk Assessment in Cardiac Arrhythmias</div><div class="ref-meta">Nielsen JC, Lin YJ, de Oliveira Figueiredo MJ, et al. <em>Heart Rhythm.</em> 2020;17(9):e269-e316. doi:10.1016/j.hrthm.2020.05.004</div></div></li>
+          <li class="ref-item"><span class="ref-num">11</span><div><div class="ref-title">2023 ACC/AHA/ACCP/HRS Guideline for the Diagnosis and Management of Atrial Fibrillation</div><div class="ref-meta">Joglar JA, Chung MK, et al. <em>JACC.</em> 2024;83(1):109-279. doi:10.1016/j.jacc.2023.08.017</div></div></li>
+          <li class="ref-item"><span class="ref-num">12</span><div><div class="ref-title">2023 ACC/AHA/ACCP/HRS Guideline for Atrial Fibrillation [Circulation version]</div><div class="ref-meta">Joglar JA, Chung MK, Armbruster AL, et al. <em>Circulation.</em> 2024;149(1):e1-e156. doi:10.1161/CIR.0000000000001193</div></div></li>
+          <li class="ref-item"><span class="ref-num">13</span><div><div class="ref-title">AHA/ACCF/HRS Recommendations for the Standardization and Interpretation of the ECG: Part III — Intraventricular Conduction Disturbances</div><div class="ref-meta">Surawicz B, Childers R, Deal BJ, et al. <em>JACC.</em> 2009;53(11):976-81. doi:10.1016/j.jacc.2008.12.013</div></div></li>
+          <li class="ref-item"><span class="ref-num">15</span><div><div class="ref-title">Prevalence of Electrocardiographic Anomalies in Young Individuals: Relevance to a Nationwide Cardiac Screening Program</div><div class="ref-meta">Chandra N, Bastiaenen R, Papadakis M, et al. <em>JACC.</em> 2014;63(19):2028-34. doi:10.1016/j.jacc.2014.01.046</div></div></li>
+          <li class="ref-item"><span class="ref-num">16</span><div><div class="ref-title">Normal Values of the Electrocardiogram for Ages 16-90 Years</div><div class="ref-meta">Rijnbeek PR, van Herpen G, Bots ML, et al. <em>Journal of Electrocardiology.</em> 2014 Nov-Dec;47(6):914-21. doi:10.1016/j.jelectrocard.2014.07.022</div></div></li>
+          <li class="ref-item"><span class="ref-num">17</span><div><div class="ref-title">Sudden Death in the Young: Information for the Primary Care Provider</div><div class="ref-meta">Erickson CC, Salerno JC, Berger S, et al. <em>Pediatrics.</em> 2021;148(1):e2021052044. doi:10.1542/peds.2021-052044</div></div></li>
+          <li class="ref-item"><span class="ref-num">18</span><div><div class="ref-title">Fourth Universal Definition of Myocardial Infarction (2018)</div><div class="ref-meta">Thygesen K, Alpert JS, Jaffe AS, et al. <em>JACC.</em> 2018;72(18):2231-2264. doi:10.1016/j.jacc.2018.08.1038</div></div></li>
+          <li class="ref-item"><span class="ref-num">19</span><div><div class="ref-title">2011 ACCF/AHA Focused Update — Guidelines for UA/NSTEMI</div><div class="ref-meta">Wright RS, Anderson JL, Adams CD, et al. <em>JACC.</em> 2011;57(19):e215-367. doi:10.1016/j.jacc.2011.02.011</div></div></li>
+          <li class="ref-item"><span class="ref-num">20</span><div><div class="ref-title">2022 ACC Expert Consensus Decision Pathway on the Evaluation and Disposition of Acute Chest Pain in the Emergency Department</div><div class="ref-meta">Kontos MC, de Lemos JA, Deitelzweig SB, et al. <em>JACC.</em> 2022;80(20):1925-1960. doi:10.1016/j.jacc.2022.08.750</div></div></li>
+          <li class="ref-item"><span class="ref-num">21</span><div><div class="ref-title">2010 ACCF/AHA Guideline for Assessment of Cardiovascular Risk in Asymptomatic Adults</div><div class="ref-meta">Greenland P, Alpert JS, Beller GA, et al. <em>JACC.</em> 2010;56(25):e50-103. doi:10.1016/j.jacc.2010.09.001</div></div></li>
+          <li class="ref-item"><span class="ref-num">24</span><div><div class="ref-title">2017 AHA/ACC/HRS Guideline for Management of Patients With Ventricular Arrhythmias and Prevention of Sudden Cardiac Death</div><div class="ref-meta">Al-Khatib SM, Stevenson WG, Ackerman MJ, et al. <em>JACC.</em> 2018;72(14):e91-e220. doi:10.1016/j.jacc.2017.10.054</div></div></li>
+          <li class="ref-item"><span class="ref-num">26</span><div><div class="ref-title">Electrocardiographic Features of Inherited Diseases That Predispose to Cardiac Arrhythmias</div><div class="ref-meta">Marcus FI. <em>Journal of Electrocardiology.</em> 2000;33 Suppl:1-10. doi:10.1054/jelc.2000.20360</div></div></li>
+          <li class="ref-item"><span class="ref-num">28</span><div><div class="ref-title">Clinical and Mechanistic Issues in Early Repolarization of Normal Variants and Lethal Arrhythmia Syndromes</div><div class="ref-meta">Benito B, Guasch E, Rivard L, Nattel S. <em>JACC.</em> 2010;56(15):1177-86. doi:10.1016/j.jacc.2010.05.037</div></div></li>
+          <li class="ref-item"><span class="ref-num">29</span><div><div class="ref-title">2021 AHA/ACC/ASE/CHEST/SAEM/SCCT/SCMR Guideline for the Evaluation and Diagnosis of Chest Pain</div><div class="ref-meta">Gulati M, Levy PD, Mukherjee D, et al. <em>JACC.</em> 2021;78(22):e187-e285. doi:10.1016/j.jacc.2021.07.053</div></div></li>
+          <li class="ref-item"><span class="ref-num">30</span><div><div class="ref-title">Routine Electrocardiogram Screening and Cardiovascular Disease Events in Adults</div><div class="ref-meta">Yagi R, Mori Y, Goto S, Iwami T, Inoue K. <em>JAMA Internal Medicine.</em> 2024;184(9):1035-1044. doi:10.1001/jamainternmed.2024.2270</div></div></li>
+          <li class="ref-item"><span class="ref-num">31</span><div><div class="ref-title">Distinctive ECG Patterns in Healthy Black Adults</div><div class="ref-meta">Walsh B, Macfarlane PW, Prutkin JM, Smith SW. <em>Journal of Electrocardiology.</em> 2019 Sep-Oct;56:15-23. doi:10.1016/j.jelectrocard.2019.06.007</div></div></li>
+          <li class="ref-item"><span class="ref-num">32</span><div><div class="ref-title">Hyperkalemia and Electrocardiogram Manifestations in End-Stage Renal Disease</div><div class="ref-meta">Rafique Z, Hoang B, Mesbah H, et al. <em>IJERPH.</em> 2022;19(23):16140. doi:10.3390/ijerph192316140</div></div></li>
+          <li class="ref-item"><span class="ref-num">33</span><div><div class="ref-title">Electrocardiographic Measures and Prediction of Cardiovascular and Noncardiovascular Death in CKD</div><div class="ref-meta">Deo R, Shou H, Soliman EZ, et al. <em>JASN.</em> 2016;27(2):559-69. doi:10.1681/ASN.2014101045</div></div></li>
+          <li class="ref-item"><span class="ref-num">34</span><div><div class="ref-title">Characterization of T Wave Changes During Hemodialysis: Relationship With Serum Electrolyte Levels</div><div class="ref-meta">Bukhari HA, Palmieri F, Ramirez J, et al. <em>IEEE Trans Biomed Eng.</em> 2021;68(8):2467-2478. doi:10.1109/TBME.2020.3043844</div></div></li>
+          <li class="ref-item"><span class="ref-num">35</span><div><div class="ref-title">Differences in Ventricular Wall Composition May Explain Inter-Patient Variability in the ECG Response to Variations in Serum Potassium and Calcium</div><div class="ref-meta">Bukhari HA, Sánchez C, Laguna P, Potse M, Pueyo E. <em>Frontiers in Physiology.</em> 2023;14:1060919. doi:10.3389/fphys.2023.1060919</div></div></li>
+          <li class="ref-item"><span class="ref-num">36</span><div><div class="ref-title">2024 ACC Expert Consensus Decision Pathway on Strategies and Criteria for the Diagnosis and Management of Myocarditis</div><div class="ref-meta">Drazner MH, Bozkurt B, Cooper LT, et al. <em>JACC.</em> 2025;85(4):391-431. doi:10.1016/j.jacc.2024.10.080</div></div></li>
+          <li class="ref-item"><span class="ref-num">40</span><div><div class="ref-title">Accuracy of Physicians' Electrocardiogram Interpretations: A Systematic Review and Meta-analysis</div><div class="ref-meta">Cook DA, Oh SY, Pusic MV. <em>JAMA Internal Medicine.</em> 2020;180(11):1461-1471. doi:10.1001/jamainternmed.2020.3989</div></div></li>
+          <li class="ref-item"><span class="ref-num">41</span><div><div class="ref-title">Management of Ventricular Arrhythmias Worldwide: Comparison of Latest ESC, AHA/ACC/HRS, and CCS/CHRS Guidelines</div><div class="ref-meta">Könemann H, Ellermann C, Zeppenfeld K, Eckardt L. <em>JACC Clinical Electrophysiology.</em> 2023;9(5):715-728. doi:10.1016/j.jacep.2022.12.008</div></div></li>
+          <li class="ref-item"><span class="ref-num">43</span><div><div class="ref-title">Screening for Cardiovascular Disease Risk With Electrocardiography — USPSTF Recommendation Statement</div><div class="ref-meta">US Preventive Services Task Force, Curry SJ, Krist AH, et al. <em>JAMA.</em> 2018;319(22):2308-2314. doi:10.1001/jama.2018.6848</div></div></li>
+          <li class="ref-item"><span class="ref-num">45</span><div><div class="ref-title">An Algorithm to Assist Novices With Electrocardiogram Interpretation: Validation With the Delphi Method</div><div class="ref-meta">Pallikadavath S, Watts J, Sandilands AJ, Gay S. <em>Journal of Electrocardiology.</em> 2022 Jan-Feb;70:56-64. doi:10.1016/j.jelectrocard.2021.11.035</div></div></li>
+          <li class="ref-item"><span class="ref-num">46</span><div><div class="ref-title">AHA/ACCF/HRS Recommendations for the Standardization and Interpretation of the ECG: Part VI — Acute Ischemia/Infarction</div><div class="ref-meta">Wagner GS, Macfarlane P, Wellens H, et al. <em>JACC.</em> 2009;53(11):1003-11. doi:10.1016/j.jacc.2008.12.016</div></div></li>
+        </ol>
+      </div>
+
+      <div class="disclaimer">⚕️ Este conteúdo é destinado exclusivamente a profissionais médicos e não substitui o julgamento clínico individualizado. Todas as recomendações devem ser aplicadas no contexto clínico específico de cada paciente. Última atualização: 2025 · lucascardio.com.br</div>
+    </div>
+
+  </div><!-- end main-content -->
+</div><!-- end container -->
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">lucas<span>cardio</span>.com.br</div>
+      <div class="footer-meta">Algoritmo de ECG · Baseado em evidências AHA/ACC/HRS/ESC · Uso profissional</div>
+      <div class="footer-links">
+        <a href="https://lucascardio.com.br">Início</a>
+        <a href="#">Outras ferramentas</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── SECTION NAVIGATION ───────────────────────────────────────
+  function showSection(idx) {
+    document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.step-nav-btn').forEach(b => b.classList.remove('active'));
+    const sec = document.getElementById('section-' + idx);
+    const btn = document.querySelector('[data-idx="' + idx + '"]');
+    if (sec) sec.classList.add('active');
+    if (btn) btn.classList.add('active');
+    const grid = document.getElementById('stepNav');
+    if (grid) window.scrollTo({ top: grid.offsetTop - 72, behavior: 'smooth' });
+  }
+
+  // ── ACCORDION ────────────────────────────────────────────────
+  function toggleAccordion(header) {
+    const body = header.nextElementSibling;
+    const isOpen = header.classList.contains('open');
+    header.classList.toggle('open', !isOpen);
+    body.classList.toggle('open', !isOpen);
+  }
+
+  // Open first accordion in section by default
+  document.querySelectorAll('.content-section').forEach(sec => {
+    const firstAccHeader = sec.querySelector('.accordion-header');
+    if (firstAccHeader) {
+      firstAccHeader.classList.add('open');
+      firstAccHeader.nextElementSibling.classList.add('open');
+    }
+  });
+
+  // ── SCROLL PROGRESS ──────────────────────────────────────────
+  window.addEventListener('scroll', () => {
+    const el = document.getElementById('scroll-progress');
+    const scroll = window.scrollY;
+    const total = document.body.scrollHeight - window.innerHeight;
+    el.style.width = (scroll / total * 100) + '%';
+  });
+</script>
+</body>
+</html>

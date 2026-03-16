@@ -1,0 +1,2072 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1"/>
+  <title>Cateterismo Cardíaco – Guia para Médicos | Dr. Lucas Silva</title>
+  <meta name="description" content="Referência clínica completa sobre indicações, contraindicações, preparo do paciente, manejo medicamentoso, acesso vascular e complicações do cateterismo cardíaco. Baseada em evidências ACC/AHA/SCAI 2025."/>
+  <meta name="author" content="Dr. Lucas Silva"/>
+  <link rel="canonical" href="https://lucascardio.com.br/Medicos/cateterismo-cardiaco-guia-medico.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;600;700&family=Lora:ital,wght@0,600;1,500&display=swap" rel="stylesheet"/>
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalScholarlyArticle",
+    "headline": "Cateterismo Cardíaco – Guia para Médicos",
+    "description": "Referência clínica completa sobre indicações, contraindicações, preparo do paciente, manejo medicamentoso, acesso vascular e complicações do cateterismo cardíaco.",
+    "author": {
+      "@type": "Person",
+      "name": "Dr. Lucas Silva",
+      "url": "https://lucascardio.com.br",
+      "jobTitle": "Cardiologista Intervencionista"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Dr. Lucas Silva - Cardiologia",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://lucascardio.com.br/assets/img/logo.png"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://lucascardio.com.br/Medicos/cateterismo-cardiaco-guia-medico.html"
+    },
+    "audience": {
+      "@type": "MedicalAudience",
+      "audienceType": "Clinician"
+    },
+    "medicalSpecialty": "http://schema.org/Cardiovascular"
+  }
+  </script>
+  
+  <style>
+    :root {
+      --primary: oklch(65% .18 195);
+      --primary-foreground: oklch(98% 0 0);
+      --background: oklch(13% .018 250);
+      --foreground: oklch(93% .01 250);
+      --card: oklch(18.5% .018 250);
+      --card-foreground: oklch(93% .01 250);
+      --muted: oklch(22% .018 250);
+      --muted-foreground: oklch(62% .02 250);
+      --border: oklch(28% .025 250);
+      --input: oklch(22% .02 250);
+      --destructive: oklch(60% .22 25);
+      --secondary: oklch(22% .022 250);
+      --secondary-foreground: oklch(88% .01 250);
+      --accent: oklch(24% .025 250);
+      --accent-foreground: oklch(90% .01 250);
+      --teal: #50e5ff;
+      --teal-dim: rgba(0,211,189,.12);
+      --amber: oklch(82.8% .189 84.429);
+      --red: oklch(63.7% .237 25.331);
+      --green: oklch(79.2% .209 151.711);
+      --radius: 0.625rem;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-serif: 'Lora', Georgia, serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); background-color: var(--background); color: var(--foreground); min-height: 100vh; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    nav { position: sticky; top: 0; z-index: 50; background: rgba(18,20,27,.9); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); padding: 0 1.5rem; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-brand { display: flex; align-items: center; gap:.6rem; text-decoration: none; color: var(--foreground); }
+    .nav-brand-icon { width:28px; height:28px; border-radius:7px; background: var(--teal); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .nav-brand-name { font-weight:800; font-size:1rem; letter-spacing:-.025em; line-height:1; }
+    .nav-brand-name span { color: var(--teal); }
+    .nav-brand-sep { width:1px; height:14px; background: var(--border); margin:0 6px; }
+    .nav-brand-sub { font-size:.7rem; font-weight:500; color: var(--muted-foreground); white-space:nowrap; }
+    .nav-actions { display:flex; align-items:center; gap:.5rem; }
+    .nav-badge { font-size:.7rem; font-weight:600; padding:3px 10px; border-radius:999px; background: var(--teal-dim); color: var(--teal); border:1px solid rgba(0,211,189,.25); white-space:nowrap; }
+    .nav-link { font-size:.75rem; font-weight:600; padding:5px 12px; border-radius:8px; border:1.5px solid var(--primary); color: var(--primary); background:transparent; text-decoration:none; transition:background .15s,color .15s; display:inline-flex; align-items:center; gap:5px; }
+    .nav-link:hover { background: var(--primary); color: var(--primary-foreground); }
+
+    /* TAB NAV */
+    .tab-nav-wrap { background: var(--card); border-bottom:1px solid var(--border); position: sticky; top:56px; z-index:40; }
+    .tab-nav { display:flex; gap:0; overflow-x:auto; scrollbar-width:none; padding:0 1.5rem; max-width:1100px; margin:0 auto; }
+    .tab-nav::-webkit-scrollbar { display:none; }
+    .tab-btn { flex-shrink:0; padding:14px 16px; font-size:.78rem; font-weight:600; color: var(--muted-foreground); background:none; border:none; border-bottom:2.5px solid transparent; cursor:pointer; transition:color .15s,border-color .15s; font-family: var(--font-sans); white-space:nowrap; display:flex; align-items:center; gap:6px; }
+    .tab-btn:hover { color: var(--foreground); }
+    .tab-btn.active { color: var(--teal); border-bottom-color: var(--teal); }
+
+    /* LAYOUT */
+    .container { max-width: 960px; margin:0 auto; padding:0 1.5rem; }
+    .tab-section { display:none; padding:2.5rem 0 3rem; animation: fadeUp .3s ease; }
+    .tab-section.active { display:block; }
+
+    /* HERO */
+    .hero { padding:3rem 0 2rem; border-bottom:1px solid var(--border); }
+    .hero-eyebrow { display:inline-flex; align-items:center; gap:6px; font-size:.7rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color: var(--teal); margin-bottom:1rem; }
+    .hero-eyebrow::before { content:''; display:block; width:20px; height:2px; background: var(--teal); border-radius:1px; }
+    .hero h1 { font-size:clamp(1.6rem,4vw,2.5rem); font-weight:800; line-height:1.2; margin-bottom:.75rem; letter-spacing:-.02em; }
+    .hero h1 em { font-style:normal; color: var(--teal); }
+    .hero-sub { color: var(--muted-foreground); font-size:.95rem; max-width:640px; margin-bottom:1.5rem; }
+    .hero-tags { display:flex; flex-wrap:wrap; gap:.5rem; }
+    .tag { font-size:.68rem; font-weight:600; padding:3px 10px; border-radius:6px; border:1px solid var(--border); color: var(--muted-foreground); background: var(--card); font-family: var(--font-mono); }
+    .tag-teal { background: var(--teal-dim); color: var(--teal); border-color:rgba(0,211,189,.25); }
+
+    /* CARDS */
+    .card { background: var(--card); border:1px solid var(--border); border-radius:calc(var(--radius)+2px); padding:1.5rem; margin-bottom:1.5rem; }
+    .card-header { display:flex; align-items:flex-start; gap:.75rem; margin-bottom:1.25rem; padding-bottom:1rem; border-bottom:1px solid var(--border); }
+    .card-icon { width:36px; height:36px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0; background: var(--teal-dim); color: var(--teal); }
+    .card-icon.red { background:rgba(220,38,38,.12); color:#f87171; }
+    .card-icon.amber { background:rgba(251,191,36,.1); color:#fbbf24; }
+    .card-icon.green { background:rgba(34,197,94,.1); color:#4ade80; }
+    .card-icon.blue { background:rgba(59,130,246,.1); color:#60a5fa; }
+    .card-title { font-weight:700; font-size:1rem; margin-bottom:2px; }
+    .card-subtitle { font-size:.78rem; color: var(--muted-foreground); }
+
+    /* SECTION HEADINGS */
+    .section-label { font-size:.68rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color: var(--teal); margin-bottom:.4rem; font-family: var(--font-mono); }
+    .section-title { font-size:1.3rem; font-weight:800; margin-bottom:.35rem; letter-spacing:-.01em; }
+    .section-title em { font-style:normal; color: var(--teal); }
+    .section-intro { font-size:.88rem; color: var(--muted-foreground); line-height:1.7; margin-bottom:1.5rem; max-width:820px; }
+    .section-divider { border:none; border-top:1px solid var(--border); margin:2rem 0; }
+    .subsection-title { font-size:.98rem; font-weight:700; margin:1.25rem 0 .75rem; display:flex; align-items:center; gap:8px; }
+    .subsection-title::before { content:''; display:block; width:3px; height:1em; background: var(--teal); border-radius:2px; flex-shrink:0; }
+
+    /* BADGES */
+    .badge { display:inline-flex; align-items:center; gap:4px; font-size:.65rem; font-weight:700; padding:2px 8px; border-radius:999px; white-space:nowrap; font-family: var(--font-mono); }
+    .badge-red { background:rgba(220,38,38,.15); color:#f87171; border:1px solid rgba(220,38,38,.3); }
+    .badge-amber { background:rgba(251,191,36,.12); color:#fbbf24; border:1px solid rgba(251,191,36,.25); }
+    .badge-teal { background: var(--teal-dim); color: var(--teal); border:1px solid rgba(0,211,189,.25); }
+    .badge-green { background:rgba(34,197,94,.1); color:#4ade80; border:1px solid rgba(34,197,94,.2); }
+    .badge-blue { background:rgba(59,130,246,.1); color:#60a5fa; border:1px solid rgba(59,130,246,.2); }
+    .badge-gray { background: var(--muted); color: var(--muted-foreground); border:1px solid var(--border); }
+    .badge-class1 { background:rgba(34,197,94,.12); color:#4ade80; border:1px solid rgba(34,197,94,.25); }
+    .badge-class2a { background:rgba(251,191,36,.12); color:#fbbf24; border:1px solid rgba(251,191,36,.25); }
+    .badge-class2b { background:rgba(251,146,60,.12); color:#fb923c; border:1px solid rgba(251,146,60,.25); }
+    .badge-class3 { background:rgba(220,38,38,.12); color:#f87171; border:1px solid rgba(220,38,38,.25); }
+    .badge-loa { background: var(--muted); color: var(--foreground); border:1px solid var(--border); font-family: var(--font-mono); }
+
+    /* INFO BOXES */
+    .info-box { border-radius: var(--radius); padding:12px 16px; font-size:.82rem; line-height:1.65; display:flex; gap:10px; margin-bottom:.75rem; }
+    .info-box-icon { flex-shrink:0; font-size:1rem; margin-top:1px; }
+    .info-teal { background: var(--teal-dim); border-left:3px solid var(--teal); }
+    .info-amber { background:rgba(251,191,36,.08); border-left:3px solid rgba(251,191,36,.5); }
+    .info-red { background:rgba(220,38,38,.08); border-left:3px solid rgba(220,38,38,.4); }
+    .info-gray { background: var(--muted); border-left:3px solid var(--border); }
+    .info-green { background:rgba(34,197,94,.07); border-left:3px solid rgba(34,197,94,.5); }
+    .info-blue { background:rgba(59,130,246,.07); border-left:3px solid rgba(59,130,246,.4); }
+
+    /* INDICATION ITEM */
+    .indication-item { display:flex; align-items:flex-start; gap:12px; padding:12px 14px; border-radius: var(--radius); border:1px solid var(--border); background: var(--muted); margin-bottom:.6rem; transition:background .15s; }
+    .indication-item:hover { background: var(--accent); }
+    .indication-icon { font-size:1.1rem; flex-shrink:0; margin-top:1px; }
+    .indication-body { flex:1; }
+    .indication-title { font-size:.85rem; font-weight:700; margin-bottom:3px; }
+    .indication-detail { font-size:.77rem; color: var(--muted-foreground); line-height:1.55; }
+    .indication-badges { display:flex; flex-wrap:wrap; gap:4px; margin-top:6px; }
+
+    /* TWO-COL GRID */
+    .two-col { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .three-col { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+
+    /* STAT BOXES */
+    .stat-box { background: var(--card); border:1px solid var(--border); border-radius:calc(var(--radius)+2px); padding:1.25rem; text-align:center; }
+    .stat-val { font-size:1.8rem; font-weight:800; font-family: var(--font-mono); color: var(--teal); line-height:1; margin-bottom:4px; }
+    .stat-val.red { color:#f87171; }
+    .stat-val.amber { color:#fbbf24; }
+    .stat-label { font-size:.72rem; font-weight:600; color: var(--muted-foreground); text-transform:uppercase; letter-spacing:.05em; }
+    .stat-sub { font-size:.7rem; color: var(--muted-foreground); margin-top:3px; }
+
+    /* COMPARE TABLE */
+    .compare-wrap { overflow-x:auto; border-radius:calc(var(--radius)+2px); border:1px solid var(--border); margin-bottom:1.5rem; }
+    .compare-table { width:100%; border-collapse:collapse; font-size:.82rem; }
+    .compare-table th { background: var(--muted); padding:10px 14px; text-align:left; font-weight:700; font-size:.75rem; border-bottom:1px solid var(--border); color: var(--muted-foreground); letter-spacing:.03em; }
+    .compare-table td { padding:10px 14px; border-bottom:1px solid var(--border); vertical-align:top; line-height:1.55; }
+    .compare-table tr:last-child td { border-bottom:none; }
+    .compare-table tr:hover td { background: var(--accent); }
+    .compare-table .th-teal { color: var(--teal); }
+    .compare-table .th-red { color:#f87171; }
+
+    /* ACCORDION */
+    .accordion { border:1px solid var(--border); border-radius:calc(var(--radius)+2px); overflow:hidden; margin-bottom:1rem; }
+    .accordion-header { display:flex; align-items:center; gap:10px; padding:14px 16px; background: var(--card); cursor:pointer; transition:background .15s; user-select:none; font-weight:600; font-size:.88rem; }
+    .accordion-header:hover { background: var(--accent); }
+    .accordion-header .acc-icon { font-size:1rem; }
+    .accordion-header .acc-arrow { margin-left:auto; transition:transform .25s; color: var(--muted-foreground); font-size:.8rem; }
+    .accordion.open .acc-arrow { transform:rotate(180deg); }
+    .accordion-body { display:none; padding:1rem 1.25rem 1.25rem; background: var(--card); border-top:1px solid var(--border); font-size:.83rem; line-height:1.7; }
+    .accordion.open .accordion-body { display:block; animation: fadeUp .2s ease; }
+
+    /* DOSE BOX */
+    .dose-box { background: var(--muted); border:1px solid var(--border); border-radius: var(--radius); padding:12px 14px; font-size:.82rem; line-height:1.65; margin:.6rem 0; }
+    .dose-box strong { font-family: var(--font-mono); font-size:.85rem; color: var(--teal); }
+    .dose-title { font-weight:700; font-size:.78rem; color: var(--muted-foreground); text-transform:uppercase; letter-spacing:.05em; margin-bottom:6px; font-family: var(--font-mono); }
+
+    /* FLOW CHART */
+    .flow-step { display:flex; align-items:flex-start; gap:12px; margin-bottom:.5rem; }
+    .flow-num { width:24px; height:24px; border-radius:50%; background: var(--teal); color:#000; font-size:.7rem; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px; font-family: var(--font-mono); }
+    .flow-content { flex:1; font-size:.83rem; line-height:1.6; }
+    .flow-arrow { text-align:center; color: var(--muted-foreground); font-size:.8rem; margin:.15rem 0 .15rem 36px; }
+
+    /* RISK STRATIFICATION */
+    .risk-strip { display:flex; border-radius: var(--radius); overflow:hidden; margin:.75rem 0; }
+    .risk-band { flex:1; padding:10px 12px; text-align:center; }
+    .risk-band-label { font-size:.65rem; font-weight:700; text-transform:uppercase; letter-spacing:.07em; margin-bottom:3px; }
+    .risk-band-val { font-size:.75rem; font-weight:600; }
+    .rb-low { background:rgba(34,197,94,.12); color:#4ade80; }
+    .rb-int { background:rgba(251,191,36,.12); color:#fbbf24; }
+    .rb-high { background:rgba(251,146,60,.12); color:#fb923c; }
+    .rb-vhigh { background:rgba(220,38,38,.12); color:#f87171; }
+
+    /* TIMELINE HORIZONTAL */
+    .h-timeline { display:flex; gap:0; margin:1rem 0; }
+    .h-step { flex:1; padding:14px 12px 16px; background: var(--card); border:1px solid var(--border); border-right:none; text-align:center; transition:background .15s; }
+    .h-step:first-child { border-radius: var(--radius) 0 0 var(--radius); }
+    .h-step:last-child { border-right:1px solid var(--border); border-radius:0 var(--radius) var(--radius) 0; }
+    .h-step:hover { background: var(--accent); }
+    .h-step-time { font-size:.65rem; font-weight:700; color: var(--teal); font-family: var(--font-mono); text-transform:uppercase; letter-spacing:.06em; margin-bottom:4px; }
+    .h-step-title { font-size:.8rem; font-weight:700; }
+    .h-step-sub { font-size:.7rem; color: var(--muted-foreground); margin-top:3px; line-height:1.4; }
+
+    /* FORMULA BOX */
+    .formula-box { background: var(--muted); border:1px solid var(--border); border-radius: var(--radius); padding:16px 20px; text-align:center; margin:.75rem 0; }
+    .formula-eq { font-family: var(--font-serif); font-size:1.05rem; color: var(--teal); font-style:italic; }
+    .formula-caption { font-size:.72rem; color: var(--muted-foreground); margin-top:6px; }
+
+    /* DRUG LIST */
+    .drug-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:.75rem; }
+    .drug-item { background: var(--muted); border:1px solid var(--border); border-radius: var(--radius); padding:12px 14px; }
+    .drug-name { font-weight:700; font-size:.85rem; margin-bottom:2px; }
+    .drug-action { font-size:.72rem; color: var(--teal); font-family: var(--font-mono); margin-bottom:6px; }
+    .drug-detail { font-size:.76rem; color: var(--muted-foreground); line-height:1.5; }
+
+    /* VERSUS COMPARISON */
+    .vs-wrap { display:grid; grid-template-columns:1fr auto 1fr; gap:0; align-items:stretch; margin:1rem 0; }
+    .vs-col { background: var(--card); border:1px solid var(--border); border-radius: var(--radius); padding:1.25rem; }
+    .vs-col.radial { border-color:rgba(0,211,189,.35); }
+    .vs-col.femoral { border-color:rgba(251,191,36,.3); }
+    .vs-divider { display:flex; align-items:center; justify-content:center; padding:0 .75rem; color: var(--muted-foreground); font-weight:800; font-size:.9rem; }
+    .vs-header { font-weight:800; font-size:1rem; margin-bottom:1rem; display:flex; align-items:center; gap:8px; }
+    .vs-header.radial { color: var(--teal); }
+    .vs-header.femoral { color:#fbbf24; }
+    .vs-list { list-style:none; }
+    .vs-list li { font-size:.8rem; padding:6px 0; border-bottom:1px solid var(--border); display:flex; align-items:flex-start; gap:7px; line-height:1.5; }
+    .vs-list li:last-child { border-bottom:none; }
+    .vs-list li::before { content:''; width:6px; height:6px; border-radius:50%; flex-shrink:0; margin-top:5px; }
+    .vs-col.radial .vs-list li::before { background: var(--teal); }
+    .vs-col.femoral .vs-list li::before { background:#fbbf24; }
+
+    /* COMPLICATION TABLE */
+    .comp-row { display:flex; align-items:center; gap:12px; padding:10px 14px; border-bottom:1px solid var(--border); font-size:.82rem; }
+    .comp-row:last-child { border-bottom:none; }
+    .comp-name { flex:1; font-weight:500; }
+    .comp-rate { font-family: var(--font-mono); font-size:.85rem; font-weight:700; color: var(--teal); min-width:80px; text-align:right; }
+    .comp-rate.high { color:#f87171; }
+    .comp-rate.med { color:#fbbf24; }
+
+    /* REFERENCES */
+    .ref-list { list-style:none; }
+    .ref-item { padding:9px 0; border-bottom:1px solid var(--border); font-size:.78rem; line-height:1.6; display:flex; gap:10px; }
+    .ref-item:last-child { border-bottom:none; }
+    .ref-num { font-family: var(--font-mono); font-size:.68rem; font-weight:700; color: var(--teal); min-width:22px; }
+    .ref-title { font-weight:600; margin-bottom:2px; }
+    .ref-meta { color: var(--muted-foreground); font-size:.72rem; }
+
+    /* PROGRESS DOTS */
+    .progress-dots { display:flex; gap:6px; align-items:center; }
+    .pdot { width:6px; height:6px; border-radius:50%; background: var(--border); transition:background .2s; cursor:pointer; }
+    .pdot.active { background: var(--teal); width:18px; border-radius:3px; }
+
+    /* FOOTER */
+    footer { border-top:1px solid var(--border); padding:2rem 0; margin-top:2rem; }
+    .footer-inner { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+    .footer-copy { font-size:.75rem; color: var(--muted-foreground); }
+
+    /* DISCLAIMER */
+    .disclaimer { background: var(--muted); border:1px solid var(--border); border-radius: var(--radius); padding:12px 16px; font-size:.74rem; color: var(--muted-foreground); line-height:1.6; }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+
+    /* HIGHLIGHT TEXT */
+    .hl { color: var(--teal); font-weight:700; }
+    .hl-amber { color:#fbbf24; font-weight:700; }
+    .hl-red { color:#f87171; font-weight:700; }
+
+    /* RESPONSIVE */
+    @media (max-width:700px) {
+      .two-col, .three-col { grid-template-columns:1fr; }
+      .vs-wrap { grid-template-columns:1fr; }
+      .vs-divider { display:none; }
+      .h-timeline { flex-direction:column; }
+      .h-step { border-right:1px solid var(--border); border-bottom:none; border-radius:0; }
+      .h-step:first-child { border-radius: var(--radius) var(--radius) 0 0; }
+      .h-step:last-child { border-bottom:1px solid var(--border); border-radius:0 0 var(--radius) var(--radius); }
+      .nav-brand-sub { display:none; }
+    }
+  </style>
+</head>
+<body>
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#">
+    <div class="nav-brand-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l2 2"/></svg>
+    </div>
+    <div class="nav-brand-name">Cath<span>Guide</span></div>
+    <div class="nav-brand-sep"></div>
+    <div class="nav-brand-sub">Referência para Médicos</div>
+  </a>
+  <div class="nav-actions">
+    <span class="nav-badge">ACC/AHA/SCAI 2025</span>
+    <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      lucascardio.com.br
+    </a>
+  </div>
+</nav>
+
+<!-- TAB NAV -->
+<div class="tab-nav-wrap">
+  <div class="tab-nav" id="tabNav">
+    <button class="tab-btn active" onclick="showTab('indicacoes',0)">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      Indicações
+    </button>
+    <button class="tab-btn" onclick="showTab('contraindicacoes',1)">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+      Contraindicações
+    </button>
+    <button class="tab-btn" onclick="showTab('preparo',2)">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      Preparo Geral
+    </button>
+    <button class="tab-btn" onclick="showTab('renal',3)">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="12" rx="10" ry="7"/><path d="M12 5C9 5 7 8 7 12s2 7 5 7"/></svg>
+      Nefropatia por Contraste
+    </button>
+    <button class="tab-btn" onclick="showTab('alergia',4)">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      Alergia a Contraste
+    </button>
+    <button class="tab-btn" onclick="showTab('medicacoes',5)">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+      Medicações Peri-Procedimento
+    </button>
+    <button class="tab-btn" onclick="showTab('acesso',6)">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      Radial vs Femoral
+    </button>
+    <button class="tab-btn" onclick="showTab('complicacoes',7)">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      Complicações
+    </button>
+    <button class="tab-btn" onclick="showTab('referencias',8)">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      Referências
+    </button>
+  </div>
+</div>
+
+<main>
+<div class="container">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Medicina Baseada em Evidências · Referência para Médicos</div>
+  <h1>Cateterismo Cardíaco:<br><em>Guia Clínico Completo</em></h1>
+  <p class="hero-sub">Indicações, contraindicações, preparo, manejo medicamentoso, acesso vascular e complicações — baseados nas diretrizes ACC/AHA/SCAI mais recentes e evidências de nível A.</p>
+  <div class="hero-tags">
+    <span class="tag tag-teal">ACC/AHA/SCAI 2025</span>
+    <span class="tag">MATRIX</span>
+    <span class="tag">POSEIDON</span>
+    <span class="tag">SCOFF Trial</span>
+    <span class="tag">Mehran Score</span>
+    <span class="tag">AKI-MATRIX</span>
+    <span class="tag">BRIDGE Trial</span>
+    <span class="tag">NCDR CathPCI</span>
+  </div>
+</div>
+
+<!-- PROGRESS DOTS -->
+<div style="display:flex;align-items:center;gap:12px;padding:1rem 0 .5rem;">
+  <div class="progress-dots" id="progressDots">
+    <div class="pdot active" onclick="showTab('indicacoes',0)"></div>
+    <div class="pdot" onclick="showTab('contraindicacoes',1)"></div>
+    <div class="pdot" onclick="showTab('preparo',2)"></div>
+    <div class="pdot" onclick="showTab('renal',3)"></div>
+    <div class="pdot" onclick="showTab('alergia',4)"></div>
+    <div class="pdot" onclick="showTab('medicacoes',5)"></div>
+    <div class="pdot" onclick="showTab('acesso',6)"></div>
+    <div class="pdot" onclick="showTab('complicacoes',7)"></div>
+    <div class="pdot" onclick="showTab('referencias',8)"></div>
+  </div>
+  <span id="tabLabel" style="font-size:.72rem;color:var(--muted-foreground);font-family:var(--font-mono);">Indicações</span>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ TAB 1: INDICAÇÕES -->
+<div id="tab-indicacoes" class="tab-section active">
+  <div class="section-label">01 · Indicações Clínicas</div>
+  <div class="section-title">Indicações do <em>Cateterismo Cardíaco</em></div>
+  <p class="section-intro">
+    Os critérios de uso adequado ACC/SCAI classificam 166 cenários clínicos em adequado, incerto e inadequado. A seguir, as indicações principais estratificadas por contexto clínico, com grau de recomendação e nível de evidência das diretrizes vigentes.
+  </p>
+
+  <!-- ACS -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon red">🚨</div>
+      <div>
+        <div class="card-title">Síndromes Coronarianas Agudas (SCA)</div>
+        <div class="card-subtitle">Estratégia invasiva — timing baseado em estratificação de risco</div>
+      </div>
+    </div>
+
+    <div class="indication-item">
+      <div class="indication-icon">⚡</div>
+      <div class="indication-body">
+        <div class="indication-title">IAMCSST — Angiografia Emergencial</div>
+        <div class="indication-detail">ICP primária indicada quando disponível em ≤120 min do primeiro contato médico. Independe de tempo de início dos sintomas. Para pacientes que se apresentam tardiamente (&gt;12h) mas com evidência de isquemia contínua, a angiografia ainda é indicada. A estratégia farmacoinvasiva com fibrinólise seguida de angiografia em 2–24h é recomendada quando ICP primária não está disponível no tempo-alvo.</div>
+        <div class="indication-badges">
+          <span class="badge badge-class1">Classe I</span>
+          <span class="badge badge-loa">LoE A</span>
+          <span class="badge badge-teal">ACC/AHA 2025</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="indication-item">
+      <div class="indication-icon">🔴</div>
+      <div class="indication-body">
+        <div class="indication-title">IAMSSST / Angina Instável — Risco Muito Alto (Emergencial &lt;2h)</div>
+        <div class="indication-detail">Instabilidade hemodinâmica ou choque cardiogênico, dor torácica refratária, arritmias ventriculares com risco de vida, complicações mecânicas do IAM (rotura de septo, insuficiência mitral aguda), bloqueio AV de alto grau novo, ou depressão de ST recorrente com elevação transitória em V1–V4 sugerindo oclusão dinâmica. Estes critérios demandam cateterismo imediato, independente do horário.</div>
+        <div class="indication-badges">
+          <span class="badge badge-class1">Classe I</span>
+          <span class="badge badge-loa">LoE A</span>
+          <span class="badge badge-teal">ESC 2020 / ACC/AHA 2025</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="indication-item">
+      <div class="indication-icon">🟠</div>
+      <div class="indication-body">
+        <div class="indication-title">IAMSSST / Angina Instável — Risco Alto (Precoce &lt;24h)</div>
+        <div class="indication-detail">Escore GRACE &gt;140, aumento dinâmico de troponina, alterações isquêmicas de ST/T sem elevação persistente, DM com isquemia. A janela de 24h é suportada pelo estudo TIMACS e meta-análises subsequentes demonstrando redução de isquemia recorrente. O escore GRACE 2.0 (incluindo variável creatinina) é o instrumento de estratificação preferido pelas diretrizes ESC e ACC/AHA.</div>
+        <div class="indication-badges">
+          <span class="badge badge-class1">Classe I</span>
+          <span class="badge badge-loa">LoE A</span>
+          <span class="badge badge-teal">ACC/AHA 2025</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="indication-item">
+      <div class="indication-icon">🟡</div>
+      <div class="indication-body">
+        <div class="indication-title">IAMSSST — Risco Intermediário-Baixo (Estratégia Seletiva Invasiva, 25–72h)</div>
+        <div class="indication-detail">GRACE ≤140, troponina negativa em série, sem alterações isquêmicas em ECG, sem instabilidade. A estratégia invasiva seletiva (após teste não-invasivo positivo ou critério clínico) é equivalente à invasiva de rotina neste subgrupo, conforme os ensaios ICTUS, RITA-3 e a meta-análise FRISC II/ICTUS/RITA-3. Idade &gt;75 anos, doença multiarterial conhecida ou função VE reduzida inclinam a balança para a estratégia invasiva.</div>
+        <div class="indication-badges">
+          <span class="badge badge-class2a">Classe IIa</span>
+          <span class="badge badge-loa">LoE B-R</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIHD -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon amber">📊</div>
+      <div>
+        <div class="card-title">Doença Coronariana Crônica / Isquemia Estável (DCC)</div>
+        <div class="card-subtitle">Cateterismo diagnóstico: anatomia coronariana e avaliação funcional (FFR/iFR)</div>
+      </div>
+    </div>
+
+    <div class="indication-item">
+      <div class="indication-icon">⚠️</div>
+      <div class="indication-body">
+        <div class="indication-title">Sintomas refratários à terapia médica otimizada</div>
+        <div class="indication-detail">Angina CCS II–IV persistente apesar de dupla antianginal (beta-bloqueador + nitrato ou bloqueador de canal de cálcio) + estatina + AAS. Neste contexto, a angiografia invasiva é indicada para planejamento de revascularização. O ensaio ISCHEMIA demonstrou que em doença coronariana estável com isquemia moderada-grave, a estratégia invasiva reduz hospitalização por angina instável mas não morte ou IAM espontâneo em 3,2 anos — o que reforça a centralidade da terapia médica otimizada.</div>
+        <div class="indication-badges">
+          <span class="badge badge-class1">Classe I</span>
+          <span class="badge badge-loa">LoE B-NR</span>
+          <span class="badge badge-teal">ACC/AHA 2023 (DCC)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="indication-item">
+      <div class="indication-icon">🔬</div>
+      <div class="indication-body">
+        <div class="indication-title">Características de alto risco em teste não-invasivo</div>
+        <div class="indication-detail">Extensão de isquemia &gt;10% do miocárdio em cintilografia/PET, disfunção ventricular induzida por estresse, alterações de ST de grande amplitude (&gt;2mm) em baixa carga, queda de PA ao esforço, escore Duke &lt;−11, Agatston &gt;400 em pacientes sintomáticos. O ensaio DISCHARGE demonstrou não-inferioridade da AngioTC como estratégia inicial em dor torácica com probabilidade pré-teste intermediária, reservando a angiografia invasiva para aqueles com doença obstrutiva confirmada ou alta probabilidade de doença multiarterial.</div>
+        <div class="indication-badges">
+          <span class="badge badge-class1">Classe I</span>
+          <span class="badge badge-loa">LoE B-NR</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="indication-item">
+      <div class="indication-icon">🏥</div>
+      <div class="indication-body">
+        <div class="indication-title">Avaliação pré-cirúrgica em candidatos a revascularização</div>
+        <div class="indication-detail">Pacientes com disfunção ventricular (FE &lt;50%) e doença coronariana conhecida ou suspeita planejando cirurgia cardíaca não-coronariana de alto risco (valvar, aórtica). A angiografia define a anatomia para decisão de revascularização concomitante. A avaliação do Time Heart (Heart Team) é obrigatória para pacientes com doença multiarterial ou envolvimento do tronco de coronária esquerda.</div>
+        <div class="indication-badges">
+          <span class="badge badge-class1">Classe I</span>
+          <span class="badge badge-loa">LoE C-LD</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OTHER INDICATIONS -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon blue">🫀</div>
+      <div>
+        <div class="card-title">Outras Indicações Clínicas</div>
+        <div class="card-subtitle">Cardiopatia valvar, miocardiopatias, hipertensão pulmonar, diagnóstico estrutural</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="indication-item">
+          <div class="indication-icon">💛</div>
+          <div class="indication-body">
+            <div class="indication-title">Doença Valvar — Avaliação Hemodinâmica</div>
+            <div class="indication-detail">Cateterismo diagnóstico quando ecocardiografia transtorácica/transesofágica é inconclusiva para gradientes transvalvares, área valvar (incluindo AVA por Fick/termodiluição), PAP ou regurgitação. Coronariografia pré-operatória indicada em homens &gt;40 anos, mulheres pós-menopausadas, ou pacientes com fatores de risco cardiovascular antes de cirurgia valvar.</div>
+            <div class="indication-badges">
+              <span class="badge badge-class1">Classe I</span>
+              <span class="badge badge-loa">LoE C</span>
+            </div>
+          </div>
+        </div>
+        <div class="indication-item">
+          <div class="indication-icon">🫁</div>
+          <div class="indication-body">
+            <div class="indication-title">Hipertensão Pulmonar — Cateterismo Direito</div>
+            <div class="indication-detail">Obrigatório no diagnóstico de HAP para confirmar pré-capilaridade (PCP &lt;15mmHg, RVP &gt;3 WU), excluir etiologia cardíaca esquerda, e realizar teste de vasorreatividade (NO inalado ou epoprostenol IV). Essencial antes do início de terapias específicas e para estratificação de risco (REVEAL 2.0).</div>
+            <div class="indication-badges">
+              <span class="badge badge-class1">Classe I</span>
+              <span class="badge badge-loa">LoE C</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="indication-item">
+          <div class="indication-icon">🔄</div>
+          <div class="indication-body">
+            <div class="indication-title">Miocardiopatia / IC com Etiologia Incerta</div>
+            <div class="indication-detail">Exclusão de etiologia isquêmica em pacientes com disfunção ventricular sistólica de início recente, especialmente quando fatores de risco ou alta probabilidade pré-teste de DAC estão presentes e a AngioTC é inconclusiva ou contraindicada. FFR e imagem intravascular (IVUS/OCT) são complementos úteis para avaliação funcional de lesões intermediárias.</div>
+            <div class="indication-badges">
+              <span class="badge badge-class2a">Classe IIa</span>
+              <span class="badge badge-loa">LoE C</span>
+            </div>
+          </div>
+        </div>
+        <div class="indication-item">
+          <div class="indication-icon">⚡</div>
+          <div class="indication-body">
+            <div class="indication-title">Arritmias Ventriculares / Morte Súbita Abortada</div>
+            <div class="indication-detail">Coronariografia indicada em pacientes ressuscitados de PCR sem causa identificada ou com TV/FV monomórfica. Isquemia deve ser excluída antes de investigação eletrofisiológica. Nos casos com TVSM recorrente associada a isquemia, a revascularização reduz a recorrência de eventos arrítmicos.</div>
+            <div class="indication-badges">
+              <span class="badge badge-class1">Classe I</span>
+              <span class="badge badge-loa">LoE C</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- APPROPRIATE USE CRITERIA SUMMARY -->
+  <div class="info-teal info-box">
+    <span class="info-box-icon">📋</span>
+    <div><strong>Critérios de Uso Adequado (ACC/SCAI/AHA):</strong> De 166 cenários clínicos avaliados, 75 (45%) foram classificados como <span class="hl">adequados</span>, 49 (30%) como <em>incertos</em> e 42 (25%) como <span class="hl-red">inadequados</span>. Cenários inadequados incluem coronariografia de rotina em angina estável de baixo risco sem teste não-invasivo prévio positivo, avaliação pré-operatória de cirurgia de baixo risco sem síntomas, e reavaliação em intervalos curtos sem mudança clínica.</div>
+  </div>
+</div>
+<!-- END TAB INDICACOES -->
+
+<!-- ═══════════════════════════════════════════════════ TAB 2: CONTRAINDICAÇÕES -->
+<div id="tab-contraindicacoes" class="tab-section">
+  <div class="section-label">02 · Contraindicações</div>
+  <div class="section-title">Contraindicações ao <em>Cateterismo Cardíaco</em></div>
+  <p class="section-intro">Contraindicações absolutas são raras e limitam-se a condições que tornam o procedimento imediatamente inviável ou de risco inaceitável. Contraindicações relativas exigem avaliação cuidadosa da relação risco-benefício e, quando possível, otimização clínica antes do procedimento.</p>
+
+  <div class="two-col">
+    <!-- ABSOLUTE -->
+    <div class="card" style="border-color:rgba(220,38,38,.35);">
+      <div class="card-header">
+        <div class="card-icon red">🚫</div>
+        <div>
+          <div class="card-title">Contraindicações Absolutas</div>
+          <div class="card-subtitle">Procedimento deve ser adiado ou evitado até correção</div>
+        </div>
+      </div>
+      <div class="indication-item">
+        <div class="indication-icon">🦠</div>
+        <div class="indication-body">
+          <div class="indication-title">Infecção Ativa no Sítio de Acesso</div>
+          <div class="indication-detail">Celulite, abscesso ou infecção ativa na região radial ou femoral prevista. Risco de bacteremia e endocardite pós-cateterismo. Deve-se aguardar tratamento e resolução, ou alterar o sítio de acesso.</div>
+        </div>
+      </div>
+      <div class="indication-item">
+        <div class="indication-icon">🩸</div>
+        <div class="indication-body">
+          <div class="indication-title">Coagulopatia Grave Não Corrigida</div>
+          <div class="indication-detail">INR &gt;2,5 para acesso femoral sem hemostasia vascular planejada. Plaquetas &lt;50.000/mm³ representa risco hemorrágico elevado. Trombocitopenia induzida por heparina ativa contraindica uso de HNF intravenosa.</div>
+        </div>
+      </div>
+      <div class="indication-item">
+        <div class="indication-icon">🧠</div>
+        <div class="indication-body">
+          <div class="indication-title">Incapacidade de Consentimento Informado</div>
+          <div class="indication-detail">Exceto em emergências com risco de vida imediato, onde o princípio da beneficência prevalece. Em pacientes com demência ou comprometimento cognitivo, é necessário representante legal.</div>
+        </div>
+      </div>
+      <div class="indication-item">
+        <div class="indication-icon">⚗️</div>
+        <div class="indication-body">
+          <div class="indication-title">Alergia Grave a Contraste Iodado Não Responsiva a Pré-Medicação</div>
+          <div class="indication-detail">Reação anafilática prévia com instabilidade hemodinâmica que não pôde ser prevenida por pré-medicação ou substituição de agente. Considerar alternativas como angioTC ou angiografia com CO₂ (para vasos periféricos).</div>
+        </div>
+      </div>
+      <div class="info-amber info-box" style="margin-top:.75rem;">
+        <span class="info-box-icon">⚠️</span>
+        <div>Em SCA com risco de vida (IAMCSST, choque cardiogênico), <strong>não existem contraindicações absolutas</strong>. O benefício da reperfusão supera qualquer risco individual.</div>
+      </div>
+    </div>
+
+    <!-- RELATIVE -->
+    <div class="card" style="border-color:rgba(251,191,36,.3);">
+      <div class="card-header">
+        <div class="card-icon amber">⚖️</div>
+        <div>
+          <div class="card-title">Contraindicações Relativas</div>
+          <div class="card-subtitle">Risco aumentado — exigem avaliação individualizada e otimização pré-procedimento</div>
+        </div>
+      </div>
+
+      <div class="indication-item">
+        <div class="indication-icon">🫀</div>
+        <div class="indication-body">
+          <div class="indication-title">Insuficiência Renal / DRC Avançada (eGFR &lt;30 mL/min)</div>
+          <div class="indication-detail">Risco aumentado de nefropatia por contraste (CA-AKI). Exige hidratação protocolada, minimização do volume de contraste (VC/ClCr &lt;2), uso de contraste iso-osmolar (iodixanol) e consideração de imagem intravascular para reduzir contraste intracoronário.</div>
+        </div>
+      </div>
+      <div class="indication-item">
+        <div class="indication-icon">💊</div>
+        <div class="indication-body">
+          <div class="indication-title">Anticoagulação Terapêutica (Warfarin, DOACs)</div>
+          <div class="indication-detail">Risco aumentado de sangramento no sítio de acesso. Para acesso radial: procedimento pode ser realizado com warfarin terapêutico (INR ≤3,5) com segurança. Para acesso femoral: aguardar INR &lt;1,8. DOACs: preferir janela de 24–48h de suspensão quando possível.</div>
+        </div>
+      </div>
+      <div class="indication-item">
+        <div class="indication-icon">🫁</div>
+        <div class="indication-body">
+          <div class="indication-title">Descompensação Hemodinâmica Moderada</div>
+          <div class="indication-detail">IC descompensada (não em choque), edema pulmonar agudo em resolução. Otimização com diurético IV e suporte ventilatório antes de procedimento eletivo reduz o risco de deterioração durante cateterismo. Em emergências, prosseguir com suporte.</div>
+        </div>
+      </div>
+      <div class="indication-item">
+        <div class="indication-icon">🤰</div>
+        <div class="indication-body">
+          <div class="indication-title">Gestação</div>
+          <div class="indication-detail">Exposição fetal à radiação ionizante e ao contraste iodado. Se necessário (SCA, cardiopatia grave), proteger o abdome com avental de chumbo, minimizar fluoroscopia, utilizar acesso radial (reduz tempo de fluoroscopia e dispersão de radiação). Na gestação avançada, risco de hipotensão em decúbito dorsal.</div>
+        </div>
+      </div>
+      <div class="indication-item">
+        <div class="indication-icon">🧓</div>
+        <div class="indication-body">
+          <div class="indication-title">Idade Avançada com Fragilidade e Multimorbidade</div>
+          <div class="indication-detail">Risco aumentado de complicações vasculares, nefropatia, delirium e instabilidade hemodinâmica. Avaliação geriátrica estruturada com ferramentas validadas (Essential Frailty Toolset, Physical Frailty Phenotype, MoCA) é recomendada pela AHA. Decisão compartilhada integrando metas do paciente, expectativa de vida e qualidade de vida.</div>
+        </div>
+      </div>
+      <div class="indication-item">
+        <div class="indication-icon">🩺</div>
+        <div class="indication-body">
+          <div class="indication-title">Disfunção Ventricular Grave (FEVE &lt;25%)</div>
+          <div class="indication-detail">Maior risco de instabilidade hemodinâmica após contraste, hipotensão por vasodilatação, e arritmias. Considerar suporte circulatório mecânico preventivo (IABP ou Impella) em pacientes de muito alto risco (LVEF &lt;20%, doença multiarterial, tronco de CE). Monitorar PAP e débito cardíaco.</div>
+        </div>
+      </div>
+      <div class="indication-item">
+        <div class="indication-icon">⚡</div>
+        <div class="indication-body">
+          <div class="indication-title">Distúrbios Eletrolíticos Graves</div>
+          <div class="indication-detail">Hipocalemia (&lt;3,0 mEq/L), hipomagnesemia ou hipercalemia aumentam o risco de arritmias ventriculares durante o cateterismo. Correção eletrolítica pré-procedimento em casos eletivos.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-gray info-box">
+    <span class="info-box-icon">📌</span>
+    <div><strong>Princípio fundamental:</strong> Em procedimentos emergenciais (IAMCSST, SCA de alto risco, choque cardiogênico), a relação risco-benefício favorece invariavelmente a angiografia imediata. Contraindicações relativas devem ser gerenciadas peri-procedimento, não utilizadas para adiar reperfusão em cenários agudos.</div>
+  </div>
+</div>
+<!-- END TAB CONTRAINDICAÇÕES -->
+
+<!-- ═══════════════════════════════════════════════════ TAB 3: PREPARO GERAL -->
+<div id="tab-preparo" class="tab-section">
+  <div class="section-label">03 · Preparo do Paciente</div>
+  <div class="section-title">Preparo <em>Pré-Procedimento</em></div>
+  <p class="section-intro">O preparo adequado reduz complicações e melhora o resultado. Inclui avaliação clínica estruturada, protocolos laboratoriais e manejo do jejum — cujas recomendações foram significativamente revisadas por evidências recentes.</p>
+
+  <!-- FASTING - BIG EVIDENCE UPDATE -->
+  <div class="card" style="border-color:rgba(0,211,189,.3);">
+    <div class="card-header">
+      <div class="card-icon">🍽️</div>
+      <div>
+        <div class="card-title">Jejum Pré-Procedimento — Paradigma Revisado</div>
+        <div class="card-subtitle">SCOFF Trial (2024) + meta-análises 2025: evidência de nível A para liberação do jejum</div>
+      </div>
+    </div>
+
+    <div class="info-teal info-box">
+      <span class="info-box-icon">🔬</span>
+      <div>
+        <strong>SCOFF Trial (EHJ 2024, n=716):</strong> Estratégia sem jejum foi <span class="hl">superior</span> ao jejum padrão no desfecho composto primário (pneumonia aspirativa, hipotensão, hiper/hipoglicemia): 12,0% vs 19,1% (probabilidade posterior de superioridade 99,1%). Satisfação do paciente significativamente maior (diferença de 4,02 pontos). Três meta-análises de 2025 abrangendo &gt;3.000 pacientes confirmaram ausência de diferença em pneumonia aspirativa, hipoglicemia, náuseas, IRA ou mortalidade (diferença de risco 0,4%, IC 95% −1,1 a 1,8%).
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="dose-title">Sedação Consciente (Maioria dos Procedimentos)</div>
+        <div class="dose-box">
+          <strong>Sem obrigatoriedade de jejum</strong><br>
+          A AHA (Declaração Científica sobre Desnutrição Cardíaca, 2026) endossa a remoção de restrições de NPO de rotina para cateterismo sob sedação consciente. A ingestão de líquidos claros até o momento do procedimento é aceitável e reduz hipovolemia relativa.<br><br>
+          <span style="font-size:.76rem;color:var(--muted-foreground);">Fonte: Vest AR et al., Circulation 2026; Ferreira D et al., EHJ 2024.</span>
+        </div>
+      </div>
+      <div>
+        <div class="dose-title">Anestesia Geral (Exceção)</div>
+        <div class="dose-box">
+          <strong>Manter diretrizes ASA tradicionais:</strong><br>
+          • Sólidos: 8h de jejum<br>
+          • Líquidos leves: 6h<br>
+          • Líquidos claros: 2h<br><br>
+          Indicada para procedimentos complexos estruturais, crianças pequenas ou pacientes que não cooperam com sedação consciente.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRE-PROCEDURE ASSESSMENT -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📋</div>
+      <div>
+        <div class="card-title">Avaliação Clínica Pré-Procedimento (SCAI 2021)</div>
+        <div class="card-subtitle">Checklist estruturado recomendado para todos os pacientes</div>
+      </div>
+    </div>
+
+    <div class="subsection-title">Avaliação &amp; Exames Complementares</div>
+    <div class="two-col">
+      <div>
+        <div class="indication-item">
+          <div class="indication-icon">🩺</div>
+          <div class="indication-body">
+            <div class="indication-title">Anamnese e Exame Físico</div>
+            <div class="indication-detail">Dentro de 30 dias para procedimentos eletivos. Incluir: sintomas ativos, comorbidades, medicamentos, histórico de cateterismo/ICP prévios (incluir relatórios quando disponíveis), avaliação de sítios de acesso vasculares (pulsos radial bilateral, teste de Allen modificado, pulso femoral, cicatrizes de acesso prévio).</div>
+          </div>
+        </div>
+        <div class="indication-item">
+          <div class="indication-icon">⚡</div>
+          <div class="indication-body">
+            <div class="indication-title">Eletrocardiograma</div>
+            <div class="indication-detail">ECG de 12 derivações basal obrigatório para todos os pacientes. Para SCA: dentro de 10 minutos do primeiro contato médico. ECG pós-procedimento imediato após ICP.</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="indication-item">
+          <div class="indication-icon">🧪</div>
+          <div class="indication-body">
+            <div class="indication-title">Laboratório Pré-Procedimento</div>
+            <div class="indication-detail">
+              <strong>Dentro de 30 dias (ambulatorial):</strong> Hemograma completo, creatinina/ureia, eletrólitos, glicemia.<br>
+              <strong>Dentro de 24–48h (hospitalar/alto risco):</strong> Se indicação clínica ou suspeita de variação aguda.<br>
+              <strong>Não rotineiro:</strong> TP/INR (exceto hepatopatia grave ou anemia severa), RX de tórax (exceto achados pulmonares ao exame físico), β-hCG (mulheres em idade fértil: sim — dentro de 2 semanas).
+            </div>
+          </div>
+        </div>
+        <div class="indication-item">
+          <div class="indication-icon">🩸</div>
+          <div class="indication-body">
+            <div class="indication-title">Coagulação</div>
+            <div class="indication-detail">TP/INR: solicitar apenas em pacientes em uso de warfarin, hepatopatia ou suspeita de coagulopatia. TTPA basal: obter quando heparina não-fracionada será usada durante o procedimento. Hemograma: plaquetas relevantes para sítio de acesso e hemostasia.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="section-divider" style="margin:1rem 0;">
+
+    <div class="subsection-title">Checklist de Chegada ao Laboratório</div>
+    <div class="two-col">
+      <div class="dose-box">
+        <div class="dose-title">Verificar na Admissão</div>
+        ✅ Estado de jejum (se aplicável)<br>
+        ✅ Acesso venoso periférico pérvio (14–18G)<br>
+        ✅ Alergia a contraste / medicamentos<br>
+        ✅ Função renal atual (creatinina / eGFR)<br>
+        ✅ Anticoagulação em uso e última dose<br>
+        ✅ Resultados laboratoriais no sistema<br>
+        ✅ Diretivas antecipadas de vontade<br>
+        ✅ Consentimento informado assinado
+      </div>
+      <div class="dose-box">
+        <div class="dose-title">Acesso Vascular — Avaliação Rotineira</div>
+        🔵 <strong>Radial:</strong> Pulso palpável bilateral; test de Allen (opcional — evidência fraca de correlação com complicações); SpO₂ digital comparativa pode detectar oclusão pré-existente.<br><br>
+        🟡 <strong>Femoral:</strong> Pulso femoral bilateral; ausculta de sopro ilíaco-femoral; histórico de cirurgia vascular/endovascular prévia; cicatrizes de acesso.<br><br>
+        <span style="font-size:.74rem;color:var(--muted-foreground);">Uso de ultrassom para guiar punção femoral reduz complicações em &gt;50% — recomendado pela SCAI 2021.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MONITORING -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon green">📡</div>
+      <div>
+        <div class="card-title">Monitorização Intra-Procedimento</div>
+        <div class="card-subtitle">Padrão SCAI para todos os cateterismos cardíacos</div>
+      </div>
+    </div>
+    <div class="two-col">
+      <div class="dose-box">
+        <div class="dose-title">Monitorização Contínua Obrigatória</div>
+        • ECG de 12 derivações (+ monitor contínuo de 2 derivações no campo)<br>
+        • Oximetria de pulso contínua<br>
+        • Pressão arterial não-invasiva a cada 3–5 minutos<br>
+        • Pressão intra-arterial contínua (quando possível via introdutor)<br>
+        • Acesso IV pérvio para emergência
+      </div>
+      <div class="dose-box">
+        <div class="dose-title">Materiais de Emergência — Obrigatórios no Lab</div>
+        • Desfibrilador externo pronto para uso<br>
+        • Marcapasso temporário externo disponível<br>
+        • Protamina (para reversão de heparina)<br>
+        • Atropina, adrenalina, vasopressores IV<br>
+        • Balão intra-aórtico ou Impella disponível para alto risco<br>
+        • Pericardiocentese de emergência (bandeja preparada)
+      </div>
+    </div>
+  </div>
+
+  <!-- POST-PROCEDURE -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🏠</div>
+      <div>
+        <div class="card-title">Monitorização e Alta Pós-Procedimento</div>
+        <div class="card-subtitle">SCAI 2021 — observação estruturada e critérios de alta no mesmo dia</div>
+      </div>
+    </div>
+    <div class="h-timeline">
+      <div class="h-step">
+        <div class="h-step-time">0–2h Pós-Proc</div>
+        <div class="h-step-title">Recuperação Imediata</div>
+        <div class="h-step-sub">Sinais vitais a cada 15min; sítio de acesso; ECG pós-ICP imediato</div>
+      </div>
+      <div class="h-step">
+        <div class="h-step-time">2–6h</div>
+        <div class="h-step-title">Observação Estendida</div>
+        <div class="h-step-sub">Cateterismo diagnóstico: 2–4h. ICP eletiva: 4–6h. Verificar hematoma e pulso</div>
+      </div>
+      <div class="h-step">
+        <div class="h-step-time">Alta</div>
+        <div class="h-step-title">Critérios de Alta Ambulatorial</div>
+        <div class="h-step-sub">Hemodinâmica estável; sem sintomas isquêmicos; sem complicações de acesso; creatinina em risco para CA-AKI em 48–72h</div>
+      </div>
+      <div class="h-step">
+        <div class="h-step-time">24–72h</div>
+        <div class="h-step-title">Contato Pós-Alta</div>
+        <div class="h-step-sub">Telefonema obrigatório para ICP ambulatorial no mesmo dia; instrução sobre sinais de alarme</div>
+      </div>
+      <div class="h-step">
+        <div class="h-step-time">2–4 sem</div>
+        <div class="h-step-title">Seguimento</div>
+        <div class="h-step-sub">Retorno ambulatorial; DAPT; cardiologista assistente; exame de pele se dose &gt;5 Gy</div>
+      </div>
+    </div>
+    <div class="info-amber info-box" style="margin-top:.75rem;">
+      <span class="info-box-icon">☢️</span>
+      <div><strong>Radiação:</strong> Pacientes com dose acumulada &gt;5 Gy devem ser informados sobre risco de dermatite por radiação e orientados a reportar alterações cutâneas. Dose &gt;10 Gy: exame dermatológico obrigatório em 2–4 semanas.</div>
+    </div>
+  </div>
+</div>
+<!-- END TAB PREPARO -->
+
+<!-- ═══════════════════════════════════════════════════ TAB 4: RENAL -->
+<div id="tab-renal" class="tab-section">
+  <div class="section-label">04 · Disfunção Renal</div>
+  <div class="section-title">Prevenção de <em>Nefropatia por Contraste</em> (CA-AKI)</div>
+  <p class="section-intro">A nefropatia associada ao contraste (CA-AKI) é definida como aumento de creatinina ≥0,5 mg/dL ou ≥25% em relação ao basal em 48–72h após exposição. A prevenção exige abordagem multimodal baseada em estratificação de risco, hidratação protocolada e minimização de exposição.</p>
+
+  <!-- RISK STRATIFICATION -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon amber">📊</div>
+      <div>
+        <div class="card-title">Estratificação de Risco — Escore de Mehran</div>
+        <div class="card-subtitle">Ferramenta validada para CA-AKI após ICP — 8 variáveis clínicas e laboratoriais</div>
+      </div>
+    </div>
+    <div class="compare-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Variável</th>
+            <th>Condição</th>
+            <th class="th-teal">Pontos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Hipotensão</td><td>PAS &lt;80 mmHg ≥1h ou IABP antes/durante ICP</td><td><span class="badge badge-red">5</span></td></tr>
+          <tr><td>Balão intra-aórtico</td><td>Uso de IABP</td><td><span class="badge badge-red">5</span></td></tr>
+          <tr><td>IC Congestiva</td><td>Classe NYHA III–IV e/ou edema pulmonar</td><td><span class="badge badge-amber">5</span></td></tr>
+          <tr><td>Idade</td><td>&gt;75 anos</td><td><span class="badge badge-amber">4</span></td></tr>
+          <tr><td>Anemia</td><td>Hematócrito &lt;39% (H) ou &lt;36% (M)</td><td><span class="badge badge-amber">3</span></td></tr>
+          <tr><td>Diabetes mellitus</td><td>Qualquer tipo</td><td><span class="badge badge-teal">3</span></td></tr>
+          <tr><td>Volume de contraste</td><td>Por 100 mL acima do cálculo seguro</td><td><span class="badge badge-teal">1/100mL</span></td></tr>
+          <tr><td>Creatinina basal</td><td>&gt;1,5 mg/dL ou eGFR &lt;60 mL/min/1,73m²</td><td><span class="badge badge-red">2–6</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="risk-strip">
+      <div class="risk-band rb-low">
+        <div class="risk-band-label">Baixo</div>
+        <div class="risk-band-val">≤5 pontos</div>
+        <div style="font-size:.65rem;margin-top:3px;">CA-AKI ~7,5%</div>
+      </div>
+      <div class="risk-band rb-int">
+        <div class="risk-band-label">Intermediário</div>
+        <div class="risk-band-val">6–10 pontos</div>
+        <div style="font-size:.65rem;margin-top:3px;">CA-AKI ~14%</div>
+      </div>
+      <div class="risk-band rb-high">
+        <div class="risk-band-label">Alto</div>
+        <div class="risk-band-val">11–15 pontos</div>
+        <div style="font-size:.65rem;margin-top:3px;">CA-AKI ~26%</div>
+      </div>
+      <div class="risk-band rb-vhigh">
+        <div class="risk-band-label">Muito Alto</div>
+        <div class="risk-band-val">≥16 pontos</div>
+        <div style="font-size:.65rem;margin-top:3px;">CA-AKI ~57%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HYDRATION PROTOCOLS -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">💧</div>
+      <div>
+        <div class="card-title">Hidratação Intravenosa — Pilar Central da Prevenção</div>
+        <div class="card-subtitle">Dois protocolos baseados em evidências — seleção pelo risco clínico</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="dose-title">Protocolo Padrão (Risco Baixo-Intermediário)</div>
+        <div class="dose-box">
+          <strong>NaCl 0,9% isotônico:</strong><br>
+          1,0–1,5 mL/kg/h IV<br>
+          • Iniciar 12h antes do procedimento<br>
+          • Manter até 12–24h após<br>
+          • Débito urinário alvo: &gt;150 mL/h<br><br>
+          <span style="font-size:.75rem;color:var(--muted-foreground);">NaCl 0,9% é equivalente a NaHCO₃ 1,4% (ensaio PRESERVE, NEJM 2018) — bicarbonato não é recomendado de rotina.</span>
+        </div>
+      </div>
+      <div>
+        <div class="dose-title">Protocolo Guiado por PDFVE (Alto Risco — POSEIDON)</div>
+        <div class="dose-box">
+          <strong>Guiado pela pressão diastólica final do VE (PDFVE):</strong><br>
+          Pré-procedimento: <strong>3 mL/kg</strong> NaCl 0,9% em 1h<br>
+          Intra-procedimento (guiado por PDFVE):<br>
+          • PDFVE &lt;13 mmHg → 5 mL/kg/h<br>
+          • PDFVE 13–18 mmHg → 3 mL/kg/h<br>
+          • PDFVE &gt;18 mmHg → 1,5 mL/kg/h<br>
+          Pós-procedimento: manter por 4h<br><br>
+          <span style="font-size:.75rem;color:var(--muted-foreground);">POSEIDON Trial: redução de 60% em CA-AKI vs. protocolo padrão (11,5% vs 20,7%, p=0,003).</span>
+        </div>
+      </div>
+    </div>
+    <div class="info-amber info-box">
+      <span class="info-box-icon">⚠️</span>
+      <div><strong>Atenção em IC descompensada:</strong> Hidratação vigorosa pré-procedimento pode precipitar edema pulmonar. Monitorar pressão de enchimento (PDFVE/PCP) e ajustar taxa. Considerar protocolo POSEIDON para guiar volume.</div>
+    </div>
+  </div>
+
+  <!-- CONTRAST MINIMIZATION -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon red">🔬</div>
+      <div>
+        <div class="card-title">Minimização do Volume de Contraste</div>
+        <div class="card-subtitle">Dose máxima segura e estratégias para redução de exposição</div>
+      </div>
+    </div>
+
+    <div class="formula-box">
+      <div class="dose-title" style="text-align:center;">Dose Máxima de Contraste (Cigarroa et al.)</div>
+      <div class="formula-eq">Dose Máxima (mL) = 5 × Peso (kg) ÷ Creatinina (mg/dL)</div>
+      <div class="formula-caption">Limite prático: manter VC/ClCr &lt;2 (idealmente) e sempre &lt;3 | ClCr = Cockcroft-Gault (mL/min)</div>
+    </div>
+
+    <div class="subsection-title">Estratégias para Redução de Volume de Contraste</div>
+    <div class="two-col">
+      <div>
+        <div class="indication-item">
+          <div class="indication-icon">🖥️</div>
+          <div class="indication-body">
+            <div class="indication-title">Imagem Intravascular (IVUS/OCT)</div>
+            <div class="indication-detail">Guiar ICP com IVUS ou OCT reduz o volume de contraste intracoronário ao eliminar injeções repetidas para confirmação de resultado. O ensaio ILUMIEN IV demonstrou superioridade do OCT sobre angiografia em desfechos clínicos de ICP.</div>
+          </div>
+        </div>
+        <div class="indication-item">
+          <div class="indication-icon">💉</div>
+          <div class="indication-body">
+            <div class="indication-title">Contraste Ultra-Baixo Volume</div>
+            <div class="indication-detail">Injeções de 2–4 mL por cinecoronariografia seletiva (vs. 6–8 mL padrão). Software de realce de imagem (DyeVert™) reduz volume em 30–40%. Angioplastia sem contraste (balloon + IVUS) é viável em DRC estágio 4–5.</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="indication-item">
+          <div class="indication-icon">📐</div>
+          <div class="indication-body">
+            <div class="indication-title">Planejamento Angiográfico Eficiente</div>
+            <div class="indication-detail">Usar rotações padronizadas e evitar projeções redundantes. AngioTC coronariana pré-procedimento para planejamento de acesso e anatomia coronariana em casos complexos reduz fluoroscopia e contraste.</div>
+          </div>
+        </div>
+        <div class="indication-item">
+          <div class="indication-icon">🔄</div>
+          <div class="indication-body">
+            <div class="indication-title">Acesso Radial vs. Femoral</div>
+            <div class="indication-detail">AKI-MATRIX: acesso radial reduziu CA-AKI em 23% e necessidade de diálise em 55% vs. femoral. Mecanismo: menos instabilidade hemodinâmica, menor exposição a contraste por menor necessidade de angiografia ilíaca/aórtica.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHARMACOLOGICAL PREVENTION -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon green">💊</div>
+      <div>
+        <div class="card-title">Prevenção Farmacológica</div>
+        <div class="card-subtitle">O que as evidências suportam — e o que não suportam mais</div>
+      </div>
+    </div>
+    <div class="two-col">
+      <div>
+        <div class="dose-title" style="color:var(--green);">✅ Recomendado</div>
+        <div class="indication-item" style="border-color:rgba(34,197,94,.25);">
+          <div class="indication-body">
+            <div class="indication-title">Estatina de Alta Dose (Pré-Procedimento)</div>
+            <div class="indication-detail"><strong>Rosuvastatin 40 mg</strong> ou <strong>Atorvastatin 80 mg</strong> — dose de ataque 12–24h antes. Mecanismo: efeito pleiotrópico (anti-inflamatório, antioxidante, proteção tubular). Recomendado pelas diretrizes ACC/AHA 2021 e 2023 para pacientes submetidos a contraste com DRC ou alto risco de CA-AKI.</div>
+            <div class="indication-badges">
+              <span class="badge badge-class1">Classe I</span>
+              <span class="badge badge-loa">LoE B</span>
+            </div>
+          </div>
+        </div>
+        <div class="indication-item" style="border-color:rgba(34,197,94,.25);">
+          <div class="indication-body">
+            <div class="indication-title">Suspensão de Nefrotóxicos 48h Antes</div>
+            <div class="indication-detail">AINEs, aminoglicosídeos, vancomicina IV. AINEs reduzem a vasodilatação compensatória aferente renal e potencializam vasoconstrição induzida pelo contraste. Suspender quando possível.</div>
+            <div class="indication-badges">
+              <span class="badge badge-class1">Classe I</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="dose-title" style="color:#f87171;">❌ Não Recomendado de Rotina</div>
+        <div class="indication-item" style="border-color:rgba(220,38,38,.2);">
+          <div class="indication-body">
+            <div class="indication-title">N-Acetilcisteína (NAC)</div>
+            <div class="indication-detail">O ensaio PRESERVE (NEJM 2018, n=4993) demonstrou que NAC oral não reduziu CA-AKI, diálise ou morte vs. placebo. As diretrizes ACC/AHA e ESC atuais não recomendam NAC de rotina. Pode ser considerada em casos individuais de muito alto risco com FG &lt;15 como terapia adjuvante de baixo custo/risco.</div>
+            <div class="indication-badges">
+              <span class="badge badge-class3">Classe III (sem benefício)</span>
+            </div>
+          </div>
+        </div>
+        <div class="indication-item" style="border-color:rgba(220,38,38,.2);">
+          <div class="indication-body">
+            <div class="indication-title">Bicarbonato de Sódio IV</div>
+            <div class="indication-detail">PRESERVE confirmou equivalência com NaCl 0,9% isotônico, sem superioridade. Não justifica logística adicional em contexto de cateterismo eletivo. NaCl 0,9% permanece o fluido de escolha por evidência e praticidade.</div>
+            <div class="indication-badges">
+              <span class="badge badge-class3">Não superior ao SF 0,9%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="section-divider" style="margin:.75rem 0 1rem;">
+    <div class="subsection-title">Suspensão de Medicações Nefrotóxicas</div>
+    <div class="compare-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr><th>Medicação</th><th>Suspensão Recomendada</th><th>Justificativa</th><th>Reinício</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>AINEs</strong></td><td>48h antes (eletivo)</td><td>Bloqueio de prostaglandinas renoprotetoras; potencializa vasoconstrição</td><td>Após normalização de creatinina</td></tr>
+          <tr><td><strong>IECA / BRA</strong></td><td>48h antes (se DRC ou depleção de volume)</td><td>Reduzem pressão de perfusão glomerular; risco de IRA em hipovolemia</td><td>Após restauração de euvolemia</td></tr>
+          <tr><td><strong>Diuréticos</strong></td><td>24–48h antes (eletivo)</td><td>Depleção de volume amplifica nefrotoxicidade</td><td>Após procedimento se hemodinâmica estável</td></tr>
+          <tr><td><strong>Metformina</strong><br><span style="font-size:.7rem;color:var(--muted-foreground);">(ver Tab Medicações)</span></td><td>Dia do procedimento + 48h após</td><td>Risco de acidose lática em CA-AKI; acumula em insuficiência renal</td><td>Após confirmação de creatinina estável (48h)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- POST-PROCEDURE MONITORING -->
+  <div class="info-teal info-box">
+    <span class="info-box-icon">🔭</span>
+    <div>
+      <strong>Monitorização Pós-Procedimento:</strong> Creatinina sérica deve ser dosada em 48–72h após procedimento em todos os pacientes com risco aumentado (eGFR &lt;60, DM, IC, Mehran ≥6). Débito urinário diário e balanço hídrico por 24h em casos de alto risco. Em dialíticos: cateterismo com contraste é realizável — o volume de contraste determina a antecipação ou não da próxima sessão de hemodiálise (sem evidência de benefício em realizar HD imediatamente após contraste, exceto se oligúrico/anúrico).
+    </div>
+  </div>
+</div>
+<!-- END TAB RENAL -->
+
+<!-- ═══════════════════════════════════════════════════ TAB 5: ALERGIA -->
+<div id="tab-alergia" class="tab-section">
+  <div class="section-label">05 · Alergia a Contraste</div>
+  <div class="section-title">Reações de Hipersensibilidade ao <em>Contraste Iodado</em></div>
+  <p class="section-intro">Reações de hipersensibilidade ao contraste iodado são mecanisticamente distintas da anafilaxia clássica mediada por IgE — são predominantemente reações pseudoalérgicas (anafilactóides) por ativação direta de mastócitos ou mecanismos inflamatórios. O manejo contemporâneo prioriza a <strong>substituição de agente</strong> sobre a pré-medicação.</p>
+
+  <!-- CLASSIFICATION -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon red">⚠️</div>
+      <div>
+        <div class="card-title">Classificação das Reações — Escala de Gravidade (ACR 2025)</div>
+        <div class="card-subtitle">Distinção entre reações imediatas (&lt;1h) e tardias (1–72h)</div>
+      </div>
+    </div>
+    <div class="compare-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr><th>Grau</th><th>Manifestações</th><th>Incidência (LOCM)</th><th>Conduta</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="badge badge-teal">Leve</span></td>
+            <td>Urticária limitada, eritema, prurido, náusea leve, sensação de calor, cefaleia</td>
+            <td>~3% (LOCM)</td>
+            <td>Observação; anti-histamínico VO se sintomático; sem necessidade de epinefrina</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-amber">Moderada</span></td>
+            <td>Urticária generalizada, broncoespasmo leve, edema facial sem comprometimento de via aérea, vômitos, taquicardia isolada</td>
+            <td>~0,5% (LOCM)</td>
+            <td>Difenidramina IV, corticosteroide IV; broncodilatador se broncoespasmo; O₂ suplementar</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-red">Grave (Anafilaxia)</span></td>
+            <td>Hipotensão grave, broncoespasmo grave, edema de glote/laringe, perda de consciência, PCR</td>
+            <td>&lt;0,1% (LOCM)</td>
+            <td><strong>Epinefrina 0,3–0,5 mg IM (coxa anterolateral)</strong>; acesso IV; volume; vasopressores; airway management</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="info-red info-box">
+      <span class="info-box-icon">💉</span>
+      <div><strong>Epinefrina IM é o tratamento de primeira linha para anafilaxia</strong> — não anti-histamínico ou corticosteroide (estes são adjuvantes). Dose: 0,3–0,5 mg de solução 1:1.000 na coxa anterolateral. Repetir a cada 5–15 min se necessário. Anti-histamínicos e corticosteroides não previnem PCR anafilática.</div>
+    </div>
+  </div>
+
+  <!-- AGENT SUBSTITUTION -->
+  <div class="card" style="border-color:rgba(0,211,189,.3);">
+    <div class="card-header">
+      <div class="card-icon">🔄</div>
+      <div>
+        <div class="card-title">Substituição de Agente — Estratégia Preferencial</div>
+        <div class="card-subtitle">ACR/AAAAI 2025 + ESUR 2025: substituição supera pré-medicação em eficácia e segurança</div>
+      </div>
+    </div>
+    <div class="info-teal info-box">
+      <span class="info-box-icon">🔬</span>
+      <div>
+        <strong>Evidência (Kim et al., Radiology 2023 + McDonald et al., Radiology 2021):</strong> A substituição por contraste LOCM diferente (sem cadeia carbamoil em comum) reduziu reações recorrentes para <span class="hl">3%</span>, comparado a 19% com o <strong>mesmo agente + pré-medicação com corticosteroide</strong>. A pré-medicação não previne reações graves e tem eficácia limitada quando o mesmo agente causador é reutilizado.
+      </div>
+    </div>
+
+    <div class="subsection-title">Como Selecionar o Agente Substituto</div>
+    <div class="two-col">
+      <div class="dose-box">
+        <div class="dose-title">Princípio da Substituição</div>
+        As reações de hipersensibilidade são <strong>específicas para o agente</strong> e não para toda a classe de contraste iodado. A seleção de um LOCM sem grupo carbamoil em comum (ex: trocar ioxaglate por ioversol, ou iohexol por iopamidol) reduz substancialmente a recorrência.<br><br>
+        Em centros com alta exposição a contraste, é recomendado manter um protocolo de 2–3 agentes alternativos disponíveis para pacientes com histórico de reação.
+      </div>
+      <div class="dose-box">
+        <div class="dose-title">Referenciamento ao Alergista</div>
+        Indicado após qualquer reação <strong>moderada ou grave imediata</strong> ao contraste para:<br>
+        • Teste cutâneo intradérmico com agentes disponíveis<br>
+        • Identificação do agente causador<br>
+        • Guiar seleção segura de agente alternativo<br>
+        • Documentar teste de tolerância quando indicado<br><br>
+        <span style="font-size:.74rem;color:var(--muted-foreground);">Torres MJ et al., Allergy 2021 (ENDA/EAACI Practice Parameters).</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PREMEDICATION -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon amber">💊</div>
+      <div>
+        <div class="card-title">Pré-Medicação — Quando Utilizar e Protocolos</div>
+        <div class="card-subtitle">Reservada para casos sem opção de substituição ou emergências urgentes</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="dose-title">Protocolo Eletivo (Padrão ACR 2025)</div>
+        <div class="dose-box">
+          <strong>Prednisona VO 50 mg</strong> → 13h, 7h e 1h antes<br>
+          + <strong>Difenidramina VO 50 mg</strong> → 1h antes<br><br>
+          Eficácia: taxa de reação breakthrough ~2,1% (vs. 0,6% sem histórico de alergia). Ainda 3–4× maior que população geral, demonstrando limitação da pré-medicação.<br><br>
+          <span style="font-size:.74rem;color:var(--muted-foreground);">A adição de efedrina 25 mg VO (1h antes) pode reduzir hipotensão mas não previne reações graves.</span>
+        </div>
+      </div>
+      <div>
+        <div class="dose-title">Protocolo Urgente / Semi-Urgente</div>
+        <div class="dose-box">
+          <strong>Metilprednisolona IV 60 mg</strong> → ≥4–6h antes<br>
+          (mínimo 2 doses se possível)<br>
+          + <strong>Difenidramina IV 50 mg</strong> → 1h antes<br><br>
+          Para cateterismo emergencial (SCA de alto risco): não atrasar o procedimento por conta da pré-medicação. Administrar o que for possível no tempo disponível e ter epinefrina e suporte de emergência prontamente acessíveis.<br><br>
+          <span style="font-size:.74rem;color:var(--muted-foreground);">Corticosteroides requerem &gt;4–6h para ação genômica antialérgica. Doses únicas têm efeito limitado.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-amber info-box">
+      <span class="info-box-icon">⚠️</span>
+      <div>
+        <strong>Limitações da pré-medicação:</strong> Não previne reações graves na maioria dos estudos. Taxa de breakthrough de 2,1% para reação moderada/grave é 3–4× a da população geral. A pré-medicação não substitui a substituição de agente e não garante segurança absoluta. Sempre ter epinefrina disponível no laboratório de hemodinâmica.
+      </div>
+    </div>
+  </div>
+
+  <!-- SPECIAL SITUATIONS -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon blue">📌</div>
+      <div>
+        <div class="card-title">Situações Especiais e Mitos</div>
+      </div>
+    </div>
+    <div class="two-col">
+      <div>
+        <div class="indication-item" style="border-color:rgba(34,197,94,.25);">
+          <div class="indication-icon">🦐</div>
+          <div class="indication-body">
+            <div class="indication-title">Alergia a Frutos do Mar / Marisco</div>
+            <div class="indication-detail"><span class="hl-red">NÃO é fator de risco para reação a contraste iodado.</span> A correlação histórica foi baseada em equívoco fisiológico — a alergia a frutos do mar é mediada por proteínas (tropomiosina), não pelo iodo. Pré-medicação de rotina por este motivo não é recomendada pelo ACR 2025 ou SCAI 2021.</div>
+          </div>
+        </div>
+        <div class="indication-item">
+          <div class="indication-icon">🔵</div>
+          <div class="indication-body">
+            <div class="indication-title">Escolha do Contraste Iodado</div>
+            <div class="indication-detail">Contrastes <strong>iso-osmolares</strong> (iodixanol) apresentam menor risco de CA-AKI comparado a LOCM em meta-análises (especialmente em DRC + DM), embora a evidência seja menos consistente em grandes RCTs recentes. LOCM (ioversol, iopamidol, ioxaglate) são adequados para a maioria dos pacientes. Contrastes <strong>de alta osmolaridade</strong> (meglumina diatrizoato) devem ser evitados em pacientes com risco renal.</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="indication-item">
+          <div class="indication-icon">🩺</div>
+          <div class="indication-body">
+            <div class="indication-title">Pacientes em Uso de Beta-Bloqueadores</div>
+            <div class="indication-detail">Beta-bloqueadores podem mascarar a taquicardia inicial da anafilaxia e tornar a epinefrina menos eficaz. Em reação anafilática em paciente beta-bloqueado: <strong>glucagon IV 1–5 mg</strong> é o tratamento adjuvante de primeira linha (além da epinefrina em dose maior).</div>
+          </div>
+        </div>
+        <div class="indication-item">
+          <div class="indication-icon">🏥</div>
+          <div class="indication-body">
+            <div class="indication-title">Anafilaxia Refratária (Síndrome de Kounis)</div>
+            <div class="indication-detail">Anafilaxia pode desencadear vasoespasmo coronariano ou ruptura de placa em pacientes com DAC (Síndrome de Kounis). Distinguir do IAM precipitado por hipotensão — o tratamento difere: epinefrina pode piorar vasoespasmo coronariano, demandar nitratos coronarianos concomitantes.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END TAB ALERGIA -->
+
+<!-- ═══════════════════════════════════════════════════ TAB 6: MEDICAÇÕES -->
+<div id="tab-medicacoes" class="tab-section">
+  <div class="section-label">06 · Medicações Peri-Procedimento</div>
+  <div class="section-title">Manejo <em>Medicamentoso</em> Peri-Cateterismo</div>
+  <p class="section-intro">O manejo das medicações antes e após o cateterismo exige avaliação individualizada do risco trombótico versus hemorrágico, função renal e tipo de procedimento. As recomendações abaixo são baseadas nas diretrizes ACCP 2022, ACC/AHA 2025 (SCA), ACC/AHA 2024 (perioperatória) e SCAI 2021.</p>
+
+  <!-- WARFARIN -->
+  <div class="accordion open">
+    <div class="accordion-header" onclick="toggleAcc(this)">
+      <span class="acc-icon">🩸</span>
+      Antagonistas da Vitamina K (Warfarin / Acenocumarol)
+      <span class="acc-arrow">▼</span>
+    </div>
+    <div class="accordion-body">
+      <div class="two-col">
+        <div>
+          <div class="dose-title">Suspensão Pré-Procedimento</div>
+          <div class="dose-box">
+            <strong>Acesso femoral:</strong> Suspender ~5 dias antes (aguardar INR &lt;1,8–2,0)<br>
+            <strong>Acesso radial:</strong> ICP pode ser realizado com warfarin terapêutico (INR ≤3,5) com segurança — reduz necessidade de pontes e simplifica manejo<br>
+            <strong>Meta INR para punção:</strong> &lt;1,8 (femoral), &lt;3,5 (radial com compressa manual)<br><br>
+            Verificar INR no dia do procedimento se última dose há &gt;5 dias.
+          </div>
+        </div>
+        <div>
+          <div class="dose-title">Terapia de Ponte (Heparina)</div>
+          <div class="dose-box">
+            <strong>BRIDGE Trial + meta-análises (Chest 2022/2023):</strong> Ponte com heparina <span class="hl-red">NÃO é recomendada</span> para FA e TEV — aumenta sangramento sem reduzir tromboembolismo.<br><br>
+            <strong>Considerar ponte apenas em:</strong><br>
+            • Válvula mitral mecânica<br>
+            • AVC/AIT &lt;3 meses<br>
+            • TEV recente (&lt;3 meses) ou trombofilia grave<br>
+            • CHA₂DS₂-VASc ≥5 + FA e cirurgia de alto risco trombótico
+          </div>
+        </div>
+      </div>
+      <div class="dose-box" style="margin-top:.5rem;">
+        <div class="dose-title">Reversão Emergencial (Warfarin)</div>
+        <strong>Vitamina K IV 5–10 mg</strong> (efeito em 12–24h) + <strong>CPP de 4 fatores (CCP-4F)</strong> IV — dose baseada no INR e peso. Disponível no Brasil como Octaplex® ou Beriplex®. Reversão imediata. Considerar risco de trombose vs. necessidade de hemostasia.
+      </div>
+      <div class="info-gray info-box" style="margin-top:.5rem;">
+        <span class="info-box-icon">🔄</span>
+        <div><strong>Reinício:</strong> 12–24h após procedimento quando hemostasia confirmada. Para SCA com ICP: retorno à anticoagulação oral assim que possível (geralmente no dia seguinte).</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOACS -->
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggleAcc(this)">
+      <span class="acc-icon">💊</span>
+      Anticoagulantes Orais Diretos (DOACs / NOACs)
+      <span class="acc-arrow">▼</span>
+    </div>
+    <div class="accordion-body">
+      <div class="compare-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr><th>DOAC</th><th>Risco Hemorrágico Padrão</th><th>DRC (ClCr &lt;50 mL/min)</th><th>Reversão</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Dabigatrana</strong></td><td>24–48h antes (2 dias)</td><td>3–4 dias (ClCr &lt;50); 5+ dias (ClCr &lt;30)</td><td>Idarucizumab (Praxbind®) 5g IV</td></tr>
+            <tr><td><strong>Rivaroxabana</strong></td><td>24h antes</td><td>48h antes (ClCr &lt;50)</td><td>Andexanet alfa* — considerar CPP-4F 50 U/kg</td></tr>
+            <tr><td><strong>Apixabana</strong></td><td>24–48h antes</td><td>48h antes (ClCr &lt;30)</td><td>Andexanet alfa* — considerar CPP-4F 50 U/kg</td></tr>
+            <tr><td><strong>Edoxabana</strong></td><td>24h antes</td><td>48h antes</td><td>CPP-4F ou CPA (off-label)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="info-amber info-box">
+        <span class="info-box-icon">⚠️</span>
+        <div>*Andexanet alfa (Ondexxya®) foi retirado do mercado americano em 2023 por preocupações de segurança (eventos tromboembólicos). Situação no mercado internacional: verificar disponibilidade local. O <strong>idarucizumab</strong> para dabigatrana permanece o único reversor aprovado amplamente disponível com segurança estabelecida.</div>
+      </div>
+      <div class="two-col" style="margin-top:.75rem;">
+        <div class="dose-box">
+          <div class="dose-title">Pontes com DOAC</div>
+          <span class="hl-red">NÃO recomendadas</span> — DOACs têm meia-vida curta; a janela de suspensão é suficiente para procedimentos de risco moderado/alto. Pontes com heparina aumentam sangramento sem benefício trombótico comprovado para a maioria dos pacientes em DOAC.
+        </div>
+        <div class="dose-box">
+          <div class="dose-title">Reinício Pós-Procedimento</div>
+          1–2 dias após procedimento de risco hemorrágico baixo-moderado.<br>
+          Para ICP com DOAC + AAS + P2Y12 (tripla terapia): usar protocolo de duração mínima de tripla (1–4 semanas), seguido de dupla terapia (DOAC + P2Y12, geralmente por 6–12 meses). Decisão baseada em risco isquêmico × hemorrágico (ACC/AHA 2025, ESC AF 2020).
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ANTIPLATELETS -->
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggleAcc(this)">
+      <span class="acc-icon">🔴</span>
+      Antiagregantes Plaquetários — AAS e P2Y12
+      <span class="acc-arrow">▼</span>
+    </div>
+    <div class="accordion-body">
+      <div class="info-teal info-box">
+        <span class="info-box-icon">💡</span>
+        <div><strong>AAS:</strong> Manter em todos os pacientes submetidos a cateterismo diagnóstico e ICP. Se não estiver em uso, administrar <strong>AAS 162–325 mg mastigado (não entérico)</strong> o mais precocemente possível. Manutenção: 75–100 mg/dia.</div>
+      </div>
+      <div class="subsection-title">Inibidores de P2Y12 — SCA vs. Eletivo</div>
+      <div class="two-col">
+        <div>
+          <div class="dose-title" style="color:#f87171;">SCA (IAMCSST / IAMSSST)</div>
+          <div class="dose-box">
+            <strong>Ticagrelor 180 mg</strong> VO (dose de ataque) — agente preferencial<br>
+            ou <strong>Prasugrel 60 mg</strong> VO (após anatomia conhecida, sem AVC/AIT prévio)<br>
+            ou <strong>Clopidogrel 600 mg</strong> VO se ticagrelor/prasugrel contraindicados<br><br>
+            <strong>Timing — Mudança Paradigmática (ACC/AHA 2025):</strong><br>
+            A carga pode ser administrada <em>ao diagnóstico</em> (pré-cateterismo) ou <em>após a coronariografia</em>, quando anatomia é conhecida. Para IAMSSST, o carregamento após anatomia definida é preferível para evitar atraso de CRVM se necessária. Para IAMCSST, ticagrelor pré-carregamento é padrão.
+          </div>
+        </div>
+        <div>
+          <div class="dose-title" style="color:var(--teal);">Procedimento Eletivo / Diagnóstico</div>
+          <div class="dose-box">
+            Rotina de <span class="hl-red">pré-tratamento com P2Y12 antes da angiografia não é recomendada</span> (diretrizes ACC/AHA 2021 e ESC 2020). O carregamento deve ocorrer apenas após confirmar a anatomia coronariana e a decisão de realizar ICP.<br><br>
+            <strong>Clopidogrel 600 mg</strong> — agente padrão para ICP eletiva. Ticagrelor pode ser usado (180 mg) em pacientes de alto risco isquêmico. Prasugrel não é recomendado em eletivos sem angiografia prévia.<br><br>
+            Para pacientes já em clopidogrel 75 mg/dia há &gt;5 dias: nova carga não obrigatória se INR/Rx pré-ICP favorável.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OTHER MEDS -->
+  <div class="accordion">
+    <div class="accordion-header" onclick="toggleAcc(this)">
+      <span class="acc-icon">💉</span>
+      Outras Medicações — Metformina, Insulina, IECA/BRA, Betabloqueadores, Diuréticos
+      <span class="acc-arrow">▼</span>
+    </div>
+    <div class="accordion-body">
+      <div class="compare-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr><th>Medicação</th><th>Conduta Pré-Procedimento</th><th>Conduta Pós-Procedimento</th><th>Justificativa / Evidência</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Metformina</strong></td>
+              <td>Suspender <strong>no dia do procedimento</strong>; em DRC (eGFR &lt;45) ou CA-AKI de alto risco: suspender 48h antes</td>
+              <td>Reiniciar após 48h, somente após creatinina confirmada estável</td>
+              <td>Risco de acidose lática em insuficiência renal aguda. Exigência FDA (bula 2017) e ADA Standards 2026.</td>
+            </tr>
+            <tr>
+              <td><strong>Insulina</strong></td>
+              <td>Insulina basal: reduzir 20–50% da dose na noite anterior. Insulina rápida: manter ajustada pela glicemia.<br>Monitorar glicemia a cada 2–4h se em jejum</td>
+              <td>Reiniciar esquema habitual com reintrodução da dieta</td>
+              <td>Risco de hipoglicemia durante procedimento. Meta: glicemia 140–180 mg/dL (hospitalar, ADA 2026).</td>
+            </tr>
+            <tr>
+              <td><strong>IECA / BRA</strong></td>
+              <td>Suspender manhã do procedimento se depleção de volume esperada (jejum prolongado, diurese induzida)</td>
+              <td>Reintroduzir após restauração de euvolemia e creatinina estável</td>
+              <td>Redução de pressão de perfusão glomerular em hipovolemia relativa — risco de IRA pós-contraste.</td>
+            </tr>
+            <tr>
+              <td><strong>Betabloqueadores</strong></td>
+              <td><strong>Manter</strong> — não suspender</td>
+              <td>Continuar sem interrupção</td>
+              <td>Risco de isquemia de rebote, taquicardia e arritmias com suspensão abrupta. Proteção miocárdica durante o procedimento.</td>
+            </tr>
+            <tr>
+              <td><strong>Bloqueadores Ca²⁺</strong></td>
+              <td><strong>Manter</strong> — não suspender</td>
+              <td>Continuar sem interrupção</td>
+              <td>Risco de angina vasoespástica de rebote e hipertensão. Diltiazem/verapamil podem ser úteis para controle de FC durante o procedimento.</td>
+            </tr>
+            <tr>
+              <td><strong>Diuréticos</strong></td>
+              <td>Suspender 24–48h antes (eletivo) para evitar depleção de volume pré-contraste</td>
+              <td>Reintroduzir após procedimento se hemodinâmica estável e sem hipotensão</td>
+              <td>Hipovolemia potencializa CA-AKI. Exceção: manter em IC com congestão significativa (risco de edema pulmonar).</td>
+            </tr>
+            <tr>
+              <td><strong>Estatinas</strong></td>
+              <td><strong>Manter</strong> + dose de ataque de alta intensidade se não em uso (rosuvastatin 40 mg ou atorvastatina 80 mg)</td>
+              <td>Continuar indefinidamente</td>
+              <td>Proteção renal + estabilização de placa + redução de eventos cardiovasculares peri-ICP.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTRAVENOUS ANTICOAGULATION -->
+  <div class="card" style="margin-top:1rem;">
+    <div class="card-header">
+      <div class="card-icon">💉</div>
+      <div>
+        <div class="card-title">Anticoagulação Intravenosa Intra-Procedimento</div>
+        <div class="card-subtitle">Heparina não-fracionada (HNF) — padrão para todos os cateterismos com ICP</div>
+      </div>
+    </div>
+    <div class="two-col">
+      <div class="dose-box">
+        <div class="dose-title">HNF Padrão</div>
+        <strong>70–100 UI/kg IV</strong> em bolus (máximo 10.000 UI)<br>
+        Meta TCA: 250–350 s (sem IBP 2b/3a) ou 200–250 s (com IBP 2b/3a)<br><br>
+        Doses adicionais de 2.000–5.000 UI para manter TCA alvo durante procedimento prolongado.
+      </div>
+      <div class="dose-box">
+        <div class="dose-title">Bivalirudina (Alternativa — SCA de Alto Risco)</div>
+        <strong>0,75 mg/kg IV bolus</strong> + 1,75 mg/kg/h durante ICP<br>
+        Vantagem: menor sangramento vs. HNF em estudos históricos; revisado pelo MATRIX (não inferior). Indicada especialmente em TIH (trombocitopenia induzida por heparina) — única indicação de Classe I para bivalirudina.<br><br>
+        <span style="font-size:.74rem;color:var(--muted-foreground);">Custo elevado; benefício marginal com acesso radial e uso racional de IBP 2b/3a.</span>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END TAB MEDICAÇÕES -->
+
+<!-- ═══════════════════════════════════════════════════ TAB 7: ACESSO VASCULAR -->
+<div id="tab-acesso" class="tab-section">
+  <div class="section-label">07 · Acesso Vascular</div>
+  <div class="section-title">Via <em>Radial vs. Femoral</em></div>
+  <p class="section-intro">A escolha do sítio de acesso vascular tem impacto significativo em desfechos clínicos, particularmente no contexto de SCA. As diretrizes ACC/AHA/SCAI conferem Classe I, LoE A para acesso radial em SCA — baseado em robusta evidência de redução de sangramentos, complicações vasculares e mortalidade.</p>
+
+  <!-- KEY TRIALS -->
+  <div class="card" style="border-color:rgba(0,211,189,.3);">
+    <div class="card-header">
+      <div class="card-icon">🔬</div>
+      <div>
+        <div class="card-title">Principais Ensaios e Meta-Análises</div>
+        <div class="card-subtitle">Evidência de nível A para radial em SCA — múltiplos ensaios de alta qualidade</div>
+      </div>
+    </div>
+    <div class="compare-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr><th>Estudo</th><th>N / Design</th><th>Resultado Principal</th><th>Impacto</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>MATRIX</strong><br><span class="badge badge-teal">Lancet 2015/2018</span></td>
+            <td>8.404 SCA; RCT multicêntrico</td>
+            <td>Menor NACE 30d; redução de sangramentos não-CRVM (BARC ≥3: OR 0,55); redução de mortalidade CV com radial</td>
+            <td>Ensaio definitivo para acesso radial em SCA; 1-ano manteve benefício de sangramento e mortalidade CV</td>
+          </tr>
+          <tr>
+            <td><strong>Meta-análise IPD</strong><br><span class="badge badge-teal">Ann Intern Med 2015</span></td>
+            <td>12 RCTs; dados individuais</td>
+            <td>RRR 24% em mortalidade por todas as causas; RRR 51% em sangramento maior com radial</td>
+            <td>Consolidou acesso radial como padrão em SCA</td>
+          </tr>
+          <tr>
+            <td><strong>Network Meta-análise</strong><br><span class="badge badge-teal">Circ CV Int 2024</span></td>
+            <td>47 RCTs; 38.924 pacientes</td>
+            <td>Radial reduz sangramento maior em 54% (OR 0,46; IC 0,35–0,59) e hematoma em 66% (OR 0,34)</td>
+            <td>Evidência mais abrangente disponível; inclui radial distal e ulnar</td>
+          </tr>
+          <tr>
+            <td><strong>NCDR CathPCI</strong><br><span class="badge badge-teal">EHJ 2025</span></td>
+            <td>2.420.805 ICPs (registro); 2013–2022</td>
+            <td>Radial: menor mortalidade hospitalar (ARD −0,15%), sangramento (ARD −0,64%), complicações vasculares (ARD −0,21%). Risco ligeiramente maior de AVC (ARD +0,05%)</td>
+            <td>Tendência de 20,3% (2013) → 57,5% (2022) de uso de radial nos EUA</td>
+          </tr>
+          <tr>
+            <td><strong>AKI-MATRIX</strong><br><span class="badge badge-teal">Sub-análise MATRIX</span></td>
+            <td>Sub-análise de 7.021 pacientes</td>
+            <td>Radial reduziu CA-AKI em 23% e necessidade de diálise em 55% vs. femoral</td>
+            <td>Argumento adicional para radial em pacientes com DRC / alto risco renal</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- COMPARISON -->
+  <div class="vs-wrap">
+    <div class="vs-col radial">
+      <div class="vs-header radial">
+        <span>🔵</span> Acesso Radial
+      </div>
+      <ul class="vs-list">
+        <li>Redução de 50% em sangramento maior (OR 0,46) em meta-análises de 47 RCTs</li>
+        <li>Menor mortalidade em SCA: RRR 24% em todas as causas (dados IPD)</li>
+        <li>Menor tempo de deambulação e maior conforto do paciente</li>
+        <li>Menor tempo de hospitalização (alta no mesmo dia mais viável)</li>
+        <li>ICP realizável com warfarin terapêutico (INR ≤3,5) sem hemostasia vascular</li>
+        <li>Menor risco de CA-AKI (AKI-MATRIX: RR 0,77)</li>
+        <li>Recomendação Classe I, LoE A — ACC/AHA/SCAI 2025 para SCA</li>
+      </ul>
+    </div>
+    <div class="vs-divider">VS</div>
+    <div class="vs-col femoral">
+      <div class="vs-header femoral">
+        <span>🟡</span> Acesso Femoral
+      </div>
+      <ul class="vs-list">
+        <li>Maior calibre do vaso — mandatório para dispositivos de suporte circulatório (Impella, ECMO venoarterial)</li>
+        <li>Acesso quando artérias radiais são inutilizáveis (oclusão, anomalias, CRVM prévia com uso de artéria radial)</li>
+        <li>Introdutores de maior calibre (≥8F) para intervenções estruturais (TAVI, MitraClip, TAVR)</li>
+        <li>Procedimentos complexos com alto volume de material (cateterismo direito concomitante)</li>
+        <li>Curva de aprendizado menor para operadores iniciantes</li>
+        <li>Menor tempo de procedimento em operadores com preferência femoral (diferença não clinicamente relevante com operadores experientes)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SCA vs ELECTIVE -->
+  <div class="two-col" style="margin-top:1rem;">
+    <div class="card" style="border-color:rgba(220,38,38,.3);">
+      <div class="card-header">
+        <div class="card-icon red">🚨</div>
+        <div>
+          <div class="card-title">SCA — Evidência e Recomendação</div>
+          <div class="card-subtitle">Maior impacto clínico do acesso radial — Classe I, LoE A</div>
+        </div>
+      </div>
+      <div class="dose-box">
+        <div class="dose-title">Recomendação ACC/AHA/SCAI 2025</div>
+        Em pacientes com SCA (IAMCSST e IAMSSST) submetidos a ICP: <strong>acesso radial é preferencial</strong> (Classe I, LoE A). O benefício de sobrevida é mais evidente neste contexto de alto risco hemorrágico (anticoagulação + antiplaquetário duplo intenso).
+      </div>
+      <div class="info-red info-box" style="margin-top:.5rem;">
+        <span class="info-box-icon">⚠️</span>
+        <div>IAMCSST com choque cardiogênico necessitando Impella ou BCIA: acesso femoral é necessário. Em cases bilaterais radial + femoral, a via de cateterismo principal pode ser radial, com acesso femoral somente para dispositivo de suporte.</div>
+      </div>
+    </div>
+
+    <div class="card" style="border-color:rgba(0,211,189,.2);">
+      <div class="card-header">
+        <div class="card-icon">📅</div>
+        <div>
+          <div class="card-title">Procedimento Eletivo — Nuances</div>
+          <div class="card-subtitle">Benefício de mortalidade menos pronunciado; foco em conforto e complicações locais</div>
+        </div>
+      </div>
+      <div class="dose-box">
+        <div class="dose-title">Considerações no Eletivo</div>
+        No contexto eletivo, acesso radial reduz complicações de sítio de acesso e melhora satisfação do paciente, mas o impacto em mortalidade é menos expressivo comparado ao SCA. Meta-análises (Chiarito et al., CCI 2021) confirmam menor sangramento e hematoma, sem diferença em MACE. A preferência radial permanece, mas o femoral é adequado quando operador não tem experiência suficiente com radial.
+      </div>
+      <div class="info-teal info-box" style="margin-top:.5rem;">
+        <span class="info-box-icon">📈</span>
+        <div>Uso de radial nos EUA cresceu de 20,3% (2013) para 57,5% (2022), tornando-se o acesso dominante em todos os contextos. Todos os intervencionistas devem desenvolver competência em acesso radial (ACC/AHA/SCAI).</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RADIAL DISTAL -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon blue">🔵</div>
+      <div>
+        <div class="card-title">Acesso Radial Distal (Snuffbox) — Opção Emergente</div>
+        <div class="card-subtitle">Menor risco de oclusão de artéria radial — meta-análise 2024</div>
+      </div>
+    </div>
+    <div class="two-col">
+      <div>
+        <p style="font-size:.83rem;line-height:1.7;">A punção na tabaqueira anatômica (radial distal) utiliza o segmento distal da artéria radial após bifurcação. A meta-análise de 2024 (Maqsood MH et al., Circ CV Int) demonstrou que o acesso radial distal apresenta <span class="hl">menor taxa de oclusão de artéria radial</span> comparado ao radial convencional (OR ~0,45), sem diferença em sucesso do procedimento ou crossover em operadores experientes.</p>
+        <div class="info-teal info-box" style="margin-top:.75rem;">
+          <span class="info-box-icon">💡</span>
+          <div>Vantagem relevante em pacientes que precisarão da artéria radial como conduto para CRVM futura. Curva de aprendizado mais íngreme; tecnicamente desafiador em artérias de menor calibre.</div>
+        </div>
+      </div>
+      <div>
+        <div class="dose-title">Quando Preferir Radial Distal</div>
+        <div class="dose-box">
+          ✅ Candidatos potenciais a CRVM (preservar artéria radial proximal)<br>
+          ✅ Pulso radial proximal débil com distal palpável<br>
+          ✅ Procedimentos repetidos (reduz oclusão acumulativa)<br>
+          ✅ Reabilitação cardíaca precoce (menor hematoma de punho)<br><br>
+          ❌ Artéria radial de pequeno calibre (&lt;2mm na angioTC)<br>
+          ❌ Operador sem treinamento específico
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OCCLUSION & HEMOSTASIS -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon amber">🩹</div>
+      <div>
+        <div class="card-title">Oclusão de Artéria Radial e Hemostasia</div>
+      </div>
+    </div>
+    <div class="two-col">
+      <div class="dose-box">
+        <div class="dose-title">Prevenção de Oclusão Radial</div>
+        • <strong>Heparina intra-arterial:</strong> 2.000–5.000 UI via introdutor pós-punção — reduz oclusão de 7% para 2–3%<br>
+        • <strong>Nitroglicerina + verapamil intra-arterial:</strong> 200 µg + 2,5 mg — previne espasmo radial e facilita navegação<br>
+        • <strong>Introdutor curto hidrofílico</strong> (23 cm): menor trauma e espasmo<br>
+        • <strong>Compressão não-oclusiva</strong> (pulsoximetria no dedo confirma fluxo antegrado) após o procedimento
+      </div>
+      <div class="dose-box">
+        <div class="dose-title">Dispositivos de Hemostasia Radial</div>
+        Compressores radiais (TR Band®, PreludeSYNC®, HemoBand®) por 2–4h. Protocolo de deflação progressiva a cada 15–30 min mantendo oximetria. Hemostasia femoral: dispositivo de sutura/fechamento vascular (AngioSeal, Perclose) ou compressão manual por 15–20 min com 6F. Ultrassom guiado reduz hematoma femoral em &gt;50% (SCAI 2021).
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END TAB ACESSO -->
+
+<!-- ═══════════════════════════════════════════════════ TAB 8: COMPLICAÇÕES -->
+<div id="tab-complicacoes" class="tab-section">
+  <div class="section-label">08 · Complicações</div>
+  <div class="section-title">Taxas de Complicações e <em>Manejo</em></div>
+  <p class="section-intro">O cateterismo cardíaco contemporâneo é notavelmente seguro. Dados de grandes registros (Mayo Clinic, NCDR CathPCI) demonstram incidência de complicações maiores abaixo de 0,1% para cateterismo diagnóstico. O reconhecimento precoce e o manejo imediato das complicações são determinantes do desfecho.</p>
+
+  <!-- STAT SUMMARY -->
+  <div class="three-col" style="margin-bottom:1.5rem;">
+    <div class="stat-box">
+      <div class="stat-val">0,082%</div>
+      <div class="stat-label">Complicações Maiores</div>
+      <div class="stat-sub">Diagnóstico (Mayo Clinic, n&gt;43.000)</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val amber">0,72%</div>
+      <div class="stat-label">Mortalidade Hospitalar</div>
+      <div class="stat-sub">Diagnóstico sem IAMCSST (NCDR)</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val" style="color:#fb923c;">4,53%</div>
+      <div class="stat-label">Qualquer Evento Adverso</div>
+      <div class="stat-sub">ICP sem IAMCSST (NCDR)</div>
+    </div>
+  </div>
+
+  <!-- COMPLICATION TABLE -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon amber">📊</div>
+      <div>
+        <div class="card-title">Taxas de Complicações por Tipo de Procedimento</div>
+        <div class="card-subtitle">NCDR CathPCI Registry e Mayo Clinic — dados contemporâneos</div>
+      </div>
+    </div>
+    <div class="compare-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Complicação</th>
+            <th class="th-teal">Diagnóstico (sem IAMCSST)</th>
+            <th class="th-red">ICP (sem IAMCSST)</th>
+            <th>Notas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Mortalidade hospitalar</strong></td><td>0,72%</td><td>0,65%</td><td>Mais alta em ICP emergencial (IAMCSST: 3–5%); choque: 20–40%</td></tr>
+          <tr><td><strong>AVC / AIT</strong></td><td>0,17%</td><td>0,17%</td><td>Ligeiramente maior com acesso radial (ARD +0,05%) no NCDR — possivelmente relacionado à manipulação aórtica</td></tr>
+          <tr><td><strong>IAM Periprocedimento</strong></td><td>—</td><td>2–18%</td><td>Amplamente dependente da definição usada (troponina vs. clínico); diagnóstico é clínico + novo ECG + imagem</td></tr>
+          <tr><td><strong>Tamponamento Pericárdico</strong></td><td>0,03%</td><td>0,03–0,1%</td><td>Maior em valvoplastia, ablação, intervenção estrutural; diagnóstico imediato com ecocardiografia</td></tr>
+          <tr><td><strong>Sangramento maior (72h)</strong></td><td>0,49%</td><td>1,40%</td><td>Significativamente reduzido pelo acesso radial (ARD −0,64% no NCDR)</td></tr>
+          <tr><td><strong>Complicações vasculares maiores</strong></td><td>0,15%</td><td>0,44%</td><td>Hematoma, pseudoaneurisma, fístula AV, oclusão arterial — femoral &gt; radial</td></tr>
+          <tr><td><strong>IRA / Nova diálise</strong></td><td>—</td><td>0,19%</td><td>CA-AKI (elevação de creatinina): 4–7% em alto risco; nova diálise &lt;0,2%</td></tr>
+          <tr><td><strong>Reação grave a contraste</strong></td><td>&lt;0,1%</td><td>&lt;0,1%</td><td>Anafilaxia verdadeira &lt;0,01%; reações moderadas: ~0,5% com LOCM</td></tr>
+          <tr><td><strong>Perfuração coronariana</strong></td><td>—</td><td>0,3–0,6%</td><td>Maior em aterectomia rotacional, crônicas oclusões totais (CTO), balões superdimensionados</td></tr>
+          <tr><td><strong>CRVM de emergência</strong></td><td>—</td><td>0,2%</td><td>Significativamente reduzido com melhora das técnicas de ICP; dissecção coronariana iatrogenica principal causa</td></tr>
+          <tr><td><strong>Oclusão de artéria radial</strong></td><td>1–5%</td><td>1–5%</td><td>Assintomática na maioria; reduzida por heparina intra-arterial, compressão não-oclusiva e HNF &gt;5.000 UI</td></tr>
+          <tr><td><strong>Radiação &gt;5 Gy (pele)</strong></td><td>—</td><td>&lt;5%</td><td>Procedimentos complexos (CTO, bifurcações, ICP multiarterial); documentar dosimetria; orientar paciente</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="info-amber info-box">
+      <span class="info-box-icon">⚠️</span>
+      <div><strong>Preditores de complicações maiores (NCDR CathPCI):</strong> Acesso femoral, sexo feminino, idade &gt;75 anos, DRC, apresentação emergencial, FEVE &lt;30%, choque cardiogênico, IAMCSST. Ferramentas de estratificação: NCDR CathPCI Risk Model, CRUSADE Score (sangramento), Mayo Clinic Risk Score.</div>
+    </div>
+  </div>
+
+  <!-- MANAGEMENT OF SERIOUS COMPLICATIONS -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon red">🚨</div>
+      <div>
+        <div class="card-title">Manejo de Complicações Graves — Protocolos de Emergência</div>
+      </div>
+    </div>
+
+    <div class="accordion open">
+      <div class="accordion-header" onclick="toggleAcc(this)">
+        <span class="acc-icon">💓</span>
+        Tamponamento Pericárdico
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="accordion-body">
+        <div class="flow-step"><div class="flow-num">1</div><div class="flow-content"><strong>Suspeita clínica:</strong> Hipotensão súbita + taquicardia + aumento de pressão do AD com descida x-y reduzida. No cateterismo: queda súbita na saturação ou PAS.</div></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><div class="flow-num">2</div><div class="flow-content"><strong>Ecocardiografia imediata à beira do leito</strong> (portátil no laboratório de hemodinâmica) — confirmar derrame e colapso de câmaras.</div></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><div class="flow-num">3</div><div class="flow-content"><strong>Pericardiocentese ecoguiada emergencial:</strong> Acesso subxifoideo ou apical (melhor janela). Aspirar até estabilização hemodinâmica. Deixar dreno pericárdico.</div></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><div class="flow-num">4</div><div class="flow-content"><strong>Reversão parcial de heparina:</strong> Protamina 1 mg/100 UI de HNF administrada (máx 50 mg IV). Atenção: reversão total aumenta risco de trombose de stent — <strong>reversão parcial (50%) é preferível em pós-ICP</strong>.</div></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><div class="flow-num">5</div><div class="flow-content"><strong>Consulta cirúrgica se sangramento pericárdico persistente</strong> (&gt;300 mL em curto período ou instabilidade refratária). Considerar drenagem cirúrgica.</div></div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAcc(this)">
+        <span class="acc-icon">🩸</span>
+        Perfuração Coronariana
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="accordion-body">
+        <div class="compare-wrap">
+          <table class="compare-table">
+            <thead><tr><th>Tipo (Ellis)</th><th>Características</th><th>Manejo</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Tipo I</strong></td><td>Extravasamento localizado sem contraste livre</td><td>Observação; balão de oclusão prolongado (2–4 atm, 5–10 min); repetir angiografia</td></tr>
+              <tr><td><strong>Tipo II</strong></td><td>Extravasamento miocárdico/pericárdico sem jato livre</td><td>Balão oclusivo; considerar coils para ramos distais; protamina parcial</td></tr>
+              <tr><td><strong>Tipo III</strong></td><td>Jato livre de contraste (frank perforation)</td><td><strong>Stent recoberto (covered stent)</strong> para vasos proximais; coils/partículas para distais; pericardiocentese se tamponamento; CRVM urgente se refratário</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="info-red info-box">
+          <span class="info-box-icon">⚠️</span>
+          <div>Sempre ter stent recoberto disponível no laboratório de hemodinâmica durante ICP de alto risco (CTO, aterectomia, bifurcações complexas, DCA). O tempo de inflação do balão e a disponibilidade do stent recoberto são críticos para o desfecho.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAcc(this)">
+        <span class="acc-icon">🫀</span>
+        No-Reflow / Slow-Reflow Pós-ICP
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="accordion-body">
+        <div class="two-col">
+          <div>
+            <p style="font-size:.83rem;line-height:1.7;">Ausência de reperfusão miocárdica após ICP bem-sucedida angiograficamente (TIMI &lt;3 sem obstrução mecânica). Incidência: 2–5% no ICP eletivo, até 25% no IAMCSST primário.</p>
+            <div class="dose-title" style="margin-top:.75rem;">Mecanismos Principais</div>
+            <ul style="font-size:.8rem;line-height:1.8;margin-left:1.2rem;">
+              <li>Embolização distal de debris ateromatosos</li>
+              <li>Espasmo microvascular</li>
+              <li>Lesão de reperfusão (cálcio, radicais livres)</li>
+              <li>Edema intersticial e intersticial</li>
+            </ul>
+          </div>
+          <div>
+            <div class="dose-title">Manejo Farmacológico Intracoronário</div>
+            <div class="dose-box">
+              <strong>Adenosina IC:</strong> 40–200 µg em bolus (eficácia controversa; uso empírico)<br>
+              <strong>Nitroprussiato IC:</strong> 50–200 µg (evidência limitada mas amplamente utilizado)<br>
+              <strong>Verapamil IC:</strong> 0,5–1,0 mg (eficaz em espasmo; cuidado em BAV e hipotensão)<br>
+              <strong>Nicorandil IC:</strong> 2 mg (disponível no Brasil; ação dual nitrato + abertura K⁺ ATP)<br>
+              <strong>Aspiração de trombo:</strong> Não recomendada de rotina (TASTE, TOTAL trials) — apenas em trombo angiograficamente visível com instabilidade
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAcc(this)">
+        <span class="acc-icon">⚡</span>
+        Arritmias Intra-Procedimento
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="accordion-body">
+        <div class="two-col">
+          <div class="dose-box">
+            <div class="dose-title">FV / TV Sem Pulso</div>
+            <strong>Desfibrilação imediata:</strong> 200–360 J bifásico. Iniciar RCP se não cardiovertido em 30s. Epinefrina 1 mg IV após 2 ciclos. Se recorrente: amiodarona 300 mg IV. Suspender infusão de contraste. Investigar causa (espasmo coronariano, oclusão, desequilíbrio eletrolítico).
+          </div>
+          <div class="dose-box">
+            <div class="dose-title">Bloqueio AV / Bradicardia</div>
+            <strong>Atropina 0,5–1 mg IV</strong> — dose máxima 3 mg. Se refratária: <strong>marcapasso temporário transcutâneo</strong> (gel de desfibrilação, frequência 60–80 bpm). Para injeção em CD dominante: ter marcapasso transvenoso disponível profilaticamente em pacientes com BAV de 1º grau ou bloqueio de ramo pré-existente.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAcc(this)">
+        <span class="acc-icon">🏥</span>
+        CRVM de Emergência — Quando Acionar
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="accordion-body">
+        <p style="font-size:.83rem;line-height:1.7;margin-bottom:.75rem;">Indicado em ~0,2% dos ICPs. Causas principais: dissecção coronariana ostial, perfuração refratária, oclusão de tronco de CE. Tempo porta-cirurgia &lt;30 min em centros com suporte cirúrgico in situ.</p>
+        <div class="two-col">
+          <div class="dose-box">
+            <div class="dose-title">Critérios para CRVM Emergencial</div>
+            • Dissecção coronariana extensa (NHLBI tipo C–F) não tratável por stent<br>
+            • Perfuração tipo III com tamponamento refratário<br>
+            • Oclusão não-recanalizada de vaso de grande território (&gt;40% do miocárdio) sem ICP viável<br>
+            • Complicação mecânica do IAM (CIV, rotura de parede livre)
+          </div>
+          <div class="dose-box">
+            <div class="dose-title">Suporte Circulatório Mecânico Pré-CRVM</div>
+            BCIA ou Impella CP para estabilização hemodinâmica durante transferência para SO. Balão de oclusão intracoronário para tamponamento de vaso. Manter anticoagulação ativa para preservar stents provisórios ou fluxo por colaterais. Comunicar equipe cirúrgica imediatamente ao diagnosticar a complicação.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPECIAL POPULATIONS -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon blue">👴</div>
+      <div>
+        <div class="card-title">Populações Especiais — Adaptações do Protocolo</div>
+        <div class="card-subtitle">Idosos frágeis, DRC avançada, multimorbidade (AHA 2025)</div>
+      </div>
+    </div>
+    <div class="two-col">
+      <div>
+        <div class="indication-item">
+          <div class="indication-icon">🧓</div>
+          <div class="indication-body">
+            <div class="indication-title">Idoso Frágil (&gt;75 anos com fragilidade)</div>
+            <div class="indication-detail">Avaliar com Essential Frailty Toolset ou Physical Frailty Phenotype. Rastreio cognitivo (MoCA). Revisar polifarmácia. Preferir acesso radial. Reduzir sedativos e analgésicos às menores doses eficazes (metabolismo hepático reduzido). Estratégias de prevenção de delirium: orientação temporal, iluminação adequada, minimizar restrições físicas. Risco de delirium pós-cateterismo: 5–10% em idosos internados.</div>
+          </div>
+        </div>
+        <div class="indication-item">
+          <div class="indication-icon">🩺</div>
+          <div class="indication-body">
+            <div class="indication-title">Decisão Compartilhada em Populações Complexas</div>
+            <div class="indication-detail">Integrar metas do paciente, expectativa de vida, função cognitiva e qualidade de vida nas decisões de revascularização. Heart Team multidisciplinar (cardiologista, cirurgião cardíaco, geriatra, paliativista) é fortemente endossado pela AHA. Ferramentas como SYNTAX Score II 2020 integram variáveis clínicas de longo prazo.</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="indication-item">
+          <div class="indication-icon">🫁</div>
+          <div class="indication-body">
+            <div class="indication-title">DRC Avançada (eGFR &lt;30 mL/min)</div>
+            <div class="indication-detail">Protocolo completo de prevenção de CA-AKI (ver aba Nefropatia). Contraste iso-osmolar (iodixanol). Considerar ICP sem contraste guiada por IVUS em casos selecionados. Monitorar diurese 24h. Hemodiálise programada não deve ser antecipada apenas para remover contraste — sem evidência de benefício preventivo.</div>
+          </div>
+        </div>
+        <div class="indication-item">
+          <div class="indication-icon">⚖️</div>
+          <div class="indication-body">
+            <div class="indication-title">Estratificação de Risco Hemorrágico</div>
+            <div class="indication-detail">Escore CRUSADE (sangramento intra-hospitalar) e NCDR CathPCI Risk Model fornecem estimativas individuais de risco. Variáveis: hematócrito, ClCr, frequência cardíaca, sinais de IC, sexo feminino, DM, história de DCV periférica, pressão arterial sistólica.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END TAB COMPLICAÇÕES -->
+
+<!-- ═══════════════════════════════════════════════════ TAB 9: REFERÊNCIAS -->
+<div id="tab-referencias" class="tab-section">
+  <div class="section-label">09 · Referências Bibliográficas</div>
+  <div class="section-title"><em>Evidências</em> Citadas</div>
+  <p class="section-intro">67 referências selecionadas de diretrizes, ensaios clínicos randomizados, meta-análises e consensos de especialistas, priorizando publicações de 2021–2025.</p>
+
+  <div class="card">
+    <ol class="ref-list">
+      <li class="ref-item"><span class="ref-num">1</span><div><div class="ref-title">ACCF/SCAI/AHA/… 2012 Appropriate Use Criteria for Diagnostic Catheterization</div><div class="ref-meta">Patel MR, Bailey SR, Bonow RO, et al. J Am Coll Cardiol. 2012;59(22):1995-2027.</div></div></li>
+      <li class="ref-item"><span class="ref-num">3</span><div><div class="ref-title">Acute Coronary Syndromes — Review</div><div class="ref-meta">Bergmark BA, Mathenge N, Merlini PA, et al. Lancet. 2022;399(10332):1347-1358.</div></div></li>
+      <li class="ref-item"><span class="ref-num">4</span><div><div class="ref-title">Diagnosis and Treatment of Acute Coronary Syndromes: A Review</div><div class="ref-meta">Bhatt DL, Lopes RD, Harrington RA. JAMA. 2022;327(7):662-675.</div></div></li>
+      <li class="ref-item"><span class="ref-num">5</span><div><div class="ref-title">2014 ACC/AHA/AATS/PCNA/SCAI/STS Focused Update — Stable Ischemic Heart Disease</div><div class="ref-meta">Fihn SD, Blankenship JC, Alexander KP, et al. J Am Coll Cardiol. 2014;64(18):1929-49.</div></div></li>
+      <li class="ref-item"><span class="ref-num">6</span><div><div class="ref-title">Contemporary, Non-Invasive Imaging Diagnosis of Chronic Coronary Artery Disease</div><div class="ref-meta">van der Bijl P, Gulati M, Saraste A, et al. Lancet. 2025;406(10519):2577-2587.</div></div></li>
+      <li class="ref-item"><span class="ref-num">7</span><div><div class="ref-title">CT or Invasive Coronary Angiography in Stable Chest Pain — DISCHARGE Trial</div><div class="ref-meta">DISCHARGE Trial Group, Maurovich-Horvat P, Bosserdt M, et al. NEJM. 2022;386(17):1591-1602.</div></div></li>
+      <li class="ref-item"><span class="ref-num">8</span><div><div class="ref-title">Fasting vs. No Fasting Prior to Catheterization Laboratory Procedures: The SCOFF Trial</div><div class="ref-meta">Ferreira D, Hardy J, Meere W, et al. Eur Heart J. 2024;45(47):4990-4998.</div></div></li>
+      <li class="ref-item"><span class="ref-num">9–11</span><div><div class="ref-title">Fasting Before Cardiac Catheterization: Meta-Analyses 2025</div><div class="ref-meta">Salihu A et al. JAHA 2025; Muniz J et al. CCI 2025; Saad M et al. Am J Cardiol 2025. Três meta-análises independentes confirmando equivalência/superioridade do não-jejum.</div></div></li>
+      <li class="ref-item"><span class="ref-num">12</span><div><div class="ref-title">Malnutrition and Cachexia in Inpatients With Acute Cardiac Conditions: AHA Scientific Statement</div><div class="ref-meta">Vest AR, DiDomenico RJ, Lichtenstein L, et al. Circulation. 2026.</div></div></li>
+      <li class="ref-item"><span class="ref-num">13</span><div><div class="ref-title">SCAI Expert Consensus Update on Best Practices in the Cardiac Catheterization Laboratory (2021)</div><div class="ref-meta">Naidu SS, Abbott JD, Bagai J, et al. Catheter Cardiovasc Interv. 2021;98(2):255-276.</div></div></li>
+      <li class="ref-item"><span class="ref-num">14</span><div><div class="ref-title">SCAI Expert Consensus Statement: 2016 Best Practices in the Cardiac Catheterization Laboratory</div><div class="ref-meta">Naidu SS, Aronow HD, Box LC, et al. Catheter Cardiovasc Interv. 2016;88(3):407-23.</div></div></li>
+      <li class="ref-item"><span class="ref-num">15</span><div><div class="ref-title">Quality Initiatives for Prevention of Contrast-Induced Acute Kidney Injury (SCAI 2025)</div><div class="ref-meta">Bagai MJ, Beavers CJ, Boudoulas KD. Society for Cardiovascular Angiography &amp; Interventions, 2025.</div></div></li>
+      <li class="ref-item"><span class="ref-num">16</span><div><div class="ref-title">2021 ACC/AHA/SCAI Guideline for Coronary Artery Revascularization</div><div class="ref-meta">Lawton JS, Tamis-Holland JE, Bangalore S, et al. J Am Coll Cardiol. 2022;79(2):e21-e129.</div></div></li>
+      <li class="ref-item"><span class="ref-num">17</span><div><div class="ref-title">Contrast-Associated Acute Kidney Injury</div><div class="ref-meta">Mehran R, Dangas GD, Weisbord SD. NEJM. 2019;380(22):2146-2155.</div></div></li>
+      <li class="ref-item"><span class="ref-num">18</span><div><div class="ref-title">2023 AHA/ACC Guideline for Management of Patients With Chronic Coronary Disease</div><div class="ref-meta">Virani SS, Newby LK, Arnold SV, et al. J Am Coll Cardiol. 2023;82(9):833-955.</div></div></li>
+      <li class="ref-item"><span class="ref-num">19</span><div><div class="ref-title">Procedural Strategies to Reduce Contrast-Induced AKI During PCI</div><div class="ref-meta">Almendarez M, Gurm HS, Mariani J, et al. JACC Cardiovasc Interv. 2019;12(19):1877-1888.</div></div></li>
+      <li class="ref-item"><span class="ref-num">20</span><div><div class="ref-title">Management and Prevention of Hypersensitivity Reactions to Radiocontrast Media: ACR/AAAAI Consensus Statement</div><div class="ref-meta">Wang C, Ramsey A, Lang D, et al. Radiology. 2025;315(2):e240100.</div></div></li>
+      <li class="ref-item"><span class="ref-num">21</span><div><div class="ref-title">Hypersensitivity Reactions to Contrast Media: Prevention of Recurrent Reactions — ESUR 2025</div><div class="ref-meta">van der Molen AJ, van de Ven AAJM, Vega F, et al. Eur Radiol. 2025.</div></div></li>
+      <li class="ref-item"><span class="ref-num">22</span><div><div class="ref-title">Substitution With Low-Osmolar Iodinated Contrast Agent to Minimize Recurrent Immediate Hypersensitivity Reaction</div><div class="ref-meta">Kim S, Jeon KN, Jung JW, et al. Radiology. 2023;309(1):e222467.</div></div></li>
+      <li class="ref-item"><span class="ref-num">23</span><div><div class="ref-title">Prevention of Allergic-Like Reactions at Repeat CT: Steroid Pretreatment Versus Contrast Material Substitution</div><div class="ref-meta">McDonald JS, Larson NB, Kolbe AB, et al. Radiology. 2021;301(1):133-140.</div></div></li>
+      <li class="ref-item"><span class="ref-num">24</span><div><div class="ref-title">ACR Manual on Contrast Media 2025</div><div class="ref-meta">ACR Committee on Drugs and Contrast Media. American College of Radiology, 2025.</div></div></li>
+      <li class="ref-item"><span class="ref-num">25</span><div><div class="ref-title">Practice Parameters for Diagnosing and Managing Iodinated Contrast Media Hypersensitivity (ENDA/EAACI)</div><div class="ref-meta">Torres MJ, Trautmann A, Böhm I, et al. Allergy. 2021;76(5):1325-1339.</div></div></li>
+      <li class="ref-item"><span class="ref-num">26</span><div><div class="ref-title">2020 ACC Expert Consensus — Anticoagulant and Antiplatelet Therapy in Patients With AF or VTE Undergoing PCI</div><div class="ref-meta">Kumbhani DJ, Cannon CP, Beavers CJ, et al. J Am Coll Cardiol. 2021;77(5):629-658.</div></div></li>
+      <li class="ref-item"><span class="ref-num">27</span><div><div class="ref-title">Perioperative Management of Antithrombotic Therapy: ACCP Clinical Practice Guideline 2022</div><div class="ref-meta">Douketis JD, Spyropoulos AC, Murad MH, et al. Chest. 2022;162(5):e207-e243.</div></div></li>
+      <li class="ref-item"><span class="ref-num">28</span><div><div class="ref-title">2023 ACC/AHA/ACCP/HRS Guideline for Diagnosis and Management of Atrial Fibrillation</div><div class="ref-meta">Joglar JA, Chung MK, et al. J Am Coll Cardiol. 2024;83(1):109-279.</div></div></li>
+      <li class="ref-item"><span class="ref-num">29</span><div><div class="ref-title">Perioperative Management of VKA and DOAC: Systematic Review and Meta-Analysis</div><div class="ref-meta">Shah S, Nayfeh T, Hasan B, et al. Chest. 2023;163(5):1245-1257.</div></div></li>
+      <li class="ref-item"><span class="ref-num">32</span><div><div class="ref-title">2024 AHA/ACC Guideline for Perioperative Cardiovascular Management for Noncardiac Surgery</div><div class="ref-meta">Thompson A, Fleischmann KE, Smilowitz NR, et al. J Am Coll Cardiol. 2024;84(19):1869-1969.</div></div></li>
+      <li class="ref-item"><span class="ref-num">34</span><div><div class="ref-title">2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for Management of Patients With Acute Coronary Syndromes</div><div class="ref-meta">Rao SV, O'Donoghue ML, Ruel M, et al. J Am Coll Cardiol. 2025.</div></div></li>
+      <li class="ref-item"><span class="ref-num">36</span><div><div class="ref-title">Oral Antiplatelet Therapy After Acute Coronary Syndrome: A Review</div><div class="ref-meta">Kamran H, Jneid H, Kayani WT, et al. JAMA. 2021;325(15):1545-1555.</div></div></li>
+      <li class="ref-item"><span class="ref-num">41–42</span><div><div class="ref-title">Standards of Care in Diabetes 2026 — ADA (Older Adults; Hospital Care)</div><div class="ref-meta">American Diabetes Association Professional Practice Committee. Diabetes Care. 2026;49(Suppl 1).</div></div></li>
+      <li class="ref-item"><span class="ref-num">43</span><div><div class="ref-title">KDIGO 2024 Clinical Practice Guideline for Evaluation and Management of CKD</div><div class="ref-meta">Kidney International. 2024;105(4S):S117-S314.</div></div></li>
+      <li class="ref-item"><span class="ref-num">46</span><div><div class="ref-title">Procedural Outcomes With Femoral, Radial, Distal Radial, and Ulnar Access — Network Meta-Analysis</div><div class="ref-meta">Maqsood MH, Yong CM, Rao SV, et al. Circ Cardiovasc Interv. 2024;17(9):e014186.</div></div></li>
+      <li class="ref-item"><span class="ref-num">47</span><div><div class="ref-title">Radial Versus Femoral Access in Invasively Managed ACS — Systematic Review and IPD Meta-Analysis</div><div class="ref-meta">Andò G, Capodanno D. Ann Intern Med. 2015;163(12):932-40.</div></div></li>
+      <li class="ref-item"><span class="ref-num">49</span><div><div class="ref-title">Radial Versus Femoral Access and Bivalirudin vs. UFH in ACS — MATRIX Final 1-Year Results</div><div class="ref-meta">Valgimigli M, Frigoli E, Leonardi S, et al. Lancet. 2018;392(10150):835-848.</div></div></li>
+      <li class="ref-item"><span class="ref-num">51</span><div><div class="ref-title">Radial vs Femoral Access for PCI — Temporal Trends and Outcomes in the USA (NCDR CathPCI)</div><div class="ref-meta">Fazel R, Rao SV, Cohen DJ, et al. Eur Heart J. 2025.</div></div></li>
+      <li class="ref-item"><span class="ref-num">53</span><div><div class="ref-title">Safety and Risk of Major Complications With Diagnostic Cardiac Catheterization (Mayo Clinic n=43.000)</div><div class="ref-meta">Al-Hijji MA, Lennon RJ, Gulati R, et al. Circ Cardiovasc Interv. 2019;12(7):e007791.</div></div></li>
+      <li class="ref-item"><span class="ref-num">54</span><div><div class="ref-title">A Contemporary View of Diagnostic Cardiac Catheterization and PCI in the United States — NCDR CathPCI</div><div class="ref-meta">Dehmer GJ, Weaver D, Roe MT, et al. J Am Coll Cardiol. 2012;60(20):2017-31.</div></div></li>
+      <li class="ref-item"><span class="ref-num">60</span><div><div class="ref-title">A Practical Approach to the Management of Complications During PCI</div><div class="ref-meta">Giannini F, Candilio L, Mitomo S, et al. JACC Cardiovasc Interv. 2018;11(18):1797-1810.</div></div></li>
+      <li class="ref-item"><span class="ref-num">63</span><div><div class="ref-title">Length of Stay Following PCI: An SCAI Expert Consensus Document Update</div><div class="ref-meta">Seto AH, Shroff A, Abu-Fadel M, et al. Catheter Cardiovasc Interv. 2018;92(4):717-731.</div></div></li>
+      <li class="ref-item"><span class="ref-num">65–66</span><div><div class="ref-title">Coronary Artery Revascularization in the Older Adult Population: AHA Scientific Statement 2025</div><div class="ref-meta">Damluji AA, Nanna MG, Mason P, et al. Circulation. 2025;152(25):e494-e525.</div></div></li>
+      <li class="ref-item"><span class="ref-num">67</span><div><div class="ref-title">Patient-Centered Adult Cardiovascular Care: AHA Scientific Statement 2024</div><div class="ref-meta">Goldfarb MJ, Saylor MA, Bozkurt B, et al. Circulation. 2024;149(20):e1176-e1188.</div></div></li>
+    </ol>
+  </div>
+
+  <div class="disclaimer">
+    <strong>Aviso:</strong> Este material destina-se exclusivamente a profissionais de saúde habilitados como ferramenta de referência clínica. Não substitui o julgamento clínico individualizado, diretrizes institucionais locais, ou a relação médico-paciente. As recomendações baseiam-se nas evidências disponíveis até março de 2025. Diretrizes são atualizadas periodicamente — verificar versão vigente antes de uso clínico. © Dr. Lucas Silva | lucascardio.com.br
+  </div>
+</div>
+<!-- END TAB REFERENCIAS -->
+
+</div><!-- end container -->
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-copy">© 2025 Dr. Lucas Silva · lucascardio.com.br · Cardiologia Intervencionista</div>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+        <span class="tag">ACC/AHA 2025</span>
+        <span class="tag">SCAI 2021</span>
+        <span class="tag">ACR 2025</span>
+        <span class="tag">ACCP 2022</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const TAB_LABELS = ['Indicações','Contraindicações','Preparo Geral','Nefropatia','Alergia','Medicações','Radial vs Femoral','Complicações','Referências'];
+  const TAB_IDS = ['indicacoes','contraindicacoes','preparo','renal','alergia','medicacoes','acesso','complicacoes','referencias'];
+
+  function showTab(id, idx) {
+    // hide all
+    TAB_IDS.forEach(t => {
+      const el = document.getElementById('tab-' + t);
+      if (el) el.classList.remove('active');
+    });
+    // show target
+    const target = document.getElementById('tab-' + id);
+    if (target) target.classList.add('active');
+    // update tab buttons
+    document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+      btn.classList.toggle('active', i === idx);
+    });
+    // update dots
+    document.querySelectorAll('.pdot').forEach((d, i) => {
+      d.classList.toggle('active', i === idx);
+    });
+    // update label
+    const lbl = document.getElementById('tabLabel');
+    if (lbl) lbl.textContent = TAB_LABELS[idx];
+    // scroll to top of content
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function toggleAcc(header) {
+    const acc = header.closest('.accordion');
+    acc.classList.toggle('open');
+  }
+
+  // Keyboard navigation
+  document.addEventListener('keydown', function(e) {
+    const active = document.querySelector('.tab-btn.active');
+    if (!active) return;
+    const btns = Array.from(document.querySelectorAll('.tab-btn'));
+    const idx = btns.indexOf(active);
+    if (e.key === 'ArrowRight' && idx < btns.length - 1) showTab(TAB_IDS[idx+1], idx+1);
+    if (e.key === 'ArrowLeft' && idx > 0) showTab(TAB_IDS[idx-1], idx-1);
+  });
+
+  // Smooth appearance of tab
+  document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+    btn.setAttribute('data-idx', i);
+  });
+</script>
+</body>
+</html>

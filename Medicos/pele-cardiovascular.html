@@ -1,0 +1,1319 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>Pele &amp; Coração – Doenças de Pele e Risco Cardiovascular | Dr. Lucas Silva</title>
+  <meta name="description" content="Guia completo e baseado em evidências sobre a relação entre doenças inflamatórias de pele (psoríase, dermatite atópica, lúpus, esclerose sistêmica) e doença cardiovascular. Para pacientes e profissionais de saúde." />
+  <meta name="author" content="Dr. Lucas Silva" />
+  <link rel="canonical" href="https://lucascardio.com.br/Medicos/pele-cardiovascular.html" />
+  <meta property="og:title" content="Pele & Coração – Doenças de Pele e Risco Cardiovascular" />
+  <meta property="og:description" content="Associações epidemiológicas, mecanismos fisiopatológicos, triagem e manejo cardiovascular em doenças inflamatórias cutâneas." />
+  <meta property="og:type" content="article" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    "name": "Pele & Coração – Doenças de Pele e Risco Cardiovascular",
+    "description": "Guia baseado em evidências sobre doenças inflamatórias de pele e risco cardiovascular",
+    "author": { "@type": "Physician", "name": "Dr. Lucas Silva", "specialty": "Cardiologia Intervencionista" },
+    "url": "https://lucascardio.com.br/pele-cardiovascular.html"
+  }
+  </script>
+
+  <style>
+    /* ── DESIGN TOKENS ────────────────────────────────────────── */
+    :root {
+      --primary: oklch(65% .18 195);
+      --primary-foreground: oklch(98% 0 0);
+      --background: oklch(13% .018 250);
+      --foreground: oklch(93% .01 250);
+      --card: oklch(18.5% .018 250);
+      --card-foreground: oklch(93% .01 250);
+      --muted: oklch(22% .018 250);
+      --muted-foreground: oklch(62% .02 250);
+      --border: oklch(28% .025 250);
+      --input: oklch(22% .02 250);
+      --destructive: oklch(60% .22 25);
+      --secondary: oklch(22% .022 250);
+      --secondary-foreground: oklch(88% .01 250);
+      --accent: oklch(24% .025 250);
+      --accent-foreground: oklch(90% .01 250);
+      --teal: #ece934;
+      --teal-dim: rgba(0,211,189,.12);
+      --amber: oklch(82.8% .189 84.429);
+      --red: oklch(63.7% .237 25.331);
+      --green: oklch(79.2% .209 151.711);
+      --radius: 0.625rem;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--background);
+      color: var(--foreground);
+      min-height: 100vh;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ──────────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(18,20,27,.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--foreground); }
+    .nav-brand-icon {
+      width: 28px; height: 28px; border-radius: 7px;
+      background: var(--teal); display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .nav-brand-name { font-weight: 800; font-size: 1rem; letter-spacing: -.025em; line-height: 1; }
+    .nav-brand-name span { color: var(--teal); }
+    .nav-brand-sep { width: 1px; height: 14px; background: var(--border); margin: 0 6px; }
+    .nav-brand-sub { font-size: .7rem; font-weight: 500; color: var(--muted-foreground); }
+    .nav-actions { display: flex; align-items: center; gap: .5rem; }
+    .nav-badge {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 999px; background: var(--teal-dim);
+      color: var(--teal); border: 1px solid rgba(0,211,189,.25);
+    }
+    .nav-link {
+      font-size: .75rem; font-weight: 600; padding: 5px 12px;
+      border-radius: 8px; border: 1.5px solid var(--primary);
+      color: var(--primary); background: transparent;
+      text-decoration: none;
+      transition: background .15s, color .15s;
+      display: inline-flex; align-items: center; gap: 5px;
+    }
+    .nav-link:hover { background: var(--primary); color: var(--primary-foreground); }
+
+    /* ── LAYOUT ───────────────────────────────────────────────── */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* ── HERO ─────────────────────────────────────────────────── */
+    .hero { padding: 3.5rem 0 2.5rem; border-bottom: 1px solid var(--border); }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .7rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--teal); margin-bottom: 1rem;
+    }
+    .hero-eyebrow::before { content: ''; display: block; width: 20px; height: 2px; background: var(--teal); border-radius: 1px; }
+    .hero h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800; line-height: 1.2; margin-bottom: .75rem; letter-spacing: -.02em; }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero-sub { color: var(--muted-foreground); font-size: .95rem; max-width: 640px; margin-bottom: 1.5rem; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 6px; border: 1px solid var(--border);
+      color: var(--muted-foreground); background: var(--card);
+      font-family: var(--font-mono);
+    }
+
+    /* ── SECTION HEADINGS ─────────────────────────────────────── */
+    .section-label {
+      font-size: .68rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--teal);
+      margin-bottom: .4rem; font-family: var(--font-mono);
+    }
+    .section-title { font-size: 1.3rem; font-weight: 800; margin-bottom: .25rem; letter-spacing: -.01em; }
+    .section-desc { color: var(--muted-foreground); font-size: .88rem; margin-bottom: 1.5rem; max-width: 640px; }
+    .section-divider { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+
+    /* ── TABS ─────────────────────────────────────────────────── */
+    .tab-bar {
+      display: flex; gap: .25rem; flex-wrap: wrap;
+      margin: 2rem 0 1.5rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 4px);
+      padding: 5px;
+    }
+    .tab-btn {
+      background: none; border: none; cursor: pointer;
+      font-family: var(--font-sans); font-size: .78rem; font-weight: 600;
+      color: var(--muted-foreground); padding: 7px 14px;
+      border-radius: var(--radius);
+      transition: background .15s, color .15s;
+      display: flex; align-items: center; gap: 6px;
+      white-space: nowrap;
+    }
+    .tab-btn:hover { background: var(--accent); color: var(--foreground); }
+    .tab-btn.active { background: var(--teal-dim); color: var(--teal); }
+    .tab-emoji { font-size: 1rem; }
+    .tab-panel { display: none; animation: fadeUp .3s ease; }
+    .tab-panel.active { display: block; }
+
+    /* ── CARDS ────────────────────────────────────────────────── */
+    .card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px); padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .card-header {
+      display: flex; align-items: flex-start; gap: .75rem;
+      margin-bottom: 1.25rem; padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .card-icon {
+      width: 38px; height: 38px; border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
+      background: var(--teal-dim); color: var(--teal);
+    }
+    .card-title { font-weight: 700; font-size: 1.05rem; margin-bottom: 2px; }
+    .card-subtitle { font-size: .78rem; color: var(--muted-foreground); }
+
+    /* ── RISK GRID ────────────────────────────────────────────── */
+    .risk-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px);
+      overflow: hidden; margin: 1.25rem 0;
+    }
+    .risk-cell {
+      background: var(--card); padding: 1rem 1.1rem;
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .risk-cell-label { font-size: .68rem; font-weight: 700; color: var(--muted-foreground); letter-spacing: .06em; text-transform: uppercase; font-family: var(--font-mono); }
+    .risk-cell-value { font-size: 1.45rem; font-weight: 800; font-family: var(--font-mono); color: var(--teal); line-height: 1; }
+    .risk-cell-desc { font-size: .73rem; color: var(--muted-foreground); line-height: 1.4; }
+
+    /* ── BADGES ───────────────────────────────────────────────── */
+    .badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: .68rem; font-weight: 700; padding: 2px 8px;
+      border-radius: 999px; white-space: nowrap;
+    }
+    .badge-high   { background: rgba(220,38,38,.15); color: #f87171; border: 1px solid rgba(220,38,38,.25); }
+    .badge-mod    { background: rgba(251,191,36,.12); color: #fbbf24; border: 1px solid rgba(251,191,36,.2); }
+    .badge-low    { background: rgba(132,204,22,.1); color: #a3e635; border: 1px solid rgba(132,204,22,.2); }
+    .badge-info   { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.2); }
+    .badge-purple { background: rgba(139,92,246,.12); color: #c4b5fd; border: 1px solid rgba(139,92,246,.2); }
+
+    /* ── INFO BOXES ───────────────────────────────────────────── */
+    .info-box {
+      border-radius: var(--radius); padding: 13px 16px;
+      font-size: .83rem; line-height: 1.65;
+      display: flex; gap: 10px; margin-bottom: .85rem;
+    }
+    .info-box-icon { flex-shrink: 0; font-size: 1rem; margin-top: 1px; }
+    .info-teal   { background: var(--teal-dim); border-left: 3px solid var(--teal); }
+    .info-amber  { background: rgba(251,191,36,.08); border-left: 3px solid rgba(251,191,36,.5); }
+    .info-red    { background: rgba(220,38,38,.08); border-left: 3px solid rgba(220,38,38,.4); }
+    .info-gray   { background: var(--muted); border-left: 3px solid var(--border); }
+    .info-purple { background: rgba(139,92,246,.08); border-left: 3px solid rgba(139,92,246,.4); }
+
+    /* ── ACCORDION ────────────────────────────────────────────── */
+    .accordion { margin-bottom: .6rem; }
+    .accordion-btn {
+      width: 100%; background: var(--muted); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 12px 16px;
+      display: flex; justify-content: space-between; align-items: center;
+      cursor: pointer; font-family: var(--font-sans);
+      font-size: .85rem; font-weight: 600; color: var(--foreground);
+      transition: background .15s;
+    }
+    .accordion-btn:hover { background: var(--accent); }
+    .accordion-btn.open { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-color: var(--primary); color: var(--teal); }
+    .accordion-chevron { transition: transform .25s; font-size: .75rem; }
+    .accordion-btn.open .accordion-chevron { transform: rotate(180deg); }
+    .accordion-body {
+      display: none; background: var(--card); border: 1px solid var(--primary);
+      border-top: none; border-radius: 0 0 var(--radius) var(--radius);
+      padding: 1rem 1.25rem; font-size: .83rem; line-height: 1.7;
+    }
+    .accordion-body.open { display: block; animation: fadeUp .2s ease; }
+
+    /* ── COMPARISON TABLE ─────────────────────────────────────── */
+    .table-wrap { overflow-x: auto; margin: 1.25rem 0; border-radius: var(--radius); border: 1px solid var(--border); }
+    .compare-table { width: 100%; border-collapse: collapse; font-size: .81rem; }
+    .compare-table th {
+      background: var(--muted); padding: 10px 14px;
+      text-align: left; font-weight: 700; font-size: .73rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted-foreground); letter-spacing: .03em; white-space: nowrap;
+    }
+    .compare-table td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table tr:hover td { background: var(--accent); }
+    .compare-table .hr-val { font-family: var(--font-mono); font-weight: 700; color: var(--teal); }
+
+    /* ── MECHANISM DIAGRAM ────────────────────────────────────── */
+    .mech-flow {
+      display: flex; gap: .5rem; align-items: center;
+      flex-wrap: wrap; margin: 1rem 0;
+    }
+    .mech-node {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 8px 14px;
+      font-size: .78rem; font-weight: 600; text-align: center;
+      flex: 1; min-width: 120px;
+    }
+    .mech-arrow { color: var(--teal); font-size: 1.2rem; flex-shrink: 0; }
+
+    /* ── STAT HIGHLIGHT ───────────────────────────────────────── */
+    .stat-row {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: .75rem; margin: 1rem 0;
+    }
+    .stat-card {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1rem;
+      text-align: center;
+    }
+    .stat-card .stat-num { font-size: 1.7rem; font-weight: 800; color: var(--teal); font-family: var(--font-mono); line-height: 1; }
+    .stat-card .stat-label { font-size: .72rem; color: var(--muted-foreground); margin-top: 4px; line-height: 1.4; }
+
+    /* ── PROGRESS BAR INLINE ──────────────────────────────────── */
+    .bar-row { margin-bottom: .7rem; }
+    .bar-label-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+    .bar-label { font-size: .78rem; font-weight: 600; }
+    .bar-val { font-size: .73rem; font-family: var(--font-mono); color: var(--teal); }
+    .bar-track { height: 8px; background: var(--muted); border-radius: 4px; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 4px; background: var(--teal); transition: width 1s ease; }
+    .bar-fill.red { background: var(--red); }
+    .bar-fill.amber { background: var(--amber); }
+
+    /* ── SCREENING CHECKLIST ──────────────────────────────────── */
+    .check-list { list-style: none; }
+    .check-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 9px 0; border-bottom: 1px solid var(--border);
+      font-size: .83rem;
+    }
+    .check-list li:last-child { border-bottom: none; }
+    .check-list .ck-icon { font-size: .9rem; flex-shrink: 0; margin-top: 1px; }
+
+    /* ── TIMELINE SMALL ───────────────────────────────────────── */
+    .mini-timeline { position: relative; padding-left: 24px; }
+    .mini-timeline::before {
+      content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px;
+      width: 2px; background: var(--border); border-radius: 1px;
+    }
+    .mini-step { position: relative; margin-bottom: 1.25rem; }
+    .mini-step::before {
+      content: ''; position: absolute; left: -20px; top: 5px;
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--teal); border: 2px solid var(--background);
+    }
+    .mini-step-title { font-weight: 700; font-size: .88rem; margin-bottom: 3px; }
+    .mini-step-body { font-size: .82rem; color: var(--muted-foreground); line-height: 1.6; }
+
+    /* ── REFS ─────────────────────────────────────────────────── */
+    .ref-list { list-style: none; }
+    .ref-item {
+      padding: 10px 0; border-bottom: 1px solid var(--border);
+      font-size: .79rem; line-height: 1.6; display: flex; gap: 10px;
+    }
+    .ref-item:last-child { border-bottom: none; }
+    .ref-num { font-family: var(--font-mono); font-size: .7rem; font-weight: 700; color: var(--teal); min-width: 22px; }
+    .ref-title { font-weight: 600; margin-bottom: 2px; }
+    .ref-meta { color: var(--muted-foreground); font-size: .73rem; }
+
+    /* ── DISCLAIMER ───────────────────────────────────────────── */
+    .disclaimer {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 12px 16px;
+      font-size: .75rem; color: var(--muted-foreground);
+      line-height: 1.6; margin-top: 1.5rem;
+    }
+
+    /* ── FOOTER ───────────────────────────────────────────────── */
+    footer { border-top: 1px solid var(--border); padding: 2rem 0; margin-top: 3rem; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-copy { font-size: .75rem; color: var(--muted-foreground); }
+
+    /* ── ANIMATIONS ───────────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .section-animate { animation: fadeUp .4s ease; }
+
+    /* ── RESPONSIVE ───────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .tab-bar { gap: .15rem; }
+      .tab-btn { font-size: .72rem; padding: 6px 10px; }
+      .risk-grid { grid-template-columns: 1fr 1fr; }
+      .stat-row { grid-template-columns: 1fr 1fr; }
+      .nav-brand-sub { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#">
+    <div class="nav-brand-icon">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 12h8M12 8v8"/>
+      </svg>
+    </div>
+    <div class="nav-brand-name">Lucas<span>Cardio</span></div>
+    <div class="nav-brand-sep"></div>
+    <div class="nav-brand-sub">Pele &amp; Coração</div>
+  </a>
+  <div class="nav-actions">
+    <span class="nav-badge">Evidência 2025</span>
+    <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      lucascardio.com.br
+    </a>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main>
+<div class="container">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Medicina Baseada em Evidências</div>
+  <h1>Sua <em>Pele</em> e seu <em>Coração</em><br>estão conectados</h1>
+  <p class="hero-sub">
+    Doenças inflamatórias crônicas da pele aumentam significativamente o risco de infarto, AVC e insuficiência cardíaca. Entenda os mecanismos, as evidências e o que você pode fazer para proteger seu coração.
+  </p>
+  <div class="hero-tags">
+    <span class="tag">Psoríase</span>
+    <span class="tag">Dermatite Atópica</span>
+    <span class="tag">Hidradenite Supurativa</span>
+    <span class="tag">Lúpus</span>
+    <span class="tag">Esclerose Sistêmica</span>
+    <span class="tag">JACC 2021</span>
+    <span class="tag">Lancet 2022</span>
+    <span class="tag">JAMA Derm 2024/2025</span>
+  </div>
+</div>
+
+<!-- INTRODUÇÃO -->
+<section style="padding: 2.5rem 0 0;" id="intro">
+  <div class="section-label">Por que isso importa</div>
+  <div class="section-title">A inflamação crônica da pele atinge o coração</div>
+  <p class="section-desc">
+    Durante décadas, doenças como psoríase e dermatite atópica foram tratadas como condições exclusivamente cutâneas. Hoje, evidências sólidas de estudos com milhões de pacientes mostram que a inflamação sistêmica gerada por essas doenças acelera a aterosclerose — o mesmo processo que causa infarto e AVC.
+  </p>
+
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="stat-num">+51%</div>
+      <div class="stat-label">Risco de doença coronariana na psoríase (europeus)<br><span style="font-size:.68rem;opacity:.7">Zhang et al., BMC Med 2022</span></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">3,59×</div>
+      <div class="stat-label">Risco de DCV na esclerose sistêmica<br><span style="font-size:.68rem;opacity:.7">Conrad et al., Lancet 2022</span></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">2,23×</div>
+      <div class="stat-label">Risco de DCVAS no lúpus sistêmico<br><span style="font-size:.68rem;opacity:.7">Chen et al., JAMA Derm 2025</span></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">28%</div>
+      <div class="stat-label">Só 28% dos médicos realizam rastreio cardiovascular em psoríase<br><span style="font-size:.68rem;opacity:.7">Berna-Rico et al., 2023</span></div>
+    </div>
+  </div>
+
+  <div class="info-teal info-box" style="margin-top:1.25rem;">
+    <span class="info-box-icon">🔬</span>
+    <div>
+      <strong>O conceito de "cardiodermatologia"</strong> — termo consolidado por Gelfand et al. na <em>Nature Reviews Cardiology</em> (2025) — reconhece formalmente a bidirecionalidade desta relação: a pele é janela para o estado inflamatório sistêmico, e o coração responde a esse estado. O ACC/AHA (2023) passou a listar psoríase, artrite reumatoide e lúpus como <em>fatores de risco aumentadores</em> para DCVAS, ao lado de diabetes e hipertensão.
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- TABS -->
+<div class="section-label" style="margin-bottom:.3rem;">Selecione a condição</div>
+<div class="section-title" style="margin-bottom:.5rem;">Doenças de pele e risco cardiovascular</div>
+
+<div class="tab-bar" role="tablist">
+  <button class="tab-btn active" onclick="openTab('psoriase')" role="tab" aria-selected="true">
+    <span class="tab-emoji">🔴</span> Psoríase
+  </button>
+  <button class="tab-btn" onclick="openTab('da')" role="tab">
+    <span class="tab-emoji">🟡</span> Dermatite Atópica
+  </button>
+  <button class="tab-btn" onclick="openTab('hs')" role="tab">
+    <span class="tab-emoji">🟠</span> Hidraden. Supurativa
+  </button>
+  <button class="tab-btn" onclick="openTab('lupus')" role="tab">
+    <span class="tab-emoji">🟣</span> Lúpus
+  </button>
+  <button class="tab-btn" onclick="openTab('outras')" role="tab">
+    <span class="tab-emoji">⚪</span> Outras
+  </button>
+</div>
+
+<!-- ═══ TAB: PSORÍASE ════════════════════════════════════════ -->
+<div id="tab-psoriase" class="tab-panel active">
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🔴</div>
+      <div>
+        <div class="card-title">Psoríase</div>
+        <div class="card-subtitle">Doença inflamatória crônica mediada por Th1/Th17 — o modelo mais estudado de risco CV em dermatologia</div>
+      </div>
+    </div>
+
+    <div class="info-teal info-box">
+      <span class="info-box-icon">📊</span>
+      <div><strong>Prevalência:</strong> 2–3% dos adultos. A <strong>National Psoriasis Foundation</strong> e as diretrizes conjuntas AAD-NPF reconhecem formalmente a psoríase como fator de risco cardiovascular independente, com risco particularmente elevado em jovens e em formas graves. O ACC/AHA (2023) a lista como fator de risco aumentador de DCVAS.</div>
+    </div>
+
+    <div class="section-label">Magnitude do risco cardiovascular</div>
+    <div class="risk-grid">
+      <div class="risk-cell">
+        <div class="risk-cell-label">DAC (europeus)</div>
+        <div class="risk-cell-value">RR 1,51</div>
+        <div class="risk-cell-desc">Meta-análise + MR. Zhang et al., BMC Med 2022</div>
+      </div>
+      <div class="risk-cell">
+        <div class="risk-cell-label">DAC (asiáticos)</div>
+        <div class="risk-cell-value">RR 1,91</div>
+        <div class="risk-cell-desc">Risco ainda maior em populações East Asian</div>
+      </div>
+      <div class="risk-cell">
+        <div class="risk-cell-label">Infarto (europeus)</div>
+        <div class="risk-cell-value">RR 1,23</div>
+        <div class="risk-cell-desc">Randomização mendeliana confirma causalidade: OR 1,05</div>
+      </div>
+      <div class="risk-cell">
+        <div class="risk-cell-label">DCVAS (coorte)</div>
+        <div class="risk-cell-value">HR 1,21</div>
+        <div class="risk-cell-desc">TriNetX, 2025. IC95%: 1,14–1,28</div>
+      </div>
+    </div>
+
+    <p style="font-size:.83rem;color:var(--muted-foreground);margin-bottom:1.25rem;">
+      Análises de randomização mendeliana — que testam causalidade usando variantes genéticas como proxy da exposição — confirmam que a associação não é inteiramente explicada por fatores de confusão. A randomização mendeliana encontrou OR 1,03 (europeus) e 1,18 (asiáticos) para DAC com psoríase geneticamente determinada, indicando que a inflamação cutânea em si contribui para a aterogênese, independentemente dos fatores de risco tradicionais.
+    </p>
+
+    <div class="section-label">Comorbidades amplificadoras de risco</div>
+    <p style="font-size:.83rem;margin-bottom:.9rem;">Os fatores de risco cardiovasculares tradicionais são significativamente mais prevalentes em pacientes com psoríase, criando uma carga de risco sinérgica:</p>
+
+    <div class="bar-row">
+      <div class="bar-label-row"><span class="bar-label">Obesidade</span><span class="bar-val">OR 2,36</span></div>
+      <div class="bar-track"><div class="bar-fill red" style="width:78%"></div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label-row"><span class="bar-label">Hipertensão arterial</span><span class="bar-val">OR 1,61</span></div>
+      <div class="bar-track"><div class="bar-fill amber" style="width:55%"></div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label-row"><span class="bar-label">Diabetes com complicações</span><span class="bar-val">OR 1,39</span></div>
+      <div class="bar-track"><div class="bar-fill amber" style="width:42%"></div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label-row"><span class="bar-label">Doença vascular periférica</span><span class="bar-val">OR 1,32</span></div>
+      <div class="bar-track"><div class="bar-fill" style="width:35%"></div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label-row"><span class="bar-label">Insuficiência cardíaca congestiva</span><span class="bar-val">OR 1,05</span></div>
+      <div class="bar-track"><div class="bar-fill" style="width:20%"></div></div>
+    </div>
+    <p style="font-size:.73rem;color:var(--muted-foreground);margin-top:.3rem;">Fonte: Kwa &amp; Silverberg, Am J Clin Dermatol 2017. Base de dados nacional de internações, EUA.</p>
+
+    <div class="section-label" style="margin-top:1.25rem;">Mecanismos específicos na psoríase</div>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">
+        🧬 Eixo Th1/Th17 e inflamação vascular <span class="accordion-chevron">▼</span>
+      </button>
+      <div class="accordion-body">
+        Na psoríase, linfócitos Th17 ativados produzem IL-17A, IL-17F e IL-22, enquanto linfócitos Th1 secretam TNF-α e IFN-γ. Estas citocinas alcançam a circulação sistêmica e ativam o endotélio vascular, aumentando a expressão de VCAM-1 (molécula de adesão vascular) e CXCL10. Análises transcriptômicas demonstram sobreposição significativa entre o perfil inflamatório da pele psoriásica e o das placas ateroscleróticas coronarianas — ou seja, a mesma "assinatura molecular" inflamatória está presente tanto na lesão cutânea quanto no vaso coronariano. Modelos murinos com superprodução epidérmica de IL-17A desenvolvem disfunção endotelial, rigidez vascular aumentada e estresse oxidativo, documentando a plausibilidade biológica desta relação.
+      </div>
+    </div>
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">
+        🩺 Dislipidemia pró-aterogênica <span class="accordion-chevron">▼</span>
+      </button>
+      <div class="accordion-body">
+        Pacientes com psoríase apresentam até 15% de redução do HDL-colesterol e — mais relevante — uma redução de 80% na capacidade de efluxo do HDL (HDL efflux capacity), que mede a função antiaterogênica real desta fração. Adicionalmente, há aumento na concentração de partículas LDL pequenas e densas, mais oxidáveis e aterogênicas. A IL-17A e o TNF-α atuam diretamente no metabolismo lipídico hepático, alterando a composição qualitativa das lipoproteínas. Este perfil lipídico adverso muitas vezes não é capturado por um simples painel lipídico convencional, sublinhando a necessidade de avaliação clínica mais abrangente.
+      </div>
+    </div>
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">
+        🩸 Estado pró-trombótico e atividade plaquetária <span class="accordion-chevron">▼</span>
+      </button>
+      <div class="accordion-body">
+        Citocinas cutâneas, especialmente IL-17 e IL-8, estimulam a expressão do fator tecidual (tissue factor) em células endoteliais, favorecendo a coagulação. Há também hiperatividade plaquetária documentada e elevação de granulócitos de baixa densidade (low-density granulocytes), que se correlacionam com a extensão da aterosclerose coronariana medida por escore de cálcio coronário. Estudos de imagem por PET/CT mostram maior inflamação aórtica e das carótidas em pacientes com psoríase ativa, em correlação com os níveis de IL-17 e o PASI (Psoriasis Area and Severity Index).
+      </div>
+    </div>
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">
+        📏 Estratificação por gravidade e ajuste de risco <span class="accordion-chevron">▼</span>
+      </button>
+      <div class="accordion-body">
+        O risco cardiovascular na psoríase é <strong>dependente da gravidade</strong>. As diretrizes conjuntas AAD-NPF recomendam <strong>multiplicar o escore de risco cardiovascular calculado por 1,5</strong> em pacientes com psoríase moderada-grave ou artrite psoriásica, para evitar subestimação do risco. O escore de cálcio coronariano em psoríase moderada-grave é equivalente ao observado em diabéticos — uma comparação que ilustra bem o peso do risco. Pacientes jovens com psoríase grave têm risco desproporcionalmente aumentado, representando uma janela importante de intervenção preventiva.
+      </div>
+    </div>
+
+    <div class="info-amber info-box" style="margin-top:1rem;">
+      <span class="info-box-icon">⚠️</span>
+      <div><strong>Subdiagnóstico real:</strong> Menos de 5% das consultas de psoríase nos EUA incluem rastreio de dislipidemia. 59% dos pacientes hipertensos e 66% dos dislipidêmicos com psoríase estão subtratados (Barbieri et al., JAMA Derm 2022). No Brasil, dados são escassos, mas a realidade provavelmente não é diferente.</div>
+    </div>
+  </div>
+
+</div><!-- /tab-psoriase -->
+
+<!-- ═══ TAB: DERMATITE ATÓPICA ═══════════════════════════════ -->
+<div id="tab-da" class="tab-panel">
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🟡</div>
+      <div>
+        <div class="card-title">Dermatite Atópica (Eczema)</div>
+        <div class="card-subtitle">Risco CV dependente de gravidade, mediado por inflamação Th2 sistêmica</div>
+      </div>
+    </div>
+
+    <div class="info-teal info-box">
+      <span class="info-box-icon">📊</span>
+      <div><strong>Prevalência em adultos:</strong> 2–10%. A associação com doenças cardiovasculares, embora menor que na psoríase, é real e <strong>dependente de gravidade</strong>. Uma meta-análise de 19 estudos populacionais (Ascott et al., J Allergy Clin Immunol 2019) demonstrou associações consistentes com os principais desfechos cardiovasculares.</div>
+    </div>
+
+    <div class="section-label">Magnitude do risco cardiovascular</div>
+    <div class="risk-grid">
+      <div class="risk-cell">
+        <div class="risk-cell-label">Infarto do miocárdio</div>
+        <div class="risk-cell-value">RR 1,12</div>
+        <div class="risk-cell-desc">Meta-análise, 19 estudos populacionais</div>
+      </div>
+      <div class="risk-cell">
+        <div class="risk-cell-label">AVC isquêmico</div>
+        <div class="risk-cell-value">RR 1,17</div>
+        <div class="risk-cell-desc">Ascott et al., JACI 2019</div>
+      </div>
+      <div class="risk-cell">
+        <div class="risk-cell-label">Insuf. cardíaca (grave)</div>
+        <div class="risk-cell-value">HR 1,69</div>
+        <div class="risk-cell-desc">DA grave ativa, coorte UK. Silverwood et al., BMJ 2018</div>
+      </div>
+      <div class="risk-cell">
+        <div class="risk-cell-label">Angina instável (grave)</div>
+        <div class="risk-cell-value">+40–50%</div>
+        <div class="risk-cell-desc">HR 1,4–1,5 na DA grave. Coorte UK.</div>
+      </div>
+    </div>
+
+    <p style="font-size:.83rem;color:var(--muted-foreground);margin:.75rem 0 1.1rem;">
+      Estudo de coorte do Reino Unido (Silverwood et al., BMJ 2018) com seguimento longo demonstrou que a DA grave e predominantemente ativa confere risco 20% maior de AVC (HR 1,22), risco 40–50% maior de IAM e angina instável, e risco 70% maior de insuficiência cardíaca. A taxa de eventos cardiovasculares maiores (MACE) em DA moderada-grave foi estimada em 2,6 por 1.000 pessoas-ano em estudo de coorte de sistema integrado de saúde nos EUA.
+    </p>
+
+    <div class="info-gray info-box">
+      <span class="info-box-icon">🔍</span>
+      <div><strong>Gradiente de severidade:</strong> A meta-análise quantificou um aumento médio de RR de 1,15 entre categorias de gravidade, confirmando que DA leve não controlada não é equivalente a DA grave ativa do ponto de vista do risco cardiovascular. A diretrizes AAD (2022) afirmam que, no momento atual, não há evidência para rastreio cardiovascular diferenciado além do recomendado para a população geral — mas recomendam vigilância em casos graves ou persistentes.</div>
+    </div>
+
+    <div class="section-label" style="margin-top:1rem;">Mecanismo: inflamação Th2 sistêmica</div>
+    <p style="font-size:.83rem;margin-bottom:.9rem;">
+      Em contraste com a psoríase (dominada por Th1/Th17), a dermatite atópica é mediada por um perfil Th2 com elevação de IL-4, IL-13, IL-31 e IL-33. Estas citocinas contribuem para disfunção endotelial sistêmica e ativação imune crônica, embora o mecanismo aterogênico seja potencialmente menos direto que na psoríase. A ativação crônica do sistema imune, perturbação da barreira cutânea com passagem de antígenos para a circulação e disregulação do eixo HPA (hipotálamo-hipófise-adrenal) por coceira crônica e privação de sono também são propostos como vias contribuidoras.
+    </p>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">
+        🚬 Interação com tabagismo e obesidade <span class="accordion-chevron">▼</span>
+      </button>
+      <div class="accordion-body">
+        Um estudo com dois painéis populacionais americanos (Silverberg &amp; Greenland, JACI 2015) demonstrou que a combinação de eczema e tabagismo associou-se a probabilidades ainda mais elevadas de obesidade, hipertensão, pré-diabetes e diabetes tipo 2. A obesidade tem OR de 1,82 em pacientes com DA. Esta sobreposição é clinicamente importante porque tabagismo amplifica a resposta inflamatória Th2 e agrava a disfunção endotelial de forma independente.
+      </div>
+    </div>
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">
+        💊 Segurança cardiovascular dos imunobiológicos em DA <span class="accordion-chevron">▼</span>
+      </button>
+      <div class="accordion-body">
+        Os inibidores de JAK (upadacitinibe, abrocitinibe, baricitinibe) aprovados para DA moderada-grave apresentam um sinal de segurança cardiovascular mais favorável em dados de curto prazo e estudos de vida real em dermatologia do que em reumatologia (onde foram aprovados para populações de maior risco basal). Meta-análise de 35 RCTs com mais de 20.000 pacientes dermatológicos (Ingrassia et al., JAMA Derm 2024) não encontrou diferença significativa em MACE composto (OR 0,83; IC95%: 0,44–1,57) ou TEV (OR 0,95; IC95%: 0,62–1,45). Contudo, estudo de coorte global em DA (Kridin et al., JEADV 2025) identificou risco modestamente aumentado de embolia pulmonar (HR 2,75) e TVP (HR 2,54) com inibidores de JAK versus dupilumabe e metotrexato, com acréscimo absoluto de 7–9 casos por 1.000 pacientes. Dupilumabe (anti-IL-4Rα) permanece como agente de primeira linha biológica com perfil cardiovascular neutro bem estabelecido.
+      </div>
+    </div>
+  </div>
+
+</div><!-- /tab-da -->
+
+<!-- ═══ TAB: HIDRADENITE SUPURATIVA ═════════════════════════ -->
+<div id="tab-hs" class="tab-panel">
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🟠</div>
+      <div>
+        <div class="card-title">Hidradenite Supurativa (HS)</div>
+        <div class="card-subtitle">Maior HR para DCVAS entre as dermatoses inflamatórias comuns — frequentemente subestimada</div>
+      </div>
+    </div>
+
+    <div class="info-red info-box">
+      <span class="info-box-icon">⚠️</span>
+      <div>Em análise de coorte TriNetX (Gupta et al., JDD 2025), a HS apresentou o <strong>maior hazard ratio para DCVAS aterosclerótica</strong> entre as doenças inflamatórias de pele avaliadas: <strong>HR 1,32 (IC95%: 1,17–1,48)</strong>, superando a psoríase (HR 1,21) e a dermatite atópica.</div>
+    </div>
+
+    <div class="section-label">Comorbidades metabólicas na HS</div>
+    <div class="risk-grid">
+      <div class="risk-cell">
+        <div class="risk-cell-label">DCVAS aterosclerótica</div>
+        <div class="risk-cell-value">HR 1,32</div>
+        <div class="risk-cell-desc">O maior HR entre as dermatoses comuns</div>
+      </div>
+      <div class="risk-cell">
+        <div class="risk-cell-label">Obesidade</div>
+        <div class="risk-cell-value">OR 2,79</div>
+        <div class="risk-cell-desc">Maior OR dentre todas as dermatoses estudadas</div>
+      </div>
+      <div class="risk-cell">
+        <div class="risk-cell-label">Hipertensão</div>
+        <div class="risk-cell-value">OR 1,96</div>
+        <div class="risk-cell-desc">Quase o dobro de chance versus controles</div>
+      </div>
+      <div class="risk-cell">
+        <div class="risk-cell-label">Diabetes com complicações</div>
+        <div class="risk-cell-value">OR 1,39</div>
+        <div class="risk-cell-desc">Comparável ao risco observado em psoríase</div>
+      </div>
+    </div>
+
+    <p style="font-size:.83rem;margin:1rem 0;">
+      A HS é uma doença inflamatória crônica dos folículos pilosos em regiões de dobras cutâneas (axilas, virilhas, região submamária). Caracteriza-se por infiltração neutrofílica, formação de abscessos, fístulas e cicatrizes. O perfil inflamatório inclui elevação de TNF-α, IL-1β, IL-17 e IL-10. A coexistência muito frequente de obesidade (um fator tanto de risco quanto de exacerbação da HS) cria uma via metabólica-inflamatória amplificada: o tecido adiposo visceral gera TNF-α e IL-6 que sustentam a inflamação sistêmica e promovem aterogênese independentemente.
+    </p>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">
+        🔬 Por que o risco é tão elevado na HS? <span class="accordion-chevron">▼</span>
+      </button>
+      <div class="accordion-body">
+        Três fatores convergem de forma particularmente adversa na HS: (1) <strong>Carga inflamatória sistêmica elevada</strong> — os níveis de PCR e citocinas pró-inflamatórias na HS ativa são proporcionalmente altos dado o volume de doença; (2) <strong>Alta prevalência de obesidade mórbida</strong> (OR 2,79), que é, em si, um fator de risco cardiovascular independente e sinergiza com a inflamação mediada por citocinas cutâneas; (3) <strong>Tabagismo</strong>, que é tanto fator de risco para HS quanto para doenças cardiovasculares, criando uma associação confusora difícil de separar — mas que na prática clínica deve motivar intervenção imediata. A dor crônica e o impacto psicossocial da HS também contribuem para sedentarismo e piora de outros fatores de risco.
+      </div>
+    </div>
+
+    <div class="info-teal info-box" style="margin-top:.75rem;">
+      <span class="info-box-icon">💡</span>
+      <div><strong>Implicação clínica:</strong> Pacientes com HS — frequentemente jovens e economicamente ativos — têm sua doença cardiovascular subestimada por clínicos e cardiologistas. O elevado HR para DCVAS, combinado com a alta prevalência de obesidade e hipertensão, indica que avaliação cardiovascular periódica deve ser parte do cuidado multidisciplinar padrão nesses pacientes.</div>
+    </div>
+  </div>
+
+</div><!-- /tab-hs -->
+
+<!-- ═══ TAB: LÚPUS ════════════════════════════════════════════ -->
+<div id="tab-lupus" class="tab-panel">
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🟣</div>
+      <div>
+        <div class="card-title">Lúpus Eritematoso Cutâneo e Sistêmico</div>
+        <div class="card-subtitle">Risco cardiovascular substancial — o LES confere risco 2× maior de DCVAS prevalente</div>
+      </div>
+    </div>
+
+    <div class="info-purple info-box">
+      <span class="info-box-icon">📋</span>
+      <div>Estudo de coorte emparelhado publicado no <strong>JAMA Dermatology (2025)</strong> por Chen et al. avaliou incidência e prevalência de DCVAS em lúpus eritematoso cutâneo (LEC) e sistêmico (LES). As incidências de DCVAS por 1.000 pessoas-ano foram: <strong>LES: 24,8</strong> · <strong>LEC: 15,2</strong> · Psoríase: 14,0 · Controles: 10,3.</div>
+    </div>
+
+    <div class="section-label">Comparação de risco entre formas de lúpus</div>
+    <div class="risk-grid">
+      <div class="risk-cell">
+        <div class="risk-cell-label">DCVAS prevalente — LES</div>
+        <div class="risk-cell-value">OR 2,41</div>
+        <div class="risk-cell-desc">Versus controles saudáveis pareados</div>
+      </div>
+      <div class="risk-cell">
+        <div class="risk-cell-label">DCVAS prevalente — LEC</div>
+        <div class="risk-cell-value">OR 1,72</div>
+        <div class="risk-cell-desc">Risco elevado mesmo sem comprometimento sistêmico</div>
+      </div>
+      <div class="risk-cell">
+        <div class="risk-cell-label">DCVAS incidente — LES</div>
+        <div class="risk-cell-value">HR 2,23</div>
+        <div class="risk-cell-desc">Ajustado para idade, sexo e comorbidades</div>
+      </div>
+      <div class="risk-cell">
+        <div class="risk-cell-label">DCVAS incidente — LEC</div>
+        <div class="risk-cell-value">HR 1,32</div>
+        <div class="risk-cell-desc">Risco significativamente elevado mesmo na forma cutânea isolada</div>
+      </div>
+    </div>
+
+    <p style="font-size:.83rem;margin:1rem 0 .8rem;">
+      Um achado clínico relevante deste estudo é que o <strong>LEC isolado</strong> — frequentemente considerado uma forma mais benigna da doença — já confere risco cardiovascular significativamente elevado (OR 1,72 para DCVAS prevalente, HR 1,32 para incidente). Isso sugere que a inflamação imunomediada cutânea, mesmo sem comprometimento renal, hematológico ou articular do LES pleno, ativa mecanismos aterogênicos. Os autores recomendam que o LEC seja considerado um <strong>fator de risco aumentador de DCVAS</strong>, com implementação de estratégias de redução de risco cardiovascular, monitorização da pressão arterial, dosagem regular de colesterol e início de estatina em pacientes de risco intermediário.
+    </p>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">
+        🔬 Mecanismos cardiovasculares no lúpus <span class="accordion-chevron">▼</span>
+      </button>
+      <div class="accordion-body">
+        No LES, múltiplos mecanismos contribuem para o risco cardiovascular acelerado: (1) <strong>Autoanticorpos</strong> — anti-fosfolípides (anticoagulante lúpico, anticardiolipina, anti-β2GPI) promovem estado pró-trombótico e são responsáveis por uma proporção significativa dos eventos cardiovasculares e cerebrovasculares em LES; (2) <strong>Inflamação sistêmica sustentada</strong> com elevação de IFN-α, TNF-α, IL-6 e ativação do complemento, que ativam o endotélio e promovem disfunção vascular; (3) <strong>Ativação de neutrófilos e NETs</strong> (Neutrophil Extracellular Traps) com atividade pró-coagulante e lesão endotelial direta; (4) <strong>Efeitos dos imunossupressores</strong> — o uso crônico de corticosteroides contribui independentemente para dislipidemia, hipertensão e resistência insulínica. A nefrite lúpica, quando presente, amplifica o risco por adicionar disfunção renal e proteinúria ao perfil de risco.
+      </div>
+    </div>
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">
+        💊 Manejo cardiovascular no lúpus <span class="accordion-chevron">▼</span>
+      </button>
+      <div class="accordion-body">
+        A hidroxicloroquina tem efeitos pleiotrópicos favoráveis documentados — melhora do perfil lipídico, redução de eventos trombóticos e proteção cardiovascular geral — sendo recomendada como terapia base na maioria dos pacientes com LES. Estatinas são recomendadas para risco intermediário-alto, com evidência de redução de DCVAS em LES. O controle rigoroso da atividade da doença é clinicamente o fator mais importante: elevações de SLEDAI correlacionam-se com maior risco cardiovascular. Pacientes com síndrome antifosfolípide (SAF) associada requerem anticoagulação (warfarina para trombose arterial; discutido para venosa), e aqueles com SAF "de alto risco" (triple-positivity) têm indicação estabelecida de anticoagulação indefinida.
+      </div>
+    </div>
+  </div>
+
+</div><!-- /tab-lupus -->
+
+<!-- ═══ TAB: OUTRAS DOENÇAS ══════════════════════════════════ -->
+<div id="tab-outras" class="tab-panel">
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">⚪</div>
+      <div>
+        <div class="card-title">Outras Doenças de Pele com Risco Cardiovascular</div>
+        <div class="card-subtitle">Da esclerose sistêmica (maior risco) a rosácea e alopecia areata (risco emergente)</div>
+      </div>
+    </div>
+
+    <div class="section-label">Esclerose Sistêmica (Esclerodermia)</div>
+    <div class="risk-grid" style="margin-bottom:1.25rem;">
+      <div class="risk-cell">
+        <div class="risk-cell-label">Risco de DCV incidente</div>
+        <div class="risk-cell-value">HR 3,59</div>
+        <div class="risk-cell-desc">IC95%: 2,81–4,59. Lancet 2022, 22M indivíduos</div>
+      </div>
+      <div class="risk-cell">
+        <div class="risk-cell-label">Contexto</div>
+        <div class="risk-cell-value">+259%</div>
+        <div class="risk-cell-desc">Um dos maiores riscos cardiovasculares entre TODAS as doenças autoimunes</div>
+      </div>
+    </div>
+    <p style="font-size:.83rem;color:var(--muted-foreground);margin-bottom:1.25rem;">
+      Estudo de Conrad et al. (<em>Lancet</em> 2022) avaliou 19 doenças autoimunes e 12 desfechos cardiovasculares em mais de 22 milhões de indivíduos no Reino Unido. A esclerose sistêmica obteve o terceiro maior HR para DCV incidente, superado apenas por vasculites sistêmicas e síndrome antifosfolípide. Fibroação progressiva + vasculopatia + inflamação sistêmica criam uma tríade de risco cardiovascular extremo nesta doença.
+    </p>
+
+    <div class="section-label">Dermatomiosite</div>
+    <p style="font-size:.83rem;margin-bottom:1.25rem;">
+      A dermatomiosite associa-se a uma razão de incidência padronizada (SIR) de 2,9 para doença coronariana — quase triplicando o risco esperado. Estudos de biomarcadores demonstram ativação endotelial persistente (ICAM-1, E-selectina, von Willebrand elevados) mesmo durante remissão clínica da doença, indicando dano vascular subclínico contínuo independente da atividade muscular aparente. A miocardite é também uma manifestação direta da dermatomiosite, ocorrendo em 30–40% dos casos em séries clínicas.
+    </p>
+
+    <div class="section-label">Líquen Plano</div>
+    <p style="font-size:.83rem;margin-bottom:1.25rem;">
+      Estudo espanhol (Arias-Santiago et al., Am J Med 2011) demonstrou que pacientes com líquen plano apresentam risco quase triplicado de dislipidemia (OR ajustado 2,85; IC95%: 1,33–5,09) versus controles. Estudos adicionais documentaram elevação de homocisteína e fibrinogênio nestes pacientes — dois marcadores de risco cardiovascular independentes. O mecanismo proposto envolve ativação imune mediada por linfócitos T citotóxicos e produção de TNF-α que excedem o compartimento cutâneo.
+    </p>
+
+    <div class="section-label">Doenças Fibróticas Cutâneas</div>
+    <div class="table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Condição</th>
+            <th>HR para DCVAS</th>
+            <th>Fonte</th>
+            <th>Nível de evidência</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Cicatrizes hipertróficas</td>
+            <td class="hr-val">1,40</td>
+            <td>Gupta et al., JDD 2025</td>
+            <td><span class="badge badge-mod">Moderado</span></td>
+          </tr>
+          <tr>
+            <td>Morfeia</td>
+            <td class="hr-val">1,36</td>
+            <td>Gupta et al., JDD 2025</td>
+            <td><span class="badge badge-mod">Moderado</span></td>
+          </tr>
+          <tr>
+            <td>Líquen escleroso</td>
+            <td class="hr-val">1,30</td>
+            <td>Gupta et al., JDD 2025</td>
+            <td><span class="badge badge-low">Emergente</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-label" style="margin-top:1rem;">Rosácea e Alopecia Areata</div>
+    <p style="font-size:.83rem;margin-bottom:.75rem;">
+      Estudo transversal (Pagan et al., JDD 2023) sugere associação de rosácea e alopecia areata com doenças circulatórias, hipertensivas e arteriais. Em ambas as condições, elevações de PCR e velocidade de hemossedimentação (VHS) indicam inflamação sistêmica de baixo grau. Para rosácea, algumas análises sugerem associação com dislipidemia e doenças coronárias, possivelmente mediada por ativação de receptores Toll-like e cathelicidinas que transcendem a pele. A evidência permanece menos robusta e requer confirmação em estudos prospectivos maiores.
+    </p>
+
+    <div class="info-gray info-box">
+      <span class="info-box-icon">📌</span>
+      <div><strong>Perspectiva clínica:</strong> Mesmo condições dermatológicas classicamente consideradas "leves" — como rosácea crônica ou líquen plano oral — podem ser marcadores de inflamação sistêmica. A avaliação do perfil lipídico e da pressão arterial não deve ser negligenciada neste espectro de pacientes.</div>
+    </div>
+  </div>
+
+</div><!-- /tab-outras -->
+
+<hr class="section-divider" />
+
+<!-- MECANISMOS FISIOPATOLÓGICOS -->
+<section id="mecanismos" class="section-animate">
+  <div class="section-label">Fisiopatologia</div>
+  <div class="section-title">Como a pele inflama o coração</div>
+  <p class="section-desc">A inflamação crônica na pele não permanece localizada. Via circulação sistêmica, citocinas e células imunes ativadas atingem o endotélio coronariano, acelerando a aterosclerose por mecanismos múltiplos e interconectados.</p>
+
+  <div class="mech-flow">
+    <div class="mech-node" style="background:rgba(220,38,38,.1);border-color:rgba(220,38,38,.3);">🔴 Inflamação cutânea ativa</div>
+    <div class="mech-arrow">→</div>
+    <div class="mech-node">Citocinas sistêmicas<br><small style="color:var(--muted-foreground)">TNF-α, IL-17, IL-4/13</small></div>
+    <div class="mech-arrow">→</div>
+    <div class="mech-node">Ativação endotelial<br><small style="color:var(--muted-foreground)">VCAM-1↑, CXCL10↑</small></div>
+    <div class="mech-arrow">→</div>
+    <div class="mech-node" style="background:rgba(220,38,38,.1);border-color:rgba(220,38,38,.3);">❤️ Placa aterosclerótica instável</div>
+  </div>
+
+  <div class="card" style="margin-top:1.25rem;">
+    <div class="card-header">
+      <div class="card-icon">⚙️</div>
+      <div>
+        <div class="card-title">Mecanismos fisiopatológicos centrais</div>
+        <div class="card-subtitle">Cinco vias que conectam inflamação cutânea a eventos cardiovasculares</div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">
+        1️⃣ Disfunção endotelial — o passo inicial da aterogênese <span class="accordion-chevron">▼</span>
+      </button>
+      <div class="accordion-body">
+        A disfunção endotelial — caracterizada por redução da biodisponibilidade de óxido nítrico (NO), aumento de espécies reativas de oxigênio (ROS) e expressão aumentada de moléculas de adesão (ICAM-1, VCAM-1, E-selectina) — é o evento mais precoce no processo aterosclerótico e é consistentemente documentada em doenças inflamatórias cutâneas. Em modelos murinos com superprodução epidérmica de IL-17A, a disfunção endotelial é demonstrável mesmo antes de lesões ateroscleróticas macroscópicas. Em humanos, a dilatação mediada por fluxo (FMD) — padrão-ouro não invasivo de avaliação endotelial — está reduzida em psoríase, LES e esclerodermia, correlacionando-se com o grau de atividade da doença.
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">
+        2️⃣ Sobreposição transcriptômica pele-placa aterosclerótica <span class="accordion-chevron">▼</span>
+      </button>
+      <div class="accordion-body">
+        Análises transcriptômicas comparando biópsias de pele psoriásica com placas ateroscleróticas coronárias revelaram sobreposição significativa nos genes de inflamação mais expressos — em particular VCAM-1 e CXCL10. Esta "assinatura molecular compartilhada" sustenta biologicamente a relação causal entre as duas condições, indo além de uma mera associação epidemiológica. Estudos de imagem funcional (FDG-PET/CT) mostram que, em pacientes com psoríase ativa, a inflamação aórtica e carotídea é detectável e se correlaciona com os níveis de IL-17 e com o índice PASI — e que o controle bem-sucedido da psoríase reduz estes sinais inflamatórios vasculares.
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">
+        3️⃣ Estado pró-trombótico e ativação plaquetária <span class="accordion-chevron">▼</span>
+      </button>
+      <div class="accordion-body">
+        Citocinas produzidas na pele inflamada (especialmente IL-17, IL-8 e TNF-α) estimulam a expressão do fator tecidual (TF) em células endoteliais e monócitos circulantes, ativando a cascata de coagulação. Paralelamente, há hiperatividade plaquetária documentada com aumento de P-selectina de superfície e formação de microagregados. Em psoríase, granulócitos de baixa densidade (LDGs — low-density granulocytes) estão elevados e se correlacionam de forma independente com a extensão da aterosclerose coronariana por escore de cálcio (CAC). No LES, a formação de NETs (Neutrophil Extracellular Traps) contribui ativamente para a trombose vascular e para o dano endotelial direto.
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">
+        4️⃣ Estresse oxidativo e lipoproteínas disfuncionais <span class="accordion-chevron">▼</span>
+      </button>
+      <div class="accordion-body">
+        A inflamação sistêmica crônica promove estresse oxidativo que oxida as partículas de LDL, transformando-as em LDL oxidado (ox-LDL). O ox-LDL é fagocitado por macrófagos na parede vascular, formando as células espumosas (foam cells) que compõem o núcleo aterosclerótico. Em psoríase, há paralelamente redução crítica da capacidade de efluxo do HDL (em até 80%) — o HDL perde sua função antiaterogênica de transporte reverso de colesterol, tornando-se "disfuncional" independentemente dos seus níveis plasmáticos. Este fenômeno explica por que o risco cardiovascular real pode ser subestimado por um perfil lipídico convencional que mostra "HDL normal" num paciente com psoríase grave.
+      </div>
+    </div>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">
+        5️⃣ Papel do eixo intestinal e da microbiota <span class="accordion-chevron">▼</span>
+      </button>
+      <div class="accordion-body">
+        Evidências crescentes apontam para uma relação entre disbiose intestinal, inflamação cutânea e risco cardiovascular. Em psoríase e DA, há alterações na composição da microbiota intestinal com redução de bactérias produtoras de ácidos graxos de cadeia curta (SCFAs) como Faecalibacterium prausnitzii, que têm propriedades anti-inflamatórias. A permeabilidade intestinal aumentada (leaky gut) permite translocação de lipopolissacarídeos bacterianos (LPS) para a circulação, amplificando a inflamação sistêmica via receptores TLR4. Esta via mecanística é área ativa de investigação e pode representar futura oportunidade terapêutica (probióticos, moduladores da microbiota).
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- TABELA COMPARATIVA GERAL -->
+<section id="tabela" class="section-animate">
+  <div class="section-label">Panorama comparativo</div>
+  <div class="section-title">Resumo do risco cardiovascular por doença</div>
+  <p class="section-desc">Dados de estudos populacionais e meta-análises de grande escala. O risco é dependente de gravidade e amplificado pela presença de comorbidades.</p>
+
+  <div class="table-wrap">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Doença</th>
+          <th>Prevalência</th>
+          <th>Risco CV principal</th>
+          <th>Magnitude</th>
+          <th>Reconhecimento ACC/AHA</th>
+          <th>Evidência</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Psoríase</strong></td>
+          <td>2–3%</td>
+          <td>DAC, IAM, DCVAS</td>
+          <td class="hr-val">HR 1,21 · RR 1,51</td>
+          <td><span class="badge badge-high">Fator aumentador</span></td>
+          <td><span class="badge badge-info">Forte</span></td>
+        </tr>
+        <tr>
+          <td><strong>Hidradenite Supurativa</strong></td>
+          <td>~1%</td>
+          <td>DCVAS aterosclerótica</td>
+          <td class="hr-val">HR 1,32</td>
+          <td><span class="badge badge-mod">Reconhecida</span></td>
+          <td><span class="badge badge-info">Moderada</span></td>
+        </tr>
+        <tr>
+          <td><strong>LES (Lúpus Sistêmico)</strong></td>
+          <td>0,05–0,1%</td>
+          <td>DCVAS, TEV, AVC</td>
+          <td class="hr-val">HR 2,23 · OR 2,41</td>
+          <td><span class="badge badge-high">Fator aumentador</span></td>
+          <td><span class="badge badge-info">Forte</span></td>
+        </tr>
+        <tr>
+          <td><strong>LEC (Lúpus Cutâneo)</strong></td>
+          <td>~0,07%</td>
+          <td>DCVAS incidente</td>
+          <td class="hr-val">HR 1,32 · OR 1,72</td>
+          <td><span class="badge badge-mod">2025 emergente</span></td>
+          <td><span class="badge badge-info">Moderada</span></td>
+        </tr>
+        <tr>
+          <td><strong>Esclerose Sistêmica</strong></td>
+          <td>0,01–0,02%</td>
+          <td>DCV global</td>
+          <td class="hr-val">HR 3,59</td>
+          <td><span class="badge badge-high">Alto risco</span></td>
+          <td><span class="badge badge-info">Forte</span></td>
+        </tr>
+        <tr>
+          <td><strong>Dermatomiosite</strong></td>
+          <td>Rara</td>
+          <td>DAC, miocardite</td>
+          <td class="hr-val">SIR 2,9</td>
+          <td><span class="badge badge-mod">Reconhecida</span></td>
+          <td><span class="badge badge-mod">Moderada</span></td>
+        </tr>
+        <tr>
+          <td><strong>Dermatite Atópica</strong></td>
+          <td>2–10%</td>
+          <td>IAM, AVC, IC</td>
+          <td class="hr-val">RR 1,12–1,26</td>
+          <td><span class="badge badge-low">Vigilância</span></td>
+          <td><span class="badge badge-mod">Moderada</span></td>
+        </tr>
+        <tr>
+          <td><strong>Líquen Plano</strong></td>
+          <td>~1%</td>
+          <td>Dislipidemia, CV</td>
+          <td class="hr-val">OR 2,85 dislipi.</td>
+          <td><span class="badge badge-low">Emergente</span></td>
+          <td><span class="badge badge-low">Limitada</span></td>
+        </tr>
+        <tr>
+          <td><strong>Rosácea / Alopecia Areata</strong></td>
+          <td>2–5% / 2%</td>
+          <td>Hipertensão, arterial</td>
+          <td>Associação moderada</td>
+          <td><span class="badge badge-low">Emergente</span></td>
+          <td><span class="badge badge-low">Limitada</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- TRIAGEM E MANEJO -->
+<section id="triagem" class="section-animate">
+  <div class="section-label">Prevenção &amp; Triagem</div>
+  <div class="section-title">O que fazer na prática</div>
+  <p class="section-desc">
+    Diretrizes do ACC/AHA (2023), AAD-NPF (2019) e AACE (2025) convergem em recomendar avaliação cardiovascular ativa em pacientes com doenças inflamatórias de pele — especialmente nas formas moderadas a graves.
+  </p>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📋</div>
+      <div>
+        <div class="card-title">Protocolo de triagem cardiovascular recomendado</div>
+        <div class="card-subtitle">Para pacientes com doenças inflamatórias cutâneas — especialmente psoríase, HS, lúpus e esclerodermia</div>
+      </div>
+    </div>
+
+    <ul class="check-list">
+      <li>
+        <span class="ck-icon">🩺</span>
+        <div>
+          <strong>Pressão arterial</strong> — Medição na consulta inicial e pelo menos anual. Em psoríase, a gravidade da doença de pele correlaciona-se com os níveis de IL-17A que modulam o sistema renina-angiotensina. A meta pressórica deve seguir as diretrizes vigentes (&lt;130/80 mmHg para a maioria dos pacientes com alto risco CV).
+        </div>
+      </li>
+      <li>
+        <span class="ck-icon">🩸</span>
+        <div>
+          <strong>Perfil lipídico completo</strong> — Na consulta inicial e a cada 1–2 anos (ou após mudança de tratamento sistêmico). Considerar também ApoB ou LDL-P (partículas de LDL) em psoríase grave, pois HDL funcional pode estar comprometido com níveis aparentemente normais.
+        </div>
+      </li>
+      <li>
+        <span class="ck-icon">🍬</span>
+        <div>
+          <strong>Glicemia de jejum e HbA1c</strong> — Na consulta inicial e pelo menos anual. O risco de diabetes é dose-dependente da gravidade da psoríase e amplificado pela artrite psoriásica. Em LEC/LES com uso de corticosteroides, monitorização de glicemia é mandatória.
+        </div>
+      </li>
+      <li>
+        <span class="ck-icon">⚖️</span>
+        <div>
+          <strong>Índice de massa corporal e circunferência abdominal</strong> — A obesidade (especialmente visceral) amplifica o estado inflamatório via adipocinas (TNF-α, IL-6) e agrava a resposta a biológicos. Cada 5 kg/m² de IMC aumenta em 23–31% os odds de doença psoriásica (randomização mendeliana).
+        </div>
+      </li>
+      <li>
+        <span class="ck-icon">🚬</span>
+        <div>
+          <strong>Tabagismo</strong> — Avaliação e cessação ativa. OR de DCV em psoríase + tabagismo chega a 2,55 em registros chineses. Tabagismo é fator de risco tanto para HS quanto para DCV, sendo intervenção de alto impacto e baixo custo.
+        </div>
+      </li>
+      <li>
+        <span class="ck-icon">📊</span>
+        <div>
+          <strong>Cálculo do risco cardiovascular em 10 anos</strong> — Utilizar calculadora validada (Pooled Cohort Equations para populações ocidentais; Framingham para risco absoluto). Em psoríase moderada-grave ou artrite psoriásica: <strong>multiplicar o escore calculado por 1,5</strong> (diretrizes AAD-NPF). Em LES: considerar modelos específicos como o QRISK3 que incorpora autoimunidade.
+        </div>
+      </li>
+      <li>
+        <span class="ck-icon">❤️</span>
+        <div>
+          <strong>Escore de cálcio coronariano (CAC)</strong> — Considerar em pacientes de risco intermediário para reclassificação. CAC em psoríase moderada-grave é equivalente ao de pacientes diabéticos. Útil para motivar tratamento preventivo e qualificar a indicação de estatinas.
+        </div>
+      </li>
+      <li>
+        <span class="ck-icon">🏃</span>
+        <div>
+          <strong>Atividade física e dieta</strong> — Exercício aeróbico regular reduz o índice PASI em psoríase além de reduzir risco CV. Dieta mediterrânea associa-se a menor inflamação sistêmica, melhor controle do eczema e redução de eventos cardiovasculares em estudos observacionais.
+        </div>
+      </li>
+    </ul>
+
+    <div class="info-amber info-box" style="margin-top:1rem;">
+      <span class="info-box-icon">💊</span>
+      <div>
+        <strong>Estatinas:</strong> Recomendadas para pacientes com risco elevado ou intermediário após avaliação. Estudos retrospectivos demonstram redução significativa na incidência de IAM em pacientes com psoríase tratados com estatinas. A AACE (2025) recomenda considerar estatinas independentemente da gravidade da doença de pele em pacientes com múltiplos fatores de risco CV ou risco intermediário calculado. A interação estatina-imunossupressor (especialmente ciclosporina e alguns biológicos) deve ser considerada na escolha do agente.
+      </div>
+    </div>
+
+    <div class="info-red info-box">
+      <span class="info-box-icon">🚨</span>
+      <div>
+        <strong>Lacuna de implementação:</strong> Apenas 28,4% dos médicos realizam rastreio global de fatores de risco e somente 24,4% calculam o risco em 10 anos em pacientes com psoríase (Berna-Rico et al., 2023). Colaboração multidisciplinar entre dermatologistas, reumatologistas, cardiologistas e clínicos gerais é essencial — estudos mostram que estratégias combinadas de educação, auditoria e decisão clínica assistida são as mais eficazes para melhorar desfechos.
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- SEGURANÇA CV DE TERAPIAS SISTÊMICAS -->
+<section id="terapias" class="section-animate">
+  <div class="section-label">Segurança terapêutica</div>
+  <div class="section-title">Inibidores de JAK e biológicos: o que sabemos</div>
+  <p class="section-desc">
+    Uma das questões mais relevantes da dermatologia moderna: os novos tratamentos sistêmicos aumentam o risco cardiovascular? A evidência atual — acumulada em dezenas de RCTs e grandes estudos de vida real — oferece respostas mais tranquilizadoras do que alarmantes, mas com nuances importantes.
+  </p>
+
+  <div class="info-teal info-box">
+    <span class="info-box-icon">⚖️</span>
+    <div>
+      <strong>Contexto importante:</strong> Os avisos em caixa preta (boxed warnings) da FDA para inibidores de JAK foram baseados principalmente no estudo ORAL Surveillance (tofacitinibe em artrite reumatoide de alto risco cardiovascular basal). Populações dermatológicas são tipicamente mais jovens e com menor risco CV basal — o que explica os resultados mais favoráveis nos estudos de dermatologia.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">💊</div>
+      <div>
+        <div class="card-title">Inibidores de JAK (baricitinibe, upadacitinibe, abrocitinibe)</div>
+        <div class="card-subtitle">Meta-análises de RCTs em populações dermatológicas — dados geralmente tranquilizadores</div>
+      </div>
+    </div>
+
+    <div class="risk-grid">
+      <div class="risk-cell">
+        <div class="risk-cell-label">MACE composto (35 RCTs)</div>
+        <div class="risk-cell-value">OR 0,83</div>
+        <div class="risk-cell-desc">IC95%: 0,44–1,57. Não significativo. Ingrassia et al., JAMA Derm 2024. N&gt;20.000</div>
+      </div>
+      <div class="risk-cell">
+        <div class="risk-cell-label">TEV (35 RCTs)</div>
+        <div class="risk-cell-value">OR 0,95</div>
+        <div class="risk-cell-desc">IC95%: 0,62–1,45. Não significativo. Mesmo estudo.</div>
+      </div>
+      <div class="risk-cell">
+        <div class="risk-cell-label">MACE (45 RCTs, vida curta)</div>
+        <div class="risk-cell-value">RR 0,47</div>
+        <div class="risk-cell-desc">IC95%: 0,28–0,80. Ireland et al., JAMA Derm 2024.</div>
+      </div>
+      <div class="risk-cell">
+        <div class="risk-cell-label">Mortalidade (vida real)</div>
+        <div class="risk-cell-value">HR 0,47</div>
+        <div class="risk-cell-desc">JAK vs. MTX/ciclosporina. Lin et al., CPT 2026. Menor mortalidade geral.</div>
+      </div>
+    </div>
+
+    <div class="accordion" style="margin-top:1rem;">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">
+        ⚠️ Sinal de tromboembolismo venoso em DA — coorte global <span class="accordion-chevron">▼</span>
+      </button>
+      <div class="accordion-body">
+        Estudo de coorte global em DA (Kridin et al., JEADV 2025) identificou risco modestamente aumentado de embolia pulmonar (HR 2,75; IC95%: 1,19–6,38) e trombose venosa profunda (HR 2,54; IC95%: 1,14–5,64) com inibidores de JAK versus dupilumabe e metotrexato. O risco absoluto, contudo, é pequeno: aproximadamente <strong>7–9 casos adicionais por 1.000 pacientes</strong>. Este sinal deve ser contextualizado: pacientes alocados para inibidores de JAK frequentemente apresentam doença mais grave e comorbidades que podem confundir a análise, mesmo com ajuste estatístico. A recomendação atual é preferir dupilumabe como agente biológico de primeira linha em DA, reservando inibidores de JAK para não responsivos ou casos especiais, com atenção ao histórico de tromboembolismo.
+      </div>
+    </div>
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAccordion(this)">
+        🔬 Dados de extensão de longo prazo — upadacitinibe em DA <span class="accordion-chevron">▼</span>
+      </button>
+      <div class="accordion-body">
+        Dados de extensão de 5 anos com upadacitinibe em dermatite atópica (reportados na revisão do Lancet por Guttman-Yassky et al., 2025) mostram taxas estáveis de eventos adversos, com MACE e TEV abaixo de 1% acumulados em 5 anos de seguimento. Este perfil é consistente com o esperado para uma população de DA (mais jovem, menor risco cardiovascular basal) versus as populações de artrite reumatoide onde os sinais foram originalmente detectados.
+      </div>
+    </div>
+
+    <div class="section-label" style="margin-top:1.25rem;">Biológicos e risco cardiovascular</div>
+    <p style="font-size:.83rem;margin-bottom:.9rem;">
+      Meta-análise de rede (Mattay et al., Clin Gastroenterol Hepatol 2024) avaliando 40 estudos com 126.961 pacientes com doenças inflamatórias imunomediadas encontrou que anti-TNF-α (OR 2,49), inibidores de JAK (OR 2,64) e anti-IL-12/23 (OR 3,15) associaram-se a maior MACE versus placebo — contudo, <strong>as magnitudes não diferiram significativamente entre classes</strong>, e o efeito pode refletir maior atividade da doença (e portanto maior risco basal) nos grupos alocados a terapias ativas. Em estudos comparativos cabeça a cabeça em artrite psoriásica, inibidores de JAK não apresentaram maior risco cardiovascular versus inibidores de TNF ou IL-17 em 3 anos (HR 0,977 vs. TNFi).
+    </p>
+
+    <div class="info-teal info-box">
+      <span class="info-box-icon">✅</span>
+      <div>
+        <strong>Conclusão prática:</strong> Os biológicos disponíveis (anti-TNF, anti-IL-17, anti-IL-23, anti-IL-4/13) têm perfil cardiovascular neutro ou potencialmente favorável em populações dermatológicas, e a escolha deve ser guiada pela eficácia na doença de pele, pelo perfil de comorbidades e pelo histórico de risco trombótico. Pacientes com MACE prévio ou TEV recente devem ter discussão específica quanto ao uso de inibidores de JAK, com preferência por dupilumabe (em DA) ou agentes anti-IL-17/23 (em psoríase).
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- REFERÊNCIAS -->
+<section id="referencias" class="section-animate">
+  <div class="section-label">Referências bibliográficas</div>
+  <div class="section-title">Fontes e evidências</div>
+  <p class="section-desc">45 referências primárias. Estudos principais incluem meta-análises, RCTs, coortes populacionais e randomização mendeliana publicados em JAMA, Lancet, NEJM, JACC, BMJ e periódicos especializados.</p>
+
+  <div class="card">
+    <ol class="ref-list">
+      <li class="ref-item"><span class="ref-num">1</span><div><div class="ref-title">Psoriasis and Cardiovascular Disease Risk in European and East Asian Populations: Evidence From Meta-Analysis and Mendelian Randomization</div><div class="ref-meta">Zhang L et al. <em>BMC Medicine.</em> 2022;20(1):421. doi:10.1186/s12916-022-02617-5</div></div></li>
+      <li class="ref-item"><span class="ref-num">2</span><div><div class="ref-title">Evaluating the Risk of Atherosclerotic Cardiovascular Disease in Inflammatory Skin Disease: Insights From a TriNetX Cohort Study</div><div class="ref-meta">Gupta N et al. <em>Journal of Drugs in Dermatology.</em> 2025;24(12):1181-1185. doi:10.36849/JDD.9380</div></div></li>
+      <li class="ref-item"><span class="ref-num">3</span><div><div class="ref-title">Association Between Inflammatory Skin Disease and Cardiovascular and Cerebrovascular Co-Morbidities in US Adults</div><div class="ref-meta">Kwa MC, Silverberg JI. <em>Am J Clin Dermatol.</em> 2017;18(6):813-823. doi:10.1007/s40257-017-0293-x</div></div></li>
+      <li class="ref-item"><span class="ref-num">4</span><div><div class="ref-title">From the Medical Board of the NPF: The Risk of Cardiovascular Disease in Individuals With Psoriasis</div><div class="ref-meta">Hugh J et al. <em>J Am Acad Dermatol.</em> 2014;70(1):168-77. doi:10.1016/j.jaad.2013.09.020</div></div></li>
+      <li class="ref-item"><span class="ref-num">5</span><div><div class="ref-title">Psoriasis</div><div class="ref-meta">Griffiths CEM et al. <em>Lancet.</em> 2021;397(10281):1301-1315. doi:10.1016/S0140-6736(20)32549-6</div></div></li>
+      <li class="ref-item"><span class="ref-num">6</span><div><div class="ref-title">Cardiovascular Risk in Patients With Psoriasis: JACC Review Topic of the Week</div><div class="ref-meta">Garshick MS et al. <em>JACC.</em> 2021;77(13):1670-1680. doi:10.1016/j.jacc.2021.02.009</div></div></li>
+      <li class="ref-item"><span class="ref-num">7</span><div><div class="ref-title">Atopic Eczema and Major Cardiovascular Outcomes: A Systematic Review and Meta-Analysis</div><div class="ref-meta">Ascott A et al. <em>J Allergy Clin Immunol.</em> 2019;143(5):1821-1829. doi:10.1016/j.jaci.2018.11.030</div></div></li>
+      <li class="ref-item"><span class="ref-num">8</span><div><div class="ref-title">Severe and Predominantly Active Atopic Eczema in Adulthood and Long Term Risk of Cardiovascular Disease</div><div class="ref-meta">Silverwood RJ et al. <em>BMJ.</em> 2018;361:k1786. doi:10.1136/bmj.k1786</div></div></li>
+      <li class="ref-item"><span class="ref-num">9</span><div><div class="ref-title">Rates of Cardiovascular Events Among Patients With Moderate-to-Severe Atopic Dermatitis in an Integrated Health Care System</div><div class="ref-meta">Hedderson MM et al. <em>PLoS One.</em> 2022;17(11):e0277469. doi:10.1371/journal.pone.0277469</div></div></li>
+      <li class="ref-item"><span class="ref-num">10</span><div><div class="ref-title">AAD Guidelines: Awareness of Comorbidities Associated With Atopic Dermatitis in Adults</div><div class="ref-meta">Davis DMR et al. <em>J Am Acad Dermatol.</em> 2022;86(6):1335-1336.e18. doi:10.1016/j.jaad.2022.01.009</div></div></li>
+      <li class="ref-item"><span class="ref-num">11</span><div><div class="ref-title">Cardiovascular Disease-Associated Skin Conditions</div><div class="ref-meta">Hojman L, Karsulovic C. <em>Vascular Health and Risk Management.</em> 2022;18:43-53. doi:10.2147/VHRM.S343319</div></div></li>
+      <li class="ref-item"><span class="ref-num">12</span><div><div class="ref-title">Incidence and Prevalence of Atherosclerotic Cardiovascular Disease in Cutaneous Lupus Erythematosus</div><div class="ref-meta">Chen HW et al. <em>JAMA Dermatology.</em> 2025;161(2):175-182. doi:10.1001/jamadermatol.2024.4991</div></div></li>
+      <li class="ref-item"><span class="ref-num">13</span><div><div class="ref-title">Autoimmune Diseases and Cardiovascular Risk: A Population-Based Study on 19 Autoimmune Diseases and 12 Cardiovascular Diseases in 22 Million Individuals</div><div class="ref-meta">Conrad N et al. <em>Lancet.</em> 2022;400(10354):733-743. doi:10.1016/S0140-6736(22)01349-6</div></div></li>
+      <li class="ref-item"><span class="ref-num">14</span><div><div class="ref-title">Clinical Aspects of Autoimmune Rheumatic Diseases</div><div class="ref-meta">Goldblatt F, O'Neill SG. <em>Lancet.</em> 2013;382(9894):797-808. doi:10.1016/S0140-6736(13)61499-3</div></div></li>
+      <li class="ref-item"><span class="ref-num">15</span><div><div class="ref-title">Biomarker Profiles of Endothelial Activation and Dysfunction in Rare Systemic Autoimmune Diseases</div><div class="ref-meta">Wienke J et al. <em>Rheumatology (Oxford).</em> 2021;60(2):785-801. doi:10.1093/rheumatology/keaa270</div></div></li>
+      <li class="ref-item"><span class="ref-num">16</span><div><div class="ref-title">Homocysteine and Other Cardiovascular Risk Factors in Patients With Lichen Planus</div><div class="ref-meta">Saleh N et al. <em>J Eur Acad Dermatol Venereol.</em> 2014;28(11):1507-13. doi:10.1111/jdv.12329</div></div></li>
+      <li class="ref-item"><span class="ref-num">17</span><div><div class="ref-title">Cardiovascular Risk Factors in Patients With Lichen Planus</div><div class="ref-meta">Arias-Santiago S et al. <em>Am J Med.</em> 2011;124(6):543-8. doi:10.1016/j.amjmed.2010.12.025</div></div></li>
+      <li class="ref-item"><span class="ref-num">18</span><div><div class="ref-title">Elevated Atherosclerotic Cardiovascular Disease Risk in Fibrotic Skin Diseases: Insights From a TriNetX Cohort Study</div><div class="ref-meta">Gupta N et al. <em>J Drugs Dermatol.</em> 2025;24(11):1121-1125. doi:10.36849/JDD.8991</div></div></li>
+      <li class="ref-item"><span class="ref-num">19</span><div><div class="ref-title">Cross-Sectional Study of Psoriasis, Atopic Dermatitis, Rosacea, and Alopecia Areata Suggests Association With Cardiovascular Diseases</div><div class="ref-meta">Pagan AD et al. <em>J Drugs Dermatol.</em> 2023;22(6):576-581. doi:10.36849/JDD.7424</div></div></li>
+      <li class="ref-item"><span class="ref-num">20</span><div><div class="ref-title">Psoriasis and Cardiovascular Diseases: An Immune-Mediated Cross Talk?</div><div class="ref-meta">Orlando G et al. <em>Front Immunol.</em> 2022;13:868277. doi:10.3389/fimmu.2022.868277</div></div></li>
+      <li class="ref-item"><span class="ref-num">21</span><div><div class="ref-title">The Role of the IL-23/Th17 Pathway in Cardiometabolic Comorbidity Associated With Psoriasis</div><div class="ref-meta">Egeberg A et al. <em>J Eur Acad Dermatol Venereol.</em> 2020;34(8):1695-1706. doi:10.1111/jdv.16273</div></div></li>
+      <li class="ref-item"><span class="ref-num">22</span><div><div class="ref-title">Thrombosis in Psoriasis: Cutaneous Cytokine Production as a Potential Driving Force of Haemostatic Dysregulation</div><div class="ref-meta">Visser MJE et al. <em>Front Immunol.</em> 2021;12:688861. doi:10.3389/fimmu.2021.688861</div></div></li>
+      <li class="ref-item"><span class="ref-num">23</span><div><div class="ref-title">Joint AAD-NPF Guidelines of Care for Management of Psoriasis With Awareness and Attention to Comorbidities</div><div class="ref-meta">Elmets CA et al. <em>J Am Acad Dermatol.</em> 2019;80(4):1073-1113. doi:10.1016/j.jaad.2018.11.058</div></div></li>
+      <li class="ref-item"><span class="ref-num">24</span><div><div class="ref-title">Association Between Psoriatic Disease and Lifestyle Factors and Comorbidities: Cross-Sectional Analysis and Mendelian Randomization</div><div class="ref-meta">Zhao SS et al. <em>Rheumatology (Oxford).</em> 2023;62(3):1272-1285. doi:10.1093/rheumatology/keac403</div></div></li>
+      <li class="ref-item"><span class="ref-num">25</span><div><div class="ref-title">New Frontiers in Psoriatic Disease Research, Part II: Comorbidities and Targeted Therapies</div><div class="ref-meta">Yan D et al. <em>J Invest Dermatol.</em> 2021;141(10):2328-2337. doi:10.1016/j.jid.2021.02.743</div></div></li>
+      <li class="ref-item"><span class="ref-num">26</span><div><div class="ref-title">Cardiovascular Comorbidities Among Patients With Psoriasis: A National Register-Based Study in China</div><div class="ref-meta">Cui P et al. <em>Sci Rep.</em> 2024;14(1):19683. doi:10.1038/s41598-024-70707-w</div></div></li>
+      <li class="ref-item"><span class="ref-num">27</span><div><div class="ref-title">Eczema and Cardiovascular Risk Factors in 2 US Adult Population Studies</div><div class="ref-meta">Silverberg JI, Greenland P. <em>J Allergy Clin Immunol.</em> 2015;135(3):721-8.e6. doi:10.1016/j.jaci.2014.11.023</div></div></li>
+      <li class="ref-item"><span class="ref-num">28</span><div><div class="ref-title">Association Between Psoriasis and Cardiometabolic Comorbidities in a Racially and Ethnically Diverse Low-Income Primary Care Population</div><div class="ref-meta">Rudd N et al. <em>Clin Exp Dermatol.</em> 2024;49(2):155-159. doi:10.1093/ced/llad359</div></div></li>
+      <li class="ref-item"><span class="ref-num">29</span><div><div class="ref-title">ACC/AHA/ASE 2023 Multimodality Appropriate Use Criteria for Detection and Risk Assessment of Chronic Coronary Disease</div><div class="ref-meta">Winchester DE et al. <em>JACC.</em> 2023;81(25):2445-2467. doi:10.1016/j.jacc.2023.03.410</div></div></li>
+      <li class="ref-item"><span class="ref-num">30</span><div><div class="ref-title">AACE Consensus Statement: Algorithm for Management of Adults With Dyslipidemia — 2025 Update</div><div class="ref-meta">Patel SB et al. <em>Endocr Pract.</em> 2025;31(10):1207-1238. doi:10.1016/j.eprac.2025.07.014</div></div></li>
+      <li class="ref-item"><span class="ref-num">31</span><div><div class="ref-title">Using Guidelines of Care to Lower Cardiovascular Risk in Patients With Psoriasis</div><div class="ref-meta">Song WB et al. <em>Dermatol Clin.</em> 2024;42(3):417-428. doi:10.1016/j.det.2024.02.008</div></div></li>
+      <li class="ref-item"><span class="ref-num">32</span><div><div class="ref-title">Pathophysiology, Clinical Presentation, and Treatment of Psoriasis: A Review</div><div class="ref-meta">Armstrong AW, Read C. <em>JAMA.</em> 2020;323(19):1945-1960. doi:10.1001/jama.2020.4006</div></div></li>
+      <li class="ref-item"><span class="ref-num">33</span><div><div class="ref-title">2022 TDA/TAPSI/TSOC Joint Consensus for Psoriatic Disease With Attention to Cardiovascular Comorbidities</div><div class="ref-meta">Chi CC et al. <em>J Formosan Med Assoc.</em> 2023;122(6):442-457. doi:10.1016/j.jfma.2022.10.010</div></div></li>
+      <li class="ref-item"><span class="ref-num">34</span><div><div class="ref-title">Cardiovascular Screening Practices and Statin Prescription in Patients With Psoriasis</div><div class="ref-meta">Berna-Rico E et al. <em>Acta Derm Venereol.</em> 2023;103:adv5087. doi:10.2340/actadv.v103.5087</div></div></li>
+      <li class="ref-item"><span class="ref-num">35</span><div><div class="ref-title">Analysis of Specialist and Patient Perspectives on Strategies to Improve Cardiovascular Disease Prevention Among Persons With Psoriatic Disease</div><div class="ref-meta">Barbieri JS et al. <em>JAMA Dermatology.</em> 2022;158(3):252-259. doi:10.1001/jamadermatol.2021.4467</div></div></li>
+      <li class="ref-item"><span class="ref-num">36</span><div><div class="ref-title">How to Manage Cardiovascular Disease in Psoriatic Disease: Evidence and Time Management in Clinic</div><div class="ref-meta">Gkini MA et al. <em>J Rheumatol.</em> 2025. doi:10.3899/jrheum.2025-0811</div></div></li>
+      <li class="ref-item"><span class="ref-num">37</span><div><div class="ref-title">Cardiovascular and Venous Thromboembolic Risk With JAK Inhibitors in Immune-Mediated Inflammatory Skin Diseases: A Systematic Review and Meta-Analysis</div><div class="ref-meta">Ingrassia JP et al. <em>JAMA Dermatology.</em> 2024;160(1):28-36. doi:10.1001/jamadermatol.2023.4090</div></div></li>
+      <li class="ref-item"><span class="ref-num">38</span><div><div class="ref-title">Short-Term Cardiovascular Complications in Dermatology Patients Receiving JAK-STAT Inhibitors: A Meta-Analysis of RCTs</div><div class="ref-meta">Ireland PA et al. <em>JAMA Dermatology.</em> 2024;160(3):281-289. doi:10.1001/jamadermatol.2023.5509</div></div></li>
+      <li class="ref-item"><span class="ref-num">39</span><div><div class="ref-title">Real-World Safety of JAK Inhibitors in Skin Immune-Mediated Inflammatory Diseases: Boxed Warning Outcomes</div><div class="ref-meta">Lin TL et al. <em>Clin Pharmacol Ther.</em> 2026. doi:10.1002/cpt.70258</div></div></li>
+      <li class="ref-item"><span class="ref-num">40</span><div><div class="ref-title">Cardiovascular and Thromboembolic Risks of JAK Inhibitors in Atopic Dermatitis: A Global Cohort Study</div><div class="ref-meta">Kridin K et al. <em>J Eur Acad Dermatol Venereol.</em> 2025. doi:10.1111/jdv.20864</div></div></li>
+      <li class="ref-item"><span class="ref-num">41</span><div><div class="ref-title">Atopic Dermatitis</div><div class="ref-meta">Guttman-Yassky E et al. <em>Lancet.</em> 2025;405(10478):583-596. doi:10.1016/S0140-6736(24)02519-4</div></div></li>
+      <li class="ref-item"><span class="ref-num">42</span><div><div class="ref-title">Risk of Major Adverse Cardiovascular Events in Immune-Mediated Inflammatory Disorders on Biologics and Small Molecules: Network Meta-Analysis</div><div class="ref-meta">Mattay SS et al. <em>Clin Gastroenterol Hepatol.</em> 2024;22(5):961-970.e12. doi:10.1016/j.cgh.2023.09.033</div></div></li>
+      <li class="ref-item"><span class="ref-num">43</span><div><div class="ref-title">Comparative Safety of JAK Inhibitors Versus TNF or IL-17 Inhibitors for CVD and Cancer in Psoriatic Arthritis and Axial SpA</div><div class="ref-meta">Zhao SS et al. <em>Clin Ther.</em> 2025;47(4):293-297. doi:10.1016/j.clinthera.2025.01.005</div></div></li>
+      <li class="ref-item"><span class="ref-num">44</span><div><div class="ref-title">Cardiovascular Considerations and Implications for Treatment in Psoriasis: An Updated Review</div><div class="ref-meta">Mehta H et al. <em>Vasc Health Risk Manag.</em> 2024;20:215-229. doi:10.2147/VHRM.S464471</div></div></li>
+      <li class="ref-item"><span class="ref-num">45</span><div><div class="ref-title">Cardiodermatology: The Heart of the Connection Between the Skin and Cardiovascular Disease</div><div class="ref-meta">Gelfand JM et al. <em>Nat Rev Cardiol.</em> 2025;22(5):354-371. doi:10.1038/s41569-024-01097-9</div></div></li>
+    </ol>
+  </div>
+
+  <div class="disclaimer">
+    ⚕️ <strong>Aviso médico:</strong> Este material é de caráter educativo e informativo, baseado em evidências científicas atuais. Não substitui consulta médica individualizada. Pacientes com doenças de pele crônicas devem discutir seu risco cardiovascular específico com seu médico, que considerará o quadro clínico completo, comorbidades e tratamentos em uso.
+  </div>
+</section>
+
+</div><!-- /container -->
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-copy">
+        © 2025 Dr. Lucas Silva · Cardiologia Intervencionista · São Paulo, Brasil<br>
+        Conteúdo baseado em evidências · Atualizado em 2025
+      </div>
+      <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">lucascardio.com.br</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── TABS ────────────────────────────────────────────────────
+  function openTab(id) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    event.currentTarget.classList.add('active');
+  }
+
+  // ── ACCORDION ───────────────────────────────────────────────
+  function toggleAccordion(btn) {
+    const body = btn.nextElementSibling;
+    const isOpen = btn.classList.contains('open');
+    // Close all in same card
+    btn.closest('.card, section').querySelectorAll('.accordion-btn').forEach(b => {
+      b.classList.remove('open');
+      b.nextElementSibling.classList.remove('open');
+    });
+    if (!isOpen) {
+      btn.classList.add('open');
+      body.classList.add('open');
+    }
+  }
+
+  // ── ANIMATE BARS ON SCROLL ───────────────────────────────────
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.bar-fill').forEach(b => {
+          const w = b.style.width;
+          b.style.width = '0';
+          setTimeout(() => { b.style.width = w; }, 100);
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+
+  document.querySelectorAll('.card').forEach(c => observer.observe(c));
+</script>
+</body>
+</html>

@@ -1,0 +1,1792 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>TAVI – Guia Interativo Completo | Dr. Lucas Silva</title>
+  <meta name="description" content="Guia interativo completo sobre TAVI: fisiopatologia, indicações, próteses, técnica, eco intraoperatório, complicações, VAB, TAVI-in-TAVI e evidências vs SAVR." />
+  <meta name="author" content="Dr. Lucas Silva" />
+  <link rel="canonical" href="https://lucascardio.com.br/Medicos/tavi-guia-completo.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "TAVI – Guia Interativo Completo",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Web Browser",
+    "url": "https://lucascardio.com.br/Medicos/tavi-guia-completo.html",
+    "description": "Guia interativo completo sobre TAVI: fisiopatologia, indicações, próteses, técnica, eco intraoperatório, complicações, VAB, TAVI-in-TAVI.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "BRL"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Dr. Lucas Silva",
+      "url": "https://lucascardio.com.br"
+    },
+    "isAccessibleForFree": true,
+    "featureList": "Fisiopatologia, Indicações, Próteses, Técnica, Complicações"
+  }
+  </script>
+
+  <style>
+    :root {
+      --primary: oklch(65% .18 195);
+      --primary-foreground: oklch(98% 0 0);
+      --background: oklch(13% .018 250);
+      --foreground: oklch(93% .01 250);
+      --card: oklch(18.5% .018 250);
+      --card-foreground: oklch(93% .01 250);
+      --muted: oklch(22% .018 250);
+      --muted-foreground: oklch(62% .02 250);
+      --border: oklch(28% .025 250);
+      --input: oklch(22% .02 250);
+      --destructive: oklch(60% .22 25);
+      --secondary: oklch(22% .022 250);
+      --secondary-foreground: oklch(88% .01 250);
+      --accent: oklch(24% .025 250);
+      --accent-foreground: oklch(90% .01 250);
+      --teal: #28742c;
+      --teal-dim: rgba(0,211,189,.12);
+      --amber: oklch(82.8% .189 84.429);
+      --red: oklch(63.7% .237 25.331);
+      --green: oklch(79.2% .209 151.711);
+      --radius: 0.625rem;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--background);
+      color: var(--foreground);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(18,20,27,.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--foreground); }
+    .nav-brand-icon {
+      width: 28px; height: 28px; border-radius: 7px;
+      background: var(--teal); display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .nav-brand-name { font-weight: 800; font-size: 1rem; letter-spacing: -.025em; line-height: 1; }
+    .nav-brand-name span { color: var(--teal); }
+    .nav-brand-sep { width: 1px; height: 14px; background: var(--border); margin: 0 6px; }
+    .nav-brand-sub { font-size: .7rem; font-weight: 500; color: var(--muted-foreground); }
+    .nav-actions { display: flex; align-items: center; gap: .5rem; }
+    .nav-badge {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 999px; background: var(--teal-dim);
+      color: var(--teal); border: 1px solid rgba(0,211,189,.25); white-space: nowrap;
+    }
+    .nav-link {
+      font-size: .75rem; font-weight: 600; padding: 5px 12px;
+      border-radius: 8px; border: 1.5px solid var(--primary);
+      color: var(--primary); background: transparent; text-decoration: none;
+      transition: background .15s, color .15s; display: inline-flex; align-items: center; gap: 5px;
+    }
+    .nav-link:hover { background: var(--primary); color: #000; }
+
+    /* LAYOUT */
+    .container { max-width: 960px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* HERO */
+    .hero { padding: 3rem 0 2rem; border-bottom: 1px solid var(--border); }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .7rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--teal); margin-bottom: 1rem;
+    }
+    .hero-eyebrow::before { content: ''; display: block; width: 20px; height: 2px; background: var(--teal); border-radius: 1px; }
+    .hero h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800; line-height: 1.2; margin-bottom: .75rem; letter-spacing: -.02em; }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero-sub { color: var(--muted-foreground); font-size: .95rem; max-width: 660px; margin-bottom: 1.5rem; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 6px; border: 1px solid var(--border);
+      color: var(--muted-foreground); background: var(--card); font-family: var(--font-mono);
+    }
+
+    /* TAB NAV */
+    .tab-nav {
+      display: flex; gap: 2px; flex-wrap: wrap;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px); padding: 4px;
+      margin: 2rem 0 0;
+    }
+    .tab-btn {
+      flex: 1; min-width: 80px;
+      background: none; border: none; cursor: pointer;
+      font-family: var(--font-sans); font-size: .75rem; font-weight: 600;
+      color: var(--muted-foreground); padding: 7px 10px;
+      border-radius: var(--radius); transition: all .15s; white-space: nowrap;
+      display: flex; align-items: center; justify-content: center; gap: 5px;
+    }
+    .tab-btn:hover { background: var(--accent); color: var(--foreground); }
+    .tab-btn.active { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.25); }
+
+    /* PROGRESS */
+    .progress-bar { height: 3px; background: var(--border); border-radius: 2px; margin: .75rem 0 2rem; }
+    .progress-fill { height: 100%; background: var(--teal); border-radius: 2px; transition: width .4s ease; }
+
+    /* SECTIONS */
+    .tab-section { display: none; animation: fadeUp .3s ease; }
+    .tab-section.active { display: block; }
+
+    /* CARDS */
+    .card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px); padding: 1.5rem; margin-bottom: 1.5rem;
+    }
+    .card-header {
+      display: flex; align-items: flex-start; gap: .75rem;
+      margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border);
+    }
+    .card-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0; background: var(--teal-dim); color: var(--teal);
+    }
+    .card-icon.amber { background: rgba(251,191,36,.1); color: #fbbf24; }
+    .card-icon.red { background: rgba(220,38,38,.1); color: #f87171; }
+    .card-icon.purple { background: rgba(167,139,250,.1); color: #a78bfa; }
+    .card-title { font-weight: 700; font-size: 1rem; margin-bottom: 2px; }
+    .card-subtitle { font-size: .78rem; color: var(--muted-foreground); }
+
+    /* SECTION TYPOGRAPHY */
+    .section-label {
+      font-size: .68rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--teal); margin-bottom: .4rem; font-family: var(--font-mono);
+    }
+    .section-title { font-size: 1.25rem; font-weight: 800; margin-bottom: .25rem; letter-spacing: -.01em; }
+    .section-divider { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+
+    p.body-text { font-size: .88rem; line-height: 1.75; color: var(--foreground); margin-bottom: .9rem; }
+    p.body-text:last-child { margin-bottom: 0; }
+    .text-muted { color: var(--muted-foreground); }
+
+    h3.sub-title { font-size: 1rem; font-weight: 700; margin: 1.25rem 0 .6rem; color: var(--foreground); }
+    h4.sub-title-sm { font-size: .88rem; font-weight: 700; margin: 1rem 0 .4rem; color: var(--foreground); }
+
+    /* INFO BOXES */
+    .info-box {
+      border-radius: var(--radius); padding: 12px 16px;
+      font-size: .82rem; line-height: 1.65; display: flex; gap: 10px; margin-bottom: .75rem;
+    }
+    .info-box-icon { flex-shrink: 0; font-size: 1rem; margin-top: 1px; }
+    .info-teal { background: var(--teal-dim); border-left: 3px solid var(--teal); }
+    .info-amber { background: rgba(251,191,36,.08); border-left: 3px solid rgba(251,191,36,.5); }
+    .info-red { background: rgba(220,38,38,.08); border-left: 3px solid rgba(220,38,38,.4); }
+    .info-gray { background: var(--muted); border-left: 3px solid var(--border); }
+    .info-purple { background: rgba(167,139,250,.08); border-left: 3px solid rgba(167,139,250,.4); }
+
+    /* BADGE */
+    .badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: .68rem; font-weight: 700; padding: 2px 8px;
+      border-radius: 999px; white-space: nowrap;
+    }
+    .badge-teal { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.2); }
+    .badge-red { background: rgba(220,38,38,.15); color: #f87171; border: 1px solid rgba(220,38,38,.25); }
+    .badge-amber { background: rgba(251,191,36,.12); color: #fbbf24; border: 1px solid rgba(251,191,36,.2); }
+    .badge-purple { background: rgba(167,139,250,.12); color: #a78bfa; border: 1px solid rgba(167,139,250,.2); }
+    .badge-gray { background: var(--muted); color: var(--muted-foreground); border: 1px solid var(--border); }
+
+    /* TABLES */
+    .data-table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+    .data-table th {
+      background: var(--muted); padding: 9px 12px; text-align: left;
+      font-weight: 700; font-size: .72rem; border-bottom: 1px solid var(--border);
+      color: var(--muted-foreground); letter-spacing: .04em; text-transform: uppercase;
+    }
+    .data-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:hover td { background: var(--accent); }
+    .data-table .highlight td { background: var(--teal-dim); }
+    .table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: calc(var(--radius)+2px); margin-bottom: 1.25rem; }
+
+    /* STEP LIST */
+    .step-list { list-style: none; display: flex; flex-direction: column; gap: .75rem; }
+    .step-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+      padding: 1rem 1.25rem; background: var(--muted);
+      border-radius: var(--radius); border: 1px solid var(--border);
+      transition: border-color .15s;
+    }
+    .step-item:hover { border-color: rgba(0,211,189,.3); }
+    .step-num-circle {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--teal-dim); color: var(--teal);
+      font-weight: 800; font-size: .8rem; font-family: var(--font-mono);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px;
+    }
+    .step-content-title { font-weight: 700; font-size: .88rem; margin-bottom: 3px; }
+    .step-content-desc { font-size: .8rem; color: var(--muted-foreground); line-height: 1.55; }
+
+    /* DEVICE CARDS GRID */
+    .device-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 1.25rem; }
+    .device-card {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: calc(var(--radius)+2px); padding: 1.25rem;
+      transition: border-color .2s;
+    }
+    .device-card:hover { border-color: rgba(0,211,189,.3); }
+    .device-card.bev { border-top: 3px solid var(--teal); }
+    .device-card.sev { border-top: 3px solid #a78bfa; }
+    .device-card.mev { border-top: 3px solid #fbbf24; }
+    .device-brand { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .4rem; }
+    .device-brand.bev { color: var(--teal); }
+    .device-brand.sev { color: #a78bfa; }
+    .device-brand.mev { color: #fbbf24; }
+    .device-name { font-weight: 800; font-size: 1rem; margin-bottom: .75rem; }
+    .device-row { display: flex; justify-content: space-between; font-size: .78rem; padding: 5px 0; border-bottom: 1px solid var(--border); }
+    .device-row:last-child { border-bottom: none; }
+    .device-row .label { color: var(--muted-foreground); }
+    .device-row .val { font-weight: 600; text-align: right; max-width: 60%; }
+
+    /* KPI ROW */
+    .kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin-bottom: 1.25rem; }
+    .kpi-card {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: calc(var(--radius)+2px); padding: 1rem 1.25rem; text-align: center;
+    }
+    .kpi-val { font-size: 1.6rem; font-weight: 800; color: var(--teal); font-family: var(--font-mono); line-height: 1; margin-bottom: .25rem; }
+    .kpi-label { font-size: .72rem; color: var(--muted-foreground); font-weight: 600; line-height: 1.3; }
+
+    /* ACCORDION */
+    .accordion { margin-bottom: .75rem; border: 1px solid var(--border); border-radius: var(--radius); }
+    .accordion-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .9rem 1.1rem; cursor: pointer; font-weight: 700; font-size: .88rem;
+      background: var(--card); border-radius: var(--radius); user-select: none;
+      transition: background .15s;
+    }
+    .accordion-header:hover { background: var(--accent); }
+    .accordion-header.open { border-radius: var(--radius) var(--radius) 0 0; border-bottom: 1px solid var(--border); }
+    .accordion-icon { font-size: .75rem; transition: transform .2s; }
+    .accordion-header.open .accordion-icon { transform: rotate(90deg); }
+    .accordion-body { display: none; padding: 1rem 1.1rem; font-size: .84rem; line-height: 1.7; background: var(--muted); border-radius: 0 0 var(--radius) var(--radius); }
+    .accordion-body.open { display: block; }
+
+    /* REFS */
+    .ref-list { list-style: none; }
+    .ref-item { padding: 9px 0; border-bottom: 1px solid var(--border); font-size: .79rem; line-height: 1.6; display: flex; gap: 10px; }
+    .ref-item:last-child { border-bottom: none; }
+    .ref-num { font-family: var(--font-mono); font-size: .7rem; font-weight: 700; color: var(--teal); min-width: 24px; }
+    .ref-title { font-weight: 600; margin-bottom: 2px; }
+    .ref-meta { color: var(--muted-foreground); font-size: .74rem; }
+
+    /* DISCLAIMER */
+    .disclaimer {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 12px 16px;
+      font-size: .75rem; color: var(--muted-foreground); line-height: 1.6; margin-top: 1.5rem;
+    }
+
+    /* TRIAL CHIP */
+    .trial-chip {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: .68rem; font-weight: 700; padding: 2px 8px;
+      border-radius: 6px; font-family: var(--font-mono);
+      background: rgba(99,102,241,.1); color: #818cf8; border: 1px solid rgba(99,102,241,.2);
+      margin: 0 2px;
+    }
+
+    /* COMPARE 2-COL */
+    .compare-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .compare-col { background: var(--muted); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.1rem; }
+    .compare-col h4 { font-size: .82rem; font-weight: 700; margin-bottom: .6rem; }
+    .compare-col ul { padding-left: 1.1rem; font-size: .8rem; line-height: 1.7; color: var(--muted-foreground); }
+
+    /* CALLOUT */
+    .callout {
+      display: flex; align-items: flex-start; gap: .75rem;
+      background: var(--teal-dim); border: 1px solid rgba(0,211,189,.25);
+      border-radius: var(--radius); padding: 1rem 1.25rem; margin-bottom: 1rem;
+    }
+    .callout-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 1px; }
+    .callout-text { font-size: .84rem; line-height: 1.65; }
+    .callout-text strong { font-weight: 700; display: block; margin-bottom: 3px; }
+
+    /* FOOT */
+    footer { border-top: 1px solid var(--border); padding: 2rem 0; margin-top: 3rem; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-copy { font-size: .75rem; color: var(--muted-foreground); }
+
+    /* ANIM */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      .tab-btn { font-size: .68rem; padding: 6px 8px; }
+      .device-grid { grid-template-columns: 1fr; }
+      .compare-2col { grid-template-columns: 1fr; }
+      .kpi-row { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#">
+    <div class="nav-brand-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+    </div>
+    <div class="nav-brand-name">TAVI<span>Guide</span></div>
+    <div class="nav-brand-sep"></div>
+    <div class="nav-brand-sub">Guia Interativo Completo</div>
+  </a>
+  <div class="nav-actions">
+    <span class="nav-badge">Evidence-Based · 2025</span>
+    <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      lucascardio.com.br
+    </a>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main>
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">Intervenção Estrutural · Medicina Baseada em Evidências</div>
+    <h1>Implante Transcateter de Válvula <em>Aórtica</em></h1>
+    <p class="hero-sub">
+      Da fisiopatologia da estenose aórtica calcificada às evidências de longo prazo. Guia de referência para cardiologistas intervencionistas: indicações, próteses, sizing, técnica passo a passo, eco intraoperatório, complicações, VAB, TAVI-in-TAVI e comparação com cirurgia.
+    </p>
+    <div class="hero-tags">
+      <span class="tag">PARTNER 3</span>
+      <span class="tag">NOTION</span>
+      <span class="tag">DEDICATE</span>
+      <span class="tag">SAPIEN 3</span>
+      <span class="tag">Evolut PRO+</span>
+      <span class="tag">BASILICA</span>
+      <span class="tag">ACC/AHA 2020</span>
+      <span class="tag">ESC/EACTS 2021</span>
+      <span class="tag">TAVI-in-TAVI</span>
+    </div>
+  </div>
+
+  <!-- TAB NAV -->
+  <div class="tab-nav" id="tabNav">
+    <button class="tab-btn active" onclick="goTab(1)">⚗️ Fisiopatologia</button>
+    <button class="tab-btn" onclick="goTab(2)">📋 Indicações</button>
+    <button class="tab-btn" onclick="goTab(3)">🔩 Próteses</button>
+    <button class="tab-btn" onclick="goTab(4)">📐 Sizing & CTA</button>
+    <button class="tab-btn" onclick="goTab(5)">🔬 Técnica</button>
+    <button class="tab-btn" onclick="goTab(6)">🔊 Eco Intraop.</button>
+    <button class="tab-btn" onclick="goTab(7)">⚠️ Complicações</button>
+    <button class="tab-btn" onclick="goTab(8)">🔁 VAB & Redo</button>
+    <button class="tab-btn" onclick="goTab(9)">📊 TAVI vs SAVR</button>
+    <button class="tab-btn" onclick="goTab(10)">📚 Referências</button>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="progress" style="width:10%"></div></div>
+
+  <!-- ══════════════════════════════════════════════════════
+       TAB 1 · FISIOPATOLOGIA
+  ══════════════════════════════════════════════════════ -->
+  <div id="tab1" class="tab-section active">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">⚗️</div>
+        <div>
+          <div class="card-title">Fisiopatologia da Estenose Aórtica Calcificada</div>
+          <div class="card-subtitle">Doença ativa, progressiva — não degenerativa passiva</div>
+        </div>
+      </div>
+
+      <div class="section-label">Mecanismo molecular e iniciação da doença</div>
+      <p class="body-text">A estenose aórtica calcificada (EAc) é uma doença ativa mediada por lipídios, inflamação e mineralização — com mecanismos que guardam semelhanças com a aterosclerose coronária, mas distintos em aspectos cruciais. A lesão inicial consiste no acúmulo subendotelial de lipoproteínas contendo apolipoproteína B — principalmente LDL e lipoproteína(a) [Lp(a)] — nas cúspides valvares. A Lp(a) carrega fosfolípidos oxidados que promovem calcificação local de forma independente dos níveis de LDL-C, explicando por que estatinas não reduzem a progressão de EA já estabelecida e por que o silenciamento de Lp(a) com RNA interferente (pelacarsen, zerlasiran) é investigado como estratégia preventiva.<sup>[1,2]</sup></p>
+
+      <p class="body-text">A oxidação dos lipídios acumulados recruta macrófagos e linfócitos T para a cúspide, com ativação de TNF-α, IL-6 e NF-κB, e upregulation de metaloproteinases de matriz (MMP-2, MMP-9) que degradam a arquitetura colágena. Simultaneamente, células intersticiais valvares (VIC) normalmente fibroblasto-like sofrem trans-diferenciação osteoblástica, em processo dependente da supressão do gene Notch1 (perda de função do Notch1 é identificada em formas precoces e hereditárias de EAc), com ativação dos fatores de transcrição Runx2 e Osterix. O resultado é deposição de fosfato de cálcio estruturado (hidroxiapatita) nas cúspides, com espessamento progressivo, rigidez e obstrução do VSVE.<sup>[1,2,3]</sup></p>
+
+      <div class="info-teal info-box">
+        <span class="info-box-icon">📈</span>
+        <div>A progressão hemodinâmica média é de <strong>≈0,1 cm²/ano</strong> na área valvar e <strong>≈0,3 m/s/ano</strong> na velocidade de jato doppler — mas com ampla variabilidade interindividual. EA muito grave (Vmáx &gt;5 m/s, área &lt;0,6 cm²) tem taxa de eventos cardíacos &gt;50%/2 anos sem intervenção.<sup>[3]</sup></div>
+      </div>
+
+      <hr class="section-divider">
+      <div class="section-label">Resposta miocárdica à sobrecarga pressórica</div>
+      <p class="body-text">A obstrução fixa ao fluxo impõe sobrecarga crônica de pressão ao ventrículo esquerdo (VE). A resposta adaptativa inicial é a <strong>hipertrofia concêntrica</strong> — replicação de sarcômeros em paralelo que reduz o estresse parietal segundo a Lei de Laplace e mantém o débito cardíaco. Essa adaptação é inicialmente benéfica, mas torna-se maladaptativa com a progressão da doença.<sup>[3,4]</sup></p>
+
+      <p class="body-text">Com o tempo, desenvolvem-se duas formas distintas de fibrose miocárdica com implicações prognósticas e responsividade à intervenção completamente diferentes:<sup>[4,5,6]</sup></p>
+
+      <div class="compare-2col">
+        <div class="compare-col">
+          <h4>🔄 Fibrose Intersticial Difusa</h4>
+          <ul>
+            <li>Expansão da matriz extracelular entre cardiomiócitos</li>
+            <li>Detectável por CMR-T1 mapping (ECV elevado)</li>
+            <li>Potencialmente reversível após substituição valvar</li>
+            <li>Contribui para disfunção diastólica e rigidez ventricular</li>
+            <li>GLS reduzido mesmo com FEVE preservada</li>
+          </ul>
+        </div>
+        <div class="compare-col">
+          <h4>❌ Fibrose Focal de Substituição</h4>
+          <ul>
+            <li>Necrose e substituição de cardiomiócitos por colágeno</li>
+            <li>Detectável por CMR-LGE (late gadolinium enhancement)</li>
+            <li>Irreversível — não regride após intervenção valvar</li>
+            <li>Preditor independente de mortalidade e IC pós-AVR</li>
+            <li>Presente em 30-40% dos pacientes com EA grave</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-amber info-box">
+        <span class="info-box-icon">⚠️</span>
+        <div><strong>Janela de oportunidade:</strong> a fibrose focal por LGE é independentemente associada ao dobro da mortalidade pós-AVR (HR ~2.0) e pode estar presente mesmo em pacientes assintomáticos. Isso reforça a investigação de CMR antes da intervenção em casos selecionados e o argumento para intervenção antes do desenvolvimento de fibrose irreversível.<sup>[4,7]</sup></div>
+      </div>
+
+      <hr class="section-divider">
+      <div class="section-label">Consequências a montante e detecção precoce de disfunção subclínica</div>
+      <p class="body-text">A sobrecarga pressórica e a hipertrofia resultante comprometem a perfusão microvascular coronária (redução da reserva de fluxo coronário por compressão dos capilares intra-murais e aumento da demanda), levam à apoptose de miócitos, disfunção diastólica por lentificação do relaxamento, dilatação do átrio esquerdo e, em estágios avançados, à disfunção sistólica. As consequências a montante incluem dilatação do AE, fibrilação atrial, hipertensão pulmonar e regurgitação mitral funcional secundária ao remodelamento do VE.<sup>[5,7]</sup></p>
+
+      <p class="body-text">A detecção precoce de disfunção subclínica é fundamental para otimizar o timing da intervenção antes do surgimento de fibrose irreversível. As principais ferramentas são:<sup>[5,7]</sup></p>
+
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-val">GLS</div>
+          <div class="kpi-label">Strain Global Longitudinal — redução precede queda da FEVE; limiar de corte ≤−18%</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val">LGE</div>
+          <div class="kpi-label">Late Gadolinium Enhancement em CMR — fibrose focal, preditor independente de mortalidade</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val">ECV</div>
+          <div class="kpi-label">Fração de Volume Extracelular por T1 mapping — fibrose difusa, reversível após AVR</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-val">BNP</div>
+          <div class="kpi-label">NT-proBNP elevado em assintomáticos associa-se a maior mortalidade e é critério de intervenção</div>
+        </div>
+      </div>
+
+      <div class="section-label">Fenótipos hemodinâmicos especiais</div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAcc(this)">
+          <span>EA de Baixo Fluxo, Baixo Gradiente com FEVE Reduzida (Classical Low-Flow)</span>
+          <span class="accordion-icon">▶</span>
+        </div>
+        <div class="accordion-body">
+          AVA &lt;1 cm², gradiente médio &lt;40 mmHg, FEVE &lt;50%, índice de volume sistólico &lt;35 mL/m². O baixo gradiente reflete tanto a obstrução severa quanto a disfunção miocárdica. A EA verdadeira é confirmada pelo aumento do AVA com dobutamina (reserva de fluxo positiva). Mortalidade operatória elevada, mas benefício da intervenção em relação ao tratamento clínico demonstrado. Escore de cálcio valvar por TC pode confirmar gravidade real (homens &gt;2000 AU, mulheres &gt;1200 AU = EA severa).
+        </div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAcc(this)">
+          <span>EA de Baixo Fluxo, Baixo Gradiente com FEVE Preservada (Paradoxical Low-Flow)</span>
+          <span class="accordion-icon">▶</span>
+        </div>
+        <div class="accordion-body">
+          AVA &lt;1 cm², gradiente médio &lt;40 mmHg, FEVE ≥50%, mas índice de volume sistólico &lt;35 mL/m². Causas: VE pequeno e concentricamente hipertrófico, hipertensão descontrolada, obesidade, erros de medida por planimetria. Prognóstico pior que EA de alto gradiente. Escore de cálcio e cateterismo cardíaco para confirmação. Benefício da intervenção bem estabelecido por registros e meta-análises.
+        </div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAcc(this)">
+          <span>EA Moderada com IC de Fração de Ejeção Reduzida</span>
+          <span class="accordion-icon">▶</span>
+        </div>
+        <div class="accordion-body">
+          O estudo AVATAR randomizou pacientes com EA moderada (AVA 1,0–1,5 cm²) e FEVE &lt;60% assintomáticos para intervenção precoce versus tratamento conservador. Houve redução significativa do desfecho primário (morte, IAM, internação por IC, AVC) com intervenção precoce (HR 0.46, p=0.02). Em construção também o RECOVERY II. A EA moderada com ICFEr pode se beneficiar de intervenção valvar — decisão em Heart Team.
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /tab1 -->
+
+  <!-- ══════════════════════════════════════════════════════
+       TAB 2 · INDICAÇÕES
+  ══════════════════════════════════════════════════════ -->
+  <div id="tab2" class="tab-section">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">📋</div>
+        <div>
+          <div class="card-title">Indicações Baseadas em Diretrizes e Estratificação de Risco</div>
+          <div class="card-subtitle">ACC/AHA 2020 · ESC/EACTS 2021 · Heart Team obrigatório</div>
+        </div>
+      </div>
+
+      <div class="section-label">Critérios diagnósticos de EA grave</div>
+      <div class="kpi-row">
+        <div class="kpi-card"><div class="kpi-val">≤1,0</div><div class="kpi-label">cm² — Área valvar aórtica (AVA)</div></div>
+        <div class="kpi-card"><div class="kpi-val">≥4,0</div><div class="kpi-label">m/s — Velocidade de jato (Vmáx)</div></div>
+        <div class="kpi-card"><div class="kpi-val">≥40</div><div class="kpi-label">mmHg — Gradiente médio transprosthético</div></div>
+        <div class="kpi-card"><div class="kpi-val">≤0,6</div><div class="kpi-label">cm²/m² — AVA indexada (EA muito grave: ≥5 m/s)</div></div>
+      </div>
+
+      <div class="info-amber info-box">
+        <span class="info-box-icon">⚡</span>
+        <div><strong>Tríade sintomática clássica (Apresentação de Heberden):</strong> angina de esforço → síncope de esforço → dispneia/IC. A presença de qualquer sintoma em EA grave é indicação Classe I para intervenção. A sobrevivência mediana sem intervenção após o início de sintomas é de 2-3 anos para IC, 3 anos para síncope e 5 anos para angina.<sup>[3]</sup></div>
+      </div>
+
+      <hr class="section-divider">
+      <div class="section-label">Recomendações de TAVI vs SAVR por Perfil de Risco e Idade</div>
+
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Perfil</th>
+              <th>Critério</th>
+              <th>Recomendação</th>
+              <th>Classe / Nível</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Risco proibitivo/muito alto</strong></td>
+              <td>STS-PROM &gt;15% ou contraindicação cirúrgica</td>
+              <td>TAVI (se anatomia adequada)</td>
+              <td><span class="badge badge-teal">I / A</span></td>
+            </tr>
+            <tr>
+              <td><strong>Alto risco cirúrgico</strong></td>
+              <td>STS-PROM ou EuroSCORE II &gt;8%</td>
+              <td>TAVI preferida (todas as idades)</td>
+              <td><span class="badge badge-teal">I / A</span></td>
+            </tr>
+            <tr>
+              <td><strong>≥75 anos (qualquer risco)</strong></td>
+              <td>Anatomia transfemoral favorável</td>
+              <td>TAVI — preferida</td>
+              <td><span class="badge badge-teal">I / A</span></td>
+            </tr>
+            <tr>
+              <td><strong>65–74 anos, risco baixo-int.</strong></td>
+              <td>Decisão individualizada pelo Heart Team</td>
+              <td>TAVI ou SAVR — equiparáveis, individualizar</td>
+              <td><span class="badge badge-amber">IIa / B</span></td>
+            </tr>
+            <tr>
+              <td><strong>&lt;65 anos</strong></td>
+              <td>Risco baixo-intermediário, vida esperada &gt;20 anos</td>
+              <td>SAVR preferida (durabilidade, dados limitados para TAVI)</td>
+              <td><span class="badge badge-teal">I / C</span></td>
+            </tr>
+            <tr>
+              <td><strong>Válvula bicúspide (VAB)</strong></td>
+              <td>EA grave sintomática; centro de excelência valvar</td>
+              <td>TAVI pode ser alternativa à SAVR</td>
+              <td><span class="badge badge-purple">IIb / B-NR</span></td>
+            </tr>
+            <tr>
+              <td><strong>Assintomática, EA muito grave</strong></td>
+              <td>Vmáx ≥5 m/s OU rápida progressão OU BNP &gt;3× normal</td>
+              <td>Intervenção precoce a considerar</td>
+              <td><span class="badge badge-amber">IIa / B</span></td>
+            </tr>
+            <tr>
+              <td><strong>EA moderada + ICFEr</strong></td>
+              <td>AVA 1,0–1,5 cm², FEVE &lt;50%</td>
+              <td>Considerar intervenção valvar (dados emergentes)</td>
+              <td><span class="badge badge-purple">IIb / C</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <hr class="section-divider">
+      <div class="section-label">Scores de Risco Cirúrgico</div>
+      <p class="body-text">Os scores de risco são <em>ferramentas auxiliares</em> — jamais devem substituir a avaliação clínica integrada pelo Heart Team. Todos têm limitações conhecidas: foram derivados de populações cirúrgicas, não capturam fragilidade, DPOC grave, rede de apoio social, aortapatia ou anatomia coronária.<sup>[8,10]</sup></p>
+
+      <div class="compare-2col">
+        <div class="compare-col">
+          <h4>STS-PROM</h4>
+          <ul>
+            <li>Society of Thoracic Surgeons Predicted Risk of Mortality</li>
+            <li>Padrão norte-americano, disponível em <em>riskcalc.sts.org</em></li>
+            <li>Baixo &lt;4%, intermediário 4–8%, alto &gt;8%</li>
+            <li>Não inclui fragilidade, DPOC grave, porcelain aorta</li>
+          </ul>
+        </div>
+        <div class="compare-col">
+          <h4>EuroSCORE II</h4>
+          <ul>
+            <li>European System for Cardiac Operative Risk Evaluation II</li>
+            <li>Padrão europeu, disponível em <em>euroscore.org</em></li>
+            <li>Tende a subestimar risco em idosos e a superestimá-lo em alguns subgrupos</li>
+            <li>Alto risco definido &gt;8% pelo ESC/EACTS</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout">
+        <span class="callout-icon">🫀</span>
+        <div class="callout-text">
+          <strong>Heart Team — Requisito Mandatório</strong>
+          A discussão multidisciplinar entre cardiologista intervencionista, cirurgião cardiovascular, cardiologista clínico, ecocardiografista e, quando necessário, geriatra e fisioterapeuta é recomendação Classe I pelas diretrizes ACC/AHA e ESC/EACTS. A decisão deve integrar anatomia valvar e vascular, comorbidades, fragilidade, preferências do paciente e expectativa de vida estimada — incluindo planejamento de futuras intervenções (coronárias, TAVI-in-TAVI).<sup>[8,10,11]</sup>
+        </div>
+      </div>
+
+      <hr class="section-divider">
+      <div class="section-label">Contraindicações ao TAVI</div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAcc(this)"><span>Contraindicações Absolutas</span><span class="accordion-icon">▶</span></div>
+        <div class="accordion-body">
+          <ul style="padding-left:1.1rem; line-height:1.8; font-size:.83rem;">
+            <li>Expectativa de vida estimada &lt;1 ano (neoplasia avançada, demência grave, fragilidade terminal)</li>
+            <li>Ausência de melhora esperada da qualidade de vida após intervenção (comorbidade extracardíaca grave)</li>
+            <li>Endocardite infecciosa ativa na válvula nativa ou em prótese</li>
+            <li>Trombo intracardíaco não tratado</li>
+            <li>Annulo &lt;17 mm (nenhuma prótese disponível) ou &gt;30 mm (apenas grandes SEV, mas risco de migração)</li>
+            <li>Ausência de acesso vascular adequado E ausência de acesso alternativo factível</li>
+          </ul>
+        </div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAcc(this)"><span>Contraindicações Relativas / Fatores de Risco Anatômicos</span><span class="accordion-icon">▶</span></div>
+        <div class="accordion-body">
+          <ul style="padding-left:1.1rem; line-height:1.8; font-size:.83rem;">
+            <li>Altura de óstio coronário &lt;6 mm com seio de Valsalva estreito (risco de obstrução coronária)</li>
+            <li>Calcificação severa do VSVE e do annulo (risco de ruptura anular, bloqueio de condução)</li>
+            <li>Angulação aórtica extrema (&gt;70° VSVE-aorta) — dificuldade de posicionamento e cruzamento</li>
+            <li>Aorta bicúspide tipo 0 com calcificação assimétrica severa</li>
+            <li>Dilatação grave da aorta ascendente (&gt;55 mm) — considerar correção cirúrgica simultânea</li>
+            <li>Doença vascular periférica severa impedindo acesso transfemoral E sem alternativa</li>
+            <li>Insuficiência aórtica pura grave sem calcificação significativa — risco de migração (dispositivos específicos existem: JenaValve)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /tab2 -->
+
+  <!-- ══════════════════════════════════════════════════════
+       TAB 3 · PRÓTESES
+  ══════════════════════════════════════════════════════ -->
+  <div id="tab3" class="tab-section">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">🔩</div>
+        <div>
+          <div class="card-title">Válvulas Cardíacas Transcateter — Design, Seleção e Comparação</div>
+          <div class="card-subtitle">BEV · SEV · MEV — Princípios de escolha e implicações clínicas</div>
+        </div>
+      </div>
+
+      <div class="section-label">Válvulas Balão-Expansíveis (BEV)</div>
+      <p class="body-text">As BEVs são expandidas por inflação de balão e não são reposicionáveis uma vez iniciado o deployment. O frame de liga cobalto-cromo (CC) oferece alta força radial e geometria circular previsível. Os folhetos de pericárdio bovino são posicionados intra-anularmente, com a saia de vedação externa (outer sealing skirt) minimizando o refluxo paravalvar. A característica definitória das BEVs é o perfil de frame baixo e a previsibilidade do deployment, o que facilita significativamente o acesso coronário futuro — crítico em candidatos a TAVI mais jovens.<sup>[12,14]</sup></p>
+
+      <div class="device-grid">
+        <div class="device-card bev">
+          <div class="device-brand bev">Edwards Lifesciences · BEV</div>
+          <div class="device-name">SAPIEN 3 / Ultra / Ultra RESILIA</div>
+          <div class="device-row"><span class="label">Frame</span><span class="val">Cobalto-cromo, perfil baixo</span></div>
+          <div class="device-row"><span class="label">Folheto</span><span class="val">Pericárdio bovino (RESILIA na nova geração)</span></div>
+          <div class="device-row"><span class="label">Posição folheto</span><span class="val">Intra-anular</span></div>
+          <div class="device-row"><span class="label">Tamanhos</span><span class="val">20 / 23 / 26 / 29 mm</span></div>
+          <div class="device-row"><span class="label">Sheath</span><span class="val">14F (eSheath expandível) → 16F</span></div>
+          <div class="device-row"><span class="label">PVL moderado/grave</span><span class="val">~2,1% (OBSERVANT II)</span></div>
+          <div class="device-row"><span class="label">MPP</span><span class="val">8–13%</span></div>
+          <div class="device-row"><span class="label">Reposicionável</span><span class="val">Não</span></div>
+        </div>
+        <div class="device-card bev">
+          <div class="device-brand bev">Meril Lifesciences · BEV</div>
+          <div class="device-name">Myval Series (Myval / THV+ / Octacor)</div>
+          <div class="device-row"><span class="label">Frame</span><span class="val">Cobalto-cromo, geometria octagonal</span></div>
+          <div class="device-row"><span class="label">Folheto</span><span class="val">Pericárdio bovino</span></div>
+          <div class="device-row"><span class="label">Posição folheto</span><span class="val">Intra-anular</span></div>
+          <div class="device-row"><span class="label">Tamanhos</span><span class="val">23 / 25 / 27 / 29 mm + intermediate sizes</span></div>
+          <div class="device-row"><span class="label">PVL mod/grave</span><span class="val">Não-inferior ao SAPIEN 3 (LANDMARK 2024)</span></div>
+          <div class="device-row"><span class="label">MPP</span><span class="val">Dados semelhantes a BEV</span></div>
+          <div class="device-row"><span class="label">Diferencial</span><span class="val">Sizes intermediárias reduzem mismatch</span></div>
+        </div>
+      </div>
+
+      <hr class="section-divider">
+      <div class="section-label">Válvulas Auto-Expansíveis (SEV)</div>
+      <p class="body-text">Fabricadas em nitinol com memória de forma, as SEVs expandem espontaneamente ao serem liberadas do sistema de entrega. São recapturáveis e reposicionáveis, oferecendo maior margem de ajuste de posicionamento. O posicionamento supra-anular dos folhetos resulta em maior área de orifício efetivo (EOA) e menores gradientes, especialmente benéficos em annuli pequenos (síndromes de paciente-prótese [PPM]). O preço é a maior taxa de MPP (pelo maior contato com o septo membranoso e o feixe de His) e frames mais altos que complicam o acesso coronário futuro.<sup>[12,15,16]</sup></p>
+
+      <div class="device-grid">
+        <div class="device-card sev">
+          <div class="device-brand sev">Medtronic · SEV</div>
+          <div class="device-name">Evolut R / PRO / PRO+</div>
+          <div class="device-row"><span class="label">Frame</span><span class="val">Nitinol, supra-anular</span></div>
+          <div class="device-row"><span class="label">Folheto</span><span class="val">Pericárdio porcino, supra-anular</span></div>
+          <div class="device-row"><span class="label">Tamanhos</span><span class="val">23 / 26 / 29 / 34 mm</span></div>
+          <div class="device-row"><span class="label">Sheath</span><span class="val">14F (R/PRO) → 16F (34mm PRO+)</span></div>
+          <div class="device-row"><span class="label">PVL mod/grave</span><span class="val">Evolut R: 5,0%; PRO: 10,1%</span></div>
+          <div class="device-row"><span class="label">MPP</span><span class="val">19–22% (R) → PRO+ reduz ligeiramente</span></div>
+          <div class="device-row"><span class="label">Outer wrap</span><span class="val">PRO/PRO+ — pericárdio externo para ↓PVL</span></div>
+          <div class="device-row"><span class="label">Reposicionável</span><span class="val">Sim — até 80% de liberação</span></div>
+        </div>
+        <div class="device-card sev">
+          <div class="device-brand sev">Boston Scientific · SEV</div>
+          <div class="device-name">ACURATE neo2</div>
+          <div class="device-row"><span class="label">Frame</span><span class="val">Nitinol, dupla coroa (top-down delivery)</span></div>
+          <div class="device-row"><span class="label">Folheto</span><span class="val">Pericárdio porcino, supra-anular</span></div>
+          <div class="device-row"><span class="label">Tamanhos</span><span class="val">S / M / L (annulo 21–27mm)</span></div>
+          <div class="device-row"><span class="label">PVL mod/grave</span><span class="val">neo: 13,1%; neo2 com PVS: ↓significativa</span></div>
+          <div class="device-row"><span class="label">MPP</span><span class="val">~10–15% (neo2 menor que neo)</span></div>
+          <div class="device-row"><span class="label">Diferencial</span><span class="val">Auto-alinhamento comissural, acesso coronário preservado em certos cenários</span></div>
+        </div>
+        <div class="device-card sev">
+          <div class="device-brand sev">Abbott · SEV</div>
+          <div class="device-name">Portico (+ FlexNav)</div>
+          <div class="device-row"><span class="label">Frame</span><span class="val">Nitinol, amplas células abertas</span></div>
+          <div class="device-row"><span class="label">Folheto</span><span class="val">Pericárdio bovino, supra-anular</span></div>
+          <div class="device-row"><span class="label">Tamanhos</span><span class="val">23 / 25 / 27 / 29 mm</span></div>
+          <div class="device-row"><span class="label">PVL mod/grave</span><span class="val">~10,8% (OBSERVANT II)</span></div>
+          <div class="device-row"><span class="label">Diferencial</span><span class="val">Totalmente reposicionável e recapturável, células abertas largas → acesso coronário</span></div>
+        </div>
+      </div>
+
+      <hr class="section-divider">
+      <div class="section-label">Comparação Direta: BEV vs SEV — Decisão Clínica</div>
+
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Parâmetro</th>
+              <th>BEV (SAPIEN 3)</th>
+              <th>SEV (Evolut PRO+)</th>
+              <th>Favorece</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>PVL moderado/grave</td><td>~2%</td><td>~5–10%</td><td><span class="badge badge-teal">BEV</span></td></tr>
+            <tr><td>MPP</td><td>8–13%</td><td>19–22%</td><td><span class="badge badge-teal">BEV</span></td></tr>
+            <tr><td>Gradiente médio pós-implante</td><td>10–15 mmHg</td><td>7–12 mmHg</td><td><span class="badge badge-purple">SEV</span></td></tr>
+            <tr><td>EOA (área de orifício efetivo)</td><td>Menor</td><td>Maior (supra-anular)</td><td><span class="badge badge-purple">SEV</span></td></tr>
+            <tr><td>Annuli pequenos (&lt;23 mm)</td><td>PPM frequente</td><td>Vantajoso</td><td><span class="badge badge-purple">SEV</span></td></tr>
+            <tr><td>Acesso coronário futuro</td><td>Mais fácil (frame baixo)</td><td>Mais difícil (frame alto)</td><td><span class="badge badge-teal">BEV</span></td></tr>
+            <tr><td>Reposicionamento</td><td>Não</td><td>Sim</td><td><span class="badge badge-purple">SEV</span></td></tr>
+            <tr><td>TAVI-in-TAVI-in-TAVI futura</td><td>Mais planejável</td><td>Acesso coronário muito limitado</td><td><span class="badge badge-teal">BEV</span></td></tr>
+            <tr><td>Annulo elíptico / VAB</td><td>Melhor aposição por força radial</td><td>Risco de PVL aumentado</td><td><span class="badge badge-teal">BEV</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-teal info-box">
+        <span class="info-box-icon">💡</span>
+        <div><strong>COMPARE-TAVI 1 (Lancet 2025):</strong> SAPIEN 3 Ultra RESILIA vs Myval — o SAPIEN 3 Ultra RESILIA demonstrou EOA superior e menores taxas de regurgitação aórtica moderada ou grave. O registro GARY (2024) confirmou SAPIEN 3 com menor PVL ≥ grau II (1,2%) versus todos os concorrentes. OBSERVANT II (n=3.028) é o maior estudo de comparação contemporânea direta entre 5 próteses.<sup>[9,16,17,18]</sup></div>
+      </div>
+
+      <hr class="section-divider">
+      <div class="section-label">Tecnologia RESILIA e Durabilidade dos Folhetos</div>
+      <p class="body-text">A tecnologia RESILIA (Edwards) utiliza fixação do pericárdio bovino com glutaraldeído em estado de zero-pressure com quelação do cálcio pelo reagente EDC — diferentemente do tratamento clássico de alta pressão. Estudos ex vivo demonstram redução de calcificação acelerada e maior resistência à fadiga in vitro. Dados clínicos de curto prazo (COMMENCE trial) mostram excelente performance hemodinâmica; dados de durabilidade de longo prazo para pericárdio RESILIA ainda em seguimento em TAVI (PARTNER 3 RESILIA em andamento).<sup>[9,18]</sup></p>
+
+    </div>
+  </div><!-- /tab3 -->
+
+  <!-- ══════════════════════════════════════════════════════
+       TAB 4 · SIZING & CTA
+  ══════════════════════════════════════════════════════ -->
+  <div id="tab4" class="tab-section">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">📐</div>
+        <div>
+          <div class="card-title">Sizing, Tomografia Computadorizada e Proteção Coronária</div>
+          <div class="card-subtitle">CTA — padrão ouro para planejamento anatômico do TAVI</div>
+        </div>
+      </div>
+
+      <div class="section-label">Protocolo de Aquisição da CTA Cardíaca para TAVI</div>
+      <p class="body-text">A tomografia computadorizada com angiografia (CTA) cardíaca é o padrão ouro para o planejamento anatômico do TAVI, superando o ecocardiograma na caracterização precisa do annulo, das estruturas periannulares e do acesso vascular. A aquisição deve ser retrospectivamente gated (melhor qualidade temporal) ou prospectivamente triggered (menor dose de radiação). A fase de análise é a sístole (tipicamente 25–35% do ciclo RR), que corresponde à máxima abertura valvar e ao maior diâmetro anular funcional — subestimar o annulo em diástole leva a undersizing e PVL.<sup>[13,19]</sup></p>
+
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAcc(this)"><span>Parâmetros Técnicos da CTA</span><span class="accordion-icon">▶</span></div>
+        <div class="accordion-body">
+          <ul style="padding-left:1.1rem; line-height:1.8; font-size:.83rem;">
+            <li><strong>Cobertura:</strong> da carina até a bifurcação aórtica (+ artérias ilíacas femorais para avaliação de acesso)</li>
+            <li><strong>Contraste:</strong> protocolo bifásico — concentração alta (370–400 mgI/mL), 80–100 mL IV + flush</li>
+            <li><strong>Colimação:</strong> ≤0,6 mm (isotropic reconstruction para multiplanar reformatted)</li>
+            <li><strong>Gatilho:</strong> ROI na aorta ascendente ou VE, threshold 100–150 HU</li>
+            <li><strong>Reconstrução:</strong> MPR curvilíneo e duplo-oblíquo ao nível do annulo. Software dedicado: 3mensio, Medis, Philips IntelliSpace</li>
+            <li><strong>Contraindicações relativas:</strong> ClCr &lt;30 mL/min (CO2 angiography ou CTA sem gadolínio), alergia grave ao contraste (pre-medicação)</li>
+          </ul>
+        </div>
+      </div>
+
+      <hr class="section-divider">
+      <div class="section-label">Medidas do Annulo Aórtico</div>
+      <p class="body-text">O plano de reconstrução deve ser posicionado no ponto de inserção das três cúspides valvares — chamado de <strong>anel virtual basal</strong> (VBA) ou simplesmente <em>annulo</em>. O plano é obtido traçando-se uma reta entre os nadir das três cúspides em visão sagital e coronal, depois corrigindo a obliquidade até visualizar o anel en face. As medidas necessárias são:<sup>[13,19]</sup></p>
+
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th>Medida</th><th>Técnica</th><th>Aplicação</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Diâmetro médio (D médio)</strong></td><td>Média de D maior e D menor</td><td>Orientação geral de tamanho</td></tr>
+            <tr><td><strong>Perímetro</strong></td><td>Traçado manual sobre a borda interna do annulo</td><td>Preferido para seleção de BEV (SAPIEN 3) — mais acurado para annuli elípticos</td></tr>
+            <tr><td><strong>Área</strong></td><td>Calculada pelo software após traçado do contorno</td><td>Preferido para SEV (Evolut); D derivado da área = √(4A/π)</td></tr>
+            <tr><td><strong>Diâmetro maior e menor</strong></td><td>Eixos máximo e mínimo</td><td>Elipticidade: D maior / D menor &gt;1,3 = alto risco de PVL e má aposição</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-teal info-box">
+        <span class="info-box-icon">📏</span>
+        <div><strong>Oversizing:</strong> a seleção da prótese envolve grau controlado de oversizing em relação ao annulo — tipicamente 10–20% para BEV (baseado no perímetro) e 5–15% para SEV (baseado na área). Undersizing →  PVL e migração. Oversizing excessivo → ruptura anular, distúrbios de condução. O mismatch anular (annulo &gt;29 mm para SAPIEN 3) pode exigir SEV 34mm ou se for VAB achatado considerar 29 mm com leve undersizing + pós-dilatação seletiva.<sup>[13,19]</sup></div>
+      </div>
+
+      <hr class="section-divider">
+      <div class="section-label">Avaliação da Altura dos Óstios Coronários e Risco de Oclusão</div>
+      <p class="body-text">A oclusão coronária é uma complicação catastrófica, associada a mortalidade de 40–50% e conversão emergencial para cirurgia ou intervenção coronária (chimney stenting). A CTA deve medir a distância da base do annulo virtual ao centro do óstio coronário — a <strong>Coronary Height</strong>:<sup>[13,19,20]</sup></p>
+
+      <div class="kpi-row">
+        <div class="kpi-card" style="border-top:3px solid var(--teal);">
+          <div class="kpi-val">&gt;12</div>
+          <div class="kpi-label">mm — Baixo risco de oclusão coronária</div>
+        </div>
+        <div class="kpi-card" style="border-top:3px solid #fbbf24;">
+          <div class="kpi-val">6–12</div>
+          <div class="kpi-label">mm — Risco intermediário: considerar wiring profilático + chimney standby</div>
+        </div>
+        <div class="kpi-card" style="border-top:3px solid #f87171;">
+          <div class="kpi-val">&lt;6</div>
+          <div class="kpi-label">mm — Alto risco: BASILICA ou chimney stenting planejado</div>
+        </div>
+        <div class="kpi-card" style="border-top:3px solid #a78bfa;">
+          <div class="kpi-val">STJ</div>
+          <div class="kpi-label">Junção sinotubular estreita: frame da prótese pode obstruir seio mesmo com óstio alto</div>
+        </div>
+      </div>
+
+      <p class="body-text">Além da altura, o <strong>Basal-To-Width (BTW)</strong> — extensão do seio de Valsalva — é crítico: um seio estreito impede que os folhetos da prótese se afastem dos óstios. O parâmetro chamado "Virtual TAVI" ou simulação de implante pelo software (ex: 3mensio) projeta os folhetos da prótese em relação à anatomia coronária, permitindo identificar risco de oclusão antes do procedimento.</p>
+
+      <div class="section-label">Técnicas de Proteção Coronária</div>
+      <ul class="step-list">
+        <li class="step-item">
+          <div class="step-num-circle">1</div>
+          <div>
+            <div class="step-content-title">Wiring Coronário Profilático</div>
+            <div class="step-content-desc">Fio guia posicionado em coronária de risco antes do deployment. Se houver obstrução, permite angioplastia imediata. Limitação: o fio e o cateter guia podem dificultar o alinhamento da prótese e podem não prevenir chimney standby coronária.</div>
+          </div>
+        </li>
+        <li class="step-item">
+          <div class="step-num-circle">2</div>
+          <div>
+            <div class="step-content-title">Chimney Stenting (Coronary Snorkel)</div>
+            <div class="step-content-desc">Stent posicionado em paralelo com a prótese, com porção proximal protrudindo para a aorta acima da coronária. Indicado como resgate em oclusão aguda ou como técnica planejada de alta complexidade (chimney bilateral = "kissing chimneys"). Mortalidade operatória ainda elevada (~30%). Compromete o acesso coronário futuro.</div>
+          </div>
+        </li>
+        <li class="step-item">
+          <div class="step-num-circle">3</div>
+          <div>
+            <div class="step-content-title">BASILICA (Bioprosthetic or native Aortic Scallop Intentional Laceration to prevent Iatrogenic Coronary Artery obstruction)</div>
+            <div class="step-content-desc">Laceração intencional do folheto da válvula nativa (ou bioprótese) na altura do óstio coronário com cateter de radiofrequência, criando uma abertura que permite o fluxo coronário mesmo após a prótese transcateter deslocar o folheto. Técnica pre-procedimento em laboratório hemodinâmica ou hemodinâmica híbrida. Taxa de sucesso técnico &gt;90%, redução significativa de oclusão coronária. Indicado quando LVEF &gt;20%, coronary height &lt;10mm + seio estreito. O BASILICA bilateral simultâneo é possível. Recurso crítico para TAVI-in-TAVI com risco de coronária.<sup>[20]</sup></div>
+          </div>
+        </li>
+      </ul>
+
+      <hr class="section-divider">
+      <div class="section-label">Alinhamento Comissural e Acesso Coronário Futuro</div>
+      <p class="body-text">O estudo RE-ACCESS (JACC CI 2022) demonstrou que a reintubação coronária seletiva após TAVI foi impossível em 7,7% dos casos, com SEV supra-anuares, profundidade de implante excessiva e oversizing em relação ao seio de Valsalva como preditores independentes de falha de acesso. O <strong>alinhamento comissural</strong> — posicionamento das comissuras da prótese em correspondência com os óstios coronários — é recomendado pelo ALIGN-TAVR Consortium como medida para preservar o acesso coronário futuro, especialmente em pacientes jovens que necessitarão de coronariografia ao longo da vida.<sup>[14,21]</sup></p>
+
+      <div class="info-teal info-box">
+        <span class="info-box-icon">🎯</span>
+        <div><strong>Alinhamento comissural na prática:</strong> Para o SAPIEN 3, o comando de rotação do sistema de entrega (Commander) permite ajuste preciso. Para o Evolut, o pino de retenção indica a posição de uma comissura. A CTA pré-operatória define o ângulo do corno de projeção ideal para fluoroscopia. O alinhamento perfeito (desalinhamento &lt;10°) é alcançado em &gt;80% dos casos com técnica dedicada.<sup>[21]</sup></div>
+      </div>
+
+      <hr class="section-divider">
+      <div class="section-label">Avaliação do Acesso Vascular pela CTA</div>
+      <p class="body-text">O acesso femoral transfemoral é o padrão ouro por sua menor morbimortalidade. A CTA das ilíacas e femorais deve avaliar: diâmetro luminal mínimo, calcificação circunferencial, tortuosidade e angulação. O diâmetro mínimo requerido varia conforme o sistema de entrega (sheath) utilizado:</p>
+
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th>Sistema / Prótese</th><th>Sheath</th><th>Diâmetro Mínimo Femoral</th><th>Observação</th></tr></thead>
+          <tbody>
+            <tr><td>SAPIEN 3 20/23/26mm</td><td>14F eSheath XT</td><td>≥5,0 mm</td><td>Sheath expandível reduz trauma</td></tr>
+            <tr><td>SAPIEN 3 29mm</td><td>16F eSheath XT</td><td>≥5,5 mm</td><td></td></tr>
+            <tr><td>Evolut R/PRO 23–29mm</td><td>14F EnVeo</td><td>≥5,0 mm</td><td></td></tr>
+            <tr><td>Evolut PRO+ 34mm</td><td>16F EnVeo</td><td>≥5,5 mm</td><td></td></tr>
+            <tr><td>Portico FlexNav</td><td>14F</td><td>≥5,0 mm</td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-amber info-box">
+        <span class="info-box-icon">🩺</span>
+        <div><strong>Calcificação circunferencial severa</strong> (grau 3–4) aumenta o risco de ruptura ilíaca e dissecção, mesmo com diâmetro adequado. A presença de calcificação na origem da femoral profunda é particularmente perigosa. Nesses casos, considerar acessos alternativos: subclávia/axilar esquerda, transcarotídeo, transcaval ou acesso cirúrgico (transapical, transaórtico).</div>
+      </div>
+    </div>
+  </div><!-- /tab4 -->
+
+  <!-- ══════════════════════════════════════════════════════
+       TAB 5 · TÉCNICA
+  ══════════════════════════════════════════════════════ -->
+  <div id="tab5" class="tab-section">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon amber">🔬</div>
+        <div>
+          <div class="card-title">Técnica de Implantação — Passo a Passo no Laboratório de Hemodinâmica</div>
+          <div class="card-subtitle">Abordagem transfemoral · SAPIEN 3 (BEV) e Evolut (SEV)</div>
+        </div>
+      </div>
+
+      <div class="section-label">Preparo, Acesso e Anticoagulação</div>
+      <ul class="step-list">
+        <li class="step-item">
+          <div class="step-num-circle">1</div>
+          <div>
+            <div class="step-content-title">Profilaxia Antibiótica e Anestesia</div>
+            <div class="step-content-desc">Cefazolina 1–2g IV 30–60 min antes do procedimento. Abordagem minimalist (sedação consciente + TTE) em casos de baixa complexidade anatômica e boa janela ecográfica. TEE com anestesia geral para anatomias complexas, VAB, emergências, janela acústica pobre e conversão de acesso. A tendência nos centros experientes é sedação moderada, com redução de tempo de UTI e complicações pulmonares.</div>
+          </div>
+        </li>
+        <li class="step-item">
+          <div class="step-num-circle">2</div>
+          <div>
+            <div class="step-content-title">Acesso Vascular e Hemostasia</div>
+            <div class="step-content-desc">Punção femoral bilateral guiada por ultrassom (parede anterior da AFC acima da bifurcação) + acesso arterial radial ou braquial para cateter pigtail. Técnica de pré-fechamento (ProGlide × 2 em 10h e 2h, ou MANTA 18F) antes da inserção do introdutor de grande calibre. O uso de dispositivo MANTA (14F ou 18F) tem mostrado equivalência ao ProGlide com menor sangramento em alguns registros. Alternativamente: acesso cirúrgico com exposição da femoral comum (em casos de calcificação severa ou acesso altamente tortuoso).</div>
+          </div>
+        </li>
+        <li class="step-item">
+          <div class="step-num-circle">3</div>
+          <div>
+            <div class="step-content-title">Anticoagulação</div>
+            <div class="step-content-desc">Heparina não fracionada (HNF): 70–100 UI/kg IV após inserção do introdutor. ACT alvo &gt;300 s (alguns protocolos utilizam &gt;250 s para sedação consciente). Monitorar ACT a cada 30–40 min. Protamina ao final para reversão (especialmente em acessos com risco hemorrágico). Bivalirudina é alternativa, especialmente em trombocitopenia induzida por heparina.</div>
+          </div>
+        </li>
+      </ul>
+
+      <hr class="section-divider">
+      <div class="section-label">Cruzamento Valvar e Posicionamento do Fio-Guia</div>
+      <ul class="step-list">
+        <li class="step-item">
+          <div class="step-num-circle">4</div>
+          <div>
+            <div class="step-content-title">Definição da Projeção de Trabalho (Implant Angulation)</div>
+            <div class="step-content-desc">Angiografia aórtica com cateter pigtail em Ao ascendente, posicionado à altura das cúspides. Ajuste do angulamento do arco fluoroscópico para obter visualização perpendicular do plano do annulo: alinhamento das cúspides em <em>3-cusp view</em> (todas as três cúspides no mesmo plano, duas sobrepostas). Tipicamente entre 20–25° RAO + 15–20° caudal (variável por anatomia aórtica). Importação do ângulo ideal a partir da CTA pré-operatória pelo software de co-registro.</div>
+          </div>
+        </li>
+        <li class="step-item">
+          <div class="step-num-circle">5</div>
+          <div>
+            <div class="step-content-title">Cruzamento Retrógrado da Válvula Aórtica</div>
+            <div class="step-content-desc">Cateter AL1 ou JR4 + fio-guia hidrofílico reto ou J-suave. O cruzamento é realizado pela cúspide não-coronariana (geralmente anterior direita) com movimentos de torque e avanço. Posição ideal: cateter e fio no interior do VE sem contato excessivo com a parede. Substituição por fio-guia diagnóstico J-0,035" e troca por cateter pigtail no VE para medida de gradiente transvalvar e ventriculografia.</div>
+          </div>
+        </li>
+        <li class="step-item">
+          <div class="step-num-circle">6</div>
+          <div>
+            <div class="step-content-title">Posicionamento do Fio-Guia de Suporte (Stiff Wire)</div>
+            <div class="step-content-desc">Inserção do fio-guia rígido (Amplatz Extra-Stiff 0,035", Safari 2, ou Lunderquist). O loop é formado no ápice ou parede lateral do VE, criando uma curva suave que estabiliza o sistema de entrega sem risco de perfuração (evitar loop no VSVE). A posição do fio é crítica: tensão excessiva no ápice pode causar perfuração (hemopericárdio), posição muito superficial reduz suporte. A fio Lunderquist oferece maior rigidez mas é mais rígido no VE.</div>
+          </div>
+        </li>
+      </ul>
+
+      <hr class="section-divider">
+      <div class="section-label">Valvuloplastia Aórtica com Balão (BAV) — O Debate Atual</div>
+      <p class="body-text">A valvuloplastia de balão pré-implante foi historicamente realizada rotineiramente. Com as próteses de terceira geração, múltiplos centros adotaram estratégia de implantação direta (sem BAV), especialmente para BEV. O estudo DIRECT TAVR demonstrou que a omissão da BAV com SAPIEN 3 não resultou em piora de PVL, gradientes ou MPP, com tendência a menor taxa de FA e menor tempo de procedimento. Para SEV (Evolut), a BAV ainda é comum para facilitar o cruzamento e o deployment inicial.</p>
+
+      <div class="info-gray info-box">
+        <span class="info-box-icon">📌</span>
+        <div><strong>Quando a BAV ainda é indicada:</strong> annulo muito calcificado com resistência ao cruzamento, VAB com rafe calcificada rígida (pré-dilatação para romper fusão da rafe), EA muito grave com VE dilatado e gradiente elevadíssimo dificultando o avanço do sistema, e em contexto de TAVI urgente/emergencial em paciente instável (bridge para deployment). O balão deve ter diâmetro igual ou discretamente menor que o annulo — nunca oversized.</div>
+      </div>
+
+      <hr class="section-divider">
+      <div class="section-label">Deployment da Prótese — BEV vs SEV</div>
+
+      <div class="compare-2col">
+        <div class="compare-col">
+          <h4>🔵 BEV — SAPIEN 3 Ultra</h4>
+          <ul>
+            <li>Avança o sistema Commander sobre o fio-guia rígido</li>
+            <li>Posicionamento: 80% da prótese abaixo do plano do annulo (ventricular) e 20% supraanular em fluoroscopia</li>
+            <li>Estimulação ventricular rápida (VVI 180–200 bpm) via pace-maker temporário para reduzir o débito durante o deployment</li>
+            <li>Insuflação do balão em 5–7 s com seringa roscável</li>
+            <li>Deflação imediata após insuflação completa</li>
+            <li>Avaliação imediata por TEE/TTE e angiografia pigtail</li>
+            <li>Pós-dilatação seletiva com balão se PVL significativo</li>
+          </ul>
+        </div>
+        <div class="compare-col">
+          <h4>🟣 SEV — Evolut PRO+</h4>
+          <ul>
+            <li>Libera lentamente girando o mecanismo de torque do sistema Enveo</li>
+            <li>Posicionamento inicial: marcadores radiopacos do frame alinhados ao plano do annulo</li>
+            <li>Sem estimulação rápida para o deployment (gradual, controlado)</li>
+            <li>Recapturo possível até ~80% de liberação para ajuste</li>
+            <li>A coroa ventricular âncora primeiro; liberação completa depois do ajuste de posição</li>
+            <li>Avaliação por TEE e angiografia</li>
+            <li>Pós-dilatação com balão: mais comum que em BEV</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-red info-box">
+        <span class="info-box-icon">⚡</span>
+        <div><strong>Profundidade de implante (implant depth):</strong> para BEV — quanto mais profundo no LVOT, maior o risco de MPP e bloqueio de condução. Para SEV — a profundidade de implante &gt;6 mm abaixo do annulo é o maior preditor de MPP. Monitoramento fluoroscópico e ecocardiográfico em tempo real da profundidade é crítico.</div>
+      </div>
+
+      <hr class="section-divider">
+      <div class="section-label">Avaliação Pós-Implante e Encerramento</div>
+      <ul class="step-list">
+        <li class="step-item">
+          <div class="step-num-circle">7</div>
+          <div>
+            <div class="step-content-title">Avaliação Imediata Pós-Deployment</div>
+            <div class="step-content-desc">Angiografia aórtica (pigtail na Ao ascendente, 40–50% de opacificação): avaliação de PVL (jet de contraste ao redor da prótese no LVOT), posição, abertura de folhetos, patência das coronárias. TEE/TTE: gradientes por Doppler contínuo e pulsado, PVL por Doppler de cor (EROA, vena contracta, holodiastólico nas ilíacas), função VE, pericárdio (excluir tamponamento), valva mitral. ECG: novo LBBB, BAV, mudanças de PR.</div>
+          </div>
+        </li>
+        <li class="step-item">
+          <div class="step-num-circle">8</div>
+          <div>
+            <div class="step-content-title">Manejo de PVL Agudo Significativo</div>
+            <div class="step-content-desc">PVL moderado-grave imediato: 1) Post-dilatação com balão do mesmo diâmetro (ou discretamente maior) sob estimulação rápida — resolve em ~60% dos casos. 2) Valve-in-valve (segunda prótese) — para PVL não responsivo ou prótese malposicionada. 3) Avaliação de possível oclusão coronária, perfuração, ruptura anular (TC urgente ou angiografia).</div>
+          </div>
+        </li>
+        <li class="step-item">
+          <div class="step-num-circle">9</div>
+          <div>
+            <div class="step-content-title">Hemostasia Vascular e Encerramento</div>
+            <div class="step-content-desc">Ativação dos sutures ProGlide ou deployment do MANTA vascular closure. Angiografia ilíaca/femoral final para confirmar ausência de extravasamento, dissecção ou obstrução. Compressão manual adicional se necessário. Heparina revertida com protamina (0,5–1 mg/100 UI de HNF) para femorais com calcificação severa. Remoção do marcapasso temporário em 24–48h após monitoramento de condução (exceto se BRE novo persistente ou episódios de BAV).</div>
+          </div>
+        </li>
+      </ul>
+
+      <hr class="section-divider">
+      <div class="section-label">Acessos Alternativos ao Transfemoral</div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th>Acesso</th><th>Indicação</th><th>Vantagem</th><th>Limitação</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Subclávia / Axilar Esq.</strong></td><td>DVP femoral severa bilateral</td><td>Percutâneo, baixo perfil, proximidade à aorta</td><td>Dissecção local, AVC ipsilateral, manejo difícil em obesos</td></tr>
+            <tr><td><strong>Transcarotídeo</strong></td><td>DVP periférica grave; cirurgias prévias</td><td>Curto trajeto, menor angulação</td><td>AVC ipsilateral, acesso cirúrgico obrigatório, contraindicado em placa carotídea grave</td></tr>
+            <tr><td><strong>Transcaval</strong></td><td>Sem acesso arterial adequado</td><td>Completamente percutâneo; VCI → Ao abdominal</td><td>Técnica complexa, riscos de fístula AV residual, disponível em poucos centros</td></tr>
+            <tr><td><strong>Transapical</strong></td><td>DVP periférica severa, anatomia desfavorável</td><td>Acesso direto ao ápice do VE, pré-dilatação sem estimulação rápida</td><td>Toracotomia necessária, mortalidade maior, acesso coronário comprometido</td></tr>
+            <tr><td><strong>Transaórtico</strong></td><td>Anastomoses femorais, DVP severa</td><td>Acesso direto Ao ascendente</td><td>Esternotomia parcial; experiência limitada; restrito a centros selecionados</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        <span class="callout-icon">🏥</span>
+        <div class="callout-text">
+          <strong>Abordagem minimalist: o caminho em centros experientes</strong>
+          A abordagem "minimalist TAVI" — sedação consciente moderada, TTE intraprocedimento, remoção do marcapasso temporário na mesa, deambulação em 6h e alta hospitalar em 24–48h — está associada a menor tempo de internação, menos complicações pulmonares e ausência de piora de desfechos em centros de alto volume. Requer protocolo rigoroso de seleção (anatomia simples, FEVE &gt;40%, sem BAV, boa janela TTE).
+        </div>
+      </div>
+    </div>
+  </div><!-- /tab5 -->
+
+  <!-- ══════════════════════════════════════════════════════
+       TAB 6 · ECO INTRAOPERATÓRIO
+  ══════════════════════════════════════════════════════ -->
+  <div id="tab6" class="tab-section">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">🔊</div>
+        <div>
+          <div class="card-title">Ecocardiografia durante o TAVI</div>
+          <div class="card-subtitle">TEE 2D/3D · Abordagem minimalist com TTE · ASE 2023</div>
+        </div>
+      </div>
+
+      <div class="section-label">Papel do Ecocardiograma por Fase do Procedimento</div>
+
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAcc(this)"><span>📋 Pré-Procedimento: TTE e TEE Diagnóstico</span><span class="accordion-icon">▶</span></div>
+        <div class="accordion-body">
+          <p style="font-size:.84rem; margin-bottom:.6rem;">A ecocardiografia transtorácica (TTE) confirma o diagnóstico de EA grave pelos critérios hemodinâmicos, avalia a função ventricular (FEVE, GLS), quantifica regurgitações concomitantes e identifica contraindicações ao TAVI (trombo no VE, miocardiopatia hipertrófica obstrutiva, IM grave). A ecocardiografia transesofágica (TEE) adiciona resolução superior na avaliação da morfologia valvar, e o TEE 3D é preferido para análise da anatomia em VAB. A medida do annulo por TEE 3D tem moderada correlação com CTA, mas a CTA permanece superior (menor variabilidade intraoperador, campo de visão mais amplo).  <sup>[22,23,24]</sup></p>
+          <ul style="padding-left:1.1rem; line-height:1.8; font-size:.83rem;">
+            <li>Calcificação e morfologia das cúspides (incluindo fusão, rafe em VAB)</li>
+            <li>FEVE, disfunção diastólica, cargas de pressão no VE</li>
+            <li>Regurgitação mitral: primária vs funcional, gravidade</li>
+            <li>Hipertensão pulmonar (gradiente estimado VD-AD)</li>
+            <li>Exclusão de endocardite, trombo, mixoma</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAcc(this)"><span>🎯 Intraoperatório: Guia em Tempo Real</span><span class="accordion-icon">▶</span></div>
+        <div class="accordion-body">
+          <p style="font-size:.84rem; margin-bottom:.6rem;">O TEE intraoperatório guia o cruzamento valvar (cateter posicionado na cúspide adequada), monitora o fio-guia rígido no VE (evitar loop no VSVE — risco de perfuração), guia o posicionamento e deployment da prótese, e avalia imediatamente pós-implante.<sup>[23,24]</sup></p>
+          <ul style="padding-left:1.1rem; line-height:1.8; font-size:.83rem;">
+            <li><strong>Profundidade de implante:</strong> distância da base do frame ao annulo (alvo 3–6 mm para SAPIEN 3)</li>
+            <li><strong>Posicionamento do fio-guia:</strong> confirmar loop apical livre de tensão (sem "tenting" da parede)</li>
+            <li><strong>Pré-dilatação:</strong> monitorar expansão do balão, detectar hemopericárdio imediato</li>
+            <li><strong>Deployment:</strong> avaliação da abertura simétrica dos folhetos; supra ou infra-posicionamento</li>
+            <li><strong>Pós-implante imediato:</strong> PVL (localização e graduação), gradiente, função VE, pericárdio</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAcc(this)"><span>✅ Pós-Implante: Avaliação Estruturada de PVL</span><span class="accordion-icon">▶</span></div>
+        <div class="accordion-body">
+          <p style="font-size:.84rem; margin-bottom:.6rem;">A avaliação de PVL pela ASE (Zoghbi et al., JASE 2019) requer abordagem multiparamétrica — nenhum parâmetro isolado é suficiente.<sup>[25,26]</sup></p>
+          <ul style="padding-left:1.1rem; line-height:1.8; font-size:.83rem;">
+            <li><strong>Circunferência do jet:</strong> &lt;10% = leve; 10–29% = moderado; ≥30% = grave</li>
+            <li><strong>Vena contracta:</strong> &lt;3 mm = leve; 3–6 mm = moderado; &gt;6 mm = grave</li>
+            <li><strong>Pressão meia-tempo:</strong> &lt;500 ms = leve; 200–500 ms = moderado; &lt;200 ms = grave</li>
+            <li><strong>Fluxo diastólico reverso em Ao descendente:</strong> presente e holodiastólico = moderado/grave</li>
+            <li><strong>TEE 3D:</strong> localização precisa (anterior, posterior, lateral) — guia pós-dilatação</li>
+            <li><strong>Angiografia + Eco:</strong> integração dos dois métodos melhora a classificação</li>
+          </ul>
+        </div>
+      </div>
+
+      <hr class="section-divider">
+      <div class="section-label">Janelas Ecocardiográficas Essenciais no TEE</div>
+
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th>Janela / Plano</th><th>Ângulo (°)</th><th>Aplicação Principal</th></tr></thead>
+          <tbody>
+            <tr><td>Eixo longo da valva aórtica (LVOT view)</td><td>120–150°</td><td>Profundidade de implante, PVL, alinhamento LVOT-prótese</td></tr>
+            <tr><td>Eixo curto da aorta (SAX Ao)</td><td>30–60°</td><td>Morfologia valvar, morfologia do PVL (localização, circunferência)</td></tr>
+            <tr><td>4-câmaras transgástrico (deep TG)</td><td>0–20°</td><td>Cruzamento valvar, posição do fio-guia no VE</td></tr>
+            <tr><td>Eixo longo transgástrico</td><td>90–120°</td><td>LVOT e prótese em visão simultânea, gradiente por Doppler</td></tr>
+            <tr><td>3D en face da valva</td><td>70–100° + 3D</td><td>Morfologia da prótese, circunferência do PVL, alinhamento comissural</td></tr>
+            <tr><td>Ao descendente</td><td>90°</td><td>Fluxo diastólico reverso (confirmação PVL significativo)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section-label">TTE na Abordagem Minimalist</div>
+      <p class="body-text">Em centros de alto volume e anatomia favorável, o TTE substitui o TEE na maioria dos casos de abordagem minimalist. As janelas paraesternal longa, apical 5-câmaras e subcostal permitem avaliação adequada do posicionamento e PVL na maioria dos pacientes. As limitações são: janela acústica pobre (obesos, DPOC), dificuldade de avaliação 3D, menor resolução na visualização de pequenos jets de PVL. O TEE sempre deve estar disponível no laboratório para conversão imediata se necessário.</p>
+
+      <div class="callout">
+        <span class="callout-icon">🎓</span>
+        <div class="callout-text">
+          <strong>ASE 2023 — Competências Especiais em Eco Guiado de Cardiopatia Estrutural</strong>
+          A American Society of Echocardiography (Little SH et al., JASE 2023) estabelece que o ecocardiografista intervencionista em procedimentos estruturais deve possuir nível de competência avançado, incluindo &gt;150 procedimentos guiados (entre TAVI, TMVR, LAAO, correção de PFO/CIA, etc.), domínio de TEE 3D intraoperatório e integração com modalidades multimodais (CTA, CMR). A recomendação enfatiza que a presença de ecocardiografista treinado especificamente em intervenções estruturais melhora os desfechos e reduz complicações intraoperatórias.<sup>[24]</sup>
+        </div>
+      </div>
+
+      <hr class="section-divider">
+      <div class="section-label">Complicações Detectáveis pelo Eco Intraoperatório</div>
+      <div class="info-red info-box">
+        <span class="info-box-icon">🚨</span>
+        <div>
+          <strong>Sinal de alerta imediato:</strong> Derrame pericárdico novo de qualquer volume em paciente instável = tamponamento por perfuração cardíaca. Ação: <em>pericardiocentese imediata</em> + protamina + acionar cirurgia. O eco é o primeiro exame que detecta esta complicação — antes do colapso hemodinâmico.
+        </div>
+      </div>
+      <div class="info-amber info-box">
+        <span class="info-box-icon">⚠️</span>
+        <div><strong>Embolização proximal:</strong> nova regurgitação mitral grave (prótese caiu no VE), impossibilidade de abertura dos folhetos (prótese migrou para a aorta). Em ambos os casos: contato imediato com cirurgia cardiovascular de emergência.</div>
+      </div>
+    </div>
+  </div><!-- /tab6 -->
+
+  <!-- ══════════════════════════════════════════════════════
+       TAB 7 · COMPLICAÇÕES
+  ══════════════════════════════════════════════════════ -->
+  <div id="tab7" class="tab-section">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon red">⚠️</div>
+        <div>
+          <div class="card-title">Complicações do TAVI — Diagnóstico, Manejo e Prevenção</div>
+          <div class="card-subtitle">PVL · Condução · AVC · Oclusão coronária · Endocardite · Trombose</div>
+        </div>
+      </div>
+
+      <div class="section-label">1. Regurgitação Paravalvar (PVL)</div>
+      <p class="body-text">A PVL resulta da má aposição do frame da prótese ao annulo nativo — consequência de calcificação irregular que impede a expansão uniforme do stent, undersizing relativo, implantação excêntrica ou geometria não-circular do annulo (VAB). PVL de grau moderado ou grave é preditor independente de aumento de mortalidade (HR ~2,3), internação por IC e hemólise intravascular.<sup>[25,26,27,28,29]</sup></p>
+
+      <div class="kpi-row">
+        <div class="kpi-card"><div class="kpi-val">1,2%</div><div class="kpi-label">PVL ≥grau II: SAPIEN 3 (GARY 2024)</div></div>
+        <div class="kpi-card"><div class="kpi-val">2,1%</div><div class="kpi-label">PVL mod/grave: SAPIEN 3 (OBSERVANT II)</div></div>
+        <div class="kpi-card"><div class="kpi-val">10,1%</div><div class="kpi-label">PVL mod/grave: Evolut PRO (OBSERVANT II)</div></div>
+        <div class="kpi-card"><div class="kpi-val">13,1%</div><div class="kpi-label">PVL mod/grave: ACURATE neo (OBSERVANT II)</div></div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAcc(this)"><span>Manejo do PVL Agudo e Crônico</span><span class="accordion-icon">▶</span></div>
+        <div class="accordion-body">
+          <ul style="padding-left:1.1rem; line-height:1.8; font-size:.83rem;">
+            <li><strong>PVL leve:</strong> conduta expectante; monitoramento com eco seriado</li>
+            <li><strong>PVL moderado imediato:</strong> pós-dilatação com balão (soluciona ~60% dos casos); localização guiada por TEE 3D</li>
+            <li><strong>PVL grave imediato:</strong> valve-in-valve (segunda prótese); conversão cirúrgica se instabilidade</li>
+            <li><strong>PVL crônico moderado/grave:</strong> oclusão percutânea com plug vascular (AVP II, Vascular Plug, Occlutech); redo-TAVI; cirurgia de retirada e substituição (raramente indicada)</li>
+            <li><strong>Benefício prognóstico:</strong> redução para PVL leve ou ausente associa-se a melhora significativa de sobrevida em registros de seguimento (Landes EHJ 2023) <sup>[29]</sup></li>
+          </ul>
+        </div>
+      </div>
+
+      <hr class="section-divider">
+      <div class="section-label">2. Distúrbios de Condução e Necessidade de Marcapasso Permanente (MPP)</div>
+      <p class="body-text">O nó atrioventricular e o feixe de His passam pelo septo membranoso imediatamente abaixo e posterior ao ponto de inserção da cúspide coronariana direita. A compressão radial do frame da prótese sobre essa região anatômica — especialmente em implantes profundos no LVOT — é o principal mecanismo de distúrbio de condução pós-TAVI.<sup>[15,16,32]</sup></p>
+
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th>Complicação</th><th>BEV (SAPIEN 3)</th><th>SEV (Evolut R)</th><th>Preditor Principal</th></tr></thead>
+          <tbody>
+            <tr><td>BRE novo</td><td>15–20%</td><td>25–40%</td><td>Profundidade implante &gt;6mm no LVOT</td></tr>
+            <tr><td>BAV completo / MPP</td><td>8–13%</td><td>19–22%</td><td>BRE pré-existente, calcificação LVOT, SEV</td></tr>
+            <tr><td>BAV de 1º ou 2º grau novo</td><td>5–10%</td><td>10–20%</td><td>PR basal &gt;200ms, RBBB pré-existente</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-amber info-box">
+        <span class="info-box-icon">🫀</span>
+        <div><strong>Protocolo de monitoramento pós-TAVI:</strong> telemetria por 24–72h para TODOS os pacientes. Holter de 14 dias se BRE novo pós-TAVI (risco de BAV tardio). TAVI PACE trial e outros dados suportam implante de MPP se BAV completo persistir por &gt;24–48h ou BRE novo com PR &gt;240ms + LBBB pós-TAVI. Considerar gravação com loop recorder subcutâneo (ILR) para pacientes de alto risco com BRE novo que não alcançam critério de MPP imediato. MPP persistente impacta negativamente a função VE em seguimento (síndrome de marcapasso por dessincronismo).</div>
+      </div>
+
+      <hr class="section-divider">
+      <div class="section-label">3. Acidente Vascular Cerebral</div>
+      <p class="body-text">AVC é a complicação mais temida do TAVI, com incidência de 2–4% em 30 dias (maior nas primeiras 24h peri-procedimento). Os mecanismos incluem: embolização de cálcio fragmentado da válvula durante o cruzamento e deployment, tromboembolismo de fragmentos do aorta, embolização de ar e fibrina da prótese, e FA perioperatória. O risco é maior em VAB (OR 1,24 para AVC em 30 dias vs TAV).<sup>[45]</sup></p>
+
+      <div class="info-teal info-box">
+        <span class="info-box-icon">🛡️</span>
+        <div><strong>Sentinel Embolic Protection Device (Claret Medical / BD):</strong> sistema de dupla cesta (tronco braquiocefálico + carótida esquerda) posicionado via via radial direita, capturando êmbolos antes de alcançar a circulação cerebral anterior. O estudo PROTECTED-TAVI (N=3.000) demonstrou redução absoluta de 4,3% em AVC disabilitante ou morte (p=0,02) versus controle. FDA aprovado; recomendado em pacientes de alto risco neurológico (VAB, calcificação severa, história de AVC prévia).</div>
+      </div>
+
+      <hr class="section-divider">
+      <div class="section-label">4. Oclusão Coronária</div>
+      <p class="body-text">Incidência: 0,7–1,1% — mas associada a mortalidade de 40–50% e necessidade de conversão cirúrgica de emergência em até 20% dos casos. Ocorre quando os folhetos deslocados pela prótese se alinham ao óstio coronário e bloqueiam o fluxo. Mais comum na coronária esquerda (seio de Valsalva mais próximo ao annulo), em mulheres (seios menores) e em VAB (folhetos mais longos).<sup>[13,19,20]</sup></p>
+
+      <div class="info-red info-box">
+        <span class="info-box-icon">🚨</span>
+        <div><strong>Diagnóstico e manejo imediato:</strong> hipotensão + infradesnível de ST em parede anterior ou lateral DURANTE o deployment → suspeitar imediatamente de oclusão coronária → angiografia coronária urgente → angioplastia de resgate (balão + stent no óstio coronário). Se impossível: chimney stent. Cirurgia de emergência se instabilidade elétrica persistente e impossibilidade de revascularização percutânea.</div>
+      </div>
+
+      <hr class="section-divider">
+      <div class="section-label">5. Ruptura Anular</div>
+      <p class="body-text">Complicação rara (0,5–1%) mas catastrófica — mortalidade de 30–50%. Resulta de oversizing excessivo combinado a calcificação severa e rígida do annulo/LVOT. Três tipos: tipo 1 (apenas o annulo), tipo 2 (LVOT/septo interventricular), tipo 3 (estendendo-se à aorta). O diagnóstico é sugerido por colapso hemodinâmico imediato após o deployment e confirmado por eco (nova regurgitação mitral grave por perfuração septal, hemopericárdio) ou CTA emergencial.<sup>[19]</sup></p>
+
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAcc(this)"><span>Prevenção e Manejo da Ruptura Anular</span><span class="accordion-icon">▶</span></div>
+        <div class="accordion-body">
+          <ul style="padding-left:1.1rem; line-height:1.8; font-size:.83rem;">
+            <li><strong>Prevenção:</strong> CTA detalhada da calcificação do LVOT, não oversizing além do recomendado em annuli calcificados, balão de pré-dilatação nunca maior que o annulo</li>
+            <li><strong>Preditores em CTA:</strong> calcificação circunferencial severa do LVOT, presença de "calcium bar" no septo interventricular basal</li>
+            <li><strong>Manejo:</strong> pericardiocentese imediata (se tamponamento), protamina, controle de pressão (vasoconstritor se hipotensão + manutenção FC), cirurgia cardiovascular de emergência. Em casos Tipo 1 sem tamponamento: watchful waiting com monitoramento rigoroso</li>
+          </ul>
+        </div>
+      </div>
+
+      <hr class="section-divider">
+      <div class="section-label">6. Endocardite Infecciosa Pós-TAVI</div>
+      <p class="body-text">A endocardite após TAVI (TAVI-IE) ocorre em 0,7–3,4% por paciente-ano, com pico de incidência nos primeiros 100 dias (2,59 eventos por 100 pessoas-ano). A bioprótese transcateter parece mais susceptível que a cirúrgica no período precoce, possivelmente pela manipulação intraoperatória, calcificação residual e menor endotelização inicial.<sup>[33,34,35]</sup></p>
+
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th>Parâmetro</th><th>Dado</th></tr></thead>
+          <tbody>
+            <tr><td>Agente mais comum</td><td>Enterococcus spp. (25–30%) — DIFERENTE das próteses cirúrgicas (estreptococo)</td></tr>
+            <tr><td>2º agente mais comum</td><td>Staphylococcus aureus (16–20%)</td></tr>
+            <tr><td>Mortalidade hospitalar</td><td>~25–30%</td></tr>
+            <tr><td>Sobrevida em 1 ano</td><td>~58%</td></tr>
+            <tr><td>Sobrevida em 5 anos</td><td>~29%</td></tr>
+            <tr><td>Profilaxia recomendada</td><td>Amoxicilina/clavulanato (cobre enterococo — cefalosporinas NÃO cobrem enterococo)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-teal info-box">
+        <span class="info-box-icon">💊</span>
+        <div><strong>Profilaxia:</strong> o Enterococcus faecalis coloniza o trato gastrointestinal e urinário — procedimentos como cistoscopia, colonoscopia e tratamentos dentários são as portas de entrada mais comuns. A recomendação do ACC (Del Val JACC 2023) inclui profilaxia com amoxicilina/clavulanato ao invés da cefalosporina convencional para pacientes com TAVI submetidos a procedimentos de risco, e enfase na higiene dental rigorosa antes e após o procedimento.<sup>[37,38]</sup></div>
+      </div>
+
+      <hr class="section-divider">
+      <div class="section-label">7. Trombose Valvar e HALT</div>
+      <p class="body-text">A trombose subclínica dos folhetos (Hypoattenuating Leaflet Thickening — HALT) é detectada por CTA em 10–40% dos pacientes pós-TAVI, com frequência muito maior que a apresentação clínica. O HALT leva a incremento nos gradientes médios (Subclinical Leaflet Thrombosis — SCLT) e é reversível com anticoagulação. Os ensaios GALILEO e ATLANTIS avaliaram estratégias antitrombóticas pós-TAVI:<sup>[13,39]</sup></p>
+
+      <div class="info-amber info-box">
+        <span class="info-box-icon">💊</span>
+        <div><strong>Estratégia antitrombótica padrão pós-TAVI:</strong> aspirina 75–100 mg indefinidamente. Adição de clopidogrel (DAPT) por 3–6 meses é prática em muitos centros baseada em extrapolação, mas sem evidência robusta de benefício em AVC (POPULAR-TAVI). Anticoagulação com AVK ou NOAC é indicada em FA concomitante (não DAPT); warfarin ou apixabana baseada em ARISTOTLE. Se HALT por CTA sem gradiente elevado: anticoagulação com VKA ou NOAC por 3–6 meses resolve em &gt;90% dos casos.</div>
+      </div>
+
+      <hr class="section-divider">
+      <div class="section-label">8. Síndrome do Paciente-Prótese (PPM)</div>
+      <p class="body-text">PPM ocorre quando a EOA da prótese implantada é pequena em relação à superfície corporal do paciente — resultando em gradientes residuais elevados (gradiente médio &gt;20 mmHg = PPM severo). É mais frequente com BEV em annuli pequenos e em obesidade. O impacto clínico é controverso no curto prazo, mas PPM severo associa-se a pior remodelamento ventricular e possivelmente maior mortalidade em seguimento. SEVs supra-anuares (Evolut) oferecem maior EOA e menor risco de PPM — vantagem particularmente relevante para sexo feminino e baixa superfície corporal.</p>
+
+    </div>
+  </div><!-- /tab7 -->
+
+  <!-- ══════════════════════════════════════════════════════
+       TAB 8 · VAB & REDO
+  ══════════════════════════════════════════════════════ -->
+  <div id="tab8" class="tab-section">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon purple">🔁</div>
+        <div>
+          <div class="card-title">Casos Especiais: Válvula Aórtica Bicúspide e TAVI-in-TAVI</div>
+          <div class="card-subtitle">VAB · Desafios técnicos · TAVI-in-TAVI · Planejamento de acesso coronário</div>
+        </div>
+      </div>
+
+      <div class="section-label">Válvula Aórtica Bicúspide (VAB) — Fisiopatologia e Classificação</div>
+      <p class="body-text">A VAB é a malformação cardíaca congênita mais comum (0,5–2% da população), responsável por até 50% de todas as intervenções valvares aórticas em adultos jovens. A morfologia varia amplamente — da fusão de duas cúspides com ou sem rafe à presença de três cúspides desiguais — o que determina desafios técnicos muito distintos para o TAVI.<sup>[40,41,42,43,44]</sup></p>
+
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th>Classificação</th><th>Morfologia</th><th>Prevalência</th><th>Relevância para TAVI</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Sievers Tipo 0</strong> (VAB pura)</td><td>Apenas 2 cúspides, sem rafe</td><td>~10%</td><td>Anel elíptico marcado, maior risco de PVL — desafio máximo</td></tr>
+            <tr><td><strong>Sievers Tipo 1-L</strong></td><td>1 rafe (fusão das cúspides coronarianas esquerda + direita)</td><td>~68%</td><td>Calcificação anterior/anterior-esquerda; obstrução coronária esquerda potencial</td></tr>
+            <tr><td><strong>Sievers Tipo 1-R</strong></td><td>1 rafe (fusão coronariana direita + não-coronariana)</td><td>~25%</td><td>Calcificação anterior-direita; preferencial para muitos centros</td></tr>
+            <tr><td><strong>Sievers Tipo 2</strong></td><td>2 rafes (rarissímo)</td><td>&lt;1%</td><td>Anatomia mais complexa; manejo caso a caso</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        <span class="callout-icon">⚙️</span>
+        <div class="callout-text">
+          <strong>Desafios Técnicos Específicos da VAB</strong>
+          (1) <em>Annulo elíptico e assimétrico</em> — índice de elipticidade frequentemente &gt;1,3; BEVs com força radial elevada têm melhor aposição que SEVs. (2) <em>Calcificação da rafe</em> — a rafe calcificada impede a expansão uniforme da prótese, levando a frame oval ou triangular; pré-dilatação para romper a rafe pode ajudar. (3) <em>Folhetos longos com maior risco de obstrução coronária</em>. (4) <em>Aortapatia associada</em> — dilatação da raiz e/ou aorta ascendente; se &gt;50 mm, considerar correção cirúrgica concomitante.<sup>[41,42,43]</sup>
+        </div>
+      </div>
+
+      <div class="section-label">Evidências Clínicas para TAVI em VAB</div>
+      <p class="body-text">Pacientes com VAB foram excluídos dos trials pivotais de TAVI. Os dados disponíveis são de registros e meta-análises:<sup>[40,41,42,45,46,47]</sup></p>
+
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAcc(this)"><span>Meta-análise Saeed Al-Asad 2023 (Am J Cardiol) — 193.274 pacientes</span><span class="accordion-icon">▶</span></div>
+        <div class="accordion-body">
+          <ul style="padding-left:1.1rem; line-height:1.8; font-size:.83rem;">
+            <li>Mortalidade 1 ano: <strong>menor</strong> em VAB vs TAV (OR 0,86; 95% CI 0,75–0,98; p=0,02)</li>
+            <li>AVC em 30 dias: <strong>maior</strong> em VAB vs TAV (OR 1,24; 95% CI 1,08–1,43; p&lt;0,01)</li>
+            <li>MPP: semelhante entre grupos</li>
+            <li>PVL moderado/grave: tendência a maior em VAB</li>
+            <li>Taxa de conversão cirúrgica: maior em VAB</li>
+            <li>Sucesso do dispositivo com próteses de 3ª geração: &gt;90%</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAcc(this)"><span>NOTION-2 (EHJ 2024) — Único RCT incluindo VAB</span><span class="accordion-icon">▶</span></div>
+        <div class="accordion-body">
+          <p style="font-size:.84rem; margin-bottom:.6rem;">Trial randomizado, pacientes ≤75 anos, baixo risco, incluiu 100 pacientes com VAB (20% da amostra). Resultados no subgrupo VAB:<sup>[46]</sup></p>
+          <ul style="padding-left:1.1rem; line-height:1.8; font-size:.83rem;">
+            <li>Composto (morte + AVC + reinternação) 1 ano: 14,3% TAVI vs 3,9% SAVR (HR 3,8; 95% CI 0,8–18,5; p=0,10)</li>
+            <li>Embora não significativo estatisticamente (amostra pequena), a magnitude da diferença é clinicamente alarmante</li>
+            <li><strong>Conclusão:</strong> TAVI em VAB de baixo risco ≤75 anos deve ser realizado com grande cautela, idealmente em centros de excelência valvar, com decisão individualizada pelo Heart Team</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAcc(this)"><span>Durabilidade da Prótese em VAB — Registros de Longo Prazo</span><span class="accordion-icon">▶</span></div>
+        <div class="accordion-body">
+          <p style="font-size:.84rem;">Jia Y et al. (CCI 2025) reportou uma coorte multicêntrica de 894 pacientes com VAB submetidos a TAVI. Incidência cumulativa a 5 anos: <strong>SVD moderado/grave: 8,1%</strong>; SVD grave: 3,2%; Falha de bioprótese (BVF): 6,1%. Idade ≤75 anos associou-se a maiores taxas de reintervenção (HR 2,40; p=0,04). Pacientes com VAB e "downsizing" da válvula nativa TAV (implante em anatomia nativa menor que o frame) tiveram maior risco de SVD e BVF — evitar esta prática.<sup>[47]</sup></p>
+        </div>
+      </div>
+
+      <hr class="section-divider">
+      <div class="section-label">TAVI-in-TAVI (Redo TAVI) — Planejamento e Técnica</div>
+      <p class="body-text">Com o aumento da longevidade dos pacientes submetidos a TAVI e a expansão para populações mais jovens, o redo TAVI torna-se cada vez mais relevante. A degeneração estrutural da bioprótese transcateter (SVD-TAVI) é a principal indicação, com as limitações anatômicas específicas do TAVI-in-TAVI tornando o planejamento por CTA absolutamente crítico.<sup>[48,49,50]</sup></p>
+
+      <ul class="step-list">
+        <li class="step-item">
+          <div class="step-num-circle">1</div>
+          <div>
+            <div class="step-content-title">Planejamento por CTA — Neo-LVOT e Risco Coronário</div>
+            <div class="step-content-desc">A CTA pré-TAVI-in-TAVI deve incluir simulação do neo-LVOT (área do VSVE projetada após o segundo implante). Área &lt;1,8 cm² é ponto de corte para risco aumentado de obstrução hemodinâmica grave. Risco de obstrução coronária: 27% de impossibilidade de acesso em CoreValve/Evolut-first vs 10% para SAPIEN-first. Multidetector CT study De Backer et al. JACC CI 2020.<sup>[49]</sup></div>
+          </div>
+        </li>
+        <li class="step-item">
+          <div class="step-num-circle">2</div>
+          <div>
+            <div class="step-content-title">Técnicas de Preservação do Acesso Coronário</div>
+            <div class="step-content-desc">BASILICA preventivo antes do TAVI-in-TAVI: lacera o folheto da bioprótese original ao nível do óstio coronário, criando abertura para o fluxo coronário. Alinhamento comissural durante o PRIMEIRO implante de TAVI reduz o risco no redo (planejar desde o índice). Seleção da prótese para TAVI-in-TAVI: preferir THVs com baixo perfil de frame e células abertas largas (SAPIEN 3 em SAPIEN 3 → melhor acesso; Evolut em Evolut → muito difícil).<sup>[14,49,50]</sup></div>
+          </div>
+        </li>
+        <li class="step-item">
+          <div class="step-num-circle">3</div>
+          <div>
+            <div class="step-content-title">Técnica de Implantação no TAVI-in-TAVI</div>
+            <div class="step-content-desc">Cruzamento da bioprótese degenerada (geralmente mais fácil que a valva nativa calcificada). Pré-dilatação com balão opcional mas frequentemente útil para fraturar os folhetos calcificados da bioprótese original (VIVID trial). Deployment da nova prótese alinhada ao annulo da primeira prótese. Gradientes geralmente levemente mais altos (15 vs 12 mmHg em 1 ano, sem impacto clínico - Makkar 2023 Lancet).<sup>[48]</sup></div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="callout">
+        <span class="callout-icon">📊</span>
+        <div class="callout-text">
+          <strong>Registro Makkar et al. (Lancet 2023) — Redo TAVI com BEV</strong>
+          Análise de registro nacional comparando redo TAVI com BEV (n=523) vs TAVI nativo aparelhado por propensity score. Obstrução coronária: 0,3%. Morte intraprocedimento: 0,6%. Conversão a cirurgia: 0,5%. Mortalidade 30 dias: 4,7% vs 4,0% (NS). Mortalidade 1 ano: 17,5% vs 19,0% (NS). Gradientes: 15 vs 12 mmHg a 1 ano (estáveis). Conclusão: redo TAVI com BEV é factível e seguro, com outcomes comparáveis ao TAVI nativo, embora gradientes sejam levemente mais elevados.<sup>[48]</sup>
+        </div>
+      </div>
+
+      <div class="info-teal info-box">
+        <span class="info-box-icon">📖</span>
+        <div><strong>Guia de Planejamento TAV-in-TAV (Bapat JACC CI 2024):</strong> publicação abrangente do ALIGN-TAVR Consortium que sistematiza o planejamento de redo TAVI com base no tipo de prótese original (BEV, SEV, MEV), recomendando uma abordagem de 5 etapas: (1) identificar a prótese original, (2) medir o frame e os folhetos na CTA, (3) calcular o neo-LVOT projetado, (4) avaliar o risco coronário com simulação virtual, (5) selecionar a prótese de redo e planejar técnica de proteção coronária.<sup>[14]</sup></div>
+      </div>
+    </div>
+  </div><!-- /tab8 -->
+
+  <!-- ══════════════════════════════════════════════════════
+       TAB 9 · TAVI vs SAVR
+  ══════════════════════════════════════════════════════ -->
+  <div id="tab9" class="tab-section">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">📊</div>
+        <div>
+          <div class="card-title">TAVI vs SAVR — Hard Endpoints e Durabilidade</div>
+          <div class="card-subtitle">RCTs e meta-análises · Mortalidade · AVC · Degeneração valvar</div>
+        </div>
+      </div>
+
+      <div class="section-label">Visão Geral dos Principais Ensaios Clínicos Randomizados</div>
+
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Trial</th>
+              <th>N</th>
+              <th>Risco / Perfil</th>
+              <th>Seguimento</th>
+              <th>Mortalidade / Comp. Primário</th>
+              <th>Desfecho</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="trial-chip">PARTNER 3</span></td>
+              <td>1.000</td>
+              <td>Baixo risco</td>
+              <td>7 anos</td>
+              <td>TAVI 19,5% vs SAVR 16,8% — morte all-cause</td>
+              <td><span class="badge badge-gray">NS</span></td>
+            </tr>
+            <tr>
+              <td><span class="trial-chip">NOTION</span></td>
+              <td>280</td>
+              <td>Baixo risco; mediana 79a</td>
+              <td>10 anos</td>
+              <td>65,5% vs 65,5% (morte/AVC/IAM)</td>
+              <td><span class="badge badge-gray">NS</span></td>
+            </tr>
+            <tr>
+              <td><span class="trial-chip">PARTNER 2A</span></td>
+              <td>2.032</td>
+              <td>Intermediário</td>
+              <td>5 anos</td>
+              <td>Morte + AVC: 47,9% vs 43,4%</td>
+              <td><span class="badge badge-gray">NS</span></td>
+            </tr>
+            <tr>
+              <td><span class="trial-chip">SURTAVI</span></td>
+              <td>1.746</td>
+              <td>Intermediário (Evolut)</td>
+              <td>5 anos</td>
+              <td>Morte + AVC: 31,3% vs 30,8%</td>
+              <td><span class="badge badge-gray">NS</span></td>
+            </tr>
+            <tr>
+              <td><span class="trial-chip">Evolut Low Risk</span></td>
+              <td>1.414</td>
+              <td>Baixo risco (SEV)</td>
+              <td>3 anos</td>
+              <td>Morte + AVC: 7,4% vs 10,4% (1 ano)</td>
+              <td><span class="badge badge-teal">TAVI ≤</span></td>
+            </tr>
+            <tr>
+              <td><span class="trial-chip">DEDICATE</span></td>
+              <td>1.414</td>
+              <td>Baixo-intermediário</td>
+              <td>1 ano</td>
+              <td>Morte + AVC: 5,4% TAVI vs 10,0% SAVR</td>
+              <td><span class="badge badge-teal">TAVI NI</span></td>
+            </tr>
+            <tr>
+              <td><span class="trial-chip">CoreValve ER</span></td>
+              <td>471</td>
+              <td>Extremo risco</td>
+              <td>3 anos</td>
+              <td>Sobrevida: TAVI 54% vs SAVR 20,3%</td>
+              <td><span class="badge badge-teal">TAVI &lt;&lt;</span></td>
+            </tr>
+            <tr>
+              <td><span class="trial-chip">CoreValve HR</span></td>
+              <td>750</td>
+              <td>Alto risco</td>
+              <td>3 anos</td>
+              <td>Morte: TAVI 37,3% vs SAVR 46,7%</td>
+              <td><span class="badge badge-teal">TAVI &lt;</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <hr class="section-divider">
+      <div class="section-label">PARTNER 3 — 7 Anos (NEJM 2025) — Análise Detalhada</div>
+      <p class="body-text">O seguimento de 7 anos do PARTNER 3 (Leon MB et al., NEJM 2025) representa os dados mais longos disponíveis para TAVI vs SAVR em baixo risco. Os resultados demonstram que a equivalência mantida até 5 anos começa a mostrar uma tendência (não significativa) a maior mortalidade com TAVI em muito longo prazo — consistente com preocupações teóricas de durabilidade superior do SAVR em jovens.<sup>[39]</sup></p>
+
+      <div class="kpi-row">
+        <div class="kpi-card" style="border-top:3px solid var(--teal);">
+          <div class="kpi-val">19,5%</div>
+          <div class="kpi-label">Mortalidade TAVI a 7 anos — PARTNER 3</div>
+        </div>
+        <div class="kpi-card" style="border-top:3px solid #a78bfa;">
+          <div class="kpi-val">16,8%</div>
+          <div class="kpi-label">Mortalidade SAVR a 7 anos — PARTNER 3 (NS)</div>
+        </div>
+        <div class="kpi-card" style="border-top:3px solid var(--teal);">
+          <div class="kpi-val">8,5%</div>
+          <div class="kpi-label">AVC acumulado TAVI — PARTNER 3 7 anos</div>
+        </div>
+        <div class="kpi-card" style="border-top:3px solid #a78bfa;">
+          <div class="kpi-val">6,9%</div>
+          <div class="kpi-label">Falha de bioprótese TAVI vs 7,3% SAVR (NS) a 7 anos</div>
+        </div>
+      </div>
+
+      <hr class="section-divider">
+      <div class="section-label">NOTION — 10 Anos (EHJ 2024) — O Dado de Durabilidade Mais Longo</div>
+      <p class="body-text">O NOTION (Thyregod HGH et al., EHJ 2024) é o único RCT com 10 anos de seguimento comparando TAVI vs SAVR. Incluiu pacientes de baixo risco, mas com mediana de idade de 79 anos (não ideal para extrapolação para jovens). O dado de durabilidade é surpreendentemente favorável ao TAVI: SVD grave foi <strong>menos frequente</strong> com TAVI do que com SAVR aos 10 anos (1,5% vs 10,0%), enquanto BVF foi comparável (9,7% vs 13,8%).<sup>[51]</sup></p>
+
+      <div class="info-teal info-box">
+        <span class="info-box-icon">🔑</span>
+        <div><strong>Mensagem central do NOTION a 10 anos:</strong> desfecho primário (morte + AVC + IAM) idêntico (65,5% vs 65,5%; HR 1,0). SVD grave significativamente <em>menor</em> com TAVI! Este dado desafia a percepção de que SAVR é sempre mais durável que TAVI. Limitações: amostra pequena (n=280), mediana de idade 79 anos, próteses Evolut CoreValve 1ª geração (tecnologia superada).<sup>[51]</sup></div>
+      </div>
+
+      <hr class="section-divider">
+      <div class="section-label">Meta-Análises — Síntese de Evidências</div>
+
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAcc(this)"><span>Ahmad et al. EHJ 2023 — 8 RCTs, 8.698 pacientes</span><span class="accordion-icon">▶</span></div>
+        <div class="accordion-body">
+          <p style="font-size:.84rem; margin-bottom:.6rem;">Meta-análise de 8 RCTs em pacientes de risco baixo a alto:<sup>[54]</sup></p>
+          <ul style="padding-left:1.1rem; line-height:1.8; font-size:.83rem;">
+            <li>Mortalidade precoce (&lt;30 dias): <strong>TAVI menor</strong> (RR 0,67; 95% CI 0,47–0,96)</li>
+            <li>Morte + AVC 1 ano (baixo risco): <strong>TAVI menor</strong> (RR 0,68; 95% CI 0,50–0,92)</li>
+            <li>Depois de 1 ano: <strong>sem diferença</strong> entre TAVI e SAVR</li>
+            <li>TAVI: menor sangramento maior 30 dias (RR 0,38), menor IRA 30 dias (RR 0,38), menor FA nova 30 dias (RR 0,25)</li>
+            <li>TAVI: maior MPP 30 dias (RR 2,62), maior complicações vasculares 30 dias (RR 2,37), maior AVC/AIT 30 dias (RR 1,33)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAcc(this)"><span>Ahmed et al. IJSO 2024 — Seguimento Longo em Baixo-Intermediário Risco</span><span class="accordion-icon">▶</span></div>
+        <div class="accordion-body">
+          <p style="font-size:.84rem; margin-bottom:.6rem;">Meta-análise focada em pacientes de baixo a intermediário risco com seguimento longo:<sup>[55]</sup></p>
+          <ul style="padding-left:1.1rem; line-height:1.8; font-size:.83rem;">
+            <li>Mortalidade comparável até 2 anos</li>
+            <li>Mortalidade com TAVI significativamente <em>maior</em> a ≥5 anos (RR 1,13; 95% CI 1,03–1,23)</li>
+            <li>Limitação crítica: inclui dados de próteses de 1ª e 2ª gerações — Não representativo de próteses atuais</li>
+            <li>Heterogeneidade elevada entre os estudos</li>
+            <li>Conclusão dos autores: TAVI e SAVR comparáveis nos primeiros anos; dados de longo prazo ainda insuficientes para próteses de 3ª geração</li>
+          </ul>
+        </div>
+      </div>
+
+      <hr class="section-divider">
+      <div class="section-label">Durabilidade Estrutural — TAVI vs SAVR</div>
+
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th>Dispositivo</th><th>5 anos</th><th>8 anos</th><th>10 anos</th><th>15+ anos</th></tr></thead>
+          <tbody>
+            <tr><td>SAVR biológica (geral)</td><td>&gt;98% livre SVD</td><td>~94%</td><td>~90%</td><td>~82% a 15a; ~52% a 20a</td></tr>
+            <tr><td>SAPIEN 3 (PARTNER 2)</td><td>SVD 0,68%/100 pt-ano = comparável SAVR</td><td>SVD menor TAVI (13,9% vs 28,3%)</td><td>~15,4% mod/grave</td><td>Dados ainda limitados</td></tr>
+            <tr><td>CoreValve (NOTION)</td><td>Comparável</td><td>Comparável</td><td>SVD grave: 1,5% TAVI vs 10% SAVR (p&lt;0,05)</td><td>Dados em seguimento</td></tr>
+            <tr><td>TAVI em VAB</td><td>SVD mod/grave: 8,1%</td><td>—</td><td>—</td><td>Dados insuficientes</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-teal info-box">
+        <span class="info-box-icon">🔭</span>
+        <div><strong>Perspectiva de longo prazo:</strong> Os dados sugerem que TAVI com próteses de 3ª geração tem durabilidade comparável ao SAVR até 8–10 anos em pacientes ≥70 anos. Em pacientes mais jovens (&lt;65 anos), a extrapolação de vida esperada da prótese além de 15–20 anos ainda carece de dados — razão pela qual o SAVR continua sendo recomendado nesse grupo (ACC/AHA Classe I), com planejamento de TAVI-in-TAVI como opção futura se necessário.<sup>[1,57,59,60]</sup></div>
+      </div>
+
+      <hr class="section-divider">
+      <div class="section-label">DEDICATE Trial (NEJM 2024) — Prática Contemporânea</div>
+      <p class="body-text">O DEDICATE (Blankenberg S et al., NEJM 2024) é o trial mais recente e pragmático, com 1.414 pacientes de baixo a intermediário risco e uso de múltiplas próteses (SAPIEN 3, Evolut PRO, ACURATE neo2). TAVI demonstrou não-inferioridade para morte + AVC em 1 ano (5,4% vs 10,0% — HR 0,92; p para NI &lt;0,001). Foi o primeiro trial realizado inteiramente com próteses de 3ª geração, tornando seus resultados os mais representativos da prática contemporânea.<sup>[56]</sup></p>
+
+      <hr class="section-divider">
+      <div class="section-label">Síntese — Quando Escolher TAVI vs SAVR</div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th>Argumento pró-TAVI</th><th>Argumento pró-SAVR</th></tr></thead>
+          <tbody>
+            <tr><td>Recuperação mais rápida (alta hospitalar 1–3 dias)</td><td>Dados de durabilidade a 20+ anos estabelecidos</td></tr>
+            <tr><td>Menor sangramanto, IRA, FA nova</td><td>Menor necessidade de MPP</td></tr>
+            <tr><td>Menor mortalidade operatória imediata em alto risco</td><td>Menor PVL com técnica cirúrgica</td></tr>
+            <tr><td>Acesso femoral percutâneo (sem esternotomia)</td><td>Troca valvar mecânica simultânea possível</td></tr>
+            <tr><td>Possibilidade de TAVI-in-TAVI futura (se planejado)</td><td>Revascularização coronária simultânea mais completa</td></tr>
+            <tr><td>Preferência do paciente idoso / frágil</td><td>Correção de aortapatia associada (VAB)</td></tr>
+            <tr><td>Anatomia coronária favorável para futuros cateterismos</td><td>Menor custo hospitalar imediato (sem dispositivo THV)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div><!-- /tab9 -->
+
+  <!-- ══════════════════════════════════════════════════════
+       TAB 10 · REFERÊNCIAS
+  ══════════════════════════════════════════════════════ -->
+  <div id="tab10" class="tab-section">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">📚</div>
+        <div>
+          <div class="card-title">Referências Bibliográficas</div>
+          <div class="card-subtitle">Evidências de nível A1 · Guias internacionais · RCTs e meta-análises · 2017–2025</div>
+        </div>
+      </div>
+
+      <ol class="ref-list">
+        <li class="ref-item"><span class="ref-num">1</span><div><div class="ref-title">Calcific Aortic Stenosis: A Review</div><div class="ref-meta">Otto CM, Newby DE, Hillis GS. <em>JAMA.</em> 2024;332(23):2014-2026. doi:10.1001/jama.2024.16477</div></div></li>
+        <li class="ref-item"><span class="ref-num">2</span><div><div class="ref-title">Evaluating Medical Therapy for Calcific Aortic Stenosis: JACC State-of-the-Art Review</div><div class="ref-meta">Lindman BR, Sukul D, Dweck MR, et al. <em>J Am Coll Cardiol.</em> 2021;78(23):2354-2376. doi:10.1016/j.jacc.2021.09.1367</div></div></li>
+        <li class="ref-item"><span class="ref-num">3</span><div><div class="ref-title">Mechanical Intervention for Aortic Valve Stenosis in Patients With Heart Failure And Reduced Ejection Fraction</div><div class="ref-meta">Steiner J, Rodés-Cabau J, Holmes DR, et al. <em>J Am Coll Cardiol.</em> 2017;70(24):3026-3041. doi:10.1016/j.jacc.2017.10.040</div></div></li>
+        <li class="ref-item"><span class="ref-num">4</span><div><div class="ref-title">Aortic Stenosis, Heart Failure, and Aortic Valve Replacement</div><div class="ref-meta">Mengi S, Januzzi JL, Cavalcante JL, et al. <em>JAMA Cardiol.</em> 2024;9(12):1159-1168. doi:10.1001/jamacardio.2024.3486</div></div></li>
+        <li class="ref-item"><span class="ref-num">5</span><div><div class="ref-title">Assessment of Subclinical Left Ventricular Dysfunction in Aortic Stenosis</div><div class="ref-meta">Dahl JS, Magne J, Pellikka PA, Donal E, Marwick TH. <em>JACC Cardiovasc Imaging.</em> 2019;12(1):163-171. doi:10.1016/j.jcmg.2018.08.040</div></div></li>
+        <li class="ref-item"><span class="ref-num">6</span><div><div class="ref-title">Calcific Aortic Stenosis: A Disease of the Valve and the Myocardium</div><div class="ref-meta">Dweck MR, Boon NA, Newby DE. <em>J Am Coll Cardiol.</em> 2012;60(19):1854-63. doi:10.1016/j.jacc.2012.02.093</div></div></li>
+        <li class="ref-item"><span class="ref-num">7</span><div><div class="ref-title">Multimodality Imaging Markers of Adverse Myocardial Remodeling in Aortic Stenosis</div><div class="ref-meta">Treibel TA, Badiani S, Lloyd G, Moon JC. <em>JACC Cardiovasc Imaging.</em> 2019;12(8 Pt 1):1532-1548. doi:10.1016/j.jcmg.2019.02.034</div></div></li>
+        <li class="ref-item"><span class="ref-num">8</span><div><div class="ref-title">2020 ACC/AHA Guideline for the Management of Patients With Valvular Heart Disease</div><div class="ref-meta">Otto CM, Nishimura RA, Bonow RO, et al. <em>J Am Coll Cardiol.</em> 2021;77(4):e25-e197. doi:10.1016/j.jacc.2020.11.018</div></div></li>
+        <li class="ref-item"><span class="ref-num">9</span><div><div class="ref-title">LANDMARK Comparison of Myval Transcatheter Heart Valve Series With Contemporary Valves (Sapien and Evolut)</div><div class="ref-meta">Baumbach A, van Royen N, Amat-Santos IJ, et al. <em>Lancet.</em> 2024;403(10445):2695-2708. doi:10.1016/S0140-6736(24)00821-3</div></div></li>
+        <li class="ref-item"><span class="ref-num">10</span><div><div class="ref-title">Valvular Heart Disease: From Mechanisms to Management</div><div class="ref-meta">Praz F, Beyersdorf F, Haugaa K, Prendergast B. <em>Lancet.</em> 2024;403(10436):1576-1589. doi:10.1016/S0140-6736(23)02755-1</div></div></li>
+        <li class="ref-item"><span class="ref-num">11</span><div><div class="ref-title">5-Year Outcomes After Transcatheter or Surgical Aortic Valve Replacement in Low-Risk Patients With Aortic Stenosis</div><div class="ref-meta">Forrest JK, Yakubov SJ, Deeb GM, et al. <em>J Am Coll Cardiol.</em> 2025;85(15):1523-1532. doi:10.1016/j.jacc.2025.03.004</div></div></li>
+        <li class="ref-item"><span class="ref-num">12</span><div><div class="ref-title">Considerations for Optimal Device Selection in Transcatheter Aortic Valve Replacement: A Review</div><div class="ref-meta">Claessen BE, Tang GHL, Kini AS, Sharma SK. <em>JAMA Cardiol.</em> 2021;6(1):102-112. doi:10.1001/jamacardio.2020.3682</div></div></li>
+        <li class="ref-item"><span class="ref-num">13</span><div><div class="ref-title">2017 ACC Expert Consensus Decision Pathway for Transcatheter Aortic Valve Replacement</div><div class="ref-meta">Otto CM, Kumbhani DJ, Alexander KP, et al. <em>J Am Coll Cardiol.</em> 2017;69(10):1313-1346. doi:10.1016/j.jacc.2016.12.006</div></div></li>
+        <li class="ref-item"><span class="ref-num">14</span><div><div class="ref-title">A Guide to Transcatheter Aortic Valve Design and Systematic Planning for a Redo-TAV (TAV-in-TAV) Procedure</div><div class="ref-meta">Bapat VN, Fukui M, Zaid S, et al. <em>JACC Cardiovasc Interv.</em> 2024;17(14):1631-1651. doi:10.1016/j.jcin.2024.04.047</div></div></li>
+        <li class="ref-item"><span class="ref-num">15</span><div><div class="ref-title">Outcomes of Three Different New Generation Transcatheter Aortic Valve Prostheses</div><div class="ref-meta">Costa G, Buccheri S, Barbanti M, et al. <em>Catheter Cardiovasc Interv.</em> 2020;95(3):398-407. doi:10.1002/ccd.28524</div></div></li>
+        <li class="ref-item"><span class="ref-num">16</span><div><div class="ref-title">Comparison of Contemporary Transcatheter Heart Valve Prostheses: Data From the German Aortic Valve Registry (GARY)</div><div class="ref-meta">Rudolph TK, Herrmann E, Bon D, et al. <em>Clin Res Cardiol.</em> 2024;113(1):75-85. doi:10.1007/s00392-023-02242-z</div></div></li>
+        <li class="ref-item"><span class="ref-num">17</span><div><div class="ref-title">Real-World Multiple Comparison of Transcatheter Aortic Valves: Insights From the Multicenter OBSERVANT II Study</div><div class="ref-meta">Costa G, Barbanti M, Rosato S, et al. <em>Circ Cardiovasc Interv.</em> 2022;15(12):e012294. doi:10.1161/CIRCINTERVENTIONS.122.012294</div></div></li>
+        <li class="ref-item"><span class="ref-num">18</span><div><div class="ref-title">SAPIEN 3 Versus Myval Transcatheter Heart Valves for TAVI (COMPARE-TAVI 1)</div><div class="ref-meta">Terkelsen CJ, Freeman P, Dahl JS, et al. <em>Lancet.</em> 2025;405(10487):1362-1372. doi:10.1016/S0140-6736(25)00106-0</div></div></li>
+        <li class="ref-item"><span class="ref-num">19</span><div><div class="ref-title">Imaging for Predicting, Detecting, And Managing Complications After TAVR</div><div class="ref-meta">Corrigan FE, Gleason PT, Condado JF, et al. <em>JACC Cardiovasc Imaging.</em> 2019;12(5):904-920. doi:10.1016/j.jcmg.2018.07.036</div></div></li>
+        <li class="ref-item"><span class="ref-num">20</span><div><div class="ref-title">Management of Difficult Coronary Anatomy During Transcatheter Aortic Valve Implantation</div><div class="ref-meta">Onishi T, Tang GHL. <em>Curr Opin Cardiol.</em> 2025. doi:10.1097/HCO.0000000000001229</div></div></li>
+        <li class="ref-item"><span class="ref-num">21</span><div><div class="ref-title">Rationale, Definitions, Techniques, And Outcomes of Commissural Alignment in TAVR: From the ALIGN-TAVR Consortium</div><div class="ref-meta">Tang GHL, Amat-Santos IJ, De Backer O, et al. <em>JACC Cardiovasc Interv.</em> 2022;15(15):1497-1518. doi:10.1016/j.jcin.2022.06.001</div></div></li>
+        <li class="ref-item"><span class="ref-num">22</span><div><div class="ref-title">Standard Imaging Techniques in Transcatheter Aortic Valve Replacement</div><div class="ref-meta">Salemi A, Worku BM. <em>J Thorac Dis.</em> 2017;9(Suppl 4):S289-S298. doi:10.21037/jtd.2017.03.114</div></div></li>
+        <li class="ref-item"><span class="ref-num">23</span><div><div class="ref-title">Echocardiography in Transcatheter Aortic (Core)Valve Implantation: Part 2 — Transesophageal Echocardiography</div><div class="ref-meta">Naqvi TZ. <em>Echocardiography.</em> 2018;35(7):1020-1041. doi:10.1111/echo.14034</div></div></li>
+        <li class="ref-item"><span class="ref-num">24</span><div><div class="ref-title">Recommendations for Special Competency in Echocardiographic Guidance of Structural Heart Disease Interventions: From the ASE</div><div class="ref-meta">Little SH, Rigolin VH, Garcia-Sayan E, et al. <em>J Am Soc Echocardiogr.</em> 2023;36(4):350-365. doi:10.1016/j.echo.2023.01.014</div></div></li>
+        <li class="ref-item"><span class="ref-num">25</span><div><div class="ref-title">Paravalvular Leak After Transcatheter Aortic Valve Replacement (TAVR): A Literature Review</div><div class="ref-meta">Sciaramenti G, Menzato E, Clo' S, et al. <em>J Clin Med.</em> 2025;14(24):8905. doi:10.3390/jcm14248905</div></div></li>
+        <li class="ref-item"><span class="ref-num">26</span><div><div class="ref-title">Guidelines for the Evaluation of Valvular Regurgitation After Percutaneous Valve Repair or Replacement</div><div class="ref-meta">Zoghbi WA, Asch FM, Bruce C, et al. <em>J Am Soc Echocardiogr.</em> 2019;32(4):431-475. doi:10.1016/j.echo.2019.01.003</div></div></li>
+        <li class="ref-item"><span class="ref-num">27</span><div><div class="ref-title">Evaluation and Management of Paravalvular Aortic Regurgitation After TAVR</div><div class="ref-meta">Sinning JM, Vasa-Nicotera M, Chin D, et al. <em>J Am Coll Cardiol.</em> 2013;62(1):11-20. doi:10.1016/j.jacc.2013.02.088</div></div></li>
+        <li class="ref-item"><span class="ref-num">28</span><div><div class="ref-title">Aortic Valve Disease, TAVR, and The Heart Failure Patient: A State-of-the-Art Review</div><div class="ref-meta">Okumus N, Abraham S, Puri R, Tang WHW. <em>JACC Heart Fail.</em> 2023;11(8 Pt 2):1070-1083. doi:10.1016/j.jchf.2023.07.003</div></div></li>
+        <li class="ref-item"><span class="ref-num">29</span><div><div class="ref-title">Treatment of Late Paravalvular Regurgitation After TAVI: Prognostic Implications</div><div class="ref-meta">Landes U, Hochstadt A, Manevich L, et al. <em>Eur Heart J.</em> 2023;44(15):1331-1339. doi:10.1093/eurheartj/ehad146</div></div></li>
+        <li class="ref-item"><span class="ref-num">30</span><div><div class="ref-title">Transcatheter Therapies for the Treatment of Valvular and Paravalvular Regurgitation</div><div class="ref-meta">Ruiz CE, Kliger C, Perk G, et al. <em>J Am Coll Cardiol.</em> 2015;66(2):169-83. doi:10.1016/j.jacc.2015.05.034</div></div></li>
+        <li class="ref-item"><span class="ref-num">32</span><div><div class="ref-title">Impact of Evolution of Self-Expandable Aortic Valve Design: Peri-Operative and Short-Term Outcomes</div><div class="ref-meta">Bei E, Voudris V, Kalogeras K, et al. <em>J Clin Med.</em> 2023;12(5):1739. doi:10.3390/jcm12051739</div></div></li>
+        <li class="ref-item"><span class="ref-num">33</span><div><div class="ref-title">Infective Endocarditis After TAVR</div><div class="ref-meta">Stortecky S, Heg D, Tueller D, et al. <em>J Am Coll Cardiol.</em> 2020;75(24):3020-3030. doi:10.1016/j.jacc.2020.04.044</div></div></li>
+        <li class="ref-item"><span class="ref-num">34</span><div><div class="ref-title">Infective Endocarditis After Transcatheter Aortic Valve Implantation: A Nationwide Study</div><div class="ref-meta">Bjursten H, Rasmussen M, Nozohoor S, et al. <em>Eur Heart J.</em> 2019;40(39):3263-3269. doi:10.1093/eurheartj/ehz588</div></div></li>
+        <li class="ref-item"><span class="ref-num">35</span><div><div class="ref-title">Long-Term Risk of Infective Endocarditis After TAVR</div><div class="ref-meta">Butt JH, Ihlemann N, De Backer O, et al. <em>J Am Coll Cardiol.</em> 2019;73(13):1646-1655. doi:10.1016/j.jacc.2018.12.078</div></div></li>
+        <li class="ref-item"><span class="ref-num">37</span><div><div class="ref-title">A Review of Recommendations for Infective Endocarditis Prevention in Patients Undergoing TAVI</div><div class="ref-meta">Conen A, Stortecky S, Moreillon P, et al. <em>EuroIntervention.</em> 2021;16(14):1135-1140. doi:10.4244/EIJ-D-19-00993</div></div></li>
+        <li class="ref-item"><span class="ref-num">38</span><div><div class="ref-title">Infective Endocarditis After TAVR: JACC State-of-the-Art Review</div><div class="ref-meta">Del Val D, Panagides V, Mestres CA, Miró JM, Rodés-Cabau J. <em>J Am Coll Cardiol.</em> 2023;81(4):394-412. doi:10.1016/j.jacc.2022.11.028</div></div></li>
+        <li class="ref-item"><span class="ref-num">39</span><div><div class="ref-title">Transcatheter or Surgical Aortic-Valve Replacement in Low-Risk Patients at 7 Years (PARTNER 3)</div><div class="ref-meta">Leon MB, Mack MJ, Pibarot P, et al. <em>N Engl J Med.</em> 2025. doi:10.1056/NEJMoa2509766</div></div></li>
+        <li class="ref-item"><span class="ref-num">40</span><div><div class="ref-title">Contemporary Transcatheter Heart Valves for TAVI in Bicuspid Aortic Anatomy</div><div class="ref-meta">Simopoulou C, Oliva O, Cesario V, et al. <em>J Clin Med.</em> 2025;14(8):2838. doi:10.3390/jcm14082838</div></div></li>
+        <li class="ref-item"><span class="ref-num">41</span><div><div class="ref-title">TAVI for Bicuspid Aortic Valve: Addressing Technical Challenges and Optimizing Outcomes</div><div class="ref-meta">Paglianiti DA, Aurigemma C, Busco M, et al. <em>J Clin Med.</em> 2025;14(21):7860. doi:10.3390/jcm14217860</div></div></li>
+        <li class="ref-item"><span class="ref-num">42</span><div><div class="ref-title">Bicuspid Aortic Valve Disease: Advancements and Challenges of TAVI</div><div class="ref-meta">Barbanti M, Costa G, Windecker S, et al. <em>Eur Heart J.</em> 2025. doi:10.1093/eurheartj/ehaf307</div></div></li>
+        <li class="ref-item"><span class="ref-num">43</span><div><div class="ref-title">TAVI in Patients With Bicuspid Valve Morphology: A Roadmap Towards Standardization</div><div class="ref-meta">Xiong TY, Ali WB, Feng Y, et al. <em>Nat Rev Cardiol.</em> 2023;20(1):52-67. doi:10.1038/s41569-022-00734-5</div></div></li>
+        <li class="ref-item"><span class="ref-num">44</span><div><div class="ref-title">International Consensus Statement on Nomenclature and Classification of the Congenital Bicuspid Aortic Valve</div><div class="ref-meta">Michelena HI, Della Corte A, Evangelista A, et al. <em>Ann Thorac Surg.</em> 2021;112(3):e203-e235. doi:10.1016/j.athoracsur.2020.08.119</div></div></li>
+        <li class="ref-item"><span class="ref-num">45</span><div><div class="ref-title">TAVR in Bicuspid Versus Tricuspid Aortic Valve Stenosis: Meta-Analysis and Systemic Review</div><div class="ref-meta">Saeed Al-Asad K, Martinez Salazar A, Radwan Y, et al. <em>Am J Cardiol.</em> 2023;203:105-112. doi:10.1016/j.amjcard.2023.06.120</div></div></li>
+        <li class="ref-item"><span class="ref-num">46</span><div><div class="ref-title">TAVI in Low-Risk Tricuspid or Bicuspid Aortic Stenosis: The NOTION-2 Trial</div><div class="ref-meta">Jørgensen TH, Thyregod HGH, Savontaus M, et al. <em>Eur Heart J.</em> 2024;45(37):3804-3814. doi:10.1093/eurheartj/ehae331</div></div></li>
+        <li class="ref-item"><span class="ref-num">47</span><div><div class="ref-title">Long-Term Durability of Transcatheter Aortic Valves in Patients With Bicuspid Aortic Stenosis</div><div class="ref-meta">Jia Y, Maznyczka A, Boiago M, et al. <em>Catheter Cardiovasc Interv.</em> 2025. doi:10.1002/ccd.31742</div></div></li>
+        <li class="ref-item"><span class="ref-num">48</span><div><div class="ref-title">Outcomes of Repeat TAVR With Balloon-Expandable Valves: A Registry Study</div><div class="ref-meta">Makkar RR, Kapadia S, Chakravarty T, et al. <em>Lancet.</em> 2023;402(10412):1529-1540. doi:10.1016/S0140-6736(23)01636-7</div></div></li>
+        <li class="ref-item"><span class="ref-num">49</span><div><div class="ref-title">Coronary Access After TAVR-in-TAVR as Evaluated by Multidetector Computed Tomography</div><div class="ref-meta">De Backer O, Landes U, Fuchs A, et al. <em>JACC Cardiovasc Interv.</em> 2020;13(21):2528-2538. doi:10.1016/j.jcin.2020.06.016</div></div></li>
+        <li class="ref-item"><span class="ref-num">50</span><div><div class="ref-title">Transcatheter Aortic Valve Replacement in Failed Transcatheter Bioprosthetic Valves</div><div class="ref-meta">Tarantini G, Sathananthan J, Fabris T, et al. <em>JACC Cardiovasc Interv.</em> 2022;15(18):1777-1793. doi:10.1016/j.jcin.2022.07.035</div></div></li>
+        <li class="ref-item"><span class="ref-num">51</span><div><div class="ref-title">Transcatheter or Surgical Aortic Valve Implantation: 10-Year Outcomes of the NOTION Trial</div><div class="ref-meta">Thyregod HGH, Jørgensen TH, Ihlemann N, et al. <em>Eur Heart J.</em> 2024;45(13):1116-1124. doi:10.1093/eurheartj/ehae043</div></div></li>
+        <li class="ref-item"><span class="ref-num">52</span><div><div class="ref-title">Eight-Year Outcomes for Patients With Aortic Valve Stenosis at Low Surgical Risk Randomized to TAVI vs. SAVR</div><div class="ref-meta">Jørgensen TH, Thyregod HGH, Ihlemann N, et al. <em>Eur Heart J.</em> 2021;42(30):2912-2919. doi:10.1093/eurheartj/ehab375</div></div></li>
+        <li class="ref-item"><span class="ref-num">53</span><div><div class="ref-title">Five-Year Outcomes of Transcatheter or Surgical Aortic-Valve Replacement (PARTNER 2)</div><div class="ref-meta">Makkar RR, Thourani VH, Mack MJ, et al. <em>N Engl J Med.</em> 2020;382(9):799-809. doi:10.1056/NEJMoa1910555</div></div></li>
+        <li class="ref-item"><span class="ref-num">54</span><div><div class="ref-title">Transcatheter Versus Surgical Aortic Valve Replacement in Lower-Risk and Higher-Risk Patients: A Meta-Analysis of Randomized Trials</div><div class="ref-meta">Ahmad Y, Howard JP, Arnold AD, et al. <em>Eur Heart J.</em> 2023;44(10):836-852. doi:10.1093/eurheartj/ehac642</div></div></li>
+        <li class="ref-item"><span class="ref-num">55</span><div><div class="ref-title">Meta-Analysis of Longitudinal Comparison of TAVR Versus SAVR in Patients at Low to Intermediate Surgical Risk</div><div class="ref-meta">Ahmed M, Ahsan A, Shafiq A, et al. <em>Int J Surg (Lond).</em> 2024;110(12):8097-8106. doi:10.1097/JS9.0000000000002158</div></div></li>
+        <li class="ref-item"><span class="ref-num">56</span><div><div class="ref-title">Transcatheter or Surgical Treatment of Aortic-Valve Stenosis (DEDICATE)</div><div class="ref-meta">Blankenberg S, Seiffert M, Vonthein R, et al. <em>N Engl J Med.</em> 2024;390(17):1572-1583. doi:10.1056/NEJMoa2400685</div></div></li>
+        <li class="ref-item"><span class="ref-num">57</span><div><div class="ref-title">Aortic Bioprosthetic Valve Durability: Incidence, Mechanisms, Predictors, and Management</div><div class="ref-meta">Rodriguez-Gabella T, Voisine P, Puri R, Pibarot P, Rodés-Cabau J. <em>J Am Coll Cardiol.</em> 2017;70(8):1013-1028. doi:10.1016/j.jacc.2017.07.715</div></div></li>
+        <li class="ref-item"><span class="ref-num">58</span><div><div class="ref-title">Structural Deterioration of Transcatheter Versus Surgical Aortic Valve Bioprostheses in the PARTNER-2 Trial</div><div class="ref-meta">Pibarot P, Ternacle J, Jaber WA, et al. <em>J Am Coll Cardiol.</em> 2020;76(16):1830-1843. doi:10.1016/j.jacc.2020.08.049</div></div></li>
+        <li class="ref-item"><span class="ref-num">59</span><div><div class="ref-title">Durability of Transcatheter Aortic Valve Implantation</div><div class="ref-meta">Ternacle J, Hecht S, Eltchaninoff H, et al. <em>EuroIntervention.</em> 2024;20(14):e845-e864. doi:10.4244/EIJ-D-23-01050</div></div></li>
+        <li class="ref-item"><span class="ref-num">60</span><div><div class="ref-title">Transcatheter Aortic Valve Replacement for Patients at Low Risk and Younger Patients—A Contemporary View</div><div class="ref-meta">Shuhaiber J. <em>JAMA Intern Med.</em> 2026. doi:10.1001/jamainternmed.2025.7624</div></div></li>
+        <li class="ref-item"><span class="ref-num">61</span><div><div class="ref-title">Evolving Indications for TAVI: Key Issues From Procedural Challenges to Lifetime Management</div><div class="ref-meta">Paolisso P, Ausiello D, Cefalì F, et al. <em>Can J Cardiol.</em> 2025. doi:10.1016/j.cjca.2025.12.006</div></div></li>
+      </ol>
+
+      <div class="disclaimer">
+        <strong>⚕️ Aviso Legal:</strong> Este material é destinado exclusivamente a médicos e profissionais de saúde habilitados, para fins educacionais. Não substitui o julgamento clínico individual nem as diretrizes institucionais locais. As evidências apresentadas estão sujeitas a atualização contínua; a decisão clínica deve sempre ser fundamentada na literatura mais recente e na discussão multidisciplinar com Heart Team. As recomendações terapêuticas variam conforme a anatomia individual, experiência do centro e disponibilidade local de dispositivos. Dr. Lucas Silva · lucascardio.com.br · 2025.
+      </div>
+    </div>
+  </div><!-- /tab10 -->
+
+</div><!-- /container -->
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-copy">
+        © 2025 Dr. Lucas Silva · TAVIGuide · Cardiologia Intervencionista Baseada em Evidências
+      </div>
+      <div style="display:flex; gap:.5rem; flex-wrap:wrap;">
+        <span class="badge badge-teal">ACC/AHA 2020</span>
+        <span class="badge badge-teal">ESC/EACTS 2021</span>
+        <span class="badge badge-gray">PARTNER 3 · 7 anos</span>
+        <span class="badge badge-gray">NOTION · 10 anos</span>
+        <span class="badge badge-gray">DEDICATE 2024</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════════
+   TAB NAVIGATION
+═══════════════════════════════════════════════ */
+const TOTAL_TABS = 10;
+
+function goTab(n) {
+  for (let i = 1; i <= TOTAL_TABS; i++) {
+    const sec = document.getElementById('tab' + i);
+    const btn = document.querySelectorAll('.tab-btn')[i - 1];
+    if (sec) sec.classList.toggle('active', i === n);
+    if (btn) btn.classList.toggle('active', i === n);
+  }
+  const pct = Math.round((n / TOTAL_TABS) * 100);
+  document.getElementById('progress').style.width = pct + '%';
+  document.querySelector('.tab-nav')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+/* ═══════════════════════════════════════════════
+   ACCORDION
+═══════════════════════════════════════════════ */
+function toggleAcc(header) {
+  const body = header.nextElementSibling;
+  const isOpen = header.classList.contains('open');
+  // Close all in same section
+  const section = header.closest('.tab-section');
+  if (section) {
+    section.querySelectorAll('.accordion-header.open').forEach(h => {
+      h.classList.remove('open');
+      h.nextElementSibling.classList.remove('open');
+    });
+  }
+  if (!isOpen) {
+    header.classList.add('open');
+    body.classList.add('open');
+  }
+}
+</script>
+</body>
+</html>
