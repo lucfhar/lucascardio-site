@@ -210,30 +210,6 @@
     #mainNav .dropdown-divider { margin:.3rem 0; }
     /* shrink state dropdown fix */
     #mainNav.navbar-shrink .dropdown-menu { margin-top:.2rem; }
-    /* ─── Mobile: dropdown abre inline (accordion), não como popup flutuante ── */
-    @media (max-width: 991.98px) {
-        #mainNav .dropdown-menu {
-            position: static !important;
-            float: none;
-            box-shadow: none !important;
-            border: none !important;
-            border-left: 2px solid rgba(201,169,110,.35) !important;
-            border-radius: 0 !important;
-            padding: .25rem 0 .25rem .75rem;
-            margin: .1rem 0 .4rem 1rem;
-            background: transparent !important;
-        }
-        #mainNav .dropdown-menu .dropdown-item {
-            color: rgba(255,255,255,.75);
-            padding: .4rem .8rem;
-        }
-        #mainNav .dropdown-menu .dropdown-item:hover,
-        #mainNav .dropdown-menu .dropdown-item:focus {
-            background: rgba(201,169,110,.15) !important;
-            color: var(--lc-accent, #c9a96e) !important;
-        }
-        #mainNav .dropdown-divider { border-color: rgba(255,255,255,.12); }
-    }
     .dark-mode #mainNav .dropdown-menu { background:#1c1e2a; border-color:#333; }
     .dark-mode #mainNav .dropdown-item { color:#ccc; }
     .dark-mode #mainNav .dropdown-item:hover { background:rgba(201,169,110,.15); color:var(--lc-accent,#c9a96e); }
@@ -1177,43 +1153,27 @@
 
 
 <script>
-// ─── Fix: Dropdown mobile ─────────────────────────────────────────────────────
-// scripts.js chama toggler.click() para TODOS os .nav-link (incluindo dropdown-toggles).
-// No mobile, isso fecha o navbar antes do Bootstrap abrir o submenu.
-//
-// Estratégia: interceptar no capture phase (antes do scripts.js) → temporariamente
-// substituir toggler.click por um no-op → deixar o Bootstrap processar o clique
-// normalmente → dropdown abre inline (via CSS position:static acima).
+// ─── Fix: Dropdown mobile — abre submenu sem fechar o navbar ─────────────────
+// O scripts.js do tema chama navbarToggler.click() para QUALQUER .nav-link,
+// incluindo dropdown-toggles. No mobile isso fecha o navbar antes de abrir o submenu.
+// Solução: na fase de captura, bloquear a propagação (impede scripts.js) e acionar
+// o dropdown manualmente via Bootstrap API.
 (function () {
     document.addEventListener('DOMContentLoaded', function () {
         var toggler = document.querySelector('.navbar-toggler');
-        if (!toggler) return;
 
         document.querySelectorAll('#mainNav .dropdown-toggle').forEach(function (toggle) {
             toggle.addEventListener('click', function (e) {
-                // Só no mobile (hambúrguer visível)
-                if (window.getComputedStyle(toggler).display === 'none') return;
+                // Só interfere no mobile (hambúrguer visível)
+                if (!toggler || window.getComputedStyle(toggler).display === 'none') return;
 
-                // Impede o scroll para o anchor href do toggle
-                e.preventDefault();
+                e.preventDefault();            // evita jump para o anchor href
+                e.stopImmediatePropagation();  // bloqueia scripts.js de ver este clique
 
-                // Substitui toggler.click por no-op temporário (scripts.js vai chamar isso)
-                toggler.click = function () {};
-                setTimeout(function () { delete toggler.click; }, 100);
-
-                // Abre/fecha o submenu manualmente via classes Bootstrap
-                var menu = toggle.closest('.nav-item').querySelector('.dropdown-menu');
-                var isOpen = menu.classList.contains('show');
-                // Fecha outros dropdowns abertos
-                document.querySelectorAll('#mainNav .dropdown-menu.show').forEach(function (m) {
-                    m.classList.remove('show');
-                    m.previousElementSibling && m.previousElementSibling.setAttribute('aria-expanded', 'false');
-                });
-                if (!isOpen) {
-                    menu.classList.add('show');
-                    toggle.setAttribute('aria-expanded', 'true');
-                }
-            }, true); // capture phase — executa antes dos listeners bubble do scripts.js
+                // Abre/fecha o dropdown manualmente via Bootstrap API
+                var dd = bootstrap.Dropdown.getOrCreateInstance(toggle);
+                dd.toggle();
+            }, true); // fase de captura — executa antes dos listeners de bubble do scripts.js
         });
     });
 })();
