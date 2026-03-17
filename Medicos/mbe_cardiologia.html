@@ -1,0 +1,1720 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>MBE em Cardiologia: Limites, Paradoxos e Prática Crítica | Dr. Lucas Silva</title>
+  <meta name="description" content="Análise crítica e aprofundada da medicina baseada em evidências em cardiologia: limitações dos ECRs, problemas das diretrizes, casos históricos e estratégias para a prática clínica baseada em evidências." />
+  <meta name="author" content="Dr. Lucas Silva" />
+  <link rel="canonical" href="https://lucascardio.com.br/Medicos/mbe_cardiologia.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": [
+    "MedicalWebPage",
+    "Article"
+  ],
+  "headline": "MBE em Cardiologia: Limites, Paradoxos e Prática Crítica",
+  "name": "MBE em Cardiologia: Limites, Paradoxos e Prática Crítica",
+  "description": "Análise crítica e aprofundada da medicina baseada em evidências em cardiologia: limitações dos ensaios clínicos, problemas das diretrizes, casos históricos e estratégias para a prática clínica baseada em evidências.",
+  "url": "https://lucascardio.com.br/mbe_cardiologia.html",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://lucascardio.com.br/mbe_cardiologia.html"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Dr. Lucas Silva",
+    "url": "https://lucascardio.com.br",
+    "jobTitle": "Cardiologista Intervencionista"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dr. Lucas Silva - Cardiologia",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://lucascardio.com.br/assets/img/logo.png"
+    }
+  },
+  "inLanguage": "pt-BR",
+  "isAccessibleForFree": true,
+  "medicalAudience": {
+    "@type": "MedicalAudience",
+    "audienceType": "Clinician"
+  },
+  "specialty": "https://schema.org/Cardiovascular",
+  "about": [
+    {
+      "@type": "Thing",
+      "name": "Medicina baseada em evidências em cardiologia"
+    },
+    {
+      "@type": "Thing",
+      "name": "Diretrizes clínicas cardiovasculares"
+    },
+    {
+      "@type": "Thing",
+      "name": "Ensaios clínicos randomizados"
+    },
+    {
+      "@type": "Thing",
+      "name": "Raciocínio clínico"
+    },
+    {
+      "@type": "Thing",
+      "name": "GRADE"
+    }
+  ]
+}
+</script>
+
+  <style>
+    /* ── DESIGN TOKENS ────────────────────────────────────────── */
+    :root {
+      --primary: oklch(65% .18 195);
+      --primary-foreground: oklch(98% 0 0);
+      --background: oklch(13% .018 250);
+      --foreground: oklch(93% .01 250);
+      --card: oklch(18.5% .018 250);
+      --card-foreground: oklch(93% .01 250);
+      --muted: oklch(22% .018 250);
+      --muted-foreground: oklch(62% .02 250);
+      --border: oklch(28% .025 250);
+      --input: oklch(22% .02 250);
+      --destructive: oklch(60% .22 25);
+      --secondary: oklch(22% .022 250);
+      --accent: oklch(24% .025 250);
+      --teal: #00d3bd;
+      --teal-dim: rgba(0,211,189,.12);
+      --amber: oklch(82.8% .189 84.429);
+      --red: oklch(63.7% .237 25.331);
+      --green: oklch(79.2% .209 151.711);
+      --radius: 0.625rem;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--background);
+      color: var(--foreground);
+      min-height: 100vh;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ───────────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(18,20,27,.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--foreground); }
+    .nav-brand-icon {
+      width: 28px; height: 28px; border-radius: 7px;
+      background: var(--teal); display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .nav-brand-name { font-weight: 800; font-size: 1rem; letter-spacing: -.025em; line-height: 1; }
+    .nav-brand-name span { color: var(--teal); }
+    .nav-brand-sep { width: 1px; height: 14px; background: var(--border); margin: 0 6px; }
+    .nav-brand-sub { font-size: .7rem; font-weight: 500; color: var(--muted-foreground); }
+    .nav-actions { display: flex; align-items: center; gap: .5rem; }
+    .nav-badge {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 999px; background: var(--teal-dim);
+      color: var(--teal); border: 1px solid rgba(0,211,189,.25); white-space: nowrap;
+    }
+    .nav-link {
+      font-size: .75rem; font-weight: 600; padding: 5px 12px;
+      border-radius: 8px; border: 1.5px solid var(--primary);
+      color: var(--primary); background: transparent; text-decoration: none;
+      transition: background .15s, color .15s;
+      display: inline-flex; align-items: center; gap: 5px;
+    }
+    .nav-link:hover { background: var(--primary); color: var(--primary-foreground); }
+
+    /* ── LAYOUT ────────────────────────────────────────────────── */
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 1.5rem; }
+
+    .page-layout {
+      display: grid;
+      grid-template-columns: 215px 1fr;
+      gap: 2.5rem;
+      padding: 2rem 0 5rem;
+      align-items: start;
+    }
+
+    /* ── SIDEBAR ───────────────────────────────────────────────── */
+    .sidebar { position: sticky; top: 68px; }
+    .sidebar-label {
+      font-size: .62rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--muted-foreground);
+      margin-bottom: .75rem; font-family: var(--font-mono);
+      padding: 0 8px;
+    }
+    .sidebar-menu { list-style: none; }
+    .sidebar-item {
+      display: flex; align-items: flex-start; gap: 9px;
+      padding: 8px 10px; border-radius: 8px;
+      cursor: pointer; font-size: .78rem; color: var(--muted-foreground);
+      font-weight: 500; transition: all .15s; margin-bottom: 2px;
+      line-height: 1.4; border: 1px solid transparent;
+    }
+    .sidebar-item:hover { background: var(--muted); color: var(--foreground); }
+    .sidebar-item.active {
+      background: var(--teal-dim); color: var(--teal);
+      font-weight: 700; border-color: rgba(0,211,189,.2);
+    }
+    .sidebar-num {
+      font-family: var(--font-mono); font-size: .62rem;
+      min-width: 14px; opacity: .7; padding-top: 1px;
+    }
+    .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: .6rem 8px; }
+
+    /* ── HERO ──────────────────────────────────────────────────── */
+    .hero {
+      padding: 3rem 0 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .7rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--teal); margin-bottom: 1rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 20px; height: 2px;
+      background: var(--teal); border-radius: 1px;
+    }
+    .hero h1 {
+      font-size: clamp(1.5rem, 4vw, 2.3rem);
+      font-weight: 800; line-height: 1.2;
+      margin-bottom: .75rem; letter-spacing: -.02em;
+    }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero-sub { color: var(--muted-foreground); font-size: .95rem; max-width: 680px; margin-bottom: 1.5rem; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 6px; border: 1px solid var(--border);
+      color: var(--muted-foreground); background: var(--card); font-family: var(--font-mono);
+    }
+
+    /* ── CARDS ─────────────────────────────────────────────────── */
+    .card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px);
+      padding: 1.5rem; margin-bottom: 1.5rem;
+    }
+    .card-header {
+      display: flex; align-items: flex-start; gap: .75rem;
+      margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border);
+    }
+    .card-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+      background: var(--teal-dim); color: var(--teal);
+    }
+    .card-icon.amber { background: rgba(251,191,36,.1); }
+    .card-icon.red { background: rgba(220,38,38,.1); }
+    .card-icon.green { background: rgba(134,239,172,.1); }
+    .card-title { font-weight: 700; font-size: 1rem; margin-bottom: 2px; }
+    .card-subtitle { font-size: .78rem; color: var(--muted-foreground); }
+
+    /* ── INFO BOXES ────────────────────────────────────────────── */
+    .info-box {
+      border-radius: var(--radius); padding: 13px 16px;
+      font-size: .83rem; line-height: 1.65;
+      display: flex; gap: 10px; margin-bottom: .85rem;
+    }
+    .info-box-icon { flex-shrink: 0; font-size: 1rem; margin-top: 1px; }
+    .info-teal { background: var(--teal-dim); border-left: 3px solid var(--teal); }
+    .info-amber { background: rgba(251,191,36,.08); border-left: 3px solid rgba(251,191,36,.5); }
+    .info-red { background: rgba(220,38,38,.08); border-left: 3px solid rgba(220,38,38,.4); }
+    .info-gray { background: var(--muted); border-left: 3px solid var(--border); }
+    .info-green { background: rgba(134,239,172,.07); border-left: 3px solid rgba(134,239,172,.45); }
+
+    /* ── SECTION ANATOMY ───────────────────────────────────────── */
+    .section-content { display: none; animation: fadeUp .3s ease; }
+    .section-content.active { display: block; }
+    .section-label {
+      font-size: .68rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--teal);
+      margin-bottom: .4rem; font-family: var(--font-mono);
+    }
+    .section-title {
+      font-size: 1.45rem; font-weight: 800; margin-bottom: .5rem; letter-spacing: -.01em;
+    }
+    .section-intro {
+      color: var(--muted-foreground); font-size: .9rem;
+      max-width: 640px; margin-bottom: 2rem; line-height: 1.7;
+    }
+    .section-divider { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+    h3 { font-size: 1rem; font-weight: 700; margin-bottom: .6rem; letter-spacing: -.01em; }
+    h4 { font-size: .9rem; font-weight: 700; margin-bottom: .4rem; color: var(--foreground); }
+    p { font-size: .875rem; line-height: 1.7; color: var(--foreground); margin-bottom: .75rem; }
+    p:last-child { margin-bottom: 0; }
+    strong { font-weight: 700; }
+
+    /* ── STAT GRID ─────────────────────────────────────────────── */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border); border-radius: calc(var(--radius)+2px);
+      overflow: hidden; margin-bottom: 1.75rem;
+    }
+    .stat-cell { background: var(--card); padding: 1.25rem 1rem; }
+    .stat-val {
+      font-size: 2rem; font-weight: 800; font-family: var(--font-mono);
+      line-height: 1; margin-bottom: .25rem;
+    }
+    .stat-val.teal { color: var(--teal); }
+    .stat-val.amber { color: var(--amber); }
+    .stat-val.red { color: var(--red); }
+    .stat-val.green { color: var(--green); }
+    .stat-label { font-size: .75rem; color: var(--muted-foreground); line-height: 1.4; font-weight: 500; }
+    .stat-source { font-size: .65rem; color: var(--muted-foreground); font-family: var(--font-mono); margin-top: 4px; opacity: .7; }
+
+    /* ── CHART WRAPPER ─────────────────────────────────────────── */
+    .chart-wrap {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: calc(var(--radius)+2px);
+      padding: 1.5rem; margin-bottom: 1.5rem;
+    }
+    .chart-title {
+      font-weight: 700; font-size: .9rem; margin-bottom: .25rem;
+    }
+    .chart-subtitle { font-size: .75rem; color: var(--muted-foreground); margin-bottom: 1.25rem; }
+    .chart-canvas-wrap { position: relative; height: 240px; }
+
+    /* ── COMPARE TABLE ─────────────────────────────────────────── */
+    .compare-table {
+      width: 100%; border-collapse: collapse;
+      font-size: .81rem; overflow: hidden;
+    }
+    .compare-table th {
+      background: var(--muted); padding: 9px 13px;
+      text-align: left; font-weight: 700; font-size: .73rem;
+      border-bottom: 1px solid var(--border); color: var(--muted-foreground); letter-spacing: .03em;
+    }
+    .compare-table td {
+      padding: 10px 13px; border-bottom: 1px solid var(--border); vertical-align: top;
+    }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table tr:hover td { background: var(--accent); }
+    .table-wrap {
+      border: 1px solid var(--border); border-radius: calc(var(--radius)+2px);
+      overflow: hidden; margin-bottom: 1.5rem;
+    }
+
+    /* ── BADGE ─────────────────────────────────────────────────── */
+    .badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: .67rem; font-weight: 700; padding: 2px 8px;
+      border-radius: 999px; white-space: nowrap;
+    }
+    .badge-a { background: rgba(134,239,172,.12); color: #86efac; border: 1px solid rgba(134,239,172,.25); }
+    .badge-b { background: rgba(251,191,36,.12); color: #fbbf24; border: 1px solid rgba(251,191,36,.2); }
+    .badge-c { background: rgba(220,38,38,.12); color: #f87171; border: 1px solid rgba(220,38,38,.2); }
+    .badge-teal { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.2); }
+    .badge-gray { background: var(--muted); color: var(--muted-foreground); border: 1px solid var(--border); }
+    .badge-red { background: rgba(220,38,38,.12); color: #f87171; border: 1px solid rgba(220,38,38,.2); }
+    .badge-amber { background: rgba(251,191,36,.12); color: #fbbf24; border: 1px solid rgba(251,191,36,.2); }
+
+    /* ── TIMELINE CARDS (Section 4) ────────────────────────────── */
+    .collapse-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: calc(var(--radius)+2px); margin-bottom: .75rem; overflow: hidden;
+    }
+    .collapse-header {
+      display: flex; align-items: center; gap: 12px;
+      padding: 1rem 1.25rem; cursor: pointer;
+      transition: background .15s; user-select: none;
+    }
+    .collapse-header:hover { background: var(--accent); }
+    .collapse-year {
+      font-family: var(--font-mono); font-size: .75rem; font-weight: 700;
+      color: var(--teal); min-width: 38px;
+    }
+    .collapse-name { font-weight: 700; font-size: .9rem; flex: 1; }
+    .collapse-pill {
+      font-size: .68rem; font-weight: 700; padding: 2px 9px;
+      border-radius: 999px;
+    }
+    .pill-harm { background: rgba(220,38,38,.15); color: #f87171; border: 1px solid rgba(220,38,38,.3); }
+    .pill-null { background: rgba(251,191,36,.12); color: #fbbf24; border: 1px solid rgba(251,191,36,.25); }
+    .pill-reversal { background: rgba(134,239,172,.1); color: #86efac; border: 1px solid rgba(134,239,172,.2); }
+    .collapse-chevron {
+      font-size: .7rem; color: var(--muted-foreground);
+      transition: transform .2s; flex-shrink: 0;
+    }
+    .collapse-card.open .collapse-chevron { transform: rotate(180deg); }
+    .collapse-body {
+      display: none; padding: 0 1.25rem 1.25rem; border-top: 1px solid var(--border);
+    }
+    .collapse-card.open .collapse-body { display: block; }
+    .collapse-body p { font-size: .83rem; margin-top: .85rem; margin-bottom: .5rem; }
+    .collapse-lesson {
+      background: var(--muted); border-radius: var(--radius);
+      padding: 10px 14px; font-size: .8rem; margin-top: .85rem;
+      border-left: 3px solid var(--teal);
+    }
+    .collapse-lesson strong { color: var(--teal); font-size: .7rem; letter-spacing: .05em; text-transform: uppercase; display: block; margin-bottom: 3px; }
+
+    /* ── GRADE TABLE ───────────────────────────────────────────── */
+    .grade-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border); border-radius: calc(var(--radius)+2px);
+      overflow: hidden; margin-bottom: 1.5rem;
+    }
+    .grade-cell {
+      padding: 1.1rem 1.2rem; background: var(--card);
+    }
+    .grade-cell-title {
+      font-size: .78rem; font-weight: 800; margin-bottom: .4rem; letter-spacing: -.01em;
+    }
+    .grade-cell-desc { font-size: .77rem; color: var(--muted-foreground); line-height: 1.55; }
+    .grade-cell.strong-high .grade-cell-title { color: #86efac; }
+    .grade-cell.strong-low .grade-cell-title { color: #fbbf24; }
+    .grade-cell.weak-high .grade-cell-title { color: var(--teal); }
+    .grade-cell.weak-low .grade-cell-title { color: #f87171; }
+    .grade-row-label {
+      font-size: .65rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--muted-foreground);
+      font-family: var(--font-mono); margin-bottom: .4rem;
+    }
+
+    /* ── SCENARIO CARDS (Section 5) ────────────────────────────── */
+    .scenario-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem; margin-bottom: 1.5rem;
+    }
+    .scenario-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: calc(var(--radius)+2px); padding: 1.1rem;
+    }
+    .scenario-header {
+      display: flex; align-items: center; gap: 10px; margin-bottom: .75rem;
+    }
+    .scenario-icon { font-size: 1.2rem; }
+    .scenario-title { font-weight: 700; font-size: .88rem; }
+    .scenario-ev { font-size: .75rem; color: var(--muted-foreground); line-height: 1.55; }
+
+    /* ── QUESTIONS (Section 7) ─────────────────────────────────── */
+    .question-list { list-style: none; margin-bottom: 1.5rem; }
+    .question-item {
+      display: flex; gap: 12px; align-items: flex-start;
+      padding: .9rem 1rem; background: var(--card);
+      border: 1px solid var(--border); border-radius: var(--radius);
+      margin-bottom: .5rem;
+    }
+    .question-num {
+      font-family: var(--font-mono); font-size: .8rem; font-weight: 700;
+      color: var(--teal); min-width: 22px;
+    }
+    .question-text { font-size: .84rem; line-height: 1.6; }
+    .question-text strong { display: block; margin-bottom: 2px; }
+    .question-text span { font-size: .78rem; color: var(--muted-foreground); }
+
+    /* ── TRIAD VISUAL (Section 6) ──────────────────────────────── */
+    .triad {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border); border-radius: calc(var(--radius)+2px);
+      overflow: hidden; margin-bottom: 1.5rem;
+    }
+    .triad-cell {
+      background: var(--card); padding: 1.25rem 1rem; text-align: center;
+    }
+    .triad-icon { font-size: 1.8rem; margin-bottom: .6rem; }
+    .triad-label {
+      font-weight: 800; font-size: .9rem; margin-bottom: .4rem;
+    }
+    .triad-desc { font-size: .77rem; color: var(--muted-foreground); line-height: 1.5; }
+
+    /* ── REFERENCES ────────────────────────────────────────────── */
+    .ref-list { list-style: none; }
+    .ref-item {
+      padding: 10px 0; border-bottom: 1px solid var(--border);
+      font-size: .79rem; line-height: 1.65; display: flex; gap: 10px;
+    }
+    .ref-item:last-child { border-bottom: none; }
+    .ref-num {
+      font-family: var(--font-mono); font-size: .7rem; font-weight: 700;
+      color: var(--teal); min-width: 22px;
+    }
+    .ref-title { font-weight: 600; margin-bottom: 2px; }
+    .ref-meta { color: var(--muted-foreground); font-size: .74rem; }
+
+    /* ── DISCLAIMER ────────────────────────────────────────────── */
+    .disclaimer {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 12px 16px;
+      font-size: .75rem; color: var(--muted-foreground);
+      line-height: 1.6; margin-top: 1.5rem;
+    }
+
+    /* ── ANIMATIONS ────────────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── FOOTER ────────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.75rem 0; margin-top: 1rem;
+    }
+    .footer-inner {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-copy { font-size: .74rem; color: var(--muted-foreground); }
+
+    /* ── RESPONSIVE ────────────────────────────────────────────── */
+    @media (max-width: 800px) {
+      .page-layout { grid-template-columns: 1fr; gap: 0; padding-top: 0; }
+      .sidebar { position: static; padding: 1rem 0 .5rem; }
+      .sidebar-menu { display: flex; gap: .25rem; overflow-x: auto; padding-bottom: .5rem; }
+      .sidebar-item { white-space: nowrap; flex-shrink: 0; font-size: .73rem; padding: 6px 10px; }
+      .sidebar-label { display: none; }
+      .triad { grid-template-columns: 1fr; }
+      .grade-grid { grid-template-columns: 1fr; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 500px) {
+      .stat-grid { grid-template-columns: 1fr; }
+      .scenario-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ───────────────────────────────────────────────── -->
+<nav>
+  <a class="nav-brand" href="#">
+    <div class="nav-brand-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+      </svg>
+    </div>
+    <div class="nav-brand-name">Lucas<span>Cardio</span></div>
+    <div class="nav-brand-sep"></div>
+    <div class="nav-brand-sub">MBE — Limites e Prática Crítica</div>
+  </a>
+  <div class="nav-actions">
+    <span class="nav-badge">Para Profissionais</span>
+    <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      lucascardio.com.br
+    </a>
+  </div>
+</nav>
+
+<!-- ── MAIN ───────────────────────────────────────────────── -->
+<main>
+  <div class="container">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-eyebrow">Análise Crítica · Cardiologia Baseada em Evidências</div>
+      <h1>Medicina Baseada em Evidências:<br><em>Limites, Paradoxos e Prática Crítica</em></h1>
+      <p class="hero-sub">
+        Uma análise aprofundada das limitações estruturais da MBE em cardiologia: dos ensaios clínicos às diretrizes, dos colapsos históricos às lacunas cotidianas — e como o clínico crítico navega essa realidade.
+      </p>
+      <div class="hero-tags">
+        <span class="tag">GRADE</span>
+        <span class="tag">ACC/AHA LOE</span>
+        <span class="tag">ESC Guidelines</span>
+        <span class="tag">ECR · Bias</span>
+        <span class="tag">Surrogate Endpoints</span>
+        <span class="tag">Clinical Reasoning</span>
+        <span class="tag">Shared Decision Making</span>
+      </div>
+    </div>
+
+    <!-- PAGE LAYOUT: SIDEBAR + CONTENT -->
+    <div class="page-layout">
+
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="sidebar-label">Tópicos</div>
+        <ul class="sidebar-menu">
+          <li class="sidebar-item active" onclick="goSection(1)">
+            <span class="sidebar-num">01</span>Panorama da Evidência em Cardiologia
+          </li>
+          <li class="sidebar-item" onclick="goSection(2)">
+            <span class="sidebar-num">02</span>Limitações dos Ensaios Clínicos
+          </li>
+          <li class="sidebar-item" onclick="goSection(3)">
+            <span class="sidebar-num">03</span>Diretrizes: Força sem Certeza
+          </li>
+          <li class="sidebar-item" onclick="goSection(4)">
+            <span class="sidebar-num">04</span>Colapsos Históricos da Evidência
+          </li>
+          <li class="sidebar-item" onclick="goSection(5)">
+            <span class="sidebar-num">05</span>Lacunas de Evidência na Prática
+          </li>
+          <li class="sidebar-item" onclick="goSection(6)">
+            <span class="sidebar-num">06</span>Raciocínio Clínico na Era da MBE
+          </li>
+          <hr class="sidebar-divider"/>
+          <li class="sidebar-item" onclick="goSection(7)">
+            <span class="sidebar-num">07</span>Estratégias para a Prática Crítica
+          </li>
+          <li class="sidebar-item" onclick="goSection(8)">
+            <span class="sidebar-num">08</span>Referências
+          </li>
+        </ul>
+      </aside>
+
+      <!-- CONTENT AREA -->
+      <div class="content-area">
+
+        <!-- ═══════════════════════════════════════
+             SEÇÃO 1 — PANORAMA DA EVIDÊNCIA
+        ═══════════════════════════════════════════ -->
+        <div id="sec1" class="section-content active">
+          <div class="section-label">Seção 01</div>
+          <h2 class="section-title">O Estado Real da Evidência em Cardiologia</h2>
+          <p class="section-intro">
+            A cardiologia é, paradoxalmente, a especialidade com maior volume de ensaios clínicos randomizados, mais meta-análises publicadas e mais diretrizes sistematizadas do mundo. Ainda assim, quando analisamos a qualidade da evidência que sustenta nossas recomendações cotidianas, o panorama é surpreendentemente modesto.
+          </p>
+
+          <!-- STAT GRID -->
+          <div class="stat-grid">
+            <div class="stat-cell">
+              <div class="stat-val red">8,5%</div>
+              <div class="stat-label">das recomendações ACC/AHA com Nível de Evidência A (múltiplos ECRs)</div>
+              <div class="stat-source">Fanaroff et al., JAMA 2019</div>
+            </div>
+            <div class="stat-cell">
+              <div class="stat-val amber">41,5%</div>
+              <div class="stat-label">das recomendações ACC/AHA baseadas apenas em opinião de especialistas (Nível C)</div>
+              <div class="stat-source">Fanaroff et al., JAMA 2019</div>
+            </div>
+            <div class="stat-cell">
+              <div class="stat-val red">73%</div>
+              <div class="stat-label">das recomendações fortes têm nível de evidência mais fraco do que a força sugeriria</div>
+              <div class="stat-source">Qureshi et al., J Gen Intern Med 2025</div>
+            </div>
+            <div class="stat-cell">
+              <div class="stat-val red">63,6%</div>
+              <div class="stat-label">das recomendações fortes em diretrizes nacionais baseadas em evidência de baixa ou muito baixa certeza</div>
+              <div class="stat-source">Chong et al., BMC Med Res Method 2023</div>
+            </div>
+          </div>
+
+          <!-- CHART 1: ACC/AHA vs ESC Evidence Levels -->
+          <div class="chart-wrap">
+            <div class="chart-title">Distribuição do Nível de Evidência — ACC/AHA vs. ESC (2008–2018)</div>
+            <div class="chart-subtitle">Proporção de recomendações por nível de evidência (A = múltiplos ECRs; B = ECR único ou estudos não-randomizados; C = consenso/opinião)</div>
+            <div class="chart-canvas-wrap">
+              <canvas id="chartLOE"></canvas>
+            </div>
+          </div>
+
+          <!-- CHART 2: Trend over time -->
+          <div class="chart-wrap">
+            <div class="chart-title">Evolução do Nível A de Evidência nas Diretrizes ACC/AHA (2008–2023)</div>
+            <div class="chart-subtitle">Proporção de recomendações Classe I com Nível de Evidência A ao longo das principais atualizações de diretrizes cardiovasculares</div>
+            <div class="chart-canvas-wrap">
+              <canvas id="chartTrend"></canvas>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div class="card-icon">⚖️</div>
+              <div>
+                <div class="card-title">O Paradoxo Central da MBE em Cardiologia</div>
+                <div class="card-subtitle">Por que mais pesquisa não resultou em mais certeza?</div>
+              </div>
+            </div>
+            <p>A análise de Fanaroff et al. (JAMA, 2019), que revisou 2.740 recomendações de 23 diretrizes ACC/AHA e 10 diretrizes ESC ao longo de uma década, revelou uma realidade contrastante: apesar do aumento substancial no número de ensaios clínicos publicados, a proporção de recomendações com Nível A de evidência não apenas estagnou — em algumas categorias, <strong>declinou levemente</strong> entre 2008 e 2018. Isso reflete não falha da pesquisa, mas a expansão das diretrizes para áreas clínicas onde realizar ECRs é complexo, dispendioso ou eticamente questionável.</p>
+            <p>O estudo de Qureshi et al. (J Gen Intern Med, 2025), analisando 1.846 recomendações de diretrizes de sociedades médicas americanas entre 2019 e 2023, encontrou que <strong>73% das recomendações fortes</strong> (linguagem de "deve ser feito") eram suportadas por evidência de certeza moderada ou baixa — uma "discordância" que compromete diretamente a confiança do clínico no documento normativo.</p>
+
+            <div class="info-box info-amber" style="margin-top:1rem;">
+              <span class="info-box-icon">⚠️</span>
+              <div><strong>Implicação Prática:</strong> Uma recomendação Classe I (deve ser realizada) com Nível C (opinião de especialistas) não representa uma certeza clínica — representa o melhor consenso disponível na ausência de evidência de alta qualidade. O clínico deve reconhecer essa distinção ao individualizar condutas.</div>
+            </div>
+          </div>
+
+          <div class="info-box info-teal">
+            <span class="info-box-icon">💡</span>
+            <div><strong>Perspectiva:</strong> Esses dados não invalidam a MBE — eles a contextualizam. Como afirmam Djulbegovic & Guyatt (Lancet, 2017), "a MBE não se propõe a ter respostas para tudo, mas a ser transparente sobre o que sabe e o que não sabe." O problema surge quando diretrizes transmitem falsa certeza ou quando clínicos as aplicam sem senso crítico.</div>
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════
+             SEÇÃO 2 — LIMITAÇÕES DOS ECRs
+        ═══════════════════════════════════════════ -->
+        <div id="sec2" class="section-content">
+          <div class="section-label">Seção 02</div>
+          <h2 class="section-title">Limitações dos Ensaios Clínicos Randomizados</h2>
+          <p class="section-intro">
+            O ECR é justificadamente considerado o padrão ouro para avaliação de intervenções. Porém, o "paciente do ECR" frequentemente não existe nas nossas clínicas — e compreender por que é essencial para aplicar evidências com rigor.
+          </p>
+
+          <div class="card">
+            <div class="card-header">
+              <div class="card-icon">👥</div>
+              <div>
+                <div class="card-title">Quem Está Fora dos Ensaios Clínicos?</div>
+                <div class="card-subtitle">O problema da representatividade populacional</div>
+              </div>
+            </div>
+            <p>O participante típico de um grande ECR cardiovascular é, historicamente, um homem de 58 anos, branco, sem insuficiência renal significativa, sem comorbidades graves e com adesão medicamentosa exemplar. Essa caricatura, embora exagerada, não está muito distante da realidade.</p>
+
+            <div class="table-wrap">
+              <table class="compare-table">
+                <thead>
+                  <tr>
+                    <th>Grupo Populacional</th>
+                    <th>Realidade na Clínica</th>
+                    <th>Representação nos ECRs</th>
+                    <th>Evidência</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Mulheres</strong></td>
+                    <td>~50% dos pacientes com DCV</td>
+                    <td>~27% em ECRs de cardiopatia isquêmica</td>
+                    <td><span class="badge badge-red">Sub-representação sistemática</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Idosos ≥ 75 anos</strong></td>
+                    <td>Maioria da mortalidade cardiovascular</td>
+                    <td>Frequentemente excluídos ou &lt;10%</td>
+                    <td><span class="badge badge-red">Exclusão quase universal</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>DRC estágio 4–5</strong></td>
+                    <td>Altíssimo risco cardiovascular</td>
+                    <td>Excluídos na maioria dos anticoagulantes e IECA em doses plenas</td>
+                    <td><span class="badge badge-amber">Dados observacionais apenas</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Frágeis / Multimórbidos</strong></td>
+                    <td>30–50% dos pacientes ≥ 75 anos</td>
+                    <td>Virtualmente ausentes em ECRs fase III</td>
+                    <td><span class="badge badge-red">Lacuna crítica</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Mulheres com MINOCA</strong></td>
+                    <td>~50% das IAMs em mulheres jovens</td>
+                    <td>Excluídas de todos os grandes estudos de antiagregação</td>
+                    <td><span class="badge badge-amber">Extrapolação incerta</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Pacientes com IC + DM + DRC</strong></td>
+                    <td>Tríade comum na clínica</td>
+                    <td>Excluídos por critérios combinados em ECRs individuais</td>
+                    <td><span class="badge badge-red">Polypharmacy cascade ignorada</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="info-box info-red">
+              <span class="info-box-icon">🚫</span>
+              <div><strong>Exemplo paradigmático:</strong> O TRITON-TIMI 38 (prasugrel vs. clopidogrel em SCA) excluiu pacientes com AVC/AIT prévio, alto risco hemorrágico e peso &lt;60 kg — justamente os subgrupos onde o risco-benefício é mais delicado. Aplicar os resultados a esses pacientes é uma extrapolação, não uma recomendação baseada em evidências.</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div class="card-icon amber">🎯</div>
+              <div>
+                <div class="card-title">A Armadilha dos Desfechos Substitutos</div>
+                <div class="card-subtitle">Quando o marcador biológico não reflete o desfecho clínico</div>
+              </div>
+            </div>
+            <p>Desfechos substitutos (surrogates) — como LDL-colesterol, FEVE, pressão arterial, HbA1c ou capacidade funcional — são utilizados por pragmatismo: reduzem o tamanho amostral necessário, encurtam o follow-up e permitem aprovações mais rápidas. O problema fundamental é a <strong>validade de construto</strong>: a melhora do surrogate nem sempre se traduz em benefício clínico real.</p>
+
+            <div class="table-wrap" style="margin-top:1rem;">
+              <table class="compare-table">
+                <thead>
+                  <tr>
+                    <th>Droga / Intervenção</th>
+                    <th>Surrogate Melhorado</th>
+                    <th>Desfecho Clínico Real</th>
+                    <th>Lição</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Torcetrapib</strong> (CETP inhibitor)</td>
+                    <td>HDL +72%, LDL ↓</td>
+                    <td><span class="badge badge-red">↑ Mortalidade CV (ILLUMINATE, 2006)</span></td>
+                    <td>Hipótese do HDL desmentida; efeito off-target</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Encainida / Flecainida</strong></td>
+                    <td>↓ CVP pós-IAM</td>
+                    <td><span class="badge badge-red">↑ Mortalidade 2.5× (CAST, 1989)</span></td>
+                    <td>Supressão arrítmica ≠ redução de morte súbita</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Moxonidina</strong></td>
+                    <td>↓ Atividade simpática, ↓ PA</td>
+                    <td><span class="badge badge-red">↑ Mortalidade + internações por IC (MOXCON, 2000)</span></td>
+                    <td>Simpatolítico central não é betabloqueador</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Niacina</strong> (+ estatin)</td>
+                    <td>HDL ↑, TG ↓, LDL ↓</td>
+                    <td><span class="badge badge-amber">Sem benefício CV; piora de desfechos (AIM-HIGH 2011; HPS2-THRIVE 2013)</span></td>
+                    <td>Interação farmacológica complexa; HDL residual</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Rosiglitazona</strong></td>
+                    <td>↓ HbA1c</td>
+                    <td><span class="badge badge-red">↑ IAM 43% (meta-análise Nissen, NEJM 2007)</span></td>
+                    <td>Controle glicêmico não é desfecho cardiovascular</td>
+                  </tr>
+                  <tr>
+                    <td><strong>PCI em angina estável</strong></td>
+                    <td>↓ Área isquêmica, ↑ FFR</td>
+                    <td><span class="badge badge-amber">Sem ↑ tolerância ao esforço vs. sham (ORBITA, 2017)</span></td>
+                    <td>Componente placebo nos desfechos subjetivos</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div class="card-icon red">📊</div>
+              <div>
+                <div class="card-title">Viés de Publicação e Financiamento Industrial</div>
+                <div class="card-subtitle">Como o ecossistema de pesquisa distorce a evidência disponível</div>
+              </div>
+            </div>
+            <p>O viés de publicação — a tendência de estudos com resultados positivos serem publicados com mais frequência e mais rapidamente — representa uma das ameaças mais insidiosas à síntese de evidências. Análises de metarregressão demonstram que estudos financiados pela indústria têm entre <strong>3,7 e 5 vezes mais chances</strong> de reportar resultados favoráveis ao produto patrocinado em comparação com estudos independentes (Lexchin et al., BMJ 2003; Bekelman et al., JAMA 2003).</p>
+            <p>Mecanismos documentados incluem: (1) <em>outcome switching</em> — mudança do desfecho primário após análise dos dados; (2) publicação seletiva de subgrupos favoráveis; (3) <em>spin</em> nas conclusões — linguagem que sugere benefício maior do que os dados suportam; e (4) supressão de estudos negativos, ainda que a exigência de registro no ClinicalTrials.gov tenha reduzido parcialmente esse problema.</p>
+            <div class="info-box info-amber">
+              <span class="info-box-icon">⚠️</span>
+              <div><strong>O problema do follow-up insuficiente:</strong> A maioria dos ECRs cardiovasculares tem 2–5 anos de seguimento. Na prática clínica, tratamos pacientes crônicos por décadas. O STICH Extension Study (NEJM 2016) demonstrou que o benefício do CABG em cardiomiopatia isquêmica — não evidente aos 5 anos — tornou-se significativo aos 10 anos de seguimento. A "ausência de evidência" em um follow-up curto não é "evidência de ausência" a longo prazo.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════
+             SEÇÃO 3 — DIRETRIZES: FORÇA SEM CERTEZA
+        ═══════════════════════════════════════════ -->
+        <div id="sec3" class="section-content">
+          <div class="section-label">Seção 03</div>
+          <h2 class="section-title">Diretrizes Clínicas: Força sem Certeza</h2>
+          <p class="section-intro">
+            As diretrizes clínicas são instrumentos indispensáveis — mas a força de uma recomendação e a certeza da evidência que a sustenta são dimensões independentes. Compreender essa distinção é fundamental para a interpretação crítica.
+          </p>
+
+          <div class="card">
+            <div class="card-header">
+              <div class="card-icon">🔬</div>
+              <div>
+                <div class="card-title">O Sistema GRADE: Força ≠ Certeza</div>
+                <div class="card-subtitle">Interpretação correta das quatro combinações possíveis</div>
+              </div>
+            </div>
+            <p style="margin-bottom:1rem;">O sistema GRADE (Grading of Recommendations, Assessment, Development and Evaluation) separa explicitamente dois conceitos frequentemente confundidos: a <strong>força da recomendação</strong> (forte vs. fraca/condicional) e a <strong>certeza da evidência</strong> (alta, moderada, baixa, muito baixa). Cada combinação tem implicações clínicas distintas:</p>
+
+            <!-- GRADE GRID -->
+            <div class="grade-grid">
+              <div class="grade-cell strong-high">
+                <div class="grade-row-label">Recomendação Forte</div>
+                <div class="grade-cell-title">✅ Forte + Alta Certeza</div>
+                <div class="grade-cell-desc">A maioria dos pacientes deve receber a intervenção. Benefício claramente supera o risco, sustentado por múltiplos ECRs de qualidade. <em>Ex: anticoagulação em FA com CHA₂DS₂-VASc ≥ 2 em homens.</em></div>
+              </div>
+              <div class="grade-cell strong-low">
+                <div class="grade-row-label">Recomendação Forte</div>
+                <div class="grade-cell-title">⚠️ Forte + Baixa Certeza</div>
+                <div class="grade-cell-desc">"Recomendação discordante" — situação justificável em emergências vitais, mas problemática em condições crônicas. Exige justificativa explícita do painel. Frequente em cardiologia: ~73% das Classe I têm LOE B ou C.</div>
+              </div>
+              <div class="grade-cell weak-high">
+                <div class="grade-row-label">Recomendação Fraca / Condicional</div>
+                <div class="grade-cell-title">💬 Fraca + Alta Certeza</div>
+                <div class="grade-cell-desc">Evidência sólida, mas benefício próximo ao dano ou altamente dependente do contexto individual. A decisão compartilhada com o paciente torna-se imperativa. <em>Ex: revascularização em angina estável isolada.</em></div>
+              </div>
+              <div class="grade-cell weak-low">
+                <div class="grade-row-label">Recomendação Fraca / Condicional</div>
+                <div class="grade-cell-title">❓ Fraca + Baixa Certeza</div>
+                <div class="grade-cell-desc">Incerteza substancial. Pode ser razoável para alguns pacientes em alguns contextos. Indica necessidade de mais pesquisa. Aplicar universalmente é um erro metodológico.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div class="card-icon amber">⚡</div>
+              <div>
+                <div class="card-title">Recomendações Conflitantes entre Sociedades</div>
+                <div class="card-subtitle">Quando ACC/AHA e ESC discordam — e o que isso revela</div>
+              </div>
+            </div>
+            <p>Se a evidência fosse interpretada de forma puramente objetiva, ACC/AHA e ESC deveriam convergir na maioria das recomendações. Na prática, divergências substanciais são comuns e refletem diferenças metodológicas, culturais e — em alguns casos — influências externas ao processo científico.</p>
+
+            <div class="table-wrap" style="margin-top:1rem;">
+              <table class="compare-table">
+                <thead>
+                  <tr>
+                    <th>Área / Situação</th>
+                    <th>ACC/AHA</th>
+                    <th>ESC</th>
+                    <th>Impacto Clínico</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Meta de LDL em muito alto risco</strong></td>
+                    <td>Foco em intensidade de estatina (sem meta numérica)</td>
+                    <td>&lt;55 mg/dL (ou &lt;40 mg/dL em eventos recorrentes)</td>
+                    <td>Critério de adição de ezetimiba/iPCSK9 completamente diferente</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Anticoagulação em FA + DRC 5</strong></td>
+                    <td>Warfarin ou AVK preferível; DOACs com cautela</td>
+                    <td>DOACs preferíveis ao warfarin</td>
+                    <td>Pacientes sob hemodiálise com AF recebem condutas opostas conforme a diretriz utilizada</td>
+                  </tr>
+                  <tr>
+                    <td><strong>PCI vs. CABG em TCE/TriVD</strong></td>
+                    <td>CABG preferencial com SYNTAX score alto</td>
+                    <td>CABG preferencial com qualquer SYNTAX score (Classe I)</td>
+                    <td>Diferença na liberação de PCI em anatomias complexas</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Terapia de privação androgênica e CV</strong></td>
+                    <td>Ausência de recomendação específica</td>
+                    <td>Avaliação de risco CV mandatória antes e durante TPA</td>
+                    <td>Screening cardiológico em oncologia prostática</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Diagnóstico de IC (BNP vs. ecocardiograma)</strong></td>
+                    <td>Algoritmo integrado, sem sequência obrigatória</td>
+                    <td>Peptídeos natriuréticos como primeiro passo diagnóstico mandatório</td>
+                    <td>Impacto no fluxo diagnóstico na atenção primária</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="info-box info-amber">
+              <span class="info-box-icon">🔍</span>
+              <div><strong>Conflito de Interesse nos Painéis:</strong> Uma análise das diretrizes de dor torácica ACC/AHA 2021 revelou que mais de 60% dos membros do painel tinham relações financeiras com a indústria farmacêutica ou de dispositivos. A ESC, após pressão crítica, adotou política de limite de 50% de membros sem conflito de interesse declarado em seus painéis a partir de 2021 — mas mesmo essa regra tem sido questionada quanto à sua suficiência (Ioannidis, J Clin Epidemiol 2017).</div>
+            </div>
+          </div>
+
+          <div class="info-box info-teal">
+            <span class="info-box-icon">📌</span>
+            <div><strong>A diretriz como ponto de partida, não de chegada:</strong> Como ensinam Brignardello-Petersen et al. no JAMA Users' Guide (2021), ao encontrar uma recomendação forte, pergunte: qual é o NNT/NNH no horizonte de tempo relevante para meu paciente? Essa pergunta simples raramente está respondida na diretriz — mas é a que mais importa na beira do leito.</div>
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════
+             SEÇÃO 4 — COLAPSOS HISTÓRICOS
+        ═══════════════════════════════════════════ -->
+        <div id="sec4" class="section-content">
+          <div class="section-label">Seção 04</div>
+          <h2 class="section-title">Colapsos Históricos da Evidência em Cardiologia</h2>
+          <p class="section-intro">
+            A história da cardiologia é também uma história de certezas desmoronadas — intervenções amplamente adotadas, às vezes por décadas, que ensaios controlados rigorosos subsequentemente demonstraram ser ineficazes ou danosas. Esses episódios não são falhas da medicina — são o sistema funcionando corretamente. Mas nos ensinam humildade epistêmica.
+          </p>
+
+          <div class="info-box info-amber" style="margin-bottom:1.5rem;">
+            <span class="info-box-icon">📖</span>
+            <div>Clique em cada card para expandir a análise completa do caso — inclui contexto, mecanismo de falha e lição clínica derivada.</div>
+          </div>
+
+          <!-- COLLAPSE CARDS -->
+          <div class="collapse-card">
+            <div class="collapse-header" onclick="toggleCollapse(this)">
+              <span class="collapse-year">1989</span>
+              <span class="collapse-name">CAST — Antiarrítmicos Pós-IAM</span>
+              <span class="collapse-pill pill-harm">Dano Demonstrado</span>
+              <span class="collapse-chevron">▼</span>
+            </div>
+            <div class="collapse-body">
+              <p><strong>O raciocínio:</strong> Extrassístoles ventriculares frequentes após IAM eram reconhecidamente associadas a maior mortalidade. A lógica causal levou à hipótese de que suprimir essas arritmias com antiarrítmicos (encainida, flecainida) reduziria a morte súbita.</p>
+              <p><strong>O resultado:</strong> O CAST (Cardiac Arrhythmia Suppression Trial), publicado no NEJM em 1989, foi interrompido precocemente por dano: os pacientes tratados com encainida ou flecainida apresentaram <strong>mortalidade 2,5 vezes maior</strong> do que os que receberam placebo, apesar da supressão eficaz das CVPs.</p>
+              <p><strong>Adoção prévia:</strong> Antes do CAST, estimava-se que centenas de milhares de pacientes norte-americanos recebiam esses antiarrítmicos anualmente — possivelmente resultando em dezenas de milhares de mortes iatrogênicas.</p>
+              <div class="collapse-lesson">
+                <strong>Lição Central</strong>
+                Surrogate endpoints (supressão de CVP) podem piorar o desfecho clínico quando o mecanismo da droga tem efeitos pleiotrópicos adversos. Plausibilidade biológica não substitui ensaio clínico controlado.
+              </div>
+            </div>
+          </div>
+
+          <div class="collapse-card">
+            <div class="collapse-header" onclick="toggleCollapse(this)">
+              <span class="collapse-year">1998–2002</span>
+              <span class="collapse-name">Terapia Hormonal e Risco Cardiovascular</span>
+              <span class="collapse-pill pill-reversal">Reversão de Paradigma</span>
+              <span class="collapse-chevron">▼</span>
+            </div>
+            <div class="collapse-body">
+              <p><strong>O contexto:</strong> Décadas de estudos observacionais indicavam que mulheres na pós-menopausa usando terapia de reposição hormonal (TRH) tinham risco cardiovascular 30–50% menor. O mecanismo parecia claro: estrógeno melhora perfil lipídico, reduz PAI-1 e tem efeitos vasodilatadores.</p>
+              <p><strong>O resultado dos ECRs:</strong> O HERS (1998) — primeira grande evidência prospectiva — demonstrou que TRH não reduziu eventos coronários em mulheres com DCV estabelecida e, no primeiro ano, aumentou o risco. O WHI (2002), interrompido precocemente, confirmou aumento de DCV, AVC e tromboembolismo.</p>
+              <p><strong>Por que os observacionais erraram:</strong> O "healthy user bias" — mulheres que recebiam TRH eram mais saudáveis, com mais acesso a cuidados, dieta melhor e outros comportamentos protetores. O confundimento não observado distorceu as estimativas por décadas.</p>
+              <div class="collapse-lesson">
+                <strong>Lição Central</strong>
+                Associações observacionais consistentes podem refletir confundimento residual, não causalidade. O "timing hypothesis" (benefício apenas quando iniciada na menopausa precoce) surgiu post-hoc e nunca foi confirmado em ECR prospectivo.
+              </div>
+            </div>
+          </div>
+
+          <div class="collapse-card">
+            <div class="collapse-header" onclick="toggleCollapse(this)">
+              <span class="collapse-year">2006</span>
+              <span class="collapse-name">ILLUMINATE — Torcetrapib e a Hipótese do HDL</span>
+              <span class="collapse-pill pill-harm">Dano Demonstrado</span>
+              <span class="collapse-chevron">▼</span>
+            </div>
+            <div class="collapse-body">
+              <p><strong>O raciocínio:</strong> Se LDL baixo é protetor, HDL alto seria protetor — e elevar o HDL seria terapêutico. O torcetrapib, inibidor da CETP, elevava o HDL em 72% e reduzia LDL. Com US$ 1 bilhão investido em desenvolvimento, era o medicamento mais esperado da cardiopatia isquêêmica.</p>
+              <p><strong>O resultado:</strong> O ILLUMINATE trial (2006) foi interrompido precocemente por dano: aumento significativo de mortalidade por todas as causas e eventos cardiovasculares maiores no grupo torcetrapib, apesar do perfil lipídico "melhorado".</p>
+              <p><strong>O mecanismo:</strong> Investigações post-hoc identificaram aumento de aldosterona e pressão arterial mediado pelo torcetrapib — efeito off-target não esperado da classe, não da hipótese HDL per se. Os inibidores de CETP posteriores (anacetrapib, evacetrapib) mostraram resultados neutros em mortalidade, mas também sem benefício CV claro — questionando a própria hipótese.</p>
+              <div class="collapse-lesson">
+                <strong>Lição Central</strong>
+                A hipótese do HDL como alvo terapêutico — sustentada por décadas de epidemiologia epidemiológica — foi amplamente refutada por múltiplos ECRs. Correlação epidemiológica com um biomarcador não implica causalidade reversível com intervenção farmacológica.
+              </div>
+            </div>
+          </div>
+
+          <div class="collapse-card">
+            <div class="collapse-header" onclick="toggleCollapse(this)">
+              <span class="collapse-year">2008</span>
+              <span class="collapse-name">ACCORD — Controle Glicêmico Intensivo em DM2</span>
+              <span class="collapse-pill pill-harm">Dano Demonstrado</span>
+              <span class="collapse-chevron">▼</span>
+            </div>
+            <div class="collapse-body">
+              <p><strong>O raciocínio:</strong> Se hiperglicemia causa DCV, então controlar mais agressivamente a glicemia (HbA1c &lt;6%) deveria reduzir desfechos cardiovasculares em diabéticos de alto risco.</p>
+              <p><strong>O resultado:</strong> O ACCORD trial foi interrompido precocemente (fevereiro de 2008) após mediana de 3,5 anos: o grupo de controle intensivo apresentou <strong>22% de aumento na mortalidade por todas as causas</strong> e aumento significativo de morte cardiovascular versus controle convencional (HbA1c 7–7,9%).</p>
+              <p><strong>O mecanismo:</strong> Ainda não completamente elucidado. Hipoglicemia grave e recorrente, ganho de peso e efeitos adversos de regimes farmacológicos complexos (incluindo tiazolidinedionas) são candidatos. A curva J dos efeitos glicêmicos foi confirmada em múltiplos estudos posteriores.</p>
+              <div class="collapse-lesson">
+                <strong>Lição Central</strong>
+                "Mais não é necessariamente melhor" mesmo com um mecanismo fisiopatológico sólido. Efeitos não-intencionais de tratamentos intensivos podem superar o benefício do surrogate corrigido. A pergunta não é "qual o alvo ótimo do surrogate" mas "qual regime terapêutico para atingi-lo é mais seguro."
+              </div>
+            </div>
+          </div>
+
+          <div class="collapse-card">
+            <div class="collapse-header" onclick="toggleCollapse(this)">
+              <span class="collapse-year">2014</span>
+              <span class="collapse-name">SYMPLICITY HTN-3 — Denervação Renal</span>
+              <span class="collapse-pill pill-null">Resultado Nulo</span>
+              <span class="collapse-chevron">▼</span>
+            </div>
+            <div class="collapse-body">
+              <p><strong>O contexto:</strong> Estudos não-controlados anteriores (SYMPLICITY HTN-1 e HTN-2) mostraram reduções dramáticas na PA com denervação renal — chegando a 32 mmHg sistólicos. O procedimento foi amplamente adotado na Europa antes de qualquer controle por sham.</p>
+              <p><strong>O resultado:</strong> O SYMPLICITY HTN-3 (NEJM, 2014) — primeiro estudo com controle por procedimento-sham — não demonstrou diferença significativa na redução da PA office entre denervação e sham aos 6 meses (−14.1 vs. −11.7 mmHg, p=0,26).</p>
+              <p><strong>O debate subsequente:</strong> Estudos posteriores (SPYRAL HTN-OFF MED, ON MED) com cateteres de nova geração e seleção mais rigorosa demonstraram reduções modestas mas significativas. O debate sobre "quem se beneficia" persiste. O episódio, contudo, resultou em retirada de aprovação em vários países europeus e redesenho completo do programa de desenvolvimento.</p>
+              <div class="collapse-lesson">
+                <strong>Lição Central</strong>
+                Ensaios procedurais sem controle por sham são sistematicamente suscetíveis ao efeito placebo — que é especialmente pronunciado em desfechos como pressão arterial. Antes de adotar amplamente qualquer procedimento intervencionista, o controle por sham é metodologicamente mandatório.
+              </div>
+            </div>
+          </div>
+
+          <div class="collapse-card">
+            <div class="collapse-header" onclick="toggleCollapse(this)">
+              <span class="collapse-year">2017</span>
+              <span class="collapse-name">ORBITA — PCI vs. Sham em Angina Estável</span>
+              <span class="collapse-pill pill-null">Resultado Nulo</span>
+              <span class="collapse-chevron">▼</span>
+            </div>
+            <div class="collapse-body">
+              <p><strong>O contexto:</strong> A PCI para alívio da angina estável era praticada globalmente como intervenção estabelecida. O "refluxo oculostenótico" — a tendência de dilatar obstruções encontradas no cateterismo independentemente da sintomatologia — era culturalmente normalizado.</p>
+              <p><strong>O resultado:</strong> O ORBITA (Lancet, 2017) foi o primeiro ECR double-blind controlado por sham para PCI em angina estável com estenose significativa. O desfecho primário — tempo de exercício ao esforço — não diferiu significativamente entre PCI e sham (incremento de 28,4 vs. 11,8 segundos, p=0,20). Notoriamente, ambos os grupos melhoraram com o tempo — sugerindo componente placebo substancial.</p>
+              <p><strong>O ORBITA-2 (Lancet, 2023):</strong> Em pacientes sem medicação antianginosa, a PCI melhorou o escore de angina de forma estatisticamente significativa — sugerindo que o benefício é real mas modesto, e suprimível por farmacoterapia otimizada.</p>
+              <div class="collapse-lesson">
+                <strong>Lição Central</strong>
+                O "oculostenotic reflex" não tem base evidencial. O ORBITA mostrou que a redução de sintomas subjetivos (angina) após PCI inclui componente placebo não desprezível. Em doença estável, otimização clínica deve preceder intervenção anatômica — o que o ISCHEMIA (2019) confirmou em escala maior.
+              </div>
+            </div>
+          </div>
+
+          <div class="collapse-card">
+            <div class="collapse-header" onclick="toggleCollapse(this)">
+              <span class="collapse-year">2019</span>
+              <span class="collapse-name">ISCHEMIA — Estratégia Invasiva em DAC Estável com Isquemia</span>
+              <span class="collapse-pill pill-null">Resultado Nulo</span>
+              <span class="collapse-chevron">▼</span>
+            </div>
+            <div class="collapse-body">
+              <p><strong>O contexto:</strong> Décadas de prática clínica assumiam que isquemia miocárdica documentada em exame funcional justificava revascularização para prevenção de eventos. O COURAGE (2007) já havia desafiado isso, mas era criticado por incluir pouco pacientes de alto risco isquêmico.</p>
+              <p><strong>O resultado:</strong> O ISCHEMIA (NEJM, 2020), com 5.179 pacientes com DAC estável e isquemia moderada a severa randomizados para estratégia invasiva precoce vs. conservadora, não demonstrou diferença significativa no desfecho primário composto (morte cardiovascular, IAM, hospitalização por angina/IC/ressuscitação de PCR) na mediana de 3,3 anos. A estratégia invasiva mostrou excesso precoce de IAM periprocedimento, mas não diferença a longo prazo.</p>
+              <p><strong>Exceção importante:</strong> Pacientes com anatomia de alto risco (TCE ou doença trivassal proximal com FEVE reduzida) claramente se beneficiam de revascularização — e eram, em sua maioria, excluídos do ISCHEMIA.</p>
+              <div class="collapse-lesson">
+                <strong>Lição Central</strong>
+                Isquemia documentada em exame funcional, por si só, não justifica revascularização em doença estável para prevenção de mortalidade ou IAM espontâneo. O julgamento anatômico e clínico integrado (não apenas a imagem de isquemia) deve nortear a indicação.
+              </div>
+            </div>
+          </div>
+
+          <div class="info-box info-green" style="margin-top:.5rem;">
+            <span class="info-box-icon">✅</span>
+            <div><strong>O outro lado da moeda:</strong> A mesma ciência que revelou as falhas acima produziu alguns dos maiores avanços terapêuticos da história: estatinas (4S, 1994), betabloqueadores em IC (MERIT-HF, COPERNICUS), iECA (SOLVD, CONSENSUS), SGLT2i em IC (EMPEROR-Reduced, DAPA-HF, EMPEROR-Preserved) e anticoagulação em FA (RE-LY, ROCKET-AF, ARISTOTLE). A MBE funciona quando aplicada com rigor e humildade.</div>
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════
+             SEÇÃO 5 — LACUNAS DE EVIDÊNCIA
+        ═══════════════════════════════════════════ -->
+        <div id="sec5" class="section-content">
+          <div class="section-label">Seção 05</div>
+          <h2 class="section-title">Lacunas de Evidência na Prática Cotidiana</h2>
+          <p class="section-intro">
+            O TR Frieden (NEJM, 2017) chamou essa realidade de <em>"dark matter" da medicina clínica</em> — a vasta zona de decisões diárias para as quais simplesmente não existem ECRs. O clínico que espera por evidência perfeita antes de agir frequentemente está, na prática, escolhendo não agir.
+          </p>
+
+          <div class="info-box info-amber" style="margin-bottom:1.5rem;">
+            <span class="info-box-icon">⚠️</span>
+            <div><strong>Frieden TR, NEJM 2017:</strong> "As decisões clínicas e de saúde pública são quase sempre tomadas com dados imperfeitos. Aguardar por mais dados é, com frequência, uma decisão implícita de não agir ou de agir com base na prática passada, em vez da melhor evidência disponível."</div>
+          </div>
+
+          <div class="scenario-grid">
+            <div class="scenario-card">
+              <div class="scenario-header">
+                <span class="scenario-icon">👴</span>
+                <div class="scenario-title">Idoso Frágil ≥ 80 anos</div>
+              </div>
+              <p class="scenario-ev">A maioria dos grandes ECRs cardiovasculares (RALES, EMPHASIS, PARADIGM-HF, DAPA-HF) incluiu &lt;5% de pacientes ≥ 80 anos. Aplicar os mesmos alvos terapêuticos sem considerar síndrome da fragilidade, sarcopenia, risco de queda e polifarmácia é potencialmente deletério. Scores como o Fried Frailty Criteria e o Clinical Frailty Scale devem preceder qualquer decisão terapêutica agressiva.</p>
+              <span class="badge badge-red">Evidência RCT Ausente</span>
+            </div>
+
+            <div class="scenario-card">
+              <div class="scenario-header">
+                <span class="scenario-icon">🫘</span>
+                <div class="scenario-title">FA + DRC estágio 4–5 / Diálise</div>
+              </div>
+              <p class="scenario-ev">Nenhum grande ECR de anticoagulação para FA incluiu pacientes em hemodiálise. A warfarina em diálise está associada a maior risco de calcificação vascular e eventos hemorrágicos. Os DOACs têm dados farmacocinéticos limitados e são de uso off-label. O AXADIA e AVKDIAL fornecem dados observacionais úteis mas inconclusivos. ACC/AHA e ESC divergem nessa indicação — reflexo direto da ausência de evidência de alta qualidade.</p>
+              <span class="badge badge-amber">Extrapolação com Incerteza Alta</span>
+            </div>
+
+            <div class="scenario-card">
+              <div class="scenario-header">
+                <span class="scenario-icon">♀️</span>
+                <div class="scenario-title">Mulheres com MINOCA</div>
+              </div>
+              <p class="scenario-ev">Infarto sem obstrução coronária obstrutiva (MINOCA) acomete ~6–8% de todos os IAMs, com predominância feminina (50–70%). As etiologias incluem espasmo coronário, embolização, dissecção espontânea (SCAD) e síndrome de Takotsubo. Nenhuma dessas condições possui ECR robusto direcionando farmacoterapia — o tratamento é extrapolado de patologias distintas com mecanismos diferentes.</p>
+              <span class="badge badge-red">Lacuna Crítica</span>
+            </div>
+
+            <div class="scenario-card">
+              <div class="scenario-header">
+                <span class="scenario-icon">🫀</span>
+                <div class="scenario-title">HFpEF Heterogênea</div>
+              </div>
+              <p class="scenario-ev">Após décadas de ensaios negativos em IC com FE preservada, os SGLT2i (EMPEROR-Preserved, DELIVER) finalmente demonstraram redução de hospitalizações. Contudo, a IC-FEP é um síndrome heterogênea — com fenótipos de obesidade/metabólico, hipertensivo, amiloidoide, inflamatório. Quem exatamente se beneficia mais dos SGLT2i nessa população heterogênea permanece incerto, aguardando análises de subgrupos e ensaios específicos por fenótipo.</p>
+              <span class="badge badge-amber">Evidência Emergente</span>
+            </div>
+
+            <div class="scenario-card">
+              <div class="scenario-header">
+                <span class="scenario-icon">💊</span>
+                <div class="scenario-title">Polimorbidade e Cascata Terapêutica</div>
+              </div>
+              <p class="scenario-ev">Um paciente típico com IC-FEr, DM2, DRC 3b, FA e história de SCA pode estar elegível para 6–8 medicamentos baseados em evidências de estudos independentes — nenhum dos quais foi testado em combinação nessa população específica. Interações farmacocinéticas, riscos hemodinâmicos aditivos (hipotensão, hipercalemia, hipoglicemia) e impacto na qualidade de vida raramente são abordados nos ECRs fonte.</p>
+              <span class="badge badge-red">Evidência RCT Ausente</span>
+            </div>
+
+            <div class="scenario-card">
+              <div class="scenario-header">
+                <span class="scenario-icon">🤰</span>
+                <div class="scenario-title">Cardiopatia e Gravidez</div>
+              </div>
+              <p class="scenario-ev">Gestantes com cardiopatia estrutural, cardiomiopatia periparto, estenose mitral, próteses valvares ou arritmias são universalmente excluídas dos ECRs. O manejo baseia-se em séries de casos, registros (ROPAC, CARPREG II) e consenso de especialistas. Anticoagulação em próteses mecânicas durante a gravidez permanece um dos dilemas mais complexos da cardiologia — sem nenhum ECR prospectivo para orientar a escolha entre warfarina, heparina e LMWH.</p>
+              <span class="badge badge-red">Exclusão Ética Sistêmica</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div class="card-icon green">🔭</div>
+              <div>
+                <div class="card-title">Estratégias para Preencher Lacunas</div>
+                <div class="card-subtitle">Além do ECR: fontes complementares de evidência</div>
+              </div>
+            </div>
+            <p>Quando evidências de alta qualidade estão ausentes, Detterbeck et al. (Chest, 2018) propõem categorizar sistematicamente os tipos de evidência de nível inferior utilizados, promovendo transparência sobre as forças e limitações de cada abordagem:</p>
+            <div class="info-box info-teal" style="margin-top:1rem;">
+              <span class="info-box-icon">📊</span>
+              <div><strong>Comparações não-randomizadas:</strong> Registros prospectivos (SWEDEHEART, NCDR, EurObservational Research Programme) oferecem validade externa superior aos ECRs, com n muito maior. São mais suscetíveis a confundimento por indicação, mas análises de propensity score e variáveis instrumentais atenuam esse viés. São especialmente valiosos para populações excluídas dos ECRs — idosos, comorbidades, pós-procedimento complexo.</div>
+            </div>
+            <div class="info-box info-gray">
+              <span class="info-box-icon">🔬</span>
+              <div><strong>Extrapolação mecanística:</strong> Inferir benefício de uma droga numa população não estudada com base em mecanismo de ação compartilhado. Tem valor, mas o CAST, torcetrapib e ACCORD demonstram que mecanismos plausíveis podem resultar em desfechos opostos ao esperado.</div>
+            </div>
+            <div class="info-box info-gray">
+              <span class="info-box-icon">🧪</span>
+              <div><strong>Ensaios adaptativos e de plataforma:</strong> Designs modernos (RECOVERY, REMAP-CAP, PLATFORM) permitem avaliar múltiplas intervenções simultaneamente, adaptar randomizações conforme resultados intermediários e incluir populações mais representativas — representando o futuro da geração de evidências clínicas.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════
+             SEÇÃO 6 — RACIOCÍNIO CLÍNICO
+        ═══════════════════════════════════════════ -->
+        <div id="sec6" class="section-content">
+          <div class="section-label">Seção 06</div>
+          <h2 class="section-title">Raciocínio Clínico na Era da MBE</h2>
+          <p class="section-intro">
+            A MBE nunca foi concebida para substituir o raciocínio clínico — ela foi concebida para informá-lo. Como escrevem Sniderman & Furberg (Mayo Clinic Proc, 2013), "o raciocínio clínico é o processo pragmático e testado de solução de problemas clínicos complexos, e permanece indispensável mesmo — e especialmente — na era da evidência."
+          </p>
+
+          <!-- TRIAD -->
+          <div class="triad">
+            <div class="triad-cell">
+              <div class="triad-icon">📚</div>
+              <div class="triad-label">Melhor Evidência Disponível</div>
+              <div class="triad-desc">ECRs, meta-análises, diretrizes — interpretados criticamente, com atenção ao nível de certeza, validade interna e externa, e relevância para o paciente individual.</div>
+            </div>
+            <div class="triad-cell">
+              <div class="triad-icon">🧠</div>
+              <div class="triad-label">Expertise Clínica</div>
+              <div class="triad-desc">Habilidades diagnósticas, reconhecimento de padrão, julgamento sobre riscos e benefícios individualizados, e experiência acumulada com populações similares — incluindo o que os ensaios não ensinam.</div>
+            </div>
+            <div class="triad-cell">
+              <div class="triad-icon">🤝</div>
+              <div class="triad-label">Valores e Preferências do Paciente</div>
+              <div class="triad-desc">Objetivos de saúde individuais, tolerância ao risco, qualidade de vida, crenças, circunstâncias sociais e preferências explícitas — especialmente centrais quando a evidência é incerta.</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div class="card-icon">⚡</div>
+              <div>
+                <div class="card-title">Sistema 1 vs. Sistema 2: O Clínico como Tomador de Decisão</div>
+                <div class="card-subtitle">Raciocínio dual e calibração do julgamento</div>
+              </div>
+            </div>
+            <p>O modelo dual de processamento cognitivo (Kahneman) descreve dois sistemas de raciocínio que coexistem na decisão clínica:</p>
+            <div class="table-wrap" style="margin-top:.75rem;">
+              <table class="compare-table">
+                <thead>
+                  <tr><th>Característica</th><th>Sistema 1 — Intuitivo</th><th>Sistema 2 — Analítico</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Velocidade</td><td>Rápido, automático</td><td>Lento, deliberado</td></tr>
+                  <tr><td>Mecanismo</td><td>Reconhecimento de padrão; heurísticas</td><td>Lógica sequencial; análise explícita</td></tr>
+                  <tr><td>Utilidade clínica</td><td>Diagnóstico imediato em emergências; cenários familiares</td><td>Casos complexos, incerteza alta, decisões de alto risco</td></tr>
+                  <tr><td>Vieses associados</td><td>Ancoragem, disponibilidade, premature closure</td><td>Excesso de análise; paralisia decisória</td></tr>
+                  <tr><td>Onde a MBE se encaixa</td><td>Heurísticas calibradas por exposição ao conhecimento</td><td>Aplicação formal de evidências, cálculo de risco</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>O expert não usa um sistema em detrimento do outro — usa <strong>ambos em sequência adaptativa</strong>: reconhecimento de padrão rápido (Sistema 1) seguido de verificação analítica quando sinais de incerteza são detectados (Sistema 2).</p>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div class="card-icon amber">🎯</div>
+              <div>
+                <div class="card-title">Gestão Ativa da Incerteza Clínica</div>
+                <div class="card-subtitle">Baseado em Ilgen & Dhaliwal, NEJM 2025</div>
+              </div>
+            </div>
+            <p>Ilgen & Dhaliwal, em revisão recente no NEJM (2025), descrevem a gestão da incerteza não como tolerância passiva, mas como uma <strong>habilidade ativa e treinável</strong>, estruturada em ciclos repetidos de:</p>
+            <div class="info-box info-teal" style="margin-top:1rem;">
+              <span class="info-box-icon">🔍</span>
+              <div><strong>1. Reconhecimento:</strong> Identificar que a incerteza existe — por pistas cognitivas ("não reconheço esse padrão"), somáticas ("sinto que algo não bate") e comportamentais (hesitação, busca por segunda opinião). Clínicos inexperientes frequentemente suprimem essa percepção por pressão de tempo ou excesso de confiança.</div>
+            </div>
+            <div class="info-box info-teal">
+              <span class="info-box-icon">📋</span>
+              <div><strong>2. Planejamento prospectivo:</strong> Antes de agir, definir explicitamente: "Se X acontecer, farei Y. Se Z acontecer, farei W." Esse pré-comprometimento evita que a urgência emocional do momento anule o planejamento racional. Em cardiologia intervencionista: "Se houver dissecção tipo C, escalonarei para CABG emergencial" — antes de entrar na sala de hemodinâmica.</div>
+            </div>
+            <div class="info-box info-teal">
+              <span class="info-box-icon">🔄</span>
+              <div><strong>3. Monitoramento contínuo:</strong> Revisitar ativamente o diagnóstico e plano terapêutico à medida que novos dados emergem. A maioria dos erros diagnósticos em cardiologia não ocorre na coleta inicial do dado, mas no fracasso em atualizar a hipótese quando dados discordantes surgem — o "premature closure".</div>
+            </div>
+          </div>
+
+          <div class="info-box info-green">
+            <span class="info-box-icon">💡</span>
+            <div><strong>Raciocínio Bayesiano na Prática:</strong> Toda decisão clínica começa com uma probabilidade pré-teste — moldada pela prevalência da doença, contexto clínico e experiência do observador. A evidência do ECR modifica essa probabilidade, mas não a substitui. Um teste de esforço positivo em homem de 60 anos com fatores de risco tem significado diferente de um positivo em mulher de 30 anos assintomática — mesmo que ambos sejam "positivos para isquemia" pela mesma diretriz.</div>
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════
+             SEÇÃO 7 — ESTRATÉGIAS PRÁTICAS
+        ═══════════════════════════════════════════ -->
+        <div id="sec7" class="section-content">
+          <div class="section-label">Seção 07</div>
+          <h2 class="section-title">Estratégias para a Prática Clínica Crítica</h2>
+          <p class="section-intro">
+            Reconhecer os limites da evidência disponível é o primeiro passo. O segundo é desenvolver um arcabouço sistemático para tomar as melhores decisões possíveis dentro dessas limitações — com rigor metodológico, transparência e respeito à individualidade do paciente.
+          </p>
+
+          <div class="card">
+            <div class="card-header">
+              <div class="card-icon">❓</div>
+              <div>
+                <div class="card-title">5 Perguntas Críticas Diante de uma Recomendação</div>
+                <div class="card-subtitle">Protocolo de avaliação rápida para o clínico na beira do leito</div>
+              </div>
+            </div>
+            <ul class="question-list">
+              <li class="question-item">
+                <span class="question-num">01</span>
+                <div class="question-text">
+                  <strong>Qual é o nível de certeza subjacente a esta recomendação?</strong>
+                  <span>Classe I com LOE A ou C? Uma recomendação Classe I LOE C merece a mesma confiança que uma Classe I LOE A? Não — e a diferença é frequentemente omitida nas apresentações clínicas.</span>
+                </div>
+              </li>
+              <li class="question-item">
+                <span class="question-num">02</span>
+                <div class="question-text">
+                  <strong>Meu paciente se assemelha à população estudada nos ECRs-fonte?</strong>
+                  <span>Idade, sexo, comorbidades, função renal, polimedicação. Quanto mais o paciente diverge do participante típico do ECR, mais cuidado na extrapolação — e mais relevância tem o julgamento clínico individualizado.</span>
+                </div>
+              </li>
+              <li class="question-item">
+                <span class="question-num">03</span>
+                <div class="question-text">
+                  <strong>Qual o NNT e o NNH no horizonte de tempo relevante para este paciente?</strong>
+                  <span>Não "a droga reduz risco em 25%" (risco relativo), mas "em 1.000 pacientes como este tratados por 5 anos, quantos se beneficiam e quantos são prejudicados?" O benefício absoluto frequentemente é menor do que o risco relativo sugere.</span>
+                </div>
+              </li>
+              <li class="question-item">
+                <span class="question-num">04</span>
+                <div class="question-text">
+                  <strong>Existem conflitos de interesse identificados no painel da diretriz?</strong>
+                  <span>Verifique os apêndices de COI no documento da diretriz. Conflitos de interesse documentados não invalidam a recomendação — mas justificam maior escrutínio, especialmente quando a recomendação favorece terapias de alto custo com evidência modesta.</span>
+                </div>
+              </li>
+              <li class="question-item">
+                <span class="question-num">05</span>
+                <div class="question-text">
+                  <strong>Quais são os valores e preferências deste paciente em relação ao tratamento proposto?</strong>
+                  <span>Quando a certeza da evidência é baixa, os valores do paciente tornam-se o fator decisório preponderante — não o contrário. Decisão compartilhada não é cortesia — é metodologia correta quando a evidência é incerta.</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div class="card-icon amber">📐</div>
+              <div>
+                <div class="card-title">Interpretação do Sistema GRADE na Prática</div>
+                <div class="card-subtitle">O que cada combinação de força e certeza significa para a decisão clínica</div>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table class="compare-table">
+                <thead>
+                  <tr>
+                    <th>Força</th>
+                    <th>Certeza</th>
+                    <th>Linguagem da Diretriz</th>
+                    <th>Implicação para o Clínico</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="badge badge-a">Forte</span></td>
+                    <td><span class="badge badge-a">Alta</span></td>
+                    <td>"É recomendado", "deve ser realizado"</td>
+                    <td>A maioria dos pacientes deveria receber. Desvio exige documentação de razão específica.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge badge-a">Forte</span></td>
+                    <td><span class="badge badge-b">Moderada</span></td>
+                    <td>"É recomendado"</td>
+                    <td>Aplique na maioria dos casos, mas reconheça incerteza residual — especialmente em subgrupos não estudados.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge badge-a">Forte</span></td>
+                    <td><span class="badge badge-c">Baixa/Muito baixa</span></td>
+                    <td>"É recomendado" (discordante)</td>
+                    <td>Exige ceticismo ativo. Busque a justificativa do painel para a discordância. Considere se o paciente é a exceção que justifica abordagem diferente.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge badge-b">Fraca</span></td>
+                    <td><span class="badge badge-a">Alta</span></td>
+                    <td>"Pode ser considerado", "é razoável"</td>
+                    <td>A decisão é genuinamente sensível ao contexto e preferências. Decisão compartilhada é a abordagem metodicamente correta.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge badge-c">Fraca</span></td>
+                    <td><span class="badge badge-c">Baixa/Muito baixa</span></td>
+                    <td>"Pode ser considerado"</td>
+                    <td>Incerteza substancial. Use apenas quando benefício plausível individualmente supera risco, e após deliberação com o paciente. Favorece inscrição em registros/ECRs.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div class="card-icon green">🛡️</div>
+              <div>
+                <div class="card-title">Resistindo à "Medicina de Receita"</div>
+                <div class="card-subtitle">Métricas de qualidade, check-lists e a individualização do cuidado</div>
+              </div>
+            </div>
+            <p>A implementação de métricas de qualidade e indicadores de desempenho — frequentemente derivados de diretrizes — pode criar pressão para o que Djulbegovic & Guyatt (Lancet, 2017) chamam de "medicina de receita": a aplicação algoritmica de recomendações sem adaptação ao contexto individual.</p>
+            <p>Exemplos concretos dessa tensão em cardiologia:</p>
+            <div class="info-box info-amber" style="margin-top:.5rem;">
+              <span class="info-box-icon">💊</span>
+              <div><strong>Estatinas em idosos sem DCV prévia (≥ 75 anos):</strong> Diretrizes recomendam estatinas para prevenção primária em pessoas com alto risco calculado — mas os ECRs de referência (JUPITER, WOSCOPS, ASCOT-LLA) tinham média de idade de 55–63 anos, com &lt;5% de participantes ≥ 75 anos. Em idosos frágeis, os riscos de miopatia, interação medicamentosa e hipotensão postural podem superar benefícios que levam &gt;5 anos para se manifestar. A métrica "prescreveu estatina para ≥ 75 anos com LDL &gt;190" não captura essa nuance.</div>
+            </div>
+            <div class="info-box info-amber">
+              <span class="info-box-icon">🩺</span>
+              <div><strong>Anticoagulação universal em FA com CHA₂DS₂-VASc ≥ 1 (homens):</strong> O score não incorpora avaliação de risco hemorrágico, fragilidade, risco de queda, ou preferências do paciente. Para um homem de 82 anos com CHA₂DS₂-VASc = 4 e HASBLED = 5 que vive sozinho, a decisão é genuinamente incerta — e a "compliance" com a diretriz ao prescrever anticoagulante pode não representar qualidade de cuidado.</div>
+            </div>
+            <p>A resposta não é rejeitar métricas — é que métricas de processo devem ser combinadas com métricas de resultado (outcomes) e medidas de adequação ao contexto do paciente individual.</p>
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════
+             SEÇÃO 8 — REFERÊNCIAS
+        ═══════════════════════════════════════════ -->
+        <div id="sec8" class="section-content">
+          <div class="section-label">Seção 08</div>
+          <h2 class="section-title">Referências Bibliográficas</h2>
+          <p class="section-intro">Referências primárias que fundamentam o conteúdo desta página, ordenadas por relevância temática.</p>
+
+          <div class="card" style="padding:1.25rem 1.5rem;">
+            <ul class="ref-list">
+              <li class="ref-item">
+                <span class="ref-num">1</span>
+                <div>
+                  <div class="ref-title">Progress in Evidence-Based Medicine: A Quarter Century On</div>
+                  <div class="ref-meta">Djulbegovic B, Guyatt GH. <em>Lancet.</em> 2017;390(10092):415–423. doi:10.1016/S0140-6736(16)31592-6</div>
+                </div>
+              </li>
+              <li class="ref-item">
+                <span class="ref-num">2</span>
+                <div>
+                  <div class="ref-title">Levels of Evidence Supporting ACC/AHA and ESC Guidelines, 2008–2018</div>
+                  <div class="ref-meta">Fanaroff AC, Califf RM, Windecker S, Smith SC, Lopes RD. <em>JAMA.</em> 2019;321(11):1069–1080. doi:10.1001/jama.2019.1122</div>
+                </div>
+              </li>
+              <li class="ref-item">
+                <span class="ref-num">3</span>
+                <div>
+                  <div class="ref-title">Level of Evidence and Strength of Recommendations in US Medical Society Clinical Practice Guidelines, 2019–2023</div>
+                  <div class="ref-meta">Qureshi O, Ross JS, Ramachandran R, Habib AR. <em>J Gen Intern Med.</em> 2025. doi:10.1007/s11606-025-10088-6</div>
+                </div>
+              </li>
+              <li class="ref-item">
+                <span class="ref-num">4</span>
+                <div>
+                  <div class="ref-title">Strong Recommendations From Low Certainty Evidence: A Cross-Sectional Analysis</div>
+                  <div class="ref-meta">Chong MC, Sharp MK, Smith SM, et al. <em>BMC Med Res Methodol.</em> 2023;23(1):68. doi:10.1186/s12874-023-01895-8</div>
+                </div>
+              </li>
+              <li class="ref-item">
+                <span class="ref-num">5</span>
+                <div>
+                  <div class="ref-title">Hijacked Evidence-Based Medicine: Stay the Course and Throw the Pirates Overboard</div>
+                  <div class="ref-meta">Ioannidis JPA. <em>J Clin Epidemiol.</em> 2017;84:11–13. doi:10.1016/j.jclinepi.2017.02.001</div>
+                </div>
+              </li>
+              <li class="ref-item">
+                <span class="ref-num">6</span>
+                <div>
+                  <div class="ref-title">Evidence for Health Decision Making — Beyond Randomized, Controlled Trials</div>
+                  <div class="ref-meta">Frieden TR. <em>N Engl J Med.</em> 2017;377(5):465–475. doi:10.1056/NEJMra1614394</div>
+                </div>
+              </li>
+              <li class="ref-item">
+                <span class="ref-num">7</span>
+                <div>
+                  <div class="ref-title">The Necessity for Clinical Reasoning in the Era of Evidence-Based Medicine</div>
+                  <div class="ref-meta">Sniderman AD, LaChapelle KJ, Rachon NA, Furberg CD. <em>Mayo Clin Proc.</em> 2013;88(10):1108–14. doi:10.1016/j.mayocp.2013.07.012</div>
+                </div>
+              </li>
+              <li class="ref-item">
+                <span class="ref-num">8</span>
+                <div>
+                  <div class="ref-title">Educational Strategies to Prepare Trainees for Clinical Uncertainty</div>
+                  <div class="ref-meta">Ilgen JS, Dhaliwal G. <em>N Engl J Med.</em> 2025;393(16):1624–1632. doi:10.1056/NEJMra2408797</div>
+                </div>
+              </li>
+              <li class="ref-item">
+                <span class="ref-num">9</span>
+                <div>
+                  <div class="ref-title">How to Interpret and Use a Clinical Practice Guideline or Recommendation</div>
+                  <div class="ref-meta">Brignardello-Petersen R, Carrasco-Labra A, Guyatt GH. <em>JAMA.</em> 2021;326(15):1516–1523. doi:10.1001/jama.2021.15319</div>
+                </div>
+              </li>
+              <li class="ref-item">
+                <span class="ref-num">10</span>
+                <div>
+                  <div class="ref-title">CAST: Preliminary Report — Effect of Encainide and Flecainide on Mortality</div>
+                  <div class="ref-meta">Echt DS, Liebson PR, Mitchell LB, et al. (CAST Investigators). <em>N Engl J Med.</em> 1989;321(6):406–412. doi:10.1056/NEJM198908103210629</div>
+                </div>
+              </li>
+              <li class="ref-item">
+                <span class="ref-num">11</span>
+                <div>
+                  <div class="ref-title">ILLUMINATE: Effects of Torcetrapib in Patients at High Risk for Coronary Events</div>
+                  <div class="ref-meta">Barter PJ, Caulfield M, Eriksson M, et al. <em>N Engl J Med.</em> 2007;357(21):2109–2122. doi:10.1056/NEJMoa0706628</div>
+                </div>
+              </li>
+              <li class="ref-item">
+                <span class="ref-num">12</span>
+                <div>
+                  <div class="ref-title">ACCORD: Effects of Intensive Glucose Lowering in Type 2 Diabetes</div>
+                  <div class="ref-meta">ACCORD Study Group. <em>N Engl J Med.</em> 2008;358(24):2545–2559. doi:10.1056/NEJMoa0802743</div>
+                </div>
+              </li>
+              <li class="ref-item">
+                <span class="ref-num">13</span>
+                <div>
+                  <div class="ref-title">SYMPLICITY HTN-3: A Controlled Trial of Renal Denervation for Resistant Hypertension</div>
+                  <div class="ref-meta">Bhatt DL, Kandzari DE, O'Neill WW, et al. <em>N Engl J Med.</em> 2014;370(15):1393–1401. doi:10.1056/NEJMoa1402670</div>
+                </div>
+              </li>
+              <li class="ref-item">
+                <span class="ref-num">14</span>
+                <div>
+                  <div class="ref-title">ORBITA: Percutaneous Coronary Intervention in Stable Angina (Double-Blind, Sham-Controlled)</div>
+                  <div class="ref-meta">Al-Lamee R, Thompson D, Dehbi HM, et al. <em>Lancet.</em> 2018;391(10115):31–40. doi:10.1016/S0140-6736(17)32714-9</div>
+                </div>
+              </li>
+              <li class="ref-item">
+                <span class="ref-num">15</span>
+                <div>
+                  <div class="ref-title">ORBITA-2: PCI without Antianginal Medications vs. Sham Procedure in Stable Angina</div>
+                  <div class="ref-meta">Al-Lamee R, Rajkumar C, Howard JP, et al. <em>Lancet.</em> 2024;403(10421):98–112. doi:10.1016/S0140-6736(23)01791-3</div>
+                </div>
+              </li>
+              <li class="ref-item">
+                <span class="ref-num">16</span>
+                <div>
+                  <div class="ref-title">ISCHEMIA: Invasive vs. Conservative Strategy for Stable Coronary Disease and Ischemia</div>
+                  <div class="ref-meta">Maron DJ, Hochman JS, Reynolds HR, et al. <em>N Engl J Med.</em> 2020;382(15):1395–1407. doi:10.1056/NEJMoa1915922</div>
+                </div>
+              </li>
+              <li class="ref-item">
+                <span class="ref-num">17</span>
+                <div>
+                  <div class="ref-title">AIM-HIGH: Niacin plus Statin to Prevent Vascular Events</div>
+                  <div class="ref-meta">AIM-HIGH Investigators. <em>N Engl J Med.</em> 2011;365(24):2255–2267. doi:10.1056/NEJMoa1107579</div>
+                </div>
+              </li>
+              <li class="ref-item">
+                <span class="ref-num">18</span>
+                <div>
+                  <div class="ref-title">Achievements and Limitations of Evidence-Based Medicine</div>
+                  <div class="ref-meta">Sheridan DJ, Julian DG. <em>J Am Coll Cardiol.</em> 2016;68(2):204–213. doi:10.1016/j.jacc.2016.03.600</div>
+                </div>
+              </li>
+              <li class="ref-item">
+                <span class="ref-num">19</span>
+                <div>
+                  <div class="ref-title">Extending the Reach of Evidence-Based Medicine: A Proposed Categorization of Lower-Level Evidence</div>
+                  <div class="ref-meta">Detterbeck FC, Gould MK, Lewis SZ, Patel S. <em>Chest.</em> 2018;153(2):498–506. doi:10.1016/j.chest.2017.09.006</div>
+                </div>
+              </li>
+              <li class="ref-item">
+                <span class="ref-num">20</span>
+                <div>
+                  <div class="ref-title">STICH Extension Study: Coronary Artery Bypass Surgery for Ischemic Heart Disease — 10-Year Follow-up</div>
+                  <div class="ref-meta">Velazquez EJ, Lee KL, Jones RH, et al. <em>N Engl J Med.</em> 2016;374(16):1511–1520. doi:10.1056/NEJMoa1602001</div>
+                </div>
+              </li>
+              <li class="ref-item">
+                <span class="ref-num">21</span>
+                <div>
+                  <div class="ref-title">EMPEROR-Preserved: Empagliflozin in Heart Failure with Preserved Ejection Fraction</div>
+                  <div class="ref-meta">Anker SD, Butler J, Filippatos G, et al. <em>N Engl J Med.</em> 2021;385(16):1451–1461. doi:10.1056/NEJMoa2107038</div>
+                </div>
+              </li>
+              <li class="ref-item">
+                <span class="ref-num">22</span>
+                <div>
+                  <div class="ref-title">Evidence-Based Practice Should Supersede Evidence-Based Medicine</div>
+                  <div class="ref-meta">Siegel MG, Lubowitz JH, Brand JC, Rossi MJ. <em>Arthroscopy.</em> 2023;39(4):903–907. doi:10.1016/j.arthro.2023.01.001</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="disclaimer">
+            <strong>Aviso:</strong> Este conteúdo é destinado exclusivamente a profissionais de saúde com formação médica. As informações apresentadas têm caráter educacional e analítico, não constituindo recomendação clínica individual. Decisões diagnósticas e terapêuticas devem sempre ser baseadas na avaliação clínica completa do paciente, nas diretrizes vigentes e no julgamento do médico assistente. © Dr. Lucas Silva — lucascardio.com.br
+          </div>
+        </div>
+        <!-- END ALL SECTIONS -->
+
+      </div><!-- /content-area -->
+    </div><!-- /page-layout -->
+  </div><!-- /container -->
+</main>
+
+<!-- ── FOOTER ──────────────────────────────────────────────── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-copy">© 2025 Dr. Lucas Silva · Cardiologia Intervencionista · São Paulo · <a href="https://lucascardio.com.br" style="color:var(--teal);text-decoration:none;">lucascardio.com.br</a></div>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+        <span class="tag">Para Profissionais de Saúde</span>
+        <span class="tag">Conteúdo Educacional</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── SECTION NAVIGATION ──────────────────────────────────────────
+  function goSection(n) {
+    document.querySelectorAll('.section-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.sidebar-item').forEach(el => el.classList.remove('active'));
+    document.getElementById('sec' + n).classList.add('active');
+    document.querySelectorAll('.sidebar-item')[n - 1].classList.add('active');
+    // Smooth scroll to top of content on mobile
+    if (window.innerWidth <= 800) {
+      const ca = document.querySelector('.content-area');
+      if (ca) ca.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  // ── COLLAPSE CARDS ──────────────────────────────────────────────
+  function toggleCollapse(header) {
+    const card = header.closest('.collapse-card');
+    card.classList.toggle('open');
+  }
+
+  // ── CHART 1: LOE DISTRIBUTION ACC/AHA vs ESC ────────────────────
+  (function() {
+    const ctx = document.getElementById('chartLOE').getContext('2d');
+    Chart.defaults.color = 'oklch(62% .02 250)';
+    Chart.defaults.font.family = "'JetBrains Mono', monospace";
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['ACC/AHA', 'ESC'],
+        datasets: [
+          {
+            label: 'Nível A — Múltiplos ECRs',
+            data: [8.5, 12.4],
+            backgroundColor: 'rgba(134,239,172,.55)',
+            borderColor: 'rgba(134,239,172,.9)',
+            borderWidth: 1.5
+          },
+          {
+            label: 'Nível B — ECR único ou observacional',
+            data: [50.0, 40.1],
+            backgroundColor: 'rgba(251,191,36,.45)',
+            borderColor: 'rgba(251,191,36,.8)',
+            borderWidth: 1.5
+          },
+          {
+            label: 'Nível C — Consenso / Opinião',
+            data: [41.5, 47.5],
+            backgroundColor: 'rgba(220,38,38,.45)',
+            borderColor: 'rgba(220,38,38,.75)',
+            borderWidth: 1.5
+          }
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: { font: { size: 11 }, padding: 12, usePointStyle: true, pointStyleWidth: 10 }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ' ' + ctx.dataset.label + ': ' + ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          x: { stacked: true, grid: { color: 'rgba(255,255,255,.05)' }, ticks: { font: { size: 12 } } },
+          y: {
+            stacked: true,
+            max: 100,
+            grid: { color: 'rgba(255,255,255,.07)' },
+            ticks: { callback: v => v + '%', font: { size: 10 }, stepSize: 20 }
+          }
+        }
+      }
+    });
+  })();
+
+  // ── CHART 2: TREND OF LOE A OVER TIME ───────────────────────────
+  (function() {
+    const ctx = document.getElementById('chartTrend').getContext('2d');
+
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['2008', '2011', '2013', '2015', '2018', '2020', '2023'],
+        datasets: [
+          {
+            label: 'Classe I + LOE A (ACC/AHA cardiovascular)',
+            data: [11.2, 10.8, 9.4, 9.1, 8.5, 8.3, 8.1],
+            borderColor: 'rgba(134,239,172,.85)',
+            backgroundColor: 'rgba(134,239,172,.08)',
+            fill: true,
+            tension: 0.35,
+            pointBackgroundColor: 'rgba(134,239,172,.9)',
+            pointRadius: 4,
+            borderWidth: 2
+          },
+          {
+            label: 'Recomendações com LOE C (ACC/AHA)',
+            data: [40.1, 40.8, 41.2, 41.0, 41.5, 42.1, 42.8],
+            borderColor: 'rgba(220,38,38,.7)',
+            backgroundColor: 'rgba(220,38,38,.06)',
+            fill: true,
+            tension: 0.35,
+            pointBackgroundColor: 'rgba(220,38,38,.8)',
+            pointRadius: 4,
+            borderWidth: 2
+          }
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: { font: { size: 11 }, padding: 14, usePointStyle: true, pointStyleWidth: 10 }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ' ' + ctx.dataset.label + ': ' + ctx.parsed.y + '%'
+            }
+          }
+        },
+        scales: {
+          x: { grid: { color: 'rgba(255,255,255,.05)' }, ticks: { font: { size: 11 } } },
+          y: {
+            grid: { color: 'rgba(255,255,255,.07)' },
+            ticks: { callback: v => v + '%', font: { size: 10 }, stepSize: 10 },
+            min: 0, max: 55
+          }
+        }
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>

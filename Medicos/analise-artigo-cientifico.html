@@ -1,0 +1,1783 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>Análise Crítica de Artigos Científicos | Dr. Lucas Silva</title>
+  <meta name="description" content="Guia interativo e baseado em evidências para análise crítica de ensaios clínicos randomizados. RoB 2.0, CONSORT 2025, GRADE, estatística clínica." />
+  <meta name="author" content="Dr. Lucas Silva" />
+  <link rel="canonical" href="https://lucascardio.com.br/Medicos/analise-artigo-cientifico.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": [
+    "MedicalWebPage",
+    "LearningResource"
+  ],
+  "headline": "Análise Crítica de Artigos Científicos",
+  "name": "Análise Crítica de Artigos Científicos",
+  "description": "Guia interativo e baseado em evidências para análise crítica de ensaios clínicos randomizados. RoB 2.0, CONSORT 2025, GRADE e estatística clínica.",
+  "url": "https://lucascardio.com.br/analise-artigo-cientifico.html",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://lucascardio.com.br/analise-artigo-cientifico.html"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Dr. Lucas Silva",
+    "url": "https://lucascardio.com.br",
+    "jobTitle": "Cardiologista Intervencionista"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dr. Lucas Silva - Cardiologia",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://lucascardio.com.br/assets/img/logo.png"
+    }
+  },
+  "inLanguage": "pt-BR",
+  "isAccessibleForFree": true,
+  "medicalAudience": {
+    "@type": "MedicalAudience",
+    "audienceType": "Clinician"
+  },
+  "specialty": "https://schema.org/Cardiovascular",
+  "educationalUse": "reference",
+  "learningResourceType": "Guide",
+  "about": [
+    {
+      "@type": "Thing",
+      "name": "Análise crítica de ensaios clínicos randomizados"
+    },
+    {
+      "@type": "Thing",
+      "name": "Medicina baseada em evidências"
+    },
+    {
+      "@type": "Thing",
+      "name": "Risco de viés"
+    },
+    {
+      "@type": "Thing",
+      "name": "GRADE"
+    },
+    {
+      "@type": "Thing",
+      "name": "CONSORT 2025"
+    }
+  ]
+}
+</script>
+
+  <style>
+    :root {
+      --primary: oklch(65% .18 195);
+      --primary-foreground: oklch(98% 0 0);
+      --background: oklch(13% .018 250);
+      --foreground: oklch(93% .01 250);
+      --card: oklch(18.5% .018 250);
+      --card-foreground: oklch(93% .01 250);
+      --muted: oklch(22% .018 250);
+      --muted-foreground: oklch(62% .02 250);
+      --border: oklch(28% .025 250);
+      --input: oklch(22% .02 250);
+      --destructive: oklch(60% .22 25);
+      --secondary: oklch(22% .022 250);
+      --secondary-foreground: oklch(88% .01 250);
+      --accent: oklch(24% .025 250);
+      --accent-foreground: oklch(90% .01 250);
+      --teal: #00d3bd;
+      --teal-dim: rgba(0,211,189,.12);
+      --amber: oklch(82.8% .189 84.429);
+      --red: oklch(63.7% .237 25.331);
+      --green: oklch(79.2% .209 151.711);
+      --radius: 0.625rem;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--background);
+      color: var(--foreground);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(18,20,27,.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: .6rem;
+      text-decoration: none; color: var(--foreground); flex-shrink: 0;
+    }
+    .nav-brand-icon {
+      width: 28px; height: 28px; border-radius: 7px;
+      background: var(--teal); display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .nav-brand-name { font-weight: 800; font-size: 1rem; letter-spacing: -.025em; line-height: 1; }
+    .nav-brand-name span { color: var(--teal); }
+    .nav-brand-sep { width: 1px; height: 14px; background: var(--border); margin: 0 6px; }
+    .nav-brand-sub { font-size: .7rem; font-weight: 500; color: var(--muted-foreground); white-space: nowrap; }
+    .nav-center { display: flex; align-items: center; gap: .15rem; overflow-x: auto; }
+    .nav-center-btn {
+      background: none; border: none; cursor: pointer; font-family: var(--font-sans);
+      font-size: .78rem; font-weight: 500; color: var(--muted-foreground);
+      padding: 5px 10px; border-radius: 7px; white-space: nowrap;
+      transition: background .15s, color .15s;
+    }
+    .nav-center-btn:hover, .nav-center-btn.active { background: var(--accent); color: var(--foreground); }
+    .nav-center-btn.active { color: var(--teal); }
+    .nav-actions { display: flex; align-items: center; gap: .5rem; flex-shrink: 0; }
+    .nav-link {
+      font-size: .75rem; font-weight: 600; padding: 5px 12px;
+      border-radius: 8px; border: 1.5px solid var(--primary);
+      color: var(--primary); background: transparent;
+      text-decoration: none; transition: background .15s, color .15s;
+      display: inline-flex; align-items: center; gap: 5px; white-space: nowrap;
+    }
+    .nav-link:hover { background: var(--primary); color: var(--primary-foreground); }
+
+    /* ── LAYOUT ── */
+    .container { max-width: 960px; margin: 0 auto; padding: 0 1.5rem; }
+    .section { padding: 2.5rem 0; }
+
+    /* ── HERO ── */
+    .hero { padding: 3rem 0 2rem; border-bottom: 1px solid var(--border); }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .7rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--teal); margin-bottom: 1rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 20px; height: 2px;
+      background: var(--teal); border-radius: 1px;
+    }
+    .hero h1 {
+      font-size: clamp(1.5rem, 4vw, 2.2rem); font-weight: 800;
+      line-height: 1.2; margin-bottom: .75rem; letter-spacing: -.02em;
+    }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero-sub { color: var(--muted-foreground); font-size: .92rem; max-width: 640px; margin-bottom: 1.25rem; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag {
+      font-size: .68rem; font-weight: 600; padding: 3px 9px;
+      border-radius: 6px; border: 1px solid var(--border);
+      color: var(--muted-foreground); background: var(--card); font-family: var(--font-mono);
+    }
+
+    /* ── TIMELINE ── */
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px);
+      overflow: hidden;
+      margin: 2rem 0 1.5rem;
+    }
+    .timeline-step {
+      background: var(--card); padding: 1rem 1rem 1.25rem;
+      cursor: pointer; transition: background .15s;
+    }
+    .timeline-step:hover { background: var(--accent); }
+    .timeline-step.active { background: var(--teal-dim); }
+    .step-num {
+      font-size: .62rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--muted-foreground);
+      margin-bottom: .4rem; font-family: var(--font-mono); display: flex; align-items: center; gap: 5px;
+    }
+    .dot {
+      display: inline-flex; width: 18px; height: 18px;
+      border-radius: 50%; background: var(--muted);
+      color: var(--muted-foreground); font-size: .6rem;
+      align-items: center; justify-content: center;
+      font-family: var(--font-mono); font-weight: 700; flex-shrink: 0;
+    }
+    .timeline-step.active .dot { background: var(--teal); color: #000; }
+    .step-title { font-weight: 700; font-size: .82rem; margin-bottom: .2rem; }
+    .step-desc { font-size: .72rem; color: var(--muted-foreground); line-height: 1.45; }
+
+    /* ── PROGRESS ── */
+    .progress-bar { height: 3px; background: var(--border); border-radius: 2px; margin-bottom: 2rem; }
+    .progress-fill { height: 100%; background: var(--teal); border-radius: 2px; transition: width .4s ease; }
+
+    /* ── STEP SECTIONS ── */
+    .step-section { display: none; }
+    .step-section.active { display: block; animation: fadeUp .3s ease; }
+
+    /* ── CARDS ── */
+    .card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px); padding: 1.5rem; margin-bottom: 1.5rem;
+    }
+    .card-header {
+      display: flex; align-items: flex-start; gap: .75rem;
+      margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border);
+    }
+    .card-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0; background: var(--teal-dim); color: var(--teal);
+    }
+    .card-title { font-weight: 700; font-size: 1rem; margin-bottom: 2px; }
+    .card-subtitle { font-size: .78rem; color: var(--muted-foreground); }
+
+    /* ── INFO BOXES ── */
+    .info-box {
+      border-radius: var(--radius); padding: 12px 16px;
+      font-size: .82rem; line-height: 1.6; display: flex; gap: 10px; margin-bottom: .85rem;
+    }
+    .info-box-icon { flex-shrink: 0; font-size: 1rem; margin-top: 1px; }
+    .info-teal { background: var(--teal-dim); border-left: 3px solid var(--teal); }
+    .info-amber { background: rgba(251,191,36,.08); border-left: 3px solid rgba(251,191,36,.5); }
+    .info-red { background: rgba(220,38,38,.08); border-left: 3px solid rgba(220,38,38,.4); }
+    .info-gray { background: var(--muted); border-left: 3px solid var(--border); }
+    .info-green { background: rgba(74,222,128,.08); border-left: 3px solid rgba(74,222,128,.4); }
+
+    /* ── SECTION TITLES ── */
+    .section-title { font-size: 1.2rem; font-weight: 800; margin-bottom: .2rem; letter-spacing: -.01em; }
+    .section-label {
+      font-size: .68rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--teal); margin-bottom: .4rem; font-family: var(--font-mono);
+    }
+    .section-divider { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+
+    /* ── TABLES ── */
+    .compare-table {
+      width: 100%; border-collapse: collapse; font-size: .82rem;
+      border-radius: var(--radius); overflow: hidden;
+    }
+    .compare-table th {
+      background: var(--muted); padding: 9px 13px;
+      text-align: left; font-weight: 700; font-size: .73rem;
+      border-bottom: 1px solid var(--border); color: var(--muted-foreground); letter-spacing: .03em;
+    }
+    .compare-table td {
+      padding: 9px 13px; border-bottom: 1px solid var(--border); vertical-align: top;
+    }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table tr:hover td { background: var(--accent); }
+    .table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: calc(var(--radius)+2px); margin-bottom: 1.25rem; }
+
+    /* ── BADGES ── */
+    .badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: .67rem; font-weight: 700; padding: 2px 8px;
+      border-radius: 999px; white-space: nowrap;
+    }
+    .badge-high { background: rgba(74,222,128,.12); color: #4ade80; border: 1px solid rgba(74,222,128,.25); }
+    .badge-mod { background: rgba(251,191,36,.12); color: #fbbf24; border: 1px solid rgba(251,191,36,.2); }
+    .badge-low { background: rgba(220,38,38,.12); color: #f87171; border: 1px solid rgba(220,38,38,.2); }
+    .badge-vlow { background: rgba(168,85,247,.12); color: #c084fc; border: 1px solid rgba(168,85,247,.2); }
+    .badge-info { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.2); }
+    .badge-warn { background: rgba(251,191,36,.1); color: #fbbf24; border: 1px solid rgba(251,191,36,.2); }
+    .badge-neut { background: var(--muted); color: var(--foreground); border: 1px solid var(--border); font-family: var(--font-mono); }
+
+    /* ── DOMAIN CARDS (RoB) ── */
+    .domain-card {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: var(--radius); margin-bottom: .75rem; overflow: hidden;
+    }
+    .domain-header {
+      padding: 12px 16px; cursor: pointer; display: flex;
+      align-items: center; justify-content: space-between;
+      transition: background .15s;
+    }
+    .domain-header:hover { background: var(--accent); }
+    .domain-header-left { display: flex; align-items: center; gap: 10px; }
+    .domain-num {
+      width: 26px; height: 26px; border-radius: 6px;
+      background: var(--teal-dim); color: var(--teal);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .72rem; font-weight: 700; font-family: var(--font-mono); flex-shrink: 0;
+    }
+    .domain-title { font-weight: 700; font-size: .88rem; }
+    .domain-badge { font-size: .68rem; }
+    .domain-arrow { font-size: .7rem; color: var(--muted-foreground); transition: transform .2s; }
+    .domain-card.open .domain-arrow { transform: rotate(180deg); }
+    .domain-body { display: none; padding: 0 16px 16px; border-top: 1px solid var(--border); }
+    .domain-card.open .domain-body { display: block; padding-top: 12px; }
+    .signal-q {
+      font-size: .8rem; padding: 6px 0; border-bottom: 1px solid var(--border);
+      display: flex; gap: 8px; align-items: flex-start;
+    }
+    .signal-q:last-child { border-bottom: none; }
+    .signal-q-icon { flex-shrink: 0; margin-top: 1px; }
+    .signal-q-text { line-height: 1.5; }
+    .signal-q-text strong { font-weight: 600; display: block; margin-bottom: 1px; }
+    .signal-q-text small { font-size: .73rem; color: var(--muted-foreground); }
+
+    /* ── PICO BOX ── */
+    .pico-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px;
+      background: var(--border); border: 1px solid var(--border);
+      border-radius: calc(var(--radius)+2px); overflow: hidden; margin-bottom: 1.25rem;
+    }
+    .pico-cell { background: var(--card); padding: 1rem; }
+    .pico-letter {
+      font-size: 1.8rem; font-weight: 800; color: var(--teal);
+      font-family: var(--font-mono); line-height: 1; margin-bottom: .25rem;
+    }
+    .pico-name { font-weight: 700; font-size: .85rem; margin-bottom: .25rem; }
+    .pico-desc { font-size: .78rem; color: var(--muted-foreground); line-height: 1.5; }
+
+    /* ── STAT FORMULA ── */
+    .formula-box {
+      background: var(--muted); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 12px 16px; font-family: var(--font-mono); font-size: .85rem;
+      margin-bottom: .75rem; line-height: 1.8;
+    }
+    .formula-box .f-label { font-size: .65rem; color: var(--teal); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; display: block; margin-bottom: 4px; }
+    .formula-box .f-eq { color: var(--foreground); }
+    .formula-box .f-note { font-size: .72rem; color: var(--muted-foreground); font-family: var(--font-sans); display: block; margin-top: 4px; }
+
+    /* ── GRADE LEVELS ── */
+    .grade-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: .75rem; margin-bottom: 1.25rem; }
+    .grade-cell {
+      border-radius: var(--radius); padding: 1rem; border: 1px solid;
+    }
+    .grade-cell-high { background: rgba(74,222,128,.07); border-color: rgba(74,222,128,.25); }
+    .grade-cell-mod { background: rgba(251,191,36,.07); border-color: rgba(251,191,36,.25); }
+    .grade-cell-low { background: rgba(220,38,38,.07); border-color: rgba(220,38,38,.2); }
+    .grade-cell-vlow { background: rgba(168,85,247,.07); border-color: rgba(168,85,247,.2); }
+    .grade-cell-title { font-weight: 800; font-size: .9rem; margin-bottom: .25rem; }
+    .grade-cell-high .grade-cell-title { color: #4ade80; }
+    .grade-cell-mod .grade-cell-title { color: #fbbf24; }
+    .grade-cell-low .grade-cell-title { color: #f87171; }
+    .grade-cell-vlow .grade-cell-title { color: #c084fc; }
+    .grade-cell-desc { font-size: .78rem; color: var(--muted-foreground); line-height: 1.5; }
+    .grade-cell-example { font-size: .72rem; margin-top: .5rem; font-style: italic; color: var(--muted-foreground); }
+
+    /* ── CHECKLIST ── */
+    .checklist { list-style: none; }
+    .checklist-item {
+      display: flex; gap: 10px; align-items: flex-start;
+      padding: 7px 0; border-bottom: 1px solid var(--border); font-size: .82rem;
+    }
+    .checklist-item:last-child { border-bottom: none; }
+    .cl-icon { flex-shrink: 0; margin-top: 1px; }
+    .cl-text { line-height: 1.5; }
+    .cl-text strong { font-weight: 600; }
+
+    /* ── TWO-COL ── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: .85rem; font-weight: 600; padding: 10px 20px;
+      border-radius: calc(var(--radius) + 2px); border: none; cursor: pointer;
+      transition: all .15s; white-space: nowrap; font-family: var(--font-sans);
+    }
+    .btn-primary { background: var(--primary); color: #000; font-weight: 700; }
+    .btn-primary:hover { opacity: .9; transform: translateY(-1px); }
+    .btn-secondary { background: var(--muted); color: var(--foreground); border: 1px solid var(--border); }
+    .btn-secondary:hover { background: var(--accent); }
+    .btn-row { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 1.5rem; }
+
+    /* ── REFERENCES ── */
+    .ref-list { list-style: none; }
+    .ref-item {
+      padding: 10px 0; border-bottom: 1px solid var(--border);
+      font-size: .79rem; line-height: 1.6; display: flex; gap: 10px;
+    }
+    .ref-item:last-child { border-bottom: none; }
+    .ref-num { font-family: var(--font-mono); font-size: .7rem; font-weight: 700; color: var(--teal); min-width: 22px; }
+    .ref-title { font-weight: 600; margin-bottom: 2px; }
+    .ref-meta { color: var(--muted-foreground); font-size: .74rem; }
+
+    /* ── DISCLAIMER / FOOTER ── */
+    .disclaimer {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 12px 16px;
+      font-size: .74rem; color: var(--muted-foreground); line-height: 1.6; margin-top: 1.5rem;
+    }
+    footer { border-top: 1px solid var(--border); padding: 1.75rem 0; margin-top: 3rem; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-copy { font-size: .74rem; color: var(--muted-foreground); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      .timeline { grid-template-columns: repeat(3, 1fr); }
+      .two-col { grid-template-columns: 1fr; }
+      .nav-brand-sub { display: none; }
+      .pico-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .timeline { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ── EXTRA UTILITY ── */
+    p { margin-bottom: .75rem; font-size: .88rem; line-height: 1.7; }
+    p:last-child { margin-bottom: 0; }
+    h3 { font-size: 1rem; font-weight: 700; margin-bottom: .5rem; margin-top: 1.25rem; }
+    h3:first-child { margin-top: 0; }
+    ul.bullet { padding-left: 1.25rem; margin-bottom: .75rem; }
+    ul.bullet li { font-size: .85rem; line-height: 1.6; margin-bottom: .25rem; color: var(--foreground); }
+    ul.bullet li strong { font-weight: 600; }
+    .mono { font-family: var(--font-mono); font-size: .85rem; }
+    .teal { color: var(--teal); }
+    .amber { color: #fbbf24; }
+    .red { color: #f87171; }
+    .green { color: #4ade80; }
+    .muted { color: var(--muted-foreground); }
+    .bold { font-weight: 700; }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a class="nav-brand" href="#">
+    <div class="nav-brand-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+      </svg>
+    </div>
+    <div class="nav-brand-name">EBM<span>Critica</span></div>
+    <div class="nav-brand-sep" style="width:1px;height:14px;background:var(--border);margin:0 6px;"></div>
+    <div class="nav-brand-sub">Análise Crítica de Artigos</div>
+  </a>
+  <div class="nav-center">
+    <button class="nav-center-btn active" onclick="goStep(1)" id="nb1">PICO &amp; Estrutura</button>
+    <button class="nav-center-btn" onclick="goStep(2)" id="nb2">Validade Interna</button>
+    <button class="nav-center-btn" onclick="goStep(3)" id="nb3">Risco de Viés</button>
+    <button class="nav-center-btn" onclick="goStep(4)" id="nb4">Estatística</button>
+    <button class="nav-center-btn" onclick="goStep(5)" id="nb5">GRADE</button>
+  </div>
+  <div class="nav-actions">
+    <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      lucascardio.com.br
+    </a>
+  </div>
+</nav>
+
+<main>
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">Medicina Baseada em Evidências</div>
+    <h1>Análise Crítica de <em>Artigos Científicos</em></h1>
+    <p class="hero-sub">
+      Guia estruturado e aprofundado para avaliação de ensaios clínicos randomizados. Da formulação do PICO à interpretação estatística, passando por risco de viés, CONSORT 2025 e GRADE — cada domínio explicado com a evidência metodológica atual.
+    </p>
+    <div class="hero-tags">
+      <span class="tag">RoB 2.0</span>
+      <span class="tag">CONSORT 2025</span>
+      <span class="tag">GRADE</span>
+      <span class="tag">INSPECT-SR</span>
+      <span class="tag">NNT / ARR</span>
+      <span class="tag">Não-Inferioridade</span>
+      <span class="tag">ITT</span>
+      <span class="tag">P-Value ASA 2016</span>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="timeline">
+    <div class="timeline-step active" onclick="goStep(1)" id="ts1">
+      <div class="step-num"><span class="dot">1</span>PICO</div>
+      <div class="step-title">Estrutura &amp; Framework</div>
+      <div class="step-desc">PICO, hierarquia de evidências, tipos de ensaio, leitura estruturada</div>
+    </div>
+    <div class="timeline-step" onclick="goStep(2)" id="ts2">
+      <div class="step-num"><span class="dot">2</span>VALIDADE</div>
+      <div class="step-title">Validade Interna</div>
+      <div class="step-desc">Randomização, cegamento, ITT, desfechos, pré-registro</div>
+    </div>
+    <div class="timeline-step" onclick="goStep(3)" id="ts3">
+      <div class="step-num"><span class="dot">3</span>VIÉS</div>
+      <div class="step-title">Risco de Viés</div>
+      <div class="step-desc">RoB 2.0 (5 domínios), CONSORT 2025, autenticidade</div>
+    </div>
+    <div class="timeline-step" onclick="goStep(4)" id="ts4">
+      <div class="step-num"><span class="dot">4</span>STAT</div>
+      <div class="step-title">Estatística Clínica</div>
+      <div class="step-desc">ARR, NNT, HR, ICs, poder, não-inferioridade, subgrupos</div>
+    </div>
+    <div class="timeline-step" onclick="goStep(5)" id="ts5">
+      <div class="step-num"><span class="dot">5</span>GRADE</div>
+      <div class="step-title">GRADE &amp; Aplicabilidade</div>
+      <div class="step-desc">Qualidade da evidência, validade externa, da evidência à recomendação</div>
+    </div>
+  </div>
+
+  <div class="progress-bar"><div class="progress-fill" id="progress" style="width:20%"></div></div>
+
+  <!-- ══════════════════════════════════════════════════════
+       SEÇÃO 1 — PICO & ESTRUTURA
+  ═══════════════════════════════════════════════════════ -->
+  <div id="step1" class="step-section active">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">🎯</div>
+        <div>
+          <div class="card-title">Framework PICO(T) — A Pergunta Antes da Resposta</div>
+          <div class="card-subtitle">Qualquer avaliação crítica começa com a pergunta clínica estruturada</div>
+        </div>
+      </div>
+      <p>O framework PICO é a pedra angular da medicina baseada em evidências. Antes de avaliar qualquer estudo, o leitor precisa articular a pergunta que o estudo se propõe a responder — e verificar se o estudo de fato a responde. Muitos ensaios respondem a uma pergunta ligeiramente diferente da que o título sugere.</p>
+      <div class="pico-grid">
+        <div class="pico-cell">
+          <div class="pico-letter">P</div>
+          <div class="pico-name">Population</div>
+          <div class="pico-desc">Quem são os participantes? Critérios de inclusão e exclusão. Qual população o estudo representa — e qual exclui? Populações altamente selecionadas (exclusão de idosos, renais crônicos, mulheres) limitam a generalização.</div>
+        </div>
+        <div class="pico-cell">
+          <div class="pico-letter">I</div>
+          <div class="pico-name">Intervention</div>
+          <div class="pico-desc">O que exatamente foi feito? Dose, duração, protocolo de administração, fidelidade da intervenção. A intervenção do ensaio é reproduzível no mundo real? Há desvios de protocolo relevantes?</div>
+        </div>
+        <div class="pico-cell">
+          <div class="pico-letter">C</div>
+          <div class="pico-name">Comparator</div>
+          <div class="pico-desc">O que foi o controle? Placebo, cuidado usual, dose diferente, procedimento simulado (sham). O comparador é o que você usa na prática? Um comparador inferior infla o benefício da intervenção.</div>
+        </div>
+        <div class="pico-cell">
+          <div class="pico-letter">O</div>
+          <div class="pico-name">Outcome</div>
+          <div class="pico-desc">Quais desfechos foram medidos? Distinguir desfechos primários de secundários. Desfechos substitutos (surrogate) vs. desfechos clínicos hard (morte, IAM, AVC). Pré-especificados vs. post-hoc.</div>
+        </div>
+        <div class="pico-cell">
+          <div class="pico-letter">T</div>
+          <div class="pico-name">Time</div>
+          <div class="pico-desc">Duração do seguimento. Adequada para capturar os desfechos relevantes? Efeitos a curto prazo podem não se sustentar. Curvas de sobrevida que divergem tardiamente podem ser perdidas com seguimento curto.</div>
+        </div>
+      </div>
+      <div class="info-teal info-box">
+        <span class="info-box-icon">💡</span>
+        <div><strong>Dica prática:</strong> Formule o seu próprio PICO antes de ler o artigo, depois compare com o que o trial efetivamente avaliou. Discrepâncias entre o PICO do título e o PICO real do protocolo já são um sinal de alerta.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">🏛️</div>
+        <div>
+          <div class="card-title">Hierarquia de Evidências &amp; Tipos de Ensaio Clínico</div>
+          <div class="card-subtitle">O desenho do estudo determina o nível máximo de evidência possível — mas não garante qualidade</div>
+        </div>
+      </div>
+      <div class="info-amber info-box">
+        <span class="info-box-icon">⚠️</span>
+        <div><strong>Hierarquia ≠ Qualidade:</strong> Um ECR mal conduzido pode fornecer evidência de qualidade inferior a uma coorte prospectiva bem desenhada. A pirâmide indica o <em>potencial máximo</em> do desenho para controlar confundimento, não a qualidade do estudo individual.</div>
+      </div>
+      <div class="table-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Tipo de Estudo</th>
+              <th>Uso Ideal</th>
+              <th>Controle de Confundimento</th>
+              <th>Limitações Principais</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Revisão Sistemática + Meta-análise de ECRs</strong></td>
+              <td>Síntese de evidências para uma pergunta PICO específica</td>
+              <td>Máximo (se ECRs de qualidade)</td>
+              <td>Heterogeneidade entre estudos, viés de publicação, qualidade dos estudos incluídos</td>
+            </tr>
+            <tr>
+              <td><strong>ECR Multicêntrico Grande</strong></td>
+              <td>Eficácia e segurança de intervenções</td>
+              <td>Alto (randomização balanceia confundidores conhecidos e desconhecidos)</td>
+              <td>Custo, exclusão de populações vulneráveis, tempo, eficácia ≠ efetividade</td>
+            </tr>
+            <tr>
+              <td><strong>ECR Unicêntrico / Piloto</strong></td>
+              <td>Viabilidade, estimativas preliminares de efeito</td>
+              <td>Alto internamente</td>
+              <td>Baixo poder, efeito overestimado (winner's curse), baixa generalização</td>
+            </tr>
+            <tr>
+              <td><strong>ECR Cruzado (Crossover)</strong></td>
+              <td>Desfechos de curto prazo, condições estáveis</td>
+              <td>Excelente (cada paciente é seu próprio controle)</td>
+              <td>Efeito carryover, period effect, inadequado para doenças evolutivas</td>
+            </tr>
+            <tr>
+              <td><strong>ECR Cluster</strong></td>
+              <td>Intervenções no nível do serviço/instituição</td>
+              <td>Moderado</td>
+              <td>Correlação intra-cluster (ICC), necessidade de análise especial, power reduzido</td>
+            </tr>
+            <tr>
+              <td><strong>Coorte Prospectiva</strong></td>
+              <td>Etiologia, prognóstico, quando ECR inviável</td>
+              <td>Moderado (controla confundidores medidos)</td>
+              <td>Confundimento residual por variáveis não medidas</td>
+            </tr>
+            <tr>
+              <td><strong>Caso-Controle</strong></td>
+              <td>Doenças raras, etiologia</td>
+              <td>Baixo-Moderado</td>
+              <td>Viés de recordação, seleção de controles, temporalidade</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Modalidades de ECR: Superiority, Non-Inferiority e Equivalência</h3>
+      <div class="info-teal info-box" style="margin-top:.5rem;">
+        <span class="info-box-icon">📐</span>
+        <div><strong>Ensaio de Superioridade:</strong> Hipótese de que a nova intervenção é melhor que o controle. H₀: sem diferença. Resultado: nova terapia é melhor, igual ou pior. O valor-p testa a hipótese nula de igualdade.</div>
+      </div>
+      <div class="info-amber info-box">
+        <span class="info-box-icon">📐</span>
+        <div><strong>Ensaio de Não-Inferioridade (NI):</strong> Hipótese de que a nova intervenção não é clinicamente pior que o controle além de uma margem pré-especificada (delta, Δ). Usado quando a nova terapia oferece outras vantagens (menor custo, menos efeitos adversos, via oral). <strong>Atenção crítica:</strong> a escolha da margem NI é subjetiva e frequentemente subestimada por patrocinadores industriais. Um ECR NI positivo não implica eficácia similar — apenas que a inferioridade não excede Δ.</div>
+      </div>
+      <div class="info-gray info-box">
+        <span class="info-box-icon">📐</span>
+        <div><strong>Ensaio de Equivalência:</strong> Hipótese de que os efeitos são virtualmente idênticos (diferença dentro de ±Δ). Requer duas margens e mais participantes. Menos comum na cardiologia.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">📋</div>
+        <div>
+          <div class="card-title">Leitura Estruturada: O Roteiro Antes do Abstract</div>
+          <div class="card-subtitle">A ordem de leitura crítica difere da ordem de publicação</div>
+        </div>
+      </div>
+      <ul class="checklist">
+        <li class="checklist-item">
+          <span class="cl-icon">1️⃣</span>
+          <div class="cl-text"><strong>Verifique o registro prospectivo</strong> — Busque o número de registro (NCT, ISRCTN, EUCTR). O estudo foi registrado <em>antes</em> do início do recrutamento? Compare o desfecho primário registrado com o publicado. Mudança de desfecho primário entre registro e publicação é sinal grave de viés de reporte.</div>
+        </li>
+        <li class="checklist-item">
+          <span class="cl-icon">2️⃣</span>
+          <div class="cl-text"><strong>Identifique a fonte de financiamento e conflitos</strong> — Ensaios patrocinados pela indústria apresentam resultados favoráveis ao patrocinador em 70–90% dos casos (Lundh et al. Cochrane 2017). Isso não invalida o estudo, mas exige escrutínio redobrado do desenho e análise.</div>
+        </li>
+        <li class="checklist-item">
+          <span class="cl-icon">3️⃣</span>
+          <div class="cl-text"><strong>Leia os Métodos antes dos Resultados</strong> — O leitor crítico lê Métodos completos antes de ver os resultados, para não ser influenciado pela narrativa dos autores. Avalie randomização, cegamento, desfechos e análise estatística de forma independente.</div>
+        </li>
+        <li class="checklist-item">
+          <span class="cl-icon">4️⃣</span>
+          <div class="cl-text"><strong>Localize o protocolo completo</strong> — Muitos ensaios publicam o protocolo separadamente (NEJM, Lancet, Trials). O protocolo descreve o plano de análise estatística (SAP) original, permitindo identificar desvios post-hoc.</div>
+        </li>
+        <li class="checklist-item">
+          <span class="cl-icon">5️⃣</span>
+          <div class="cl-text"><strong>Analise o CONSORT Flow Diagram</strong> — O diagrama de fluxo mostra recrutamento, randomização, perdas e análise. Perdas assimétricas entre grupos, elevado número de exclusões pós-randomização ou análise que exclui participantes randomizados são red flags imediatos.</div>
+        </li>
+        <li class="checklist-item">
+          <span class="cl-icon">6️⃣</span>
+          <div class="cl-text"><strong>Avalie as características basais (Tabela 1)</strong> — Em um ECR bem conduzido, as características basais devem ser equilibradas por acaso. P-valores para basais são conceitualmente equivocados (os grupos foram alocados aleatoriamente). Busque diferenças clinicamente relevantes, não estatisticamente significativas.</div>
+        </li>
+      </ul>
+      <div class="info-red info-box" style="margin-top:.75rem;">
+        <span class="info-box-icon">🚩</span>
+        <div><strong>Red Flags no Abstract:</strong> "Endpoints co-primários" (dilui o poder), "análise exploratória pré-especificada" (contradição), desfecho primário com p = 0,049 e múltiplos desfechos secundários, resultados relativos sem absolutos, follow-up médio muito inferior ao planejado.</div>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="goStep(2)">Próximo: Validade Interna →</button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       SEÇÃO 2 — VALIDADE INTERNA
+  ═══════════════════════════════════════════════════════ -->
+  <div id="step2" class="step-section">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">🎲</div>
+        <div>
+          <div class="card-title">Randomização: Mais do que Sortear</div>
+          <div class="card-subtitle">Dois componentes distintos e independentemente críticos</div>
+        </div>
+      </div>
+      <div class="info-amber info-box">
+        <span class="info-box-icon">⚠️</span>
+        <div><strong>Erro conceitual frequente:</strong> Randomização e ocultação de alocação são processos distintos. A randomização gera a sequência; a ocultação impede que os investigadores saibam qual grupo o próximo participante receberá <em>antes da inclusão</em>. Estudos que confundem os dois conceitos frequentemente subestimam o risco de viés de ocultação.</div>
+      </div>
+
+      <h3>Geração da Sequência Aleatória</h3>
+      <p>O método de geração da sequência deve ser explicitamente descrito. Métodos adequados incluem tabelas de números aleatórios, software de computador (R, SAS), e geradores pseudoaleatórios. Métodos inadequados — que <em>parecem</em> aleatórios mas não são — incluem alternância (par/ímpar), data de nascimento, número de prontuário ou ordem de chegada. Evidências meta-epidemiológicas mostram que randomização inadequada está associada a superestimação do efeito de tratamento (<strong>ROR 0,93–0,94</strong>, Wang et al. JCE 2024).</p>
+      <p>A randomização estratificada por centros e variáveis prognósticas importantes (p.ex., fração de ejeção, tipo de SCA) reduz o desequilíbrio de confundidores nas análises de subgrupo, mas não altera a validade geral do ECR. A randomização por blocos de tamanho fixo pode ser previsível em estudos abertos — tamanhos variáveis de bloco mitigam esse risco.</p>
+
+      <h3>Ocultação de Alocação (Allocation Concealment)</h3>
+      <p>Refere-se ao mecanismo que impede os recrutadores de saber qual grupo o próximo participante receberá <em>antes de seu ingresso formal no estudo</em>. Isso previne seleção seletiva de pacientes para grupos favoráveis. Métodos adequados: randomização centralizada por telefone/sistema web, envelopes opacos selados e numerados sequencialmente. Métodos inadequados: envelopes translúcidos, listas abertas.</p>
+      <div class="info-red info-box">
+        <span class="info-box-icon">🔴</span>
+        <div><strong>Impacto quantificado:</strong> Ocultação de alocação inadequada está associada a superestimação de 8–10% do efeito de tratamento (ROR 0,90–0,92), segundo revisão meta-epidemiológica de Page et al. (PLoS One 2016) e Wang et al. (JCE 2024). Este efeito é independente do cegamento.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">🙈</div>
+        <div>
+          <div class="card-title">Cegamento: Quem Sabe de Quê?</div>
+          <div class="card-subtitle">O impacto do descegamento varia radicalmente conforme o desfecho e quem está descegado</div>
+        </div>
+      </div>
+      <p>O cegamento ideal envolve múltiplos níveis, cada um com impacto diferente sobre o viés de medição:</p>
+      <div class="table-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Quem está descegado</th>
+              <th>Desfechos Objetivos (morte, IAM confirmado)</th>
+              <th>Desfechos Subjetivos (dor, qualidade de vida, função)</th>
+              <th>Magnitude do viés (ROR)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Paciente descegado</strong></td>
+              <td>Impacto pequeno</td>
+              <td><strong>Superestimação substancial</strong> — expectativa e efeito placebo</td>
+              <td>~0,36 (Wang et al. 2024)</td>
+            </tr>
+            <tr>
+              <td><strong>Provedor de cuidados descegado</strong></td>
+              <td>Moderado — cuidados co-intervenção diferenciais</td>
+              <td>Alto — decisões de tratamento influenciadas</td>
+              <td>Variável</td>
+            </tr>
+            <tr>
+              <td><strong>Avaliador de desfecho descegado</strong></td>
+              <td>Baixo para desfechos hard (morte é morte)</td>
+              <td><strong>Superestimação substancial</strong> — ROR 0,64–0,69</td>
+              <td>0,64–0,69 (Wang et al. 2024)</td>
+            </tr>
+            <tr>
+              <td><strong>Analista descegado</strong></td>
+              <td colspan="2">Viés em decisões de análise (outliers, imputação, subgrupos exploratórios)</td>
+              <td>Difícil de quantificar</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="info-teal info-box">
+        <span class="info-box-icon">💡</span>
+        <div><strong>Ensaios abertos (open-label) com desfechos objetivos:</strong> Quando o desfecho primário é morte por todas as causas ou MACE hard (com adjudicação por comitê independente cego), o risco de viés de cegamento é menor. Contudo, desfechos secundários subjetivos no mesmo ensaio permanecem em alto risco. Avalie desfecho por desfecho — não o estudo como um todo.</div>
+      </div>
+      <div class="info-amber info-box">
+        <span class="info-box-icon">⚠️</span>
+        <div><strong>Placebo de procedimento (sham control):</strong> Em estudos de intervenções invasivas (denervação renal, TAVI, shockwave), o uso de sham procedure é o padrão-ouro para cegamento do paciente. Ensaios sem sham em intervenções invasivas têm desfechos subjetivos altamente suscetíveis ao efeito placebo — o que pode explicar diferenças de 15–30% em desfechos como angina ou dispneia.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">📊</div>
+        <div>
+          <div class="card-title">Intenção de Tratar (ITT) vs. Per Protocol (PP) vs. As-Treated</div>
+          <div class="card-subtitle">A escolha do conjunto de análise não é neutra — cada abordagem responde uma pergunta diferente</div>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Abordagem</th>
+              <th>Definição</th>
+              <th>Preserva randomização?</th>
+              <th>Aplicação ideal</th>
+              <th>Viés principal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong class="teal">ITT (Intenção de Tratar)</strong></td>
+              <td>Todos os randomizados analisados no grupo designado, independente do que receberam ou do que aconteceu</td>
+              <td><strong class="green">Sim</strong></td>
+              <td>Efetividade clínica no mundo real — responde "e se todos seguissem o tratamento designado?"</td>
+              <td>Dilui efeito real se aderência baixa (conservative bias)</td>
+            </tr>
+            <tr>
+              <td><strong>mITT (ITT modificado)</strong></td>
+              <td>Inclui apenas randomizados que receberam pelo menos uma dose (critérios variam por estudo)</td>
+              <td>Parcialmente</td>
+              <td>Justificado se critérios pré-especificados e transparentes</td>
+              <td>Definições ad-hoc podem gerar viés de seleção</td>
+            </tr>
+            <tr>
+              <td><strong>PP (Per Protocol)</strong></td>
+              <td>Apenas participantes que completaram o protocolo conforme especificado</td>
+              <td><strong class="red">Não</strong></td>
+              <td>Eficácia biológica máxima — "qual é o efeito se tomado corretamente?"</td>
+              <td>Seleciona aderentes (mais saudáveis), quebra randomização</td>
+            </tr>
+            <tr>
+              <td><strong>As-Treated</strong></td>
+              <td>Analisados pelo tratamento efetivamente recebido</td>
+              <td><strong class="red">Não</strong></td>
+              <td>Raramente preferível — aproxima-se de um observacional</td>
+              <td>Alto risco de confundimento por indicação</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="info-teal info-box">
+        <span class="info-box-icon">💡</span>
+        <div><strong>Para ensaios de NÃO-INFERIORIDADE:</strong> O consenso metodológico (ICH E9, FDA guidance) exige que tanto a análise ITT quanto a PP sejam reportadas. Se o resultado NI é demonstrado em apenas uma das análises, o estudo permanece inconclusivo. A lógica é que o ITT é conservador para NI (mais participantes que não receberam tratamento reduzem as diferenças, favorecendo NI) e o PP avalia o efeito máximo da intervenção.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">🎯</div>
+        <div>
+          <div class="card-title">Desfechos: Seleção, Tipos e Armadilhas</div>
+          <div class="card-subtitle">O que é medido — e como — pode ser mais determinante que qualquer aspecto do tratamento</div>
+        </div>
+      </div>
+      <h3>Desfechos Hard vs. Surrogate (Substitutos)</h3>
+      <p>Desfechos <strong>clinicamente hard</strong> são aqueles diretamente relevantes ao paciente: morte, IAM confirmado, AVC, qualidade de vida, hospitalização não planejada. <strong>Desfechos substitutos (surrogates)</strong> são biomarcadores ou medidas fisiológicas que se supõe correlacionados com desfechos clínicos: LDL, fração de ejeção, pressão arterial, ESV no Holter. A questão crítica não é se o surrogate se correlaciona com o desfecho, mas se <em>melhorar o surrogate invariavelmente melhora o desfecho</em>. Vários exemplos clássicos demonstram que não:</p>
+      <div class="info-red info-box">
+        <span class="info-box-icon">🚩</span>
+        <div><strong>Exemplos históricos de surrogates que falharam:</strong> Encainida/flecainida reduziam extrassístoles ventriculares mas aumentavam mortalidade (CAST, 1989). Mibefradil reduzia PA e hipertrofia, mas foi retirado por interações. Torcetrapib aumentava HDL mas aumentava mortalidade cardiovascular (ILLUMINATE, 2007). A lista é longa — cautela máxima com aprovações baseadas exclusivamente em surrogates.</div>
+      </div>
+
+      <h3>Desfechos Compostos: Potência e Perigo</h3>
+      <p>Desfechos compostos (MACE = morte CV + IAM + AVC) aumentam o número de eventos e o poder do estudo, permitindo ensaios menores ou mais curtos. O risco está na heterogeneidade dos componentes:</p>
+      <ul class="bullet">
+        <li><strong>Componentes devem ser clinicamente semelhantes em importância.</strong> Um composto de "morte + hospitalização por angina" mistura eventos fatais com eventos menores.</li>
+        <li><strong>O componente mais frequente domina o composto.</strong> Se o composto é positivo mas impulsionado por hospitalização e não por morte ou IAM, o benefício é muito mais modesto do que parece.</li>
+        <li><strong>Sempre busque os componentes individuais</strong> — mesmo sem poder para cada um. Um composto positivo com componente de mortalidade neutro ou adverso é clinicamente problemático.</li>
+        <li><strong>Composite endpoint creep:</strong> Adicionar componentes mais frequentes (mas menos graves) ao composto apenas para atingir o número de eventos necessário.</li>
+      </ul>
+
+      <h3>HARKing e P-Hacking</h3>
+      <p><strong>HARKing</strong> (Hypothesizing After Results are Known) consiste em apresentar hipóteses post-hoc como se fossem pré-especificadas. Na prática: o investigador analisa os dados, identifica o desfecho com resultado significativo e o reporta como desfecho primário "pré-especificado". Isso é detectável comparando o registro do estudo (ClinicalTrials.gov) com o publicado.</p>
+      <p><strong>P-hacking</strong> é a análise iterativa dos dados — diferentes subgrupos, diferentes janelas temporais, diferentes definições de desfecho — até que um resultado significativo seja encontrado. Com 20 análises independentes em nível α = 0,05, espera-se 1 resultado falso-positivo por acaso. A solução são análises pré-especificadas, SAP fechado antes da análise, e ajuste para multiplicidade.</p>
+      <div class="info-amber info-box">
+        <span class="info-box-icon">🔍</span>
+        <div><strong>Como detectar:</strong> Compare o protocolo/registro com o artigo. Verifique quantos desfechos secundários são reportados sem ajuste para múltiplas comparações. Um p-valor primário de 0,048–0,050 com muitos desfechos secundários negativos deve aumentar a suspeita de HARKing. Revistas como NEJM e Lancet exigem registro prospectivo como condição de publicação — mas a verificação não é sistemática.</div>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="goStep(1)">← Anterior</button>
+      <button class="btn btn-primary" onclick="goStep(3)">Próximo: Risco de Viés →</button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       SEÇÃO 3 — RISCO DE VIÉS
+  ═══════════════════════════════════════════════════════ -->
+  <div id="step3" class="step-section">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">🔬</div>
+        <div>
+          <div class="card-title">Cochrane Risk of Bias 2.0 (RoB 2) — A Ferramenta Padrão-Ouro</div>
+          <div class="card-subtitle">Sterne et al. BMJ 2019 — avaliação por domínio, por desfecho, não por estudo global</div>
+        </div>
+      </div>
+      <div class="info-teal info-box">
+        <span class="info-box-icon">📌</span>
+        <div><strong>Princípio fundamental do RoB 2:</strong> O risco de viés é avaliado para cada <em>desfecho</em> individualmente, não para o estudo como um todo. Um mesmo ECR pode ter baixo risco de viés para mortalidade (desfecho hard, adjudicado por comitê cego) e alto risco para um desfecho de qualidade de vida (autorreportado por paciente descegado). Esta granularidade é a maior inovação do RoB 2 em relação ao RoB 1.</div>
+      </div>
+      <p>Cada domínio é classificado em três categorias: <span class="badge badge-high">Baixo Risco</span> <span class="badge badge-mod">Algumas Preocupações</span> <span class="badge badge-low">Alto Risco</span>. A classificação geral do desfecho é a mais pessimista entre os domínios.</p>
+      <p>Clique em cada domínio para ver as perguntas sinalizadoras e critérios de julgamento:</p>
+
+      <!-- Domain 1 -->
+      <div class="domain-card" id="d1">
+        <div class="domain-header" onclick="toggleDomain('d1')">
+          <div class="domain-header-left">
+            <div class="domain-num">D1</div>
+            <div>
+              <div class="domain-title">Processo de Randomização</div>
+              <div style="font-size:.75rem;color:var(--muted-foreground)">Geração de sequência + ocultação de alocação</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span class="badge badge-info">Mais frequentemente subestimado</span>
+            <span class="domain-arrow">▼</span>
+          </div>
+        </div>
+        <div class="domain-body">
+          <div class="signal-q">
+            <span class="signal-q-icon">❓</span>
+            <div class="signal-q-text">
+              <strong>RQ 1.1 — A sequência de alocação foi aleatória?</strong>
+              <small>Resposta esperada: "Sim" — geração por computador, tabela de números aleatórios, ou método equivalente. "Provavelmente sim" se descrito em detalhes insuficientes mas plausíveis. "Provavelmente não / Não" para alternância, data de nascimento, número de prontuário.</small>
+            </div>
+          </div>
+          <div class="signal-q">
+            <span class="signal-q-icon">❓</span>
+            <div class="signal-q-text">
+              <strong>RQ 1.2 — A alocação foi ocultada até a aleatorização?</strong>
+              <small>Mecanismo que impede o investigador de saber o grupo antes da inclusão. Randomização centralizada (telefone/web/farmácia) é o padrão. Envelopes selados são adequados se opacos, numerados e invioláveis.</small>
+            </div>
+          </div>
+          <div class="signal-q">
+            <span class="signal-q-icon">❓</span>
+            <div class="signal-q-text">
+              <strong>Julgamento: Alto Risco</strong>
+              <small>Randomização inadequada OU evidência de desequilíbrio seletivo nas basais (participantes com pior prognóstico concentrados em um grupo) OU tentativas de manipulação documentadas.</small>
+            </div>
+          </div>
+          <div class="info-gray info-box" style="margin-top:.75rem;margin-bottom:0;">
+            <span class="info-box-icon">📉</span>
+            <div><strong>Impacto quantificado:</strong> Randomização inadequada → ROR 0,93–0,94 (superestimação de ~6–7%); ocultação inadequada → ROR 0,90–0,92 (superestimação de ~8–10%). Wang et al., JCE 2024.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Domain 2 -->
+      <div class="domain-card" id="d2">
+        <div class="domain-header" onclick="toggleDomain('d2')">
+          <div class="domain-header-left">
+            <div class="domain-num">D2</div>
+            <div>
+              <div class="domain-title">Desvios das Intervenções Pretendidas</div>
+              <div style="font-size:.75rem;color:var(--muted-foreground)">Cegamento pós-aleatorização + cointervençãoes diferenciais</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span class="domain-arrow">▼</span>
+          </div>
+        </div>
+        <div class="domain-body">
+          <p style="font-size:.82rem;margin-bottom:.75rem;">O Domínio 2 avalia dois conceitos relacionados mas distintos:</p>
+          <div class="two-col" style="margin-bottom:.75rem;">
+            <div class="info-teal info-box" style="margin-bottom:0;">
+              <span class="info-box-icon">🎯</span>
+              <div><strong>Efeito da Atribuição (Assignment):</strong> Efeito de ser alocado para um grupo, independente do que foi recebido. Análise ITT. Relevante para intenção de tratar na prática.</div>
+            </div>
+            <div class="info-amber info-box" style="margin-bottom:0;">
+              <span class="info-box-icon">🎯</span>
+              <div><strong>Efeito da Adesão (Adherence):</strong> Efeito de receber a intervenção conforme designado. Análise PP/IV. Relevante para eficácia biológica máxima.</div>
+            </div>
+          </div>
+          <div class="signal-q">
+            <span class="signal-q-icon">❓</span>
+            <div class="signal-q-text">
+              <strong>RQ 2.1 — Participantes estavam cegos à alocação?</strong>
+              <small>Para desfechos subjetivos: descegamento gera efeito placebo/nocebo. Para desfechos objetivos: impacto menor, mas pode afetar aderência.</small>
+            </div>
+          </div>
+          <div class="signal-q">
+            <span class="signal-q-icon">❓</span>
+            <div class="signal-q-text">
+              <strong>RQ 2.3 — Houve cointervenções ou contaminações diferenciais entre grupos?</strong>
+              <small>Uso diferencial de tratamentos adjuntos não padronizados. Em ECRs abertos de procedimentos, equipes cientes da alocação podem modificar o manejo peri-procedimento.</small>
+            </div>
+          </div>
+          <div class="signal-q">
+            <span class="signal-q-icon">❓</span>
+            <div class="signal-q-text">
+              <strong>RQ 2.5 — Houve crossover entre grupos? Foi adequadamente tratado na análise?</strong>
+              <small>Crossover elevado (>20%) diluiu diferenças em análise ITT. Se a análise ITT ainda é positiva, sugere efeito robusto. Crossover que não é tratado com análise de variável instrumental ou similar pode mascarar o efeito real.</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Domain 3 -->
+      <div class="domain-card" id="d3">
+        <div class="domain-header" onclick="toggleDomain('d3')">
+          <div class="domain-header-left">
+            <div class="domain-num">D3</div>
+            <div>
+              <div class="domain-title">Dados de Desfecho Ausentes</div>
+              <div style="font-size:.75rem;color:var(--muted-foreground)">Mecanismo de perda + impacto no resultado</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span class="domain-arrow">▼</span>
+          </div>
+        </div>
+        <div class="domain-body">
+          <p style="font-size:.82rem;margin-bottom:.75rem;">Distinguir mecanismos de dados ausentes é essencial para avaliar o impacto:</p>
+          <div class="table-wrap">
+            <table class="compare-table">
+              <thead><tr><th>Mecanismo</th><th>Definição</th><th>Viés</th><th>Abordagem</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td><strong>MCAR</strong><br><small>Missing Completely at Random</small></td>
+                  <td>Ausência não relacionada ao tratamento nem ao desfecho (ex: amostra destruída no lab)</td>
+                  <td>Nenhum, apenas perda de poder</td>
+                  <td>Complete-case analysis aceitável</td>
+                </tr>
+                <tr>
+                  <td><strong>MAR</strong><br><small>Missing at Random</small></td>
+                  <td>Ausência relacionada a covariáveis observadas, mas não ao desfecho</td>
+                  <td>Pequeno, condicionalmente</td>
+                  <td>Multiple imputation, MMRM</td>
+                </tr>
+                <tr>
+                  <td><strong>MNAR</strong><br><small>Missing Not at Random</small></td>
+                  <td>Ausência relacionada ao próprio valor do desfecho (ex: abandonaram por piora)</td>
+                  <td><strong>Alto risco</strong></td>
+                  <td>Análise de sensibilidade com tipping point</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="signal-q">
+            <span class="signal-q-icon">❓</span>
+            <div class="signal-q-text">
+              <strong>RQ 3.2 — Os dados ausentes eram balanceados entre grupos?</strong>
+              <small>Perda diferencial (ex: 8% no grupo tratamento vs. 20% no grupo controle) sugere MNAR e é altamente preocupante. Perda preferencial do grupo com pior prognóstico infla o benefício aparente.</small>
+            </div>
+          </div>
+          <div class="signal-q">
+            <span class="signal-q-icon">❓</span>
+            <div class="signal-q-text">
+              <strong>RQ 3.3 — O resultado seria alterado com imputação razoável dos ausentes?</strong>
+              <small>A análise de tipping point determina quantos resultados ausentes "adversos" seriam necessários para tornar o resultado não significativo. Um resultado que reverte com poucas imputações adversas é frágil.</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Domain 4 -->
+      <div class="domain-card" id="d4">
+        <div class="domain-header" onclick="toggleDomain('d4')">
+          <div class="domain-header-left">
+            <div class="domain-num">D4</div>
+            <div>
+              <div class="domain-title">Medição dos Desfechos</div>
+              <div style="font-size:.75rem;color:var(--muted-foreground)">Cegamento do avaliador + adequação dos métodos</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span class="domain-arrow">▼</span>
+          </div>
+        </div>
+        <div class="domain-body">
+          <div class="signal-q">
+            <span class="signal-q-icon">❓</span>
+            <div class="signal-q-text">
+              <strong>RQ 4.1 — O método de mensuração do desfecho era adequado e consistente entre grupos?</strong>
+              <small>Definições de IAM (tipo 1, tipo 2, tipo 4b), critérios de hospitalização, e definições de AVC devem ser padronizados e aplicados de forma cega. Comitê de adjudicação independente e cego é o padrão.</small>
+            </div>
+          </div>
+          <div class="signal-q">
+            <span class="signal-q-icon">❓</span>
+            <div class="signal-q-text">
+              <strong>RQ 4.3 — O avaliador do desfecho estava cego à alocação?</strong>
+              <small>Para desfechos subjetivos: descegamento do avaliador → ROR 0,64–0,69 (superestimação de 30–36%). Para desfechos hard, o impacto é menor mas o comitê de adjudicação deve ainda assim ser cego.</small>
+            </div>
+          </div>
+          <div class="signal-q">
+            <span class="signal-q-icon">❓</span>
+            <div class="signal-q-text">
+              <strong>RQ 4.4 — Para desfechos autorreportados: o participante estava cego?</strong>
+              <small>Escalas de qualidade de vida, dor, dispneia e angina em estudos abertos são altamente vulneráveis ao efeito nocebo/placebo. Considere esses desfechos em alto risco mesmo que outros desfechos sejam low risk.</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Domain 5 -->
+      <div class="domain-card" id="d5">
+        <div class="domain-header" onclick="toggleDomain('d5')">
+          <div class="domain-header-left">
+            <div class="domain-num">D5</div>
+            <div>
+              <div class="domain-title">Seleção do Resultado Reportado</div>
+              <div style="font-size:.75rem;color:var(--muted-foreground)">Consistência entre protocolo, SAP e publicação</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span class="badge badge-warn">Frequentemente negligenciado</span>
+            <span class="domain-arrow">▼</span>
+          </div>
+        </div>
+        <div class="domain-body">
+          <div class="signal-q">
+            <span class="signal-q-icon">❓</span>
+            <div class="signal-q-text">
+              <strong>RQ 5.1 — O estudo foi prospectivamente registrado com desfechos pré-especificados?</strong>
+              <small>Registro antes do início do recrutamento. Registro após início mas antes do fim: "algumas preocupações". Registro após término ou sem registro: alto risco para D5.</small>
+            </div>
+          </div>
+          <div class="signal-q">
+            <span class="signal-q-icon">❓</span>
+            <div class="signal-q-text">
+              <strong>RQ 5.2 — O desfecho primário reportado é o mesmo que o pré-especificado?</strong>
+              <small>Comparar ClinicalTrials.gov (versões históricas disponíveis) com o artigo. Mudança de desfecho primário, adição de co-primários ou promoção de secundários a primários sem justificativa pré-especificada = alto risco.</small>
+            </div>
+          </div>
+          <div class="signal-q">
+            <span class="signal-q-icon">❓</span>
+            <div class="signal-q-text">
+              <strong>RQ 5.3 — A análise reportada é consistente com o SAP registrado?</strong>
+              <small>Mudanças no período de análise, na população de análise, nos co-ajustes ou na definição do desfecho composto entre SAP e publicação são bandeiras vermelhas importantes.</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">📝</div>
+        <div>
+          <div class="card-title">CONSORT 2025 — Diretrizes de Reporte</div>
+          <div class="card-subtitle">Hopewell S et al. JAMA 2025;333(22):1998-2005 | Lancet 2025 | Nature Medicine 2025;31(6):1776-1783</div>
+        </div>
+      </div>
+      <div class="info-teal info-box">
+        <span class="info-box-icon">📌</span>
+        <div><strong>CONSORT 2025</strong> substitui a versão de 2010, com checklist expandido para 30 itens e diagrama de fluxo obrigatório. O CONSORT avalia a <em>qualidade do reporte</em>, não necessariamente a qualidade metodológica — mas reporte inadequado impede a avaliação de qualidade. Publicado simultaneamente em JAMA, Lancet, BMJ, Nature Medicine e PLoS Medicine em 2025.</div>
+      </div>
+      <p style="margin-bottom:1rem;">Itens críticos do CONSORT 2025 para o leitor crítico (seleção dos mais impactantes):</p>
+      <div class="table-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr><th>#</th><th>Item CONSORT</th><th>Por que é crítico</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="mono teal">3a</td><td><strong>Critérios de elegibilidade</strong></td><td>Define a população-alvo. Critérios de exclusão excessivos podem tornar o estudo irrelevante para a prática real</td></tr>
+            <tr><td class="mono teal">4a</td><td><strong>Intervenções em detalhe suficiente para replicação</strong></td><td>Fidelidade da intervenção. Dose, duração, técnica devem ser reproduzíveis</td></tr>
+            <tr><td class="mono teal">6a</td><td><strong>Desfechos primário e secundários pré-especificados</strong></td><td>Base para detectar HARKing e outcome switching</td></tr>
+            <tr><td class="mono teal">7a</td><td><strong>Como o tamanho amostral foi calculado</strong></td><td>Pressupostos do cálculo (incidência esperada, tamanho do efeito) revelam vieses de otimismo ou manipulação do N</td></tr>
+            <tr><td class="mono teal">8a</td><td><strong>Método de geração da sequência aleatória</strong></td><td>Distingue randomização adequada de pseudorrandomização</td></tr>
+            <tr><td class="mono teal">9</td><td><strong>Mecanismo de ocultação de alocação</strong></td><td>Detalha como a ocultação foi garantida</td></tr>
+            <tr><td class="mono teal">10</td><td><strong>Quem gerou a sequência, recrutou e alocou</strong></td><td>Separação de funções é garantia adicional de ocultação</td></tr>
+            <tr><td class="mono teal">11a</td><td><strong>Se/como participantes, intervencionistas e avaliadores foram cegados</strong></td><td>Permite avaliar risco de viés de medição por domínio de desfecho</td></tr>
+            <tr><td class="mono teal">13a</td><td><strong>Diagrama de fluxo CONSORT (obrigatório)</strong></td><td>Mostra recrutamento, randomização, perdas e análise em cada grupo</td></tr>
+            <tr><td class="mono teal">16</td><td><strong>Número de participantes analisados em cada grupo</strong></td><td>Permite verificar se análise ITT ou PP foi de fato usada</td></tr>
+            <tr><td class="mono teal">17a</td><td><strong>Resultado de cada desfecho com estimativa de efeito e IC 95%</strong></td><td>Tanto absoluto quanto relativo devem ser fornecidos</td></tr>
+            <tr><td class="mono teal">19</td><td><strong>Todos os danos e efeitos adversos</strong></td><td>Desfechos de segurança frequentemente sub-reportados</td></tr>
+            <tr><td class="mono teal">24</td><td><strong>Registro com número e nome do repositório</strong></td><td>Permite verificação independente do protocolo</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">🔍</div>
+        <div>
+          <div class="card-title">Autenticidade do Ensaio Clínico — INSPECT-SR</div>
+          <div class="card-subtitle">Wilkinson J et al. JCE 2025;184:111824 — além do risco de viés convencional</div>
+        </div>
+      </div>
+      <div class="info-red info-box">
+        <span class="info-box-icon">🚨</span>
+        <div><strong>Dado alarmante:</strong> Aproximadamente <strong>25% dos ECRs</strong> avaliados sistematicamente em revisões Cochrane levantam preocupações quanto à autenticidade dos dados — incluindo possível fabricação ou duplicação de dados. Esses problemas <strong>não são detectados pelo RoB 2 convencional</strong>, que assume que os dados são genuínos.</div>
+      </div>
+      <p>O projeto INSPECT-SR desenvolveu um checklist de avaliação de trustworthiness com indicadores de alerta:</p>
+      <ul class="checklist">
+        <li class="checklist-item">
+          <span class="cl-icon red">🚩</span>
+          <div class="cl-text"><strong>Dados duplicados:</strong> Números idênticos em múltiplos estudos do mesmo autor/centro. Tabelas de basais com valores de média e DP implausíveis para a distribuição esperada.</div>
+        </li>
+        <li class="checklist-item">
+          <span class="cl-icon red">🚩</span>
+          <div class="cl-text"><strong>Baseline impossible values:</strong> DPs muito pequenos (implica dados fabricados com baixa variabilidade), valores impossíveis para a variável (ex: frequência cardíaca média 62 ± 1,2 bpm em centenas de pacientes).</div>
+        </li>
+        <li class="checklist-item">
+          <span class="cl-icon red">🚩</span>
+          <div class="cl-text"><strong>GRIM test:</strong> Verificação se a média reportada é matematicamente possível dado o N e a escala de medição. Médias "impossíveis" em variáveis discretas indicam erro ou fabricação.</div>
+        </li>
+        <li class="checklist-item">
+          <span class="cl-icon red">🚩</span>
+          <div class="cl-text"><strong>Distribuição de dígitos finais:</strong> Em dados genuínos, os últimos dígitos de medições contínuas seguem distribuição uniforme (Lei de Benford adaptada). Preferência por dígitos 0 e 5 em excesso sugere arredondamento sistemático ou fabricação.</div>
+        </li>
+        <li class="checklist-item">
+          <span class="cl-icon amber">⚠️</span>
+          <div class="cl-text"><strong>Produtividade implausível:</strong> Um único centro com recrutamento muito superior ao esperado para sua capacidade, ou número de ECRs publicados por um investigador muito acima do esperado em período curto.</div>
+        </li>
+        <li class="checklist-item">
+          <span class="cl-icon amber">⚠️</span>
+          <div class="cl-text"><strong>Inconsistências entre texto, tabelas e suplementos:</strong> N total no texto diferente das tabelas, valores de p inconsistentes com as estatísticas reportadas, IC 95% incompatível com estimativa pontual e DP.</div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="goStep(2)">← Anterior</button>
+      <button class="btn btn-primary" onclick="goStep(4)">Próximo: Estatística →</button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       SEÇÃO 4 — ESTATÍSTICA CLÍNICA
+  ═══════════════════════════════════════════════════════ -->
+  <div id="step4" class="step-section">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">📐</div>
+        <div>
+          <div class="card-title">Medidas de Efeito: Absolutas vs. Relativas</div>
+          <div class="card-subtitle">A escolha da métrica pode alterar radicalmente a percepção do benefício</div>
+        </div>
+      </div>
+      <div class="info-amber info-box">
+        <span class="info-box-icon">⚠️</span>
+        <div><strong>Viés de framing:</strong> A mesma intervenção reduzindo eventos de 4% para 2% pode ser apresentada como "redução de 50% no risco relativo" (impressionante) ou "redução absoluta de 2%" (modesta). O leitor deve sempre calcular ambas e contextualizar no risco basal do paciente.</div>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <div class="formula-box">
+            <span class="f-label">ARR — Redução Absoluta do Risco</span>
+            <span class="f-eq">ARR = Rc − Rt</span>
+            <span class="f-note">Onde Rc = taxa de eventos no controle; Rt = taxa no tratamento. A medida clínica mais diretamente útil.</span>
+          </div>
+          <div class="formula-box">
+            <span class="f-label">RRR — Redução Relativa do Risco</span>
+            <span class="f-eq">RRR = (Rc − Rt) / Rc = ARR / Rc</span>
+            <span class="f-note">Independe do risco basal. Superestima o benefício em populações de baixo risco.</span>
+          </div>
+          <div class="formula-box">
+            <span class="f-label">NNT — Número Necessário para Tratar</span>
+            <span class="f-eq">NNT = 1 / ARR</span>
+            <span class="f-note">Quantos pacientes tratados por 1 evento evitado. Sempre reporte o intervalo de confiança do NNT. NNH = 1/ARI para danos.</span>
+          </div>
+        </div>
+        <div>
+          <div class="formula-box">
+            <span class="f-label">RR — Risco Relativo (Risk Ratio)</span>
+            <span class="f-eq">RR = Rt / Rc</span>
+            <span class="f-note">Razão de proporções. Válido para ensaios com seguimento fixo. RR = 1: sem efeito; &lt;1: benefício.</span>
+          </div>
+          <div class="formula-box">
+            <span class="f-label">OR — Odds Ratio</span>
+            <span class="f-eq">OR = (At/Bt) / (Ac/Bc)</span>
+            <span class="f-note">Razão de odds. Aproxima-se do RR apenas quando eventos são raros (&lt;10%). Para eventos frequentes, OR exagera o efeito em relação ao RR.</span>
+          </div>
+          <div class="formula-box">
+            <span class="f-label">HR — Hazard Ratio</span>
+            <span class="f-eq">HR = λt / λc</span>
+            <span class="f-note">Taxa instantânea de eventos (risco "neste momento"). Assume proporcionalidade dos hazards. Não é igual ao RR — especialmente quando curvas de sobrevida cruzam ou divergem tardiamente.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-teal info-box">
+        <span class="info-box-icon">🏥</span>
+        <div><strong>Exemplo prático — ISCHEMIA Trial:</strong> Estratégia invasiva vs. conservadora em DAC estável. HR para morte CV = 0,90 (IC95%: 0,70–1,16), p=0,41. RRR aparente ~10%. ARR ≈ 0,5% em 3 anos. NNT ≈ 200. A magnitude absoluta do benefício é muito menor que o relativo sugere, e o IC95% inclui o 1,0. Este exemplo ilustra como o HR isolado pode ser enganoso sem o contexto das taxas absolutas.</div>
+      </div>
+
+      <h3>Hazard Ratio e a Suposição de Proporcionalidade</h3>
+      <p>O modelo de riscos proporcionais de Cox, que gera o HR, assume que a razão de taxas de eventos entre grupos é <em>constante ao longo do tempo</em>. Quando as curvas de Kaplan-Meier se cruzam, divergem tardiamente, ou mostram benefício apenas após um período de latência, essa suposição é violada. Nessas situações, o <strong>RMST (Restricted Mean Survival Time)</strong> — tempo médio livre de eventos até um horizonte temporal especificado — é uma alternativa clinicamente interpretável que não requer a suposição de proporcionalidade.</p>
+      <p>Ensaios de imunobiológicos, imunoterapia ou intervenções com mecanismo de ação tardio frequentemente violam a proporcionalidade. Sempre verifique se as curvas KM exibem proporcionalidade visual antes de interpretar o HR como resumo único do efeito.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">📊</div>
+        <div>
+          <div class="card-title">Valor-P e Intervalos de Confiança: Uso e Abuso</div>
+          <div class="card-subtitle">ASA Statement on P-Values (Wasserstein &amp; Lazar, Am Stat 2016) — o que o p-valor não é</div>
+        </div>
+      </div>
+      <div class="info-red info-box">
+        <span class="info-box-icon">🚨</span>
+        <div><strong>O que o p-valor NÃO é:</strong> (1) A probabilidade de que a hipótese nula seja verdadeira. (2) A probabilidade de que o resultado se repita. (3) Uma medida da magnitude ou importância clínica do efeito. (4) Uma dicotomia em que p&lt;0,05 é "verdade" e p≥0,05 é "falso". A American Statistical Association, em declaração formal de 2016, explicitou que o limiar de 0,05 é arbitrário e seu uso binário é prejudicial à ciência.</div>
+      </div>
+      <p><strong>O que o p-valor é:</strong> A probabilidade de observar uma diferença tão extrema quanto a observada (ou mais extrema) <em>assumindo que a hipótese nula é verdadeira</em>. Um p=0,03 significa que, se H₀ fosse verdadeira, veríamos esse resultado em 3% das repetições do experimento — não que a probabilidade de H₀ ser verdadeira é 3%.</p>
+
+      <h3>Intervalo de Confiança: A Métrica Superior</h3>
+      <p>O IC 95% fornece um intervalo de valores plausíveis para o efeito verdadeiro, consistente com os dados observados. A interpretação correta: "Se repetíssemos o estudo 100 vezes sob as mesmas condições, 95 dos ICs calculados conteriam o valor verdadeiro". O IC 95% é preferível ao p-valor porque:</p>
+      <ul class="bullet">
+        <li><strong>Mostra a magnitude e direção do efeito</strong>, não apenas a existência de diferença.</li>
+        <li><strong>Mostra a precisão da estimativa</strong> (largura do IC reflete o tamanho amostral e variabilidade).</li>
+        <li><strong>Permite julgamento clínico:</strong> Um HR 0,85 com IC 0,70–1,03 (inclui 1,0) pode ter implicação clínica diferente de um HR 0,85 com IC 0,60–1,20.</li>
+      </ul>
+      <div class="info-teal info-box">
+        <span class="info-box-icon">💡</span>
+        <div><strong>IC que cruza a nulidade (1,0 para RR/HR, 0 para diferença):</strong> Não significa que não há efeito — significa que os dados são compatíveis tanto com benefício quanto com ausência de efeito (ou dano). A largura do IC indica a incerteza. Um IC estreito que cruza 1,0 (ex: HR 0,98, IC 0,97–1,00) implica precisão alta e ausência de efeito clinicamente relevante — diferente de um IC largo (HR 0,85, IC 0,60–1,20) que implica incerteza substancial.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">⚡</div>
+        <div>
+          <div class="card-title">Poder Estatístico, Tamanho Amostral e Erros Tipo I/II</div>
+          <div class="card-subtitle">Ensaios com poder inadequado produzem estimativas de efeito infladas</div>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class="compare-table">
+          <thead><tr><th>Conceito</th><th>Definição</th><th>Implicação Clínica</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Erro Tipo I (α)</strong></td>
+              <td>Falso positivo — rejeitar H₀ quando ela é verdadeira. Convencional: α = 0,05</td>
+              <td>1 em 20 resultados "positivos" será falso, por acaso, mesmo em estudos perfeitos</td>
+            </tr>
+            <tr>
+              <td><strong>Erro Tipo II (β)</strong></td>
+              <td>Falso negativo — não rejeitar H₀ quando ela é falsa. Convencional: β = 0,10–0,20</td>
+              <td>Um estudo com β = 0,20 tem 20% de chance de perder um efeito real</td>
+            </tr>
+            <tr>
+              <td><strong>Poder (1 − β)</strong></td>
+              <td>Probabilidade de detectar o efeito se ele existir. Convencional: 80–90%</td>
+              <td>Poder adequado requer premissas corretas de incidência basal e tamanho do efeito esperado</td>
+            </tr>
+            <tr>
+              <td><strong>Winner's Curse</strong></td>
+              <td>Estudos menores com resultado positivo tendem a superestimar o efeito real</td>
+              <td>O primeiro ensaio positivo quase sempre superestima o efeito — as meta-análises tendem a moderar a estimativa</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="info-amber info-box">
+        <span class="info-box-icon">⚠️</span>
+        <div><strong>Cálculo amostral otimista:</strong> Estimar uma incidência basal alta demais ou um tamanho de efeito maior do que o plausível reduz o N necessário e produz estudos subpotencializados. Um ECR que conclui "sem diferença significativa" com N = 500 para um desfecho com incidência de 3% simplesmente não tem poder para detectar diferenças clinicamente relevantes — isso é um estudo inconclusivo, não um estudo negativo.</div>
+      </div>
+
+      <h3>Análises Interinas e Alpha Spending</h3>
+      <p>Estudos com comitês de monitoramento independentes (DSMB) realizam análises interinas planejadas para detecção precoce de benefício, dano ou futilidade. Cada análise interina "gasta" parte do alpha total (α-spending function, O'Brien-Fleming ou Lan-DeMets). O valor-p final ajustado é frequentemente menor que 0,05. Ensaios encerrados precocemente por benefício tendem a superestimar o efeito, uma consequência do winner's curse amplificado pelo stopping prematuro (Bassler et al. JAMA 2010).</p>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">🔀</div>
+        <div>
+          <div class="card-title">Análises de Subgrupos: Gerando Hipóteses, Não Confirmando</div>
+          <div class="card-subtitle">A maioria das análises de subgrupos publicadas representa achados falsamente positivos</div>
+        </div>
+      </div>
+      <div class="info-red info-box">
+        <span class="info-box-icon">🚨</span>
+        <div><strong>A regra de Oxman e Guyatt:</strong> Cuidado especial com análises de subgrupos que: (1) não foram pré-especificadas; (2) testam muitas variáveis sem ajuste de multiplicidade; (3) mostram interação baseada apenas em p-valores dentro de cada subgrupo (comparar p=0,04 vs. p=0,06 não é uma interação); (4) contradizem o efeito principal do ensaio; (5) são biologicamente implausíveis.</div>
+      </div>
+      <p>O teste correto para interação é o <strong>teste de interação estatística</strong> (p para interação), não a comparação de p-valores dentro de cada subgrupo. Um subgrupo com p=0,03 e outro com p=0,12 pode ter p para interação de 0,40 — indicando que não há evidência de modificação de efeito. Esta distinção é frequentemente ignorada mesmo em periódicos de alto impacto.</p>
+      <p>Distinção entre <strong>interação qualitativa</strong> (o efeito muda de direção entre subgrupos — raro e clinicamente importante) e <strong>interação quantitativa</strong> (o efeito varia em magnitude mas não em direção — frequente e geralmente de significância clínica limitada).</p>
+      <div class="info-gray info-box">
+        <span class="info-box-icon">📐</span>
+        <div><strong>Número de subgrupos e inflação do erro Tipo I:</strong> Com 10 análises de subgrupos não ajustadas no nível α=0,05, a probabilidade de pelo menos um resultado falso-positivo é 1 − (0,95)¹⁰ ≈ 40%. Correção de Bonferroni (α / n testes) é conservadora; métodos hierárquicos de testing são preferíveis quando pré-especificados.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">📏</div>
+        <div>
+          <div class="card-title">Ensaios de Não-Inferioridade: Armadilhas Específicas</div>
+          <div class="card-subtitle">A margem delta é a decisão mais crítica — e mais sujeita a manipulação</div>
+        </div>
+      </div>
+      <div class="info-amber info-box">
+        <span class="info-box-icon">🎯</span>
+        <div><strong>Lógica do ensaio NI:</strong> Demonstrar que a nova terapia não é pior que o controle por mais do que a margem Δ. O IC 95% superior para a diferença (novo − padrão) deve ficar abaixo de Δ. Se o IC superior cruza Δ, NI não foi demonstrada.</div>
+      </div>
+      <ul class="checklist">
+        <li class="checklist-item">
+          <span class="cl-icon amber">⚠️</span>
+          <div class="cl-text"><strong>Como foi determinada a margem Δ?</strong> A margem deve ser derivada do efeito historicamente estabelecido do controle ativo vs. placebo (método de preservação de efeito do M2). Margens arbitrárias ou excessivamente amplas permitem que terapias inferiores passem como "não-inferiores".</div>
+        </li>
+        <li class="checklist-item">
+          <span class="cl-icon amber">⚠️</span>
+          <div class="cl-text"><strong>O comparador ativo foi usado em dose e protocolo ótimos?</strong> Usando o controle em condições subótimas facilita demonstrar NI. Um comparador deliberadamente enfraquecido é um viés metodológico grave.</div>
+        </li>
+        <li class="checklist-item">
+          <span class="cl-icon amber">⚠️</span>
+          <div class="cl-text"><strong>Biocreep (deriva de NI em NI):</strong> Se A foi demonstrado NI em relação a B, e depois C é demonstrado NI em relação a A, não se conclui que C é NI a B. A cadeia de NI pode acumular inferioridade progressiva.</div>
+        </li>
+        <li class="checklist-item">
+          <span class="cl-icon red">🚩</span>
+          <div class="cl-text"><strong>Switching pós-hoc superiority → NI:</strong> Quando um ensaio planejado como superioridade falha e os autores reanalisam como NI, o resultado NI não é válido — o critério NI não foi pré-especificado com a margem e o N calculado adequadamente.</div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="goStep(3)">← Anterior</button>
+      <button class="btn btn-primary" onclick="goStep(5)">Próximo: GRADE →</button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       SEÇÃO 5 — GRADE & APLICABILIDADE
+  ═══════════════════════════════════════════════════════ -->
+  <div id="step5" class="step-section">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">🏆</div>
+        <div>
+          <div class="card-title">Sistema GRADE — Qualidade da Evidência e Força das Recomendações</div>
+          <div class="card-subtitle">Guyatt GH et al. BMJ 2008 | Adotado por OMS, ESC, ACC/AHA, Cochrane e &gt;100 outras organizações</div>
+        </div>
+      </div>
+      <p>O GRADE (Grading of Recommendations Assessment, Development and Evaluation) é uma abordagem sistemática para avaliar a qualidade da evidência e a força das recomendações clínicas. Diferencia dois conceitos frequentemente confundidos:</p>
+      <div class="two-col" style="margin-bottom:1rem;">
+        <div class="info-teal info-box" style="margin-bottom:0;">
+          <span class="info-box-icon">📊</span>
+          <div><strong>Qualidade da Evidência:</strong> Quanto confiança temos de que a estimativa de efeito está próxima do efeito real? (Alta / Moderada / Baixa / Muito Baixa)</div>
+        </div>
+        <div class="info-teal info-box" style="margin-bottom:0;">
+          <span class="info-box-icon">💪</span>
+          <div><strong>Força da Recomendação:</strong> Em que medida os benefícios superam os danos e os custos? (Forte / Condicional / Fraca)</div>
+        </div>
+      </div>
+
+      <p><strong>Ponto de partida pelo desenho:</strong> ECRs iniciam como evidência de <span class="badge badge-high">Alta Qualidade</span>. Estudos observacionais iniciam como <span class="badge badge-low">Baixa Qualidade</span>. Essa classificação é ajustada pelos fatores abaixo.</p>
+
+      <div class="grade-grid">
+        <div class="grade-cell grade-cell-high">
+          <div class="grade-cell-title">⊕⊕⊕⊕ ALTA</div>
+          <div class="grade-cell-desc">Muito confiante de que a estimativa de efeito está próxima do efeito real. Pesquisas adicionais improváveis de alterar a estimativa.</div>
+          <div class="grade-cell-example">Ex: ECRs grandes, bem conduzidos, sem rebaixamentos</div>
+        </div>
+        <div class="grade-cell grade-cell-mod">
+          <div class="grade-cell-title">⊕⊕⊕◯ MODERADA</div>
+          <div class="grade-cell-desc">Moderadamente confiante. Pesquisa adicional pode mudar a estimativa. Alguma preocupação com os fatores de qualidade.</div>
+          <div class="grade-cell-example">Ex: ECR com limitações metodológicas moderadas, ou meta-análise com heterogeneidade</div>
+        </div>
+        <div class="grade-cell grade-cell-low">
+          <div class="grade-cell-title">⊕⊕◯◯ BAIXA</div>
+          <div class="grade-cell-desc">Pouca confiança. Pesquisa adicional provavelmente mudará a estimativa. A estimativa real pode ser muito diferente.</div>
+          <div class="grade-cell-example">Ex: ECR com viés grave, ou coortes com múltiplos confundidores</div>
+        </div>
+        <div class="grade-cell grade-cell-vlow">
+          <div class="grade-cell-title">⊕◯◯◯ MUITO BAIXA</div>
+          <div class="grade-cell-desc">Muito pouca confiança. A estimativa real provavelmente é muito diferente do observado.</div>
+          <div class="grade-cell-example">Ex: Estudos observacionais com limitações múltiplas, relatos de caso</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">⬇️</div>
+        <div>
+          <div class="card-title">Fatores de Rebaixamento (Downgrading) da Qualidade</div>
+          <div class="card-subtitle">Cinco domínios que reduzem a confiança no efeito estimado</div>
+        </div>
+      </div>
+
+      <div class="domain-card" id="gd1">
+        <div class="domain-header" onclick="toggleDomain('gd1')">
+          <div class="domain-header-left">
+            <div class="domain-num">↓1</div>
+            <div><div class="domain-title">Risco de Viés</div><div style="font-size:.75rem;color:var(--muted-foreground)">Limitações metodológicas nos estudos incluídos</div></div>
+          </div>
+          <span class="domain-arrow">▼</span>
+        </div>
+        <div class="domain-body">
+          <p style="font-size:.82rem;margin-bottom:0;">Avaliado pelo RoB 2 para ECRs ou ROBINS-I para estudos observacionais. Rebaixamento leve (−1) se preocupações moderadas na maioria dos estudos ou graves em minoria. Rebaixamento grave (−2) se alto risco em domínios críticos na maioria dos estudos. A qualidade da evidência sobre o desfecho primário é a referência — desfechos secundários podem ter rebaixamento diferente.</p>
+        </div>
+      </div>
+
+      <div class="domain-card" id="gd2">
+        <div class="domain-header" onclick="toggleDomain('gd2')">
+          <div class="domain-header-left">
+            <div class="domain-num">↓2</div>
+            <div><div class="domain-title">Inconsistência</div><div style="font-size:.75rem;color:var(--muted-foreground)">Heterogeneidade não explicada entre estudos</div></div>
+          </div>
+          <span class="domain-arrow">▼</span>
+        </div>
+        <div class="domain-body">
+          <p style="font-size:.82rem;margin-bottom:.75rem;">Quando estudos similares produzem estimativas de efeito muito diferentes. Métricas: I² (0–100%), τ² (variância entre estudos), intervalo de predição (95% PI — onde deve cair o resultado de um novo estudo?). Um I²= 75% com PI que inclui tanto benefício quanto dano implica inconsistência relevante.</p>
+          <div class="info-amber info-box" style="margin-bottom:0;">
+            <span class="info-box-icon">⚠️</span>
+            <div><strong>I² isolado é insuficiente:</strong> I²=50% em estudos pequenos pode representar heterogeneidade trivial, enquanto I²=30% em ensaios grandes pode ser clinicamente relevante. O intervalo de predição (PI de 95%) é mais informativo do que o I² isoladamente.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="domain-card" id="gd3">
+        <div class="domain-header" onclick="toggleDomain('gd3')">
+          <div class="domain-header-left">
+            <div class="domain-num">↓3</div>
+            <div><div class="domain-title">Indiretidade</div><div style="font-size:.75rem;color:var(--muted-foreground)">Incompatibilidade PICO entre a evidência disponível e a pergunta clínica</div></div>
+          </div>
+          <span class="domain-arrow">▼</span>
+        </div>
+        <div class="domain-body">
+          <p style="font-size:.82rem;margin-bottom:.75rem;">Quatro tipos principais de indiretidade:</p>
+          <ul class="bullet" style="margin-bottom:0;">
+            <li><strong>População indireta:</strong> Evidência em jovens adultos, aplicada a idosos frágeis com multimorbidade.</li>
+            <li><strong>Intervenção indireta:</strong> Evidência com dose A, aplicada à dose B.</li>
+            <li><strong>Comparador indireto:</strong> Evidência vs. placebo, aplicada à decisão entre dois ativos.</li>
+            <li><strong>Desfecho indireto (surrogate):</strong> LDL como desfecho, com inferência sobre eventos cardiovasculares. A força da associação surrogate–desfecho hard determina o grau de indiretidade.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="domain-card" id="gd4">
+        <div class="domain-header" onclick="toggleDomain('gd4')">
+          <div class="domain-header-left">
+            <div class="domain-num">↓4</div>
+            <div><div class="domain-title">Imprecisão</div><div style="font-size:.75rem;color:var(--muted-foreground)">ICs largos — número de eventos insuficiente</div></div>
+          </div>
+          <span class="domain-arrow">▼</span>
+        </div>
+        <div class="domain-body">
+          <p style="font-size:.82rem;margin-bottom:.75rem;">A imprecisão é determinada pela largura dos ICs em relação à MCID (Minimal Clinically Important Difference) ou ao limiar de efeito nulo. Critérios práticos: número total de eventos &lt; 300 (regra de ouro do OIS — Optimal Information Size) como trigger para considerar rebaixamento. O IC 95% deve ser avaliado: se inclui tanto benefício clinicamente importante quanto dano clinicamente importante, rebaixar −1.</p>
+          <div class="info-gray info-box" style="margin-bottom:0;">
+            <span class="info-box-icon">📐</span>
+            <div><strong>OIS (Optimal Information Size):</strong> Número total de participantes (ou eventos) necessário para um único grande ECR com poder adequado. Se a evidência acumulada é menor que o OIS, imprecisão deve ser considerada mesmo que p &lt; 0,05.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="domain-card" id="gd5">
+        <div class="domain-header" onclick="toggleDomain('gd5')">
+          <div class="domain-header-left">
+            <div class="domain-num">↓5</div>
+            <div><div class="domain-title">Viés de Publicação</div><div style="font-size:.75rem;color:var(--muted-foreground)">Publicação seletiva de resultados positivos</div></div>
+          </div>
+          <span class="domain-arrow">▼</span>
+        </div>
+        <div class="domain-body">
+          <p style="font-size:.82rem;margin-bottom:.75rem;">Estudos com resultados positivos e significativos têm 2–3× mais chances de serem publicados. Métodos de detecção:</p>
+          <ul class="bullet" style="margin-bottom:.5rem;">
+            <li><strong>Funnel plot assimétrico:</strong> Ausência de estudos pequenos com resultados negativos sugere viés de publicação (interpretar com cautela em poucos estudos).</li>
+            <li><strong>Teste de Egger ou Begg:</strong> Testes formais de assimetria do funnel plot.</li>
+            <li><strong>Trim-and-fill:</strong> Estimativa do efeito ajustado pelo viés de publicação.</li>
+            <li><strong>Comparação registro vs. publicações:</strong> Estudos registrados em ClinicalTrials.gov não publicados após anos sugerem supressão seletiva.</li>
+          </ul>
+          <div class="info-amber info-box" style="margin-bottom:0;">
+            <span class="info-box-icon">⚠️</span>
+            <div>Rebaixe −1 se suspeita fundada de viés de publicação (ex: toda a evidência vem de estudos pequenos patrocinados pela indústria, todos com resultados positivos). Rebaixe −2 se viés de publicação muito provável.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">⬆️</div>
+        <div>
+          <div class="card-title">Fatores de Elevação (Upgrading) da Qualidade</div>
+          <div class="card-subtitle">Aplicam-se principalmente a estudos observacionais — raramente elevam ECRs</div>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class="compare-table">
+          <thead><tr><th>Fator</th><th>Critério</th><th>Elevação</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Grande Magnitude de Efeito</strong></td>
+              <td>RR &gt; 2,0 ou &lt; 0,5 (efeito grande); RR &gt; 5,0 ou &lt; 0,2 (efeito muito grande) em estudos observacionais sem confundimento plausível</td>
+              <td>+1 a +2</td>
+            </tr>
+            <tr>
+              <td><strong>Gradiente Dose-Resposta</strong></td>
+              <td>Relação monotônica entre dose/exposição e magnitude do efeito reduz a probabilidade de confundimento como explicação alternativa</td>
+              <td>+1</td>
+            </tr>
+            <tr>
+              <td><strong>Confundimento Residual Subestima o Efeito</strong></td>
+              <td>Todos os confundidores não medidos plausíveis reduziriam o efeito — mas ele ainda é positivo. Ex: população exposta é mais doente que o comparador, mas ainda se beneficia</td>
+              <td>+1</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">🌍</div>
+        <div>
+          <div class="card-title">Validade Externa: Da População do Ensaio ao Seu Paciente</div>
+          <div class="card-subtitle">Eficácia (efficacy) no ensaio ≠ Efetividade (effectiveness) na prática</div>
+        </div>
+      </div>
+      <p>A validade externa — também chamada generalização ou aplicabilidade — avalia se os resultados do ensaio são transferíveis para o seu paciente e contexto. Um ensaio com excelente validade interna pode ter validade externa limitada:</p>
+      <ul class="checklist">
+        <li class="checklist-item">
+          <span class="cl-icon">👥</span>
+          <div class="cl-text"><strong>Representatividade da população:</strong> Quantos pacientes foram excluídos e por quê? Critérios de exclusão que eliminam os mais idosos, as mulheres, os renais crônicos ou os multimórbidos produzem evidência aplicável a uma minoria privilegiada dos pacientes reais. Busque a taxa de "elegibilidade teórica" — que % da sua população clínica atenderia os critérios de inclusão?</div>
+        </li>
+        <li class="checklist-item">
+          <span class="cl-icon">🔬</span>
+          <div class="cl-text"><strong>Fidelidade da intervenção:</strong> A intervenção do ensaio é reproduzível no seu contexto? Centros de alto volume, curva de aprendizado de procedimentos, acesso a tecnologias específicas. Um ensaio de revascularização realizado em centros de excelência em cirurgia pode não ser aplicável a centros com menor volume.</div>
+        </li>
+        <li class="checklist-item">
+          <span class="cl-icon">🔄</span>
+          <div class="cl-text"><strong>O comparador representa o cuidado atual?</strong> Um ensaio comparando nova terapia vs. cuidado usual de 10 anos atrás pode estar comparando com um padrão inferior ao atual. "Usual care" muda ao longo do tempo.</div>
+        </li>
+        <li class="checklist-item">
+          <span class="cl-icon">📊</span>
+          <div class="cl-text"><strong>Risco basal do seu paciente vs. da população do ensaio:</strong> O NNT é calculado com base na incidência de eventos na população do ensaio. Para um paciente com risco basal diferente, o NNT muda proporcionalmente: NNT (seu paciente) = NNT (ensaio) × [Rc ensaio / Rc paciente]. Pacientes de menor risco têm NNT maior (menos benefício absoluto).</div>
+        </li>
+        <li class="checklist-item">
+          <span class="cl-icon">💊</span>
+          <div class="cl-text"><strong>Aderência no mundo real:</strong> Ensaios com alta aderência e suporte intensivo ao participante superestimam o benefício esperado em pacientes com menor aderência habitual ao tratamento.</div>
+        </li>
+      </ul>
+      <div class="info-teal info-box">
+        <span class="info-box-icon">💡</span>
+        <div><strong>As 5 perguntas de Users' Guides (Guyatt et al. JAMA 2008):</strong> (1) Meu paciente é semelhante aos do ensaio? (2) O tratamento é viável e exequível no meu contexto? (3) Quais são os benefícios e danos absolutos para este paciente? (4) Os valores do paciente são compatíveis com o trade-off benefício-risco? (5) Existem circunstâncias especiais que alteram a recomendação geral?</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">🗺️</div>
+        <div>
+          <div class="card-title">Da Evidência à Recomendação: Força ≠ Qualidade</div>
+          <div class="card-subtitle">Uma recomendação Forte pode ser baseada em evidência de qualidade Baixa — e vice-versa</div>
+        </div>
+      </div>
+      <p>No sistema GRADE, a <strong>força da recomendação</strong> é determinada não apenas pela qualidade da evidência, mas pelo balanço entre benefícios e danos, valores e preferências dos pacientes, uso de recursos e equidade:</p>
+      <div class="two-col">
+        <div class="info-green info-box" style="margin-bottom:0;">
+          <span class="info-box-icon">💪</span>
+          <div><strong>Recomendação FORTE:</strong> A maioria dos pacientes informados escolheria esta intervenção. A discordância baseada em valores é rara. Benefícios claramente superam danos. Frase: "Recomendamos" / "Indicamos".</div>
+        </div>
+        <div class="info-amber info-box" style="margin-bottom:0;">
+          <span class="info-box-icon">🤔</span>
+          <div><strong>Recomendação CONDICIONAL:</strong> A decisão depende dos valores e preferências individuais. Uma proporção significativa de pacientes informados poderia razoavelmente escolher não realizar a intervenção. Frase: "Sugerimos considerar" / "Pode-se oferecer".</div>
+        </div>
+      </div>
+      <div class="info-red info-box" style="margin-top:.85rem;">
+        <span class="info-box-icon">⚠️</span>
+        <div><strong>Paradoxo da recomendação forte com evidência baixa:</strong> Ocorre quando o benefício estimado é grande, os danos são mínimos e a ausência de tratamento é invariavelmente fatal. Ex: ressuscitação em parada cardíaca — evidência de alta qualidade é impossível de obter, mas a recomendação forte é justificada. Distingue-se de recomendações fortes baseadas em evidência fraca por conveniência ou viés de autoridade.</div>
+      </div>
+      <div class="info-gray info-box">
+        <span class="info-box-icon">📌</span>
+        <div><strong>Classes de recomendação ESC vs. Níveis de evidência GRADE:</strong> As classes I/IIa/IIb/III das diretrizes ESC combinam tanto a força quanto a qualidade, com os níveis A/B/C. Classe I, Nível A = equivalente a Forte + Alta qualidade GRADE. Classe IIb, Nível C = Condicional + Muito Baixa qualidade — deve ser interpretado com muito cautela na prática clínica.</div>
+      </div>
+    </div>
+
+    <!-- CHECKLIST FINAL -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">✅</div>
+        <div>
+          <div class="card-title">Checklist Final de Avaliação Crítica</div>
+          <div class="card-subtitle">10 perguntas essenciais para qualquer ECR em cardiologia</div>
+        </div>
+      </div>
+      <ul class="checklist">
+        <li class="checklist-item"><span class="cl-icon teal">①</span><div class="cl-text"><strong>O PICO do estudo é relevante para a minha prática?</strong> A população corresponde aos meus pacientes? O comparador é o cuidado atual?</div></li>
+        <li class="checklist-item"><span class="cl-icon teal">②</span><div class="cl-text"><strong>O estudo foi prospectivamente registrado?</strong> O desfecho primário publicado corresponde ao registrado?</div></li>
+        <li class="checklist-item"><span class="cl-icon teal">③</span><div class="cl-text"><strong>A randomização e ocultação de alocação foram adequadas?</strong> Ou há evidência de desequilíbrio seletivo nas basais?</div></li>
+        <li class="checklist-item"><span class="cl-icon teal">④</span><div class="cl-text"><strong>O cegamento foi adequado para o tipo de desfecho avaliado?</strong> Desfechos subjetivos em estudos abertos devem ser interpretados com grande cautela.</div></li>
+        <li class="checklist-item"><span class="cl-icon teal">⑤</span><div class="cl-text"><strong>A análise foi por intenção de tratar?</strong> Para estudos de NI: análise PP também foi realizada?</div></li>
+        <li class="checklist-item"><span class="cl-icon teal">⑥</span><div class="cl-text"><strong>O desfecho primário é clinicamente hard ou substituto?</strong> Se composto, qual componente impulsionou o resultado?</div></li>
+        <li class="checklist-item"><span class="cl-icon teal">⑦</span><div class="cl-text"><strong>Quais são os efeitos absolutos (ARR, NNT) e não apenas os relativos?</strong> O benefício absoluto é clinicamente relevante para o risco do meu paciente?</div></li>
+        <li class="checklist-item"><span class="cl-icon teal">⑧</span><div class="cl-text"><strong>O estudo tinha poder adequado?</strong> Um resultado negativo em ensaio subpotencializado é inconclusivo, não negativo.</div></li>
+        <li class="checklist-item"><span class="cl-icon teal">⑨</span><div class="cl-text"><strong>As análises de subgrupo eram pré-especificadas com teste de interação?</strong> Ou representam exploração post-hoc?</div></li>
+        <li class="checklist-item"><span class="cl-icon teal">⑩</span><div class="cl-text"><strong>Aplicando o GRADE: qual é a qualidade da evidência?</strong> Há rebaixamentos por risco de viés, inconsistência, indiretidade, imprecisão ou viés de publicação?</div></li>
+      </ul>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="goStep(4)">← Anterior</button>
+      <button class="btn btn-secondary" onclick="goStep(6)">📚 Referências</button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       SEÇÃO 6 — REFERÊNCIAS (sempre visível via scroll, ou acessível)
+  ═══════════════════════════════════════════════════════ -->
+  <div id="step6" class="step-section">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">📚</div>
+        <div>
+          <div class="card-title">Referências Bibliográficas</div>
+          <div class="card-subtitle">Fontes primárias que fundamentam este guia</div>
+        </div>
+      </div>
+      <ol class="ref-list">
+        <li class="ref-item"><span class="ref-num">1</span><div><div class="ref-title">CONSORT 2025 Statement: Updated Guideline for Reporting Randomized Trials</div><div class="ref-meta">Hopewell S, Chan AW, Collins GS, et al. JAMA. 2025;333(22):1998-2005. doi:10.1001/jama.2025.4347</div></div></li>
+        <li class="ref-item"><span class="ref-num">2</span><div><div class="ref-title">CONSORT 2025 Statement: Updated Guideline for Reporting Randomized Trials</div><div class="ref-meta">Hopewell S, Chan AW, Collins GS, et al. Nature Medicine. 2025;31(6):1776-1783. doi:10.1038/s41591-025-03635-5</div></div></li>
+        <li class="ref-item"><span class="ref-num">3</span><div><div class="ref-title">CONSORT 2025 Statement: Updated Guideline for Reporting Randomised Trials</div><div class="ref-meta">Hopewell S, Chan AW, Collins GS, et al. Lancet. 2025:S0140-6736(25)00672-5. doi:10.1016/S0140-6736(25)00672-5</div></div></li>
+        <li class="ref-item"><span class="ref-num">4</span><div><div class="ref-title">CONSORT 2025 Statement: Updated Guideline for Reporting Randomised Trials</div><div class="ref-meta">Hopewell S, Chan AW, Collins GS, et al. BMJ. 2025;389:e081123. doi:10.1136/bmj-2024-081123</div></div></li>
+        <li class="ref-item"><span class="ref-num">5</span><div><div class="ref-title">RoB 2: A Revised Tool for Assessing Risk of Bias in Randomised Trials</div><div class="ref-meta">Sterne JAC, Savović J, Page MJ, et al. BMJ. 2019;366:l4898. doi:10.1136/bmj.l4898</div></div></li>
+        <li class="ref-item"><span class="ref-num">6</span><div><div class="ref-title">Compelling Evidence From Meta-Epidemiological Studies Demonstrates Overestimation of Effects in Randomized Trials That Fail to Optimize Randomization and Blind Patients and Outcome Assessors</div><div class="ref-meta">Wang Y, Parpia S, Couban R, et al. Journal of Clinical Epidemiology. 2024;165:111211. doi:10.1016/j.jclinepi.2023.11.001</div></div></li>
+        <li class="ref-item"><span class="ref-num">7</span><div><div class="ref-title">Empirical Evidence of Study Design Biases in Randomized Trials: Systematic Review of Meta-Epidemiological Studies</div><div class="ref-meta">Page MJ, Higgins JP, Clayton G, et al. PLoS One. 2016;11(7):e0159267. doi:10.1371/journal.pone.0159267</div></div></li>
+        <li class="ref-item"><span class="ref-num">8</span><div><div class="ref-title">Assessing the Feasibility and Impact of Clinical Trial Trustworthiness Checks via an Application to Cochrane Reviews: Stage 2 of the INSPECT-SR Project</div><div class="ref-meta">Wilkinson J, Heal C, Antoniou GA, et al. Journal of Clinical Epidemiology. 2025;184:111824. doi:10.1016/j.jclinepi.2025.111824</div></div></li>
+        <li class="ref-item"><span class="ref-num">9</span><div><div class="ref-title">The ASA Statement on p-Values: Context, Process, and Purpose</div><div class="ref-meta">Wasserstein RL, Lazar NA. The American Statistician. 2016;70(2):129-133. doi:10.1080/00031305.2016.1154108</div></div></li>
+        <li class="ref-item"><span class="ref-num">10</span><div><div class="ref-title">GRADE: An Emerging Consensus on Rating Quality of Evidence and Strength of Recommendations</div><div class="ref-meta">Guyatt GH, Oxman AD, Vist GE, et al. BMJ. 2008;336(7650):924-926. doi:10.1136/bmj.39489.470347.AD</div></div></li>
+        <li class="ref-item"><span class="ref-num">11</span><div><div class="ref-title">Stopping Randomized Trials Early for Benefit and Estimation of Treatment Effects: Systematic Review and Meta-regression Analysis</div><div class="ref-meta">Bassler D, Briel M, Montori VM, et al. JAMA. 2010;303(12):1180-1187. doi:10.1001/jama.2010.310</div></div></li>
+        <li class="ref-item"><span class="ref-num">12</span><div><div class="ref-title">Users' Guide to the Medical Literature: Essentials of Evidence-Based Clinical Practice (3rd Ed.)</div><div class="ref-meta">Guyatt G, Rennie D, Meade MO, Cook DJ (eds). McGraw-Hill; 2015. ISBN 978-0-07-179071-0</div></div></li>
+        <li class="ref-item"><span class="ref-num">13</span><div><div class="ref-title">Non-inferiority Trials: Design Concepts and Issues – The Encounters of Academic Consultants in Statistics</div><div class="ref-meta">Piaggio G, Elbourne DR, Altman DG, et al. JAMA. 2012;308(24):2594-2604. doi:10.1001/jama.2012.87510</div></div></li>
+        <li class="ref-item"><span class="ref-num">14</span><div><div class="ref-title">Composite Endpoints in Cardiovascular Trials: When Are They Used and Do They Appropriately Capture Patient-Centered Outcomes?</div><div class="ref-meta">Ferreira JP, Rossignol P, Zannad F. Eur Heart J. 2023. doi:10.1093/eurheartj/ehad026</div></div></li>
+        <li class="ref-item"><span class="ref-num">15</span><div><div class="ref-title">Hazard Ratios in Clinical Trials</div><div class="ref-meta">Spruance SL, Reid JE, Grace M, Samore M. Antimicrob Agents Chemother. 2004;48(8):2787-2792. doi:10.1128/AAC.48.8.2787-2792.2004</div></div></li>
+        <li class="ref-item"><span class="ref-num">16</span><div><div class="ref-title">Missing Data in Clinical Studies: Issues and Methods</div><div class="ref-meta">Sterne JAC, White IR, Carlin JB, et al. J Clin Oncol. 2009;27(31):5168-5174. doi:10.1200/JCO.2008.21.8133</div></div></li>
+        <li class="ref-item"><span class="ref-num">17</span><div><div class="ref-title">Addressing and Reporting Sources of Bias in Randomized Controlled Trials</div><div class="ref-meta">Kotz D, West R. J Clin Epidemiol. 2022;143:197-201. doi:10.1016/j.jclinepi.2021.09.029</div></div></li>
+      </ol>
+    </div>
+    <div class="disclaimer">
+      <strong>Aviso:</strong> Este material é destinado exclusivamente a profissionais de saúde com formação para interpretar literatura médica. Não substitui o julgamento clínico individualizado, as diretrizes vigentes ou a decisão compartilhada com o paciente. As recomendações metodológicas aqui apresentadas refletem o consenso da epidemiologia clínica e da medicina baseada em evidências até a data de publicação.
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="goStep(5)">← Anterior</button>
+      <button class="btn btn-primary" onclick="goStep(1)">↑ Voltar ao Início</button>
+    </div>
+  </div>
+
+</div>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-copy">
+        © 2025 Dr. Lucas Silva · Cardiologia Intervencionista · São Paulo, Brasil<br>
+        <span style="font-size:.68rem;opacity:.7;">Baseado em CONSORT 2025 · Cochrane RoB 2.0 · GRADE · INSPECT-SR</span>
+      </div>
+      <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">lucascardio.com.br</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const STEPS = 6;
+  const progressVals = ['20','40','60','80','100','100'];
+
+  function goStep(n) {
+    for (let i = 1; i <= STEPS; i++) {
+      const sec = document.getElementById('step' + i);
+      const ts = document.getElementById('ts' + i);
+      const nb = document.getElementById('nb' + i);
+      if (sec) sec.classList.toggle('active', i === n);
+      if (ts) ts.classList.toggle('active', i === n);
+      if (nb) nb.classList.toggle('active', i === n);
+    }
+    document.getElementById('progress').style.width = progressVals[n - 1] + '%';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function toggleDomain(id) {
+    const el = document.getElementById(id);
+    el.classList.toggle('open');
+  }
+
+  // Open first domain of RoB 2 by default when section 3 shown
+  document.addEventListener('DOMContentLoaded', () => {
+    // nothing on load
+  });
+</script>
+
+</body>
+</html>

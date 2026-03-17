@@ -171,7 +171,19 @@
     <priority>0.85</priority>
   </url>
   <url>
+    <loc>https://lucascardio.com.br/Medicos/analise-artigo-cientifico.html</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+   <url>
     <loc>https://lucascardio.com.br/quiz/index.html</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+   <url>
+    <loc>https://lucascardio.com.br/Medicos/mbe_cardiologia.html</loc>
     <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>

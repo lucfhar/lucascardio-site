@@ -988,28 +988,6 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="educ">
-                        <div class="tool-card h-100">
-                            <span class="cat-tag cat-educ"><i class="fas fa-book-medical"></i>Educação &amp; Referência</span>
-                            <a class="btn-med-custom" href="Medicos/analise-artigo-cientifico.html" title="Manual para avaliação de trials/estudo científicos">
-                                Manual para avaliação de trials/artigos científicos com metodologia avançada.
-                            </a>
-                            <p class="small text-black-50 mt-3">Aprenda a criticar e entender artigos científicos.</p>
-                            <span class="badge">ROB 2.0 inclusa!</span>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="educ">
-                        <div class="tool-card h-100">
-                            <span class="cat-tag cat-educ"><i class="fas fa-book-medical"></i>Educação &amp; Referência</span>
-                            <a class="btn-med-custom" href="Medicos/mbe_cardiologia.html" title="Análise crítica dos limites da medicina baseada em evidências">
-                                Análise crítica dos limites da medicina baseada em evidências
-                            </a>
-                            <p class="small text-black-50 mt-3">Saiba quantas recomendações atualmente são realmente grau de evidência A.</p>
-                            <span class="badge">Mea culpa da MBE</span>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>
@@ -1151,42 +1129,6 @@
 })();
 </script>
 
-
-<script>
-// ─── Fix: Dropdown mobile — impede navbar de fechar ao clicar no toggle ──────
-// O scripts.js do tema chama navbarToggler.click() para QUALQUER .nav-link,
-// incluindo os dropdown-toggles. No mobile isso fecha o menu antes do submenu abrir.
-// Solução: marcar quando um dropdown-toggle foi clicado e cancelar o hide.bs.collapse.
-(function () {
-    var pendingDropdown = false;
-
-    document.addEventListener('DOMContentLoaded', function () {
-        var navEl = document.getElementById('navbarResponsive');
-
-        // Captura o clique nos toggles ANTES de qualquer handler do scripts.js
-        document.querySelectorAll('#mainNav .dropdown-toggle').forEach(function (toggle) {
-            toggle.addEventListener('click', function (e) {
-                var toggler = document.querySelector('.navbar-toggler');
-                // Só interfere quando o hambúrguer está visível (mobile)
-                if (toggler && window.getComputedStyle(toggler).display !== 'none') {
-                    e.preventDefault();   // evita scroll para o anchor href
-                    pendingDropdown = true;
-                }
-            }, true); // fase de captura — executa antes dos listeners do scripts.js
-        });
-
-        // Cancela o fechamento do navbar quando foi um dropdown toggle que disparou
-        if (navEl) {
-            navEl.addEventListener('hide.bs.collapse', function (e) {
-                if (pendingDropdown) {
-                    e.preventDefault();
-                    pendingDropdown = false;
-                }
-            });
-        }
-    });
-})();
-</script>
 
 <script>
 // ─── Tool Category Filter ───────────────────────────────────────────────────
