@@ -210,7 +210,7 @@
     #mainNav .dropdown-divider { margin:.3rem 0; }
     /* shrink state dropdown fix */
     #mainNav.navbar-shrink .dropdown-menu { margin-top:.2rem; }
-    /* ─── Mobile: dropdown abre inline (accordion), não como popup flutuante ── */
+    /* ─── Mobile: dropdown inline (sem posição flutuante) ───────────────── */
     @media (max-width: 991.98px) {
         #mainNav .dropdown-menu {
             position: static !important;
@@ -219,20 +219,21 @@
             border: none !important;
             border-left: 2px solid rgba(201,169,110,.35) !important;
             border-radius: 0 !important;
-            padding: .25rem 0 .25rem .75rem;
-            margin: .1rem 0 .4rem 1rem;
             background: transparent !important;
+            padding: .2rem 0 .4rem .5rem;
+            margin: 0 0 .25rem 1rem;
         }
         #mainNav .dropdown-menu .dropdown-item {
+            font-size: .82rem;
+            padding: .38rem .8rem;
             color: rgba(255,255,255,.75);
-            padding: .4rem .8rem;
         }
         #mainNav .dropdown-menu .dropdown-item:hover,
         #mainNav .dropdown-menu .dropdown-item:focus {
-            background: rgba(201,169,110,.15) !important;
+            background: rgba(201,169,110,.14) !important;
             color: var(--lc-accent, #c9a96e) !important;
         }
-        #mainNav .dropdown-divider { border-color: rgba(255,255,255,.12); }
+        #mainNav .dropdown-divider { border-color: rgba(255,255,255,.1); }
     }
     .dark-mode #mainNav .dropdown-menu { background:#1c1e2a; border-color:#333; }
     .dark-mode #mainNav .dropdown-item { color:#ccc; }
@@ -1177,43 +1178,44 @@
 
 
 <script>
-// ─── Fix: Dropdown mobile ─────────────────────────────────────────────────────
-// scripts.js chama toggler.click() para TODOS os .nav-link (incluindo dropdown-toggles).
-// No mobile, isso fecha o navbar antes do Bootstrap abrir o submenu.
+// ─── Fix: Dropdown mobile — abordagem correta ────────────────────────────────
+// Problema: scripts.js chama toggler.click() para TODO .nav-link clicado,
+// incluindo o dropdown-toggle. Isso colapsa o navbar antes do submenu abrir.
 //
-// Estratégia: interceptar no capture phase (antes do scripts.js) → temporariamente
-// substituir toggler.click por um no-op → deixar o Bootstrap processar o clique
-// normalmente → dropdown abre inline (via CSS position:static acima).
+// Por que as tentativas anteriores falharam:
+//   - stopImmediatePropagation/preventDefault bloqueava o Bootstrap de abrir o dropdown.
+//   - Adicionar .show manualmente conflitava com o Bootstrap (que via .show e removia).
+//
+// Solução correta: não tocar no dropdown. Só cancelar o colapso do navbar.
+//   1. Capture phase no click do toggle → seta flag (SEM preventDefault/stopPropagation)
+//      → Bootstrap processa o clique normalmente → abre o dropdown
+//   2. scripts.js processa o clique → chama toggler.click() → Bootstrap dispara
+//      hide.bs.collapse no #navbarResponsive → nosso handler cancela com e.preventDefault()
+//   3. Resultado: navbar fica aberto + dropdown aberto
 (function () {
     document.addEventListener('DOMContentLoaded', function () {
-        var toggler = document.querySelector('.navbar-toggler');
-        if (!toggler) return;
+        var navbarEl = document.getElementById('navbarResponsive');
+        var toggler  = document.querySelector('.navbar-toggler');
+        if (!navbarEl || !toggler) return;
 
+        var ddPending = false;
+
+        // Capture phase: seta flag ANTES de Bootstrap/scripts.js ver o click.
+        // NÃO chama preventDefault nem stopPropagation — Bootstrap precisa ver o evento.
         document.querySelectorAll('#mainNav .dropdown-toggle').forEach(function (toggle) {
-            toggle.addEventListener('click', function (e) {
-                // Só no mobile (hambúrguer visível)
-                if (window.getComputedStyle(toggler).display === 'none') return;
-
-                // Impede o scroll para o anchor href do toggle
-                e.preventDefault();
-
-                // Substitui toggler.click por no-op temporário (scripts.js vai chamar isso)
-                toggler.click = function () {};
-                setTimeout(function () { delete toggler.click; }, 100);
-
-                // Abre/fecha o submenu manualmente via classes Bootstrap
-                var menu = toggle.closest('.nav-item').querySelector('.dropdown-menu');
-                var isOpen = menu.classList.contains('show');
-                // Fecha outros dropdowns abertos
-                document.querySelectorAll('#mainNav .dropdown-menu.show').forEach(function (m) {
-                    m.classList.remove('show');
-                    m.previousElementSibling && m.previousElementSibling.setAttribute('aria-expanded', 'false');
-                });
-                if (!isOpen) {
-                    menu.classList.add('show');
-                    toggle.setAttribute('aria-expanded', 'true');
+            toggle.addEventListener('click', function () {
+                if (window.getComputedStyle(toggler).display !== 'none') {
+                    ddPending = true;
                 }
-            }, true); // capture phase — executa antes dos listeners bubble do scripts.js
+            }, true); // capture
+        });
+
+        // Cancela o colapso do navbar quando originado por um dropdown-toggle
+        navbarEl.addEventListener('hide.bs.collapse', function (e) {
+            if (ddPending) {
+                e.preventDefault(); // Bootstrap respeita isso e não colapsa
+                ddPending = false;
+            }
         });
     });
 })();
