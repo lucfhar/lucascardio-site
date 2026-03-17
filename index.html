@@ -1178,44 +1178,29 @@
 
 
 <script>
-// ─── Fix: Dropdown mobile — abordagem correta ────────────────────────────────
-// Problema: scripts.js chama toggler.click() para TODO .nav-link clicado,
-// incluindo o dropdown-toggle. Isso colapsa o navbar antes do submenu abrir.
+// ─── Fix: Dropdown mobile ────────────────────────────────────────────────────
+// scripts.js (defer) registra listener bubble em TODOS os .nav-link que chama
+// toggler.click() — colapsando o navbar ao clicar no dropdown-toggle.
+// scripts.js roda antes do DOMContentLoaded, então seu listener fica na frente
+// de qualquer listener bubble registrado depois.
 //
-// Por que as tentativas anteriores falharam:
-//   - stopImmediatePropagation/preventDefault bloqueava o Bootstrap de abrir o dropdown.
-//   - Adicionar .show manualmente conflitava com o Bootstrap (que via .show e removia).
-//
-// Solução correta: não tocar no dropdown. Só cancelar o colapso do navbar.
-//   1. Capture phase no click do toggle → seta flag (SEM preventDefault/stopPropagation)
-//      → Bootstrap processa o clique normalmente → abre o dropdown
-//   2. scripts.js processa o clique → chama toggler.click() → Bootstrap dispara
-//      hide.bs.collapse no #navbarResponsive → nosso handler cancela com e.preventDefault()
-//   3. Resultado: navbar fica aberto + dropdown aberto
+// Solução: capture phase (roda antes de QUALQUER bubble listener) →
+// substitui toggler.click por no-op por 200ms → scripts.js chama o no-op →
+// navbar não colapsa → Bootstrap abre o dropdown normalmente.
+// Não tocamos em nada do dropdown: sem preventDefault, sem .show manual.
 (function () {
     document.addEventListener('DOMContentLoaded', function () {
-        var navbarEl = document.getElementById('navbarResponsive');
-        var toggler  = document.querySelector('.navbar-toggler');
-        if (!navbarEl || !toggler) return;
+        var toggler = document.querySelector('.navbar-toggler');
+        if (!toggler) return;
 
-        var ddPending = false;
-
-        // Capture phase: seta flag ANTES de Bootstrap/scripts.js ver o click.
-        // NÃO chama preventDefault nem stopPropagation — Bootstrap precisa ver o evento.
         document.querySelectorAll('#mainNav .dropdown-toggle').forEach(function (toggle) {
             toggle.addEventListener('click', function () {
-                if (window.getComputedStyle(toggler).display !== 'none') {
-                    ddPending = true;
-                }
-            }, true); // capture
-        });
-
-        // Cancela o colapso do navbar quando originado por um dropdown-toggle
-        navbarEl.addEventListener('hide.bs.collapse', function (e) {
-            if (ddPending) {
-                e.preventDefault(); // Bootstrap respeita isso e não colapsa
-                ddPending = false;
-            }
+                // Só no mobile (hambúrguer visível)
+                if (window.getComputedStyle(toggler).display === 'none') return;
+                // Neutraliza toggler.click antes de scripts.js chamá-lo
+                toggler.click = function () {};
+                setTimeout(function () { delete toggler.click; }, 200);
+            }, true); // CAPTURE — executa antes do bubble listener do scripts.js
         });
     });
 })();
