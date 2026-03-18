@@ -1,0 +1,1860 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1"/>
+  <title>Balão Intra-Aórtico (BIA/IABP) – Guia Clínico Completo | Dr. Lucas Silva</title>
+  <meta name="description" content="Guia interativo completo sobre balão intra-aórtico: fundamentos, evidências (IABP-SHOCK II, DanGer Shock), indicações, configuração, timing, curvas e comparação com Impella e VA-ECMO."/>
+  <meta name="author" content="Dr. Lucas Silva"/>
+  <link rel="canonical" href="https://lucascardio.com.br/Medicos/balao-intra-aortico.html"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,700;1,9..144,400&display=swap" rel="stylesheet"/>
+  
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalWebPage",
+  "name": "Balão Intra-Aórtico (BIA/IABP) – Guia Clínico Completo",
+  "headline": "Balão Intra-Aórtico (BIA/IABP) – Guia Clínico Completo",
+  "description": "Guia interativo completo sobre balão intra-aórtico: fundamentos, evidências (IABP-SHOCK II, DanGer Shock), indicações, configuração, timing, curvas e comparação com Impella e VA-ECMO.",
+  "url": "https://lucascardio.com.br/Medicos/balao-intra-aortico.html",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://lucascardio.com.br/Medicos/balao-intra-aortico.html"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Dr. Lucas Silva",
+    "url": "https://lucascardio.com.br",
+    "jobTitle": "Cardiologista Intervencionista"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dr. Lucas Silva - Cardiologia",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://lucascardio.com.br/assets/img/logo.png"
+    }
+  },
+  "audience": {
+    "@type": "MedicalAudience",
+    "audienceType": "Clinician"
+  },
+  "specialty": "Cardiovascular",
+  "about": {
+    "@type": "MedicalDevice",
+    "name": "Balão intra-aórtico",
+    "alternateName": "BIA"
+  },
+  "keywords": [
+    "balão intra-aórtico",
+    "BIA",
+    "IABP",
+    "choque cardiogênico",
+    "contrapulsação",
+    "IABP-SHOCK II",
+    "DanGer Shock",
+    "Impella",
+    "VA-ECMO",
+    "suporte circulatório mecânico"
+  ],
+  "inLanguage": "pt-BR"
+}
+</script>
+  
+  <style>
+    :root {
+      --primary: oklch(65% .18 195);
+      --primary-foreground: oklch(98% 0 0);
+      --background: oklch(13% .018 250);
+      --foreground: oklch(93% .01 250);
+      --card: oklch(18.5% .018 250);
+      --card-foreground: oklch(93% .01 250);
+      --muted: oklch(22% .018 250);
+      --muted-foreground: oklch(62% .02 250);
+      --border: oklch(28% .025 250);
+      --input: oklch(22% .02 250);
+      --destructive: oklch(60% .22 25);
+      --secondary: oklch(22% .022 250);
+      --secondary-foreground: oklch(88% .01 250);
+      --accent: oklch(24% .025 250);
+      --accent-foreground: oklch(90% .01 250);
+      --teal: #00d3bd;
+      --teal-dim: rgba(0,211,189,.12);
+      --amber: oklch(82.8% .189 84.429);
+      --red: oklch(63.7% .237 25.331);
+      --green: oklch(79.2% .209 151.711);
+      --radius: 0.625rem;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-display: 'Fraunces', Georgia, serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--background);
+      color: var(--foreground);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(18,20,27,.9);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem; height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--foreground); }
+    .nav-brand-icon {
+      width: 28px; height: 28px; border-radius: 7px;
+      background: var(--teal); display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .nav-brand-name { font-weight: 800; font-size: 1rem; letter-spacing: -.025em; line-height: 1; }
+    .nav-brand-name span { color: var(--teal); }
+    .nav-brand-sep { width: 1px; height: 14px; background: var(--border); margin: 0 6px; }
+    .nav-brand-sub { font-size: .7rem; font-weight: 500; color: var(--muted-foreground); }
+    .nav-link {
+      font-size: .75rem; font-weight: 600; padding: 5px 12px;
+      border-radius: 8px; border: 1.5px solid var(--primary);
+      color: var(--primary); background: transparent;
+      text-decoration: none;
+      transition: background .15s, color .15s;
+      display: inline-flex; align-items: center; gap: 5px;
+    }
+    .nav-link:hover { background: var(--primary); color: #000; }
+
+    /* TAB NAV */
+    .tab-nav-wrap {
+      position: sticky; top: 56px; z-index: 40;
+      background: rgba(18,20,27,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .tab-nav-wrap::-webkit-scrollbar { display: none; }
+    .tab-nav {
+      display: flex; align-items: center;
+      max-width: 900px; margin: 0 auto;
+      padding: 0 1.5rem; gap: 0;
+      min-width: max-content;
+    }
+    .tab-btn {
+      background: none; border: none; cursor: pointer;
+      font-family: var(--font-sans); font-size: .8rem; font-weight: 600;
+      color: var(--muted-foreground);
+      padding: 14px 16px; white-space: nowrap;
+      border-bottom: 2.5px solid transparent;
+      transition: color .15s, border-color .15s;
+    }
+    .tab-btn:hover { color: var(--foreground); }
+    .tab-btn.active { color: var(--teal); border-bottom-color: var(--teal); }
+
+    /* LAYOUT */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* HERO */
+    .hero { padding: 3.5rem 0 2.5rem; border-bottom: 1px solid var(--border); }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .7rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--teal); margin-bottom: 1rem;
+    }
+    .hero-eyebrow::before { content: ''; display: block; width: 20px; height: 2px; background: var(--teal); border-radius: 1px; }
+    .hero h1 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 800; line-height: 1.2;
+      margin-bottom: .75rem; letter-spacing: -.02em;
+    }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero-sub { color: var(--muted-foreground); font-size: .95rem; max-width: 620px; margin-bottom: 1.5rem; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 6px; border: 1px solid var(--border);
+      color: var(--muted-foreground); background: var(--card);
+      font-family: var(--font-mono);
+    }
+
+    /* TAB PANELS */
+    .tab-panel { display: none; padding: 2.5rem 0 4rem; }
+    .tab-panel.active { display: block; animation: fadeUp .3s ease; }
+
+    /* CARDS */
+    .card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px);
+      padding: 1.5rem; margin-bottom: 1.5rem;
+    }
+    .card-header {
+      display: flex; align-items: flex-start; gap: .75rem;
+      margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border);
+    }
+    .card-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+      background: var(--teal-dim); color: var(--teal);
+    }
+    .card-title { font-weight: 700; font-size: 1rem; margin-bottom: 2px; }
+    .card-subtitle { font-size: .78rem; color: var(--muted-foreground); }
+
+    /* INFO BOXES */
+    .info-box {
+      border-radius: var(--radius); padding: 12px 16px;
+      font-size: .82rem; line-height: 1.6;
+      display: flex; gap: 10px; margin-bottom: .75rem;
+    }
+    .info-box-icon { flex-shrink: 0; font-size: 1rem; margin-top: 1px; }
+    .info-teal { background: var(--teal-dim); border-left: 3px solid var(--teal); }
+    .info-amber { background: rgba(251,191,36,.08); border-left: 3px solid rgba(251,191,36,.5); }
+    .info-red { background: rgba(220,38,38,.08); border-left: 3px solid rgba(220,38,38,.4); }
+    .info-gray { background: var(--muted); border-left: 3px solid var(--border); }
+    .info-green { background: rgba(74,222,128,.08); border-left: 3px solid rgba(74,222,128,.4); }
+
+    /* SECTION TITLES */
+    .section-title { font-size: 1.2rem; font-weight: 800; margin-bottom: .25rem; letter-spacing: -.01em; }
+    .section-label {
+      font-size: .68rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--teal);
+      margin-bottom: .4rem; font-family: var(--font-mono);
+    }
+    .section-divider { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+
+    /* STAT GRID */
+    .stat-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border); border-radius: calc(var(--radius) + 2px);
+      overflow: hidden; margin-bottom: 1.5rem;
+    }
+    .stat-cell {
+      background: var(--card); padding: 1rem 1.25rem;
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .stat-label { font-size: .68rem; font-weight: 600; color: var(--muted-foreground); letter-spacing: .04em; text-transform: uppercase; }
+    .stat-value { font-size: 1.4rem; font-weight: 800; color: var(--teal); font-family: var(--font-mono); line-height: 1.1; }
+    .stat-unit { font-size: .7rem; color: var(--muted-foreground); }
+    .stat-note { font-size: .72rem; color: var(--foreground); margin-top: 2px; }
+
+    /* BADGES */
+    .badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: .68rem; font-weight: 700; padding: 2px 8px;
+      border-radius: 999px; white-space: nowrap;
+    }
+    .badge-teal { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.25); }
+    .badge-amber { background: rgba(251,191,36,.12); color: #fbbf24; border: 1px solid rgba(251,191,36,.2); }
+    .badge-red { background: rgba(220,38,38,.15); color: #f87171; border: 1px solid rgba(220,38,38,.25); }
+    .badge-gray { background: var(--muted); color: var(--muted-foreground); border: 1px solid var(--border); }
+    .badge-green { background: rgba(74,222,128,.12); color: #4ade80; border: 1px solid rgba(74,222,128,.25); }
+
+    /* REC ROWS (Indicações) */
+    .rec-row {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 14px 0; border-bottom: 1px solid var(--border);
+    }
+    .rec-row:last-child { border-bottom: none; }
+    .rec-class {
+      min-width: 56px; height: 26px; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .65rem; font-weight: 800; letter-spacing: .04em; flex-shrink: 0;
+    }
+    .rec-I { background: rgba(74,222,128,.15); color: #4ade80; border: 1px solid rgba(74,222,128,.3); }
+    .rec-IIa { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.25); }
+    .rec-IIb { background: rgba(251,191,36,.12); color: #fbbf24; border: 1px solid rgba(251,191,36,.2); }
+    .rec-III { background: rgba(220,38,38,.12); color: #f87171; border: 1px solid rgba(220,38,38,.25); }
+    .rec-body { flex: 1; }
+    .rec-text { font-size: .85rem; line-height: 1.55; margin-bottom: 4px; }
+    .rec-loe { font-size: .7rem; color: var(--muted-foreground); font-family: var(--font-mono); }
+
+    /* TRIAL CARDS */
+    .trial-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px);
+      padding: 1.25rem 1.5rem; margin-bottom: 1rem;
+    }
+    .trial-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: .75rem; }
+    .trial-name { font-size: 1rem; font-weight: 800; font-family: var(--font-display); margin-bottom: 2px; }
+    .trial-journal { font-size: .72rem; color: var(--muted-foreground); }
+    .trial-result {
+      font-size: 1.3rem; font-weight: 800; font-family: var(--font-mono);
+      color: var(--teal); white-space: nowrap; line-height: 1;
+    }
+    .trial-result.neutral { color: var(--muted-foreground); }
+    .trial-result.positive { color: #4ade80; }
+    .trial-body { font-size: .82rem; line-height: 1.65; color: var(--foreground); }
+    .trial-meta { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .75rem; }
+
+    /* WAVEFORM CARDS */
+    .waveform-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px);
+      padding: 1.25rem; margin-bottom: 1rem;
+    }
+    .waveform-title { font-size: .9rem; font-weight: 700; margin-bottom: .5rem; display: flex; align-items: center; gap: 8px; }
+    .waveform-desc { font-size: .8rem; color: var(--muted-foreground); line-height: 1.55; margin-bottom: .75rem; }
+    .svg-wrap { background: oklch(11% .015 250); border-radius: 8px; padding: .75rem; overflow: hidden; }
+
+    /* FLOW BARS (Comparação) */
+    .flow-bar-wrap { margin-bottom: .75rem; }
+    .flow-bar-label { display: flex; justify-content: space-between; font-size: .78rem; margin-bottom: 4px; }
+    .flow-bar-track { height: 12px; background: var(--muted); border-radius: 6px; overflow: hidden; }
+    .flow-bar-fill { height: 100%; border-radius: 6px; transition: width .6s cubic-bezier(.4,0,.2,1); }
+
+    /* COMPARISON TABLE */
+    .compare-table { width: 100%; border-collapse: collapse; font-size: .8rem; overflow: hidden; }
+    .compare-table th {
+      background: var(--muted); padding: 9px 12px;
+      text-align: left; font-weight: 700; font-size: .72rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted-foreground); letter-spacing: .03em;
+    }
+    .compare-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table tr:hover td { background: var(--accent); }
+    .compare-table .hi { color: var(--teal); font-weight: 700; }
+
+    /* MECH PHASES */
+    .mech-phases {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+      background: var(--border); border-radius: calc(var(--radius) + 2px);
+      overflow: hidden; margin-bottom: 1.5rem;
+    }
+    .mech-phase {
+      background: var(--card); padding: 1.25rem;
+    }
+    .mech-phase-title { font-weight: 700; font-size: .85rem; margin-bottom: .5rem; display: flex; align-items: center; gap: 6px; }
+    .mech-phase ul { list-style: none; }
+    .mech-phase li { font-size: .8rem; line-height: 1.7; padding-left: .75rem; position: relative; color: var(--foreground); }
+    .mech-phase li::before { content: '›'; position: absolute; left: 0; color: var(--teal); font-weight: 700; }
+
+    /* SIZING TABLE */
+    .sizing-table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+    .sizing-table th {
+      background: var(--muted); padding: 8px 12px;
+      text-align: left; font-size: .72rem; font-weight: 700;
+      color: var(--muted-foreground); border-bottom: 1px solid var(--border);
+    }
+    .sizing-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); }
+    .sizing-table tr:last-child td { border-bottom: none; }
+    .sizing-table tr:hover td { background: var(--accent); }
+
+    /* SCAI TABLE */
+    .scai-table { width: 100%; border-collapse: collapse; font-size: .79rem; }
+    .scai-table th {
+      background: var(--muted); padding: 8px 10px;
+      text-align: left; font-size: .7rem; font-weight: 700;
+      color: var(--muted-foreground); border-bottom: 1px solid var(--border);
+    }
+    .scai-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .scai-table tr:last-child td { border-bottom: none; }
+
+    /* REFERENCES */
+    .ref-list { list-style: none; }
+    .ref-item {
+      padding: 10px 0; border-bottom: 1px solid var(--border);
+      font-size: .8rem; line-height: 1.6; display: flex; gap: 10px;
+    }
+    .ref-item:last-child { border-bottom: none; }
+    .ref-num { font-family: var(--font-mono); font-size: .7rem; font-weight: 700; color: var(--teal); min-width: 22px; }
+    .ref-title { font-weight: 600; margin-bottom: 2px; }
+    .ref-meta { color: var(--muted-foreground); font-size: .75rem; }
+    .ref-doi { font-size: .7rem; font-family: var(--font-mono); color: var(--primary); word-break: break-all; }
+
+    /* DISCLAIMER */
+    .disclaimer {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 12px 16px;
+      font-size: .75rem; color: var(--muted-foreground); line-height: 1.6; margin-top: 2rem;
+    }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 2rem 0; margin-top: 2rem; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-copy { font-size: .75rem; color: var(--muted-foreground); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* WEANING STEPS */
+    .weaning-step {
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 14px; background: var(--card);
+      border: 1px solid var(--border); border-radius: var(--radius);
+      margin-bottom: .5rem;
+    }
+    .weaning-num {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--teal-dim); color: var(--teal);
+      font-weight: 800; font-size: .75rem; font-family: var(--font-mono);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .weaning-text { font-size: .82rem; line-height: 1.5; }
+    .weaning-arrow {
+      text-align: center; color: var(--muted-foreground);
+      font-size: .8rem; margin: 2px 0 4px 40px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      .mech-phases { grid-template-columns: 1fr; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+      .tab-btn { font-size: .72rem; padding: 12px 10px; }
+      .trial-header { flex-direction: column; gap: .25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="https://lucascardio.com.br">
+    <div class="nav-brand-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+    </div>
+    <div class="nav-brand-name">Lucas<span>Cardio</span></div>
+    <div class="nav-brand-sep"></div>
+    <div class="nav-brand-sub">Balão Intra-Aórtico</div>
+  </a>
+  <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+    lucascardio.com.br
+  </a>
+</nav>
+
+<!-- TAB NAV -->
+<div class="tab-nav-wrap">
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="openTab('fund')">⚙️ Fundamentos</button>
+    <button class="tab-btn" onclick="openTab('evid')">🧪 Evidências</button>
+    <button class="tab-btn" onclick="openTab('indic')">✅ Indicações</button>
+    <button class="tab-btn" onclick="openTab('config')">🔧 Configuração</button>
+    <button class="tab-btn" onclick="openTab('timing')">⏱️ Timing &amp; Trigger</button>
+    <button class="tab-btn" onclick="openTab('curvas')">📈 Curvas</button>
+    <button class="tab-btn" onclick="openTab('comp')">🔄 Comparação</button>
+    <button class="tab-btn" onclick="openTab('refs')">📚 Referências</button>
+  </div>
+</div>
+
+<main>
+<div class="container">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Suporte Circulatório Mecânico</div>
+  <h1>Balão <em>Intra-Aórtico</em><br>Guia Clínico Completo</h1>
+  <p class="hero-sub">Fundamentos, evidências atualizadas, indicações baseadas em diretrizes, configuração técnica, timing ideal e comparação com Impella e VA-ECMO. Para uso clínico no laboratório de hemodinâmica e UTI cardiovascular.</p>
+  <div class="hero-tags">
+    <span class="tag">IABP-SHOCK II</span>
+    <span class="tag">DanGer Shock 2024</span>
+    <span class="tag">Contrapulsação</span>
+    <span class="tag">Choque Cardiogênico</span>
+    <span class="tag">ESC 2023</span>
+    <span class="tag">ACC/AHA 2022</span>
+    <span class="tag">Impella</span>
+    <span class="tag">VA-ECMO</span>
+    <span class="tag">SCAI Staging</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     TAB 1 — FUNDAMENTOS
+══════════════════════════════════════════════════════════════ -->
+<div id="tab-fund" class="tab-panel active">
+
+  <div class="section-label">Mecanismo de Ação</div>
+  <div class="section-title" style="margin-bottom:1.5rem;">Contrapulsação Diastólica</div>
+
+  <!-- SVG ciclo cardíaco -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📉</div>
+      <div>
+        <div class="card-title">Ciclo de Contrapulsação</div>
+        <div class="card-subtitle">Insuflação na diástole · Deflação antes da sístole</div>
+      </div>
+    </div>
+    <div class="svg-wrap" style="margin-bottom:1rem;">
+      <svg viewBox="0 0 700 200" width="100%" style="display:block;">
+        <defs>
+          <linearGradient id="gAo" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#00d3bd" stop-opacity=".25"/>
+            <stop offset="100%" stop-color="#00d3bd" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="gBia" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#fbbf24" stop-opacity=".2"/>
+            <stop offset="100%" stop-color="#fbbf24" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <!-- grid -->
+        <line x1="0" y1="50" x2="700" y2="50" stroke="#ffffff08" stroke-width="1"/>
+        <line x1="0" y1="100" x2="700" y2="100" stroke="#ffffff12" stroke-width="1"/>
+        <line x1="0" y1="150" x2="700" y2="150" stroke="#ffffff08" stroke-width="1"/>
+        <!-- Systole/Diastole bands -->
+        <rect x="0" y="0" width="175" height="200" fill="#ffffff04"/>
+        <rect x="175" y="0" width="175" height="200" fill="#00d3bd06"/>
+        <rect x="350" y="0" width="175" height="200" fill="#ffffff04"/>
+        <rect x="525" y="0" width="175" height="200" fill="#00d3bd06"/>
+        <!-- Labels -->
+        <text x="87" y="18" text-anchor="middle" fill="#ffffff50" font-size="10" font-family="JetBrains Mono,monospace">SÍSTOLE</text>
+        <text x="262" y="18" text-anchor="middle" fill="#00d3bd80" font-size="10" font-family="JetBrains Mono,monospace">DIÁSTOLE</text>
+        <text x="437" y="18" text-anchor="middle" fill="#ffffff50" font-size="10" font-family="JetBrains Mono,monospace">SÍSTOLE</text>
+        <text x="612" y="18" text-anchor="middle" fill="#00d3bd80" font-size="10" font-family="JetBrains Mono,monospace">DIÁSTOLE</text>
+        <!-- Baseline aortic waveform (2 beats without BIA) -->
+        <path d="M0,130 C20,130 30,40 50,35 C60,32 65,70 70,90 C80,120 100,125 130,130 C150,133 160,85 175,80 C185,76 185,76 185,80 C200,120 220,150 240,130 C260,110 265,75 280,85 C290,95 295,80 310,70 C320,60 330,120 350,130 C370,133 380,85 395,80 C405,76 405,76 405,80 C420,120 440,150 460,130 C480,110 485,75 500,85 C510,95 515,80 530,70 C540,60 550,120 570,130 C580,133 590,100 600,130 C620,133 640,133 700,133" stroke="#ffffff25" stroke-width="1.5" fill="none" stroke-dasharray="4,3"/>
+        <!-- BIA-assisted waveform -->
+        <!-- Beat 1: normal systole, augmented diastole with assisted deflation -->
+        <path d="M0,133 C20,133 30,40 50,35 C60,32 65,70 70,90 C75,110 80,130 100,135
+                 C110,136 120,136 130,135
+                 C140,134 150,80 170,55 C180,44 188,50 192,60
+                 C200,80 220,165 240,133
+                 C260,110 265,80 280,90 C290,100 295,80 310,72 C320,62 330,125 350,133
+                 C360,135 370,80 390,55 C400,44 408,50 412,60
+                 C420,80 440,165 460,133
+                 C480,110 485,80 500,90 C510,100 515,80 530,72 C540,62 550,125 570,133
+                 C585,133 640,133 700,133"
+              stroke="#00d3bd" stroke-width="2.5" fill="url(#gAo)" fill-opacity=".3"/>
+        <!-- Diastolic augmentation label -->
+        <text x="178" y="46" text-anchor="middle" fill="#fbbf24" font-size="9" font-family="JetBrains Mono,monospace">PDA augmentada</text>
+        <line x1="178" y1="50" x2="178" y2="60" stroke="#fbbf24" stroke-width="1" stroke-dasharray="2,2"/>
+        <!-- PSA label -->
+        <text x="265" y="175" text-anchor="middle" fill="#00d3bd" font-size="9" font-family="JetBrains Mono,monospace">↓ PSA</text>
+        <!-- PDAF label -->
+        <text x="230" y="170" text-anchor="middle" fill="#4ade80" font-size="9" font-family="JetBrains Mono,monospace">↓ PDAF</text>
+        <!-- Legend -->
+        <line x1="20" y1="192" x2="50" y2="192" stroke="#ffffff40" stroke-width="1.5" stroke-dasharray="4,3"/>
+        <text x="55" y="196" fill="#ffffff60" font-size="9" font-family="JetBrains Mono,monospace">Sem BIA</text>
+        <line x1="120" y1="192" x2="150" y2="192" stroke="#00d3bd" stroke-width="2"/>
+        <text x="155" y="196" fill="#00d3bd" font-size="9" font-family="JetBrains Mono,monospace">Com BIA</text>
+      </svg>
+    </div>
+    <div class="info-teal info-box">
+      <span class="info-box-icon">💡</span>
+      <div><strong>Leitura do gráfico:</strong> PDA = Pressão Diastólica Aumentada (pico assistido) · PSA = Pressão Sistólica Assistida (queda de pós-carga) · PDAF = Pressão Diastólica Aórtica Final (queda por deflação rápida). A linha tracejada representa o padrão sem assistência.</div>
+    </div>
+  </div>
+
+  <!-- Mecanismo em fases -->
+  <div class="section-label" style="margin-top:1.5rem;">Fases do Ciclo</div>
+  <div class="mech-phases">
+    <div class="mech-phase">
+      <div class="mech-phase-title" style="color:var(--teal);">🫀 Insuflação (Diástole)</div>
+      <ul>
+        <li>Ocorre ao fechamento da valva aórtica (incisura dicrótica)</li>
+        <li>Inflação com hélio: 25–50 mL em ~150–200 ms</li>
+        <li>↑ Pressão diastólica aórtica (PDA): +10 a +30 mmHg</li>
+        <li>↑ Perfusão coronariana diastólica (80% do fluxo coronário)</li>
+        <li>↑ Pressão de perfusão coronária (CoPP = PDA − PCWP)</li>
+        <li>↑ Fluxo em coronárias com estenoses críticas</li>
+      </ul>
+    </div>
+    <div class="mech-phase">
+      <div class="mech-phase-title" style="color:#fbbf24;">💨 Deflação Rápida (Pré-sístole)</div>
+      <ul>
+        <li>Ocorre imediatamente antes da abertura da valva aórtica</li>
+        <li>Cria vácuo aórtico de −5 a −15 mmHg</li>
+        <li>↓ Pressão diastólica final aórtica (PDAF) = ↓ pós-carga</li>
+        <li>↓ Tensão da parede ventricular (↓ VO₂ miocárdico ~10–15%)</li>
+        <li>↑ Volume sistólico por Starling reverso</li>
+        <li>↑ Débito cardíaco ~0,3–0,5 L/min (leve)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Efeitos hemodinâmicos quantificados -->
+  <div class="section-label">Efeitos Hemodinâmicos</div>
+  <div class="stat-grid" style="margin-top:.5rem;">
+    <div class="stat-cell">
+      <div class="stat-label">↑ DC estimado</div>
+      <div class="stat-value">0,3–0,5</div>
+      <div class="stat-unit">L/min</div>
+      <div class="stat-note">Aumento modesto, FC-dependente</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-label">↓ PCP / PCWP</div>
+      <div class="stat-value">10–15</div>
+      <div class="stat-unit">%</div>
+      <div class="stat-note">Redução de congestão pulmonar</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-label">↑ CoPP</div>
+      <div class="stat-value">+15–25</div>
+      <div class="stat-unit">mmHg</div>
+      <div class="stat-note">Pressão de perfusão coronária</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-label">↓ VO₂ mio.</div>
+      <div class="stat-value">10–15</div>
+      <div class="stat-unit">%</div>
+      <div class="stat-note">↓ Tensão de parede sistólica</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-label">↓ LVEDP</div>
+      <div class="stat-value">5–10</div>
+      <div class="stat-unit">mmHg</div>
+      <div class="stat-note">↓ Pressão diastólica final VE</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-label">FC ideal</div>
+      <div class="stat-value">60–80</div>
+      <div class="stat-unit">bpm</div>
+      <div class="stat-note">Eficácia máxima</div>
+    </div>
+  </div>
+
+  <!-- Anatomia e posicionamento -->
+  <hr class="section-divider"/>
+  <div class="section-label">Anatomia do Dispositivo</div>
+  <div class="card" style="margin-top:.5rem;">
+    <div class="card-header">
+      <div class="card-icon">🔩</div>
+      <div>
+        <div class="card-title">Componentes e Posicionamento</div>
+        <div class="card-subtitle">Cateter + balão de poliuretano · Hélio como gás propulsor</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
+      <div>
+        <div style="font-size:.8rem;font-weight:700;margin-bottom:.5rem;color:var(--teal);">Cateter</div>
+        <ul style="list-style:none;">
+          <li style="font-size:.8rem;line-height:1.7;padding-left:.75rem;position:relative;">
+            <span style="position:absolute;left:0;color:var(--teal);">›</span>Calibre 7,5–8 French (com bainha); opções sem bainha 7F
+          </li>
+          <li style="font-size:.8rem;line-height:1.7;padding-left:.75rem;position:relative;">
+            <span style="position:absolute;left:0;color:var(--teal);">›</span>Duplo lúmen: gás + fio-guia/monitorização de pressão central
+          </li>
+          <li style="font-size:.8rem;line-height:1.7;padding-left:.75rem;position:relative;">
+            <span style="position:absolute;left:0;color:var(--teal);">›</span>Radiopaco nas extremidades para posicionamento fluoroscópico
+          </li>
+          <li style="font-size:.8rem;line-height:1.7;padding-left:.75rem;position:relative;">
+            <span style="position:absolute;left:0;color:var(--teal);">›</span>Comprimento efetivo ~70–90 cm (acesso femoral)
+          </li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-size:.8rem;font-weight:700;margin-bottom:.5rem;color:#fbbf24;">Balão</div>
+        <ul style="list-style:none;">
+          <li style="font-size:.8rem;line-height:1.7;padding-left:.75rem;position:relative;">
+            <span style="position:absolute;left:0;color:#fbbf24;">›</span>Poliuretano de baixa resistência → inflação/deflação rápida
+          </li>
+          <li style="font-size:.8rem;line-height:1.7;padding-left:.75rem;position:relative;">
+            <span style="position:absolute;left:0;color:#fbbf24;">›</span>Volumes: 25, 34, 40, 50 mL (escolha por estatura)
+          </li>
+          <li style="font-size:.8rem;line-height:1.7;padding-left:.75rem;position:relative;">
+            <span style="position:absolute;left:0;color:#fbbf24;">›</span>Hélio: baixa densidade → resposta cinética rápida, atóxico em caso de ruptura
+          </li>
+          <li style="font-size:.8rem;line-height:1.7;padding-left:.75rem;position:relative;">
+            <span style="position:absolute;left:0;color:#fbbf24;">›</span>Membrana: ocupa ~80–90% da aorta descendente para máximo deslocamento de volume
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="info-amber info-box">
+      <span class="info-box-icon">📍</span>
+      <div><strong>Posição correta:</strong> ponta do cateter 2 cm distal à origem da artéria subclávia esquerda (carina da artéria subclávia = reparo fluoroscópico). Radiograficamente: entre o 2º e 3º espaço intercostal. A extremidade distal deve ficar proximal à artéria renal. Confirmar com fluoroscopia ou RX de tórax.</div>
+    </div>
+    <div class="info-red info-box" style="margin-bottom:0;">
+      <span class="info-box-icon">⚠️</span>
+      <div><strong>Erros críticos de posicionamento:</strong> posição alta → oclusão da subclávia esquerda (isquemia de membro superior) · posição baixa → obstrução da artéria renal ou celíaca · balão muito curto para o calibre aórtico → augmentação inadequada.</div>
+    </div>
+  </div>
+
+</div><!-- /tab-fund -->
+
+<!-- ═══════════════════════════════════════════════════════════
+     TAB 2 — EVIDÊNCIAS
+══════════════════════════════════════════════════════════════ -->
+<div id="tab-evid" class="tab-panel">
+
+  <div class="section-label">Evidências Clínicas</div>
+  <div class="section-title" style="margin-bottom:.5rem;">Principais Trials</div>
+  <p style="font-size:.85rem;color:var(--muted-foreground);margin-bottom:2rem;">A trajetória das evidências do BIA representa uma das maiores revisões de paradigma da cardiologia intervencionista moderna: de uso quase universal no choque cardiogênico pós-IAM à restrição baseada em ausência de benefício clínico em estudos randomizados.</p>
+
+  <!-- IABP-SHOCK II -->
+  <div class="trial-card">
+    <div class="trial-header">
+      <div>
+        <div class="trial-name">IABP-SHOCK II</div>
+        <div class="trial-journal">NEJM 2012 · Thiele H et al. · N=600 · RCT multicêntrico alemão</div>
+      </div>
+      <div class="trial-result neutral">HR 1,01</div>
+    </div>
+    <div class="trial-body">
+      <strong style="display:block;margin-bottom:.4rem;">Desfecho primário: mortalidade 30 dias</strong>
+      BIA vs. terapia convencional em choque cardiogênico pós-IAM submetidos à PCI primária. Mortalidade 30d: 39,7% BIA vs 41,3% controle (p=0,69). Ausência de benefício também para parâmetros hemodinâmicos, hemolíticos e renais. Follow-up de 6 e 12 meses confirmou resultado neutro. Este estudo foi a principal evidência que levou ao downgrade das diretrizes.
+    </div>
+    <div class="trial-meta">
+      <span class="badge badge-red">Neutro: sem benefício em mortalidade</span>
+      <span class="badge badge-gray">Choque cardiogênico pós-IAM</span>
+      <span class="badge badge-gray">PCI primária</span>
+    </div>
+  </div>
+
+  <!-- CRISP AMI -->
+  <div class="trial-card">
+    <div class="trial-header">
+      <div>
+        <div class="trial-name">CRISP AMI</div>
+        <div class="trial-journal">JAMA 2011 · Patel MR et al. · N=337 · RCT multicêntrico</div>
+      </div>
+      <div class="trial-result neutral">Neutro</div>
+    </div>
+    <div class="trial-body">
+      <strong style="display:block;margin-bottom:.4rem;">BIA profilático no IAMCSST anterior extenso sem choque</strong>
+      Avaliou BIA pré-PCI em IAMCSST anterior de alto risco (TIMI &lt;3, DA proximal) sem choque. Desfecho primário: tamanho do infarto por RNM (% massa VE). BIA não reduziu o tamanho do infarto (37,5% vs 40,1%, p=0,18) nem melhorou fração de ejeção. Elevou taxa de complicações vasculares.
+    </div>
+    <div class="trial-meta">
+      <span class="badge badge-red">Sem redução de tamanho do infarto</span>
+      <span class="badge badge-amber">↑ Complicações vasculares</span>
+      <span class="badge badge-gray">IAMCSST anterior sem choque</span>
+    </div>
+  </div>
+
+  <!-- BCIS-1 -->
+  <div class="trial-card">
+    <div class="trial-header">
+      <div>
+        <div class="trial-name">BCIS-1</div>
+        <div class="trial-journal">JAMA 2010 · Perera D et al. · N=301 · RCT Reino Unido</div>
+      </div>
+      <div class="trial-result neutral">HR 0,82</div>
+    </div>
+    <div class="trial-body">
+      <strong style="display:block;margin-bottom:.4rem;">BIA profilático na PCI eletiva de alto risco (FEVE ≤30%)</strong>
+      Pacientes com disfunção severa de VE (FEVE ≤30%) submetidos a PCI eletiva de alto risco. BIA não reduziu MACCE intraprocedimento nem hospitalares. Trending de redução de mortalidade em 5 anos (HR 0,82, p=0,23) — não significativa. Estudo underpowered para mortalidade a longo prazo.
+    </div>
+    <div class="trial-meta">
+      <span class="badge badge-amber">Trending de benefício a longo prazo não significativo</span>
+      <span class="badge badge-gray">PCI eletiva alto risco</span>
+      <span class="badge badge-gray">FEVE ≤30%</span>
+    </div>
+  </div>
+
+  <!-- ISAR-SHOCK -->
+  <div class="trial-card">
+    <div class="trial-header">
+      <div>
+        <div class="trial-name">ISAR-SHOCK</div>
+        <div class="trial-journal">JACC 2008 · Seyfarth M et al. · N=26 · RCT piloto</div>
+      </div>
+      <div class="trial-result positive">Impella &gt; BIA</div>
+    </div>
+    <div class="trial-body">
+      <strong style="display:block;margin-bottom:.4rem;">BIA vs. Impella 2.5 no choque cardiogênico</strong>
+      Trial piloto randômico comparando BIA vs Impella 2.5 no choque cardiogênico pós-IAM. Impella 2.5 produziu maior índice cardíaco (IC) em 30 min (0,49 vs 0,11 L/min/m², p=0,02). Sem diferença em mortalidade 30d. Estudo piloto, sem poder estatístico para desfechos clínicos.
+    </div>
+    <div class="trial-meta">
+      <span class="badge badge-teal">Impella: maior suporte hemodinâmico</span>
+      <span class="badge badge-gray">N=26 (piloto)</span>
+      <span class="badge badge-gray">Sem diferença em mortalidade</span>
+    </div>
+  </div>
+
+  <!-- DanGer Shock 2024 -->
+  <div class="trial-card" style="border-color:rgba(74,222,128,.3);">
+    <div class="trial-header">
+      <div>
+        <div class="trial-name">DanGer Shock</div>
+        <div class="trial-journal">NEJM 2024 · Møller JE et al. · N=360 · RCT multicêntrico (Dinamarca/UK/Alemanha)</div>
+      </div>
+      <div class="trial-result positive">RR 0,84</div>
+    </div>
+    <div class="trial-body">
+      <strong style="display:block;margin-bottom:.4rem;">Impella CP vs. terapia convencional no choque cardiogênico pós-IAMCSST</strong>
+      O mais importante RCT de suporte circulatório mecânico de 2024. Impella CP reduziu mortalidade por todas as causas em 180 dias: 45,8% vs 58,5% (RR 0,84; IC95% 0,72–0,98; p=0,03) — NNT ~8. Importante: BIA <em>não</em> era o comparador principal, mas o estudo sinaliza a transição para dispositivos de maior suporte. Benefício consistente em subgrupos (IAM anterior, Killip IV).
+    </div>
+    <div class="trial-meta">
+      <span class="badge badge-green">✓ Positivo: Impella CP reduz mortalidade</span>
+      <span class="badge badge-teal">NNT ~8 em 180 dias</span>
+      <span class="badge badge-gray">Choque pós-IAMCSST</span>
+      <span class="badge badge-gray">NEJM 2024</span>
+    </div>
+  </div>
+
+  <!-- PROTECT II -->
+  <div class="trial-card">
+    <div class="trial-header">
+      <div>
+        <div class="trial-name">PROTECT II</div>
+        <div class="trial-journal">Circulation 2012 · O'Neill WW et al. · N=452 · RCT</div>
+      </div>
+      <div class="trial-result neutral">Neutro (30d)</div>
+    </div>
+    <div class="trial-body">
+      <strong style="display:block;margin-bottom:.4rem;">Impella 2.5 vs. BIA na PCI eletiva não emergencial de alto risco</strong>
+      Pacientes com disfunção multivascular + FEVE ≤35% ou doença de TCE + FEVE ≤30%. Desfecho primário (MACCE 30d): sem diferença (35,1% vs 40,1%, p=0,23). Em análise por protocolo: Impella 2.5 superior (RR 0,62, p=0,02). Estudo interrompido precocemente. Reforça escolha de Impella sobre BIA na PCI eletiva de alto risco, quando disponível.
+    </div>
+    <div class="trial-meta">
+      <span class="badge badge-amber">Neutro na ITT; benefício na análise por protocolo</span>
+      <span class="badge badge-gray">PCI eletiva alto risco</span>
+    </div>
+  </div>
+
+  <!-- Meta-análise -->
+  <div class="section-label" style="margin-top:2rem;">Meta-análises e Síntese</div>
+  <div class="card" style="margin-top:.5rem;">
+    <div class="card-header">
+      <div class="card-icon">📊</div>
+      <div>
+        <div class="card-title">Cochrane Review 2020 · Unverzagt et al.</div>
+        <div class="card-subtitle">12 RCTs, N&gt;2.000 — Suporte circulatório mecânico no choque cardiogênico</div>
+      </div>
+    </div>
+    <p style="font-size:.83rem;line-height:1.65;margin-bottom:1rem;">Meta-análise Cochrane incluindo IABP-SHOCK II, CRISP AMI, BCIS-1 e outros. Conclusão principal: <strong>BIA não reduz mortalidade de curto ou longo prazo</strong> em choque cardiogênico versus terapia convencional (RR 0,96, IC95% 0,88–1,05). Evidência de certeza moderada. Não há subgrupo identificado que se beneficie claramente.</p>
+    <div class="info-amber info-box">
+      <span class="info-box-icon">⚠️</span>
+      <div><strong>Limitação crítica dos trials:</strong> todos os grandes RCTs foram realizados antes do uso sistemático do staging SCAI e sem estratificação por índice cardíaco ou lactato. É possível que subgrupos específicos (estágio D/E, choque refratário à vasopressina) respondam diferentemente — mas faltam dados prospectivos.</div>
+    </div>
+  </div>
+
+  <!-- Evolução das diretrizes -->
+  <div class="section-label" style="margin-top:1.5rem;">Evolução das Diretrizes</div>
+  <div class="card" style="margin-top:.5rem;overflow-x:auto;">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Diretriz</th>
+          <th>Indicação BIA no Choque</th>
+          <th>Classe / LOE</th>
+          <th>Contexto</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>ACC/AHA 2004</td>
+          <td>Uso rotineiro recomendado no choque cardiogênico pós-IAM</td>
+          <td><span class="badge badge-green">I / B</span></td>
+          <td>Pré-IABP-SHOCK II</td>
+        </tr>
+        <tr>
+          <td>ESC STEMI 2012</td>
+          <td>Downgrade após publicação do IABP-SHOCK II</td>
+          <td><span class="badge badge-amber">IIb / B</span></td>
+          <td>Pós-IABP-SHOCK II</td>
+        </tr>
+        <tr>
+          <td>ESC IC 2016</td>
+          <td>Pode ser considerado como ponte para decisão</td>
+          <td><span class="badge badge-amber">IIb / C</span></td>
+          <td>Falta de evidência</td>
+        </tr>
+        <tr>
+          <td>ESC STEMI 2017</td>
+          <td>Não recomendado rotineiramente no choque pós-IAMCSST</td>
+          <td><span class="badge badge-red">III / B</span></td>
+          <td>Baseado em IABP-SHOCK II</td>
+        </tr>
+        <tr>
+          <td>ACC/AHA PCI 2022</td>
+          <td>BIA: pode ser razoável nas complicações mecânicas do IAM</td>
+          <td><span class="badge badge-teal">IIa / C</span></td>
+          <td>Nicho residual</td>
+        </tr>
+        <tr>
+          <td>ESC IC 2023</td>
+          <td>BIA: uso rotineiro no choque NÃO recomendado; Impella preferível quando disponível</td>
+          <td><span class="badge badge-red">III / A (rotina)</span></td>
+          <td>Pós-DanGer Shock</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div><!-- /tab-evid -->
+
+<!-- ═══════════════════════════════════════════════════════════
+     TAB 3 — INDICAÇÕES
+══════════════════════════════════════════════════════════════ -->
+<div id="tab-indic" class="tab-panel">
+
+  <div class="section-label">Indicações Atuais</div>
+  <div class="section-title" style="margin-bottom:.5rem;">Baseadas nas Diretrizes ESC 2023 e ACC/AHA 2022</div>
+
+  <div class="info-teal info-box" style="margin-top:.75rem;">
+    <span class="info-box-icon">💡</span>
+    <div>O nicho clínico do BIA em 2024 é <strong>mais restrito</strong> que no passado. O dispositivo tem valor como estabilizador temporário, como ponte para decisão/upgrade de suporte, e nas complicações mecânicas do IAM — contextos onde a evidência negativa dos grandes trials não se aplica diretamente.</div>
+  </div>
+
+  <div class="card" style="margin-top:1rem;">
+    <div class="card-header">
+      <div class="card-icon">✅</div>
+      <div>
+        <div class="card-title">Indicações com Suporte de Diretrizes</div>
+      </div>
+    </div>
+
+    <div class="rec-row">
+      <div class="rec-class rec-IIa">IIa / C</div>
+      <div class="rec-body">
+        <div class="rec-text"><strong>Complicações mecânicas agudas do IAM:</strong> Comunicação interventricular aguda (CIV pós-IAM) e insuficiência mitral aguda grave por ruptura de músculo papilar. O BIA estabiliza hemodinamicamente como ponte obrigatória para cirurgia ou implante de ECMO/Impella. Neste contexto, o benefício fisiológico (↓ pós-carga VE, ↓ shunt CIV) é biologicamente plausível e clinicamente relevante, mesmo sem RCT dedicado.</div>
+        <div class="rec-loe">ACC/AHA Revascularization 2022 · ESC STEMI 2023</div>
+      </div>
+    </div>
+
+    <div class="rec-row">
+      <div class="rec-class rec-IIb">IIb / B</div>
+      <div class="rec-body">
+        <div class="rec-text"><strong>Choque cardiogênico como ponte para decisão:</strong> Quando Impella ou VA-ECMO não estão imediatamente disponíveis e o paciente necessita de estabilização hemodinâmica urgente para ser transferido ou enquanto se aguarda implante do dispositivo definitivo. Pode ser considerado em centros sem Impella disponível 24/7.</div>
+        <div class="rec-loe">ESC IC 2023 · ACC/AHA 2022 · Consenso de especialistas</div>
+      </div>
+    </div>
+
+    <div class="rec-row">
+      <div class="rec-class rec-IIb">IIb / C</div>
+      <div class="rec-body">
+        <div class="rec-text"><strong>PCI eletiva de alto risco sem Impella disponível:</strong> Pacientes com FEVE severamente deprimida (&lt;30%), doença multivascular complexa ou TCE, onde o benefício hemodinâmico intraprocedimento pode reduzir risco de colapso. Preferir Impella quando disponível (evidência PROTECT II).</div>
+        <div class="rec-loe">ACC/AHA PCI 2022 · ESC Revascularization 2019</div>
+      </div>
+    </div>
+
+    <div class="rec-row">
+      <div class="rec-class rec-IIb">IIb / C</div>
+      <div class="rec-body">
+        <div class="rec-text"><strong>Miocardite fulminante com disfunção severa de VE:</strong> Como ponte para recuperação ou transplante. Pode ser considerado na fase aguda antes de decisão sobre suporte ventricular de longa duração (LVAD) ou transplante. A fisiopatologia da miocardite (VE dilatado, baixo DC, preservação do ritmo) pode favorecer a resposta ao BIA.</div>
+        <div class="rec-loe">Consenso EACTS/ESC SCM 2023</div>
+      </div>
+    </div>
+
+    <div class="rec-row" style="border-bottom:none;">
+      <div class="rec-class rec-III">III / A</div>
+      <div class="rec-body">
+        <div class="rec-text"><strong>NÃO RECOMENDADO: Uso rotineiro no choque cardiogênico pós-IAM.</strong> Baseado no IABP-SHOCK II (NEJM 2012) e meta-análise Cochrane 2020 — sem benefício em mortalidade. O choque cardiogênico pós-IAMCSST deve ser manejado com Impella CP (DanGer Shock 2024) ou VA-ECMO como suporte preferencial em centros com capacidade técnica.</div>
+        <div class="rec-loe">ESC STEMI 2023 · Classe III Evidência A</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contraindicações -->
+  <hr class="section-divider"/>
+  <div class="section-label">Contraindicações</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.75rem;">
+    <div class="card">
+      <div class="card-header" style="margin-bottom:1rem;">
+        <div class="card-icon" style="background:rgba(220,38,38,.15);color:#f87171;">🚫</div>
+        <div>
+          <div class="card-title">Absolutas</div>
+          <div class="card-subtitle">Contraindicam o implante</div>
+        </div>
+      </div>
+      <ul style="list-style:none;">
+        <li style="font-size:.82rem;line-height:1.75;padding-left:.75rem;position:relative;"><span style="position:absolute;left:0;color:#f87171;">✗</span>Insuficiência aórtica ≥ moderada (regurgitação sistólica durante insuflação, ↑ LVEDP)</li>
+        <li style="font-size:.82rem;line-height:1.75;padding-left:.75rem;position:relative;"><span style="position:absolute;left:0;color:#f87171;">✗</span>Dissecção aórtica (qualquer tipo, especialmente tipo A)</li>
+        <li style="font-size:.82rem;line-height:1.75;padding-left:.75rem;position:relative;"><span style="position:absolute;left:0;color:#f87171;">✗</span>Aneurisma aórtico abdominal significativo ou torácico</li>
+        <li style="font-size:.82rem;line-height:1.75;padding-left:.75rem;position:relative;"><span style="position:absolute;left:0;color:#f87171;">✗</span>Doença aortoilíaca oclusiva grave bilateral (sem acesso viável)</li>
+        <li style="font-size:.82rem;line-height:1.75;padding-left:.75rem;position:relative;"><span style="position:absolute;left:0;color:#f87171;">✗</span>Coagulopatia grave não corrigível (risco de sangramento catastrófico)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-header" style="margin-bottom:1rem;">
+        <div class="card-icon" style="background:rgba(251,191,36,.12);color:#fbbf24;">⚠️</div>
+        <div>
+          <div class="card-title">Relativas</div>
+          <div class="card-subtitle">Avaliar risco-benefício</div>
+        </div>
+      </div>
+      <ul style="list-style:none;">
+        <li style="font-size:.82rem;line-height:1.75;padding-left:.75rem;position:relative;"><span style="position:absolute;left:0;color:#fbbf24;">△</span>Doença arterial periférica bilateral grave (acesso femoral comprometido — considerar acesso axilar)</li>
+        <li style="font-size:.82rem;line-height:1.75;padding-left:.75rem;position:relative;"><span style="position:absolute;left:0;color:#fbbf24;">△</span>Taquicardia &gt;120 bpm ou arritmia irregular grave (↓ eficácia da contrapulsação)</li>
+        <li style="font-size:.82rem;line-height:1.75;padding-left:.75rem;position:relative;"><span style="position:absolute;left:0;color:#fbbf24;">△</span>Insuficiência aórtica leve isolada (aceitável com monitorização)</li>
+        <li style="font-size:.82rem;line-height:1.75;padding-left:.75rem;position:relative;"><span style="position:absolute;left:0;color:#fbbf24;">△</span>Gravidez (uso em situações de risco de vida)</li>
+        <li style="font-size:.82rem;line-height:1.75;padding-left:.75rem;position:relative;"><span style="position:absolute;left:0;color:#fbbf24;">△</span>Sepse com foco não controlado (risco de trombose do cateter + infecção)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Complicações -->
+  <hr class="section-divider"/>
+  <div class="section-label">Complicações</div>
+  <div class="card" style="margin-top:.75rem;overflow-x:auto;">
+    <table class="compare-table">
+      <thead>
+        <tr><th>Complicação</th><th>Incidência</th><th>Fatores de Risco</th><th>Manejo</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Isquemia de membro inferior</strong></td>
+          <td><span class="badge badge-red">3–7%</span></td>
+          <td>DAP, DM, acesso sem bainha, menor calibre arterial</td>
+          <td>Remover BIA; fasciotomia se necessário; acesso contralateral</td>
+        </tr>
+        <tr>
+          <td><strong>Sangramento vascular</strong></td>
+          <td><span class="badge badge-amber">5–10%</span></td>
+          <td>Anticoagulação, sítio de acesso, dificuldade técnica</td>
+          <td>Compressão manual/mecânica; plugue vascular; cirurgia</td>
+        </tr>
+        <tr>
+          <td><strong>Trombocitopenia</strong></td>
+          <td><span class="badge badge-amber">5–15%</span></td>
+          <td>Duração prolongada &gt;72h, contato mecânico com plaquetas</td>
+          <td>Monitorar plaquetas diariamente; considerar remoção se &lt;50k</td>
+        </tr>
+        <tr>
+          <td><strong>Ruptura do balão</strong></td>
+          <td><span class="badge badge-teal">&lt;1%</span></td>
+          <td>Calcificação aórtica intensa, uso prolongado</td>
+          <td>Remoção imediata (risco de embolia de hélio e coágulos)</td>
+        </tr>
+        <tr>
+          <td><strong>Embolia/AVC</strong></td>
+          <td><span class="badge badge-teal">&lt;1%</span></td>
+          <td>Calcificação aórtica, anticoagulação inadequada</td>
+          <td>Anticoagulação adequada; posicionamento correto</td>
+        </tr>
+        <tr>
+          <td><strong>Infecção do cateter</strong></td>
+          <td><span class="badge badge-teal">1–2%</span></td>
+          <td>Duração &gt;7 dias, imunossupressão</td>
+          <td>Remover BIA; antibioticoterapia</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Desmame -->
+  <hr class="section-divider"/>
+  <div class="section-label">Protocolo de Desmame</div>
+  <div class="info-gray info-box" style="margin-top:.75rem;">
+    <span class="info-box-icon">📋</span>
+    <div>Critérios para iniciar desmame: PAS &gt;90 mmHg sem/mínima amina vasopressora, IC &gt;2,0 L/min/m², ausência de sinais de baixo débito, reversão da causa precipitante. <strong>Não manter em 1:3 por tempo prolongado</strong> — risco de trombose do balão.</div>
+  </div>
+
+  <div style="max-width:480px;margin-top:.75rem;">
+    <div class="weaning-step">
+      <div class="weaning-num">1:1</div>
+      <div class="weaning-text"><strong>Ratio 1:1</strong> — assistência em cada batimento cardíaco. Avaliação clínica e hemodinâmica basal.</div>
+    </div>
+    <div class="weaning-arrow">↓ aguardar 30–60 min de tolerância</div>
+    <div class="weaning-step">
+      <div class="weaning-num">1:2</div>
+      <div class="weaning-text"><strong>Ratio 1:2</strong> — assistência a cada 2 batimentos. Monitorar PA, FC e sinais de descompensação.</div>
+    </div>
+    <div class="weaning-arrow">↓ aguardar 30–60 min de tolerância</div>
+    <div class="weaning-step">
+      <div class="weaning-num">1:3</div>
+      <div class="weaning-text"><strong>Ratio 1:3</strong> — assistência mínima. Máximo 30–60 min neste estágio antes da retirada.</div>
+    </div>
+    <div class="weaning-arrow">↓ tolerância mantida</div>
+    <div class="weaning-step" style="border-color:rgba(0,211,189,.3);">
+      <div class="weaning-num" style="background:var(--teal);color:#000;">✓</div>
+      <div class="weaning-text"><strong>Remoção do BIA</strong> — hemostasia por compressão manual 30–45 min ou dispositivo de oclusão arterial. Manter repouso 4–6h pós-retirada. Verificar pulso distal.</div>
+    </div>
+  </div>
+
+</div><!-- /tab-indic -->
+
+<!-- ═══════════════════════════════════════════════════════════
+     TAB 4 — CONFIGURAÇÃO
+══════════════════════════════════════════════════════════════ -->
+<div id="tab-config" class="tab-panel">
+
+  <div class="section-label">Configuração Técnica</div>
+  <div class="section-title" style="margin-bottom:1.5rem;">Seleção, Implante e Parâmetros</div>
+
+  <!-- Seleção de tamanho -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📏</div>
+      <div>
+        <div class="card-title">Seleção do Tamanho do Balão</div>
+        <div class="card-subtitle">Baseada na estatura do paciente — critério primário</div>
+      </div>
+    </div>
+    <table class="sizing-table" style="margin-bottom:1rem;">
+      <thead>
+        <tr><th>Estatura</th><th>Volume do Balão</th><th>Cateter (French)</th><th>Observação</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-family:var(--font-mono);">&lt; 152 cm</td>
+          <td><span class="badge badge-gray">25 mL</span></td>
+          <td style="font-family:var(--font-mono);">7,5–8F</td>
+          <td>Balão mais curto; menor augmentação diastólica</td>
+        </tr>
+        <tr>
+          <td style="font-family:var(--font-mono);">152–162 cm</td>
+          <td><span class="badge badge-teal">34 mL</span></td>
+          <td style="font-family:var(--font-mono);">7,5–8F</td>
+          <td>Tamanho intermediário</td>
+        </tr>
+        <tr>
+          <td style="font-family:var(--font-mono);">162–183 cm</td>
+          <td><span class="badge badge-teal">40 mL</span></td>
+          <td style="font-family:var(--font-mono);">7,5–8F</td>
+          <td><strong>Tamanho mais frequente em adultos</strong></td>
+        </tr>
+        <tr>
+          <td style="font-family:var(--font-mono);">&gt; 183 cm</td>
+          <td><span class="badge badge-amber">50 mL</span></td>
+          <td style="font-family:var(--font-mono);">8–8,5F</td>
+          <td>Calibre aórtico maior necessário; confirmar com aortografia</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="info-amber info-box" style="margin-bottom:0;">
+      <span class="info-box-icon">📐</span>
+      <div><strong>Regra de ouro:</strong> o balão inflado deve ocupar 80–90% do diâmetro aórtico. Balão subdimensionado → augmentação inadequada. Balão superdimensionado → trauma da parede aórtica + maior risco de ruptura. Em caso de dúvida, confirmar com aortografia ou ecocardiografia transesofágica.</div>
+    </div>
+  </div>
+
+  <!-- Acesso vascular -->
+  <div class="section-label" style="margin-top:1rem;">Acesso Vascular</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-top:.75rem;">
+    <div class="card" style="margin-bottom:0;">
+      <div style="font-weight:700;font-size:.85rem;margin-bottom:.5rem;color:var(--teal);">🦵 Femoral (padrão)</div>
+      <ul style="list-style:none;">
+        <li style="font-size:.78rem;line-height:1.7;padding-left:.75rem;position:relative;"><span style="position:absolute;left:0;color:var(--teal);">›</span>Acesso de escolha em &gt;90% dos casos</li>
+        <li style="font-size:.78rem;line-height:1.7;padding-left:.75rem;position:relative;"><span style="position:absolute;left:0;color:var(--teal);">›</span>Artéria femoral comum direita preferencial</li>
+        <li style="font-size:.78rem;line-height:1.7;padding-left:.75rem;position:relative;"><span style="position:absolute;left:0;color:var(--teal);">›</span>Com ou sem bainha (sheath-less reduz sangramento)</li>
+        <li style="font-size:.78rem;line-height:1.7;padding-left:.75rem;position:relative;"><span style="position:absolute;left:0;color:var(--teal);">›</span>Limitação: mobilidade restrita do paciente</li>
+      </ul>
+    </div>
+    <div class="card" style="margin-bottom:0;">
+      <div style="font-weight:700;font-size:.85rem;margin-bottom:.5rem;color:#fbbf24;">💪 Axilar esquerda</div>
+      <ul style="list-style:none;">
+        <li style="font-size:.78rem;line-height:1.7;padding-left:.75rem;position:relative;"><span style="position:absolute;left:0;color:#fbbf24;">›</span>Indicação: oclusão aortoilíaca bilateral</li>
+        <li style="font-size:.78rem;line-height:1.7;padding-left:.75rem;position:relative;"><span style="position:absolute;left:0;color:#fbbf24;">›</span>Permite deambulação (vantagem UTI)</li>
+        <li style="font-size:.78rem;line-height:1.7;padding-left:.75rem;position:relative;"><span style="position:absolute;left:0;color:#fbbf24;">›</span>Risco de embolia cerebral e lesão do plexo braquial</li>
+        <li style="font-size:.78rem;line-height:1.7;padding-left:.75rem;position:relative;"><span style="position:absolute;left:0;color:#fbbf24;">›</span>Requer cateter configurado para acesso superior</li>
+      </ul>
+    </div>
+    <div class="card" style="margin-bottom:0;">
+      <div style="font-weight:700;font-size:.85rem;margin-bottom:.5rem;color:var(--muted-foreground);">🏥 Cirúrgico (aórtico)</div>
+      <ul style="list-style:none;">
+        <li style="font-size:.78rem;line-height:1.7;padding-left:.75rem;position:relative;"><span style="position:absolute;left:0;color:var(--muted-foreground);">›</span>Implante direto na aorta ascendente</li>
+        <li style="font-size:.78rem;line-height:1.7;padding-left:.75rem;position:relative;"><span style="position:absolute;left:0;color:var(--muted-foreground);">›</span>Reservado para intraoperatório em cirurgia cardíaca</li>
+        <li style="font-size:.78rem;line-height:1.7;padding-left:.75rem;position:relative;"><span style="position:absolute;left:0;color:var(--muted-foreground);">›</span>Remoção na UTI pós-op por cirurgião</li>
+        <li style="font-size:.78rem;line-height:1.7;padding-left:.75rem;position:relative;"><span style="position:absolute;left:0;color:var(--muted-foreground);">›</span>Via ilíaca: alternativa cirúrgica em DAP</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Anticoagulação -->
+  <div class="section-label" style="margin-top:1.5rem;">Anticoagulação</div>
+  <div class="card" style="margin-top:.5rem;">
+    <div class="card-header">
+      <div class="card-icon">💉</div>
+      <div>
+        <div class="card-title">Protocolo de Anticoagulação</div>
+        <div class="card-subtitle">Necessária para prevenir trombose do cateter e embolia</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+      <div>
+        <div style="font-size:.8rem;font-weight:700;margin-bottom:.5rem;">Padrão (HNF intravenosa)</div>
+        <ul style="list-style:none;">
+          <li style="font-size:.8rem;line-height:1.7;padding-left:.75rem;position:relative;"><span style="position:absolute;left:0;color:var(--teal);">›</span>Heparina não fracionada IV contínua</li>
+          <li style="font-size:.8rem;line-height:1.7;padding-left:.75rem;position:relative;"><span style="position:absolute;left:0;color:var(--teal);">›</span>TTPA alvo: <strong>50–70 segundos</strong> (1,5–2× normal)</li>
+          <li style="font-size:.8rem;line-height:1.7;padding-left:.75rem;position:relative;"><span style="position:absolute;left:0;color:var(--teal);">›</span>ACT alvo intraprocedimento: 200–250 s</li>
+          <li style="font-size:.8rem;line-height:1.7;padding-left:.75rem;position:relative;"><span style="position:absolute;left:0;color:var(--teal);">›</span>Checar TTPA a cada 6 horas e ajustar</li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-size:.8rem;font-weight:700;margin-bottom:.5rem;">Situações especiais</div>
+        <ul style="list-style:none;">
+          <li style="font-size:.8rem;line-height:1.7;padding-left:.75rem;position:relative;"><span style="position:absolute;left:0;color:#fbbf24;">›</span>TIH: substituir por bivalirudina ou argatrobana</li>
+          <li style="font-size:.8rem;line-height:1.7;padding-left:.75rem;position:relative;"><span style="position:absolute;left:0;color:#fbbf24;">›</span>Pós-PCI primária com heparina IC prévia: monitorar sobreposição</li>
+          <li style="font-size:.8rem;line-height:1.7;padding-left:.75rem;position:relative;"><span style="position:absolute;left:0;color:#fbbf24;">›</span>Alto risco hemorrágico: avaliar suspender 12h antes da remoção</li>
+          <li style="font-size:.8rem;line-height:1.7;padding-left:.75rem;position:relative;"><span style="position:absolute;left:0;color:#fbbf24;">›</span>Monitorar plaquetas diariamente (TIH tipo II: queda &gt;50% em 5–10d)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Parâmetros do console -->
+  <div class="section-label" style="margin-top:1rem;">Parâmetros do Console</div>
+  <div class="card" style="margin-top:.5rem;overflow-x:auto;">
+    <table class="sizing-table">
+      <thead>
+        <tr><th>Parâmetro</th><th>Valor Habitual</th><th>Observação Clínica</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Trigger primário</strong></td>
+          <td>ECG (onda R)</td>
+          <td>Padrão em ritmo sinusal estável</td>
+        </tr>
+        <tr>
+          <td><strong>Ratio assistência</strong></td>
+          <td>1:1</td>
+          <td>Máximo suporte; usar durante fase aguda</td>
+        </tr>
+        <tr>
+          <td><strong>Frequência (modo interno)</strong></td>
+          <td>80 bpm</td>
+          <td>Apenas em PCR/assistolia</td>
+        </tr>
+        <tr>
+          <td><strong>Volume de inflação</strong></td>
+          <td>100% (volume nominal)</td>
+          <td>Reduzir somente em caso de hipertensão grave (&gt;200 mmHg)</td>
+        </tr>
+        <tr>
+          <td><strong>Timing inflação</strong></td>
+          <td>Incisura dicrótica</td>
+          <td>Ajuste fino pelo operador — ver aba Timing</td>
+        </tr>
+        <tr>
+          <td><strong>Timing deflação</strong></td>
+          <td>Imediatamente pré-QRS</td>
+          <td>Ajuste visual na curva de pressão arterial</td>
+        </tr>
+        <tr>
+          <td><strong>Alarmes obrigatórios</strong></td>
+          <td>Ruptura do balão, perda de trigger, desconexão</td>
+          <td>Revisão a cada 4h na UTI</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div><!-- /tab-config -->
+
+<!-- ═══════════════════════════════════════════════════════════
+     TAB 5 — TIMING & TRIGGER
+══════════════════════════════════════════════════════════════ -->
+<div id="tab-timing" class="tab-panel">
+
+  <div class="section-label">Tipos de Trigger</div>
+  <div class="section-title" style="margin-bottom:1.5rem;">Seleção do Modo de Disparo</div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem;">
+    <div class="waveform-card">
+      <div class="waveform-title"><span style="color:var(--teal);">📡</span> ECG (Onda R)</div>
+      <div class="waveform-desc">Modo padrão e mais confiável em ritmo sinusal regular. O console detecta o pico da onda R como marcador do início da sístole. Inflação configurada com delay fixo após R (geralmente no nadir da onda T = incisura dicrótica). Deflação antes do próximo QRS.</div>
+      <div class="info-teal info-box" style="margin-bottom:0;">
+        <span class="info-box-icon">✓</span>
+        <div><strong>Indicado em:</strong> ritmo sinusal, bloqueios de ramo, marcapasso com captura estável</div>
+      </div>
+    </div>
+    <div class="waveform-card">
+      <div class="waveform-title"><span style="color:#fbbf24;">📊</span> Pressão Arterial</div>
+      <div class="waveform-desc">Utiliza a curva de pressão arterial invasiva como trigger. Inflação na incisura dicrótica detectada pelo algoritmo de derivada da curva. Menos sensível a artefatos elétricos. Preferível em fibrilação atrial ou arritmias complexas, onde o intervalo R-R é irregular.</div>
+      <div class="info-amber info-box" style="margin-bottom:0;">
+        <span class="info-box-icon">✓</span>
+        <div><strong>Indicado em:</strong> FA, arritmias frequentes, artefato de ECG no hemolab</div>
+      </div>
+    </div>
+    <div class="waveform-card">
+      <div class="waveform-title"><span style="color:#4ade80;">⚡</span> Pacing (MP)</div>
+      <div class="waveform-desc">Detecta a espícula do marcapasso como evento de trigger. Essencial em pacientes com dependência de MP e ritmo lento. Evitar trigger por onda R em pacientes com MP ventricular, pois o algoritmo pode confundir espícula com complexo QRS.</div>
+      <div class="info-green info-box" style="margin-bottom:0;">
+        <span class="info-box-icon">✓</span>
+        <div><strong>Indicado em:</strong> BAV total com MP dependência, MP biventricular</div>
+      </div>
+    </div>
+    <div class="waveform-card">
+      <div class="waveform-title"><span style="color:#f87171;">🔄</span> Interno / Assíncrono</div>
+      <div class="waveform-desc">O console opera em frequência fixa independente de qualquer sinal cardíaco. Utilizado exclusivamente durante PCR (FV, AESP, assistolia) quando não há output cardíaco mensurável. <strong>Não usar em pacientes com ritmo cardíaco presente</strong> — causará timing inadequado e pode ser deletério.</div>
+      <div class="info-red info-box" style="margin-bottom:0;">
+        <span class="info-box-icon">⚠️</span>
+        <div><strong>Indicado apenas em:</strong> PCR em curso · Jamais em coração batendo</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Timing ideal -->
+  <div class="section-label">Timing Ideal</div>
+  <div class="card" style="margin-top:.5rem;">
+    <div class="card-header">
+      <div class="card-icon">⏱️</div>
+      <div>
+        <div class="card-title">Princípios do Timing Perfeito</div>
+        <div class="card-subtitle">Ajuste visual na curva de pressão arterial em 1:2</div>
+      </div>
+    </div>
+    <div class="info-teal info-box">
+      <span class="info-box-icon">💡</span>
+      <div><strong>Método de ajuste:</strong> sempre avaliar timing com o ratio em 1:2 — assim é possível comparar o batimento assistido com o não-assistido lado a lado na mesma curva de PA. A curva ideal deve mostrar: (1) PDA &gt; PSU, (2) PDAF &lt; PD basal, (3) PSA ≤ PSU.</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.75rem;">
+      <div>
+        <div style="font-size:.82rem;font-weight:700;margin-bottom:.5rem;color:var(--teal);">INSUFLAÇÃO IDEAL</div>
+        <ul style="list-style:none;">
+          <li style="font-size:.8rem;line-height:1.75;padding-left:.75rem;position:relative;"><span style="position:absolute;left:0;color:var(--teal);">›</span>Deve ocorrer exatamente na incisura dicrótica</li>
+          <li style="font-size:.8rem;line-height:1.75;padding-left:.75rem;position:relative;"><span style="position:absolute;left:0;color:var(--teal);">›</span>A incisura dicrótica representa o fechamento da valva aórtica</li>
+          <li style="font-size:.8rem;line-height:1.75;padding-left:.75rem;position:relative;"><span style="position:absolute;left:0;color:var(--teal);">›</span>Insuflação imediatamente após: máxima augmentação diastólica</li>
+          <li style="font-size:.8rem;line-height:1.75;padding-left:.75rem;position:relative;"><span style="position:absolute;left:0;color:var(--teal);">›</span>Critério gráfico: PDA forma uma "V" aguda sobre a incisura, subindo abruptamente</li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-size:.82rem;font-weight:700;margin-bottom:.5rem;color:#fbbf24;">DEFLAÇÃO IDEAL</div>
+        <ul style="list-style:none;">
+          <li style="font-size:.8rem;line-height:1.75;padding-left:.75rem;position:relative;"><span style="position:absolute;left:0;color:#fbbf24;">›</span>Deve ocorrer imediatamente antes da abertura valvar aórtica</li>
+          <li style="font-size:.8rem;line-height:1.75;padding-left:.75rem;position:relative;"><span style="position:absolute;left:0;color:#fbbf24;">›</span>Gera PDAF abaixo da pressão diastólica basal: "dip" na curva</li>
+          <li style="font-size:.8rem;line-height:1.75;padding-left:.75rem;position:relative;"><span style="position:absolute;left:0;color:#fbbf24;">›</span>PSA (pressão sistólica assistida) deve ser ≤ PSU (sem assistência)</li>
+          <li style="font-size:.8rem;line-height:1.75;padding-left:.75rem;position:relative;"><span style="position:absolute;left:0;color:#fbbf24;">›</span>Deflação tardia: PSA &gt; PSU → pós-carga aumenta → sinal de alarme</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Impacto da FC -->
+  <div class="section-label" style="margin-top:1.5rem;">Impacto da Frequência Cardíaca</div>
+  <div class="card" style="margin-top:.5rem;overflow-x:auto;">
+    <table class="sizing-table">
+      <thead>
+        <tr><th>Faixa de FC (bpm)</th><th>Eficácia</th><th>Consideração Clínica</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-family:var(--font-mono);">60–80</td>
+          <td><span class="badge badge-green">✓ Ótima</span></td>
+          <td>Tempo diastólico adequado para augmentação máxima. FC-alvo ideal para o BIA.</td>
+        </tr>
+        <tr>
+          <td style="font-family:var(--font-mono);">80–100</td>
+          <td><span class="badge badge-teal">Boa</span></td>
+          <td>Ainda eficaz; diástole ligeiramente encurtada. Aceitável na maioria dos cenários clínicos.</td>
+        </tr>
+        <tr>
+          <td style="font-family:var(--font-mono);">100–120</td>
+          <td><span class="badge badge-amber">Reduzida</span></td>
+          <td>Diástole encurtada significativamente. Avaliar tratamento da taquicardia (betabloqueador se tolerado).</td>
+        </tr>
+        <tr>
+          <td style="font-family:var(--font-mono);">&gt; 120</td>
+          <td><span class="badge badge-red">Muito baixa</span></td>
+          <td>Eficácia muito reduzida — diástole insuficiente para augmentação. BIA pode não fornecer suporte significativo. Considerar upgrade de dispositivo.</td>
+        </tr>
+        <tr>
+          <td>FA com RVR</td>
+          <td><span class="badge badge-red">Prejudicada</span></td>
+          <td>Trigger por pressão pode melhorar sincronia. A irregularidade intrínseca da FA prejudica a contrapulsação eficiente. Controle de ritmo/frequência quando possível.</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="info-amber info-box" style="margin-top:1rem;margin-bottom:0;">
+      <span class="info-box-icon">⚠️</span>
+      <div><strong>Ponto crítico:</strong> em FC &gt;120 bpm, o tempo diastólico &lt;300 ms torna a augmentação clinicamente insignificante. Se o paciente em choque tiver taquicardia sinusal compensatória, o BIA não consegue fornecer suporte hemodinâmico adequado — este é um dos seus maiores limites em relação ao Impella, que independe da FC.</div>
+    </div>
+  </div>
+
+</div><!-- /tab-timing -->
+
+<!-- ═══════════════════════════════════════════════════════════
+     TAB 6 — CURVAS
+══════════════════════════════════════════════════════════════ -->
+<div id="tab-curvas" class="tab-panel">
+
+  <div class="section-label">Interpretação de Curvas</div>
+  <div class="section-title" style="margin-bottom:.5rem;">Padrões Normais e Patológicos</div>
+  <p style="font-size:.85rem;color:var(--muted-foreground);margin-bottom:2rem;">O timing correto é avaliado com ratio 1:2 — permite comparar lado a lado o batimento assistido (A) e o não-assistido (U). Referências: PSU = pressão sistólica não assistida, PDA = pico diastólico assistido, PDAF = pressão diastólica final assistida, PSA = pressão sistólica assistida.</p>
+
+  <!-- NORMAL -->
+  <div class="waveform-card" style="border-color:rgba(74,222,128,.3);">
+    <div class="waveform-title" style="font-size:1rem;"><span style="color:#4ade80;">✓</span> Timing Correto — Padrão Normal (1:2)</div>
+    <div class="waveform-desc">Critérios de timing ideal: (1) insuflação na incisura dicrótica; (2) <strong>PDA &gt; PSU</strong>; (3) PDAF &lt; pressão diastólica basal; (4) PSA &lt; PSU. Máxima augmentação e redução de pós-carga.</div>
+    <div class="svg-wrap">
+      <svg viewBox="0 0 580 160" width="100%" style="display:block;">
+        <text x="10" y="18" fill="#4ade80" font-size="9" font-family="JetBrains Mono,monospace">CORRETO — 1:2</text>
+        <!-- Non-assisted beat -->
+        <text x="95" y="30" text-anchor="middle" fill="#ffffff60" font-size="8" font-family="JetBrains Mono,monospace">U (não assist.)</text>
+        <path d="M20,120 C30,120 38,38 52,32 C60,28 66,60 72,85 C82,115 100,122 130,124 C145,125 155,90 170,80 C177,76 178,78 180,82 C188,100 200,130 220,124" stroke="#ffffff40" stroke-width="2" fill="none"/>
+        <!-- incisura dicrótica marker -->
+        <circle cx="178" cy="79" r="3" fill="#fbbf24"/>
+        <text x="178" y="72" text-anchor="middle" fill="#fbbf24" font-size="7" font-family="JetBrains Mono,monospace">dicrótica</text>
+        <!-- PSU label -->
+        <text x="52" y="26" text-anchor="middle" fill="#ffffff60" font-size="7" font-family="JetBrains Mono,monospace">PSU</text>
+        <!-- Assisted beat -->
+        <text x="390" y="30" text-anchor="middle" fill="#4ade80" font-size="8" font-family="JetBrains Mono,monospace">A (assistido)</text>
+        <path d="M220,124 C240,124 260,38 280,30 C290,26 296,58 300,80
+                 C304,92 308,115 315,120 C320,122 325,122 330,121
+                 C335,120 340,50 360,22 C368,14 374,20 380,35
+                 C390,60 408,140 430,130
+                 C450,120 460,62 475,65 C485,67 490,58 505,50
+                 C512,45 520,110 535,120 C548,125 560,125 580,125"
+              stroke="#4ade80" stroke-width="2.5" fill="none"/>
+        <!-- PDA label -->
+        <text x="360" y="14" text-anchor="middle" fill="#4ade80" font-size="7" font-family="JetBrains Mono,monospace">PDA &gt; PSU ✓</text>
+        <!-- PSA label -->
+        <text x="505" y="44" text-anchor="middle" fill="#4ade80" font-size="7" font-family="JetBrains Mono,monospace">PSA &lt; PSU ✓</text>
+        <!-- PDAF label -->
+        <text x="430" y="142" text-anchor="middle" fill="#4ade80" font-size="7" font-family="JetBrains Mono,monospace">PDAF &lt; PD basal ✓</text>
+        <!-- Baseline -->
+        <line x1="0" y1="125" x2="580" y2="125" stroke="#ffffff15" stroke-width="1" stroke-dasharray="3,3"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- INSUFLAÇÃO PRECOCE -->
+  <div class="waveform-card" style="border-color:rgba(220,38,38,.4);">
+    <div class="waveform-title" style="font-size:1rem;"><span style="color:#f87171;">⚠️</span> Insuflação Precoce — PERIGOSO</div>
+    <div class="waveform-desc"><strong>Mecanismo:</strong> insuflação antes do fechamento da valva aórtica, ainda durante a ejeção sistólica. O balão inflado aumenta a resistência ao esvaziamento ventricular → ↑ pós-carga sistólica → ↑ VO₂ miocárdico. Na curva: PDA se funde com a onda sistólica (sem separação clara), a incisura dicrótica é obstruída pelo início prematuro da inflação.</div>
+    <div class="svg-wrap">
+      <svg viewBox="0 0 580 160" width="100%" style="display:block;">
+        <text x="10" y="18" fill="#f87171" font-size="9" font-family="JetBrains Mono,monospace">INSUFLAÇÃO PRECOCE — Perigoso</text>
+        <path d="M20,120 C30,120 38,38 52,32 C60,28 66,60 72,85 C82,115 100,122 130,124 C145,125 155,90 167,82" stroke="#ffffff40" stroke-width="2" fill="none" stroke-dasharray="4,3"/>
+        <!-- Precoce inflation merges with systole -->
+        <path d="M167,82 C170,65 178,28 195,22 C208,17 215,30 225,55 C235,80 250,130 280,124
+                 C300,122 320,35 345,28 C355,25 362,30 365,40
+                 C370,55 380,90 395,140 C408,135 430,120 450,124
+                 C470,127 480,60 500,48 C510,42 518,48 525,58
+                 C535,78 548,125 580,125"
+              stroke="#f87171" stroke-width="2.5" fill="none"/>
+        <!-- Mark -->
+        <text x="195" y="14" text-anchor="middle" fill="#f87171" font-size="7" font-family="JetBrains Mono,monospace">PDA fundida ↑pós-carga</text>
+        <line x1="195" y1="18" x2="195" y2="26" stroke="#f87171" stroke-width="1"/>
+        <circle cx="167" cy="82" r="4" fill="#f87171" fill-opacity=".6"/>
+        <text x="155" y="96" fill="#fbbf24" font-size="7" font-family="JetBrains Mono,monospace">insufl. precoce aqui!</text>
+        <line x1="0" y1="125" x2="580" y2="125" stroke="#ffffff15" stroke-width="1" stroke-dasharray="3,3"/>
+      </svg>
+    </div>
+    <div class="info-red info-box" style="margin-bottom:0;margin-top:.75rem;">
+      <span class="info-box-icon">🔧</span>
+      <div><strong>Correção:</strong> retardar o timing de insuflação até a incisura dicrótica. Reduzir o delay pós-R no trigger ECG ou ajustar manualmente no console.</div>
+    </div>
+  </div>
+
+  <!-- INSUFLAÇÃO TARDIA -->
+  <div class="waveform-card" style="border-color:rgba(251,191,36,.4);">
+    <div class="waveform-title" style="font-size:1rem;"><span style="color:#fbbf24;">⚡</span> Insuflação Tardia</div>
+    <div class="waveform-desc"><strong>Mecanismo:</strong> insuflação após a incisura dicrótica — a diástole já iniciou sem suporte. Perde-se a fase inicial da augmentação. Na curva: a incisura dicrótica é claramente visível antes do pico do BIA, e o PDA fica abaixo do potencial máximo. Sem efeito deletério imediato, mas suporte subótimo.</div>
+    <div class="svg-wrap">
+      <svg viewBox="0 0 580 160" width="100%" style="display:block;">
+        <text x="10" y="18" fill="#fbbf24" font-size="9" font-family="JetBrains Mono,monospace">INSUFLAÇÃO TARDIA — Subótimo</text>
+        <path d="M20,120 C30,120 38,38 52,32 C60,28 66,60 72,85 C82,115 100,122 130,124 C145,125 155,90 170,82" stroke="#ffffff40" stroke-width="2" fill="none" stroke-dasharray="4,3"/>
+        <!-- Dicrotic notch visible before peak -->
+        <path d="M170,82 C172,85 175,90 178,88 C180,86 182,84 184,86
+                 C192,95 200,115 220,124
+                 C240,126 260,40 280,32 C288,28 295,40 300,55
+                 C310,80 330,80 350,75 C358,72 370,70 382,72
+                 C390,73 400,120 420,124
+                 C440,127 460,40 480,32 C488,28 496,40 500,55
+                 C510,80 530,80 550,75 C558,72 570,72 580,74"
+              stroke="#fbbf24" stroke-width="2.5" fill="none"/>
+        <text x="178" y="78" text-anchor="middle" fill="#fbbf24" font-size="7" font-family="JetBrains Mono,monospace">↑ dicrótica visível</text>
+        <text x="350" y="64" text-anchor="middle" fill="#fbbf24" font-size="7" font-family="JetBrains Mono,monospace">PDA &lt; PSU (subótimo)</text>
+        <line x1="0" y1="125" x2="580" y2="125" stroke="#ffffff15" stroke-width="1" stroke-dasharray="3,3"/>
+      </svg>
+    </div>
+    <div class="info-amber info-box" style="margin-bottom:0;margin-top:.75rem;">
+      <span class="info-box-icon">🔧</span>
+      <div><strong>Correção:</strong> antecipar o timing de insuflação — reduzir delay no console. A insuflação ideal ocorre no ponto exato da incisura dicrótica, fazendo-a "desaparecer" da curva.</div>
+    </div>
+  </div>
+
+  <!-- DEFLAÇÃO PRECOCE -->
+  <div class="waveform-card" style="border-color:rgba(251,191,36,.4);">
+    <div class="waveform-title" style="font-size:1rem;"><span style="color:#fbbf24;">⬇️</span> Deflação Precoce</div>
+    <div class="waveform-desc"><strong>Mecanismo:</strong> deflação ocorre cedo demais durante a diástole. O balão esvaziou antes que a pressão diastólica diminuísse naturalmente. Redução abrupta da PDA, mas sem criar o "dip" de PDAF abaixo da basal. Perde-se parte da augmentação diastólica; sem aumento de pós-carga sistólica.</div>
+    <div class="svg-wrap">
+      <svg viewBox="0 0 580 160" width="100%" style="display:block;">
+        <text x="10" y="18" fill="#fbbf24" font-size="9" font-family="JetBrains Mono,monospace">DEFLAÇÃO PRECOCE — Subótimo</text>
+        <path d="M20,120 C30,120 38,38 52,32 C60,28 66,60 72,85 C82,115 100,122 130,124 C145,125 155,90 168,82" stroke="#ffffff40" stroke-width="2" fill="none" stroke-dasharray="4,3"/>
+        <path d="M168,82 C172,76 178,50 195,35 C205,27 215,38 222,55
+                 C228,70 232,90 240,112 C248,130 265,125 280,124
+                 C295,124 310,35 330,28 C340,24 348,36 355,52
+                 C362,68 366,88 373,108 C380,126 395,126 415,124
+                 C430,124 448,35 465,28 C475,24 483,36 490,52
+                 C497,68 504,100 515,120 C530,128 560,128 580,128"
+              stroke="#fbbf24" stroke-width="2.5" fill="none"/>
+        <!-- Abrupt drop -->
+        <text x="240" y="108" text-anchor="middle" fill="#fbbf24" font-size="7" font-family="JetBrains Mono,monospace">queda abrupta PDA</text>
+        <text x="375" y="100" text-anchor="middle" fill="#fbbf24" font-size="7" font-family="JetBrains Mono,monospace">PDAF = PD basal</text>
+        <line x1="0" y1="125" x2="580" y2="125" stroke="#ffffff15" stroke-width="1" stroke-dasharray="3,3"/>
+      </svg>
+    </div>
+    <div class="info-amber info-box" style="margin-bottom:0;margin-top:.75rem;">
+      <span class="info-box-icon">🔧</span>
+      <div><strong>Correção:</strong> retardar o timing de deflação — mover o onset de deflação mais próximo do próximo QRS. O PDAF deve ficar abaixo da pressão diastólica basal.</div>
+    </div>
+  </div>
+
+  <!-- DEFLAÇÃO TARDIA -->
+  <div class="waveform-card" style="border-color:rgba(220,38,38,.5);">
+    <div class="waveform-title" style="font-size:1rem;"><span style="color:#f87171;">⚠️⚠️</span> Deflação Tardia — PERIGOSO</div>
+    <div class="waveform-desc"><strong>Mecanismo:</strong> o balão ainda está parcialmente inflado quando a valva aórtica abre para a próxima sístole. Cria resistência ao esvaziamento ventricular → ↑ pós-carga sistólica → ↑ VO₂ → potencial piora do choque. Na curva: PSA &gt; PSU (pressão sistólica assistida maior que a não-assistida), com curva bífida na onda sistólica.</div>
+    <div class="svg-wrap">
+      <svg viewBox="0 0 580 160" width="100%" style="display:block;">
+        <text x="10" y="18" fill="#f87171" font-size="9" font-family="JetBrains Mono,monospace">DEFLAÇÃO TARDIA — Perigoso</text>
+        <path d="M20,120 C30,120 38,38 52,32 C60,28 66,60 72,85 C82,115 100,122 130,124 C145,125 155,90 168,82" stroke="#ffffff40" stroke-width="2" fill="none" stroke-dasharray="4,3"/>
+        <path d="M168,82 C172,76 178,50 195,28 C205,20 215,30 222,48
+                 C228,65 232,85 240,105 C245,115 250,118 258,118
+                 C262,118 266,115 272,112 C280,106 290,80 305,22
+                 C315,10 325,14 332,28 C340,48 350,80 360,100
+                 C368,112 380,120 400,122
+                 C412,122 425,35 442,22 C452,16 460,22 465,38
+                 C470,55 478,78 486,100 C492,112 500,118 516,120
+                 C530,122 555,122 580,122"
+              stroke="#f87171" stroke-width="2.5" fill="none"/>
+        <!-- Bifid wave mark -->
+        <text x="305" y="6" text-anchor="middle" fill="#f87171" font-size="7" font-family="JetBrains Mono,monospace">PSA &gt; PSU ← PERIGO</text>
+        <line x1="305" y1="10" x2="305" y2="18" stroke="#f87171" stroke-width="1"/>
+        <text x="258" y="108" text-anchor="middle" fill="#f87171" font-size="7" font-family="JetBrains Mono,monospace">curva bífida</text>
+        <line x1="0" y1="125" x2="580" y2="125" stroke="#ffffff15" stroke-width="1" stroke-dasharray="3,3"/>
+      </svg>
+    </div>
+    <div class="info-red info-box" style="margin-bottom:0;margin-top:.75rem;">
+      <span class="info-box-icon">🔧</span>
+      <div><strong>Correção urgente:</strong> antecipar o timing de deflação — o balão deve estar completamente desinflado antes da abertura valvar aórtica. Se não for possível corrigir, reduzir ratio para 1:2 enquanto ajusta. <strong>PSA &gt; PSU é o sinal de alarme mais grave na curva do BIA.</strong></div>
+    </div>
+  </div>
+
+</div><!-- /tab-curvas -->
+
+<!-- ═══════════════════════════════════════════════════════════
+     TAB 7 — COMPARAÇÃO
+══════════════════════════════════════════════════════════════ -->
+<div id="tab-comp" class="tab-panel">
+
+  <div class="section-label">Suporte Circulatório Mecânico</div>
+  <div class="section-title" style="margin-bottom:1rem;">BIA vs. Impella vs. VA-ECMO</div>
+
+  <!-- Flow bars -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">💪</div>
+      <div>
+        <div class="card-title">Débito Cardíaco Adicional</div>
+        <div class="card-subtitle">Suporte hemodinâmico comparado — valores aproximados em condições clínicas típicas</div>
+      </div>
+    </div>
+    <div class="flow-bar-wrap">
+      <div class="flow-bar-label"><span>BIA (IABP)</span><span style="font-family:var(--font-mono);color:var(--muted-foreground);">~0,3–0,5 L/min</span></div>
+      <div class="flow-bar-track"><div class="flow-bar-fill" style="width:6%;background:var(--teal);"></div></div>
+    </div>
+    <div class="flow-bar-wrap">
+      <div class="flow-bar-label"><span>Impella 2.5</span><span style="font-family:var(--font-mono);color:var(--muted-foreground);">~2,5 L/min</span></div>
+      <div class="flow-bar-track"><div class="flow-bar-fill" style="width:32%;background:var(--teal);"></div></div>
+    </div>
+    <div class="flow-bar-wrap">
+      <div class="flow-bar-label"><span>Impella CP</span><span style="font-family:var(--font-mono);color:var(--muted-foreground);">~3,7 L/min</span></div>
+      <div class="flow-bar-track"><div class="flow-bar-fill" style="width:47%;background:var(--teal);"></div></div>
+    </div>
+    <div class="flow-bar-wrap">
+      <div class="flow-bar-label"><span>Impella 5.5</span><span style="font-family:var(--font-mono);color:var(--muted-foreground);">~5,5 L/min</span></div>
+      <div class="flow-bar-track"><div class="flow-bar-fill" style="width:70%;background:var(--teal);"></div></div>
+    </div>
+    <div class="flow-bar-wrap" style="margin-bottom:0;">
+      <div class="flow-bar-label"><span>VA-ECMO</span><span style="font-family:var(--font-mono);color:var(--muted-foreground);">3–7 L/min</span></div>
+      <div class="flow-bar-track"><div class="flow-bar-fill" style="width:88%;background:#f87171;"></div></div>
+    </div>
+  </div>
+
+  <!-- Tabela comparativa -->
+  <div class="section-label" style="margin-top:1rem;">Comparação Técnica e Clínica</div>
+  <div class="card" style="margin-top:.5rem;overflow-x:auto;">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Característica</th>
+          <th>BIA</th>
+          <th>Impella CP/5.5</th>
+          <th>VA-ECMO</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Mecanismo</td>
+          <td>Contrapulsação passiva</td>
+          <td>Bomba axial ativa VE→Ao</td>
+          <td>Bomba centrífuga extracorpórea</td>
+        </tr>
+        <tr>
+          <td>DC adicional</td>
+          <td>0,3–0,5 L/min</td>
+          <td class="hi">3,7–5,5 L/min</td>
+          <td class="hi">3–7 L/min</td>
+        </tr>
+        <tr>
+          <td>Suporte pulmonar</td>
+          <td>Não</td>
+          <td>Não</td>
+          <td class="hi">Sim (oxigenador)</td>
+        </tr>
+        <tr>
+          <td>↓ Pré-carga VE</td>
+          <td>Leve (↓LVEDP 5–10 mmHg)</td>
+          <td class="hi">Significativa (descompressão VE)</td>
+          <td>Variável — pode ↑ LVEDP se VE não ejeta</td>
+        </tr>
+        <tr>
+          <td>↓ Pós-carga VE</td>
+          <td>Moderada (↓PDAF)</td>
+          <td class="hi">Significativa (↓impedância)</td>
+          <td>Pode ↑ pós-carga (fluxo retrógrado aórtico)</td>
+        </tr>
+        <tr>
+          <td>Acesso</td>
+          <td>7,5–8F femoral</td>
+          <td>14F femoral (Impella CP)</td>
+          <td>Arterial + venoso 15–22F</td>
+        </tr>
+        <tr>
+          <td>Dependência FC</td>
+          <td class="hi" style="color:#f87171;">Alta (inútil em PCR sem ritmo)</td>
+          <td>Independente</td>
+          <td>Independente</td>
+        </tr>
+        <tr>
+          <td>IA grave</td>
+          <td style="color:#f87171;">Contraindicado</td>
+          <td style="color:#f87171;">Contraindicado (relativo)</td>
+          <td>Tolerado com monitorização</td>
+        </tr>
+        <tr>
+          <td>Estenose aórtica</td>
+          <td>Compatível</td>
+          <td style="color:#f87171;">Contraindicação relativa/absoluta</td>
+          <td>Compatível</td>
+        </tr>
+        <tr>
+          <td>Mortalidade (RCT)</td>
+          <td style="color:#f87171;">Neutro (IABP-SHOCK II)</td>
+          <td class="hi">↓ Mortalidade (DanGer Shock 2024)</td>
+          <td>Sem RCT com poder estatístico</td>
+        </tr>
+        <tr>
+          <td>Custo relativo</td>
+          <td class="hi" style="color:#4ade80;">Baixo</td>
+          <td>Alto</td>
+          <td>Muito Alto</td>
+        </tr>
+        <tr>
+          <td>Implante</td>
+          <td class="hi" style="color:#4ade80;">Simples (1 operador)</td>
+          <td>Moderado</td>
+          <td>Complexo (equipe)</td>
+        </tr>
+        <tr>
+          <td>ECMELLA</td>
+          <td colspan="3" style="color:var(--teal);font-style:italic;">VA-ECMO + Impella CP combinados: máximo suporte no choque refratário — descomprime VE enquanto ECMO garante fluxo e trocas gasosas</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SCAI Staging -->
+  <div class="section-label" style="margin-top:1.5rem;">Estadiamento SCAI e Suporte Sugerido</div>
+  <div class="card" style="margin-top:.5rem;overflow-x:auto;">
+    <div class="info-teal info-box" style="margin-bottom:1rem;">
+      <span class="info-box-icon">📋</span>
+      <div>O <strong>SCAI Shock Stage</strong> (Society for Cardiovascular Angiography and Interventions, 2022) estratifica a gravidade do choque cardiogênico em 5 estágios (A–E) com base em parâmetros clínicos, hemodinâmicos e bioquímicos. O estadiamento guia a escalada de suporte.</div>
+    </div>
+    <table class="scai-table">
+      <thead>
+        <tr>
+          <th>Estágio</th>
+          <th>Descrição Clínica</th>
+          <th>Marcadores</th>
+          <th>Suporte Preferencial</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="badge badge-teal">A — "At Risk"</span></td>
+          <td>Sem sinais de choque. Alto risco (IAMCSST extenso, IC avançada).</td>
+          <td>PA normal, FC normal, lactato normal</td>
+          <td>Sem SCM ativo · Monitorização intensiva</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-teal">B — "Beginning"</span></td>
+          <td>Hipotensão ou taquicardia sem hipoperfusão tecidual.</td>
+          <td>PAS &lt;90 ou FC &gt;100 · Lactato normal</td>
+          <td>Fluidos, aminas · BIA pode ser considerado</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-amber">C — "Classic"</span></td>
+          <td>Hipoperfusão tecidual com hipotensão ou necessidade de amina.</td>
+          <td>Lactato &gt;2 mmol/L · Creatinina ↑ · BNP ↑↑</td>
+          <td><strong>BIA ou Impella 2.5/CP</strong> · Considerar upgrade</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-red">D — "Deteriorating"</span></td>
+          <td>Falha ao suporte inicial. Dependência crescente de aminas.</td>
+          <td>Lactato ↑↑ · Oligúria · Piorando apesar de suporte</td>
+          <td><strong>Impella CP/5.5</strong> · Considerar VA-ECMO</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-red">E — "Extremis"</span></td>
+          <td>Colapso cardiovascular iminente ou em curso. PCR recente.</td>
+          <td>PCR, acidose grave pH &lt;7,2, lactato &gt;8</td>
+          <td><strong>VA-ECMO (ECMELLA)</strong> · Equipe multidisciplinar</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="info-red info-box" style="margin-top:1rem;margin-bottom:0;">
+      <span class="info-box-icon">⚠️</span>
+      <div><strong>Evolução clínica:</strong> O choque cardiogênico evolui dinamicamente — reavalie o estadiamento a cada 1–2 horas. O uso precoce e escalonado de suporte (estratégia "escalate early, escalate fast") está associado a melhor sobrevida nos registros contemporâneos (Zeymer 2020, Basir 2022).</div>
+    </div>
+  </div>
+
+</div><!-- /tab-comp -->
+
+<!-- ═══════════════════════════════════════════════════════════
+     TAB 8 — REFERÊNCIAS
+══════════════════════════════════════════════════════════════ -->
+<div id="tab-refs" class="tab-panel">
+
+  <div class="section-label">Referências Bibliográficas</div>
+  <div class="section-title" style="margin-bottom:1.5rem;">Base de Evidências</div>
+
+  <ul class="ref-list">
+    <li class="ref-item">
+      <span class="ref-num">1</span>
+      <div>
+        <div class="ref-title">Thiele H, et al. Intraaortic Balloon Support for Myocardial Infarction with Cardiogenic Shock (IABP-SHOCK II)</div>
+        <div class="ref-meta">N Engl J Med. 2012;367(14):1287–1296. <span style="color:var(--teal);">RCT multicêntrico · N=600</span></div>
+        <div class="ref-doi">doi: 10.1056/NEJMoa1208410</div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <span class="ref-num">2</span>
+      <div>
+        <div class="ref-title">Thiele H, et al. Intra-aortic balloon counterpulsation in acute myocardial infarction complicated by cardiogenic shock: long-term 6-year outcome of the randomized IABP-SHOCK II trial</div>
+        <div class="ref-meta">Eur Heart J. 2019;40(42):3445–3452.</div>
+        <div class="ref-doi">doi: 10.1093/eurheartj/ehz531</div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <span class="ref-num">3</span>
+      <div>
+        <div class="ref-title">Møller JE, et al. Microaxial Flow Pump or Standard Care in Infarct-Related Cardiogenic Shock (DanGer Shock)</div>
+        <div class="ref-meta">N Engl J Med. 2024;390:1382–1393. <span style="color:#4ade80;">RCT positivo · Impella CP · N=360</span></div>
+        <div class="ref-doi">doi: 10.1056/NEJMoa2312572</div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <span class="ref-num">4</span>
+      <div>
+        <div class="ref-title">Patel MR, et al. Intra-aortic balloon counterpulsation and infarct size in patients with acute anterior myocardial infarction without shock (CRISP AMI)</div>
+        <div class="ref-meta">JAMA. 2011;306(12):1329–1337. <span style="color:var(--teal);">RCT · N=337</span></div>
+        <div class="ref-doi">doi: 10.1001/jama.2011.1280</div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <span class="ref-num">5</span>
+      <div>
+        <div class="ref-title">Perera D, et al. Elective Intra-Aortic Balloon Counterpulsation During High-Risk Percutaneous Coronary Intervention (BCIS-1)</div>
+        <div class="ref-meta">JAMA. 2010;304(8):867–874. <span style="color:var(--teal);">RCT · N=301 · FEVE ≤30%</span></div>
+        <div class="ref-doi">doi: 10.1001/jama.2010.1190</div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <span class="ref-num">6</span>
+      <div>
+        <div class="ref-title">Seyfarth M, et al. A Randomized Clinical Trial to Evaluate the Safety and Efficacy of a Percutaneous Left Ventricular Assist Device Versus Intra-aortic Balloon Pumping for Treatment of Cardiogenic Shock (ISAR-SHOCK)</div>
+        <div class="ref-meta">J Am Coll Cardiol. 2008;52(19):1584–1588.</div>
+        <div class="ref-doi">doi: 10.1016/j.jacc.2008.05.065</div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <span class="ref-num">7</span>
+      <div>
+        <div class="ref-title">O'Neill WW, et al. A Prospective, Randomized Clinical Trial of Hemodynamic Support With Impella 2.5 Versus Intra-Aortic Balloon Pump in Patients Undergoing High-Risk Percutaneous Coronary Intervention (PROTECT II)</div>
+        <div class="ref-meta">Circulation. 2012;126(14):1717–1727.</div>
+        <div class="ref-doi">doi: 10.1161/CIRCULATIONAHA.112.098194</div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <span class="ref-num">8</span>
+      <div>
+        <div class="ref-title">Unverzagt S, et al. Intra-aortic balloon pump counterpulsation (IABP) for myocardial infarction complicated by cardiogenic shock (Cochrane Review)</div>
+        <div class="ref-meta">Cochrane Database Syst Rev. 2020;(7):CD007398. <span style="color:var(--teal);">Meta-análise · 12 RCTs</span></div>
+        <div class="ref-doi">doi: 10.1002/14651858.CD007398.pub3</div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <span class="ref-num">9</span>
+      <div>
+        <div class="ref-title">McDonagh TA, et al. 2023 Focused Update of the 2021 ESC Guidelines for the diagnosis and treatment of acute and chronic heart failure</div>
+        <div class="ref-meta">Eur Heart J. 2023;44(37):3627–3639. <span style="color:var(--teal);">ESC Guidelines 2023</span></div>
+        <div class="ref-doi">doi: 10.1093/eurheartj/ehad195</div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <span class="ref-num">10</span>
+      <div>
+        <div class="ref-title">Lawton JS, et al. 2021 ACC/AHA/SCAI Guideline for Coronary Artery Revascularization</div>
+        <div class="ref-meta">J Am Coll Cardiol. 2022;79(2):e21–e129.</div>
+        <div class="ref-doi">doi: 10.1016/j.jacc.2021.09.006</div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <span class="ref-num">11</span>
+      <div>
+        <div class="ref-title">Naidu SS, et al. SCAI SHOCK Stage Classification Expert Consensus Update: A Review and Incorporation of Validation Studies (2022)</div>
+        <div class="ref-meta">J Am Coll Cardiol. 2022;79(9):933–946.</div>
+        <div class="ref-doi">doi: 10.1016/j.jacc.2022.01.018</div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <span class="ref-num">12</span>
+      <div>
+        <div class="ref-title">Abrams D, et al. ELSO Adult and Pediatric Anticoagulation Guidelines. ELSO Anticoagulation Task Force Report</div>
+        <div class="ref-meta">ASAIO J. 2023;69(4):e29–e44.</div>
+        <div class="ref-doi">doi: 10.1097/MAT.0000000000001824</div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <span class="ref-num">13</span>
+      <div>
+        <div class="ref-title">Hochman JS, et al. Early Revascularization in Acute Myocardial Infarction Complicated by Cardiogenic Shock (SHOCK Trial)</div>
+        <div class="ref-meta">N Engl J Med. 1999;341(9):625–634.</div>
+        <div class="ref-doi">doi: 10.1056/NEJM199908263410901</div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <span class="ref-num">14</span>
+      <div>
+        <div class="ref-title">Kantrowicz A, et al. Initial clinical experience with intra-aortic balloon pumping in cardiogenic shock</div>
+        <div class="ref-meta">JAMA. 1968;203(2):113–118. <span style="color:var(--muted-foreground);">Artigo seminal — primeira descrição clínica do BIA</span></div>
+        <div class="ref-doi">doi: 10.1001/jama.1968.03140020033007</div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <span class="ref-num">15</span>
+      <div>
+        <div class="ref-title">Parissis JT, et al. Intra-aortic balloon pump: mechanisms of clinical efficacy and implications in patients with acute myocardial infarction complicated by cardiogenic shock</div>
+        <div class="ref-meta">J Cardiothorac Surg. 2016;11(1):67.</div>
+        <div class="ref-doi">doi: 10.1186/s13019-016-0458-7</div>
+      </div>
+    </li>
+  </ul>
+
+  <div class="disclaimer">
+    <strong>Aviso:</strong> Este material tem fins exclusivamente educacionais para profissionais de saúde. Não substitui o julgamento clínico individualizado, as diretrizes institucionais vigentes, nem a consulta com especialistas. Evidências e recomendações estão sujeitas a atualização — verificar as versões mais recentes das diretrizes ESC e ACC/AHA. Dr. Lucas Silva não se responsabiliza por decisões clínicas baseadas neste conteúdo de forma isolada.
+  </div>
+
+</div><!-- /tab-refs -->
+
+</div><!-- /container -->
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-copy">© 2024 Dr. Lucas Silva — lucascardio.com.br · Todos os direitos reservados</div>
+      <div style="display:flex;gap:.75rem;flex-wrap:wrap;">
+        <span class="badge badge-teal">ESC 2023</span>
+        <span class="badge badge-gray">ACC/AHA 2022</span>
+        <span class="badge badge-gray">DanGer Shock 2024</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function openTab(id) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    const btns = document.querySelectorAll('.tab-btn');
+    const map = {fund:0,evid:1,indic:2,config:3,timing:4,curvas:5,comp:6,refs:7};
+    btns[map[id]].classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+</script>
+</body>
+</html>

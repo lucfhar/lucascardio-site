@@ -1,0 +1,1540 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>Diagnóstico de IAM – Exame Clínico Racional | Dr. Lucas Silva</title>
+  <meta name="description" content="Referência interativa para diagnóstico de infarto agudo do miocárdio pela anamnese, exame físico e ECG. Baseada no JAMA Rational Clinical Examination." />
+  <meta name="author" content="Dr. Lucas Silva" />
+  <link rel="canonical" href="https://lucascardio.com.br/Medicos/diagnostico-iam-exame-racional.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalWebPage",
+  "name": "Diagnóstico de IAM – Exame Clínico Racional",
+  "headline": "Diagnóstico de Infarto Agudo pelo Exame Clínico Racional",
+  "description": "Referência interativa para diagnóstico de infarto agudo do miocárdio pela anamnese, exame físico e ECG. Baseada no JAMA Rational Clinical Examination.",
+  "url": "https://lucascardio.com.br/Medicos/diagnostico-iam-exame-racional.html",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://lucascardio.com.br/Medicos/diagnostico-iam-exame-racional.html"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Dr. Lucas Silva",
+    "url": "https://lucascardio.com.br",
+    "jobTitle": "Cardiologista Intervencionista"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dr. Lucas Silva - Cardiologia",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://lucascardio.com.br/assets/img/logo.png"
+    }
+  },
+  "audience": {
+    "@type": "MedicalAudience",
+    "audienceType": "Clinician"
+  },
+  "specialty": "Cardiovascular",
+  "about": {
+    "@type": "MedicalCondition",
+    "name": "Infarto agudo do miocárdio"
+  },
+  "keywords": [
+    "IAM",
+    "infarto agudo do miocárdio",
+    "dor torácica",
+    "diagnóstico de IAM",
+    "ECG",
+    "razões de verossimilhança",
+    "JAMA Rational Clinical Examination",
+    "Goldman protocol",
+    "ACI-TIPI",
+    "troponina"
+  ],
+  "inLanguage": "pt-BR"
+}
+</script>
+  
+  <style>
+    :root {
+      --primary: oklch(65% .18 195);
+      --primary-foreground: oklch(98% 0 0);
+      --background: oklch(13% .018 250);
+      --foreground: oklch(93% .01 250);
+      --card: oklch(18.5% .018 250);
+      --card-foreground: oklch(93% .01 250);
+      --muted: oklch(22% .018 250);
+      --muted-foreground: oklch(62% .02 250);
+      --border: oklch(28% .025 250);
+      --input: oklch(22% .02 250);
+      --destructive: oklch(60% .22 25);
+      --secondary: oklch(22% .022 250);
+      --accent: oklch(24% .025 250);
+      --teal: #00d3bd;
+      --teal-dim: rgba(0,211,189,.12);
+      --amber: oklch(82.8% .189 84.429);
+      --red: oklch(63.7% .237 25.331);
+      --green: oklch(79.2% .209 151.711);
+      --radius: 0.625rem;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); background: var(--background); color: var(--foreground); min-height: 100vh; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    nav { position: sticky; top: 0; z-index: 50; background: rgba(18,20,27,.88); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 1.5rem; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--foreground); }
+    .nav-brand-icon { width: 28px; height: 28px; border-radius: 7px; background: var(--teal); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .nav-brand-name { font-weight: 800; font-size: 1rem; letter-spacing: -.025em; }
+    .nav-brand-name span { color: var(--teal); }
+    .nav-brand-sep { width: 1px; height: 14px; background: var(--border); margin: 0 6px; }
+    .nav-brand-sub { font-size: .7rem; font-weight: 500; color: var(--muted-foreground); }
+    .nav-actions { display: flex; align-items: center; gap: .5rem; }
+    .nav-link { font-size: .75rem; font-weight: 600; padding: 5px 12px; border-radius: 8px; border: 1.5px solid var(--primary); color: var(--primary); background: transparent; text-decoration: none; transition: background .15s, color .15s; display: inline-flex; align-items: center; gap: 5px; }
+    .nav-link:hover { background: var(--primary); color: #000; }
+
+    /* LAYOUT */
+    .container { max-width: 960px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* TAB NAV */
+    .tab-nav { display: flex; gap: 2px; background: var(--muted); border-radius: calc(var(--radius) + 2px); padding: 4px; margin: 1.5rem 0 0; overflow-x: auto; }
+    .tab-btn { flex-shrink: 0; background: none; border: none; cursor: pointer; font-family: var(--font-sans); font-size: .78rem; font-weight: 600; color: var(--muted-foreground); padding: 8px 14px; border-radius: var(--radius); transition: background .15s, color .15s; white-space: nowrap; }
+    .tab-btn.active { background: var(--card); color: var(--foreground); box-shadow: 0 1px 3px rgba(0,0,0,.3); }
+    .tab-btn:hover:not(.active) { color: var(--foreground); background: var(--accent); }
+    .tab-section { display: none; padding: 1.75rem 0 3rem; }
+    .tab-section.active { display: block; animation: fadeUp .3s ease; }
+
+    /* HERO */
+    .hero { padding: 3rem 0 1.5rem; border-bottom: 1px solid var(--border); }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 6px; font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); margin-bottom: 1rem; }
+    .hero-eyebrow::before { content:''; display:block; width:20px; height:2px; background:var(--teal); border-radius:1px; }
+    .hero h1 { font-size: clamp(1.6rem,4vw,2.4rem); font-weight: 800; line-height: 1.2; margin-bottom: .75rem; letter-spacing: -.02em; }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero-sub { color: var(--muted-foreground); font-size: .95rem; max-width: 680px; margin-bottom: 1.5rem; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag { font-size: .7rem; font-weight: 600; padding: 3px 10px; border-radius: 6px; border: 1px solid var(--border); color: var(--muted-foreground); background: var(--card); font-family: var(--font-mono); }
+
+    /* CARDS */
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: calc(var(--radius)+2px); padding: 1.5rem; margin-bottom: 1.5rem; }
+    .card-header { display: flex; align-items: flex-start; gap: .75rem; margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+    .card-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; background: var(--teal-dim); color: var(--teal); }
+    .card-title { font-weight: 700; font-size: 1rem; margin-bottom: 2px; }
+    .card-subtitle { font-size: .78rem; color: var(--muted-foreground); }
+
+    /* INFO BOXES */
+    .info-box { display: flex; gap: 10px; padding: 12px 14px; border-radius: var(--radius); margin-bottom: .75rem; font-size: .82rem; line-height: 1.5; }
+    .info-box-icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+    .info-teal { background: var(--teal-dim); border: 1px solid rgba(0,211,189,.2); }
+    .info-amber { background: rgba(251,191,36,.08); border: 1px solid rgba(251,191,36,.2); }
+    .info-red { background: rgba(220,38,38,.08); border: 1px solid rgba(220,38,38,.2); }
+    .info-gray { background: var(--muted); border: 1px solid var(--border); }
+    .info-green { background: rgba(52,211,153,.08); border: 1px solid rgba(52,211,153,.2); }
+
+    /* SECTION TITLE */
+    .section-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 1rem; padding-bottom: .5rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+    .section-title::before { content:''; display:inline-block; width:3px; height:16px; background:var(--teal); border-radius:2px; }
+    .section-sub { font-size: .82rem; color: var(--muted-foreground); margin-bottom: 1.25rem; }
+
+    /* LR TABLE */
+    .lr-table { width: 100%; border-collapse: collapse; font-size: .82rem; margin-bottom: 1.25rem; }
+    .lr-table th { background: var(--muted); padding: 9px 12px; text-align: left; font-weight: 700; font-size: .72rem; letter-spacing: .04em; text-transform: uppercase; color: var(--muted-foreground); border-bottom: 1px solid var(--border); }
+    .lr-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+    .lr-table tr:last-child td { border-bottom: none; }
+    .lr-table tr:hover td { background: var(--accent); }
+    .lr-pos { color: var(--teal); font-family: var(--font-mono); font-weight: 700; }
+    .lr-neg { color: #f87171; font-family: var(--font-mono); font-weight: 700; }
+    .lr-neut { color: var(--muted-foreground); font-family: var(--font-mono); font-weight: 700; }
+    .lr-up { color: var(--teal); font-weight: 800; }
+    .lr-down { color: #f87171; font-weight: 800; }
+
+    /* BADGE */
+    .badge { display: inline-flex; align-items: center; gap: 4px; font-size: .65rem; font-weight: 700; padding: 2px 7px; border-radius: 999px; white-space: nowrap; }
+    .badge-teal { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.25); }
+    .badge-red { background: rgba(220,38,38,.12); color: #f87171; border: 1px solid rgba(220,38,38,.25); }
+    .badge-amber { background: rgba(251,191,36,.12); color: #fbbf24; border: 1px solid rgba(251,191,36,.2); }
+    .badge-gray { background: var(--muted); color: var(--foreground); border: 1px solid var(--border); font-family: var(--font-mono); }
+    .badge-a { background: rgba(52,211,153,.12); color: #34d399; border: 1px solid rgba(52,211,153,.2); }
+    .badge-b { background: rgba(96,165,250,.12); color: #60a5fa; border: 1px solid rgba(96,165,250,.2); }
+    .badge-c { background: rgba(251,191,36,.12); color: #fbbf24; border: 1px solid rgba(251,191,36,.2); }
+
+    /* SCENARIO CARDS */
+    .scenario-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+    .scenario-card { background: var(--card); border: 1px solid var(--border); border-radius: calc(var(--radius)+2px); padding: 1.25rem; cursor: pointer; transition: border-color .15s, background .15s; }
+    .scenario-card:hover { border-color: var(--primary); background: var(--accent); }
+    .scenario-card.mi-pos { border-left: 3px solid #f87171; }
+    .scenario-card.mi-neg { border-left: 3px solid var(--teal); }
+    .scenario-num { font-size: .65rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted-foreground); margin-bottom: .5rem; font-family: var(--font-mono); }
+    .scenario-text { font-size: .82rem; line-height: 1.55; color: var(--card-foreground); }
+    .scenario-verdict { margin-top: .75rem; font-size: .75rem; font-weight: 700; }
+
+    /* CALCULATOR */
+    .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    @media (max-width: 640px) { .calc-grid { grid-template-columns: 1fr; } }
+    .calc-panel { background: var(--card); border: 1px solid var(--border); border-radius: calc(var(--radius)+2px); padding: 1.25rem; }
+    .calc-panel-title { font-size: .85rem; font-weight: 700; margin-bottom: 1rem; color: var(--foreground); }
+    .check-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 11px; border-radius: var(--radius); border: 1px solid var(--border); background: var(--muted); cursor: pointer; transition: background .15s, border-color .15s; user-select: none; margin-bottom: .4rem; }
+    .check-item:hover { background: var(--accent); border-color: var(--primary); }
+    .check-item.checked { background: var(--teal-dim); border-color: rgba(0,211,189,.4); }
+    .check-item input { display: none; }
+    .check-box { width: 15px; height: 15px; border-radius: 3px; border: 1.5px solid var(--border); flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center; transition: all .15s; font-size: .65rem; }
+    .check-item.checked .check-box { background: var(--teal); border-color: var(--teal); color: #000; }
+    .check-label { font-size: .79rem; line-height: 1.4; }
+    .check-label strong { font-weight: 600; display: block; }
+    .check-label small { font-size: .7rem; color: var(--muted-foreground); font-family: var(--font-mono); }
+
+    /* NOMOGRAM */
+    .nomogram-container { background: var(--card); border: 1px solid var(--border); border-radius: calc(var(--radius)+2px); padding: 1.5rem; }
+    .prob-display { text-align: center; padding: 1.5rem; }
+    .prob-val { font-size: 3.5rem; font-weight: 800; font-family: var(--font-mono); line-height: 1; }
+    .prob-label { font-size: .85rem; color: var(--muted-foreground); margin-top: .5rem; }
+    .prob-bar-wrap { margin: 1rem 0; background: var(--muted); border-radius: 999px; height: 8px; overflow: hidden; }
+    .prob-bar { height: 100%; border-radius: 999px; transition: width .5s ease, background .5s ease; }
+    .prob-interp { font-size: .82rem; font-weight: 600; text-align: center; margin-top: .5rem; }
+    .lr-slider-group { margin-bottom: .75rem; }
+    .lr-slider-label { font-size: .75rem; font-weight: 600; color: var(--muted-foreground); margin-bottom: 4px; display: flex; justify-content: space-between; }
+    input[type=range] { width: 100%; accent-color: var(--teal); cursor: pointer; }
+    .form-input-sm { background: var(--input); border: 1px solid var(--border); border-radius: var(--radius); color: var(--foreground); font-family: var(--font-mono); font-size: .85rem; padding: 6px 10px; outline: none; width: 100%; }
+    .form-input-sm:focus { border-color: var(--primary); box-shadow: 0 0 0 2px rgba(0,211,189,.15); }
+
+    /* ECG */
+    .ecg-feature { display: flex; justify-content: space-between; align-items: center; padding: 9px 12px; border-bottom: 1px solid var(--border); font-size: .82rem; }
+    .ecg-feature:last-child { border-bottom: none; }
+    .ecg-feature-name { font-weight: 500; flex: 1; }
+    .ecg-lr { display: flex; gap: 8px; align-items: center; }
+
+    /* GOLDMAN */
+    .goldman-box { background: var(--muted); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.25rem; margin-bottom: 1rem; }
+    .goldman-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--border); font-size: .82rem; }
+    .goldman-row:last-child { border-bottom: none; }
+    .goldman-var { flex: 1; color: var(--foreground); }
+    .goldman-coef { font-family: var(--font-mono); font-weight: 700; color: var(--teal); min-width: 48px; text-align: right; }
+
+    /* PRECISION TABLE */
+    .prec-table { width: 100%; border-collapse: collapse; font-size: .8rem; margin-bottom: 1rem; }
+    .prec-table th { background: var(--muted); padding: 8px 12px; text-align: left; font-weight: 700; font-size: .72rem; color: var(--muted-foreground); border-bottom: 1px solid var(--border); }
+    .prec-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+    .prec-table tr:last-child td { border-bottom: none; }
+    .kappa-good { color: var(--teal); font-weight: 700; }
+    .kappa-fair { color: #fbbf24; font-weight: 700; }
+    .kappa-poor { color: #f87171; font-weight: 700; }
+
+    /* FLOW DIAGRAM */
+    .flow { display: flex; flex-direction: column; gap: .5rem; }
+    .flow-box { background: var(--muted); border: 1px solid var(--border); border-radius: var(--radius); padding: .75rem 1rem; font-size: .82rem; text-align: center; }
+    .flow-box.highlight { background: var(--teal-dim); border-color: rgba(0,211,189,.35); font-weight: 600; }
+    .flow-box.danger { background: rgba(220,38,38,.08); border-color: rgba(220,38,38,.25); }
+    .flow-arrow { text-align: center; color: var(--muted-foreground); font-size: .9rem; }
+    .flow-split { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+
+    /* REFS */
+    .ref-list { list-style: none; }
+    .ref-item { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: .79rem; line-height: 1.6; display: flex; gap: 10px; }
+    .ref-item:last-child { border-bottom: none; }
+    .ref-num { font-family: var(--font-mono); font-size: .7rem; font-weight: 700; color: var(--teal); min-width: 22px; }
+    .ref-ev { display: inline-block; font-size: .62rem; font-weight: 700; padding: 1px 5px; border-radius: 4px; margin-left: 6px; background: var(--teal-dim); color: var(--teal); }
+
+    /* DIVIDER */
+    .divider { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+
+    /* BUTTONS */
+    .btn { display: inline-flex; align-items: center; gap: 8px; font-size: .85rem; font-weight: 600; padding: 9px 18px; border-radius: calc(var(--radius)+2px); border: none; cursor: pointer; transition: all .15s; font-family: var(--font-sans); }
+    .btn-primary { background: var(--primary); color: #000; font-weight: 700; }
+    .btn-primary:hover { opacity: .88; }
+    .btn-secondary { background: var(--muted); color: var(--foreground); border: 1px solid var(--border); }
+    .btn-secondary:hover { background: var(--accent); }
+    .btn-row { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 1rem; }
+
+    /* RESULT */
+    .result-block { display: none; background: var(--card); border: 1px solid var(--border); border-radius: calc(var(--radius)+2px); padding: 1.25rem; margin-top: 1rem; animation: fadeUp .3s ease; }
+    .result-block.show { display: block; }
+
+    /* DISCLAIMER */
+    .disclaimer { background: var(--muted); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 16px; font-size: .73rem; color: var(--muted-foreground); line-height: 1.6; margin-top: 2rem; }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 2rem 0; margin-top: 1rem; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-copy { font-size: .75rem; color: var(--muted-foreground); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      .scenario-grid { grid-template-columns: 1fr; }
+      .flow-split { grid-template-columns: 1fr; }
+      .calc-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="https://lucascardio.com.br/Medicos/" style="text-decoration:none;">
+    <div class="nav-brand-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+    </div>
+    <div class="nav-brand-name">Lucas<span>Cardio</span></div>
+    <div class="nav-brand-sep"></div>
+    <div class="nav-brand-sub">Referência Clínica</div>
+  </a>
+  <div class="nav-actions">
+    <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      lucascardio.com.br
+    </a>
+  </div>
+</nav>
+
+<main>
+<div class="container">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Exame Clínico Racional · JAMA Series</div>
+  <h1>Diagnóstico de <em>Infarto Agudo</em><br>pelo Exame Clínico Racional</h1>
+  <p class="hero-sub">
+    Referência interativa baseada no capítulo "Is This Patient Having a Myocardial Infarction?" do JAMA Rational Clinical Examination. Razões de Verossimilhança (RV) da anamnese, exame físico e ECG para diagnóstico de IAM em pacientes com dor torácica.
+  </p>
+  <div class="hero-tags">
+    <span class="tag">JAMA RCE 1998</span>
+    <span class="tag">UPDATE 2009</span>
+    <span class="tag">Razões de Verossimilhança</span>
+    <span class="tag">ECG</span>
+    <span class="tag">Protocolo Goldman</span>
+    <span class="tag">ACI-TIPI</span>
+    <span class="tag">Troponina</span>
+  </div>
+</div>
+
+<!-- TAB NAV -->
+<div class="tab-nav" id="tabNav">
+  <button class="tab-btn active" onclick="showTab('cenarios')">Cenários</button>
+  <button class="tab-btn" onclick="showTab('fisiopato')">Fisiopatologia</button>
+  <button class="tab-btn" onclick="showTab('anamnese')">Anamnese & Exame</button>
+  <button class="tab-btn" onclick="showTab('ecg')">ECG</button>
+  <button class="tab-btn" onclick="showTab('calculadora')">Calculadora de Probabilidade</button>
+  <button class="tab-btn" onclick="showTab('predicao')">Regras de Predição</button>
+  <button class="tab-btn" onclick="showTab('diagnostico')">Diagnóstico Final</button>
+  <button class="tab-btn" onclick="showTab('referencias')">Referências</button>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     TAB 1 – CENÁRIOS CLÍNICOS
+═══════════════════════════════════════════════════════════ -->
+<div id="tab-cenarios" class="tab-section active">
+
+  <div class="info-teal info-box" style="margin-bottom:1.25rem;">
+    <span class="info-box-icon">💡</span>
+    <div>Os quatro cenários a seguir foram propostos no artigo original para ilustrar como as características clínicas aumentam ou diminuem a probabilidade de IAM. Clique em cada card para ver a análise bayesiana.</div>
+  </div>
+
+  <div class="scenario-grid">
+    <div class="scenario-card mi-pos" onclick="toggleScenario('s1')">
+      <div class="scenario-num">Caso 1 · Probabilidade alta</div>
+      <p class="scenario-text">Homem de 57 anos, dor retrosternal em aperto iniciada há 1 hora, diaforese. PA 110/70 mmHg, FC 74 bpm, B4 audível. ECG: supradesnivelamento de ST de 2 mm em V1–V4.</p>
+      <div class="scenario-verdict" id="s1-v" style="display:none;"></div>
+    </div>
+    <div class="scenario-card mi-pos" onclick="toggleScenario('s2')">
+      <div class="scenario-num">Caso 2 · Probabilidade alta</div>
+      <p class="scenario-text">Homem de 70 anos, IAM prévio há 5 anos, aperto severo no pescoço há 30 minutos com diaforese. PA 90/60 mmHg, FC 50 bpm, ECG com ondas Q em V1–V4 (já presentes anteriormente).</p>
+      <div class="scenario-verdict" id="s2-v" style="display:none;"></div>
+    </div>
+    <div class="scenario-card mi-pos" onclick="toggleScenario('s3')">
+      <div class="scenario-num">Caso 3 · Probabilidade alta</div>
+      <p class="scenario-text">Mulher de 50 anos, queimação retroesternal há 1 hora com náusea. Antiácidos sem alívio. Exame físico sem alterações. ECG: supradesnivelamento de ST de 3 mm em II, III, aVF e infradesnivelamento de 1 mm em I e aVL.</p>
+      <div class="scenario-verdict" id="s3-v" style="display:none;"></div>
+    </div>
+    <div class="scenario-card mi-neg" onclick="toggleScenario('s4')">
+      <div class="scenario-num">Caso 4 · Probabilidade baixa</div>
+      <p class="scenario-text">Mulher de 40 anos, dor torácica esquerda há 24 horas, piora com esforço e movimento, sem antecedentes. Sinais vitais normais, dor reproduzida à palpação das cartilagens costoclaviculares esquerdas. ECG normal.</p>
+      <div class="scenario-verdict" id="s4-v" style="display:none;"></div>
+    </div>
+  </div>
+
+  <div id="s1-analysis" class="result-block">
+    <div class="section-title">Análise – Caso 1</div>
+    <div class="info-teal info-box"><span class="info-box-icon">✅</span><div><strong>Múltiplos fatores que aumentam a probabilidade de IAM:</strong> Dor irradiando para ambos os braços (RV+ ≈ 9,7), diaforese (RV+ 2,0), B4 (RV+ 3,2), hipotensão relativa (RV+ 3,1) e supradesnivelamento de ST novo ≥1 mm (RV+ 5,7–54). A probabilidade pós-teste é extremamente alta. Indica reperfusão imediata (Grupo A).</div></div>
+  </div>
+  <div id="s2-analysis" class="result-block">
+    <div class="section-title">Análise – Caso 2</div>
+    <div class="info-teal info-box"><span class="info-box-icon">✅</span><div><strong>Múltiplos fatores que aumentam a probabilidade de IAM:</strong> Diaforese (RV+ 2,0), hipotensão (PA 90/60; RV+ 3,1), história de IAM prévio (RV+ 1,5–3,0). As ondas Q preexistentes não contribuem como novo achado de ECG, mas a apresentação clínica é fortemente sugestiva de IAMSSST ou SCA de alto risco (Grupo B).</div></div>
+  </div>
+  <div id="s3-analysis" class="result-block">
+    <div class="section-title">Análise – Caso 3</div>
+    <div class="info-teal info-box"><span class="info-box-icon">✅</span><div><strong>Apresentação atípica mas com alta probabilidade de IAM inferior:</strong> Queimação retroesternal com náusea (RV+ 1,9) associada a supradesnivelamento de ST em território inferior (RV+ 5,7–54) e padrão de imagem espelho (infradesnivelamento em I e aVL). O caráter ardente pode enganar, mas o padrão eletrocardiográfico é diagnóstico de IAM inferior agudo.</div></div>
+  </div>
+  <div id="s4-analysis" class="result-block">
+    <div class="section-title">Análise – Caso 4</div>
+    <div class="info-red info-box"><span class="info-box-icon">🔽</span><div><strong>Múltiplos fatores que reduzem a probabilidade de IAM:</strong> Dor posicional (RV+ 0,3), dor pleurítica/piora com movimento (RV+ 0,2–0,3), reprodutibilidade à palpação torácica (RV+ 0,2–0,4) e ECG normal (RV+ 0,1–0,3). A probabilidade pós-teste é muito baixa. Causa musculoesquelética ou outra etiologia não cardíaca é muito mais provável.</div></div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📊</div>
+      <div>
+        <div class="card-title">Probabilidade Pré-Teste em Dor Torácica Aguda</div>
+        <div class="card-subtitle">Base para aplicação das razões de verossimilhança (Bayes)</div>
+      </div>
+    </div>
+    <div class="info-amber info-box"><span class="info-box-icon">📌</span><div>Aproximadamente <strong>25% dos pacientes</strong> que se apresentam com sintomas sugestivos de SCA no DE terão IAM confirmado (critérios WHO tradicionais). Com troponina de alta sensibilidade, esse percentual pode variar conforme a população. A probabilidade pré-teste deve ser estimada clinicamente antes de aplicar qualquer achado isolado.</div></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-top:.75rem;">
+      <div style="text-align:center;background:var(--muted);border-radius:var(--radius);padding:1rem;">
+        <div style="font-size:2rem;font-weight:800;font-family:var(--font-mono);color:var(--teal);">~25%</div>
+        <div style="font-size:.78rem;color:var(--muted-foreground);margin-top:.25rem;">Probabilidade pré-teste geral em DE</div>
+      </div>
+      <div style="text-align:center;background:var(--muted);border-radius:var(--radius);padding:1rem;">
+        <div style="font-size:2rem;font-weight:800;font-family:var(--font-mono);color:#f87171;">14–50%</div>
+        <div style="font-size:.78rem;color:var(--muted-foreground);margin-top:.25rem;">Em pacientes admitidos em UCO por suspeita de SCA</div>
+      </div>
+      <div style="text-align:center;background:var(--muted);border-radius:var(--radius);padding:1rem;">
+        <div style="font-size:2rem;font-weight:800;font-family:var(--font-mono);color:#60a5fa;">~7%</div>
+        <div style="font-size:.78rem;color:var(--muted-foreground);margin-top:.25rem;">Em ECG normal + não diferenciado (Goodacre 2003)</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     TAB 2 – FISIOPATOLOGIA
+═══════════════════════════════════════════════════════════ -->
+<div id="tab-fisiopato" class="tab-section">
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🫀</div>
+      <div>
+        <div class="card-title">Definições e Espectro da Isquemia Coronária</div>
+        <div class="card-subtitle">Da angina estável ao IAM — classificação de gravidade da CCS</div>
+      </div>
+    </div>
+    <table class="lr-table">
+      <thead><tr><th>Grau CCS</th><th>Descrição</th></tr></thead>
+      <tbody>
+        <tr><td><span class="badge badge-teal">I</span></td><td>Atividade física habitual <strong>não</strong> provoca angina. Angina apenas com esforço extenuante, rápido ou prolongado</td></tr>
+        <tr><td><span class="badge badge-amber">II</span></td><td>Leve limitação da atividade habitual. Angina ao caminhar > 2 quarteirões, subir escadas, subidas, esforço após refeição, frio, vento ou estresse</td></tr>
+        <tr><td><span class="badge badge-amber">III</span></td><td>Limitação marcante da atividade física. Angina ao caminhar 1–2 quarteirões ou subir 1 lance de escadas</td></tr>
+        <tr><td><span class="badge badge-red">IV</span></td><td>Incapacidade de realizar qualquer atividade sem desconforto. Angina pode ocorrer em repouso</td></tr>
+      </tbody>
+    </table>
+
+    <div class="info-gray info-box"><span class="info-box-icon">📖</span><div><strong>Angina instável</strong> é o espectro intermediário entre angina estável e IAM, definida por critérios históricos, ECG e alterações hemodinâmicas (hipotensão, B3, regurgitação mitral, estertores pulmonares). <strong>IAM</strong> requer aumento típico de biomarcadores (troponina) com pelo menos um de: sintomas isquêmicos, ondas Q patológicas, alterações de ST-T ou intervenção coronária.</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">⚡</div>
+      <div>
+        <div class="card-title">Mecanismo da Dor Isquêmica</div>
+        <div class="card-subtitle">Vias aferentes cardíacas e manifestações clínicas</div>
+      </div>
+    </div>
+    <p style="font-size:.84rem;line-height:1.65;margin-bottom:1rem;">Os impulsos aferentes cardíacos viajam pelas fibras dos nervos simpáticos cardíacos, pelos 5 gânglios simpáticos superiores, pelos ramos comunicantes cinzas e brancos, e pelas 4–5 raízes torácicas superiores até os neurônios convergentes do corno dorsal, depois pela via espinotalâmica até o tálamo e córtex. Assim, a dor miocárdica é <strong>visceral e pobremente localizada</strong>, permitindo irradiação ampla.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+      <div class="info-teal info-box"><span class="info-box-icon">🔴</span><div><strong>Via simpática (dor típica):</strong> Aperto/pressão no centro do tórax, irradiação para braço esquerdo, pescoço, mandíbula. Mais prevalente em IAM anterior/lateral.</div></div>
+      <div class="info-amber info-box"><span class="info-box-icon">🟡</span><div><strong>Via vagal (síndrome inferior):</strong> Náusea, bradicardia, hipotensão — relacionadas ao maior número de fibras vagais aferentes na parede inferior. Mais prevalentes no IAM inferior.</div></div>
+    </div>
+    <div class="info-gray info-box" style="margin-top:.75rem;"><span class="info-box-icon">⚠️</span><div>Aproximadamente <strong>25% dos IAMs</strong> são silenciosos ou se apresentam com sintomas atípicos (dispneia, fadiga, síncope, dor epigástrica). Maior frequência em diabéticos, mulheres e idosos.</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📋</div>
+      <div>
+        <div class="card-title">Grupos Diagnósticos e Estratégias Terapêuticas</div>
+        <div class="card-subtitle">Categorização clínica em 3 grupos conforme manejo imediato</div>
+      </div>
+    </div>
+    <div class="flow">
+      <div class="flow-box" style="background:var(--muted);font-weight:600;">Dor Torácica Aguda no DE</div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-split">
+        <div>
+          <div class="flow-box highlight"><span class="badge badge-red" style="margin-bottom:.5rem;display:block;width:fit-content;margin-inline:auto;">Grupo A</span><strong>IAM com supradesnível de ST ou BRE novo</strong><br><small style="font-weight:400;">Reperfusão imediata: ICP ou trombólise</small></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.5rem;">
+          <div class="flow-box" style="border-color:rgba(251,191,36,.3);background:rgba(251,191,36,.06);"><span class="badge badge-amber" style="margin-bottom:.4rem;display:block;width:fit-content;margin-inline:auto;">Grupo B</span><strong>IAM sem supradesnível ou angina instável de alto risco</strong><br><small style="font-weight:400;">Admissão em UCO, antiagregação imediata, antitrombóticos</small></div>
+          <div class="flow-box" style="border-color:rgba(0,211,189,.3);background:var(--teal-dim);"><span class="badge badge-teal" style="margin-bottom:.4rem;display:block;width:fit-content;margin-inline:auto;">Grupo C</span><strong>Angina instável de baixo risco ou dor não isquêmica</strong><br><small style="font-weight:400;">Observação, leito intermediário ou alta com seguimento</small></div>
+        </div>
+      </div>
+    </div>
+    <div class="info-amber info-box" style="margin-top:1rem;"><span class="info-box-icon">⚠️</span><div>A maioria dos estudos de acurácia da anamnese/exame físico compara pacientes <strong>COM vs. SEM IAM</strong> (grupos A+B vs. C), e não discrimina entre os 3 grupos clínicos. Esta limitação é fundamental para interpretar as RVs corretamente.</div></div>
+
+    <hr class="divider">
+
+    <div class="section-title">Diagnóstico Diferencial de Dor Torácica</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.75rem;">
+      <div style="background:var(--muted);border-radius:var(--radius);padding:1rem;">
+        <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--teal);margin-bottom:.5rem;">Cardíaco Isquêmico</div>
+        <ul style="font-size:.79rem;line-height:1.7;padding-left:1.1rem;">
+          <li>Angina estável</li>
+          <li>Angina instável</li>
+          <li>IAM (IAMCSSST / IAMSSST)</li>
+        </ul>
+      </div>
+      <div style="background:var(--muted);border-radius:var(--radius);padding:1rem;">
+        <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#f87171;margin-bottom:.5rem;">Cardíaco Não Isquêmico</div>
+        <ul style="font-size:.79rem;line-height:1.7;padding-left:1.1rem;">
+          <li>Pericardite</li>
+          <li>Dissecção aórtica</li>
+          <li>Doença valvar</li>
+        </ul>
+      </div>
+      <div style="background:var(--muted);border-radius:var(--radius);padding:1rem;">
+        <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#fbbf24;margin-bottom:.5rem;">Gastroesofágico</div>
+        <ul style="font-size:.79rem;line-height:1.7;padding-left:1.1rem;">
+          <li>DRGE</li>
+          <li>Espasmo esofágico</li>
+          <li>Úlcera péptica</li>
+        </ul>
+      </div>
+      <div style="background:var(--muted);border-radius:var(--radius);padding:1rem;">
+        <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#60a5fa;margin-bottom:.5rem;">Não Gastroesofágico</div>
+        <ul style="font-size:.79rem;line-height:1.7;padding-left:1.1rem;">
+          <li>Pneumotórax</li>
+          <li>TEP</li>
+          <li>Musculoesquelético</li>
+          <li>Transtorno de pânico</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     TAB 3 – ANAMNESE & EXAME FÍSICO
+═══════════════════════════════════════════════════════════ -->
+<div id="tab-anamnese" class="tab-section">
+
+  <div class="info-amber info-box"><span class="info-box-icon">📌</span><div>As razões de verossimilhança (RV) abaixo foram derivadas de estudos de qualidade A/B (≥200 pacientes consecutivos com dor torácica). <strong>RV+ &gt;2 = aumenta probabilidade. RV– &lt;0,5 = reduz probabilidade.</strong> Fatores de risco clássicos (HAS, DM, dislipidemia) <em>não</em> aumentam a probabilidade de que o episódio atual seja IAM — identificam risco basal, não o episódio agudo.</div></div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📈</div>
+      <div>
+        <div class="card-title">Achados que Aumentam a Probabilidade de IAM</div>
+        <div class="card-subtitle">Anamnese e exame físico em pacientes com dor torácica (comparativo COM vs. SEM IAM)</div>
+      </div>
+    </div>
+    <table class="lr-table">
+      <thead>
+        <tr>
+          <th>Achado Clínico</th>
+          <th>RV+ (IC 95%)</th>
+          <th>Interpretação</th>
+          <th>Nível</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Irradiação para ambos os braços</strong></td>
+          <td><span class="lr-pos">9,7 (4,6–20)</span></td>
+          <td class="lr-up">Forte aumento ↑↑↑</td>
+          <td><span class="badge badge-a">A</span></td>
+        </tr>
+        <tr>
+          <td><strong>Irradiação para braço direito</strong></td>
+          <td><span class="lr-pos">7,3 (3,9–14)</span></td>
+          <td class="lr-up">Forte aumento ↑↑↑</td>
+          <td><span class="badge badge-a">A</span></td>
+        </tr>
+        <tr>
+          <td><strong>B3 à ausculta cardíaca</strong></td>
+          <td><span class="lr-pos">3,2 (1,6–6,5)</span></td>
+          <td class="lr-up">Aumento moderado ↑↑</td>
+          <td><span class="badge badge-b">B</span></td>
+        </tr>
+        <tr>
+          <td><strong>Hipotensão (PAS ≤80 mmHg)</strong></td>
+          <td><span class="lr-pos">3,1 (1,8–5,2)</span></td>
+          <td class="lr-up">Aumento moderado ↑↑</td>
+          <td><span class="badge badge-b">B</span></td>
+        </tr>
+        <tr>
+          <td><strong>Irradiação para ombro direito</strong></td>
+          <td><span class="lr-pos">2,9 (1,4–6,0)</span></td>
+          <td class="lr-up">Aumento moderado ↑↑</td>
+          <td><span class="badge badge-b">B</span></td>
+        </tr>
+        <tr>
+          <td><strong>Irradiação para ombro OU ambos os braços</strong> (Update)</td>
+          <td><span class="lr-pos">4,1 (2,5–6,5)</span></td>
+          <td class="lr-up">Aumento moderado ↑↑</td>
+          <td><span class="badge badge-a">A</span></td>
+        </tr>
+        <tr>
+          <td><strong>Diaforese</strong></td>
+          <td><span class="lr-pos">2,0 (1,9–2,2)</span></td>
+          <td class="lr-up">Leve aumento ↑</td>
+          <td><span class="badge badge-a">A</span></td>
+        </tr>
+        <tr>
+          <td><strong>Estertores pulmonares</strong></td>
+          <td><span class="lr-pos">2,1 (1,4–3,1)</span></td>
+          <td class="lr-up">Leve aumento ↑</td>
+          <td><span class="badge badge-b">B</span></td>
+        </tr>
+        <tr>
+          <td><strong>Náusea ou vômito</strong></td>
+          <td><span class="lr-pos">1,9 (1,7–2,3)</span></td>
+          <td class="lr-up">Leve aumento ↑</td>
+          <td><span class="badge badge-a">A</span></td>
+        </tr>
+        <tr>
+          <td><strong>História de IAM prévio</strong></td>
+          <td><span class="lr-pos">1,5–3,0</span></td>
+          <td class="lr-up">Leve aumento ↑</td>
+          <td><span class="badge badge-a">A</span></td>
+        </tr>
+        <tr>
+          <td><strong>Irradiação para braço esquerdo</strong></td>
+          <td><span class="lr-pos">2,2 (1,6–3,1)</span></td>
+          <td class="lr-up">Leve aumento ↑</td>
+          <td><span class="badge badge-a">A</span></td>
+        </tr>
+        <tr>
+          <td>Vômito (isolado — Update, ECG normal)</td>
+          <td><span class="lr-pos">3,5 (2,0–6,2)</span></td>
+          <td class="lr-up">Aumento moderado ↑↑</td>
+          <td><span class="badge badge-a">A</span></td>
+        </tr>
+        <tr>
+          <td>Ex-tabagista (Update, ECG normal)</td>
+          <td><span class="lr-pos">2,5 (1,6–4,0)</span></td>
+          <td class="lr-up">Leve aumento ↑</td>
+          <td><span class="badge badge-a">A</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="info-gray info-box"><span class="info-box-icon">🔍</span><div><strong>Nota sobre irradiação bilateral:</strong> A maioria dos pacientes com dor no braço direito também tinha dor no braço esquerdo (45/51 no estudo de Berger et al.), sugerindo que a irradiação direita representa padrão de dor mais difusa no IAM, e não achado anatomicamente específico. Conforme Update 2009 (Goodacre), irradiação para ombro OU ambos os braços tem RV+ 4,1.</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📉</div>
+      <div>
+        <div class="card-title">Achados que Reduzem a Probabilidade de IAM</div>
+        <div class="card-subtitle">Características que, quando presentes, tornam IAM substancialmente menos provável</div>
+      </div>
+    </div>
+    <table class="lr-table">
+      <thead>
+        <tr>
+          <th>Achado Clínico</th>
+          <th>RV+ (IC 95%)</th>
+          <th>Interpretação</th>
+          <th>Nível</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Dor pleurítica</strong> (piora com respiração)</td>
+          <td><span class="lr-neg">0,2 (0,2–0,3)</span></td>
+          <td class="lr-down">Forte redução ↓↓↓</td>
+          <td><span class="badge badge-a">A</span></td>
+        </tr>
+        <tr>
+          <td><strong>Dor reproduzida por palpação</strong></td>
+          <td><span class="lr-neg">0,2–0,4</span></td>
+          <td class="lr-down">Forte redução ↓↓↓</td>
+          <td><span class="badge badge-a">A</span></td>
+        </tr>
+        <tr>
+          <td><strong>Dor em facada ou pontada</strong></td>
+          <td><span class="lr-neg">0,3 (0,2–0,5)</span></td>
+          <td class="lr-down">Forte redução ↓↓↓</td>
+          <td><span class="badge badge-a">A</span></td>
+        </tr>
+        <tr>
+          <td><strong>Dor posicional</strong></td>
+          <td><span class="lr-neg">0,3 (0,2–0,4)</span></td>
+          <td class="lr-down">Forte redução ↓↓↓</td>
+          <td><span class="badge badge-a">A</span></td>
+        </tr>
+        <tr>
+          <td>Ausência de sensibilidade parietal (Update)</td>
+          <td><span class="lr-neg">0,30 (0,08–1,1)</span></td>
+          <td style="color:#60a5fa;">RV+ indeterminado (IAM mais provável)</td>
+          <td><span class="badge badge-a">A</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="info-red info-box"><span class="info-box-icon">⚠️</span><div><strong>Atenção:</strong> Esses achados <em>reduzem</em>, mas não excluem IAM. A dor reprodutível à palpação ocorre em ~5% dos IAMs. Sempre considerar a probabilidade pré-teste e o conjunto de dados clínicos.</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🩺</div>
+      <div>
+        <div class="card-title">Achados Clinicamente Inúteis para o Diagnóstico de IAM</div>
+        <div class="card-subtitle">Variáveis com RV próximo de 1 — não modificam a probabilidade pós-teste</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.75rem;">
+      <div style="background:var(--muted);border-radius:var(--radius);padding:.9rem;">
+        <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted-foreground);margin-bottom:.5rem;">Anamnese (RV ≈ 1)</div>
+        <ul style="font-size:.79rem;line-height:1.8;padding-left:1rem;">
+          <li>Idade &gt;60 anos</li>
+          <li>Sexo masculino</li>
+          <li>Hipertensão arterial</li>
+          <li>Diabetes mellitus</li>
+          <li>Dislipidemia</li>
+          <li>Tabagismo ativo</li>
+          <li>História de angina</li>
+          <li>Uso prévio de nitrato</li>
+          <li>Duração da dor &gt;60 min</li>
+          <li>Início súbito vs. gradual</li>
+          <li>Dor episódica vs. constante</li>
+          <li>Alívio com nitroglicerina</li>
+        </ul>
+      </div>
+      <div style="background:var(--muted);border-radius:var(--radius);padding:.9rem;">
+        <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted-foreground);margin-bottom:.5rem;">Qualidade da Dor (RV &lt;2)</div>
+        <ul style="font-size:.79rem;line-height:1.8;padding-left:1rem;">
+          <li>Pressão/aperto (RV ≈ 1,4)</li>
+          <li>Queimação (RV ≈ 1,3)</li>
+          <li>Cólica</li>
+          <li>"Peso"</li>
+          <li>Pontada</li>
+          <li>Irradiação para pescoço/mandíbula</li>
+        </ul>
+      </div>
+      <div style="background:var(--muted);border-radius:var(--radius);padding:.9rem;">
+        <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted-foreground);margin-bottom:.5rem;">Exame Físico (RV &lt;2)</div>
+        <ul style="font-size:.79rem;line-height:1.8;padding-left:1rem;">
+          <li>Dispneia</li>
+          <li>Bradicardia</li>
+          <li>Taquicardia</li>
+          <li>B4 isolado</li>
+          <li>Ausência de B3</li>
+        </ul>
+      </div>
+    </div>
+    <div class="info-amber info-box" style="margin-top:1rem;"><span class="info-box-icon">💡</span><div><strong>Sobre a nitroglicerina:</strong> O alívio da dor com nitrato <em>não</em> distingue dor isquêmica de não isquêmica. O diagnóstico-odds-ratio combinado de 2 estudos foi 0,66 (IC 95% 0,38–1,2), ou seja, não é significativamente diferente de 1 (Henrikson et al, Goodacre et al).</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📐</div>
+      <div>
+        <div class="card-title">Precisão da Anamnese e do Exame Físico (Concordância Inter-Observadores)</div>
+        <div class="card-subtitle">Hickam et al. (JAMA 1985); Gadsboll et al. (Eur Heart J 1989)</div>
+      </div>
+    </div>
+    <table class="prec-table">
+      <thead>
+        <tr>
+          <th>Elemento</th>
+          <th>Dois internistas</th>
+          <th>Internista × Questionário</th>
+          <th>Interpretação κ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Irradiação para braço esquerdo</td><td><span class="kappa-good">κ 0,89</span></td><td>κ 0,58</td><td>Quase perfeita / Moderada</td></tr>
+        <tr><td>Alívio com nitrato</td><td><span class="kappa-good">κ 0,79</span></td><td>κ 0,51</td><td>Substancial / Moderada</td></tr>
+        <tr><td>História de IAM prévio</td><td><span class="kappa-good">κ 0,78</span></td><td>κ 0,81</td><td>Substancial</td></tr>
+        <tr><td>Dor substernal</td><td><span class="kappa-good">κ 0,74</span></td><td>κ 0,50</td><td>Substancial / Moderada</td></tr>
+        <tr><td>Dor com esforço</td><td><span class="kappa-fair">κ 0,63</span></td><td>κ 0,51</td><td>Substancial / Moderada</td></tr>
+        <tr><td>Dor em "pressão"</td><td><span class="kappa-fair">κ 0,57</span></td><td>κ 0,37</td><td>Moderada / Regular</td></tr>
+        <tr><td>Dor em "facada"</td><td><span class="kappa-poor">κ 0,30</span></td><td>κ 0,26</td><td>Regular</td></tr>
+        <tr><td>Dor pleurítica / com movimento</td><td><span class="kappa-poor">κ 0,27–0,44</span></td><td>κ 0,44–0,54</td><td>Regular / Moderada</td></tr>
+      </tbody>
+    </table>
+    <hr class="divider">
+    <div class="section-title">Concordância no Exame Físico (Sinais de IC no IAM)</div>
+    <table class="prec-table">
+      <thead><tr><th>Sinal</th><th>κ (intervalo)</th><th>Nível</th></tr></thead>
+      <tbody>
+        <tr><td>Dispneia</td><td><span class="kappa-good">0,62–0,75</span></td><td>Substancial</td></tr>
+        <tr><td>Ictus desviado (apex beat)</td><td><span class="kappa-good">0,53–0,73</span></td><td>Substancial</td></tr>
+        <tr><td>Distensão de jugulares</td><td><span class="kappa-fair">0,31–0,51</span></td><td>Regular–Moderada</td></tr>
+        <tr><td>Edema periférico</td><td><span class="kappa-fair">0,27–0,64</span></td><td>Regular–Substancial</td></tr>
+        <tr><td>B3</td><td><span class="kappa-poor">0,14–0,37</span></td><td>Discreta–Regular</td></tr>
+        <tr><td>Estertores</td><td><span class="kappa-poor">0,12–0,31</span></td><td>Discreta–Regular</td></tr>
+        <tr><td>Hepatomegalia</td><td><span class="kappa-poor">0–0,16</span></td><td>Muito pobre</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     TAB 4 – ECG
+═══════════════════════════════════════════════════════════ -->
+<div id="tab-ecg" class="tab-section">
+
+  <div class="info-teal info-box"><span class="info-box-icon">⚡</span><div>O ECG é de longe o achado mais útil no DE. Para pacientes com <strong>ECG alterado sugestivo de IAM agudo</strong> (supradesnivelamento de ST novo, ondas Q novas, BRE novo), os sintomas e sinais clínicos se tornam menos importantes — o diagnóstico está estabelecido. Para pacientes com <strong>ECG normal ou não diagnóstico</strong>, os achados clínicos e modelos multivariáveis ganham relevância.</div></div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📈</div>
+      <div>
+        <div class="card-title">Achados de ECG que Aumentam a Probabilidade de IAM</div>
+        <div class="card-subtitle">Interpretação por médico assistente cego aos dados clínicos (exceto 2 estudos)</div>
+      </div>
+    </div>
+    <table class="lr-table">
+      <thead>
+        <tr>
+          <th>Achado no ECG</th>
+          <th>RV+ (IC 95%)</th>
+          <th>Força</th>
+          <th>Nível</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Qualquer supradesnivelamento de ST</strong></td>
+          <td><span class="lr-pos">11 (7,1–18)</span></td>
+          <td class="lr-up">Muito forte ↑↑↑↑</td>
+          <td><span class="badge badge-b">B</span></td>
+        </tr>
+        <tr>
+          <td><strong>Supradesnivelamento de ST novo ≥1 mm</strong></td>
+          <td><span class="lr-pos">5,7–54</span></td>
+          <td class="lr-up">Muito forte ↑↑↑↑</td>
+          <td><span class="badge badge-a">A</span></td>
+        </tr>
+        <tr>
+          <td><strong>Distúrbio de condução novo</strong> (BRE/BDAS)</td>
+          <td><span class="lr-pos">6,3 (2,5–16)</span></td>
+          <td class="lr-up">Forte ↑↑↑</td>
+          <td><span class="badge badge-b">B</span></td>
+        </tr>
+        <tr>
+          <td><strong>Onda Q nova</strong></td>
+          <td><span class="lr-pos">5,3–25</span></td>
+          <td class="lr-up">Forte ↑↑↑</td>
+          <td><span class="badge badge-a">A</span></td>
+        </tr>
+        <tr>
+          <td>Qualquer onda Q</td>
+          <td><span class="lr-pos">3,9 (2,7–5,7)</span></td>
+          <td class="lr-up">Moderado ↑↑</td>
+          <td><span class="badge badge-b">B</span></td>
+        </tr>
+        <tr>
+          <td>Qualquer infradesnivelamento de ST</td>
+          <td><span class="lr-pos">3,2 (2,5–4,1)</span></td>
+          <td class="lr-up">Moderado ↑↑</td>
+          <td><span class="badge badge-b">B</span></td>
+        </tr>
+        <tr>
+          <td>Pico ou inversão de onda T ≥1 mm</td>
+          <td><span class="lr-pos">3,1</span></td>
+          <td class="lr-up">Moderado ↑↑</td>
+          <td><span class="badge badge-a">A</span></td>
+        </tr>
+        <tr>
+          <td>Infradesnivelamento de ST novo</td>
+          <td><span class="lr-pos">3,0–5,2</span></td>
+          <td class="lr-up">Moderado ↑↑</td>
+          <td><span class="badge badge-a">A</span></td>
+        </tr>
+        <tr>
+          <td>Inversão de onda T nova</td>
+          <td><span class="lr-pos">2,4–2,8</span></td>
+          <td class="lr-up">Leve ↑</td>
+          <td><span class="badge badge-a">A</span></td>
+        </tr>
+        <tr>
+          <td>Qualquer distúrbio de condução</td>
+          <td><span class="lr-pos">2,7 (1,4–5,4)</span></td>
+          <td class="lr-up">Leve ↑</td>
+          <td><span class="badge badge-b">B</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📉</div>
+      <div>
+        <div class="card-title">ECG Normal — O Achado que Mais Reduz a Probabilidade</div>
+        <div class="card-subtitle">ECG normal ou não-diagnóstico: ponto de partida para modelos multivariáveis</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;">
+      <div style="text-align:center;background:var(--muted);border-radius:calc(var(--radius)+2px);padding:1.5rem;">
+        <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#f87171;margin-bottom:.5rem;">ECG NORMAL</div>
+        <div style="font-size:3rem;font-weight:800;font-family:var(--font-mono);color:#f87171;line-height:1;">0,1–0,3</div>
+        <div style="font-size:.78rem;color:var(--muted-foreground);margin-top:.5rem;">RV+ (reduz fortemente ↓↓↓)</div>
+      </div>
+      <div style="padding:1rem;">
+        <div class="info-red info-box" style="margin-bottom:.75rem;"><span class="info-box-icon">⚠️</span><div>ECG normal <strong>reduz</strong> mas não exclui IAM. Com probabilidade pré-teste de 25% e ECG normal (RV+ ≈ 0,2), a probabilidade pós-teste cai para ~6%. Troponinas seriadas são necessárias.</div></div>
+        <div class="info-gray info-box"><span class="info-box-icon">📌</span><div>Com ECG normal, a probabilidade de IAM pelo modelo de Goodacre (2003) é de ~7% — ainda suficiente para justificar troponinas seriadas e observação.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📋</div>
+      <div>
+        <div class="card-title">Precisão da Interpretação do ECG (Concordância Inter-Observadores)</div>
+        <div class="card-subtitle">Variabilidade na leitura, mesmo entre cardiologistas experientes</div>
+      </div>
+    </div>
+    <table class="prec-table">
+      <thead><tr><th>Estudo</th><th>Contexto</th><th>Concordância / κ</th></tr></thead>
+      <tbody>
+        <tr><td>Davies (1958)</td><td>10 médicos, 100 ECGs, 2 leituras — normal vs. anormal vs. infarto</td><td><span class="kappa-poor">Concordância completa em apenas 33% dos ECGs</span></td></tr>
+        <tr><td>Gjorup et al (1992)</td><td>16 residentes, 107 ECGs — sinais de infarto agudo</td><td><span class="kappa-poor">Discordância em ~70% dos casos</span></td></tr>
+        <tr><td>Brush et al (1985)</td><td>2 médicos, 50 ECGs — infarto/isquemia/BRE/outros</td><td><span class="kappa-good">κ 0,69 — Substancial</span></td></tr>
+        <tr><td>Willems et al (1991)</td><td>8 cardiologistas, 1220 ECGs validados clinicamente</td><td><span class="kappa-good">κ médio 0,67 — Substancial</span></td></tr>
+        <tr><td>Sgarbossa et al (1996)</td><td>4 investigadores, 2600 ECGs com BRE — polaridade QRS/T e desvio ST</td><td><span class="kappa-good">κ &gt;0,85 para polaridades; r &gt;0,9 para desvio ST</span></td></tr>
+      </tbody>
+    </table>
+    <div class="info-amber info-box"><span class="info-box-icon">💡</span><div>A precisão melhora com experiência. O ACI-TIPI usa análise computadorizada do ECG integrada à clínica (idade, sexo, dor torácica ou no braço esquerdo), produzindo estimativa de probabilidade de isquemia cardíaca aguda impressa diretamente no ECG.</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📊</div>
+      <div>
+        <div class="card-title">Critérios de Sgarbossa para IAM com BRE (Referência Adicional)</div>
+        <div class="card-subtitle">Em pacientes com BRE, a interpretação padrão é limitada — critérios específicos melhoram o diagnóstico</div>
+      </div>
+    </div>
+    <table class="lr-table">
+      <thead><tr><th>Critério de Sgarbossa</th><th>Especificidade</th><th>Sensibilidade</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Supradesnivelamento de ST ≥1 mm concordante com QRS</strong></td><td>~97%</td><td>~73%</td></tr>
+        <tr><td><strong>Infradesnivelamento de ST ≥1 mm em V1–V3</strong></td><td>~96%</td><td>~25%</td></tr>
+        <tr><td><strong>Supradesnivelamento de ST ≥5 mm discordante com QRS</strong></td><td>~82%</td><td>~31%</td></tr>
+      </tbody>
+    </table>
+    <div class="info-gray info-box"><span class="info-box-icon">📌</span><div>O critério "qualquer BRE novo ou desconhecido" foi incorporado ao Protocolo Goldman como evidência de isquemia no ECG, além do supradesnivelamento de ST e ondas Q. A diretriz atual considera BRE novo de causa desconhecida como equivalente a IAMCSSST para fins de reperfusão.</div></div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     TAB 5 – CALCULADORA DE PROBABILIDADE
+═══════════════════════════════════════════════════════════ -->
+<div id="tab-calculadora" class="tab-section">
+
+  <div class="info-teal info-box"><span class="info-box-icon">💡</span><div>Esta calculadora aplica o teorema de Bayes para estimar a probabilidade pós-teste de IAM. Selecione os achados presentes e ajuste a probabilidade pré-teste. <strong>Importante:</strong> as RVs não são independentes entre si — use o resultado como estimativa orientativa, não como substituição ao julgamento clínico. Prefira modelos multivariáveis validados para decisão formal.</div></div>
+
+  <div class="calc-grid">
+    <div class="calc-panel">
+      <div class="calc-panel-title">⬆️ Achados que Aumentam a Probabilidade</div>
+
+      <div class="check-item" id="w-bilat" onclick="toggleCalc('bilat')">
+        <input type="checkbox" id="c-bilat">
+        <div class="check-box" id="cb-bilat">✓</div>
+        <div class="check-label"><strong>Irradiação para ambos os braços</strong><small>RV+ 9,7 (4,6–20)</small></div>
+      </div>
+      <div class="check-item" id="w-rdarm" onclick="toggleCalc('rdarm')">
+        <input type="checkbox" id="c-rdarm">
+        <div class="check-box" id="cb-rdarm">✓</div>
+        <div class="check-label"><strong>Irradiação para braço direito</strong><small>RV+ 7,3 (3,9–14)</small></div>
+      </div>
+      <div class="check-item" id="w-s3" onclick="toggleCalc('s3')">
+        <input type="checkbox" id="c-s3">
+        <div class="check-box" id="cb-s3">✓</div>
+        <div class="check-label"><strong>B3 à ausculta cardíaca</strong><small>RV+ 3,2 (1,6–6,5)</small></div>
+      </div>
+      <div class="check-item" id="w-hypo" onclick="toggleCalc('hypo')">
+        <input type="checkbox" id="c-hypo">
+        <div class="check-box" id="cb-hypo">✓</div>
+        <div class="check-label"><strong>Hipotensão (PAS ≤80 mmHg)</strong><small>RV+ 3,1 (1,8–5,2)</small></div>
+      </div>
+      <div class="check-item" id="w-crackles" onclick="toggleCalc('crackles')">
+        <input type="checkbox" id="c-crackles">
+        <div class="check-box" id="cb-crackles">✓</div>
+        <div class="check-label"><strong>Estertores pulmonares</strong><small>RV+ 2,1 (1,4–3,1)</small></div>
+      </div>
+      <div class="check-item" id="w-diaphor" onclick="toggleCalc('diaphor')">
+        <input type="checkbox" id="c-diaphor">
+        <div class="check-box" id="cb-diaphor">✓</div>
+        <div class="check-label"><strong>Diaforese</strong><small>RV+ 2,0 (1,9–2,2)</small></div>
+      </div>
+      <div class="check-item" id="w-nausea" onclick="toggleCalc('nausea')">
+        <input type="checkbox" id="c-nausea">
+        <div class="check-box" id="cb-nausea">✓</div>
+        <div class="check-label"><strong>Náusea ou vômito</strong><small>RV+ 1,9 (1,7–2,3)</small></div>
+      </div>
+      <div class="check-item" id="w-ldarm" onclick="toggleCalc('ldarm')">
+        <input type="checkbox" id="c-ldarm">
+        <div class="check-box" id="cb-ldarm">✓</div>
+        <div class="check-label"><strong>Irradiação para braço esquerdo</strong><small>RV+ 2,2 (1,6–3,1)</small></div>
+      </div>
+
+      <hr class="divider" style="margin:.75rem 0;">
+      <div class="calc-panel-title" style="margin-bottom:.75rem;">⬇️ Achados que Reduzem a Probabilidade</div>
+
+      <div class="check-item" id="w-pleur" onclick="toggleCalc('pleur')">
+        <input type="checkbox" id="c-pleur">
+        <div class="check-box" id="cb-pleur">✓</div>
+        <div class="check-label"><strong>Dor pleurítica</strong><small>RV+ 0,2 (0,2–0,3)</small></div>
+      </div>
+      <div class="check-item" id="w-palp" onclick="toggleCalc('palp')">
+        <input type="checkbox" id="c-palp">
+        <div class="check-box" id="cb-palp">✓</div>
+        <div class="check-label"><strong>Dor reproduzida por palpação</strong><small>RV+ 0,2–0,4</small></div>
+      </div>
+      <div class="check-item" id="w-sharp" onclick="toggleCalc('sharp')">
+        <input type="checkbox" id="c-sharp">
+        <div class="check-box" id="cb-sharp">✓</div>
+        <div class="check-label"><strong>Dor em facada/pontada</strong><small>RV+ 0,3 (0,2–0,5)</small></div>
+      </div>
+      <div class="check-item" id="w-posit" onclick="toggleCalc('posit')">
+        <input type="checkbox" id="c-posit">
+        <div class="check-box" id="cb-posit">✓</div>
+        <div class="check-label"><strong>Dor posicional</strong><small>RV+ 0,3 (0,2–0,4)</small></div>
+      </div>
+
+      <hr class="divider" style="margin:.75rem 0;">
+      <div class="calc-panel-title" style="margin-bottom:.75rem;">📊 ECG</div>
+
+      <div class="check-item" id="w-ecgnorm" onclick="toggleCalc('ecgnorm')">
+        <input type="checkbox" id="c-ecgnorm">
+        <div class="check-box" id="cb-ecgnorm">✓</div>
+        <div class="check-label"><strong>ECG normal</strong><small>RV+ 0,2 (0,1–0,3)</small></div>
+      </div>
+      <div class="check-item" id="w-ste" onclick="toggleCalc('ste')">
+        <input type="checkbox" id="c-ste">
+        <div class="check-box" id="cb-ste">✓</div>
+        <div class="check-label"><strong>Supradesnivelamento de ST novo ≥1 mm</strong><small>RV+ 11–54</small></div>
+      </div>
+      <div class="check-item" id="w-qwave" onclick="toggleCalc('qwave')">
+        <input type="checkbox" id="c-qwave">
+        <div class="check-box" id="cb-qwave">✓</div>
+        <div class="check-label"><strong>Onda Q nova</strong><small>RV+ 5,3–25</small></div>
+      </div>
+      <div class="check-item" id="w-nconduct" onclick="toggleCalc('nconduct')">
+        <input type="checkbox" id="c-nconduct">
+        <div class="check-box" id="cb-nconduct">✓</div>
+        <div class="check-label"><strong>Distúrbio de condução novo</strong><small>RV+ 6,3 (2,5–16)</small></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="nomogram-container" style="margin-bottom:1rem;">
+        <div style="font-size:.85rem;font-weight:700;margin-bottom:1rem;">Probabilidade Pré-Teste</div>
+        <div class="lr-slider-group">
+          <div class="lr-slider-label">
+            <span>Pré-teste</span>
+            <span id="pretest-label" style="font-family:var(--font-mono);color:var(--teal);">25%</span>
+          </div>
+          <input type="range" min="1" max="99" value="25" id="pretest-slider" oninput="updateCalc()">
+        </div>
+        <div style="display:flex;gap:.5rem;margin-top:.5rem;">
+          <button class="btn btn-secondary" style="font-size:.7rem;padding:4px 10px;" onclick="setPretest(14)">14% (DE geral)</button>
+          <button class="btn btn-secondary" style="font-size:.7rem;padding:4px 10px;" onclick="setPretest(25)">25% (SCA pré-triagem)</button>
+          <button class="btn btn-secondary" style="font-size:.7rem;padding:4px 10px;" onclick="setPretest(50)">50% (UCO admissão)</button>
+        </div>
+      </div>
+
+      <div class="nomogram-container">
+        <div style="font-size:.85rem;font-weight:700;margin-bottom:1rem;">Resultado Bayesiano</div>
+        <div class="prob-display">
+          <div class="prob-val" id="posttest-val" style="color:var(--teal);">25%</div>
+          <div class="prob-label">Probabilidade pós-teste de IAM</div>
+        </div>
+        <div class="prob-bar-wrap">
+          <div class="prob-bar" id="prob-bar" style="width:25%;background:var(--teal);"></div>
+        </div>
+        <div class="prob-interp" id="prob-interp" style="color:var(--muted-foreground);">Sem achados selecionados — probabilidade igual à pré-teste</div>
+
+        <hr class="divider">
+
+        <div style="font-size:.78rem;color:var(--muted-foreground);">
+          <div style="display:flex;justify-content:space-between;margin-bottom:.4rem;">
+            <span>Probabilidade pré-teste:</span>
+            <span id="pre-display" style="font-family:var(--font-mono);color:var(--foreground);font-weight:600;">25%</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:.4rem;">
+            <span>RV combinada (produto):</span>
+            <span id="lr-combined" style="font-family:var(--font-mono);color:var(--teal);font-weight:600;">1,0×</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;">
+            <span>Probabilidade pós-teste:</span>
+            <span id="post-display" style="font-family:var(--font-mono);color:var(--foreground);font-weight:600;">25%</span>
+          </div>
+        </div>
+
+        <div class="info-amber info-box" style="margin-top:1rem;font-size:.75rem;">
+          <span class="info-box-icon">⚠️</span>
+          <div>Esta calculadora é uma ferramenta educacional. As RVs individuais não são completamente independentes entre si — use modelos multivariáveis validados (Goldman, ACI-TIPI) para decisões clínicas formais. Troponina seriada é mandatória.</div>
+        </div>
+      </div>
+
+      <button class="btn btn-secondary" style="margin-top:.75rem;width:100%;" onclick="resetCalc()">↺ Resetar Calculadora</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     TAB 6 – REGRAS DE PREDIÇÃO
+═══════════════════════════════════════════════════════════ -->
+<div id="tab-predicao" class="tab-section">
+
+  <div class="info-gray info-box" style="margin-bottom:1.25rem;"><span class="info-box-icon">📌</span><div>As regras de predição clínica combinam múltiplas variáveis para estimar a probabilidade de IAM, superando a limitação de independência condicional das RVs univariadas. Nenhuma delas foi amplamente validada com troponinas de alta sensibilidade — aplicar com ressalva à prática contemporânea.</div></div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📊</div>
+      <div>
+        <div class="card-title">Protocolo Goldman de Dor Torácica</div>
+        <div class="card-subtitle">Goldman et al. N Engl J Med 1988; Reilly et al. JAMA 2002 — Validado em &gt;6.000 pacientes no DE</div>
+      </div>
+    </div>
+
+    <div class="flow">
+      <div class="flow-box highlight">Paciente com possível SCA no DE → Realizar ECG</div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-split">
+        <div>
+          <div class="flow-box danger"><strong>ECG com evidência de IAM agudo?</strong><br><small>Supradesnivelamento ST ≥1 mm em ≥2 derivações contíguas (novo ou desconhecido) OU ondas Q patológicas novas em ≥2 derivações</small><br><br>→ <strong>SIM:</strong> Alto Risco → UCO</div>
+        </div>
+        <div>
+          <div class="flow-box" style="border-color:rgba(96,165,250,.3);background:rgba(96,165,250,.06);"><strong>ECG com evidência de isquemia?</strong><br><small>Infradesnivelamento de ST ≥1 mm, inversão de onda T em ≥2 derivações contíguas, ou BRE novo/desconhecido</small></div>
+          <div class="flow-arrow" style="margin:.4rem 0;">↓</div>
+          <div class="flow-box">Fatores urgentes presentes?<br><small>Estertores bilaterais · PAS &lt;100 mmHg · Angina instável</small><br><br>0: Baixo risco → Observação<br>1: Risco moderado → Leito telemetria<br>2–3: Alto risco → UCO</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-teal info-box" style="margin-top:1rem;"><span class="info-box-icon">✅</span><div>Estudo "before-after" demonstrou que o protocolo Goldman aumentou com segurança a admissão para leitos de menor intensidade (leito intermediário em vez de UCO) sem aumento de complicações cardíacas maiores (Reilly et al. JAMA 2002).</div></div>
+    <div class="info-amber info-box"><span class="info-box-icon">⚠️</span><div>O protocolo Goldman usa apenas ECG e 2 achados do exame físico — <strong>não inclui biomarcadores</strong>. É mais adequado para estratificação de risco e disposição do que para diagnóstico de IAM.</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🧮</div>
+      <div>
+        <div class="card-title">Modelo Multivariável de Wang et al. (Sem ECG)</div>
+        <div class="card-subtitle">Wang SJ et al. Comput Biol Med 2001 — Para triagem antes do ECG</div>
+      </div>
+    </div>
+    <div class="goldman-box">
+      <div style="font-size:.78rem;font-weight:700;color:var(--muted-foreground);margin-bottom:.75rem;text-transform:uppercase;letter-spacing:.04em;">Escore = –92 + variáveis abaixo (1 = presente, 0 = ausente)</div>
+      <div class="goldman-row"><span class="goldman-var">Idade (anos)</span><span class="goldman-coef">×1,0</span></div>
+      <div class="goldman-row"><span class="goldman-var">Diaforese com dor</span><span class="goldman-coef">+17</span></div>
+      <div class="goldman-row"><span class="goldman-var">Náusea</span><span class="goldman-coef">+14</span></div>
+      <div class="goldman-row"><span class="goldman-var">Tabagismo</span><span class="goldman-coef">+11</span></div>
+      <div class="goldman-row"><span class="goldman-var">Irradiação para braço esquerdo</span><span class="goldman-coef">+11</span></div>
+      <div class="goldman-row"><span class="goldman-var">Sexo masculino</span><span class="goldman-coef">+8</span></div>
+      <div class="goldman-row"><span class="goldman-var">Dor pleurítica</span><span class="goldman-coef">–44</span></div>
+      <div class="goldman-row"><span class="goldman-var">Dor episódica</span><span class="goldman-coef">–30</span></div>
+      <div class="goldman-row"><span class="goldman-var">Dor em facada</span><span class="goldman-coef">–15</span></div>
+      <div class="goldman-row"><span class="goldman-var">Angina prévia</span><span class="goldman-coef">–15</span></div>
+      <div class="goldman-row"><span class="goldman-var">IAM prévio</span><span class="goldman-coef">–12</span></div>
+      <div style="margin-top:.75rem;padding-top:.75rem;border-top:1px solid var(--border);font-size:.8rem;">
+        <strong>P(IAM)</strong> = exp(escore/15) / [1 + exp(escore/15)]
+      </div>
+    </div>
+    <div class="info-gray info-box"><span class="info-box-icon">🔍</span><div>Acurácia (c-index) de 84% no conjunto de validação. Notável que <strong>angina e IAM prévios reduzem</strong> a probabilidade — pacientes com doença coronária conhecida usam mais o serviço de emergência por dor não relacionada, diluindo a proporção com IAM ativo.</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🧮</div>
+      <div>
+        <div class="card-title">Modelo de Goodacre et al. (Com ECG Normal/Não Diagnóstico)</div>
+        <div class="card-subtitle">Goodacre SW et al. QJM 2003 — Para pacientes com ECG não diagnóstico e incerteza diagnóstica</div>
+      </div>
+    </div>
+    <div class="goldman-box">
+      <div style="font-size:.78rem;font-weight:700;color:var(--muted-foreground);margin-bottom:.75rem;text-transform:uppercase;letter-spacing:.04em;">Escore = 116 + variáveis abaixo (1 = presente, 0 = ausente)</div>
+      <div class="goldman-row"><span class="goldman-var">Idade (anos)</span><span class="goldman-coef">×1,0</span></div>
+      <div class="goldman-row"><span class="goldman-var">Sexo masculino</span><span class="goldman-coef">+23</span></div>
+      <div class="goldman-row"><span class="goldman-var">Irradiação para braço direito</span><span class="goldman-coef">+21</span></div>
+      <div class="goldman-row"><span class="goldman-var">Ex-tabagista</span><span class="goldman-coef">+18</span></div>
+      <div class="goldman-row"><span class="goldman-var">Irradiação para braço esquerdo</span><span class="goldman-coef">+11</span></div>
+      <div class="goldman-row"><span class="goldman-var">Vômito</span><span class="goldman-coef">+15</span></div>
+      <div class="goldman-row"><span class="goldman-var">Tabagismo ativo</span><span class="goldman-coef">+15</span></div>
+      <div class="goldman-row"><span class="goldman-var">Dor em queimação/indigestão</span><span class="goldman-coef">+10</span></div>
+      <div style="margin-top:.75rem;padding-top:.75rem;border-top:1px solid var(--border);font-size:.8rem;">
+        <strong>P(IAM)</strong> = exp(escore/11) / [1 + exp(escore/11)]
+      </div>
+    </div>
+    <div class="info-amber info-box"><span class="info-box-icon">⚠️</span><div>Estudo de nível 1 (prospectivo, critério troponina). Aplicável apenas a pacientes com dor torácica não diferenciada <em>sem</em> ECG diagnóstico e sem doença coronária conhecida com dor típica prévia. Irradiação para braço direito tem peso maior que para braço esquerdo nessa população, pois braço esquerdo frequentemente leva ao DE mesmo em causas não cardíacas.</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📊</div>
+      <div>
+        <div class="card-title">ACI-TIPI e Outros Modelos — Desempenho Comparativo</div>
+        <div class="card-subtitle">Pope JH, Selker HP. Emerg Clin North Amer 2003</div>
+      </div>
+    </div>
+    <table class="lr-table">
+      <thead>
+        <tr>
+          <th>Ferramenta</th>
+          <th>Alvo</th>
+          <th>RV+ (faixa)</th>
+          <th>RV– (faixa)</th>
+          <th>Comentário</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>ACI-TIPI</strong> (n=4 estudos)</td>
+          <td>Isquemia cardíaca aguda (IAM + AI)</td>
+          <td><span class="lr-pos">3,9–12</span></td>
+          <td><span class="lr-neg">0,05–0,18</span></td>
+          <td>Integrado ao ECG computadorizado. Melhor desempenho demonstrado em manejo.</td>
+        </tr>
+        <tr>
+          <td><strong>Goldman (n=3 estudos)</strong></td>
+          <td>IAM</td>
+          <td><span class="lr-pos">2,9–3,6</span></td>
+          <td><span class="lr-neg">0,12–0,17</span></td>
+          <td>Validado para estratificação de intensidade do leito.</td>
+        </tr>
+        <tr>
+          <td><strong>Sistemas computadorizados (n=6)</strong></td>
+          <td>IAM</td>
+          <td><span class="lr-pos">1,2–24</span></td>
+          <td><span class="lr-neg">0,02–0,83</span></td>
+          <td>Ampla variação entre sistemas. Desempenho inconsistente.</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="info-gray info-box"><span class="info-box-icon">📖</span><div>O ACI-TIPI usa: idade, sexo, dor torácica ou no braço esquerdo como queixa principal, e análise computadorizada do ECG (presença de ondas Q e avaliação de alterações ST-T). Produz probabilidade de 0–100% impressa no ECG. Demonstrou efeito positivo sobre decisões clínicas em estudos prospectivos. Requer integração de software no aparelho de ECG.</div></div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     TAB 7 – DIAGNÓSTICO FINAL
+═══════════════════════════════════════════════════════════ -->
+<div id="tab-diagnostico" class="tab-section">
+
+  <div class="card" style="border-color:rgba(0,211,189,.3);background:rgba(0,211,189,.04);">
+    <div class="card-header">
+      <div class="card-icon">🎯</div>
+      <div>
+        <div class="card-title">Probabilidade Pré-Teste de IAM</div>
+        <div class="card-subtitle">Ponto de partida para aplicação bayesiana dos achados clínicos</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;">
+      <div style="text-align:center;background:var(--muted);border-radius:var(--radius);padding:1.25rem;">
+        <div style="font-size:2.2rem;font-weight:800;font-family:var(--font-mono);color:var(--teal);">~25%</div>
+        <div style="font-size:.78rem;color:var(--muted-foreground);margin-top:.4rem;">Pacientes com sintomas sugestivos de SCA no DE (geral)</div>
+      </div>
+      <div style="text-align:center;background:var(--muted);border-radius:var(--radius);padding:1.25rem;">
+        <div style="font-size:2.2rem;font-weight:800;font-family:var(--font-mono);color:#fbbf24;">~7%</div>
+        <div style="font-size:.78rem;color:var(--muted-foreground);margin-top:.4rem;">ECG normal, SCA incerta (Goodacre 2003)</div>
+      </div>
+      <div style="text-align:center;background:var(--muted);border-radius:var(--radius);padding:1.25rem;">
+        <div style="font-size:2.2rem;font-weight:800;font-family:var(--font-mono);color:#f87171;">50–85%</div>
+        <div style="font-size:.78rem;color:var(--muted-foreground);margin-top:.4rem;">Pacientes admitidos em UCO por suspeita de IAM</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📋</div>
+      <div>
+        <div class="card-title">Critério-Padrão para IAM — Definição Atualizada com Troponina</div>
+        <div class="card-subtitle">Alpert JS et al. J Am Coll Cardiol 2000 (ESC/ACC Consenso)</div>
+      </div>
+    </div>
+    <div class="info-teal info-box" style="margin-bottom:.75rem;"><span class="info-box-icon">✅</span><div>A mudança da definição para troponina aumentou a incidência de IAM em ~7,7 pp absolutos (Kontos et al. AHJ 2003). A sensibilidade e especificidade dos achados clínicos para o diagnóstico de IAM pelo critério troponina podem diferir das publicadas com critérios CK-MB/WHO.</div></div>
+    <div class="goldman-box">
+      <div style="font-size:.82rem;font-weight:700;margin-bottom:.75rem;">O diagnóstico de IAM agudo, em evolução ou recente requer:</div>
+      <div style="font-size:.82rem;margin-bottom:.5rem;"><strong>Critério 1:</strong> Elevação típica com queda gradual (troponina) ou rápida ascensão e descida (CK-MB) de marcadores de necrose miocárdica, com ao menos <em>um</em> dos seguintes:</div>
+      <ul style="font-size:.8rem;padding-left:1.25rem;line-height:1.8;margin-bottom:.75rem;">
+        <li>Sintomas isquêmicos</li>
+        <li>Desenvolvimento de ondas Q patológicas no ECG</li>
+        <li>Alterações de ECG sugestivas de isquemia (supradesnivelamento ou infradesnivelamento de ST)</li>
+        <li>Intervenção coronária (ex: angioplastia)</li>
+      </ul>
+      <div style="font-size:.82rem;"><strong>Critério 2:</strong> Achados anatomopatológicos de IAM agudo</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🏥</div>
+      <div>
+        <div class="card-title">Populações-Alvo para Suspeita de IAM</div>
+        <div class="card-subtitle">Foco nos sintomas e apresentação atual — não nos fatores de risco crônicos</div>
+      </div>
+    </div>
+    <div class="info-amber info-box"><span class="info-box-icon">⚠️</span><div><strong>Ponto crítico da diretriz:</strong> Os fatores de risco tradicionais (HAS, DM, dislipidemia) identificam pacientes com maior risco crônico de DAC, mas <strong>não predizem se o episódio atual representa SCA</strong>. Foco deve ser nos sintomas presentes: dor torácica, dispneia, síncope, tontura, fraqueza, dor abdominal.</div></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.75rem;margin-top:.75rem;">
+      <div style="background:var(--muted);border-radius:var(--radius);padding:.9rem;"><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--teal);margin-bottom:.5rem;">Sintomas Cardinais</div>
+        <ul style="font-size:.79rem;line-height:1.8;padding-left:1rem;">
+          <li>Dor torácica aguda</li>
+          <li>Dispneia</li>
+          <li>Parada cardíaca</li>
+          <li>Síncope/tontura</li>
+          <li>Dor abdominal superior</li>
+        </ul>
+      </div>
+      <div style="background:var(--muted);border-radius:var(--radius);padding:.9rem;"><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--teal);margin-bottom:.5rem;">Abordagem Recomendada</div>
+        <ul style="font-size:.79rem;line-height:1.8;padding-left:1rem;">
+          <li>ECG em ≤10 min</li>
+          <li>Troponinas seriadas</li>
+          <li>Estratificação de risco</li>
+          <li>Modelos preditivos validados</li>
+          <li>Julgamento clínico integrado</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📊</div>
+      <div>
+        <div class="card-title">Melhores Preditores Univariados — Resumo Integrado</div>
+        <div class="card-subtitle">Para pacientes com ECG normal ou não diagnóstico e diagnóstico incerto</div>
+      </div>
+    </div>
+    <table class="lr-table">
+      <thead>
+        <tr>
+          <th>Achado</th>
+          <th>RV+ (IC 95%)</th>
+          <th>RV– (IC 95%)</th>
+          <th>Contexto</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Irradiação para ombro ou ambos os braços</strong></td>
+          <td><span class="lr-pos">4,1 (2,5–6,5)</span></td>
+          <td><span class="lr-neg">0,68 (0,52–0,89)</span></td>
+          <td>Update 2009 — ECG não diagnóstico</td>
+        </tr>
+        <tr>
+          <td><strong>Irradiação para braço direito</strong></td>
+          <td><span class="lr-pos">3,8 (2,2–6,6)</span></td>
+          <td><span class="lr-neg">0,86 (0,77–0,96)</span></td>
+          <td>Update 2009 — ECG normal</td>
+        </tr>
+        <tr>
+          <td><strong>Vômito</strong></td>
+          <td><span class="lr-pos">3,5 (2,0–6,2)</span></td>
+          <td><span class="lr-neg">0,87 (0,79–0,97)</span></td>
+          <td>Update 2009 — ECG normal</td>
+        </tr>
+        <tr>
+          <td><strong>Ex-tabagista</strong></td>
+          <td><span class="lr-pos">2,5 (1,6–4,0)</span></td>
+          <td><span class="lr-neg">0,85 (0,76–0,96)</span></td>
+          <td>Update 2009 — ECG normal</td>
+        </tr>
+        <tr>
+          <td>Supradesnivelamento de ST novo ≥1mm</td>
+          <td><span class="lr-pos">5,7–54</span></td>
+          <td>—</td>
+          <td>Revisão original — diagnóstico estabelecido pelo ECG</td>
+        </tr>
+        <tr>
+          <td>Onda Q nova</td>
+          <td><span class="lr-pos">5,3–25</span></td>
+          <td>—</td>
+          <td>Revisão original</td>
+        </tr>
+        <tr>
+          <td>ECG normal (ECG como "achado")</td>
+          <td>—</td>
+          <td><span class="lr-neg">0,1–0,3</span></td>
+          <td>Revisão original — redução mais forte</td>
+        </tr>
+        <tr>
+          <td>Dor pleurítica (reduz IAM)</td>
+          <td><span class="lr-neg">0,2 (0,2–0,3)</span></td>
+          <td>—</td>
+          <td>Revisão original</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="info-teal info-box" style="margin-top:.5rem;"><span class="info-box-icon">💡</span><div><strong>Mensagem central:</strong> Após identificar clinicamente possível isquemia aguda, o ECG e a troponina assumem precedência diagnóstica. Os achados clínicos têm maior impacto em pacientes com ECG normal, onde orientam a probabilidade pré-teste para estratificação de risco e decisão de observação vs. alta. Não há um único achado isolado com poder diagnóstico suficiente para excluir IAM.</div></div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     TAB 8 – REFERÊNCIAS
+═══════════════════════════════════════════════════════════ -->
+<div id="tab-referencias" class="tab-section">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📚</div>
+      <div>
+        <div class="card-title">Referências Bibliográficas</div>
+        <div class="card-subtitle">Estudos incluídos na revisão original e no Update do JAMA Rational Clinical Examination</div>
+      </div>
+    </div>
+    <ul class="ref-list">
+      <li class="ref-item"><span class="ref-num">1</span><div><div class="ref-title">Panju AA, Hemmelgarn BR, Guyatt GH, Simel DL. The rational clinical examination: is this patient having a myocardial infarction?</div><div class="ref-meta">JAMA. 1998;280(14):1256–1263. <span class="ref-ev">Nível A</span></div></div></li>
+      <li class="ref-item"><span class="ref-num">2</span><div><div class="ref-title">Simel DL (prepared by). Update: Myocardial Infarction. In: Simel DL, Rennie D, eds. The Rational Clinical Examination. McGraw-Hill; 2009:471–476.</div><div class="ref-meta">Revisado por Goodacre SW e Newby LK. <span class="ref-ev">Update 2009</span></div></div></li>
+      <li class="ref-item"><span class="ref-num">3</span><div><div class="ref-title">Goodacre S, Locker T, Morris F, Campbell S. How useful are clinical features in the diagnosis of acute, undifferentiated chest pain?</div><div class="ref-meta">Acad Emerg Med. 2002;9(3):203–208. <span class="ref-ev">Nível 3</span></div></div></li>
+      <li class="ref-item"><span class="ref-num">4</span><div><div class="ref-title">Goodacre SW, Angelini K, Arnold J, Revill S, Morris F. Clinical predictors of acute coronary syndromes in patients with undifferentiated chest pain.</div><div class="ref-meta">QJM. 2003;96(12):893–898. <span class="ref-ev">Nível 1</span></div></div></li>
+      <li class="ref-item"><span class="ref-num">5</span><div><div class="ref-title">Goldman L, Cook EF, Brand DA, et al. A computer protocol to predict myocardial infarction in emergency department patients with chest pain.</div><div class="ref-meta">N Engl J Med. 1988;318(13):797–803. <span class="ref-ev">Nível A</span></div></div></li>
+      <li class="ref-item"><span class="ref-num">6</span><div><div class="ref-title">Reilly BM, Evans AT, Schaider JJ, et al. Impact of a clinical decision rule on hospital triage of patients with suspected acute cardiac ischemia in the emergency department.</div><div class="ref-meta">JAMA. 2002;288(3):342–350.</div></div></li>
+      <li class="ref-item"><span class="ref-num">7</span><div><div class="ref-title">Berger JP, Buclin R, Haller E, Van Melle G, Yersin B. Right arm involvement and pain extension can help to differentiate coronary diseases from chest pain of other origin.</div><div class="ref-meta">J Intern Med. 1990;227(3):165–172. <span class="ref-ev">Nível B</span></div></li>
+      <li class="ref-item"><span class="ref-num">8</span><div><div class="ref-title">Tierney WM, Fitzgerald D, McHenry R, et al. Physicians' estimates of the probability of myocardial infarction in emergency room patients with chest pain.</div><div class="ref-meta">Med Decis Making. 1986;6(1):12–17. <span class="ref-ev">Nível B</span></div></li>
+      <li class="ref-item"><span class="ref-num">9</span><div><div class="ref-title">Lee TH, Cook EF, Weisberg M, Sargent RK, Wilson C, Goldman L. Acute chest pain in the emergency room.</div><div class="ref-meta">Arch Intern Med. 1985;145(1):65–69. <span class="ref-ev">Nível A</span></div></li>
+      <li class="ref-item"><span class="ref-num">10</span><div><div class="ref-title">Rude RE, Poole WK, Muller JE, et al. Electrocardiographic and clinical criteria for recognition of acute myocardial infarction based on analysis of 3,697 patients.</div><div class="ref-meta">Am J Cardiol. 1983;52(8):936–942. <span class="ref-ev">Nível A</span></div></li>
+      <li class="ref-item"><span class="ref-num">11</span><div><div class="ref-title">Pozen MW, D'Agostino RB, Selker HP, Sytkowski PA, Hood WB. A predictive instrument to improve coronary care unit admission practices in acute ischemic heart disease.</div><div class="ref-meta">N Engl J Med. 1984;310(20):1273–1278. <span class="ref-ev">Nível A</span></div></li>
+      <li class="ref-item"><span class="ref-num">12</span><div><div class="ref-title">Alpert JS, Thygesen K, Antman E, Bassand JP. Myocardial infarction redefined — a consensus document of the Joint ESC/ACC Committee for the redefinition of myocardial infarction.</div><div class="ref-meta">J Am Coll Cardiol. 2000;36(3):959–969.</div></li>
+      <li class="ref-item"><span class="ref-num">13</span><div><div class="ref-title">Kontos MC, Fritz LM, Anderson FP, Tatum JL, Ornato JP, Jesse RL. Impact of the troponin standard on the prevalence of acute myocardial infarction.</div><div class="ref-meta">Am Heart J. 2003;146(3):446–452.</div></li>
+      <li class="ref-item"><span class="ref-num">14</span><div><div class="ref-title">Henrikson CA, Howell EE, Bush DE, et al. Chest pain relief by nitroglycerin does not predict active coronary artery disease.</div><div class="ref-meta">Ann Intern Med. 2003;139(12):979–986.</div></li>
+      <li class="ref-item"><span class="ref-num">15</span><div><div class="ref-title">Wang SJ, Ohno-Machado L, Fraser HSF, Kennedy RL. Using patient-reportable clinical history factors to predict myocardial infarction.</div><div class="ref-meta">Comput Biol Med. 2001;31(1):1–13. <span class="ref-ev">Nível 4</span></div></li>
+      <li class="ref-item"><span class="ref-num">16</span><div><div class="ref-title">Hickam DH, Sox HC, Sox CH. Systematic bias in recording the history in patients with chest pain.</div><div class="ref-meta">J Chronic Dis. 1985;38(1):91–100.</div></li>
+      <li class="ref-item"><span class="ref-num">17</span><div><div class="ref-title">Gadsboll N, Hoilund-Carlsen PF, Nielsen GG, et al. Symptoms and signs of heart failure in patients with myocardial infarction: reproducibility and relationship to chest x-ray, radionuclide ventriculography and right heart catheterization.</div><div class="ref-meta">Eur Heart J. 1989;10(11):1017–1028.</div></li>
+      <li class="ref-item"><span class="ref-num">18</span><div><div class="ref-title">Sgarbossa EB, Pinski SL, Barbagelata A, et al. Electrocardiographic diagnosis of evolving acute myocardial infarction in the presence of left bundle-branch block.</div><div class="ref-meta">N Engl J Med. 1996;334(8):481–487.</div></li>
+      <li class="ref-item"><span class="ref-num">19</span><div><div class="ref-title">Diamond GA, Forrester JS. Analysis of probability as an aid in the clinical diagnosis of coronary artery disease.</div><div class="ref-meta">N Engl J Med. 1979;300(24):1350–1358.</div></li>
+      <li class="ref-item"><span class="ref-num">20</span><div><div class="ref-title">Holleman DR, Simel DL. Quantitative assessments from the clinical examination: how should clinicians integrate the numerous results?</div><div class="ref-meta">J Gen Intern Med. 1997;12(3):165–171.</div></li>
+    </ul>
+  </div>
+
+  <div class="disclaimer">
+    <strong>Nota metodológica:</strong> Esta página é baseada no capítulo 35 e seu Update do livro <em>The Rational Clinical Examination: Evidence-Based Clinical Diagnosis</em> (JAMA/McGraw-Hill, 2009). Os dados de acurácia utilizaram critérios diagnósticos de IAM pré-troponina de alta sensibilidade; os valores de RV podem variar com critérios contemporâneos. A revisão identifica que DM, HAS e dislipidemia não predizem o episódio agudo de IAM e não devem influenciar a probabilidade pré-teste do episódio em questão. O protocolo Goldman foi validado para estratificação de risco e disposição do paciente, não como substituto para biomarcadores. Para uso clínico, integre sempre com troponinas seriadas e julgamento clínico especializado.
+  </div>
+</div>
+
+</div><!-- .container -->
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-copy">© 2025 Dr. Lucas Silva · lucascardio.com.br · Conteúdo para fins educacionais</div>
+      <div style="font-size:.72rem;color:var(--muted-foreground);">Baseado em: Panju AA et al. JAMA 1998 · Simel DL (Update) 2009</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ══ TAB NAVIGATION ═══════════════════════════════════════ */
+function showTab(id) {
+  document.querySelectorAll('.tab-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  const btns = document.querySelectorAll('.tab-btn');
+  const map = ['cenarios','fisiopato','anamnese','ecg','calculadora','predicao','diagnostico','referencias'];
+  btns[map.indexOf(id)].classList.add('active');
+}
+
+/* ══ SCENARIO TOGGLE ══════════════════════════════════════ */
+function toggleScenario(id) {
+  const el = document.getElementById(id + '-analysis');
+  if (el.classList.contains('show')) {
+    el.classList.remove('show');
+  } else {
+    document.querySelectorAll('.result-block').forEach(r => r.classList.remove('show'));
+    el.classList.add('show');
+  }
+}
+
+/* ══ BAYESIAN CALCULATOR ══════════════════════════════════ */
+const LRmap = {
+  bilat: 9.7, rdarm: 7.3, s3: 3.2, hypo: 3.1, crackles: 2.1,
+  diaphor: 2.0, nausea: 1.9, ldarm: 2.2,
+  pleur: 0.2, palp: 0.3, sharp: 0.3, posit: 0.3,
+  ecgnorm: 0.2, ste: 11.0, qwave: 8.0, nconduct: 6.3
+};
+const checked = {};
+
+function toggleCalc(key) {
+  const w = document.getElementById('w-' + key);
+  const cb = document.getElementById('cb-' + key);
+  checked[key] = !checked[key];
+  if (checked[key]) {
+    w.classList.add('checked');
+    cb.textContent = '✓';
+  } else {
+    w.classList.remove('checked');
+    cb.textContent = '';
+  }
+  updateCalc();
+}
+
+function setPretest(val) {
+  document.getElementById('pretest-slider').value = val;
+  updateCalc();
+}
+
+function updateCalc() {
+  const pre = parseInt(document.getElementById('pretest-slider').value);
+  document.getElementById('pretest-label').textContent = pre + '%';
+  document.getElementById('pre-display').textContent = pre + '%';
+
+  let lr = 1.0;
+  for (const [k, on] of Object.entries(checked)) {
+    if (on && LRmap[k]) lr *= LRmap[k];
+  }
+
+  const preOdds = pre / (100 - pre);
+  const postOdds = preOdds * lr;
+  const post = Math.round((postOdds / (1 + postOdds)) * 100);
+
+  document.getElementById('posttest-val').textContent = post + '%';
+  document.getElementById('post-display').textContent = post + '%';
+  document.getElementById('lr-combined').textContent = lr.toFixed(2) + '×';
+
+  const bar = document.getElementById('prob-bar');
+  bar.style.width = post + '%';
+  const interp = document.getElementById('prob-interp');
+  const val = document.getElementById('posttest-val');
+
+  if (post >= 80) {
+    bar.style.background = '#f87171';
+    val.style.color = '#f87171';
+    interp.textContent = 'Probabilidade muito alta — IAM altamente provável';
+    interp.style.color = '#f87171';
+  } else if (post >= 50) {
+    bar.style.background = '#fbbf24';
+    val.style.color = '#fbbf24';
+    interp.textContent = 'Probabilidade moderada a alta — investigação ativa obrigatória';
+    interp.style.color = '#fbbf24';
+  } else if (post >= 20) {
+    bar.style.background = 'var(--teal)';
+    val.style.color = 'var(--teal)';
+    interp.textContent = 'Probabilidade intermediária — estratificação e biomarcadores';
+    interp.style.color = 'var(--teal)';
+  } else if (post >= 5) {
+    bar.style.background = '#60a5fa';
+    val.style.color = '#60a5fa';
+    interp.textContent = 'Probabilidade baixa — troponinas para excluir IAM';
+    interp.style.color = '#60a5fa';
+  } else {
+    bar.style.background = '#34d399';
+    val.style.color = '#34d399';
+    interp.textContent = 'Probabilidade muito baixa — IAM improvável';
+    interp.style.color = '#34d399';
+  }
+}
+
+function resetCalc() {
+  for (const k in checked) { checked[k] = false; }
+  document.querySelectorAll('.check-item').forEach(w => w.classList.remove('checked'));
+  document.querySelectorAll('.check-box').forEach(cb => cb.textContent = '');
+  document.getElementById('pretest-slider').value = 25;
+  updateCalc();
+}
+
+updateCalc();
+</script>
+</body>
+</html>
