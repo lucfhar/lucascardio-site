@@ -1,0 +1,1408 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>NNT em Cardiologia – Referência Clínica | Dr. Lucas Silva</title>
+  <meta name="description" content="Referência interativa de NNT e NNH para intervenções cardiológicas baseadas em evidências. Dados do TheNNT.com adaptados para prática clínica." />
+  <meta name="author" content="Dr. Lucas Silva" />
+  <link rel="canonical" href="https://lucascardio.com.br/Medicos/nnt-cardiologia.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": ["MedicalWebPage", "LearningResource"],
+  "headline": "NNT em Cardiologia – Referência Clínica",
+  "name": "NNT em Cardiologia – Referência Clínica",
+  "description": "Referência interativa de NNT e NNH para intervenções cardiológicas baseadas em evidências. Dados do TheNNT.com adaptados para prática clínica.",
+  "url": "https://lucascardio.com.br/Medicos/nnt-cardiologia.html",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://lucascardio.com.br/Medicos/nnt-cardiologia.html"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Dr. Lucas Silva",
+    "url": "https://lucascardio.com.br",
+    "jobTitle": "Cardiologista Intervencionista"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dr. Lucas Silva - Cardiologia",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://lucascardio.com.br/assets/img/logo.png"
+    }
+  },
+  "medicalAudience": {
+    "@type": "MedicalAudience",
+    "audienceType": "Clinician"
+  },
+  "specialty": "https://schema.org/Cardiovascular",
+  "educationalUse": "Reference",
+  "learningResourceType": "Interactive Reference",
+  "about": [
+    {
+      "@type": "Thing",
+      "name": "Number Needed to Treat"
+    },
+    {
+      "@type": "Thing",
+      "name": "Number Needed to Harm"
+    },
+    {
+      "@type": "Thing",
+      "name": "Cardiovascular interventions"
+    }
+  ],
+  "isBasedOn": {
+    "@type": "CreativeWork",
+    "name": "TheNNT.com",
+    "url": "https://www.thennt.com"
+  }
+}
+</script>
+  
+  <style>
+    :root {
+      --primary: oklch(65% .18 195);
+      --primary-foreground: oklch(98% 0 0);
+      --background: oklch(13% .018 250);
+      --foreground: oklch(93% .01 250);
+      --card: oklch(18.5% .018 250);
+      --card-foreground: oklch(93% .01 250);
+      --muted: oklch(22% .018 250);
+      --muted-foreground: oklch(62% .02 250);
+      --border: oklch(28% .025 250);
+      --input: oklch(22% .02 250);
+      --secondary: oklch(22% .022 250);
+      --accent: oklch(24% .025 250);
+      --teal: #00d3bd;
+      --teal-dim: rgba(0,211,189,.12);
+      --amber: #fbbf24;
+      --red: #f87171;
+      --green: #4ade80;
+      --radius: 0.625rem;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --c-green: #16a34a;
+      --c-green-bg: rgba(22,163,74,.12);
+      --c-green-border: rgba(22,163,74,.3);
+      --c-green-text: #4ade80;
+      --c-yellow: #b45309;
+      --c-yellow-bg: rgba(245,158,11,.1);
+      --c-yellow-border: rgba(245,158,11,.3);
+      --c-yellow-text: #fbbf24;
+      --c-red: #b91c1c;
+      --c-red-bg: rgba(239,68,68,.1);
+      --c-red-border: rgba(239,68,68,.3);
+      --c-red-text: #f87171;
+      --c-black: #6b7280;
+      --c-black-bg: rgba(107,114,128,.1);
+      --c-black-border: rgba(107,114,128,.3);
+      --c-black-text: #9ca3af;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); background: var(--background); color: var(--foreground); min-height: 100vh; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    nav { position: sticky; top: 0; z-index: 50; background: rgba(18,20,27,.9); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 1.5rem; height: 56px; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .nav-brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--foreground); flex-shrink: 0; }
+    .nav-brand-icon { width: 28px; height: 28px; border-radius: 7px; background: var(--teal); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .nav-brand-name { font-weight: 800; font-size: 1rem; letter-spacing: -.025em; line-height: 1; }
+    .nav-brand-name span { color: var(--teal); }
+    .nav-brand-sep { width: 1px; height: 14px; background: var(--border); margin: 0 6px; }
+    .nav-brand-sub { font-size: .7rem; font-weight: 500; color: var(--muted-foreground); }
+    .nav-search { flex: 1; max-width: 320px; }
+    .nav-search input { width: 100%; background: var(--muted); border: 1px solid var(--border); border-radius: 8px; color: var(--foreground); font-family: var(--font-sans); font-size: .82rem; padding: 7px 12px 7px 32px; outline: none; transition: border-color .15s; }
+    .nav-search input:focus { border-color: var(--primary); }
+    .nav-search-wrap { position: relative; }
+    .nav-search-wrap svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); opacity: .4; }
+    .nav-link { font-size: .75rem; font-weight: 600; padding: 5px 12px; border-radius: 8px; border: 1.5px solid var(--primary); color: var(--primary); background: transparent; text-decoration: none; transition: background .15s, color .15s; display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; flex-shrink: 0; }
+    .nav-link:hover { background: var(--primary); color: #000; }
+
+    /* LAYOUT */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* HERO */
+    .hero { padding: 3rem 0 2rem; border-bottom: 1px solid var(--border); }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 6px; font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); margin-bottom: 1rem; }
+    .hero-eyebrow::before { content: ''; display: block; width: 20px; height: 2px; background: var(--teal); border-radius: 1px; }
+    .hero h1 { font-size: clamp(1.5rem, 4vw, 2.2rem); font-weight: 800; line-height: 1.2; margin-bottom: .75rem; letter-spacing: -.02em; }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero-sub { color: var(--muted-foreground); font-size: .9rem; max-width: 640px; margin-bottom: 1.5rem; }
+
+    /* LEGEND */
+    .legend { display: flex; flex-wrap: wrap; gap: .6rem; margin-bottom: 1.5rem; }
+    .legend-item { display: flex; align-items: center; gap: 6px; font-size: .75rem; font-weight: 600; }
+    .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .legend-dot.green { background: var(--c-green-text); }
+    .legend-dot.yellow { background: var(--c-yellow-text); }
+    .legend-dot.red { background: var(--c-red-text); }
+    .legend-dot.black { background: var(--c-black-text); }
+
+    /* STATS BAR */
+    .stats-bar { display: flex; gap: 1.5rem; flex-wrap: wrap; padding: 1rem 0; border-bottom: 1px solid var(--border); margin-bottom: 1.5rem; }
+    .stat-item { display: flex; flex-direction: column; }
+    .stat-val { font-family: var(--font-mono); font-size: 1.3rem; font-weight: 700; color: var(--teal); line-height: 1; }
+    .stat-lbl { font-size: .72rem; color: var(--muted-foreground); margin-top: 2px; }
+
+    /* FILTER TABS */
+    .filter-bar { display: flex; gap: .4rem; flex-wrap: wrap; margin: 1.5rem 0; }
+    .filter-btn { font-size: .75rem; font-weight: 600; padding: 5px 12px; border-radius: 999px; border: 1.5px solid var(--border); color: var(--muted-foreground); background: var(--card); cursor: pointer; transition: all .15s; white-space: nowrap; font-family: var(--font-sans); }
+    .filter-btn:hover { border-color: var(--primary); color: var(--foreground); }
+    .filter-btn.active { background: var(--teal-dim); border-color: rgba(0,211,189,.4); color: var(--teal); }
+
+    /* RESULTS COUNT */
+    .results-info { font-size: .78rem; color: var(--muted-foreground); margin-bottom: 1rem; }
+    .results-info strong { color: var(--foreground); }
+
+    /* GRID */
+    .nnt-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; }
+
+    /* CARD */
+    .nnt-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: calc(var(--radius) + 2px);
+      padding: 1.25rem; cursor: pointer; transition: border-color .15s, transform .15s, box-shadow .15s;
+      display: flex; flex-direction: column; gap: .75rem;
+      position: relative; overflow: hidden;
+    }
+    .nnt-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+    .nnt-card.green::before { background: var(--c-green-text); }
+    .nnt-card.yellow::before { background: var(--c-yellow-text); }
+    .nnt-card.red::before { background: var(--c-red-text); }
+    .nnt-card.black::before { background: var(--c-black-text); }
+    .nnt-card:hover { border-color: var(--primary); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.3); }
+    .nnt-card[style*="display: none"] { display: none !important; }
+
+    .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: .5rem; }
+    .card-cat { font-size: .65rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted-foreground); font-family: var(--font-mono); }
+    .card-rating { display: inline-flex; align-items: center; gap: 4px; font-size: .65rem; font-weight: 700; padding: 2px 7px; border-radius: 999px; white-space: nowrap; flex-shrink: 0; }
+    .card-rating.green { background: var(--c-green-bg); color: var(--c-green-text); border: 1px solid var(--c-green-border); }
+    .card-rating.yellow { background: var(--c-yellow-bg); color: var(--c-yellow-text); border: 1px solid var(--c-yellow-border); }
+    .card-rating.red { background: var(--c-red-bg); color: var(--c-red-text); border: 1px solid var(--c-red-border); }
+    .card-rating.black { background: var(--c-black-bg); color: var(--c-black-text); border: 1px solid var(--c-black-border); }
+
+    .card-title { font-size: .9rem; font-weight: 700; line-height: 1.3; }
+
+    .card-nnt-row { display: flex; gap: .5rem; flex-wrap: wrap; }
+    .nnt-chip { display: flex; flex-direction: column; background: var(--muted); border-radius: var(--radius); padding: 8px 10px; min-width: 80px; }
+    .nnt-chip-val { font-family: var(--font-mono); font-weight: 700; font-size: 1.2rem; line-height: 1; }
+    .nnt-chip-val.benefit { color: var(--c-green-text); }
+    .nnt-chip-val.harm { color: var(--c-red-text); }
+    .nnt-chip-val.neutral { color: var(--c-black-text); }
+    .nnt-chip-lbl { font-size: .62rem; color: var(--muted-foreground); margin-top: 3px; font-family: var(--font-mono); }
+
+    .card-context { font-size: .78rem; color: var(--muted-foreground); line-height: 1.5; }
+    .card-trials { display: flex; flex-wrap: wrap; gap: .3rem; margin-top: .25rem; }
+    .trial-tag { font-size: .65rem; font-family: var(--font-mono); font-weight: 600; padding: 2px 7px; border-radius: 4px; background: var(--accent); color: var(--muted-foreground); border: 1px solid var(--border); }
+
+    .card-footer { display: flex; align-items: center; justify-content: space-between; padding-top: .5rem; border-top: 1px solid var(--border); }
+    .card-outcome { font-size: .7rem; color: var(--muted-foreground); }
+    .card-more { font-size: .7rem; font-weight: 600; color: var(--teal); display: flex; align-items: center; gap: 3px; }
+
+    /* MODAL */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.7); backdrop-filter: blur(4px); z-index: 100; display: none; align-items: center; justify-content: center; padding: 1rem; }
+    .modal-overlay.open { display: flex; animation: fadeIn .2s ease; }
+    .modal { background: var(--card); border: 1px solid var(--border); border-radius: calc(var(--radius) + 4px); max-width: 640px; width: 100%; max-height: 90vh; overflow-y: auto; }
+    .modal-header { padding: 1.5rem; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; position: sticky; top: 0; background: var(--card); z-index: 1; }
+    .modal-title { font-size: 1.1rem; font-weight: 800; line-height: 1.3; }
+    .modal-close { background: var(--muted); border: 1px solid var(--border); border-radius: 8px; padding: 6px 10px; cursor: pointer; color: var(--muted-foreground); font-size: 1rem; line-height: 1; flex-shrink: 0; transition: background .15s; }
+    .modal-close:hover { background: var(--accent); color: var(--foreground); }
+    .modal-body { padding: 1.5rem; display: flex; flex-direction: column; gap: 1.25rem; }
+
+    .modal-nnt-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: .75rem; }
+    .modal-nnt-box { background: var(--muted); border-radius: var(--radius); padding: 1rem; text-align: center; }
+    .modal-nnt-val { font-family: var(--font-mono); font-size: 1.8rem; font-weight: 800; line-height: 1; margin-bottom: 4px; }
+    .modal-nnt-val.benefit { color: var(--c-green-text); }
+    .modal-nnt-val.harm { color: var(--c-red-text); }
+    .modal-nnt-val.neutral { color: var(--c-black-text); }
+    .modal-nnt-lbl { font-size: .72rem; color: var(--muted-foreground); line-height: 1.4; }
+    .modal-nnt-sub { font-size: .65rem; color: var(--muted-foreground); margin-top: 2px; font-style: italic; }
+
+    .modal-section-title { font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--teal); margin-bottom: .5rem; font-family: var(--font-mono); }
+    .modal-text { font-size: .85rem; line-height: 1.7; color: var(--card-foreground); }
+    .modal-text p + p { margin-top: .6rem; }
+
+    .info-box { border-radius: var(--radius); padding: 12px 14px; font-size: .8rem; line-height: 1.6; display: flex; gap: 10px; }
+    .info-box-icon { flex-shrink: 0; font-size: 1rem; margin-top: 1px; }
+    .info-teal { background: var(--teal-dim); border-left: 3px solid var(--teal); }
+    .info-amber { background: rgba(251,191,36,.08); border-left: 3px solid rgba(251,191,36,.5); }
+    .info-red { background: rgba(220,38,38,.08); border-left: 3px solid rgba(220,38,38,.4); }
+    .info-gray { background: var(--muted); border-left: 3px solid var(--border); }
+
+    .modal-pop { font-size: .78rem; color: var(--muted-foreground); padding: .75rem; background: var(--muted); border-radius: var(--radius); }
+    .modal-pop strong { color: var(--foreground); }
+
+    .ref-mini { font-size: .75rem; color: var(--muted-foreground); line-height: 1.6; }
+    .ref-mini a { color: var(--teal); text-decoration: none; }
+    .ref-mini a:hover { text-decoration: underline; }
+
+    /* SECTION DIVIDER */
+    .section { padding: 2.5rem 0; }
+    .section-title { font-size: 1.2rem; font-weight: 800; margin-bottom: .25rem; letter-spacing: -.01em; }
+    .section-label { font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--teal); margin-bottom: .4rem; font-family: var(--font-mono); }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 2rem 0; margin-top: 3rem; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-copy { font-size: .75rem; color: var(--muted-foreground); }
+    .footer-copy a { color: var(--teal); text-decoration: none; }
+
+    /* NO RESULTS */
+    .no-results { display: none; text-align: center; padding: 3rem; color: var(--muted-foreground); }
+    .no-results.show { display: block; }
+
+    /* ANIMATIONS */
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    .nnt-card { animation: fadeUp .3s ease both; }
+
+    /* DISCLAIMER */
+    .disclaimer { background: var(--muted); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 16px; font-size: .75rem; color: var(--muted-foreground); line-height: 1.6; margin-top: 2rem; }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .nav-brand-sub, .nav-brand-sep { display: none; }
+      .nav-search { max-width: 160px; }
+      .nnt-grid { grid-template-columns: 1fr; }
+      .stats-bar { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#">
+    <div class="nav-brand-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+    </div>
+    <div class="nav-brand-name">NNT<span>Cardio</span></div>
+    <div class="nav-brand-sep"></div>
+    <div class="nav-brand-sub">Referência Clínica Baseada em Evidências</div>
+  </a>
+  <div class="nav-search">
+    <div class="nav-search-wrap">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="searchInput" placeholder="Buscar intervenção..." oninput="applyFilters()" />
+    </div>
+  </div>
+  <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+    lucascardio.com.br
+  </a>
+</nav>
+
+<main>
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">Medicina Baseada em Evidências</div>
+    <h1><em>NNT</em> em Cardiologia<br>Referência Interativa</h1>
+    <p class="hero-sub">
+      Síntese dos principais desfechos de NNT e NNH em intervenções cardiológicas, baseada no acervo do <strong>TheNNT.com</strong>. Utilize o filtro por categoria e a busca para navegar pelas evidências e calibrar expectativas terapêuticas com seus pacientes.
+    </p>
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot green"></div> Benefícios claramente superam os riscos</div>
+      <div class="legend-item"><div class="legend-dot yellow"></div> Decisão próxima – benefício moderado</div>
+      <div class="legend-item"><div class="legend-dot red"></div> Riscos superam ou sem benefício comprovado</div>
+      <div class="legend-item"><div class="legend-dot black"></div> Benefícios e riscos equivalentes</div>
+    </div>
+  </div>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stat-item"><span class="stat-val" id="statTotal">51</span><span class="stat-lbl">Intervenções revisadas</span></div>
+    <div class="stat-item"><span class="stat-val" style="color:var(--c-green-text)" id="statGreen">–</span><span class="stat-lbl">Benefício claro (verde)</span></div>
+    <div class="stat-item"><span class="stat-val" style="color:var(--c-yellow-text)" id="statYellow">–</span><span class="stat-lbl">Benefício moderado (amarelo)</span></div>
+    <div class="stat-item"><span class="stat-val" style="color:var(--c-red-text)" id="statRed">–</span><span class="stat-lbl">Sem benefício / risco (vermelho)</span></div>
+    <div class="stat-item"><span class="stat-val" id="statVisible">51</span><span class="stat-lbl">Exibindo agora</span></div>
+  </div>
+
+  <!-- FILTER TABS -->
+  <div class="filter-bar">
+    <button class="filter-btn active" data-cat="all" onclick="setFilter('all')">Todas</button>
+    <button class="filter-btn" data-cat="arrest" onclick="setFilter('arrest')">Parada Cardíaca / RCP</button>
+    <button class="filter-btn" data-cat="antiplatelet" onclick="setFilter('antiplatelet')">Antiagregação</button>
+    <button class="filter-btn" data-cat="statins" onclick="setFilter('statins')">Estatinas</button>
+    <button class="filter-btn" data-cat="revasc" onclick="setFilter('revasc')">Revascularização</button>
+    <button class="filter-btn" data-cat="af" onclick="setFilter('af')">Fibrilação Atrial</button>
+    <button class="filter-btn" data-cat="vte" onclick="setFilter('vte')">TEP / TVP</button>
+    <button class="filter-btn" data-cat="htn" onclick="setFilter('htn')">HAS e Prevenção</button>
+    <button class="filter-btn" data-cat="other" onclick="setFilter('other')">Outros</button>
+  </div>
+
+  <div class="results-info"><strong id="visibleCount">51</strong> intervenções encontradas</div>
+  <div class="no-results" id="noResults">Nenhuma intervenção encontrada para esta busca.</div>
+
+  <!-- GRID -->
+  <div class="nnt-grid" id="nntGrid">
+  <!-- CARDS INSERTED BY JS -->
+  </div>
+
+  <div class="disclaimer">
+    <strong>Aviso clínico:</strong> Os valores de NNT e NNH apresentados são estimativas populacionais derivadas de meta-análises e ensaios clínicos randomizados. Não substituem o julgamento clínico individualizado. NNT varia conforme o risco basal do paciente — pacientes de maior risco basal tendem a obter NNTs menores (maior benefício absoluto). Fonte primária: <a href="https://www.thennt.com" target="_blank" style="color:var(--teal);text-decoration:none;">TheNNT.com</a> • Adaptado e complementado por Dr. Lucas Silva • Última atualização: 2025.
+  </div>
+
+  <div style="height:3rem;"></div>
+</div>
+</main>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+  <div class="modal" id="modalContent">
+    <div class="modal-header">
+      <div>
+        <div id="modalCat" style="font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted-foreground);font-family:var(--font-mono);margin-bottom:4px;"></div>
+        <div class="modal-title" id="modalTitle"></div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-copy">© 2025 <a href="https://lucascardio.com.br">lucascardio.com.br</a> · Dr. Lucas Silva · Cardiologia Intervencionista · São Paulo, SP</div>
+      <div class="footer-copy">Dados: <a href="https://www.thennt.com" target="_blank">TheNNT.com</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const CAT_LABELS = {
+  arrest: 'Parada Cardíaca / RCP',
+  antiplatelet: 'Antiagregação Plaquetária',
+  statins: 'Estatinas',
+  revasc: 'Revascularização',
+  af: 'Fibrilação Atrial',
+  vte: 'TEP / TVP',
+  htn: 'HAS e Prevenção',
+  other: 'Outros'
+};
+
+const COLOR_LABELS = { green: 'Benefício claro', yellow: 'Decisão próxima', red: 'Sem benefício / risco', black: 'Benefícios = riscos' };
+
+// NNT DATA
+const DATA = [
+  // ====== PARADA CARDÍACA / RCP ======
+  {
+    id: 1,
+    cat: 'arrest',
+    color: 'green',
+    title: 'Desfibrilação para Parada Cardíaca',
+    nnt: [{ val: 5, type: 'benefit', lbl: 'NNT', sub: 'Sobrevivência com boas condições neurológicas' }],
+    nnh: [],
+    outcome: 'Sobrevivência (FV/TV sem pulso)',
+    context: 'A desfibrilação precoce é a intervenção de maior impacto em parada cardiorrespiratória por ritmos chocáveis. Cada minuto sem desfibrilação reduz a sobrevivência em ~10%. DEA público e desfibrilação antes dos 5 min são determinantes críticos.',
+    infoType: 'teal',
+    infoText: 'Benefício incontestável em FV/TV sem pulso. A janela terapêutica é estreita — cada minuto sem choque reduz sobrevivência ~7–10%.',
+    trials: ['OPALS', 'SCD-HeFT', 'Weisfeldt 2010'],
+    pop: '1 em cada 5 pacientes sobrevive sem sequelas graves quando desfibrilado precocemente.',
+    refs: ['Weisfeldt ML et al. JAMA. 2010;303(13):1245-1252.']
+  },
+  {
+    id: 2,
+    cat: 'arrest',
+    color: 'yellow',
+    title: 'Medicamentos ACLS para PCR (Adrenalina)',
+    nnt: [{ val: 14, type: 'benefit', lbl: 'NNT', sub: 'RCE (retorno da circulação espontânea)' }],
+    nnh: [{ val: 8, type: 'harm', lbl: 'NNH', sub: 'Mau desfecho neurológico entre sobreviventes' }],
+    outcome: 'RCE vs. sobrevivência com bom desfecho neurológico',
+    context: 'Adrenalina melhora RCE mas não sobrevivência com bom desfecho neurológico. O estudo PARAMEDIC2 (RCT, n=8014) demonstrou que adrenalina aumentou sobrevivência na alta (3,2% vs. 2,4%), mas a proporção com bom desfecho neurológico foi semelhante entre grupos. O benefício se restringe a ritmos não-chocáveis.',
+    infoType: 'amber',
+    infoText: 'Adrenalina aumenta RCE mas pode piorar desfecho neurológico. Considere dose, timing e ritmo de entrada.',
+    trials: ['PARAMEDIC2'],
+    pop: 'A cada 14 pacientes tratados com adrenalina, 1 retorna com circulação — mas entre os sobreviventes, 1 em 8 pode ter desfecho neurológico pior.',
+    refs: ['Perkins GD et al. N Engl J Med. 2018;379:711-721.']
+  },
+  {
+    id: 3,
+    cat: 'arrest',
+    color: 'yellow',
+    title: 'Antiarrítmicos para PCR Extra-hospitalar (Amiodarona / Lidocaína)',
+    nnt: [{ val: 35, type: 'benefit', lbl: 'NNT', sub: 'Sobrevivência na admissão hospitalar' }],
+    nnh: [],
+    outcome: 'Sobrevivência na alta hospitalar (sem diferença vs placebo)',
+    context: 'O estudo ALPS (n=3026) mostrou que amiodarona e lidocaína melhoram sobrevivência na admissão mas não na alta hospitalar vs placebo em FV/TV refratária. O NNT para sobrevivência na admissão é ~35, mas sem diferença em desfecho neurológico ou sobrevivência ao sair do hospital.',
+    infoType: 'amber',
+    infoText: 'Nenhum antiarrítmico mostrou benefício consistente em sobrevivência até a alta. Amiodarona e lidocaína são equivalentes entre si.',
+    trials: ['ALPS'],
+    pop: 'A cada 35 tratados com antiarrítmico, 1 chega ao hospital vivo — sem diferença em quem recebe alta.',
+    refs: ['Kudenchuk PJ et al. N Engl J Med. 2016;374:1711-1722.']
+  },
+  {
+    id: 4,
+    cat: 'arrest',
+    color: 'yellow',
+    title: 'Hipotermia Terapêutica / TTM após PCR (Histórico)',
+    nnt: [{ val: 6, type: 'benefit', lbl: 'NNT', sub: 'Bom desfecho neurológico (HACA 2002)' }],
+    nnh: [{ val: '~15', type: 'harm', lbl: 'NNH', sub: 'Complicações (arritmias, infecção)' }],
+    outcome: 'Desfecho neurológico favorável em 6 meses',
+    context: 'O estudo HACA (2002) e Bernard et al. estabeleceram o TTM (32-34°C) como padrão, com NNT=6. Porém, TTM (2013) não encontrou diferença entre 33°C e 36°C. O TTM2 (2021, n=1900) mostrou que controle de febre (≤37,5°C) é não-inferior ao resfriamento ativo (33°C), sem diferença em mortalidade ou desfecho neurológico.',
+    infoType: 'amber',
+    infoText: 'Dados historicamente favoráveis ao resfriamento foram reformulados pelo TTM2 (2021). Controle de febre permanece recomendado; hipotermia ativa não é mais mandatória.',
+    trials: ['HACA 2002', 'TTM 2013', 'TTM2 2021'],
+    pop: 'NNT histórico de 6 (HACA, 2002) — revisado. TTM2 não confirmou benefício do resfriamento ativo vs controle de febre.',
+    refs: ['HACA Study Group. N Engl J Med. 2002;346:549-556.', 'Dankiewicz J et al. N Engl J Med. 2021;385:2244-2252.']
+  },
+  {
+    id: 5,
+    cat: 'arrest',
+    color: 'red',
+    title: 'Angiografia Precoce vs Tardia após PCR sem STE',
+    nnt: [{ val: '∞', type: 'neutral', lbl: 'NNT', sub: 'Sem diferença em mortalidade' }],
+    nnh: [],
+    outcome: 'Mortalidade em 30 dias / desfecho neurológico',
+    context: 'COACT (2019, n=552) e TOMAHAWK (2021, n=554) demonstraram que coronariografia imediata após PCR extra-hospitalar sem STE não melhora sobrevivência vs estratégia tardia ou seletiva. Intervenção precoce não deve ser realizada de rotina — reservar para instabilidade hemodinâmica refratária ou achados sugestivos de SCA.',
+    infoType: 'red',
+    infoText: 'Coronariografia imediata rotineira pós-PCR sem STE não é recomendada. Seleção clínica é fundamental.',
+    trials: ['COACT', 'TOMAHAWK'],
+    pop: 'Nenhum benefício demonstrado em 2 grandes RCTs. Estratégia de angiografia seletiva/tardia é segura.',
+    refs: ['Lemkes JS et al. N Engl J Med. 2019;380:1397-1407.', 'Desch S et al. N Engl J Med. 2021;385:2204-2213.']
+  },
+  {
+    id: 6,
+    cat: 'arrest',
+    color: 'green',
+    title: 'RCP Extracorpórea (ECMO-CPR) para PCR Refratária',
+    nnt: [{ val: 6, type: 'benefit', lbl: 'NNT', sub: 'Sobrevivência com bom desfecho neurológico (centros especializados, selecionados)' }],
+    nnh: [],
+    outcome: 'Sobrevivência com CPC 1-2 em 30 dias',
+    context: 'ARREST (2020, n=30, interrompido precocemente) e Prague OHCA (2022, n=256) sugerem benefício da ECMO-CPR vs RCP convencional em PCR refratária por FV. O Prague OHCA mostrou 32% vs 22% de sobrevivência em 180 dias (p=0,06). Dados limitados por amostras pequenas — altamente selecionado: FV testemunhada, RCP imediata, jovem, sem comorbidade grave.',
+    infoType: 'teal',
+    infoText: 'Benefício promissor em centros de alto volume com ECMO disponível. Seleção rigorosa é chave — não aplicável universalmente.',
+    trials: ['ARREST', 'Prague OHCA'],
+    pop: 'Aproximadamente 1 em 6 pacientes cuidadosamente selecionados sobrevive com bom desfecho neurológico.',
+    refs: ['Yannopoulos D et al. Lancet. 2020;396:1807-1816.', 'Belohlavek J et al. NEJM. 2022;386:1867-1878.']
+  },
+  {
+    id: 7,
+    cat: 'arrest',
+    color: 'yellow',
+    title: 'Procainamida vs Amiodarona para TV Monomórfica Estável',
+    nnt: [{ val: 4, type: 'benefit', lbl: 'NNT (procainamida)', sub: 'Conversão a ritmo sinusal vs amiodarona' }],
+    nnh: [],
+    outcome: 'Conversão de TV monomórfica estável',
+    context: 'Estudo PROCAMIO e revisões sistemáticas indicam que procainamida é superior à amiodarona para conversão de TV monomórfica estável (67% vs 38% em 40 min no PROCAMIO). Amiodarona continua relevante em contextos específicos (TV polimórfica, instabilidade). NNT estimado ~4 para conversão com procainamida vs amiodarona.',
+    infoType: 'teal',
+    infoText: 'Procainamida é preferida à amiodarona para TV monomórfica hemodinamicamente estável. Cardioversão elétrica sempre disponível.',
+    trials: ['PROCAMIO'],
+    pop: 'A cada 4 pacientes, 1 a mais converte com procainamida em relação à amiodarona.',
+    refs: ['Ortiz M et al. Eur Heart J. 2017;38:1329-1335.']
+  },
+
+  // ====== ANTIAGREGAÇÃO ======
+  {
+    id: 8,
+    cat: 'antiplatelet',
+    color: 'green',
+    title: 'Aspirina após AVC Isquêmico Agudo (≤48h)',
+    nnt: [
+      { val: 79, type: 'benefit', lbl: 'NNT', sub: 'Morte ou dependência reduzida' },
+      { val: 140, type: 'benefit', lbl: 'NNT', sub: 'Recorrência de AVC prevenida' }
+    ],
+    nnh: [{ val: 100, type: 'harm', lbl: 'NNH', sub: 'Hemorragia intracraniana' }],
+    outcome: 'Morte ou dependência em 1–6 meses',
+    context: 'IST (n=19.435) e CAST (n=21.106) são os pilares desta evidência. Aspirina 160–300 mg iniciada em <48h do AVC isquêmico reduz modestamente morte/dependência e AVC recorrente, com pequeno aumento de sangramento. Impacto maior na fase aguda, quando o risco de recorrência é máximo.',
+    infoType: 'teal',
+    infoText: 'Intervenção simples, barata e com benefício claro em AVC isquêmico agudo. Contraindicada em AVC hemorrágico.',
+    trials: ['IST', 'CAST'],
+    pop: '1 em 79 evita morte ou dependência; 1 em 140 evita AVC recorrente — mas 1 em 100 pode ter hemorragia intracraniana.',
+    refs: ['International Stroke Trial. Lancet 1997;349:1569-81.', 'CAST. Lancet 1997;349:1641-9.']
+  },
+  {
+    id: 9,
+    cat: 'antiplatelet',
+    color: 'green',
+    title: 'Aspirina para Prevenção CV Secundária (Pós-IAM/AVC)',
+    nnt: [
+      { val: 50, type: 'benefit', lbl: 'NNT', sub: 'Evento CV composto prevenido' },
+      { val: 77, type: 'benefit', lbl: 'NNT', sub: 'IAM não-fatal prevenido' },
+      { val: 200, type: 'benefit', lbl: 'NNT', sub: 'AVC não-fatal prevenido' },
+      { val: 333, type: 'benefit', lbl: 'NNT', sub: 'Morte prevenida' }
+    ],
+    nnh: [{ val: 400, type: 'harm', lbl: 'NNH', sub: 'Sangramento maior (hospitalização)' }],
+    outcome: 'Evento cardiovascular (IAM, AVC, morte) em ~2 anos',
+    context: 'Meta-análise Antithrombotic Trialists Collaboration (>100.000 pacientes). Em prevenção secundária, benefícios superam os riscos de sangramento. Aspirina 75-100 mg é padrão de cuidado após IAM ou AVC isquêmico. O benefício é mais pronunciado e ocorre em período mais curto (2 anos) que outras intervenções.',
+    infoType: 'teal',
+    infoText: 'Relação benefício/risco claramente favorável em prevenção secundária. Padrão de cuidado inquestionável.',
+    trials: ['ATC 2002', 'ATC 2009'],
+    pop: '1 em 50 evita um evento CV; riscos de sangramento grave são 8x menores que o benefício composto.',
+    refs: ['Antithrombotic Trialists Collaboration. BMJ. 2002;324:71-86.', 'Antithrombotic Trialists. Lancet. 2009;373:1849-60.']
+  },
+  {
+    id: 10,
+    cat: 'antiplatelet',
+    color: 'green',
+    title: 'Aspirina para STEMI (IAM com Supradesnivelamento)',
+    nnt: [{ val: 42, type: 'benefit', lbl: 'NNT', sub: 'Morte prevenida em 5 semanas' }],
+    nnh: [{ val: 167, type: 'harm', lbl: 'NNH', sub: 'Sangramento não-cerebral' }],
+    outcome: 'Mortalidade em 5 semanas',
+    context: 'ISIS-2 (n=17.187) demonstrou que aspirina 162 mg reduziu mortalidade em 23% em relação ao placebo em STEMI, com NNT≈42. A combinação com estreptoquinase foi aditiva. Juntamente com reperfusão, aspirina é o pilar do tratamento agudo do STEMI.',
+    infoType: 'teal',
+    infoText: 'Uma das intervenções mais impactantes da medicina moderna. Benefício absoluto expressivo (2,4% de redução de mortalidade) no contexto de STEMI.',
+    trials: ['ISIS-2'],
+    pop: '1 em 42 vidas salvas. O efeito é comparável ao da estreptoquinase.',
+    refs: ['ISIS-2 Collaborative Group. Lancet. 1988;2:349-360.']
+  },
+  {
+    id: 11,
+    cat: 'antiplatelet',
+    color: 'red',
+    title: 'Aspirina para Prevenção Primária (Sem Doença Cardiovascular Prévia)',
+    nnt: [
+      { val: 250, type: 'benefit', lbl: 'NNT', sub: 'IAM não-fatal prevenido (em 5–7 anos)' },
+      { val: 333, type: 'benefit', lbl: 'NNT', sub: 'Morte prevenida (sem benefício consistente)' }
+    ],
+    nnh: [
+      { val: 200, type: 'harm', lbl: 'NNH', sub: 'Sangramento maior' },
+      { val: 150, type: 'harm', lbl: 'NNH', sub: 'Hemorragia gastrointestinal' }
+    ],
+    outcome: 'IAM, AVC, morte vs. sangramento maior em 5–7 anos',
+    context: 'Três grandes meta-análises (USPSTF, Mahmoud 2019, Zheng 2019) mostram que aspirina em prevenção primária não reduz mortalidade de forma consistente. O NNT para IAM não-fatal é 250–333, enquanto o NNH para sangramento maior é 142–213. Dados de ASCEND, ARRIVE e ASPREE confirmaram ausência de benefício líquido em diabéticos, risco intermediário e idosos. Não recomendada de rotina em prevenção primária (AHA/ACC 2019, ESC 2021).',
+    infoType: 'red',
+    infoText: 'Risco de sangramento equivale ou supera o benefício cardiovascular em prevenção primária. Contraindicada como uso rotineiro.',
+    trials: ['ASCEND', 'ARRIVE', 'ASPREE', 'USPSTF 2022'],
+    pop: 'A cada 200 tratados por 5–7 anos, 1 evita IAM — mas 1 tem sangramento maior.',
+    refs: ['Mahmoud AN et al. Eur Heart J. 2019;40:607-617.', 'Zheng SL & Roddick AJ. JAMA. 2019;321:277-287.']
+  },
+  {
+    id: 12,
+    cat: 'antiplatelet',
+    color: 'green',
+    title: 'Clopidogrel adicionado à AAS em SCA / Stent Coronário',
+    nnt: [
+      { val: 50, type: 'benefit', lbl: 'NNT', sub: 'Morte CV prevenida' },
+      { val: 13, type: 'benefit', lbl: 'NNT', sub: 'Evento composto (IAM, AVC, morte) prevenido' }
+    ],
+    nnh: [{ val: 100, type: 'harm', lbl: 'NNH', sub: 'Sangramento maior' }],
+    outcome: 'Evento CV composto em 9–12 meses',
+    context: 'CURE (n=12.562, IAMSST) e COMMIT (n=45.852, STEMI) fundamentaram o uso de DAPT em SCA. Em CURE, a adição de clopidogrel à AAS reduziu o desfecho composto (IAM, AVC, morte CV) de 11,4% para 9,3% (RRR 20%, ARR 2,1%). Em COMMIT, clopidogrel em STEMI reduziu morte+reinfarto em 9%. Base do tratamento padrão de SCA.',
+    infoType: 'teal',
+    infoText: 'Pilar do tratamento de SCA. Relação benefício/risco claramente favorável em curto prazo após evento coronário agudo.',
+    trials: ['CURE', 'COMMIT', 'PCI-CURE'],
+    pop: '1 em 13 evita um evento isquêmico maior; 1 em 100 tem sangramento maior.',
+    refs: ['Yusuf S et al (CURE). N Engl J Med. 2001;345:494-502.', 'COMMIT Collaborative Group. Lancet. 2005;366:1607-1621.']
+  },
+  {
+    id: 13,
+    cat: 'antiplatelet',
+    color: 'yellow',
+    title: 'Clopidogrel para Prevenção CV Secundária (vs Aspirina)',
+    nnt: [{ val: 200, type: 'benefit', lbl: 'NNT', sub: 'Evento isquêmico prevenido vs aspirina' }],
+    nnh: [],
+    outcome: 'IAM, AVC, morte vascular (vs aspirina) em 1,9 anos',
+    context: 'CAPRIE (n=19.185) mostrou que clopidogrel reduziu marginalmente o evento composto vs aspirina (5,32% vs 5,83%/ano; RRR 8,7%; ARR 0,51%; NNT≈200/ano). Benefício mais pronunciado no subgrupo DAP. Clopidogrel é alternativa em intolerância a aspirina, não substituto padrão.',
+    infoType: 'amber',
+    infoText: 'Benefício marginal vs aspirina para prevenção secundária como monoterapia. Clopidogrel reservado para intolerância a AAS ou populações específicas.',
+    trials: ['CAPRIE'],
+    pop: '1 em 200 evita evento isquêmico com clopidogrel vs aspirina.',
+    refs: ['CAPRIE Steering Committee. Lancet. 1996;348:1329-1339.']
+  },
+  {
+    id: 14,
+    cat: 'antiplatelet',
+    color: 'green',
+    title: 'Ticagrelor vs Clopidogrel em SCA e DAC Estável',
+    nnt: [
+      { val: 53, type: 'benefit', lbl: 'NNT', sub: 'Morte CV prevenida em SCA (PLATO)' },
+      { val: 35, type: 'benefit', lbl: 'NNT', sub: 'Evento composto (IAM, AVC, morte CV)' }
+    ],
+    nnh: [
+      { val: 90, type: 'harm', lbl: 'NNH', sub: 'Sangramento maior TIMI não-CABG' },
+      { val: 43, type: 'harm', lbl: 'NNH', sub: 'Dispneia (geralmente autolimitada)' }
+    ],
+    outcome: 'Morte CV, IAM, AVC (composto) em 12 meses',
+    context: 'PLATO (n=18.624, SCA) mostrou superioridade do ticagrelor vs clopidogrel para morte CV (4,0% vs 5,1%; NNT≈91) e desfecho composto (9,8% vs 11,7%; NNT≈53). PEGASUS-TIMI 54 avaliou uso prolongado após IAM. Em DAC estável (THEMIS), benefício marginal em diabéticos. Ticagrelor é padrão em SCA segundo ESC e ACC/AHA.',
+    infoType: 'teal',
+    infoText: 'Ticagrelor é preferido ao clopidogrel em SCA: reduz mortalidade CV com aumento aceitável de sangramento não-fatal.',
+    trials: ['PLATO', 'PEGASUS-TIMI 54', 'THEMIS'],
+    pop: '1 em 53 evita morte CV; 1 em 90 tem sangramento maior vs clopidogrel.',
+    refs: ['Wallentin L et al (PLATO). N Engl J Med. 2009;361:1045-1057.']
+  },
+  {
+    id: 15,
+    cat: 'antiplatelet',
+    color: 'yellow',
+    title: 'Inibidores de Glicoproteína IIb/IIIa em STEMI com Stent / Angioplastia',
+    nnt: [{ val: 50, type: 'benefit', lbl: 'NNT', sub: 'Morte ou IAM recorrente prevenido (STEMI + ICP)' }],
+    nnh: [{ val: 50, type: 'harm', lbl: 'NNH', sub: 'Sangramento maior' }],
+    outcome: 'Morte, IAM recorrente em 30 dias',
+    context: 'Meta-análises de ESPRIT, EPIC, EPILOG, CAPTURE e PRISM-PLUS em SCA com ICP mostraram redução modesta de eventos isquêmicos. Com DAPT moderno (ticagrelor/prasugrel + AAS) e stents de nova geração, o benefício incremental dos inibidores de GP IIb/IIIa diminuiu. Uso atual restrito a trombose intracoronária visível, slow/no-reflow ou complicações durante ICP.',
+    infoType: 'amber',
+    infoText: 'Benefício reduzido na era do DAPT oral moderno. Uso seletivo durante ICP em situações de alto risco trombótico.',
+    trials: ['EPIC', 'EPILOG', 'ESPRIT', 'CAPTURE', 'PRISM-PLUS'],
+    pop: 'NNT e NNH equivalentes (~50) — equilíbrio estreito benefício/risco.',
+    refs: ['Boersma E et al. Lancet. 2002;360:189-202.']
+  },
+  {
+    id: 16,
+    cat: 'antiplatelet',
+    color: 'green',
+    title: 'Heparina para Síndromes Coronarianas Agudas (IAMSST/AI)',
+    nnt: [{ val: 33, type: 'benefit', lbl: 'NNT', sub: 'IAM ou morte prevenida nas primeiras 6 semanas' }],
+    nnh: [{ val: 50, type: 'harm', lbl: 'NNH', sub: 'Sangramento maior' }],
+    outcome: 'IAM ou morte em 6 semanas',
+    context: 'Meta-análises de heparina não-fracionada (HNF) em angina instável/IAMSST mostraram redução absoluta de ~3% no desfecho composto (IAM + morte). HBPM (especialmente enoxaparina) é equivalente ou superior à HNF com perfil de segurança comparável. Base do tratamento anticoagulante em SCA sem supradesnivelamento.',
+    infoType: 'teal',
+    infoText: 'Heparina é parte integral do tratamento de SCA. HBPM preferida pela praticidade e perfil de eficácia/segurança.',
+    trials: ['ATACS', 'ESSENCE', 'TIMI 11B'],
+    pop: '1 em 33 evita IAM ou morte com anticoagulação em SCA.',
+    refs: ['Eikelboom JW et al. JAMA. 2000;284:699-706.']
+  },
+  {
+    id: 17,
+    cat: 'antiplatelet',
+    color: 'green',
+    title: 'Beta-bloqueadores para IAM (Fase Aguda e Crônica)',
+    nnt: [
+      { val: 84, type: 'benefit', lbl: 'NNT', sub: 'Morte prevenida na fase aguda (primeiras 24-48h)' },
+      { val: 42, type: 'benefit', lbl: 'NNT', sub: 'Morte prevenida em uso crônico pós-IAM' }
+    ],
+    nnh: [{ val: 200, type: 'harm', lbl: 'NNH', sub: 'Choque cardiogênico/bradicardia grave' }],
+    outcome: 'Mortalidade pós-IAM',
+    context: 'Evidências clássicas (ISIS-1, MIAMI) estabeleceram beta-bloqueadores pós-IAM. Meta-análise de uso crônico (>1 ano) mostra NNT≈42 para morte. ISIS-1 mostrou redução de mortalidade com atenolol IV em STEMI (NNT≈84 agudo). Uso precoce IV deve ser evitado em instabilidade hemodinâmica. Evidência mais sólida em pacientes com FEVE reduzida pós-IAM (CAPRICORN: carvedilol, NNT≈24).',
+    infoType: 'teal',
+    infoText: 'Benefício maior em uso crônico pós-IAM, especialmente com FEVE reduzida. Uso IV agudo restrito a taquicardia sem sinais de IC/hipotensão.',
+    trials: ['ISIS-1', 'MIAMI', 'CAPRICORN'],
+    pop: '1 em 42 vidas salvas com beta-bloqueador crônico pós-IAM.',
+    refs: ['ISIS-1 Collaborative Group. Lancet. 1986;2:57-66.', 'Dargie HJ (CAPRICORN). Lancet. 2001;357:1385-1390.']
+  },
+  {
+    id: 18,
+    cat: 'antiplatelet',
+    color: 'yellow',
+    title: 'Trombolíticos para STEMI (vs Placebo, sem ICP disponível)',
+    nnt: [{ val: 18, type: 'benefit', lbl: 'NNT', sub: 'Morte prevenida em 30 dias (apresentação <6h)' }],
+    nnh: [
+      { val: 250, type: 'harm', lbl: 'NNH', sub: 'Hemorragia intracraniana' },
+      { val: 100, type: 'harm', lbl: 'NNH', sub: 'Sangramento maior' }
+    ],
+    outcome: 'Mortalidade em 30 dias vs placebo',
+    context: 'FTT Collaborative Group (>58.000 pacientes, GISSI, ISIS-2 et al.) mostrou redução de mortalidade ~18% relativa com trombolítico em STEMI. NNT≈18 para apresentação <6h; NNT≈30 para 7-12h; sem benefício após 12h. ICP primária é superior à trombólise quando disponível em <120 min. Trombólise permanece indicada quando ICP não é acessível em tempo hábil.',
+    infoType: 'amber',
+    infoText: 'ICP primária é superior quando disponível. Trombólise salva vidas quando o atraso para ICP excede 120 minutos.',
+    trials: ['FTT 1994', 'GISSI-1', 'ISIS-2', 'GUSTO-I'],
+    pop: '1 em 18 vidas salvas com trombólise <6h vs placebo. Risco de hemorragia intracraniana: 1 em 250.',
+    refs: ['FTT Collaborative Group. Lancet. 1994;343:311-322.']
+  },
+
+  // ====== ESTATINAS ======
+  {
+    id: 19,
+    cat: 'statins',
+    color: 'yellow',
+    title: 'Estatinas para Síndrome Coronariana Aguda (Fase Aguda)',
+    nnt: [{ val: 67, type: 'benefit', lbl: 'NNT', sub: 'Re-internação por angina instável reduzida (4 meses)' }],
+    nnh: [],
+    outcome: 'Mortalidade / IAM / AVC em curto prazo (4–12 semanas)',
+    context: 'Revisão Cochrane (14.303 pacientes) não encontrou benefício em mortalidade, IAM ou AVC com início precoce de estatinas em SCA. Há redução de re-internação por angina instável (NNT≈67) aos 4 meses. Benefício a longo prazo é sólido e justifica início ainda na fase hospitalar, mas o efeito agudo per se é questionável. Diferente do benefício comprovado a longo prazo em prevenção secundária.',
+    infoType: 'amber',
+    infoText: 'Benefício a curto prazo em SCA não é claro para desfechos duros. Inicie estatinas de alta intensidade na internação pelo benefício a longo prazo demonstrado em prevenção secundária.',
+    trials: ['Cochrane 2014', 'PROVE IT-TIMI 22', 'A-to-Z'],
+    pop: 'Sem benefício em mortalidade/IAM a curto prazo — mas inicie pela evidência robusta de prevenção secundária prolongada.',
+    refs: ['Vale N et al. Cochrane Database Syst Rev. 2014;(9):CD006293.']
+  },
+  {
+    id: 20,
+    cat: 'statins',
+    color: 'green',
+    title: 'Estatinas com Doença Cardíaca Conhecida (Prevenção Secundária)',
+    nnt: [
+      { val: 83, type: 'benefit', lbl: 'NNT', sub: 'Morte prevenida em 5 anos' },
+      { val: 39, type: 'benefit', lbl: 'NNT', sub: 'IAM não-fatal prevenido em 5 anos' },
+      { val: 125, type: 'benefit', lbl: 'NNT', sub: 'AVC não-fatal prevenido em 5 anos' }
+    ],
+    nnh: [{ val: 50, type: 'harm', lbl: 'NNH', sub: 'Diabetes novo (impacto clínico moderado)' }],
+    outcome: 'Morte, IAM, AVC em 5 anos',
+    context: 'CTT Collaboration (>90.000 pacientes, 14 RCTs) e metanálises subsequentes mostram benefício consistente em prevenção secundária: redução de 22% no risco de eventos vasculares maiores por mmol/L de redução de LDL. 19 em 20 pacientes não obtêm benefício direto individual em 5 anos, mas o impacto coletivo é enorme. Estatinas de alta intensidade (atorvastatina 40-80 mg, rosuvastatina 20-40 mg) têm melhor benefício.',
+    infoType: 'teal',
+    infoText: 'Benefício claro e consistente em prevenção secundária. Estatinas de alta intensidade são padrão de cuidado.',
+    trials: ['4S', 'LIPID', 'CARE', 'CTT 2005', 'PROVE IT'],
+    pop: '1 em 83 vidas salvas; 1 em 39 IAMs prevenidos em 5 anos com estatina em doença estabelecida.',
+    refs: ['CTT Collaborators. Lancet. 2005;366:1267-1278.', 'CTT Collaborators. Lancet. 2010;376:1670-1681.']
+  },
+  {
+    id: 21,
+    cat: 'statins',
+    color: 'yellow',
+    title: 'Estatinas sem Doença Cardíaca Prévia (Prevenção Primária)',
+    nnt: [
+      { val: 'N/A', type: 'neutral', lbl: 'Mortalidade', sub: 'Sem redução de mortalidade comprovada' },
+      { val: 104, type: 'benefit', lbl: 'NNT', sub: 'IAM não-fatal prevenido em 5 anos' },
+      { val: 270, type: 'benefit', lbl: 'NNT', sub: 'AVC não-fatal prevenido em 5 anos' }
+    ],
+    nnh: [{ val: 50, type: 'harm', lbl: 'NNH', sub: 'Diabetes novo (risco aumentado ~10%)' }],
+    outcome: 'Mortalidade, IAM e AVC em 5 anos (prevenção primária)',
+    context: 'Meta-análises (Ray 2010, Taylor 2011, CTT) não mostram redução consistente de mortalidade em primária. Benefícios são reais mas modestos: NNT≈104 para IAM, sem mortalidade. O risco de diabetes novo (NNH≈50) é clinicamente relevante. Indicação baseada no risco cardiovascular global (≥7,5% ASCVD a 10 anos), não em LDL isolado. JUPITER (rosuvastatina) mostrou benefício em alto risco inflamatório (PCR-us elevado).',
+    infoType: 'amber',
+    infoText: 'Benefício existe mas é modesto em primária. Selecione pacientes com risco CV ≥7,5% a 10 anos. Discutir risco/benefício individualmente.',
+    trials: ['JUPITER', 'WOSCOPS', 'AFCAPS/TexCAPS', 'CTT'],
+    pop: '1 em 104 evita IAM em 5 anos — sem redução de mortalidade na maioria das análises.',
+    refs: ['Ray KK et al. Arch Intern Med. 2010;170:1024-1031.', 'Taylor F et al. Cochrane. 2013;1:CD004816.']
+  },
+  {
+    id: 22,
+    cat: 'statins',
+    color: 'red',
+    title: 'Estatinas em Baixo Risco Cardiovascular',
+    nnt: [
+      { val: 250, type: 'benefit', lbl: 'NNT', sub: 'Morte prevenida em 5 anos (estimativa incerta)' },
+      { val: 217, type: 'benefit', lbl: 'NNT', sub: 'IAM não-fatal prevenido em 5 anos' }
+    ],
+    nnh: [
+      { val: 21, type: 'harm', lbl: 'NNH', sub: 'Mialgia clinicamente significativa' },
+      { val: 204, type: 'harm', lbl: 'NNH', sub: 'Diabetes novo em 5 anos' }
+    ],
+    outcome: 'Mortalidade, IAM em 5 anos (risco CV <10% a 10 anos)',
+    context: 'USPSTF analisou >70.000 pacientes: sem redução significativa de mortalidade em baixo risco. NNT≈250 para morte é incerto e pode ser inflacionado por contaminação com pacientes de risco mais alto. NNH de 21 para mialgia e 204 para diabetes novo são clinicamente relevantes. Em pacientes com risco <5-7,5% a 10 anos, os danos superam ou igualam os benefícios na maioria dos indivíduos.',
+    infoType: 'red',
+    infoText: 'Benefício duvidoso em baixo risco CV absoluto. NNH para mialgia (21) é muito menor que NNT para mortalidade (250). Evitar uso rotineiro sem fatores de risco.',
+    trials: ['USPSTF 2022', 'CTT sub-análises'],
+    pop: 'A cada 21 tratados, 1 tem mialgia. A cada 204, 1 desenvolve diabetes. A cada 250 — talvez 1 vida salva.',
+    refs: ['USPSTF. JAMA. 2022;328(8):746-753.']
+  },
+
+  // ====== REVASCULARIZAÇÃO ======
+  {
+    id: 23,
+    cat: 'revasc',
+    color: 'green',
+    title: 'CRM (Cirurgia de Revascularização) para Prevenção de Morte',
+    nnt: [
+      { val: 7, type: 'benefit', lbl: 'NNT', sub: 'Morte prevenida em 5 anos (3 vasos/tronco de coronária esquerda)' },
+      { val: 12, type: 'benefit', lbl: 'NNT', sub: 'Morte prevenida em 5 anos (doença de 2 vasos com DA proximal)' }
+    ],
+    nnh: [{ val: 50, type: 'harm', lbl: 'NNH', sub: 'AVC perioperatório' }],
+    outcome: 'Mortalidade em 5–10 anos vs tratamento clínico',
+    context: 'Meta-análise Yusuf (CASS, ECSS, VA Cooperative) mostrou benefício de mortalidade da CRM vs tratamento clínico (era pré-stent) em doença de 3 vasos, tronco e 2 vasos com DA proximal. No estudo SYNTAX e FREEDOM (diabéticos multivaso), CRM foi superior ao stent farmacológico em sobrevivência a longo prazo. Em DAC estável sem anatomia de alto risco, CRM não é superior ao tratamento clínico (ISCHEMIA).',
+    infoType: 'teal',
+    infoText: 'CRM salva vidas em doença multivaso de alto risco anatômico (tronco, 3 vasos, DA proximal), especialmente em diabéticos. Heart Team é essencial.',
+    trials: ['CASS', 'VA Cooperative', 'SYNTAX', 'FREEDOM', 'ISCHEMIA'],
+    pop: '1 em 7 vidas salvas com CRM vs clínico em doença de 3 vasos/tronco em 5 anos.',
+    refs: ['Yusuf S et al. Lancet. 1994;344:563-570.', 'Serruys PW et al (SYNTAX). N Engl J Med. 2009;360:961-972.']
+  },
+  {
+    id: 24,
+    cat: 'revasc',
+    color: 'red',
+    title: 'Stent Coronário para DAC Não-Aguda vs Tratamento Clínico (Mortalidade)',
+    nnt: [{ val: '∞', type: 'neutral', lbl: 'NNT', sub: 'Sem redução de mortalidade ou IAM (ISCHEMIA, COURAGE)' }],
+    nnh: [],
+    outcome: 'Mortalidade, IAM em DAC estável',
+    context: 'COURAGE (2007, n=2.287) e ISCHEMIA (2020, n=5.179) demonstraram que ICP eletiva em DAC estável não reduz morte ou IAM vs ótimo tratamento clínico, inclusive com isquemia moderada-grave. ICP melhora sintomas (angina) e qualidade de vida, mas não prognóstico. Exceção: SCA (NÃO aplicar aqui), STEMI, instabilidade refratária. Crucial para decisão Heart Team e consentimento informado.',
+    infoType: 'red',
+    infoText: 'ICP eletiva não melhora prognóstico em DAC estável. Indicação é sintomática/qualidade de vida, após falha do tratamento clínico otimizado.',
+    trials: ['COURAGE', 'ISCHEMIA', 'ORBITA', 'BARI 2D'],
+    pop: 'Sem diferença em morte ou IAM em 3–5 anos vs tratamento clínico. Angina e qualidade de vida melhoram.',
+    refs: ['Boden WE et al (COURAGE). N Engl J Med. 2007;356:1503-1516.', 'Maron DJ et al (ISCHEMIA). N Engl J Med. 2020;382:1395-1407.']
+  },
+  {
+    id: 25,
+    cat: 'revasc',
+    color: 'green',
+    title: 'Estratégia Invasiva Precoce para SCA (IAMSST / Angina Instável)',
+    nnt: [
+      { val: 50, type: 'benefit', lbl: 'NNT', sub: 'Morte prevenida em 6–12 meses' },
+      { val: 21, type: 'benefit', lbl: 'NNT', sub: 'IAM não-fatal prevenido' }
+    ],
+    nnh: [{ val: 100, type: 'harm', lbl: 'NNH', sub: 'Sangramento maior periprocemental' }],
+    outcome: 'Morte, IAM, re-hospitalização em 6–12 meses',
+    context: 'FRISC II, TACTICS-TIMI 18, RITA 3 e meta-análise FIR mostraram que estratégia invasiva precoce (<24-48h) reduz eventos isquêmicos vs estratégia conservadora em IAMSST de alto risco. O benefício é maior em pacientes com troponina positiva, escore GRACE >140, diabetes ou isquemia dinâmica. Em baixo risco, benefício não demonstrado (TIMACS, VERDICT).',
+    infoType: 'teal',
+    infoText: 'Estratégia invasiva precoce melhora desfechos em IAMSST de alto risco. Seleção por score de risco (GRACE, TIMI) é fundamental.',
+    trials: ['FRISC II', 'TACTICS-TIMI 18', 'RITA 3', 'TIMACS', 'FIR meta-análise'],
+    pop: '1 em 21 IAMs prevenidos com estratégia invasiva vs conservadora em SCA de alto risco.',
+    refs: ['Fox KA et al (FIR). JAMA. 2010;303:947-954.']
+  },
+
+  // ====== FIBRILAÇÃO ATRIAL ======
+  {
+    id: 26,
+    cat: 'af',
+    color: 'green',
+    title: 'Varfarina para Prevenção de AVC na FA (vs Placebo)',
+    nnt: [
+      { val: 25, type: 'benefit', lbl: 'NNT', sub: 'AVC prevenido por ano de tratamento' },
+      { val: 42, type: 'benefit', lbl: 'NNT', sub: 'Morte ou AVC prevenidos por ano' }
+    ],
+    nnh: [{ val: 100, type: 'harm', lbl: 'NNH', sub: 'Sangramento grave (incluindo intracraniano)' }],
+    outcome: 'AVC isquêmico, embolia sistêmica, morte em 1–2 anos',
+    context: 'Meta-análise de 5 RCTs clássicos (AFASAK, SPAF, BAATAF, CAFA, SPINAF) com >2.500 pacientes mostrou redução de 67% no risco de AVC com varfarina vs placebo (ARR ~2,7%/ano). NNT≈25 por ano. Benefício muito maior em pacientes de alto risco (CHA₂DS₂-VASc ≥2). ANOACs substituíram a varfarina na maioria dos cenários pela praticidade e perfil de segurança superior.',
+    infoType: 'teal',
+    infoText: 'Anticoagulação é a intervenção mais eficaz para prevenção de AVC em FA de alto risco. ANOACs são preferíveis à varfarina atualmente.',
+    trials: ['AFASAK', 'SPAF', 'BAATAF', 'CAFA', 'SPINAF'],
+    pop: '1 em 25 evita AVC por ano; 1 em 42 evita AVC ou morte.',
+    refs: ['Hart RG et al. Ann Intern Med. 1999;131:492-501.']
+  },
+  {
+    id: 27,
+    cat: 'af',
+    color: 'green',
+    title: 'Varfarina vs Aspirina na FA (Prevenção de AVC)',
+    nnt: [{ val: 17, type: 'benefit', lbl: 'NNT', sub: 'AVC prevenido (varfarina vs aspirina) por ano' }],
+    nnh: [{ val: 70, type: 'harm', lbl: 'NNH', sub: 'Sangramento extra-craniano grave' }],
+    outcome: 'AVC isquêmico por ano (varfarina vs aspirina)',
+    context: 'BAFTA (2007, n=973, ≥75 anos) e WASPO mostraram superioridade da varfarina vs aspirina em FA, com NNT≈17 por ano. Aspirina proporciona apenas ~20% de redução de AVC vs 67% da varfarina/ANOACs. Aspirina não é substituta adequada para anticoagulação em FA. ANOACs modernos são preferíveis à varfarina (RE-LY, ROCKET-AF, ARISTOTLE, ENGAGE).',
+    infoType: 'teal',
+    infoText: 'Aspirina é claramente inferior à anticoagulação oral na FA. Nunca deve substituir anticoagulação em pacientes aptos a anticoagular.',
+    trials: ['BAFTA', 'WASPO', 'SPAF III'],
+    pop: '1 em 17 AVCs prevenidos ao usar varfarina em vez de aspirina em FA.',
+    refs: ['Mant J et al (BAFTA). Lancet. 2007;370:493-503.']
+  },
+  {
+    id: 28,
+    cat: 'af',
+    color: 'black',
+    title: 'Posicionamento de Pás Anterior-Posterior vs Ântero-Lateral na Cardioversão de FA',
+    nnt: [{ val: '∞', type: 'neutral', lbl: 'NNT', sub: 'Sem diferença em taxa de conversão' }],
+    nnh: [],
+    outcome: 'Reversão para ritmo sinusal',
+    context: 'Múltiplos RCTs comparando posicionamento anterior-posterior (AP) vs ântero-lateral (AL) para cardioversão elétrica de FA não mostraram diferença significativa nas taxas de conversão ou na energia necessária. Estudos individuais favoreceram AP em alguns cenários, mas sem consistência. A preferência pode ser guiada por anatomia e facilidade técnica.',
+    infoType: 'amber',
+    infoText: 'Sem evidência de superioridade entre os posicionamentos. Utilize o que for mais prático na sua prática.',
+    trials: ['Kirchhof 2002', 'Botto 1999', 'Alp 2000'],
+    pop: 'Sem diferença demonstrável em qualquer desfecho clínico.',
+    refs: ['Kirchhof P et al. J Am Coll Cardiol. 2002;39:1632-1637.']
+  },
+
+  // ====== TEP / TVP ======
+  {
+    id: 29,
+    cat: 'vte',
+    color: 'green',
+    title: 'Anticoagulação para TEV (Tromboembolismo Venoso)',
+    nnt: [
+      { val: 4, type: 'benefit', lbl: 'NNT', sub: 'Recorrência de TEV prevenida' },
+      { val: 10, type: 'benefit', lbl: 'NNT', sub: 'TEP fatal prevenido' }
+    ],
+    nnh: [{ val: 30, type: 'harm', lbl: 'NNH', sub: 'Sangramento maior' }],
+    outcome: 'Recorrência de TEV, TEP fatal em 3–6 meses de tratamento',
+    context: 'Anticoagulação é a base do tratamento de TEV (TVP proximal e TEP). Benefício vs não-tratar é incontestável. Duração depende de circunstâncias (provocado vs não-provocado). ANOACs (rivaroxabana, apixabana, dabigatrana, edoxabana) são equivalentes ou superiores à HBPM/varfarina com menor risco de sangramento intracraniano. Primeiros 3 meses de anticoagulação são os mais importantes para prevenção de recorrência.',
+    infoType: 'teal',
+    infoText: 'Anticoagulação é altamente eficaz e necessária no tratamento de TEV. ANOACs são preferíveis pela praticidade e segurança.',
+    trials: ['EINSTEIN DVT/PE', 'AMPLIFY', 'RECOVER', 'Hokusai-VTE'],
+    pop: '1 em 4 pacientes evita recorrência de TEV com anticoagulação adequada.',
+    refs: ['Schulman S et al. N Engl J Med. 2009;361:2342-2352.']
+  },
+  {
+    id: 30,
+    cat: 'vte',
+    color: 'yellow',
+    title: 'Anticoagulação para TVP Distal Isolada (Membros Inferiores)',
+    nnt: [
+      { val: 12, type: 'benefit', lbl: 'NNT', sub: 'Extensão proximal ou TEP prevenido' }
+    ],
+    nnh: [{ val: 50, type: 'harm', lbl: 'NNH', sub: 'Sangramento maior' }],
+    outcome: 'Extensão ou TEP em 3 meses (TVP distal)',
+    context: 'TVP distal (muscular, calf) tem menor risco de extensão (~15-25%) e TEP que TVP proximal. RCTs limitados. Metanálise mostra NNT≈12 para prevenir extensão/TEP vs não-tratar. Opção razoável: monitorar com ultrassom seriado por 2 semanas (custo de sangramento evitado). Anticoagular quando: sintomática, sem causa identificada, neoplasia ativa, TVP bilateral, extensão observada.',
+    infoType: 'amber',
+    infoText: 'Decisão individualizada: anticoagular ou vigilância com US seriado são opções válidas em TVP distal sintomática sem fatores de risco.',
+    trials: ['CACTUS', 'Cochrane 2017'],
+    pop: '1 em 12 evita extensão com anticoagulação vs vigilância — mas 1 em 50 tem sangramento maior.',
+    refs: ['Galanaud JP et al. J Thromb Haemost. 2012;10:2609-2614.']
+  },
+  {
+    id: 31,
+    cat: 'vte',
+    color: 'green',
+    title: 'HBPM Dose-Fixa vs HNF Dose-Ajustada para Tratamento de TEV',
+    nnt: [
+      { val: 14, type: 'benefit', lbl: 'NNT', sub: 'Recorrência de TEV prevenida' }
+    ],
+    nnh: [{ val: 50, type: 'harm', lbl: 'NNH', sub: 'Trombocitopenia induzida por heparina (TIH)' }],
+    outcome: 'Recorrência de TEV, sangramento, mortalidade',
+    context: 'Meta-análise Cochrane (>8.000 pacientes) mostrou que HBPM é pelo menos tão eficaz quanto HNF e com menor incidência de TIH, maior praticidade (subcutânea, sem monitorização). HBPM é a escolha preferencial em maioria dos contextos de TEV agudo, exceto IRA grave (ClCr <30 mL/min, onde HNF é preferida). Custo pode ser relevante em recursos limitados.',
+    infoType: 'teal',
+    infoText: 'HBPM é preferida à HNF pela praticidade, segurança e eficácia equivalente. Ajuste para IRA severa.',
+    trials: ['Cochrane 2004', 'ESSENCE', 'TIMI 11B'],
+    pop: '1 em 14 evita recorrência de TEV com HBPM vs HNF — com menor risco de TIH.',
+    refs: ['van Dongen CJ et al. Cochrane Database Syst Rev. 2004;(4):CD001100.']
+  },
+  {
+    id: 32,
+    cat: 'vte',
+    color: 'yellow',
+    title: 'Terapia Trombolítica para TEP (Embolia Pulmonar)',
+    nnt: [
+      { val: 6, type: 'benefit', lbl: 'NNT', sub: 'Morte ou deterioração hemodinâmica prevenida (TEP maciço)' },
+      { val: '∞', type: 'neutral', lbl: 'NNT submassivo', sub: 'Sem redução de mortalidade no TEP submassivo (PEITHO)' }
+    ],
+    nnh: [
+      { val: 18, type: 'harm', lbl: 'NNH', sub: 'Hemorragia intracraniana (TEP submassivo, PEITHO)' },
+      { val: 5, type: 'harm', lbl: 'NNH', sub: 'Sangramento maior (qualquer grau)' }
+    ],
+    outcome: 'Mortalidade, colapso hemodinâmico vs. sangramento grave',
+    context: 'PEITHO (n=1.006, TEP submassivo) mostrou que alteplase reduziu deterioração hemodinâmica mas não mortalidade, com NNH=18 para hemorragia intracraniana — resultado desfavorável. Em TEP maciço (choque ou hipotensão), trombólise sistêmica é salvadora (NNT≈6). Em submassivo hemodinamicamente estável, anticoagulação isolada é preferida. Trombólise guiada por cateter (CDT) pode ter melhor perfil de segurança.',
+    infoType: 'amber',
+    infoText: 'Trombólise sistêmica: indicada no TEP maciço, controversa no submassivo estável. NNH para AVCH supera NNT em submassivo.',
+    trials: ['PEITHO', 'MAPPET-3', 'ULTIMA'],
+    pop: 'No TEP maciço: NNT≈6. No submassivo: 1 em 18 tem AVCH — NNT indefinido para mortalidade.',
+    refs: ['Meyer G et al (PEITHO). N Engl J Med. 2014;370:1402-1411.']
+  },
+  {
+    id: 33,
+    cat: 'vte',
+    color: 'green',
+    title: 'TEP de Baixo Risco: Tratamento Ambulatorial é Seguro',
+    nnt: [{ val: '≈ 1', type: 'benefit', lbl: 'NNT', sub: 'Hospitalização evitada (seleção critério HESTIA/sPESI=0)' }],
+    nnh: [],
+    outcome: 'Segurança de tratamento domiciliar em TEP de baixo risco',
+    context: 'Critérios HESTIA e sPESI=0 identificam pacientes com TEP de baixo risco que podem ser tratados em ambulatório. RCTs (Aujesky 2011, HOME-PE 2021) demonstraram não-inferioridade e segurança do tratamento domiciliar vs hospitalar. Taxa de eventos adversos graves <2% em 3 meses. Critérios de exclusão: hipóxia grave, instabilidade, sangramento ativo, dor severa, disfunção de VD grave.',
+    infoType: 'teal',
+    infoText: 'Seleção adequada permite tratamento domiciliar seguro, reduzindo custos e complicações hospitalares.',
+    trials: ['Aujesky 2011', 'HOME-PE', 'HESTIA criteria'],
+    pop: 'Praticamente todos os pacientes com sPESI=0 ou HESTIA negativo podem ser tratados em casa com segurança.',
+    refs: ['Aujesky D et al. Lancet. 2011;378:41-48.', 'Couturaud F et al (HOME-PE). JAMA. 2022;328:1817-1827.']
+  },
+  {
+    id: 34,
+    cat: 'vte',
+    color: 'yellow',
+    title: 'Prevalência de TEP em Pacientes com Síncope',
+    nnt: [{ val: '~17%', type: 'neutral', lbl: 'Prevalência', sub: 'TEP em internações por síncope (PESIT)' }],
+    nnh: [],
+    outcome: 'Prevalência diagnóstica (não terapêutico)',
+    context: 'PESIT (2016, n=560, internações por síncope sem explicação) encontrou TEP em 17,3% dos casos. Dados diagnósticos, não terapêuticos — orientam workup em síncope inexplicada. Prevalência é maior em pacientes sem causa cardíaca ou neurológica clara. Escore WELLS-TEP e D-dímero devem guiar investigação.',
+    infoType: 'amber',
+    infoText: 'Dado diagnóstico importante: considere TEP no diagnóstico diferencial de síncope inexplicada, especialmente em internações.',
+    trials: ['PESIT'],
+    pop: 'Cerca de 1 em 6 internações por síncope sem causa clara tem TEP subjacente.',
+    refs: ['Prandoni P et al (PESIT). N Engl J Med. 2016;375:1524-1531.']
+  },
+
+  // ====== HAS E PREVENÇÃO ======
+  {
+    id: 35,
+    cat: 'htn',
+    color: 'red',
+    title: 'Anti-hipertensivos para Prevenção CV em HAS Leve (Estágio 1, sem outros fatores)',
+    nnt: [
+      { val: '∞', type: 'neutral', lbl: 'NNT mortalidade', sub: 'Sem redução de mortalidade consistente' },
+      { val: 125, type: 'benefit', lbl: 'NNT eventos', sub: 'Evento CV composto prevenido (5 anos)' }
+    ],
+    nnh: [{ val: 12, type: 'harm', lbl: 'NNH', sub: 'Efeito adverso levando à descontinuação' }],
+    outcome: 'Mortalidade e eventos CV em HAS leve (PAS 140–159 / PAD 90–99)',
+    context: 'Revisão Cochrane (2012, 8.912 pacientes, HAS estágio 1 sem DCV estabelecida) não encontrou redução de mortalidade, IAM ou AVC com anti-hipertensivos vs placebo em seguimento de 4-5 anos. Efeitos adversos (NNH≈12) superam benefícios incertos em baixo risco global. Em HAS leve com risco CV global alto (SCORE2 >5-10%), o tratamento é justificado. Modificação de estilo de vida é a prioridade.',
+    infoType: 'red',
+    infoText: 'HAS estágio 1 sem outros fatores: benefício incerto, efeitos adversos frequentes. Tratar com base no risco CV global, não no nível pressórico isolado.',
+    trials: ['Cochrane 2012 (Diao et al.)'],
+    pop: 'Sem benefício claro em mortalidade ou eventos maiores. Efeitos adversos em 1 de 12 pacientes.',
+    refs: ['Diao D et al. Cochrane Database Syst Rev. 2012;8:CD006742.']
+  },
+  {
+    id: 36,
+    cat: 'htn',
+    color: 'green',
+    title: 'Anti-hipertensivos para Prevenir Morte, IAM e AVC (HAS Moderada/Grave)',
+    nnt: [
+      { val: 72, type: 'benefit', lbl: 'NNT', sub: 'Morte prevenida em 5 anos' },
+      { val: 42, type: 'benefit', lbl: 'NNT', sub: 'AVC ou IAM prevenido em 5 anos' }
+    ],
+    nnh: [{ val: 12, type: 'harm', lbl: 'NNH', sub: 'Efeito adverso levando à descontinuação' }],
+    outcome: 'Mortalidade total, IAM, AVC em 5 anos (HAS moderada/grave)',
+    context: 'Múltiplas meta-análises de >100 RCTs mostram benefício claro em HAS moderada-grave (PAS≥160 ou PAD≥100) ou HAS leve com risco CV elevado. Redução de ~40% no risco de AVC e ~20% no IAM por cada 10 mmHg de queda na PAS. ALLHAT, HOT, PROGRESS e ACCORD demonstram benefícios robustos. Efeitos adversos de descontinuação (NNH=12) são relevantes e devem orientar escolha do agente.',
+    infoType: 'teal',
+    infoText: 'Benefício claro e substancial em HAS moderada-grave ou HAS leve com risco CV elevado. Trate!',
+    trials: ['ALLHAT', 'HOT', 'PROGRESS', 'SPRINT', 'ACCORD'],
+    pop: '1 em 72 vidas salvas; 1 em 42 AVCs ou IAMs prevenidos em 5 anos.',
+    refs: ['Blood Pressure Lowering Treatment Trialists Collaboration. Lancet. 2021;397:1625-1636.']
+  },
+  {
+    id: 37,
+    cat: 'htn',
+    color: 'yellow',
+    title: 'Ômega-3 para Prevenção Cardiovascular',
+    nnt: [
+      { val: 28, type: 'benefit', lbl: 'NNT (REDUCE-IT)', sub: 'Evento CV prevenido em 5 anos (icosapentaenoico)' },
+      { val: '∞', type: 'neutral', lbl: 'NNT (outros)', sub: 'Sem benefício em AHA 2020, ORIGIN, ASCEND (dose padrão)' }
+    ],
+    nnh: [{ val: 91, type: 'harm', lbl: 'NNH', sub: 'FA de início novo (REDUCE-IT, dose alta)' }],
+    outcome: 'Evento CV composto (IAM, AVC, morte CV) em 5 anos',
+    context: 'REDUCE-IT (2018, icosapentaenoico 4g/dia, n=8.179) mostrou redução de 25% em eventos CV (NNT≈28) mas com aumento de FA e controversas metodológicas (placebo mineral oil). Outros RCTs com dose padrão (1g/dia) e DHA+EPA não confirmaram benefício (ORIGIN, ASCEND, VITAL). Benefício do Ômega-3 parece específico ao icosapentaenoico em dose alta, em pacientes com hipertrigliceridemia e doença CV.',
+    infoType: 'amber',
+    infoText: 'Ômega-3 em dose padrão (1g/dia) não tem benefício CV comprovado. Icosapentaenoico 4g/dia (REDUCE-IT) tem evidência — mas controversa e com aumento de FA.',
+    trials: ['REDUCE-IT', 'ORIGIN', 'ASCEND', 'VITAL', 'STRENGTH'],
+    pop: 'NNT≈28 com icosapentaenoico 4g/dia; sem benefício com dose padrão (1g/dia).',
+    refs: ['Bhatt DL et al (REDUCE-IT). N Engl J Med. 2019;380:11-22.', 'Manson JE et al (VITAL). N Engl J Med. 2019;380:23-32.']
+  },
+  {
+    id: 38,
+    cat: 'htn',
+    color: 'red',
+    title: 'Vitaminas e Antioxidantes para Prevenção CV Primária',
+    nnt: [{ val: '∞', type: 'neutral', lbl: 'NNT', sub: 'Sem redução de mortalidade ou eventos CV' }],
+    nnh: [{ val: 100, type: 'harm', lbl: 'NNH', sub: 'Aumento de mortalidade com Vit E alta dose' }],
+    outcome: 'Mortalidade, IAM, AVC em 5–10 anos (vitaminas E, C, A, β-caroteno)',
+    context: 'Meta-análises (Cochrane, HOPE, GISSI-Prevenzione) mostram que vitaminas antioxidantes (E, C, A, β-caroteno, selênio) não previnem morte ou eventos CV. β-caroteno aumentou mortalidade em fumantes (ATBC, CARET). Vitamina E em alta dose pode aumentar mortalidade geral. Suplementação de antioxidantes para prevenção CV é contraindicada pelas principais diretrizes.',
+    infoType: 'red',
+    infoText: 'Vitaminas antioxidantes não previnem doença CV e podem causar danos. Não recomendar para prevenção CV.',
+    trials: ['HOPE', 'GISSI-Prevenzione', 'HOPE-TOO', 'ATBC', 'CARET'],
+    pop: 'Nenhum benefício demonstrado; potencial dano com β-caroteno e vitamina E em dose alta.',
+    refs: ['Bjelakovic G et al. Cochrane Database Syst Rev. 2012;3:CD007176.']
+  },
+  {
+    id: 39,
+    cat: 'htn',
+    color: 'green',
+    title: 'Dieta Mediterrânea após IAM (Prevenção Secundária)',
+    nnt: [{ val: 30, type: 'benefit', lbl: 'NNT', sub: 'Morte prevenida em 4 anos' }],
+    nnh: [],
+    outcome: 'Mortalidade e IAM recorrente em 4 anos',
+    context: 'Lyon Diet Heart Study (n=605, seguimento médio 4 anos) mostrou que dieta mediterrânea enriquecida com ácido α-linolênico reduziu morte e IAM recorrente em 73% (NNT≈30 para morte). Redução absoluta de ~3% em mortalidade total. Estudo interrompido precocemente por benefício claro. PREDIMED (2013) confirmou em prevenção primária de alto risco. Recomendação universal pós-IAM.',
+    infoType: 'teal',
+    infoText: 'Uma das intervenções não-farmacológicas mais impactantes. Dieta mediterrânea: NNT≈30 para morte pós-IAM.',
+    trials: ['Lyon Diet Heart Study', 'PREDIMED'],
+    pop: '1 em 30 vidas salvas com dieta mediterrânea vs dieta "saudável" padrão pós-IAM.',
+    refs: ['de Lorgeril M et al. Circulation. 1999;99:779-785.', 'Estruch R et al (PREDIMED). N Engl J Med. 2013;368:1279-1290.']
+  },
+  {
+    id: 40,
+    cat: 'htn',
+    color: 'red',
+    title: 'Terapia Hormonal para Prevenção CV Secundária (Pós-menopausa com DCV)',
+    nnt: [{ val: '∞', type: 'neutral', lbl: 'NNT mortalidade', sub: 'Sem benefício em DCV estabelecida' }],
+    nnh: [
+      { val: 26, type: 'harm', lbl: 'NNH', sub: 'IAM ou morte CV (HERS, primeiro ano)' },
+      { val: 42, type: 'harm', lbl: 'NNH', sub: 'Evento tromboembólico venoso' }
+    ],
+    outcome: 'IAM, morte CV em pós-menopausa com DCV estabelecida',
+    context: 'HERS (n=2.763) mostrou que estrogênio + progesterona não reduz eventos CV em mulheres pós-menopausa com DCV; houve aumento inicial de IAM no primeiro ano (NNH≈26) e de TEV (NNH≈42). WHI confirmou ausência de benefício CV em prevenção primária, com aumento de mama, AVC e TEP. Terapia hormonal não é indicada para prevenção CV em nenhum cenário baseado em evidências atuais.',
+    infoType: 'red',
+    infoText: 'TH para prevenção CV em DCV estabelecida: aumenta risco no primeiro ano. Contraindicada para esse fim.',
+    trials: ['HERS', 'HERS II', 'WHI'],
+    pop: '1 em 26 IAMs ou mortes CV adicionais no primeiro ano com TH em DCV estabelecida.',
+    refs: ['Hulley S et al (HERS). JAMA. 1998;280:605-613.', 'Rossouw JE et al (WHI). JAMA. 2002;288:321-333.']
+  },
+  {
+    id: 41,
+    cat: 'htn',
+    color: 'yellow',
+    title: 'Terapia Hormonal para Prevenção CV Primária em Pós-menopausa',
+    nnt: [{ val: '?', type: 'neutral', lbl: 'NNT', sub: 'Dados inconclusivos para prevenção primária' }],
+    nnh: [{ val: 42, type: 'harm', lbl: 'NNH', sub: 'TEV em 5 anos' }],
+    outcome: 'IAM, AVC, morte CV em mulheres saudáveis pós-menopausa',
+    context: 'WHI Primary Prevention e ELITE sugerem janela de oportunidade: mulheres <60 anos ou <10 anos pós-menopausa podem ter redução de eventos coronários (hipótese timing). Sem evidência RCT robusta de benefício CV primário. Indicação principal: controle de sintomas vasomotores. Risco de AVC aumentado com estrógeno oral; menor com transdérmico.',
+    infoType: 'amber',
+    infoText: 'TH pode ser usada para sintomas menopausa em mulheres saudáveis jovens. Não indica para prevenção CV. Avaliar risco/benefício individual.',
+    trials: ['WHI', 'ELITE', 'KEEPS', 'Danish Osteoporosis Study'],
+    pop: 'Sem evidência robusta de benefício CV. TEV em 1 de 42 tratadas por 5 anos.',
+    refs: ['Rossouw JE et al (WHI). JAMA. 2002;288:321-333.']
+  },
+
+  // ====== OUTROS ======
+  {
+    id: 42,
+    cat: 'other',
+    color: 'green',
+    title: 'VNI (CPAP/BiPAP) para Edema Pulmonar Cardiogênico',
+    nnt: [
+      { val: 13, type: 'benefit', lbl: 'NNT', sub: 'Intubação prevenida' },
+      { val: 40, type: 'benefit', lbl: 'NNT', sub: 'Morte prevenida' }
+    ],
+    nnh: [{ val: 150, type: 'harm', lbl: 'NNH', sub: 'IAM de novo (preocupação não confirmada)' }],
+    outcome: 'Intubação, mortalidade hospitalar',
+    context: 'Meta-análise e 3CPO (n=1.069) demonstraram que VNI (CPAP e BiPAP) reduz intubação (NNT≈13) e melhora parâmetros gasométricos mais rapidamente que O₂ convencional. Benefício em mortalidade (NNT≈40) menos robusto no 3CPO isolado. CPAP é suficiente na maioria dos casos; BiPAP preferível em hipercapnia associada. Preocupação inicial com IAM de novo não se confirmou.',
+    infoType: 'teal',
+    infoText: 'VNI é padrão de cuidado em EPC. Reduz intubação com NNT=13. Iniciar precocemente, mesmo em pré-hospitalar.',
+    trials: ['3CPO', 'Mehta 1997', 'Cochrane 2019'],
+    pop: '1 em 13 intubações evitadas; 1 em 40 mortes evitadas.',
+    refs: ['Gray A et al (3CPO). N Engl J Med. 2008;359:142-151.']
+  },
+  {
+    id: 43,
+    cat: 'other',
+    color: 'red',
+    title: 'Oxigenioterapia para IAM em Pacientes Normóxicos',
+    nnt: [{ val: '∞', type: 'neutral', lbl: 'NNT', sub: 'Sem benefício; possível dano' }],
+    nnh: [{ val: 70, type: 'harm', lbl: 'NNH', sub: 'Área de infarto aumentada (DETO2X-AMI, AVOID)' }],
+    outcome: 'Mortalidade, IAM recorrente, tamanho do infarto',
+    context: 'AVOID (2015) e DETO2X-AMI (n=6.629, 2018) demonstraram que oxigênio suplementar em pacientes com STEMI e SpO₂ ≥94% não beneficia e pode aumentar o tamanho do infarto (troponina peak e lesão por RMC). Mecanismo proposto: vasoconstrição coronária por hiperoxia. Diretriz ESC e AHA recomendam O₂ apenas se SpO₂ <90% ou em dificuldade respiratória.',
+    infoType: 'red',
+    infoText: 'Oxigênio em STEMI normóxico: sem benefício e possível dano. Não oferecer O₂ rotineiro em IAM com SpO₂ ≥94%.',
+    trials: ['AVOID', 'DETO2X-AMI'],
+    pop: '1 em 70 pode ter área de infarto maior com O₂ suplementar desnecessário.',
+    refs: ['Stub D et al (AVOID). Circulation. 2015;131:2143-2150.', 'Hofmann R et al (DETO2X-AMI). N Engl J Med. 2017;377:1240-1249.']
+  },
+  {
+    id: 44,
+    cat: 'other',
+    color: 'green',
+    title: 'Colchicina para Pericardite (Prevenção de Recorrência)',
+    nnt: [{ val: 8, type: 'benefit', lbl: 'NNT', sub: 'Recorrência prevenida em 18 meses' }],
+    nnh: [{ val: 20, type: 'harm', lbl: 'NNH', sub: 'Diarreia/intolerância GI' }],
+    outcome: 'Recorrência de pericardite em 12–18 meses',
+    context: 'COPE (2005) e ICAP (2013, n=240) mostraram que colchicina adicionada a AAS reduz recorrência de pericardite de ~37% para ~17% (ARR≈20%, NNT≈5 no ICAP). NNT global de estudos combinados ≈8. CORP e CORP-2 confirmaram benefício em recorrências. Colchicina 0,5 mg BID por 3 meses (primeira crise) ou 6 meses (recorrência). Padrão de cuidado nas diretrizes ESC 2015.',
+    infoType: 'teal',
+    infoText: 'Colchicina é padrão de cuidado na pericardite: NNT≈8 para prevenir recorrência. Bem tolerada em baixas doses.',
+    trials: ['COPE', 'ICAP', 'CORP', 'CORP-2'],
+    pop: '1 em 8 pacientes evita recorrência de pericardite com colchicina.',
+    refs: ['Imazio M et al (ICAP). N Engl J Med. 2013;369:1522-1528.']
+  },
+  {
+    id: 45,
+    cat: 'other',
+    color: 'green',
+    title: 'Descompressão Cirúrgica para Infarto Hemisférico Maligno',
+    nnt: [
+      { val: 2, type: 'benefit', lbl: 'NNT', sub: 'Morte prevenida (vs cuidado clínico)' },
+      { val: 4, type: 'benefit', lbl: 'NNT', sub: 'Independência funcional (mRS ≤3)' }
+    ],
+    nnh: [],
+    outcome: 'Mortalidade e desfecho funcional em AVC maligno de ACM',
+    context: 'Análise combinada de DESTINY, DECIMAL e HAMLET (n=93, <60 anos) mostrou redução marcante de mortalidade com hemicraniectomia descompressiva em <48h do AVC isquêmico maligno de ACM. Mortalidade: 22% vs 71% (NNT≈2). Funcionalidade mRS≤3: 43% vs 21% (NNT≈4). DESTINY II (>60 anos) mostrou benefício em sobrevivência, mas com maior proporção de sobreviventes com dependência grave. Discussão com familiares sobre qualidade de vida é essencial.',
+    infoType: 'teal',
+    infoText: 'Uma das intervenções com menor NNT em neurologia/cardiologia. Em <60 anos, hemicraniectomia é obrigatória em AVC maligno <48h.',
+    trials: ['DESTINY', 'DECIMAL', 'HAMLET', 'DESTINY II'],
+    pop: 'NNT=2 para morte — 1 em 2 vidas salvas. NNT=4 para independência funcional.',
+    refs: ['Vahedi K et al (Pooled analysis). Lancet Neurol. 2007;6:215-222.']
+  },
+  {
+    id: 46,
+    cat: 'other',
+    color: 'yellow',
+    title: 'Trombólise IV para AVC Isquêmico Leve (NIHSS ≤4)',
+    nnt: [{ val: '?', type: 'neutral', lbl: 'NNT incerto', sub: 'Benefício não estabelecido em AVC leve' }],
+    nnh: [{ val: 30, type: 'harm', lbl: 'NNH', sub: 'Transformação hemorrágica sintomática (maior que em AVC moderado)' }],
+    outcome: 'Desfecho neurológico favorável vs sangramento',
+    context: 'PRISM (2018) e TRACE-3 (2023) estudaram alteplase e tenecteplase em AVC leve (NIHSS ≤4). TRACE-3 foi interrompido por futilidade: sem diferença em desfecho favorável e mais transformação hemorrágica. AVC leve com déficit incapacitante pode beneficiar, mas dados gerais não suportam trombólise universal em NIHSS ≤4. Trombectomia mecânica pode ser alternativa em oclusão de grande vaso com déficit leve.',
+    infoType: 'amber',
+    infoText: 'Trombólise em AVC leve não incapacitante: risco/benefício desfavorável. Indicação caso a caso, especialmente com sintomas incapacitantes.',
+    trials: ['PRISM', 'TRACE-3', 'TEMPO-2'],
+    pop: 'Sem benefício claro em NNT; risco de transformação hemorrágica aumentado.',
+    refs: ['Khatri P et al (PRISM). N Engl J Med. 2018;378:2396-2406.', 'Li S et al (TRACE-3). JAMA. 2023;329(9):767-774.']
+  },
+  {
+    id: 47,
+    cat: 'other',
+    color: 'green',
+    title: 'Corticosteroides para Doença de Kawasaki em Crianças',
+    nnt: [{ val: 6, type: 'benefit', lbl: 'NNT', sub: 'Aneurisma coronariano prevenido (em refratários a IGIV)' }],
+    nnh: [],
+    outcome: 'Aneurisma coronariano em 4–8 semanas',
+    context: 'Meta-análises e RCTs (RAISE, KDSS) mostram que corticosteroides + IGIV reduzem aneurismas coronarianos em Kawasaki, especialmente em pacientes de alto risco ou refratários a IGIV. RAISE (Japão, score de Kobayashi) mostrou benefício com prednisolona IV + AAS + IGIV vs controle. NNT≈6 para prevenir aneurisma em populações de alto risco. Uso upfront seletivo recomendado pelas diretrizes JCS 2020.',
+    infoType: 'teal',
+    infoText: 'Em Kawasaki de alto risco, corticosteroide reduz aneurisma coronariano com NNT≈6. Avaliar score de risco japonês (Kobayashi/Egami).',
+    trials: ['RAISE', 'KDSS', 'IMPACT'],
+    pop: '1 em 6 aneurismas coronarianos prevenidos em pacientes de alto risco com Kawasaki.',
+    refs: ['Kobayashi T et al (RAISE). Lancet. 2012;379:1613-1620.']
+  },
+  {
+    id: 48,
+    cat: 'other',
+    color: 'yellow',
+    title: 'Trombectomia Endovascular para AVC de Artéria Basilar (Oclusão Vertebrobasilar)',
+    nnt: [
+      { val: 7, type: 'benefit', lbl: 'NNT', sub: 'Desfecho funcional favorável (mRS 0–3)' }
+    ],
+    nnh: [],
+    outcome: 'mRS ≤3 em 90 dias (AVC vertebrobasilar)',
+    context: 'ATTENTION (2022) e BAOCHE (2022) demonstraram que trombectomia mecânica em oclusão de artéria basilar melhora desfecho funcional (mRS 0-3) em relação ao tratamento clínico padrão. ATTENTION: 46% vs 23% (mRS≤3); NNT≈4. BAOCHE: 46% vs 24%. Janela terapêutica: até 24h. Populações asiáticas (dados; generalizabilidade incerta). Escore pc-ASPECTS orienta seleção.',
+    infoType: 'teal',
+    infoText: 'Forte evidência recente de benefício da trombectomia em oclusão basilar. NNT≈4–7. Janela ampliada até 24h em casos selecionados.',
+    trials: ['ATTENTION', 'BAOCHE'],
+    pop: '1 em 7 pacientes tem desfecho funcional favorável adicional com trombectomia vs clínico.',
+    refs: ['Jovin TG et al (ATTENTION). N Engl J Med. 2022;387:1361-1372.', 'Langezaal LCM et al (BAOCHE). N Engl J Med. 2022;387:1373-1384.']
+  },
+  {
+    id: 49,
+    cat: 'other',
+    color: 'yellow',
+    title: 'Ketamina vs Etomidato para IOT em Pacientes Críticos',
+    nnt: [{ val: '∞', type: 'neutral', lbl: 'NNT', sub: 'Sem diferença em desfecho primário (KETASED, KETO-SED)' }],
+    nnh: [],
+    outcome: 'Mortalidade, ventilação mecânica, hipotensão pós-IOT',
+    context: 'KETASED (2009) e KETO-SED (2022, n=801, UTI) compararam ketamina vs etomidato para IOT em emergências críticas. Sem diferença em mortalidade ou desfechos clínicos maiores. Etomidato tem menor impacto hemodinâmico imediato mas suprime adrenal transitoriamente. Ketamina mantém drive simpático. Em sepse e disfunção adrenal, ketamina pode ser preferível. Escolha deve basear-se em perfil clínico e disponibilidade.',
+    infoType: 'amber',
+    infoText: 'Sem diferença clínica demonstrada entre ketamina e etomidato para IOT em UTI. Escolha baseada em perfil hemodinâmico e disfunção adrenal.',
+    trials: ['KETASED', 'KETO-SED'],
+    pop: 'Equivalentes em desfechos duros. Preferir ketamina em sepse/hipotensão; etomidato em instabilidade por efeito pressor.',
+    refs: ['Driver BE et al (KETO-SED). N Engl J Med. 2022;386:2671-2682.']
+  },
+  {
+    id: 50,
+    cat: 'other',
+    color: 'yellow',
+    title: 'Fluidos em Adultos com Sepse (Restrição vs Liberal)',
+    nnt: [{ val: '∞', type: 'neutral', lbl: 'NNT', sub: 'Sem diferença em mortalidade (CLASSIC, SMART, SALT-ED)' }],
+    nnh: [{ val: 14, type: 'harm', lbl: 'NNH (SF0,9%)', sub: 'LRA ou hipernatremia com soro fisiológico' }],
+    outcome: 'Mortalidade em 90 dias, LRA, tempo de ventilação',
+    context: 'CLASSIC (2022, n=1.554) mostrou que estratégia restritiva de fluidos não foi superior à liberal em mortalidade em 90 dias em sepse/choque séptico. SMART e SALT-ED mostraram que cristalóides balanceados (Ringer Lactato) reduzem MACE renal vs soro fisiológico 0,9%. BaSICS (n=11.052) não confirmou diferença em mortalidade. Abordagem atual: ressuscitação inicial adequada (30 mL/kg, reavaliar), seguida de abordagem guiada por parâmetros dinâmicos.',
+    infoType: 'amber',
+    infoText: 'Soluções balanceadas preferíveis ao SF 0,9% (menor risco de LRA). Estratégia de fluidos guiada por resposta, não por volume fixo.',
+    trials: ['CLASSIC', 'SMART', 'BaSICS', 'SALT-ED'],
+    pop: 'Sem diferença em mortalidade entre estratégias. Soro fisiológico causa mais LRA (NNH=14).',
+    refs: ['Meyhoff TS et al (CLASSIC). N Engl J Med. 2022;386:2459-2470.', 'Semler MW et al (SMART). N Engl J Med. 2018;378:829-839.']
+  },
+  {
+    id: 51,
+    cat: 'other',
+    color: 'green',
+    title: 'IAMCST (STEMI) – Aspirina para Prevenção Secundária Precoce',
+    nnt: [
+      { val: 17, type: 'benefit', lbl: 'NNT', sub: 'Morte ou IAM recorrente prevenido (ATC, 2002)' }
+    ],
+    nnh: [{ val: 250, type: 'harm', lbl: 'NNH', sub: 'Hemorragia intracraniana' }],
+    outcome: 'Mortalidade, IAM recorrente em 2 anos pós-STEMI',
+    context: 'A meta-análise Antithrombotic Trialists Collaboration (2002) consolidou o papel da antiagregação em prevenção secundária pós-STEMI. Em contexto de STEMI sobrevivido (combinação com P2Y12 + aspirina, era DAPT), o benefício da antiagregação dupla é baseado em CURE, CLARITY-TIMI 28, COMMIT. NNT = 17 para o desfecho composto no contexto de prevenção secundária pós-síndrome coronariana.',
+    infoType: 'teal',
+    infoText: 'Antiagregação (AAS + P2Y12) após STEMI é padrão universal. NNT=17 para evento composto.',
+    trials: ['ATC 2002', 'CURE', 'CLARITY-TIMI 28', 'COMMIT'],
+    pop: '1 em 17 evita IAM ou morte com antiagregação dupla pós-STEMI.',
+    refs: ['Antithrombotic Trialists. BMJ. 2002;324:71-86.']
+  }
+];
+
+let currentCat = 'all';
+let currentSearch = '';
+
+function renderCards() {
+  const grid = document.getElementById('nntGrid');
+  grid.innerHTML = '';
+  let visible = 0;
+  let gCount = 0, yCount = 0, rCount = 0;
+
+  DATA.forEach((d, i) => {
+    const catMatch = currentCat === 'all' || d.cat === currentCat;
+    const search = currentSearch.toLowerCase().trim();
+    const searchMatch = !search || 
+      d.title.toLowerCase().includes(search) || 
+      (d.trials || []).some(t => t.toLowerCase().includes(search)) ||
+      d.context.toLowerCase().includes(search) ||
+      CAT_LABELS[d.cat].toLowerCase().includes(search);
+    
+    if (d.color === 'green') gCount++;
+    if (d.color === 'yellow') yCount++;
+    if (d.color === 'red') rCount++;
+
+    if (!catMatch || !searchMatch) return;
+    visible++;
+
+    const nntPrimary = d.nnt[0] || null;
+    const nnhPrimary = d.nnh[0] || null;
+
+    const chipsHtml = [
+      ...d.nnt.slice(0, 2).map(n => `<div class="nnt-chip"><span class="nnt-chip-val benefit">${n.val}</span><span class="nnt-chip-lbl">${n.lbl}</span></div>`),
+      ...d.nnh.slice(0, 1).map(n => `<div class="nnt-chip"><span class="nnt-chip-val harm">${n.val}</span><span class="nnt-chip-lbl">${n.lbl}</span></div>`)
+    ].join('');
+
+    const trialTags = (d.trials || []).slice(0, 3).map(t => `<span class="trial-tag">${t}</span>`).join('');
+
+    const card = document.createElement('div');
+    card.className = `nnt-card ${d.color}`;
+    card.style.animationDelay = (i * 0.02) + 's';
+    card.onclick = () => openModal(d);
+    card.innerHTML = `
+      <div class="card-top">
+        <div class="card-cat">${CAT_LABELS[d.cat]}</div>
+        <div class="card-rating ${d.color}">${COLOR_LABELS[d.color]}</div>
+      </div>
+      <div class="card-title">${d.title}</div>
+      <div class="card-nnt-row">${chipsHtml}</div>
+      <div class="card-context">${d.context.substring(0, 120)}…</div>
+      <div class="card-trials">${trialTags}</div>
+      <div class="card-footer">
+        <div class="card-outcome">${d.outcome}</div>
+        <div class="card-more">Ver detalhes →</div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+
+  document.getElementById('statGreen').textContent = gCount;
+  document.getElementById('statYellow').textContent = yCount;
+  document.getElementById('statRed').textContent = rCount;
+  document.getElementById('statVisible').textContent = visible;
+  document.getElementById('visibleCount').textContent = visible;
+  document.getElementById('noResults').classList.toggle('show', visible === 0);
+}
+
+function setFilter(cat) {
+  currentCat = cat;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b.dataset.cat === cat));
+  renderCards();
+}
+
+function applyFilters() {
+  currentSearch = document.getElementById('searchInput').value;
+  renderCards();
+}
+
+function openModal(d) {
+  document.getElementById('modalCat').textContent = CAT_LABELS[d.cat];
+  document.getElementById('modalTitle').textContent = d.title;
+
+  const nntBoxes = [...d.nnt, ...d.nnh].map(n => `
+    <div class="modal-nnt-box">
+      <div class="modal-nnt-val ${n.type}">${n.val}</div>
+      <div class="modal-nnt-lbl">${n.lbl}</div>
+      <div class="modal-nnt-sub">${n.sub}</div>
+    </div>
+  `).join('');
+
+  const infoClass = { teal: 'info-teal', amber: 'info-amber', red: 'info-red', gray: 'info-gray' }[d.infoType] || 'info-gray';
+  const infoIcon = { teal: '💡', amber: '⚠️', red: '🚫', gray: 'ℹ️' }[d.infoType] || 'ℹ️';
+
+  const trialBadges = (d.trials || []).map(t => `<span class="trial-tag">${t}</span>`).join(' ');
+  const refsList = (d.refs || []).map(r => `<div>• ${r}</div>`).join('');
+
+  document.getElementById('modalBody').innerHTML = `
+    <div>
+      <div class="modal-section-title">NNT / NNH</div>
+      <div class="modal-nnt-grid">${nntBoxes}</div>
+    </div>
+    <div>
+      <div class="modal-section-title">Desfecho avaliado</div>
+      <div class="modal-text"><p>${d.outcome}</p></div>
+    </div>
+    <div>
+      <div class="modal-section-title">Síntese da evidência</div>
+      <div class="modal-text"><p>${d.context}</p></div>
+    </div>
+    <div class="info-box ${infoClass}">
+      <div class="info-box-icon">${infoIcon}</div>
+      <div>${d.infoText}</div>
+    </div>
+    <div class="modal-pop">
+      <strong>Perspectiva populacional:</strong> ${d.pop}
+    </div>
+    <div>
+      <div class="modal-section-title">Estudos principais</div>
+      <div class="card-trials" style="flex-wrap:wrap;gap:.4rem;">${trialBadges}</div>
+    </div>
+    <div>
+      <div class="modal-section-title">Referências</div>
+      <div class="ref-mini">${refsList}</div>
+    </div>
+  `;
+
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeModalOutside(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+renderCards();
+</script>
+</body>
+</html>
