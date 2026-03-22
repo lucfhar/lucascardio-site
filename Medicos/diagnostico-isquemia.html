@@ -1,0 +1,1891 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>Diagnóstico de Isquemia Miocárdica – Métodos e Evidências | Dr. Lucas Silva</title>
+  <meta name="description" content="Guia completo sobre sensibilidade, especificidade, VPP, VPN e AUC dos métodos diagnósticos de isquemia miocárdica: ETT, eco estresse, SPECT, PET, CMR e FFR. Baseado nas evidências mais atuais." />
+  <meta name="author" content="Dr. Lucas Silva" />
+  <link rel="canonical" href="https://lucascardio.com.br/Medicos/diagnostico-isquemia.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Lora:ital,wght@0,600;1,400&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalWebPage",
+  "headline": "Diagnóstico de Isquemia Miocárdica – Métodos e Evidências",
+  "description": "Guia completo sobre sensibilidade, especificidade, VPP, VPN e AUC dos métodos diagnósticos de isquemia miocárdica: ETT, eco estresse, SPECT, PET, CMR e FFR. Baseado nas evidências mais atuais.",
+  "url": "https://lucascardio.com.br/Medicos/Medicos/diagnostico-isquemia.html",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://lucascardio.com.br/Medicos/diagnostico-isquemia.html"
+  },
+  "inLanguage": "pt-BR",
+  "audience": {
+    "@type": "MedicalAudience",
+    "audienceType": "Clinician"
+  },
+  "about": {
+    "@type": "MedicalCondition",
+    "name": "Isquemia miocárdica"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Dr. Lucas Silva",
+    "url": "https://lucascardio.com.br",
+    "jobTitle": "Cardiologista Intervencionista"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dr. Lucas Silva - Cardiologia",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://lucascardio.com.br/assets/img/logo.png"
+    }
+  }
+}
+</script>
+
+  <style>
+    :root {
+      --primary: oklch(65% .18 195);
+      --primary-foreground: oklch(98% 0 0);
+      --background: oklch(13% .018 250);
+      --foreground: oklch(93% .01 250);
+      --card: oklch(18.5% .018 250);
+      --card-foreground: oklch(93% .01 250);
+      --muted: oklch(22% .018 250);
+      --muted-foreground: oklch(62% .02 250);
+      --border: oklch(28% .025 250);
+      --input: oklch(22% .02 250);
+      --destructive: oklch(60% .22 25);
+      --secondary: oklch(22% .022 250);
+      --secondary-foreground: oklch(88% .01 250);
+      --accent: oklch(24% .025 250);
+      --accent-foreground: oklch(90% .01 250);
+      --teal: #00d3bd;
+      --teal-dim: rgba(0,211,189,.12);
+      --amber: oklch(82.8% .189 84.429);
+      --red: oklch(63.7% .237 25.331);
+      --green: oklch(79.2% .209 151.711);
+      --radius: 0.625rem;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-serif: 'Lora', Georgia, serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--background);
+      color: var(--foreground);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(18,20,27,.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: .6rem;
+      text-decoration: none; color: var(--foreground); flex-shrink: 0;
+    }
+    .nav-brand-icon {
+      width: 28px; height: 28px; border-radius: 7px;
+      background: var(--teal); display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .nav-brand-name { font-weight: 800; font-size: 1rem; letter-spacing: -.025em; line-height: 1; }
+    .nav-brand-name span { color: var(--teal); }
+    .nav-brand-sep { width: 1px; height: 14px; background: var(--border); margin: 0 6px; }
+    .nav-brand-sub { font-size: .7rem; font-weight: 500; color: var(--muted-foreground); white-space: nowrap; }
+    .nav-actions { display: flex; align-items: center; gap: .5rem; }
+    .nav-badge {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 999px; background: var(--teal-dim);
+      color: var(--teal); border: 1px solid rgba(0,211,189,.25);
+      white-space: nowrap;
+    }
+    .nav-link {
+      font-size: .75rem; font-weight: 600; padding: 5px 12px;
+      border-radius: 8px; border: 1.5px solid var(--primary);
+      color: var(--primary); background: transparent;
+      text-decoration: none;
+      transition: background .15s, color .15s;
+      display: inline-flex; align-items: center; gap: 5px;
+    }
+    .nav-link:hover { background: var(--primary); color: var(--primary-foreground); }
+
+    /* LAYOUT */
+    .container { max-width: 960px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* HERO */
+    .hero { padding: 3.5rem 0 2rem; border-bottom: 1px solid var(--border); }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .7rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--teal); margin-bottom: 1rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 20px; height: 2px;
+      background: var(--teal); border-radius: 1px;
+    }
+    .hero h1 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 800; line-height: 1.2;
+      margin-bottom: .75rem; letter-spacing: -.02em;
+    }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero-sub { color: var(--muted-foreground); font-size: .95rem; max-width: 680px; margin-bottom: 1.5rem; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 6px; border: 1px solid var(--border);
+      color: var(--muted-foreground); background: var(--card);
+      font-family: var(--font-mono);
+    }
+
+    /* TAB NAV */
+    .tab-nav-wrapper {
+      position: sticky; top: 56px; z-index: 40;
+      background: rgba(18,20,27,.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .tab-nav {
+      display: flex; align-items: center; gap: 0;
+      overflow-x: auto; scrollbar-width: none;
+      padding: 0; -webkit-overflow-scrolling: touch;
+    }
+    .tab-nav::-webkit-scrollbar { display: none; }
+    .tab-btn {
+      background: none; border: none; cursor: pointer;
+      font-family: var(--font-sans); font-size: .8rem; font-weight: 600;
+      color: var(--muted-foreground); padding: 14px 18px;
+      white-space: nowrap; border-bottom: 2px solid transparent;
+      transition: color .15s, border-color .15s; flex-shrink: 0;
+    }
+    .tab-btn:hover { color: var(--foreground); }
+    .tab-btn.active { color: var(--teal); border-bottom-color: var(--teal); }
+
+    /* TAB PANELS */
+    .tab-panel { display: none; padding: 2.5rem 0 4rem; }
+    .tab-panel.active { display: block; animation: fadeUp .3s ease; }
+
+    /* CARDS */
+    .card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px); padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .card-header {
+      display: flex; align-items: flex-start; gap: .75rem;
+      margin-bottom: 1.25rem; padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .card-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+      background: var(--teal-dim); color: var(--teal);
+    }
+    .card-title { font-weight: 700; font-size: 1rem; margin-bottom: 2px; }
+    .card-subtitle { font-size: .78rem; color: var(--muted-foreground); }
+
+    /* SECTION TITLES */
+    .section-label {
+      font-size: .68rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--teal);
+      margin-bottom: .4rem; font-family: var(--font-mono);
+    }
+    .section-title {
+      font-size: 1.3rem; font-weight: 800; margin-bottom: .5rem;
+      letter-spacing: -.01em;
+    }
+    .section-body { font-size: .88rem; color: var(--muted-foreground); line-height: 1.7; margin-bottom: 1.5rem; }
+    .section-divider { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+
+    /* INFO BOXES */
+    .info-box {
+      border-radius: var(--radius); padding: 12px 16px;
+      font-size: .82rem; line-height: 1.65;
+      display: flex; gap: 10px; margin-bottom: .75rem;
+    }
+    .info-box-icon { flex-shrink: 0; font-size: 1rem; margin-top: 1px; }
+    .info-teal { background: var(--teal-dim); border-left: 3px solid var(--teal); }
+    .info-amber { background: rgba(251,191,36,.08); border-left: 3px solid rgba(251,191,36,.5); }
+    .info-red { background: rgba(220,38,38,.08); border-left: 3px solid rgba(220,38,38,.4); }
+    .info-gray { background: var(--muted); border-left: 3px solid var(--border); }
+    .info-blue { background: rgba(99,179,237,.08); border-left: 3px solid rgba(99,179,237,.5); }
+
+    /* BADGES */
+    .badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: .68rem; font-weight: 700; padding: 2px 8px;
+      border-radius: 999px; white-space: nowrap;
+    }
+    .badge-teal { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.25); }
+    .badge-amber { background: rgba(251,191,36,.12); color: #fbbf24; border: 1px solid rgba(251,191,36,.2); }
+    .badge-red { background: rgba(220,38,38,.12); color: #f87171; border: 1px solid rgba(220,38,38,.2); }
+    .badge-gray { background: var(--muted); color: var(--muted-foreground); border: 1px solid var(--border); font-family: var(--font-mono); }
+    .badge-blue { background: rgba(99,179,237,.12); color: #63b3ed; border: 1px solid rgba(99,179,237,.2); }
+
+    /* METRIC GRID */
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: .75rem; margin: 1rem 0;
+    }
+    .metric-card {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 14px 12px; text-align: center;
+    }
+    .metric-label { font-size: .68rem; font-weight: 700; color: var(--muted-foreground); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 6px; font-family: var(--font-mono); }
+    .metric-value { font-size: 1.5rem; font-weight: 800; color: var(--teal); font-family: var(--font-mono); line-height: 1; }
+    .metric-range { font-size: .65rem; color: var(--muted-foreground); margin-top: 3px; font-family: var(--font-mono); }
+    .metric-card.amber .metric-value { color: #fbbf24; }
+    .metric-card.red .metric-value { color: #f87171; }
+    .metric-card.green .metric-value { color: var(--green); }
+
+    /* COMPARE TABLE */
+    .table-wrapper { overflow-x: auto; border-radius: var(--radius); border: 1px solid var(--border); }
+    .compare-table { width: 100%; border-collapse: collapse; font-size: .8rem; min-width: 640px; }
+    .compare-table th {
+      background: var(--muted); padding: 10px 14px; text-align: center;
+      font-weight: 700; font-size: .72rem; border-bottom: 1px solid var(--border);
+      color: var(--muted-foreground); letter-spacing: .04em; white-space: nowrap;
+    }
+    .compare-table th:first-child { text-align: left; }
+    .compare-table td {
+      padding: 10px 14px; border-bottom: 1px solid var(--border);
+      vertical-align: middle; text-align: center;
+    }
+    .compare-table td:first-child { text-align: left; font-weight: 700; white-space: nowrap; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table tr:hover td { background: var(--accent); }
+    .val-high { color: var(--teal); font-family: var(--font-mono); font-weight: 700; }
+    .val-mid { color: #fbbf24; font-family: var(--font-mono); font-weight: 600; }
+    .val-low { color: #f87171; font-family: var(--font-mono); font-weight: 600; }
+    .val-mono { font-family: var(--font-mono); }
+    .row-highlight td { background: rgba(0,211,189,.06); }
+
+    /* MODALITY ACCORDION */
+    .modality-tab-bar {
+      display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.5rem;
+    }
+    .mod-btn {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: 8px; padding: 8px 16px;
+      font-size: .8rem; font-weight: 600; cursor: pointer;
+      color: var(--muted-foreground); transition: all .15s;
+      font-family: var(--font-sans);
+    }
+    .mod-btn:hover { background: var(--accent); color: var(--foreground); }
+    .mod-btn.active { background: var(--teal-dim); color: var(--teal); border-color: rgba(0,211,189,.35); }
+    .mod-panel { display: none; }
+    .mod-panel.active { display: block; animation: fadeUp .25s ease; }
+
+    /* MODALITY CARD HEADER */
+    .mod-header {
+      display: flex; align-items: flex-start; gap: 1rem;
+      margin-bottom: 1.25rem; padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .mod-icon-wrap {
+      width: 44px; height: 44px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; flex-shrink: 0; background: var(--teal-dim);
+    }
+    .mod-name { font-size: 1.15rem; font-weight: 800; margin-bottom: 3px; }
+    .mod-full { font-size: .78rem; color: var(--muted-foreground); }
+
+    /* TWO-COL GRID */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width:640px) { .two-col { grid-template-columns: 1fr; } }
+
+    /* REFERENCE LIST */
+    .ref-list { list-style: none; }
+    .ref-item {
+      padding: 10px 0; border-bottom: 1px solid var(--border);
+      font-size: .8rem; line-height: 1.6; display: flex; gap: 10px;
+    }
+    .ref-item:last-child { border-bottom: none; }
+    .ref-num {
+      font-family: var(--font-mono); font-size: .7rem; font-weight: 700;
+      color: var(--teal); min-width: 22px; flex-shrink: 0; padding-top: 2px;
+    }
+    .ref-title { font-weight: 600; margin-bottom: 2px; }
+    .ref-meta { color: var(--muted-foreground); font-size: .75rem; }
+    .ref-doi { color: var(--teal); font-size: .72rem; font-family: var(--font-mono); }
+
+    /* SELECTION GRID */
+    .select-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+    .select-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: calc(var(--radius)+2px); padding: 1.25rem;
+    }
+    .select-card-title {
+      font-weight: 700; font-size: .9rem; margin-bottom: .5rem;
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .select-card ul { list-style: none; padding: 0; }
+    .select-card li {
+      font-size: .8rem; padding: 4px 0; border-bottom: 1px solid var(--border);
+      display: flex; gap: 8px; align-items: flex-start; line-height: 1.4;
+      color: var(--muted-foreground);
+    }
+    .select-card li:last-child { border-bottom: none; }
+    .select-card li::before { content: '→'; color: var(--teal); flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+
+    /* BAYES VISUAL */
+    .bayes-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1rem 0; }
+    .bayes-card {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1rem; text-align: center;
+    }
+    .bayes-prev { font-size: .7rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted-foreground); margin-bottom: .5rem; font-family: var(--font-mono); }
+    .bayes-ppv { font-size: 1.3rem; font-weight: 800; font-family: var(--font-mono); }
+    .bayes-npv { font-size: .85rem; font-weight: 700; font-family: var(--font-mono); color: var(--muted-foreground); margin-top: 3px; }
+    .bayes-note { font-size: .72rem; color: var(--muted-foreground); margin-top: 4px; }
+
+    /* GUIDE BLOCK */
+    .guide-block {
+      background: var(--card); border: 1px solid var(--border);
+      border-left: 3px solid var(--teal);
+      border-radius: var(--radius); padding: 1rem 1.25rem; margin-bottom: .75rem;
+    }
+    .guide-source { font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); font-family: var(--font-mono); margin-bottom: 6px; }
+    .guide-rec { font-size: .85rem; line-height: 1.6; }
+    .guide-class {
+      display: inline-flex; align-items: center; gap: 3px;
+      font-size: .68rem; font-weight: 700; padding: 2px 8px;
+      border-radius: 4px; margin-left: 6px; font-family: var(--font-mono);
+    }
+    .class-i { background: rgba(0,211,189,.15); color: var(--teal); border: 1px solid rgba(0,211,189,.3); }
+    .class-iia { background: rgba(251,191,36,.12); color: #fbbf24; border: 1px solid rgba(251,191,36,.25); }
+    .class-iib { background: rgba(251,191,36,.07); color: #d97706; border: 1px solid rgba(251,191,36,.15); }
+    .loe { background: var(--muted); color: var(--muted-foreground); border: 1px solid var(--border); margin-left: 3px; }
+
+    /* CHART CONTAINER */
+    .chart-wrap { position: relative; max-height: 380px; margin: 1.5rem 0; }
+
+    /* DISCLAIMER */
+    .disclaimer {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 12px 16px;
+      font-size: .75rem; color: var(--muted-foreground);
+      line-height: 1.6; margin-top: 2rem;
+    }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 2rem 0; margin-top: 3rem; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-copy { font-size: .75rem; color: var(--muted-foreground); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      .metric-grid { grid-template-columns: repeat(3, 1fr); }
+      .nav-brand-sub { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="https://lucascardio.com.br">
+    <div class="nav-brand-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+    </div>
+    <div class="nav-brand-name">Lucas<span>Cardio</span></div>
+    <div class="nav-brand-sep"></div>
+    <div class="nav-brand-sub">Isquemia Miocárdica</div>
+  </a>
+  <div class="nav-actions">
+    <span class="nav-badge">Médicos</span>
+    <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      lucascardio.com.br
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="container">
+  <div class="hero">
+    <div class="hero-eyebrow">Medicina Baseada em Evidências</div>
+    <h1>Diagnóstico de <em>Isquemia Miocárdica</em><br>Métodos, Acurácia e Indicações</h1>
+    <p class="hero-sub">
+      Guia clínico completo sobre o desempenho diagnóstico dos métodos não invasivos e invasivos para detecção de isquemia. Sensibilidade, especificidade, VPP, VPN, AUC e indicações baseadas nas evidências mais recentes — incluindo meta-análises de 2025.
+    </p>
+    <div class="hero-tags">
+      <span class="tag">Sonaglioni 2025</span>
+      <span class="tag">Danad JAMA Cardiology</span>
+      <span class="tag">Ricci JAMA Cardio 2023</span>
+      <span class="tag">Flurpiridaz PET Trial</span>
+      <span class="tag">PACIFIC-2</span>
+      <span class="tag">ESC 2024 · ACC/AHA 2023</span>
+    </div>
+  </div>
+</div>
+
+<!-- TAB NAV -->
+<div class="tab-nav-wrapper">
+  <div class="container">
+    <div class="tab-nav">
+      <button class="tab-btn active" onclick="showTab('fundamentals')">⚖️ Fundamentos</button>
+      <button class="tab-btn" onclick="showTab('accuracy')">📊 Acurácia Comparada</button>
+      <button class="tab-btn" onclick="showTab('modalities')">🔬 Por Modalidade</button>
+      <button class="tab-btn" onclick="showTab('selection')">🎯 Seleção do Teste</button>
+      <button class="tab-btn" onclick="showTab('subgroups')">👥 Subgrupos</button>
+      <button class="tab-btn" onclick="showTab('guidelines')">📋 Diretrizes</button>
+      <button class="tab-btn" onclick="showTab('references')">📚 Referências</button>
+    </div>
+  </div>
+</div>
+
+<main>
+<div class="container">
+
+<!-- ===== TAB: FUNDAMENTOS ===== -->
+<div id="tab-fundamentals" class="tab-panel active">
+
+  <div class="section-label">Por que importa</div>
+  <h2 class="section-title">Fundamentos do Diagnóstico de Isquemia</h2>
+  <p class="section-body">
+    A detecção de isquemia miocárdica é central na avaliação da doença arterial coronariana estável. A seleção da modalidade deve considerar a probabilidade pré-teste (PPT) do paciente, as características individuais, a disponibilidade local e os objetivos clínicos — detecção anatômica versus funcional, quantificação de extensão isquêmica e avaliação de viabilidade miocárdica.
+  </p>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🎯</div>
+      <div>
+        <div class="card-title">Probabilidade Pré-Teste (PPT) e Raciocínio Bayesiano</div>
+        <div class="card-subtitle">O resultado de qualquer teste só tem significado interpretado à luz da PPT</div>
+      </div>
+    </div>
+    <p style="font-size:.85rem;line-height:1.7;margin-bottom:1rem;">
+      VPP e VPN <strong>não são propriedades fixas</strong> de um teste — variam diretamente com a prevalência e a PPT. À medida que a prevalência aumenta, o VPP sobe e o VPN cai. Esse princípio se aplica universalmente a todas as modalidades de avaliação de isquemia.
+    </p>
+
+    <div class="info-teal info-box">
+      <span class="info-box-icon">📐</span>
+      <div><strong>Exemplo com CMR de estresse (Sens 90%, Spec 94%):</strong> Em uma população com PPT de 20%, o VPP será ~75% e o VPN >98%. Na mesma população com PPT de 70%, o VPP sobe para ~97%, mas o VPN cai para ~82%. Portanto, a melhor indicação do CMR é no cenário de PPT intermediária a alta.</div>
+    </div>
+
+    <div class="section-label" style="margin-top:1.25rem;">VPP/VPN do PET (Sens 90%, Spec 89%) conforme prevalência</div>
+    <div class="bayes-row">
+      <div class="bayes-card">
+        <div class="bayes-prev">PPT 10%</div>
+        <div class="bayes-ppv" style="color:#fbbf24;">VPP ~50%</div>
+        <div class="bayes-npv">VPN ≈99%</div>
+        <div class="bayes-note">Melhor para excluir doença</div>
+      </div>
+      <div class="bayes-card">
+        <div class="bayes-prev">PPT 30%</div>
+        <div class="bayes-ppv" style="color:var(--teal);">VPP ~77%</div>
+        <div class="bayes-npv">VPN ≈97%</div>
+        <div class="bayes-note">Faixa de maior utilidade</div>
+      </div>
+      <div class="bayes-card">
+        <div class="bayes-prev">PPT 50%</div>
+        <div class="bayes-ppv" style="color:var(--teal);">VPP ~90%</div>
+        <div class="bayes-npv">VPN ≈90%</div>
+        <div class="bayes-note">Equilíbrio diagnóstico</div>
+      </div>
+      <div class="bayes-card">
+        <div class="bayes-prev">PPT 70%</div>
+        <div class="bayes-ppv" style="color:var(--teal);">VPP ~96%</div>
+        <div class="bayes-npv">VPN ≈78%</div>
+        <div class="bayes-note">VPN reduzido</div>
+      </div>
+    </div>
+    <p style="font-size:.78rem;color:var(--muted-foreground);margin-top:.5rem;">Fonte: Sonaglioni et al. JCM 2025 [1]; Genders et al. JACC Imaging 2017 [2]</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📏</div>
+      <div>
+        <div class="card-title">Padrão de Referência: Angiografia vs. FFR</div>
+        <div class="card-subtitle">A escolha do padrão-ouro altera substancialmente os valores de acurácia</div>
+      </div>
+    </div>
+    <div class="two-col">
+      <div>
+        <div class="info-gray info-box">
+          <span class="info-box-icon">🔬</span>
+          <div>
+            <strong>Padrão anatômico (angiografia):</strong> ≥50% ou ≥70% de estenose. Superestima a necessidade de revascularização — até 40% das estenoses moderadas-graves não causam isquemia funcional. Sensibilidades dos métodos funcionais são sistematicamente menores quando comparadas à angiografia.
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="info-teal info-box">
+          <span class="info-box-icon">⚡</span>
+          <div>
+            <strong>Padrão funcional (FFR ≤ 0,80):</strong> Padrão-ouro atual para significância funcional das estenoses. A concordância entre FFR e testes não invasivos é de ~80%, refletindo as limitações inerentes de ambos os métodos. Zona cinzenta (FFR 0,76–0,80): reprodutibilidade limitada (±0,02).
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="info-amber info-box" style="margin-top:.5rem;">
+      <span class="info-box-icon">⚠️</span>
+      <div><strong>Viés de verificação:</strong> Quando apenas pacientes com testes não invasivos positivos são submetidos ao padrão-ouro, a sensibilidade é inflada e a especificidade é deflacionada. A maioria dos estudos de acurácia diagnóstica sofre esse viés em graus variáveis. O estudo PACIFIC-2 é um dos poucos a incluir cateterismo em todos os participantes.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🗂️</div>
+      <div>
+        <div class="card-title">Hierarquia de Acurácia Diagnóstica</div>
+        <div class="card-subtitle">Síntese da meta-análise de Sonaglioni et al. (104 estudos, 1990–2025) [1]</div>
+      </div>
+    </div>
+    <div class="info-gray info-box">
+      <span class="info-box-icon">📊</span>
+      <div>Em ordem crescente de acurácia diagnóstica (AUC) contra angiografia invasiva:<br>
+      <strong style="color:#f87171;">ETT</strong> (0,70–0,75) &lt; <strong style="color:#fbbf24;">Eco Estresse / SPECT</strong> (0,80–0,85) &lt; <strong style="color:var(--teal);">CMR de Estresse</strong> (0,86–0,89) &lt; <strong style="color:var(--teal);">PET</strong> (0,90–0,92)<br>
+      Vs. FFR: CMR e PET lideram com AUC 0,84–0,93 e 0,86–0,90, respectivamente.</div>
+    </div>
+    <div class="info-teal info-box">
+      <span class="info-box-icon">💡</span>
+      <div><strong>Limitações do padrão anatômico:</strong> O PET e o CMR parecem "perder" acurácia vs. angiografia quando detectam isquemia funcional em estenoses moderadas (50–70%) — mas esses "falsos positivos" frequentemente correspondem a lesões com FFR ≤ 0,80, ou seja, são resultados verdadeiros quando o padrão-ouro correto é utilizado.</div>
+    </div>
+  </div>
+
+</div>
+<!-- END TAB: FUNDAMENTALS -->
+
+<!-- ===== TAB: ACURÁCIA COMPARADA ===== -->
+<div id="tab-accuracy" class="tab-panel">
+
+  <div class="section-label">Evidência Comparativa</div>
+  <h2 class="section-title">Acurácia Diagnóstica Comparada</h2>
+  <p class="section-body">Dados consolidados de meta-análises de alta qualidade. Os valores refletem acurácia por paciente (não por vaso), que é a métrica clinicamente relevante para a decisão terapêutica.</p>
+
+  <!-- CHART -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📈</div>
+      <div>
+        <div class="card-title">Sensibilidade e Especificidade por Modalidade</div>
+        <div class="card-subtitle">Meta-análises de Sonaglioni 2025, Danad 2017 e Ricci JAMA Cardio 2023 [1,3,4]</div>
+      </div>
+    </div>
+    <div class="chart-wrap" style="max-height:320px;">
+      <canvas id="diagChart"></canvas>
+    </div>
+    <p style="font-size:.72rem;color:var(--muted-foreground);margin-top:.5rem;text-align:center;">Valores intermediários de meta-análises para comparação entre modalidades. Referência: angiografia coronariana invasiva (≥50% estenose).</p>
+  </div>
+
+  <!-- TABLE VS ANGIOGRAPHY -->
+  <div class="section-label" style="margin-bottom:.5rem;">Desempenho vs. Angiografia (≥50% estenose)</div>
+  <div class="card" style="padding:0;overflow:hidden;">
+    <div class="table-wrapper" style="border:none;border-radius:0;">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Modalidade</th>
+            <th>Sensibilidade</th>
+            <th>Especificidade</th>
+            <th>AUC / C-stat</th>
+            <th>Classe Evidência</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Teste Ergométrico (ETT)</td>
+            <td><span class="val-low">66–68%</span></td>
+            <td><span class="val-low">61–77%</span></td>
+            <td><span class="val-low">0,70–0,75</span></td>
+            <td><span class="badge badge-gray">I B-NR</span></td>
+          </tr>
+          <tr>
+            <td>Eco Estresse</td>
+            <td><span class="val-mid">79–81%</span></td>
+            <td><span class="val-mid">82–87%</span></td>
+            <td><span class="val-mid">0,80–0,85</span></td>
+            <td><span class="badge badge-teal">I B-R</span></td>
+          </tr>
+          <tr>
+            <td>SPECT (convencional)</td>
+            <td><span class="val-mid">82–86%</span></td>
+            <td><span class="val-low">74–78%</span></td>
+            <td><span class="val-mid">0,80–0,85</span></td>
+            <td><span class="badge badge-teal">I B-R</span></td>
+          </tr>
+          <tr>
+            <td>SPECT CZT (semicond.)</td>
+            <td><span class="val-mid">89%</span></td>
+            <td><span class="val-mid">69%</span></td>
+            <td><span class="val-mid">0,89</span></td>
+            <td><span class="badge badge-amber">IIa C-LD</span></td>
+          </tr>
+          <tr class="row-highlight">
+            <td>PET Cardíaco</td>
+            <td><span class="val-high">85–93%</span></td>
+            <td><span class="val-high">81–92%</span></td>
+            <td><span class="val-high">0,90–0,92</span></td>
+            <td><span class="badge badge-teal">I B-R</span></td>
+          </tr>
+          <tr class="row-highlight">
+            <td>CMR de Estresse</td>
+            <td><span class="val-high">83–90%</span></td>
+            <td><span class="val-high">79–89%</span></td>
+            <td><span class="val-high">0,86–0,89</span></td>
+            <td><span class="badge badge-teal">I B-R</span></td>
+          </tr>
+          <tr>
+            <td>CCTA (coronária por TC)</td>
+            <td><span class="val-high">95–99%</span></td>
+            <td><span class="val-low">64–83%</span></td>
+            <td><span class="val-mid">0,84</span></td>
+            <td><span class="badge badge-teal">I B-R</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TABLE VS FFR -->
+  <div class="section-label" style="margin-bottom:.5rem;margin-top:2rem;">Desempenho vs. FFR ≤ 0,80 (padrão funcional) — por paciente</div>
+  <div class="card" style="padding:0;overflow:hidden;">
+    <div class="table-wrapper" style="border:none;border-radius:0;">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Modalidade</th>
+            <th>Sensibilidade</th>
+            <th>Especificidade</th>
+            <th>AUC</th>
+            <th>Referência Principal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Eco Estresse</td>
+            <td><span class="val-mid">72–77%</span></td>
+            <td><span class="val-mid">75–85%</span></td>
+            <td><span class="val-mid">0,80–0,85</span></td>
+            <td><span class="val-mono">Danad EHJ 2017 [3]</span></td>
+          </tr>
+          <tr>
+            <td>SPECT</td>
+            <td><span class="val-low">64–70%</span></td>
+            <td><span class="val-mid">61–78%</span></td>
+            <td><span class="val-low">0,68–0,74</span></td>
+            <td><span class="val-mono">Danad JAMA Cardio [4]</span></td>
+          </tr>
+          <tr class="row-highlight">
+            <td>PET</td>
+            <td><span class="val-high">81–90%</span></td>
+            <td><span class="val-mid">65–94%</span></td>
+            <td><span class="val-high">0,86–0,90</span></td>
+            <td><span class="val-mono">Danad JAMA Cardio [4]</span></td>
+          </tr>
+          <tr class="row-highlight">
+            <td>CMR de Estresse</td>
+            <td><span class="val-high">81–95%</span></td>
+            <td><span class="val-high">82–94%</span></td>
+            <td><span class="val-high">0,84–0,93</span></td>
+            <td><span class="val-mono">Ricci JAMA Cardio 2023 [5]</span></td>
+          </tr>
+          <tr>
+            <td>CCTA</td>
+            <td><span class="val-high">90%</span></td>
+            <td><span class="val-low">39%</span></td>
+            <td><span class="val-mid">0,76</span></td>
+            <td><span class="val-mono">Danad EHJ 2017 [3]</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="info-amber info-box" style="margin-top:1rem;">
+    <span class="info-box-icon">⚠️</span>
+    <div><strong>PACIFIC-2 (EHJ 2022) [6]:</strong> Em pacientes com IM ou PCI prévios, SPECT (65%), PET (75%) e CMR (64%) apresentaram acurácias globais descritas como "desencorajadoras" para diagnóstico de DAC definida por FFR — evidenciando que revascularizações e cicatrizes prévias reduzem substancialmente o desempenho de todos os métodos funcionais.</div>
+  </div>
+
+  <!-- AUC CHART -->
+  <div class="card" style="margin-top:1.5rem;">
+    <div class="card-header">
+      <div class="card-icon">🎯</div>
+      <div>
+        <div class="card-title">AUC Comparado: Angiografia vs. FFR como Referência</div>
+        <div class="card-subtitle">PET e CMR lideram em ambos os cenários; SPECT perde significativamente quando o padrão é FFR</div>
+      </div>
+    </div>
+    <div class="chart-wrap" style="max-height:280px;">
+      <canvas id="aucChart"></canvas>
+    </div>
+  </div>
+
+</div>
+<!-- END TAB ACCURACY -->
+
+<!-- ===== TAB: MODALIDADES ===== -->
+<div id="tab-modalities" class="tab-panel">
+
+  <div class="section-label">Análise individual</div>
+  <h2 class="section-title">Desempenho por Modalidade</h2>
+  <p class="section-body">Análise detalhada de cada método — incluindo mecanismo, indicadores de desempenho, limitações específicas e dados dos estudos mais relevantes.</p>
+
+  <div class="modality-tab-bar">
+    <button class="mod-btn active" onclick="showMod('ett')">🏃 ETT</button>
+    <button class="mod-btn" onclick="showMod('echo')">🔊 Eco Estresse</button>
+    <button class="mod-btn" onclick="showMod('spect')">☢️ SPECT</button>
+    <button class="mod-btn" onclick="showMod('pet')">⚛️ PET</button>
+    <button class="mod-btn" onclick="showMod('cmr')">🧲 CMR</button>
+    <button class="mod-btn" onclick="showMod('ffr')">📡 FFR</button>
+  </div>
+
+  <!-- ETT -->
+  <div id="mod-ett" class="mod-panel active">
+    <div class="card">
+      <div class="mod-header">
+        <div class="mod-icon-wrap">🏃</div>
+        <div>
+          <div class="mod-name">Teste Ergométrico (ETT / Esforço)</div>
+          <div class="mod-full">Exercise Stress Testing — Eletrocardiograma de Esforço</div>
+        </div>
+      </div>
+
+      <div class="metric-grid">
+        <div class="metric-card red">
+          <div class="metric-label">Sensibilidade</div>
+          <div class="metric-value">66–68%</div>
+          <div class="metric-range">IC 95%: 59–72%</div>
+        </div>
+        <div class="metric-card red">
+          <div class="metric-label">Especificidade</div>
+          <div class="metric-value">61–77%</div>
+          <div class="metric-range">IC 95%: 55–67%</div>
+        </div>
+        <div class="metric-card red">
+          <div class="metric-label">AUC</div>
+          <div class="metric-value">0,72</div>
+          <div class="metric-range">0,70–0,75</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">VPN</div>
+          <div class="metric-value">~85%</div>
+          <div class="metric-range">PPT baixa</div>
+        </div>
+        <div class="metric-card red">
+          <div class="metric-label">VPP</div>
+          <div class="metric-value">~40%</div>
+          <div class="metric-range">PPT 30%</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Corte ST</div>
+          <div class="metric-value">1mm</div>
+          <div class="metric-range">Horiz./descend.</div>
+        </div>
+      </div>
+
+      <div class="info-red info-box">
+        <span class="info-box-icon">⚡</span>
+        <div><strong>Menor acurácia entre todos os métodos:</strong> Meta-análise de 104 estudos (Sonaglioni et al. JCM 2025) confirma que o ETT apresenta a menor acurácia diagnóstica geral. Sensibilidade uniarterial cai para ~39–40%. Na doença multivascular, sobe para 77% (efeito espectro). O AUC de 0,70–0,75 indica discriminação fraca.</div>
+      </div>
+
+      <h3 style="font-size:.9rem;font-weight:700;margin:.75rem 0 .5rem;">Limitações Críticas</h3>
+      <div class="two-col">
+        <div>
+          <div class="info-amber info-box"><span class="info-box-icon">⚠️</span><div><strong>ECG basal anormal:</strong> BRE completo, infradesnível ST em repouso &gt;1mm e pré-excitação inviabilizam a interpretação isquêmica. Nestes casos, associar método de imagem é mandatório.</div></div>
+          <div class="info-gray info-box"><span class="info-box-icon">💊</span><div><strong>Uso de betabloqueadores:</strong> Reduz significativamente a sensibilidade ao limitar a resposta cronotrópica. Frequência cardíaca alvo (85% da FC máx predita) muitas vezes não atingida.</div></div>
+        </div>
+        <div>
+          <div class="info-gray info-box"><span class="info-box-icon">♀️</span><div><strong>Baixa sensibilidade em mulheres:</strong> Apenas 30% (vs. 64% em homens). A especificidade, paradoxalmente, é maior em mulheres (97% vs. 89%). ETT é particularmente inadequado como teste isolado em mulheres — deve-se preferir métodos de imagem.</div></div>
+          <div class="info-amber info-box"><span class="info-box-icon">🚫</span><div><strong>Incapacidade física:</strong> Ortopedia, doença vascular periférica, condições musculoesqueléticas limitantes exigem protocolo farmacológico com método de imagem associado.</div></div>
+        </div>
+      </div>
+
+      <div class="info-teal info-box" style="margin-top:.5rem;">
+        <span class="info-box-icon">✅</span>
+        <div><strong>Quando ainda tem valor:</strong> Avaliação funcional (capacidade ao exercício, resposta pressórica, arritmias ao esforço) em adição à detecção isquêmica. Útil como triagem em pacientes com PPT baixa a intermediária e ECG basal interpretável. Escore de Duke correlaciona-se com prognóstico independentemente da isquemia detectada. AHA Class I B-NR para sintomas de baixo risco.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ECO ESTRESSE -->
+  <div id="mod-echo" class="mod-panel">
+    <div class="card">
+      <div class="mod-header">
+        <div class="mod-icon-wrap">🔊</div>
+        <div>
+          <div class="mod-name">Ecocardiografia de Estresse</div>
+          <div class="mod-full">Stress Echocardiography — Esforço ou Dobutamina/Vasodilatador</div>
+        </div>
+      </div>
+
+      <div class="metric-grid">
+        <div class="metric-card">
+          <div class="metric-label">Sens. (Angio)</div>
+          <div class="metric-value">79–81%</div>
+          <div class="metric-range">IC 95%: 79–83%</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Spec. (Angio)</div>
+          <div class="metric-value">82–87%</div>
+          <div class="metric-range">IC 95%: 82–87%</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">AUC</div>
+          <div class="metric-value">0,83</div>
+          <div class="metric-range">0,80–0,85</div>
+        </div>
+        <div class="metric-card amber">
+          <div class="metric-label">Sens. (FFR)</div>
+          <div class="metric-value">72–77%</div>
+          <div class="metric-range">Danad EHJ 2017</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Spec. (FFR)</div>
+          <div class="metric-value">75–85%</div>
+          <div class="metric-range">Danad EHJ 2017</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Mundo Real</div>
+          <div class="metric-value">95,9%</div>
+          <div class="metric-range">EVAREST Study</div>
+        </div>
+      </div>
+
+      <div class="info-teal info-box">
+        <span class="info-box-icon">⭐</span>
+        <div><strong>Vantagem única — avaliação multiparamétrica simultânea:</strong> Função valvular, pressões de enchimento, hipertrofia VE, PSAP estimada durante o estresse. Particularmente relevante em avaliação de estenose valvular com disfunção ventricular e em cardiopatias com suspeita de etiologia multifatorial. AHA/ACC 2023 Class I para diagnóstico em PPT intermediária.</div>
+      </div>
+
+      <div class="two-col" style="margin-top:.5rem;">
+        <div>
+          <h3 style="font-size:.85rem;font-weight:700;margin-bottom:.5rem;">Pontos Fortes</h3>
+          <div class="info-gray info-box"><span class="info-box-icon">✅</span><div>Sem radiação ionizante. Amplamente disponível. Portátil (UTI, emergência). Melhor equilíbrio custo-benefício entre os métodos de imagem.</div></div>
+          <div class="info-gray info-box"><span class="info-box-icon">✅</span><div>Sensibilidade aumenta para detecção de doença do tronco e multivascular pela extensão da disfunção segmentar detectada.</div></div>
+        </div>
+        <div>
+          <h3 style="font-size:.85rem;font-weight:700;margin-bottom:.5rem;">Limitações</h3>
+          <div class="info-amber info-box"><span class="info-box-icon">⚠️</span><div>Janela acústica inadequada em até 10–15% dos pacientes: obesidade, DPOC, deformidade torácica. Agentes de contraste ecográfico (Sonovue®) melhoram substancialmente a acurácia nestes casos.</div></div>
+          <div class="info-amber info-box"><span class="info-box-icon">⚠️</span><div>Dependente da experiência do operador. Alta variabilidade interobservador na interpretação de anormalidades segmentares discretas.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPECT -->
+  <div id="mod-spect" class="mod-panel">
+    <div class="card">
+      <div class="mod-header">
+        <div class="mod-icon-wrap">☢️</div>
+        <div>
+          <div class="mod-name">Cintilografia Miocárdica (SPECT)</div>
+          <div class="mod-full">Single-Photon Emission Computed Tomography — Tc-99m Sestamibi / Tetrofosmin</div>
+        </div>
+      </div>
+
+      <div class="metric-grid">
+        <div class="metric-card">
+          <div class="metric-label">Sens. (Angio)</div>
+          <div class="metric-value">82–86%</div>
+          <div class="metric-range">IC 95%: 78–85%</div>
+        </div>
+        <div class="metric-card amber">
+          <div class="metric-label">Spec. (Angio)</div>
+          <div class="metric-value">74–78%</div>
+          <div class="metric-range">IC 95%: 70–78%</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">AUC</div>
+          <div class="metric-value">0,83</div>
+          <div class="metric-range">0,80–0,85</div>
+        </div>
+        <div class="metric-card red">
+          <div class="metric-label">Sens. (FFR)</div>
+          <div class="metric-value">64–70%</div>
+          <div class="metric-range">Danad EHJ 2017</div>
+        </div>
+        <div class="metric-card red">
+          <div class="metric-label">Spec. (FFR)</div>
+          <div class="metric-value">61–78%</div>
+          <div class="metric-range">AUC 0,68–0,74</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">SPECT CZT</div>
+          <div class="metric-value">Sens 89%</div>
+          <div class="metric-range">Spec 69%, AUC 0,89</div>
+        </div>
+      </div>
+
+      <div class="info-amber info-box">
+        <span class="info-box-icon">⚠️</span>
+        <div><strong>Queda significativa de desempenho vs. FFR:</strong> A acurácia do SPECT convencional cai de AUC ~0,83 (vs. angiografia) para 0,68–0,74 (vs. FFR). Isso reflete a limitação do SPECT em detectar isquemia em estenoses funcionalmente significativas moderadas (50–70%). O estudo direto de Danad et al. (JAMA Cardiology 2017) demonstrou que o PET superou significativamente o SPECT com AUC 0,90 vs. 0,74.</div>
+      </div>
+
+      <div class="two-col" style="margin-top:.5rem;">
+        <div>
+          <h3 style="font-size:.85rem;font-weight:700;margin-bottom:.5rem;">SPECT CZT — Nova Geração</h3>
+          <div class="info-teal info-box"><span class="info-box-icon">🔋</span><div>Câmeras de telureto de cádmio-zinco (CZT) oferecem AUC 0,89, sensibilidade 89%. Dose de radiação reduzida em 60–80% vs. SPECT convencional. Protocolos de 10 min viáveis. Meta-análise de Cantoni et al. 2021 [7] e Arham et al. 2025 [8] confirmam superioridade frente ao SPECT convencional.</div></div>
+        </div>
+        <div>
+          <h3 style="font-size:.85rem;font-weight:700;margin-bottom:.5rem;">Limitação Estrutural</h3>
+          <div class="info-red info-box"><span class="info-box-icon">⚖️</span><div><strong>Isquemia balanceada:</strong> Em doença tritronco severa, a isquemia homogênea não cria gradientes de perfusão relativos detectáveis. O SPECT pode apresentar resultado "normal" em coronariopatia crítica multivascular. O PET, pela quantificação absoluta do fluxo, supera este problema.</div></div>
+        </div>
+      </div>
+
+      <div class="info-gray info-box" style="margin-top:.5rem;">
+        <span class="info-box-icon">☢️</span>
+        <div><strong>Radiação:</strong> Protocolo bifásico convencional expõe a 10–13 mSv (vs. ~3 mSv do PET com Rb-82, ~1–2 mSv do PET com F-18). Relevante para pacientes jovens e mulheres. SPECT com protocolo de estresse isolado ou CZT reduz substancialmente a dose.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PET -->
+  <div id="mod-pet" class="mod-panel">
+    <div class="card">
+      <div class="mod-header">
+        <div class="mod-icon-wrap">⚛️</div>
+        <div>
+          <div class="mod-name">PET Cardíaco de Perfusão</div>
+          <div class="mod-full">Positron Emission Tomography — Rb-82 / N-13 NH3 / Flurpiridaz F-18</div>
+        </div>
+      </div>
+
+      <div class="metric-grid">
+        <div class="metric-card">
+          <div class="metric-label">Sens. (Angio)</div>
+          <div class="metric-value">85–93%</div>
+          <div class="metric-range">Bengel JACC 2009</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Spec. (Angio)</div>
+          <div class="metric-value">81–92%</div>
+          <div class="metric-range">AUC 0,90–0,92</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">AUC vs. FFR</div>
+          <div class="metric-value">0,90</div>
+          <div class="metric-range">IC 95%: 0,85–0,94</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Sens. (FFR)</div>
+          <div class="metric-value">81–90%</div>
+          <div class="metric-range">Danad JAMA Cardio</div>
+        </div>
+        <div class="metric-card green">
+          <div class="metric-label">Flurpiridaz ♀</div>
+          <div class="metric-value">Sens 83%</div>
+          <div class="metric-range">Spec 73% (JACC 2023)</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Radiação</div>
+          <div class="metric-value">~3 mSv</div>
+          <div class="metric-range">Rb-82 repouso+estresse</div>
+        </div>
+      </div>
+
+      <div class="info-teal info-box">
+        <span class="info-box-icon">🏆</span>
+        <div><strong>Maior acurácia entre os métodos de perfusão:</strong> PET detém o melhor desempenho geral — AUC 0,90 contra FFR no estudo head-to-head de Danad et al. (JAMA Cardiology 2017), superando SPECT (0,74) e CCTA (0,76) de forma significativa (p&lt;0,05). Meta-análise de Mc Ardle et al. JACC 2012 confirmou superioridade sistemática do PET com Rb-82 frente ao SPECT-Tc.</div>
+      </div>
+
+      <div class="two-col" style="margin-top:.5rem;">
+        <div>
+          <h3 style="font-size:.85rem;font-weight:700;margin-bottom:.5rem;">Vantagem Única: Fluxo Absoluto</h3>
+          <div class="info-teal info-box"><span class="info-box-icon">📐</span><div>Quantificação absoluta do fluxo sanguíneo miocárdico (MBF em mL/g/min) e da reserva de fluxo miocárdico (MFR). O MFR &lt;2,0 identifica disfunção microvascular coronariana — não detectável por nenhum outro método não invasivo de perfusão relativa. Danad et al. JACC 2014 [9]: AUC 0,90 para quantificação de perfusão vs. FFR.</div></div>
+          <div class="info-teal info-box"><span class="info-box-icon">⚖️</span><div><strong>Isquemia balanceada (multivascular):</strong> Única modalidade não invasiva capaz de detectar redução global do MBF em doença tritronco com isquemia balanceada — cenário em que SPECT e eco estresse podem apresentar resultado normal.</div></div>
+        </div>
+        <div>
+          <h3 style="font-size:.85rem;font-weight:700;margin-bottom:.5rem;">Dados de Subgrupos</h3>
+          <div class="info-blue info-box"><span class="info-box-icon">♀️</span><div><strong>Mulheres — Flurpiridaz F-18 (JACC 2023) [10]:</strong> PET sens. 82,9% vs. SPECT 65,9% (p&lt;0,001). AUC 0,84 vs. 0,70. Diferença mais pronunciada neste subgrupo.</div></div>
+          <div class="info-gray info-box"><span class="info-box-icon">🩺</span><div><strong>Diabéticos:</strong> PET sens. 75,8% vs. SPECT 71,4%; spec. 61,2% vs. 51,5%. AUC 0,76 vs. 0,69. Diferença não significativa neste subgrupo — mas tendência favorável ao PET.</div></div>
+          <div class="info-gray info-box"><span class="info-box-icon">⚠️</span><div><strong>Limitação prática:</strong> Disponibilidade ainda restrita a centros terciários. Custo elevado. Tracers de longa duração (N-13, F-18) exigem ciclotron in-house ou logística de transporte.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CMR -->
+  <div id="mod-cmr" class="mod-panel">
+    <div class="card">
+      <div class="mod-header">
+        <div class="mod-icon-wrap">🧲</div>
+        <div>
+          <div class="mod-name">Ressonância Magnética de Estresse (CMR)</div>
+          <div class="mod-full">Stress Cardiovascular Magnetic Resonance — Adenosina / Regadenosona / Dipiridamol</div>
+        </div>
+      </div>
+
+      <div class="metric-grid">
+        <div class="metric-card">
+          <div class="metric-label">Sens. (Angio)</div>
+          <div class="metric-value">83–90%</div>
+          <div class="metric-range">IC 95%: 81–85%</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Spec. (Angio)</div>
+          <div class="metric-value">79–89%</div>
+          <div class="metric-range">IC 95%: 86–92%</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Sens. (FFR)</div>
+          <div class="metric-value">81–95%</div>
+          <div class="metric-range">Ricci JAMA Cardio</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Spec. (FFR)</div>
+          <div class="metric-value">82–94%</div>
+          <div class="metric-range">AUC 0,84–0,93</div>
+        </div>
+        <div class="metric-card green">
+          <div class="metric-label">AUC (FFR)</div>
+          <div class="metric-value">0,84</div>
+          <div class="metric-range">IC: 0,77–0,89</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Multivascular</div>
+          <div class="metric-value">AUC 0,90</div>
+          <div class="metric-range">Quant. MBF</div>
+        </div>
+      </div>
+
+      <div class="info-teal info-box">
+        <span class="info-box-icon">🏆</span>
+        <div><strong>Maior especificidade vs. FFR entre todos os métodos não invasivos:</strong> Meta-análise de Ricci et al. (JAMA Cardiology 2023 [5]) — 81 estudos incluídos — demonstrou especificidade de 82–94% e AUC 0,84–0,93 contra FFR. O CMR combina detecção de perfusão (isquemia subendocárdica), avaliação de função global/segmentar e caracterização tecidual com realce tardio de gadolínio (cicatriz/viabilidade) em um único exame.</div>
+      </div>
+
+      <div class="two-col" style="margin-top:.5rem;">
+        <div>
+          <h3 style="font-size:.85rem;font-weight:700;margin-bottom:.5rem;">Indicações Preferenciais</h3>
+          <div class="info-teal info-box"><span class="info-box-icon">✅</span><div><strong>Avaliação de viabilidade:</strong> Realce tardio transmural ≥50% identifica miocárdio sem recuperação pós-revascularização. Superior ao SPECT nesta aplicação.</div></div>
+          <div class="info-teal info-box"><span class="info-box-icon">✅</span><div><strong>Disfunção microvascular:</strong> Mapeamento de T1/T2, obstrução microvascular (realce precoce pós-gadolínio). Único método que avalia disfunção microvascular com resolução espacial submilimétrica.</div></div>
+          <div class="info-teal info-box"><span class="info-box-icon">✅</span><div><strong>Sem radiação:</strong> Ideal para pacientes jovens, mulheres em idade fértil e necessidade de seguimento seriado. Gadolínio de baixo risco (sem nefropatia de contraste em doses habituais).</div></div>
+        </div>
+        <div>
+          <h3 style="font-size:.85rem;font-weight:700;margin-bottom:.5rem;">Limitações</h3>
+          <div class="info-amber info-box"><span class="info-box-icon">⚠️</span><div><strong>Claustrofobia e implantes:</strong> Dispositivos cardíacos convencionais (MP, CDI não MR-conditional) são contraindicações relativas. Claustrofobia em 5–10% dos pacientes. MR-conditional devices expandem o acesso.</div></div>
+          <div class="info-amber info-box"><span class="info-box-icon">⚠️</span><div><strong>Disponibilidade e custo:</strong> Ainda restrito a centros com expertise. Exame demorado (45–90 min). Exige protocolos validados e treinamento específico.</div></div>
+          <div class="info-red info-box"><span class="info-box-icon">📊</span><div><strong>PACIFIC-2 [6]:</strong> Acurácia de 64% em pacientes com IM/PCI prévios — a menor entre as modalidades neste cenário de alto risco. Cicatriz e heterogeneidade da perfusão pós-revascularização prejudicam a interpretação.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FFR -->
+  <div id="mod-ffr" class="mod-panel">
+    <div class="card">
+      <div class="mod-header">
+        <div class="mod-icon-wrap">📡</div>
+        <div>
+          <div class="mod-name">FFR — Reserva de Fluxo Fracionada</div>
+          <div class="mod-full">Fractional Flow Reserve — Padrão-Ouro Funcional Invasivo</div>
+        </div>
+      </div>
+
+      <div class="metric-grid">
+        <div class="metric-card">
+          <div class="metric-label">Sens. (vs. NI)</div>
+          <div class="metric-value">75–82%</div>
+          <div class="metric-range">vs. testes não-inv.</div>
+        </div>
+        <div class="metric-card green">
+          <div class="metric-label">Especificidade</div>
+          <div class="metric-value">~100%</div>
+          <div class="metric-range">Corte ≤0,80</div>
+        </div>
+        <div class="metric-card green">
+          <div class="metric-label">VPP</div>
+          <div class="metric-value">100%</div>
+          <div class="metric-range">Estudos iniciais</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">VPN</div>
+          <div class="metric-value">88–95%</div>
+          <div class="metric-range">Corte ≤0,80</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">AUC (FFRa)</div>
+          <div class="metric-value">0,84</div>
+          <div class="metric-range">FFR-angio vs. FFR-fio</div>
+        </div>
+        <div class="metric-card amber">
+          <div class="metric-label">Zona Cinzenta</div>
+          <div class="metric-value">0,76–0,80</div>
+          <div class="metric-range">Reprodutib. ±0,02</div>
+        </div>
+      </div>
+
+      <div class="info-teal info-box">
+        <span class="info-box-icon">🏆</span>
+        <div><strong>Padrão-ouro para avaliação funcional invasiva:</strong> FFR ≤ 0,80 identifica isquemia fisiologicamente significativa com acurácia superior a 90% (FAME trial [11]). O estudo DEFER confirmou que adiar revascularização em lesões com FFR ≥ 0,75 é seguro — taxa anual de morte/IAM &lt;1%. AHA Scientific Statement 2025 (Bangalore et al.) [12] endossa FFR como classe I para orientar decisões de revascularização.</div>
+      </div>
+
+      <div class="two-col" style="margin-top:.5rem;">
+        <div>
+          <h3 style="font-size:.85rem;font-weight:700;margin-bottom:.5rem;">Indicações Clínicas Principais</h3>
+          <div class="info-teal info-box"><span class="info-box-icon">✅</span><div>Avaliação de estenoses intermediárias (40–70%) sem teste não invasivo prévio ou com resultado inconclusivo. Class I LOE A em ACC/AHA e ESC.</div></div>
+          <div class="info-teal info-box"><span class="info-box-icon">✅</span><div>Guia de revascularização em doença multivascular (FAME 2: redução de 34% em eventos vs. terapia clínica quando FFR ≤0,80).</div></div>
+          <div class="info-teal info-box"><span class="info-box-icon">✅</span><div><strong>FFR-angio (QFR):</strong> Derivado de angiografia sem fio-guia. Sens. 89–94%, Spec. 90–91% vs. FFR invasivo. AUC 0,84 (meta-análise Collet et al. EHJ 2018 [13]).</div></div>
+        </div>
+        <div>
+          <h3 style="font-size:.85rem;font-weight:700;margin-bottom:.5rem;">Limitações e Controvérsias</h3>
+          <div class="info-amber info-box"><span class="info-box-icon">⚠️</span><div><strong>Zona cinzenta 0,76–0,80:</strong> Reprodutibilidade ±0,02. Decisões nessa faixa devem integrar outros dados clínicos e de imagem — não depender apenas do valor numérico.</div></div>
+          <div class="info-amber info-box"><span class="info-box-icon">⚠️</span><div><strong>Invasivo:</strong> Risco de complicações (~0,2%), custo de procedimento, necessidade de adenosina/regadenosona para hiperemia máxima. Contraindicado em asma severa.</div></div>
+          <div class="info-gray info-box"><span class="info-box-icon">🔄</span><div><strong>iFR (instantaneous wave-free ratio):</strong> Não hiperêmico. Concordância com FFR em ~80% dos casos. Classes equivalentes nas diretrizes para lesões não no limiar. Götberg et al. JACC 2017 [14].</div></div>
+        </div>
+      </div>
+
+      <div class="info-amber info-box" style="margin-top:.5rem;">
+        <span class="info-box-icon">📊</span>
+        <div><strong>Concordância FFR vs. testes não invasivos:</strong> Meta-análise de Jeremias et al. JACC 2017 [15] — 21 estudos, 1.249 lesões: concordância geral ~80%, sensibilidade 76% e especificidade 76% quando testes não invasivos são comparados com FFR. Ambos os métodos têm implicações prognósticas independentes — discordâncias não devem ser interpretadas automaticamente como "erro" de um dos métodos.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- END TAB MODALITIES -->
+
+<!-- ===== TAB: SELEÇÃO ===== -->
+<div id="tab-selection" class="tab-panel">
+
+  <div class="section-label">Algoritmo clínico</div>
+  <h2 class="section-title">Seleção da Modalidade Diagnóstica</h2>
+  <p class="section-body">A escolha do teste deve ser guiada pela probabilidade pré-teste, pelas características do paciente e pelos objetivos clínicos. Baseado nas diretrizes ACC/AHA 2021/2023 e ESC 2019, com atualizações de 2025.</p>
+
+  <!-- ALGORITHM -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🔀</div>
+      <div>
+        <div class="card-title">Algoritmo de Seleção por PPT</div>
+        <div class="card-subtitle">ACC/AHA 2021 Chest Pain Guideline + ESC 2024 [16,17]</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.75rem;">
+      <div style="background:var(--muted);border-radius:var(--radius);padding:1rem;border-left:3px solid #f87171;">
+        <div style="font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#f87171;font-family:var(--font-mono);margin-bottom:.4rem;">PPT &lt; 15%</div>
+        <div style="font-size:.82rem;font-weight:700;margin-bottom:.4rem;">Teste não indicado</div>
+        <div style="font-size:.78rem;color:var(--muted-foreground);line-height:1.5;">Risco muito baixo — estratégia expectante com otimização de fatores de risco. Probabilidade de DAC obstrutiva insuficiente para justificar teste.</div>
+      </div>
+      <div style="background:var(--muted);border-radius:var(--radius);padding:1rem;border-left:3px solid #fbbf24;">
+        <div style="font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#fbbf24;font-family:var(--font-mono);margin-bottom:.4rem;">PPT 15–50%</div>
+        <div style="font-size:.82rem;font-weight:700;margin-bottom:.4rem;">CCTA ou Teste Funcional</div>
+        <div style="font-size:.78rem;color:var(--muted-foreground);line-height:1.5;">CCTA preferido para excluir DAC (alto VPN). ETT com imagem funcional (eco ou SPECT) para avaliação isquêmica. ECG esforço se ECG normal e capacidade preservada.</div>
+      </div>
+      <div style="background:var(--muted);border-radius:var(--radius);padding:1rem;border-left:3px solid var(--teal);">
+        <div style="font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);font-family:var(--font-mono);margin-bottom:.4rem;">PPT 50–85%</div>
+        <div style="font-size:.82rem;font-weight:700;margin-bottom:.4rem;">Imagem funcional preferencial</div>
+        <div style="font-size:.78rem;color:var(--muted-foreground);line-height:1.5;">Eco estresse, SPECT, PET ou CMR. PET/CMR preferidos se disponíveis. CCTA complementar para avaliação anatômica. Considerar cineangiocoronariografia direta se PPT &gt;85%.</div>
+      </div>
+      <div style="background:var(--muted);border-radius:var(--radius);padding:1rem;border-left:3px solid var(--green);">
+        <div style="font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--green);font-family:var(--font-mono);margin-bottom:.4rem;">PPT &gt; 85%</div>
+        <div style="font-size:.82rem;font-weight:700;margin-bottom:.4rem;">CATE / FFR direto</div>
+        <div style="font-size:.78rem;color:var(--muted-foreground);line-height:1.5;">Probabilidade pós-teste não modifica substancialmente a decisão. Cateterismo com avaliação fisiológica (FFR/iFR) ou imagem intracoronária (OCT/IVUS) para planejamento de revascularização.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPECIFIC INDICATIONS -->
+  <div class="section-label" style="margin-top:1.5rem;">Indicações preferenciais por contexto clínico</div>
+  <div class="select-grid">
+    <div class="select-card">
+      <div class="select-card-title">⚛️ Preferir PET quando:</div>
+      <ul>
+        <li>Maior acurácia é determinante (exames prévios inconclusivos)</li>
+        <li>Suspeita de isquemia balanceada ou doença multivascular</li>
+        <li>Diagnóstico de disfunção microvascular (MFR &lt;2,0)</li>
+        <li>Obesidade grave (artefatos de atenuação no SPECT)</li>
+        <li>Mulheres com suspeita de DAC obstrutiva</li>
+        <li>Oncologia cardiovascular — avaliação pré-quimioterapia cardiotóxica</li>
+        <li>Mínima exposição à radiação necessária (Rb-82: ~3 mSv)</li>
+      </ul>
+    </div>
+    <div class="select-card">
+      <div class="select-card-title">🧲 Preferir CMR quando:</div>
+      <ul>
+        <li>Avaliação simultânea de viabilidade miocárdica necessária</li>
+        <li>Cardiomiopatia com etiologia indefinida (isquêmica vs. não isquêmica)</li>
+        <li>Sem radiação: pacientes jovens, mulheres em idade fértil, seguimento seriado</li>
+        <li>Suspeita de miocardite, MINOCA, síndrome de Takotsubo</li>
+        <li>Pós-transplante cardíaco (vasculopatia do enxerto)</li>
+        <li>Doenças do tecido conjuntivo com envolvimento cardíaco</li>
+        <li>ECG inconclusivo para análise de disfunção segmentar</li>
+      </ul>
+    </div>
+    <div class="select-card">
+      <div class="select-card-title">🔊 Preferir Eco de Estresse quando:</div>
+      <ul>
+        <li>Avaliação valvular simultânea necessária (ESAO de baixo fluxo, regurgitação)</li>
+        <li>Avaliação à beira do leito em UTI/emergência</li>
+        <li>Melhor relação custo-efetividade necessária</li>
+        <li>Pacientes com dispositivos metálicos (contraindicação ao CMR)</li>
+        <li>Suspeita de doença do tronco ou multivascular (disfunção segmentar extensa)</li>
+        <li>Portabilidade necessária (ecocardiografia de esforço)</li>
+      </ul>
+    </div>
+    <div class="select-card">
+      <div class="select-card-title">☢️ Preferir SPECT quando:</div>
+      <ul>
+        <li>Sem acesso a PET ou CMR (método mais disponível)</li>
+        <li>Protocolo CZT disponível — melhor desempenho e menor dose</li>
+        <li>Seguimento de pacientes com DAC conhecida e isquemia moderada</li>
+        <li>Programas de rastreamento em população de alto risco (DM + FRC)</li>
+        <li>Quando a FEVE pós-estresse é clinicamente relevante</li>
+      </ul>
+    </div>
+    <div class="select-card">
+      <div class="select-card-title">📡 Referir para FFR/CATE quando:</div>
+      <ul>
+        <li>Estenose intermediária (40–70%) com testes não invasivos discordantes</li>
+        <li>PPT &gt; 85% — não há valor adicional do teste não invasivo</li>
+        <li>Planejamento de revascularização complexa (multivascular, tronco)</li>
+        <li>Resultado de teste não invasivo positivo extenso ou em território do tronco</li>
+        <li>SCA — não é candidato a teste não invasivo na fase aguda</li>
+      </ul>
+    </div>
+    <div class="select-card">
+      <div class="select-card-title">🏃 ETT ainda útil quando:</div>
+      <ul>
+        <li>Avaliação funcional (capacidade, resposta pressórica, Escore de Duke)</li>
+        <li>PPT baixa a intermediária, ECG normal, capaz de exercício</li>
+        <li>Triagem inicial com planejamento de teste de imagem se positivo</li>
+        <li>Monitoramento de resposta à revascularização (não para diagnóstico)</li>
+        <li>Avaliação pré-operatória de baixo risco</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="info-amber info-box" style="margin-top:1rem;">
+    <span class="info-box-icon">💡</span>
+    <div><strong>Princípio geral (ACC 2022 Expert Consensus [18]):</strong> PET é preferido sobre SPECT pela acurácia superior e menor taxa de exames não diagnósticos. CMR oferece acurácia equivalente ao PET vs. FFR com a vantagem de caracterização tecidual sem radiação. SPECT e eco estresse permanecem adequados onde PET/CMR não estão disponíveis.</div>
+  </div>
+
+</div>
+<!-- END TAB SELECTION -->
+
+<!-- ===== TAB: SUBGRUPOS ===== -->
+<div id="tab-subgroups" class="tab-panel">
+
+  <div class="section-label">Populações especiais</div>
+  <h2 class="section-title">Acurácia Diagnóstica em Subgrupos</h2>
+  <p class="section-body">O desempenho diagnóstico varia significativamente entre subpopulações. Fatores como sexo, diabetes e extensão da doença coronariana afetam substancialmente a sensibilidade, especificidade e o VPP/VPN de cada método.</p>
+
+  <!-- MULHERES -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">♀️</div>
+      <div>
+        <div class="card-title">Mulheres — Considerações Específicas</div>
+        <div class="card-subtitle">AHA Consensus Statement (Mieres et al. Circulation 2014) + Flurpiridaz Trial JACC 2023 [10,19]</div>
+      </div>
+    </div>
+
+    <div class="info-red info-box">
+      <span class="info-box-icon">⚠️</span>
+      <div><strong>ETT em mulheres — fortemente limitado:</strong> Sensibilidade de apenas 30% (vs. 64% em homens), com especificidade paradoxalmente alta (97% vs. 89%). Essa assimetria indica que um ETT negativo em mulher tem valor preditivo razoável, mas um positivo não implica obrigatoriamente isquemia. ETT isolado NÃO é adequado como teste definitivo em mulheres sintomáticas.</div>
+    </div>
+
+    <div class="section-label" style="margin-top:1rem;margin-bottom:.75rem;">Comparação por modalidade — mulheres</div>
+    <div class="table-wrapper">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Modalidade</th>
+            <th>Sensibilidade (♀)</th>
+            <th>Especificidade (♀)</th>
+            <th>AUC (♀)</th>
+            <th>Observação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>ETT</td>
+            <td><span class="val-low">30%</span></td>
+            <td><span class="val-high">97%</span></td>
+            <td><span class="val-low">0,63</span></td>
+            <td>Inadequado como teste isolado</td>
+          </tr>
+          <tr>
+            <td>Eco Estresse</td>
+            <td><span class="val-mid">79%</span></td>
+            <td><span class="val-high">83%</span></td>
+            <td><span class="val-mid">0,85</span></td>
+            <td>Dobutamina: Sens. 75–93%, Spec. 79–92%</td>
+          </tr>
+          <tr>
+            <td>SPECT</td>
+            <td><span class="val-mid">65,9%</span></td>
+            <td><span class="val-mid">66,0%</span></td>
+            <td><span class="val-mid">0,70</span></td>
+            <td>Flurpiridaz Trial — SPECT inferior ao PET</td>
+          </tr>
+          <tr class="row-highlight">
+            <td>PET (Flurpiridaz F-18)</td>
+            <td><span class="val-high">82,9%</span></td>
+            <td><span class="val-mid">72,8%</span></td>
+            <td><span class="val-high">0,84</span></td>
+            <td>Superioridade vs. SPECT p&lt;0,001 ♀</td>
+          </tr>
+          <tr class="row-highlight">
+            <td>CMR de Estresse</td>
+            <td><span class="val-high">~83%</span></td>
+            <td><span class="val-high">~89%</span></td>
+            <td><span class="val-high">0,88</span></td>
+            <td>Sem artefatos de atenuação mamária</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="info-teal info-box" style="margin-top:1rem;">
+      <span class="info-box-icon">💡</span>
+      <div><strong>Recomendação para mulheres:</strong> PET e CMR de estresse são os métodos de escolha. Eco de estresse com contraste é alternativa custo-efetiva de primeira linha. SPECT com protocolo de correção de atenuação melhora acurácia em comparação ao protocolo padrão. ETT deve ser evitado como teste diagnóstico isolado.</div>
+    </div>
+  </div>
+
+  <!-- DIABÉTICOS -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🩸</div>
+      <div>
+        <div class="card-title">Diabetes Mellitus</div>
+        <div class="card-subtitle">Flurpiridaz Trial, CCTA em diabéticos (Andreini 2010), CT-FFR com IA (Xue et al. Eur Radiol 2022) [10,20,21]</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="metric-card" style="margin-bottom:.75rem;">
+          <div class="metric-label">PET (DM) — AUC</div>
+          <div class="metric-value" style="color:var(--teal);">0,76</div>
+          <div class="metric-range">Sens 75,8% / Spec 61,2%</div>
+        </div>
+        <div class="metric-card amber" style="margin-bottom:.75rem;">
+          <div class="metric-label">SPECT (DM) — AUC</div>
+          <div class="metric-value">0,69</div>
+          <div class="metric-range">Sens 71,4% / Spec 51,5%</div>
+        </div>
+        <div class="metric-card" style="margin-bottom:.75rem;">
+          <div class="metric-label">CT-FFR IA (DM) — AUC</div>
+          <div class="metric-value" style="color:var(--teal);">0,91</div>
+          <div class="metric-range">Sens 79% / Spec 96%</div>
+        </div>
+      </div>
+      <div>
+        <div class="info-amber info-box"><span class="info-box-icon">⚠️</span><div><strong>CCTA em diabéticos:</strong> Sensibilidade (77%), especificidade (90%), VPP (70%), VPN (93%) e acurácia (87%) — todos significativamente inferiores aos de não diabéticos. O principal motivo é a calcificação coronariana extensa (Agatston score elevado), que limita a interpretação anatômica (Andreini et al. Cardiovasc Diabetol 2010 [20]).</div></div>
+        <div class="info-teal info-box"><span class="info-box-icon">🤖</span><div><strong>CT-FFR com IA em diabéticos:</strong> Mantém acurácia comparável a não diabéticos — AUC 0,91 vs. 0,89. A análise funcional supera a limitação anatômica da calcificação. Xue et al. Eur Radiol 2022 [21].</div></div>
+      </div>
+    </div>
+    <div class="info-teal info-box">
+      <span class="info-box-icon">✅</span>
+      <div><strong>CMR em DM:</strong> Ausência de isquemia em CMR de perfusão estresse estratifica diabéticos para risco baixo — taxa de eventos de 1,4% ao ano (AHA Scientific Statement on CV Risk in T2DM [22]). CMR e PET são as modalidades preferidas em diabéticos sintomáticos com suspeita de isquemia.</div>
+    </div>
+  </div>
+
+  <!-- DOENÇA MULTIVASCULAR -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🫀</div>
+      <div>
+        <div class="card-title">Doença Multivascular e Isquemia Balanceada</div>
+        <div class="card-subtitle">Lancet 2025, Slipczuk Circulation 2025, van der Bijl Lancet 2025 [23,24]</div>
+      </div>
+    </div>
+
+    <div class="info-amber info-box">
+      <span class="info-box-icon">⚠️</span>
+      <div><strong>Viés de espectro na doença multivascular:</strong> A maioria dos métodos apresenta sensibilidade aumentada em doença multivascular severa — não por melhora diagnóstica, mas por efeito de espectro (lesões mais graves são mais fáceis de detectar). A sensibilidade do ETT sobe de 39% (uniarterial) para 77% (multivascular). Este fenômeno não deve ser confundido com robustez do método.</div>
+    </div>
+
+    <div class="two-col" style="margin-top:.5rem;">
+      <div>
+        <div class="info-red info-box"><span class="info-box-icon">⚖️</span><div><strong>Isquemia balanceada — armadilha do SPECT:</strong> Em DAC tritronco com hipoperfusão global homogênea, a perfusão relativa parece normal no SPECT. O PET detecta a redução absoluta do MBF (&lt;1,5–2,0 mL/g/min no estresse) e do MFR — tornando-o o único método capaz de desmascarar isquemia balanceada de forma confiável. AUROC 0,90 para fluxo absoluto (Danad et al. JACC 2014 [9]).</div></div>
+      </div>
+      <div>
+        <div class="info-teal info-box"><span class="info-box-icon">🧲</span><div><strong>CMR quantitativo:</strong> Mapeamento de perfusão quantitativo (stress MBF) com AUROC 0,90 (IC 95%: 0,84–0,96) para doença multivascular. MFR por CMR correlaciona-se com desfechos independentemente dos achados de perfusão visual. Lancet 2025 (van der Bijl et al.) [24] revisou a evidência contemporânea.</div></div>
+      </div>
+    </div>
+
+    <div class="info-gray info-box" style="margin-top:.5rem;">
+      <span class="info-box-icon">💡</span>
+      <div><strong>Recomendação:</strong> Em pacientes com suspeita de doença multivascular (angina extensa, múltiplos FRC, IM anterior), preferir PET ou CMR quantitativo. O SPECT convencional tem limitação estrutural nesse cenário. A extensão da isquemia (% miocárdio isquêmico) é a principal métrica para decisão de revascularização — não apenas a presença ou ausência de isquemia.</div>
+    </div>
+  </div>
+
+  <!-- PACIENTES COM IM/PCI PRÉVIOS -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🔄</div>
+      <div>
+        <div class="card-title">Pacientes com IM ou PCI Prévios</div>
+        <div class="card-subtitle">PACIFIC-2 (European Heart Journal 2022) [6]</div>
+      </div>
+    </div>
+    <div class="info-red info-box">
+      <span class="info-box-icon">⚠️</span>
+      <div><strong>PACIFIC-2 — resultado importante e frequentemente ignorado:</strong> Em 208 pacientes com IM ou PCI prévios, comparados prospectiamente contra FFR como padrão-ouro, as acurácias globais foram: SPECT 65%, PET 75%, CMR 64%. As diferenças entre modalidades não foram estatisticamente significativas — e os autores descreveram o desempenho como "desencorajador". Cicatrizes miocárdicas, heterogeneidade de perfusão pós-PCI e remodelamento coronariano explicam a queda de performance.</div>
+    </div>
+    <div class="info-teal info-box">
+      <span class="info-box-icon">💡</span>
+      <div><strong>Implicação prática:</strong> Em pacientes revasucularizados com suspeita de isquemia recorrente ou progressão de DAC, testes não invasivos têm acurácia reduzida. A presença de cicatriz em realce tardio no CMR pode limitar a detecção de isquemia adicional. Nesse cenário, FFR/iFR invasivo + IVUS/OCT frequentemente é a abordagem mais informativa.</div>
+    </div>
+  </div>
+
+</div>
+<!-- END TAB SUBGROUPS -->
+
+<!-- ===== TAB: DIRETRIZES ===== -->
+<div id="tab-guidelines" class="tab-panel">
+
+  <div class="section-label">Recomendações internacionais</div>
+  <h2 class="section-title">Diretrizes e Recomendações de Classe</h2>
+  <p class="section-body">Síntese das recomendações das principais sociedades internacionais para seleção de testes diagnósticos de isquemia miocárdica em pacientes com dor torácica estável ou suspeita de DAC crônica.</p>
+
+  <!-- ACC/AHA 2021 Chest Pain -->
+  <div class="section-label" style="margin-bottom:.5rem;">ACC/AHA 2021 — Avaliação e Diagnóstico de Dor Torácica [16]</div>
+  <div class="guide-block">
+    <div class="guide-source">2021 ACC/AHA/ASE/CHEST/SAEM/SCCT/SCMR Chest Pain Guideline</div>
+    <div class="guide-rec">
+      Teste de estresse com imagem (eco, SPECT, PET ou CMR) é preferível à eletrocardiografia de esforço isolada em pacientes com probabilidade intermediária a alta de DAC obstrutiva.
+      <span class="guide-class class-i">I</span><span class="guide-class loe">B-R</span>
+    </div>
+  </div>
+  <div class="guide-block">
+    <div class="guide-source">2021 ACC/AHA — ECG de esforço isolado</div>
+    <div class="guide-rec">
+      ETT é razoável como teste inicial em pacientes com dor torácica de baixo risco, ECG basal interpretável, capacidade de exercício adequada e sem história de revascularização prévia.
+      <span class="guide-class class-iia">IIa</span><span class="guide-class loe">B-NR</span>
+    </div>
+  </div>
+  <div class="guide-block">
+    <div class="guide-source">2021 ACC/AHA — CCTA</div>
+    <div class="guide-rec">
+      CCTA é indicada como alternativa ao teste funcional em pacientes com probabilidade baixa a intermediária de DAC, especialmente quando a exclusão anatômica de DAC é o objetivo principal (alto VPN).
+      <span class="guide-class class-i">I</span><span class="guide-class loe">B-R</span>
+    </div>
+  </div>
+
+  <!-- ACC/AHA 2023 Chronic Coronary Disease -->
+  <div class="section-label" style="margin-top:1.5rem;margin-bottom:.5rem;">ACC/AHA 2023 — Doença Coronariana Crônica [17]</div>
+  <div class="guide-block">
+    <div class="guide-source">2023 ACC/AHA/ACCP/ASPC/NLA/PCNA — Chronic Coronary Disease</div>
+    <div class="guide-rec">
+      Imagem de estresse com PET, CMR, SPECT ou ecocardiografia é recomendada em relação ao ECG de esforço isolado para pacientes com probabilidade intermediária a alta de DAC obstrutiva.
+      <span class="guide-class class-i">I</span><span class="guide-class loe">A</span>
+    </div>
+  </div>
+  <div class="guide-block">
+    <div class="guide-source">2023 ACC/AHA — FFR para lesões intermediárias</div>
+    <div class="guide-rec">
+      FFR invasivo ou iFR é indicado para avaliar a significância funcional de estenoses coronarianas intermediárias (40–70%) antes de decidir por revascularização percutânea ou cirúrgica.
+      <span class="guide-class class-i">I</span><span class="guide-class loe">A</span>
+    </div>
+  </div>
+
+  <!-- ACC Expert Consensus 2022 -->
+  <div class="section-label" style="margin-top:1.5rem;margin-bottom:.5rem;">ACC Expert Consensus 2022 — Seleção de Imagem [18]</div>
+  <div class="guide-block">
+    <div class="guide-source">2022 ACC Expert Consensus Decision Pathway — Imagem Cardíaca</div>
+    <div class="guide-rec">
+      PET é preferido sobre SPECT devido à maior acurácia diagnóstica e menor taxa de exames não diagnósticos. CMR de estresse oferece acurácia alta com vantagem adicional de avaliação de cicatriz e viabilidade sem radiação ionizante.
+      <span class="guide-class class-iia">IIa</span><span class="guide-class loe">B</span>
+    </div>
+  </div>
+
+  <!-- AUC 2023 -->
+  <div class="section-label" style="margin-top:1.5rem;margin-bottom:.5rem;">ACC/AHA 2023 — Critérios de Uso Apropriado (AUC) [25]</div>
+  <div class="guide-block">
+    <div class="guide-source">2023 Multimodality Appropriate Use Criteria — Detecção e Estratificação de DAC Crônica</div>
+    <div class="guide-rec">
+      A seleção do teste deve ser individualizada com base no cenário clínico, resultados de testes anteriores e fatores específicos do paciente. Critérios de "uso raramente apropriado" incluem repeti&ccedil;ão de testes em pacientes assintomáticos de baixo risco com resultado recente negativo.
+      <span class="guide-class class-i">I</span><span class="guide-class loe">C-LD</span>
+    </div>
+  </div>
+
+  <!-- ESC 2019/2024 -->
+  <div class="section-label" style="margin-top:1.5rem;margin-bottom:.5rem;">ESC 2024 — Síndrome Coronariana Crônica</div>
+  <div class="guide-block">
+    <div class="guide-source">ESC 2024 Guidelines on Chronic Coronary Syndromes</div>
+    <div class="guide-rec">
+      Em pacientes com sintomas e PPT intermediária (15–85%), testes funcionais não invasivos ou CCTA são igualmente recomendados como testes diagnósticos de primeira linha.
+      <span class="guide-class class-i">I</span><span class="guide-class loe">A</span>
+    </div>
+  </div>
+  <div class="guide-block">
+    <div class="guide-source">ESC 2024 — EACVI/ASE Recommendations [26]</div>
+    <div class="guide-rec">
+      Ecocardiografia de estresse é recomendada quando avaliação valvular simultânea ou hemodinâmica ao esforço é necessária. PET é recomendado quando a quantificação absoluta do fluxo miocárdico é clinicamente relevante (suspeita de disfunção microvascular ou isquemia balanceada).
+      <span class="guide-class class-i">I</span><span class="guide-class loe">B</span>
+    </div>
+  </div>
+
+  <!-- AHA 2025 FFR -->
+  <div class="section-label" style="margin-top:1.5rem;margin-bottom:.5rem;">AHA 2025 — Scientific Statement sobre FFR Invasivo [12]</div>
+  <div class="guide-block">
+    <div class="guide-source">AHA 2025 Scientific Statement — Invasive Epicardial Coronary Physiologic Assessment (Bangalore et al.)</div>
+    <div class="guide-rec">
+      FFR &gt;0,80 exclui isquemia funcionalmente significativa com acurácia de 95%. FFR ≤0,80 confirma isquemia com VPP de 100% em estudos iniciais. O emprego rotineiro de FFR em lesões intermediárias reduz revascularizações desnecessárias e melhora desfechos clínicos.
+      <span class="guide-class class-i">I</span><span class="guide-class loe">A</span>
+    </div>
+  </div>
+
+  <div class="disclaimer" style="margin-top:1.5rem;">
+    ⚠️ <strong>Nota:</strong> As recomendações acima são uma síntese informativa para fins educacionais. A interpretação e aplicação clínica deve sempre considerar o contexto individual do paciente e ser realizada por profissional médico habilitado. As classes e níveis de evidência podem variar entre as diferentes versões das diretrizes.
+  </div>
+</div>
+<!-- END TAB GUIDELINES -->
+
+<!-- ===== TAB: REFERÊNCIAS ===== -->
+<div id="tab-references" class="tab-panel">
+
+  <div class="section-label">Base bibliográfica</div>
+  <h2 class="section-title">Referências</h2>
+  <p class="section-body">Referências numeradas utilizadas neste guia, com ênfase em meta-análises, estudos prospectivos e diretrizes internacionais publicados até 2025.</p>
+
+  <div class="card" style="padding:1rem 1.5rem;">
+    <ul class="ref-list">
+      <li class="ref-item">
+        <span class="ref-num">1</span>
+        <div>
+          <div class="ref-title">Diagnostic Accuracy of Exercise Stress Testing, Stress Echocardiography, Myocardial Scintigraphy, and Cardiac Magnetic Resonance for Obstructive Coronary Artery Disease: Systematic Reviews and Meta-Analyses of 104 Studies Published From 1990 to 2025.</div>
+          <div class="ref-meta">Sonaglioni A, Polymeropoulos A, Baravelli M, et al. <em>Journal of Clinical Medicine.</em> 2025;14(17):6238.</div>
+          <div class="ref-doi">doi:10.3390/jcm14176238</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <span class="ref-num">2</span>
+        <div>
+          <div class="ref-title">The Quantitative Science of Evaluating Imaging Evidence.</div>
+          <div class="ref-meta">Genders TS, Ferket BS, Hunink MG. <em>JACC: Cardiovascular Imaging.</em> 2017;10(3):264-275.</div>
+          <div class="ref-doi">doi:10.1016/j.jcmg.2016.12.010</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <span class="ref-num">3</span>
+        <div>
+          <div class="ref-title">Diagnostic Performance of Cardiac Imaging Methods to Diagnose Ischaemia-Causing Coronary Artery Disease When Directly Compared With Fractional Flow Reserve as a Reference Standard: A Meta-Analysis.</div>
+          <div class="ref-meta">Danad I, Szymonifka J, Twisk JWR, et al. <em>European Heart Journal.</em> 2017;38(13):991-998.</div>
+          <div class="ref-doi">doi:10.1093/eurheartj/ehw095</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <span class="ref-num">4</span>
+        <div>
+          <div class="ref-title">Comparison of Coronary CT Angiography, SPECT, PET, and Hybrid Imaging for Diagnosis of Ischemic Heart Disease Determined by Fractional Flow Reserve.</div>
+          <div class="ref-meta">Danad I, Raijmakers PG, Driessen RS, et al. <em>JAMA Cardiology.</em> 2017;2(10):1100-1107.</div>
+          <div class="ref-doi">doi:10.1001/jamacardio.2017.2471</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <span class="ref-num">5</span>
+        <div>
+          <div class="ref-title">Diagnostic and Prognostic Value of Stress Cardiovascular Magnetic Resonance Imaging in Patients With Known or Suspected Coronary Artery Disease: A Systematic Review and Meta-analysis.</div>
+          <div class="ref-meta">Ricci F, Khanji MY, Bisaccia G, et al. <em>JAMA Cardiology.</em> 2023;8(7):662-673.</div>
+          <div class="ref-doi">doi:10.1001/jamacardio.2023.1290</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <span class="ref-num">6</span>
+        <div>
+          <div class="ref-title">Functional Stress Imaging to Predict Abnormal Coronary Fractional Flow Reserve: The PACIFIC 2 Study.</div>
+          <div class="ref-meta">Driessen RS, van Diemen PA, Raijmakers PG, et al. <em>European Heart Journal.</em> 2022;43(33):3118-3128.</div>
+          <div class="ref-doi">doi:10.1093/eurheartj/ehac286</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <span class="ref-num">7</span>
+        <div>
+          <div class="ref-title">Diagnostic Performance of Myocardial Perfusion Imaging With Conventional and CZT Single-Photon Emission Computed Tomography in Detecting Coronary Artery Disease: A Meta-Analysis.</div>
+          <div class="ref-meta">Cantoni V, Green R, Acampa W, et al. <em>Journal of Nuclear Cardiology.</em> 2021;28(2):698-715.</div>
+          <div class="ref-doi">doi:10.1007/s12350-019-01747-3</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <span class="ref-num">8</span>
+        <div>
+          <div class="ref-title">Diagnostic Accuracy of Discovery NM 530c CZT SPECT for Myocardial Perfusion Imaging in Coronary Artery Disease: A Systematic Review and Meta-Analysis.</div>
+          <div class="ref-meta">Arham M, Dad A, Bin Abdul Malik MH, et al. <em>The International Journal of Cardiovascular Imaging.</em> 2025.</div>
+          <div class="ref-doi">doi:10.1007/s10554-025-03475-x</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <span class="ref-num">9</span>
+        <div>
+          <div class="ref-title">Quantitative Assessment of Myocardial Perfusion in the Detection of Significant Coronary Artery Disease: Cutoff Values and Diagnostic Accuracy of Quantitative [15O]H2O PET Imaging.</div>
+          <div class="ref-meta">Danad I, Uusitalo V, Kero T, et al. <em>Journal of the American College of Cardiology.</em> 2014;64(14):1464-75.</div>
+          <div class="ref-doi">doi:10.1016/j.jacc.2014.05.069</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <span class="ref-num">10</span>
+        <div>
+          <div class="ref-title">Flurpiridaz F-18 PET Myocardial Perfusion Imaging in Patients With Suspected Coronary Artery Disease.</div>
+          <div class="ref-meta">Maddahi J, Agostini D, Bateman TM, et al. <em>Journal of the American College of Cardiology.</em> 2023;82(16):1598-1610.</div>
+          <div class="ref-doi">doi:10.1016/j.jacc.2023.08.016</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <span class="ref-num">11</span>
+        <div>
+          <div class="ref-title">Angiographic Versus Functional Severity of Coronary Artery Stenoses in the FAME Study — Fractional Flow Reserve Versus Angiography in Multivessel Evaluation.</div>
+          <div class="ref-meta">Tonino PA, Fearon WF, De Bruyne B, et al. <em>Journal of the American College of Cardiology.</em> 2010;55(25):2816-21.</div>
+          <div class="ref-doi">doi:10.1016/j.jacc.2009.11.096</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <span class="ref-num">12</span>
+        <div>
+          <div class="ref-title">Evidence-Based Practices in the Cardiac Catheterization Laboratory: Invasive Epicardial Coronary Physiologic Assessment: A Scientific Statement From the American Heart Association.</div>
+          <div class="ref-meta">Bangalore S, Fearon WF, Fugar S, et al. <em>Circulation.</em> 2025.</div>
+          <div class="ref-doi">doi:10.1161/CIR.0000000000001389</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <span class="ref-num">13</span>
+        <div>
+          <div class="ref-title">Diagnostic Performance of Angiography-Derived Fractional Flow Reserve: A Systematic Review and Bayesian Meta-Analysis.</div>
+          <div class="ref-meta">Collet C, Onuma Y, Sonck J, et al. <em>European Heart Journal.</em> 2018;39(35):3314-3321.</div>
+          <div class="ref-doi">doi:10.1093/eurheartj/ehy445</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <span class="ref-num">14</span>
+        <div>
+          <div class="ref-title">The Evolving Future of Instantaneous Wave-Free Ratio and Fractional Flow Reserve.</div>
+          <div class="ref-meta">Götberg M, Cook CM, Sen S, et al. <em>Journal of the American College of Cardiology.</em> 2017;70(11):1379-1402.</div>
+          <div class="ref-doi">doi:10.1016/j.jacc.2017.07.770</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <span class="ref-num">15</span>
+        <div>
+          <div class="ref-title">A Test in Context: Fractional Flow Reserve: Accuracy, Prognostic Implications, And Limitations.</div>
+          <div class="ref-meta">Jeremias A, Kirtane AJ, Stone GW. <em>Journal of the American College of Cardiology.</em> 2017;69(22):2748-2758.</div>
+          <div class="ref-doi">doi:10.1016/j.jacc.2017.04.019</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <span class="ref-num">16</span>
+        <div>
+          <div class="ref-title">2021 AHA/ACC/ASE/CHEST/SAEM/SCCT/SCMR Guideline for the Evaluation and Diagnosis of Chest Pain.</div>
+          <div class="ref-meta">Gulati M, Levy PD, Mukherjee D, et al. <em>Journal of the American College of Cardiology.</em> 2021;78(22):e187-e285.</div>
+          <div class="ref-doi">doi:10.1016/j.jacc.2021.07.053</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <span class="ref-num">17</span>
+        <div>
+          <div class="ref-title">2023 AHA/ACC/ACCP/ASPC/NLA/PCNA Guideline for the Management of Patients With Chronic Coronary Disease.</div>
+          <div class="ref-meta">Virani SS, Newby LK, Arnold SV, et al. <em>Journal of the American College of Cardiology.</em> 2023;82(9):833-955.</div>
+          <div class="ref-doi">doi:10.1016/j.jacc.2023.04.003</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <span class="ref-num">18</span>
+        <div>
+          <div class="ref-title">2022 ACC Expert Consensus Decision Pathway on the Evaluation and Disposition of Acute Chest Pain In the Emergency Department.</div>
+          <div class="ref-meta">Kontos MC, de Lemos JA, Deitelzweig SB, et al. <em>Journal of the American College of Cardiology.</em> 2022;80(20):1925-1960.</div>
+          <div class="ref-doi">doi:10.1016/j.jacc.2022.08.750</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <span class="ref-num">19</span>
+        <div>
+          <div class="ref-title">Role of Noninvasive Testing in the Clinical Evaluation of Women With Suspected Ischemic Heart Disease: A Consensus Statement From the American Heart Association.</div>
+          <div class="ref-meta">Mieres JH, Gulati M, Bairey Merz N, et al. <em>Circulation.</em> 2014;130(4):350-79.</div>
+          <div class="ref-doi">doi:10.1161/CIR.0000000000000061</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <span class="ref-num">20</span>
+        <div>
+          <div class="ref-title">Comparison of the Diagnostic Performance of 64-Slice Computed Tomography Coronary Angiography in Diabetic and Non-Diabetic Patients With Suspected Coronary Artery Disease.</div>
+          <div class="ref-meta">Andreini D, Pontone G, Bartorelli AL, et al. <em>Cardiovascular Diabetology.</em> 2010;9:80.</div>
+          <div class="ref-doi">doi:10.1186/1475-2840-9-80</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <span class="ref-num">21</span>
+        <div>
+          <div class="ref-title">Influence of Diabetes Mellitus on the Diagnostic Performance of Machine Learning-Based Coronary CT Angiography-Derived Fractional Flow Reserve: A Multicenter Study.</div>
+          <div class="ref-meta">Xue Y, Zheng MW, Hou Y, et al. <em>European Radiology.</em> 2022;32(6):3778-3789.</div>
+          <div class="ref-doi">doi:10.1007/s00330-021-08468-7</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <span class="ref-num">22</span>
+        <div>
+          <div class="ref-title">Comprehensive Management of Cardiovascular Risk Factors for Adults With Type 2 Diabetes: A Scientific Statement From the American Heart Association.</div>
+          <div class="ref-meta">Joseph JJ, Deedwania P, Acharya T, et al. <em>Circulation.</em> 2022;145(9):e722-e759.</div>
+          <div class="ref-doi">doi:10.1161/CIR.0000000000001040</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <span class="ref-num">23</span>
+        <div>
+          <div class="ref-title">State of the Art: Evaluation and Medical Management of Nonobstructive Coronary Artery Disease in Patients With Chest Pain: A Scientific Statement From the American Heart Association.</div>
+          <div class="ref-meta">Slipczuk L, Blankstein R, Bucciarelli-Ducci C, et al. <em>Circulation.</em> 2025;152(23):e443-e466.</div>
+          <div class="ref-doi">doi:10.1161/CIR.0000000000001394</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <span class="ref-num">24</span>
+        <div>
+          <div class="ref-title">Contemporary, Non-Invasive Imaging Diagnosis of Chronic Coronary Artery Disease.</div>
+          <div class="ref-meta">van der Bijl P, Gulati M, Saraste A, et al. <em>Lancet.</em> 2025;406(10519):2577-2587.</div>
+          <div class="ref-doi">doi:10.1016/S0140-6736(25)01586-7</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <span class="ref-num">25</span>
+        <div>
+          <div class="ref-title">ACC/AHA/ASE/ASNC/ASPC/HFSA/HRS/SCAI/SCCT/SCMR/STS 2023 Multimodality Appropriate Use Criteria for the Detection and Risk Assessment of Chronic Coronary Disease.</div>
+          <div class="ref-meta">Winchester DE, Maron DJ, Blankstein R, et al. <em>Journal of the American College of Cardiology.</em> 2023;81(25):2445-2467.</div>
+          <div class="ref-doi">doi:10.1016/j.jacc.2023.03.410</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <span class="ref-num">26</span>
+        <div>
+          <div class="ref-title">Non-Invasive Imaging in Coronary Syndromes: Recommendations of the European Association of Cardiovascular Imaging and the American Society of Echocardiography.</div>
+          <div class="ref-meta">Edvardsen T, Asch FM, Davidson B, et al. <em>Journal of the American Society of Echocardiography.</em> 2022;35(4):329-354.</div>
+          <div class="ref-doi">doi:10.1016/j.echo.2021.12.012</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+</div>
+<!-- END TAB REFERENCES -->
+
+  <div class="disclaimer">
+    ⚠️ <strong>Aviso:</strong> Este conteúdo é destinado exclusivamente a profissionais de saúde, para fins educacionais e de referência clínica. Não substitui julgamento clínico individual, avaliação médica completa ou as diretrizes institucionais vigentes. Os valores de sensibilidade, especificidade e AUC refletem médias de meta-análises e podem variar conforme a população estudada, o protocolo utilizado e a experiência do centro.
+  </div>
+
+</div>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-copy">
+        © 2025 Dr. Lucas Silva · <a href="https://lucascardio.com.br" style="color:var(--teal);text-decoration:none;">lucascardio.com.br</a>
+      </div>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+        <span class="tag">Sonaglioni JCM 2025</span>
+        <span class="tag">Ricci JAMA Cardio 2023</span>
+        <span class="tag">Danad EHJ 2017</span>
+        <span class="tag">AHA/ACC 2023</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ===== TAB NAVIGATION ===== */
+function showTab(id) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  const btns = document.querySelectorAll('.tab-btn');
+  btns.forEach(b => { if (b.getAttribute('onclick') && b.getAttribute('onclick').includes(id)) b.classList.add('active'); });
+  document.querySelector('.tab-nav-wrapper').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+/* ===== MODALITY SUB-TABS ===== */
+function showMod(id) {
+  document.querySelectorAll('.mod-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.mod-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('mod-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+/* ===== CHART: SENSITIVITY/SPECIFICITY BAR ===== */
+const diagCtx = document.getElementById('diagChart').getContext('2d');
+new Chart(diagCtx, {
+  type: 'bar',
+  data: {
+    labels: ['ETT', 'Eco Estresse', 'SPECT', 'SPECT CZT', 'PET', 'CMR', 'CCTA'],
+    datasets: [
+      {
+        label: 'Sensibilidade (%)',
+        data: [67, 80, 84, 89, 89, 86, 97],
+        backgroundColor: 'rgba(0,211,189,0.7)',
+        borderColor: 'rgba(0,211,189,1)',
+        borderWidth: 1, borderRadius: 4,
+      },
+      {
+        label: 'Especificidade (%)',
+        data: [69, 84, 76, 69, 87, 84, 73],
+        backgroundColor: 'rgba(251,191,36,0.6)',
+        borderColor: 'rgba(251,191,36,1)',
+        borderWidth: 1, borderRadius: 4,
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { labels: { color: '#9ca3af', font: { family: 'Plus Jakarta Sans', size: 11 } } },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y}%` } }
+    },
+    scales: {
+      x: { ticks: { color: '#9ca3af', font: { family: 'JetBrains Mono', size: 11 } }, grid: { color: 'rgba(255,255,255,0.06)' } },
+      y: { min: 50, max: 100, ticks: { color: '#9ca3af', font: { family: 'JetBrains Mono', size: 11 }, callback: v => v + '%' }, grid: { color: 'rgba(255,255,255,0.06)' } }
+    }
+  }
+});
+
+/* ===== CHART: AUC COMPARISON ===== */
+const aucCtx = document.getElementById('aucChart').getContext('2d');
+new Chart(aucCtx, {
+  type: 'bar',
+  data: {
+    labels: ['ETT', 'Eco Estresse', 'SPECT', 'PET', 'CMR de Estresse'],
+    datasets: [
+      {
+        label: 'AUC vs. Angiografia',
+        data: [0.72, 0.83, 0.83, 0.91, 0.87],
+        backgroundColor: 'rgba(0,211,189,0.65)',
+        borderColor: 'rgba(0,211,189,1)',
+        borderWidth: 1, borderRadius: 4,
+      },
+      {
+        label: 'AUC vs. FFR',
+        data: [null, 0.82, 0.71, 0.88, 0.84],
+        backgroundColor: 'rgba(99,179,237,0.55)',
+        borderColor: 'rgba(99,179,237,1)',
+        borderWidth: 1, borderRadius: 4,
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { labels: { color: '#9ca3af', font: { family: 'Plus Jakarta Sans', size: 11 } } },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y?.toFixed(2) ?? 'N/D'}` } }
+    },
+    scales: {
+      x: { ticks: { color: '#9ca3af', font: { family: 'JetBrains Mono', size: 11 } }, grid: { color: 'rgba(255,255,255,0.06)' } },
+      y: { min: 0.55, max: 1.00, ticks: { color: '#9ca3af', font: { family: 'JetBrains Mono', size: 11 }, callback: v => v.toFixed(2) }, grid: { color: 'rgba(255,255,255,0.06)' } }
+    }
+  }
+});
+</script>
+</body>
+</html>
