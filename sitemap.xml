@@ -1,314 +1,349 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- PÁGINAS PRINCIPAIS -->
+  <!-- ═══════════════════════════════════════════════════════════
+       PÁGINA PRINCIPAL
+       Canonical: lucascardio.com.br (sem www)
+       Gerado em: 2026-03-22
+       ═══════════════════════════════════════════════════════════ -->
   <url>
     <loc>https://lucascardio.com.br/</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.00</priority>
   </url>
-  <url>
-    <loc>https://lucascardio.com.br/sobre-mim.html</loc>
-    <lastmod>2026-03-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.90</priority>
-  </url>
-  <url>
-    <loc>https://lucascardio.com.br/projetos.html</loc>
-    <lastmod>2026-03-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.90</priority>
-  </url>
-  <url>
-    <loc>https://lucascardio.com.br/contato.html</loc>
-    <lastmod>2026-03-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.90</priority>
-  </url>
 
-  <!-- SEÇÃO PARA PACIENTES — Procedimentos & Exames -->
+  <!-- ═══════════════════════════════════════════════════════════
+       SEÇÃO PARA PACIENTES — Procedimentos & Exames
+       ═══════════════════════════════════════════════════════════ -->
   <url>
     <loc>https://lucascardio.com.br/Pacientes/pacientes-exames.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
     <loc>https://lucascardio.com.br/cateinfo/cateterismo-info.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://lucascardio.com.br/faq/hemodinamica-faq.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://lucascardio.com.br/Pacientes/periodicolucas.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.80</priority>
   </url>
 
-  <!-- SEÇÃO PARA PACIENTES — Condições Cardiológicas -->
+  <!-- ═══════════════════════════════════════════════════════════
+       SEÇÃO PARA PACIENTES — Condições Cardiológicas
+       ═══════════════════════════════════════════════════════════ -->
   <url>
     <loc>https://lucascardio.com.br/Pacientes/condicoes-cardiologicas.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://lucascardio.com.br/Pacientes/sinais-alarme-cardiologico.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://lucascardio.com.br/Pacientes/diabetes-doenca-cardiovascular.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
 
-  <!-- SEÇÃO PARA PACIENTES — Medicamentos -->
+  <!-- ═══════════════════════════════════════════════════════════
+       SEÇÃO PARA PACIENTES — Medicamentos
+       ═══════════════════════════════════════════════════════════ -->
   <url>
     <loc>https://lucascardio.com.br/Pacientes/guia-medicamentos-cardiologicos.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://lucascardio.com.br/Pacientes/medicamentos-otc-cardio.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
 
-  <!-- SEÇÃO PARA PACIENTES — Estilo de Vida -->
+  <!-- ═══════════════════════════════════════════════════════════
+       SEÇÃO PARA PACIENTES — Estilo de Vida
+       ═══════════════════════════════════════════════════════════ -->
   <url>
     <loc>https://lucascardio.com.br/Pacientes/atividade-fisica-cardiovascular.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://lucascardio.com.br/Pacientes/dieta-cardiovascular.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://lucascardio.com.br/Pacientes/drogas-risco-cardiovascular.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://lucascardio.com.br/Pacientes/obesidade-sindrome-metabolica.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://lucascardio.com.br/Pacientes/eaa-risco-cardiovascular.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://lucascardio.com.br/Pacientes/cafe-coracao.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.80</priority>
   </url>
 
-  <!-- SEÇÃO PARA PACIENTES — Coração & Outros Sistemas -->
+  <!-- ═══════════════════════════════════════════════════════════
+       SEÇÃO PARA PACIENTES — Coração & Outros Sistemas
+       ═══════════════════════════════════════════════════════════ -->
   <url>
     <loc>https://lucascardio.com.br/Pacientes/autoimune_cardiovascular.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://lucascardio.com.br/Pacientes/humor-cardiovascular.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://lucascardio.com.br/Pacientes/figado-coracao.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://lucascardio.com.br/Pacientes/pele-cardiovascular.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://lucascardio.com.br/Pacientes/pulmo-cardio.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
 
-  <!-- SEÇÃO PARA MÉDICOS — Educação & Referência -->
+  <!-- ═══════════════════════════════════════════════════════════
+       SEÇÃO PARA MÉDICOS — Calculadoras & Scores
+       ═══════════════════════════════════════════════════════════ -->
   <url>
-    <loc>https://lucascardio.com.br/Medicos/paramedicos.html</loc>
-    <lastmod>2026-03-16</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://lucascardio.com.br/catedireito/catedireitolucas.html</loc>
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://lucascardio.com.br/calculadorachoque/hemodynamic_choque.html</loc>
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <!-- CORRIGIDO: era calculadora-risco-cv/index.html — URL inexistente -->
+    <loc>https://lucascardio.com.br/Medicos/calculadora-risco-cv.html</loc>
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://lucascardio.com.br/Medicos/dapt-pos-pci-sca.html</loc>
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://lucascardio.com.br/Medicos/calculadora_intubacao.html</loc>
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <!-- ADICIONADO: página presente no site mas ausente no sitemap anterior -->
+    <loc>https://lucascardio.com.br/Medicos/diagnostico-iam-exame-racional.html</loc>
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <!-- ADICIONADO: página presente no site mas ausente no sitemap anterior -->
+    <loc>https://lucascardio.com.br/Medicos/balao-intra-aortico.html</loc>
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SEÇÃO PARA MÉDICOS — Intervenção Coronária
+       ═══════════════════════════════════════════════════════════ -->
+  <url>
+    <loc>https://lucascardio.com.br/Medicos/heart_team_calculator.html</loc>
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://lucascardio.com.br/Manual/manual_hemodinamica.html</loc>
-    <lastmod>2026-03-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://lucascardio.com.br/Medicos/analise-artigo-cientifico.html</loc>
-    <lastmod>2026-03-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-   <url>
-    <loc>https://lucascardio.com.br/quiz/index.html</loc>
-    <lastmod>2026-03-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-   <url>
-    <loc>https://lucascardio.com.br/Medicos/mbe_cardiologia.html</loc>
-    <lastmod>2026-03-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-
-  <!-- SEÇÃO PARA MÉDICOS — Intervenção Coronária -->
-  <url>
-    <loc>https://lucascardio.com.br/Medicos/heart_team_calculator.html</loc>
-    <lastmod>2026-03-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
     <loc>https://lucascardio.com.br/Medicos/bifurcacao-stent.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.90</priority>
   </url>
   <url>
     <loc>https://lucascardio.com.br/Medicos/bifurcacao-coronariana.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://lucascardio.com.br/Medicos/intravascular-imaging-atlas.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://lucascardio.com.br/Medicos/fisio-coronariana.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://lucascardio.com.br/Medicos/probabilidade-pre-teste-dor-toracica.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://lucascardio.com.br/Medicos/sos_hemodinamica.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://lucascardio.com.br/Medicos/cateterismo-cardiaco-guia-medico.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://lucascardio.com.br/Medicos/curvas_pressao.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
 
-  <!-- SEÇÃO PARA MÉDICOS — ECG -->
+  <!-- ═══════════════════════════════════════════════════════════
+       SEÇÃO PARA MÉDICOS — ECG
+       ═══════════════════════════════════════════════════════════ -->
   <url>
     <loc>https://lucascardio.com.br/Medicos/ecg-interpretacao.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://lucascardio.com.br/Medicos/ecg-sca.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
 
-  <!-- SEÇÃO PARA MÉDICOS — Cardiologia Estrutural -->
+  <!-- ═══════════════════════════════════════════════════════════
+       SEÇÃO PARA MÉDICOS — Cardiologia Estrutural
+       ═══════════════════════════════════════════════════════════ -->
   <url>
     <loc>https://lucascardio.com.br/Medicos/tavi-guia-completo.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://lucascardio.com.br/Medicos/valvopatia_mitral_percutanea.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://lucascardio.com.br/Medicos/valvopatia-tricuspide-percutanea.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
 
-  <!-- CALCULADORAS & SCORES -->
+  <!-- ═══════════════════════════════════════════════════════════
+       SEÇÃO PARA MÉDICOS — Educação & Referência
+       ═══════════════════════════════════════════════════════════ -->
   <url>
-    <loc>https://lucascardio.com.br/catedireito/catedireitolucas.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <loc>https://lucascardio.com.br/Medicos/paramedicos.html</loc>
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://lucascardio.com.br/Manual/manual_hemodinamica.html</loc>
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://lucascardio.com.br/quiz/index.html</loc>
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://lucascardio.com.br/Medicos/analise-artigo-cientifico.html</loc>
+    <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://lucascardio.com.br/calculadorachoque/hemodynamic_choque.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <loc>https://lucascardio.com.br/Medicos/mbe_cardiologia.html</loc>
+    <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://lucascardio.com.br/calculadora-risco-cv/index.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <!-- ADICIONADO: página presente no site mas ausente no sitemap anterior -->
+    <loc>https://lucascardio.com.br/Medicos/nnt-cardiologia.html</loc>
+    <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://lucascardio.com.br/Medicos/dapt-pos-pci-sca.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <!-- ADICIONADO: página presente no site mas ausente no sitemap anterior -->
+    <loc>https://lucascardio.com.br/Medicos/diagnostico-isquemia.html</loc>
+    <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://lucascardio.com.br/Medicos/calculadora_intubacao.html</loc>
-    <lastmod>2026-03-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.85</priority>
   </url>
 
 </urlset>
