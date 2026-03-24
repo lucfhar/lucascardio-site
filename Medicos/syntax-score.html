@@ -1,0 +1,2245 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>SYNTAX Score I & II – Calculadora Interativa | Dr. Lucas Silva</title>
+  <meta name="description" content="Calculadora interativa do SYNTAX Score I e II para estratificação angiográfica e clínica em doença arterial coronariana complexa. Baseada no algoritmo original (Sianos 2005) e SYNTAX II (Farooq 2013)." />
+  <meta name="author" content="Dr. Lucas Silva" />
+  <link rel="canonical" href="https://lucascardio.com.br/Medicos/syntax-score.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── DESIGN TOKENS ──────────────────────────────────────────── */
+    :root {
+      --primary: oklch(65% .18 195);
+      --primary-foreground: oklch(98% 0 0);
+      --background: oklch(13% .018 250);
+      --foreground: oklch(93% .01 250);
+      --card: oklch(18.5% .018 250);
+      --card-foreground: oklch(93% .01 250);
+      --muted: oklch(22% .018 250);
+      --muted-foreground: oklch(62% .02 250);
+      --border: oklch(28% .025 250);
+      --input: oklch(22% .02 250);
+      --destructive: oklch(60% .22 25);
+      --secondary: oklch(22% .022 250);
+      --secondary-foreground: oklch(88% .01 250);
+      --accent: oklch(24% .025 250);
+      --accent-foreground: oklch(90% .01 250);
+      --teal: #00d3bd;
+      --teal-dim: rgba(0,211,189,.12);
+      --amber: oklch(82.8% .189 84.429);
+      --red: oklch(63.7% .237 25.331);
+      --green: oklch(79.2% .209 151.711);
+      --radius: 0.625rem;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--background);
+      color: var(--foreground);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ─────────────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(18,20,27,.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: .6rem;
+      text-decoration: none; color: var(--foreground);
+    }
+    .nav-brand-icon {
+      width: 28px; height: 28px; border-radius: 7px;
+      background: var(--teal); display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .nav-brand-name { font-weight: 800; font-size: 1rem; letter-spacing: -.025em; line-height: 1; }
+    .nav-brand-name span { color: var(--teal); }
+    .nav-brand-sep { width: 1px; height: 14px; background: var(--border); margin: 0 6px; }
+    .nav-brand-sub { font-size: .7rem; font-weight: 500; color: var(--muted-foreground); }
+    .nav-actions { display: flex; align-items: center; gap: .5rem; }
+    .nav-badge {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 999px; background: var(--teal-dim);
+      color: var(--teal); border: 1px solid rgba(0,211,189,.25);
+      white-space: nowrap;
+    }
+    .nav-link {
+      font-size: .75rem; font-weight: 600; padding: 5px 12px;
+      border-radius: 8px; border: 1.5px solid var(--primary);
+      color: var(--primary); background: transparent;
+      text-decoration: none;
+      transition: background .15s, color .15s;
+      display: inline-flex; align-items: center; gap: 5px;
+    }
+    .nav-link:hover { background: var(--primary); color: var(--primary-foreground); }
+
+    /* ── LAYOUT ──────────────────────────────────────────────────── */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* ── HERO ────────────────────────────────────────────────────── */
+    .hero { padding: 3.5rem 0 2.5rem; border-bottom: 1px solid var(--border); }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .7rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--teal); margin-bottom: 1rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 20px; height: 2px;
+      background: var(--teal); border-radius: 1px;
+    }
+    .hero h1 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 800; line-height: 1.2;
+      margin-bottom: .75rem; letter-spacing: -.02em;
+    }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero-sub {
+      color: var(--muted-foreground); font-size: .95rem;
+      max-width: 640px; margin-bottom: 1.5rem;
+    }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 6px; border: 1px solid var(--border);
+      color: var(--muted-foreground); background: var(--card);
+      font-family: var(--font-mono);
+    }
+
+    /* ── TIMELINE ────────────────────────────────────────────────── */
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px);
+      overflow: hidden; margin: 2rem 0;
+    }
+    .timeline-step {
+      background: var(--card); padding: 1.25rem 1.25rem 1.5rem;
+      cursor: pointer; transition: background .15s;
+    }
+    .timeline-step:hover { background: var(--accent); }
+    .timeline-step.active { background: var(--teal-dim); }
+    .step-num {
+      font-size: .65rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--muted-foreground);
+      margin-bottom: .5rem; font-family: var(--font-mono);
+    }
+    .step-num .dot {
+      display: inline-block; width: 18px; height: 18px;
+      border-radius: 50%; background: var(--muted);
+      color: var(--muted-foreground); font-size: .6rem;
+      text-align: center; line-height: 18px;
+      margin-right: 6px; font-family: var(--font-mono); font-weight: 700;
+    }
+    .timeline-step.active .dot { background: var(--teal); color: #000; }
+    .step-title { font-weight: 700; font-size: .9rem; margin-bottom: .25rem; }
+    .step-desc { font-size: .78rem; color: var(--muted-foreground); line-height: 1.5; }
+
+    /* ── PROGRESS ────────────────────────────────────────────────── */
+    .progress-bar { height: 3px; background: var(--border); border-radius: 2px; margin: 0 0 2rem; }
+    .progress-fill { height: 100%; background: var(--teal); border-radius: 2px; transition: width .4s ease; }
+
+    /* ── CARDS ───────────────────────────────────────────────────── */
+    .card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px); padding: 1.5rem; margin-bottom: 1.5rem;
+    }
+    .card-header {
+      display: flex; align-items: flex-start; gap: .75rem;
+      margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border);
+    }
+    .card-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+      background: var(--teal-dim); color: var(--teal);
+    }
+    .card-title { font-weight: 700; font-size: 1rem; margin-bottom: 2px; }
+    .card-subtitle { font-size: .78rem; color: var(--muted-foreground); }
+
+    /* ── FORM ELEMENTS ───────────────────────────────────────────── */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-label { font-size: .78rem; font-weight: 600; color: var(--muted-foreground); }
+    .form-label span { font-size: .7rem; font-weight: 400; opacity: .7; }
+    .form-input {
+      background: var(--input); border: 1px solid var(--border);
+      border-radius: var(--radius); color: var(--foreground);
+      font-family: var(--font-mono); font-size: .85rem;
+      padding: 8px 12px; transition: border-color .15s, box-shadow .15s;
+      outline: none; width: 100%;
+    }
+    .form-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(0,211,189,.15);
+    }
+    .form-input::-webkit-inner-spin-button { opacity: .4; }
+    .form-select {
+      background: var(--input); border: 1px solid var(--border);
+      border-radius: var(--radius); color: var(--foreground);
+      font-family: var(--font-sans); font-size: .85rem;
+      padding: 8px 12px; outline: none; width: 100%;
+      cursor: pointer; transition: border-color .15s;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2362728a' stroke-width='2.5'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      padding-right: 32px;
+    }
+    .form-select:focus { border-color: var(--primary); }
+
+    /* ── CHECK ITEMS ─────────────────────────────────────────────── */
+    .check-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: .5rem;
+    }
+    .check-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 10px 12px; border-radius: var(--radius);
+      border: 1px solid var(--border); background: var(--muted);
+      cursor: pointer; transition: background .15s, border-color .15s;
+      user-select: none;
+    }
+    .check-item:hover { background: var(--accent); border-color: var(--primary); }
+    .check-item.checked { background: var(--teal-dim); border-color: rgba(0,211,189,.4); }
+    .check-item input { display: none; }
+    .check-box {
+      width: 16px; height: 16px; border-radius: 4px;
+      border: 1.5px solid var(--border); flex-shrink: 0; margin-top: 1px;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .15s;
+    }
+    .check-item.checked .check-box { background: var(--teal); border-color: var(--teal); color: #000; }
+    .check-label { font-size: .8rem; line-height: 1.4; }
+    .check-label strong { font-weight: 600; display: block; margin-bottom: 1px; }
+    .check-label small { font-size: .72rem; color: var(--muted-foreground); }
+
+    /* ── DOMINANCE SELECTOR ──────────────────────────────────────── */
+    .dominance-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: .75rem; margin: 1rem 0;
+    }
+    .dominance-opt {
+      border: 2px solid var(--border); border-radius: calc(var(--radius) + 2px);
+      padding: 1.1rem 1rem; cursor: pointer;
+      transition: all .15s; text-align: center; background: var(--muted);
+    }
+    .dominance-opt:hover { border-color: var(--primary); background: var(--accent); }
+    .dominance-opt.active { border-color: var(--teal); background: var(--teal-dim); }
+    .dominance-opt .dom-icon { font-size: 1.6rem; margin-bottom: .4rem; }
+    .dominance-opt .dom-label { font-weight: 700; font-size: .9rem; margin-bottom: .2rem; }
+    .dominance-opt .dom-pct {
+      font-size: .72rem; color: var(--muted-foreground); font-family: var(--font-mono);
+    }
+
+    /* ── BUTTONS ─────────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: .85rem; font-weight: 600; padding: 10px 20px;
+      border-radius: calc(var(--radius) + 2px);
+      border: none; cursor: pointer;
+      transition: all .15s; white-space: nowrap;
+      font-family: var(--font-sans);
+    }
+    .btn-primary { background: var(--primary); color: #000; font-weight: 700; }
+    .btn-primary:hover { opacity: .9; transform: translateY(-1px); }
+    .btn-secondary { background: var(--muted); color: var(--foreground); border: 1px solid var(--border); }
+    .btn-secondary:hover { background: var(--accent); }
+    .btn-danger { background: rgba(220,38,38,.15); color: #f87171; border: 1px solid rgba(220,38,38,.3); }
+    .btn-danger:hover { background: rgba(220,38,38,.25); }
+    .btn-sm { font-size: .78rem; padding: 6px 14px; }
+    .btn-lg { font-size: .95rem; padding: 12px 28px; }
+    .btn-row { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 1.5rem; }
+
+    /* ── INFO BOXES ──────────────────────────────────────────────── */
+    .info-box {
+      border-radius: var(--radius); padding: 12px 16px;
+      font-size: .82rem; line-height: 1.6;
+      display: flex; gap: 10px; margin-bottom: .75rem;
+    }
+    .info-box-icon { flex-shrink: 0; font-size: 1rem; margin-top: 1px; }
+    .info-teal { background: var(--teal-dim); border-left: 3px solid var(--teal); }
+    .info-amber { background: rgba(251,191,36,.08); border-left: 3px solid rgba(251,191,36,.5); }
+    .info-red { background: rgba(220,38,38,.08); border-left: 3px solid rgba(220,38,38,.4); }
+    .info-gray { background: var(--muted); border-left: 3px solid var(--border); }
+
+    /* ── SECTION LABELS ──────────────────────────────────────────── */
+    .section-label {
+      font-size: .68rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--teal);
+      margin-bottom: .4rem; font-family: var(--font-mono);
+    }
+    .section-title { font-size: 1.3rem; font-weight: 800; margin-bottom: .25rem; letter-spacing: -.01em; }
+    .section-divider { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+
+    /* ── STEP SECTIONS ───────────────────────────────────────────── */
+    .step-section { display: none; }
+    .step-section.active { display: block; animation: fadeUp .3s ease; }
+
+    /* ── BADGES ──────────────────────────────────────────────────── */
+    .badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: .68rem; font-weight: 700; padding: 2px 8px;
+      border-radius: 999px; white-space: nowrap;
+    }
+    .badge-teal { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.2); }
+    .badge-amber { background: rgba(251,191,36,.12); color: #fbbf24; border: 1px solid rgba(251,191,36,.2); }
+    .badge-red { background: rgba(220,38,38,.15); color: #f87171; border: 1px solid rgba(220,38,38,.25); }
+    .badge-gray { background: var(--muted); color: var(--muted-foreground); border: 1px solid var(--border); font-family: var(--font-mono); }
+
+    /* ── LESION ENTRY PANEL ──────────────────────────────────────── */
+    .lesion-add-panel {
+      display: none; background: var(--card);
+      border: 1px solid var(--primary);
+      border-radius: calc(var(--radius) + 2px);
+      padding: 1.5rem; margin-bottom: 1rem;
+      animation: fadeUp .25s ease;
+    }
+    .lesion-add-panel.open { display: block; }
+
+    .medina-picker {
+      display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
+    }
+    .medina-seg {
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
+    }
+    .medina-seg-label { font-size: .65rem; font-family: var(--font-mono); color: var(--muted-foreground); }
+    .medina-toggle {
+      display: flex; border: 1px solid var(--border); border-radius: 6px; overflow: hidden;
+    }
+    .medina-btn {
+      padding: 4px 14px; font-size: .85rem; font-weight: 700;
+      cursor: pointer; font-family: var(--font-mono);
+      background: var(--muted); color: var(--muted-foreground);
+      border: none; transition: all .15s;
+    }
+    .medina-btn.active { background: var(--teal); color: #000; }
+    .medina-sep { font-size: 1rem; color: var(--muted-foreground); font-family: var(--font-mono); align-self: center; }
+    .medina-result {
+      font-family: var(--font-mono); font-size: 1rem; font-weight: 700;
+      color: var(--teal); margin-left: 8px; align-self: center;
+    }
+
+    /* ── LESION CARDS ────────────────────────────────────────────── */
+    .lesion-card {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 12px 16px;
+      display: flex; align-items: flex-start; gap: 12px;
+      margin-bottom: .5rem; animation: fadeUp .2s ease;
+    }
+    .lesion-card-score {
+      font-family: var(--font-mono); font-size: 1.3rem; font-weight: 700;
+      color: var(--teal); min-width: 36px; text-align: center; line-height: 1;
+      padding-top: 2px;
+    }
+    .lesion-card-info { flex: 1; }
+    .lesion-card-name { font-weight: 700; font-size: .88rem; margin-bottom: 3px; }
+    .lesion-card-chars {
+      font-size: .75rem; color: var(--muted-foreground);
+      display: flex; flex-wrap: wrap; gap: 4px;
+    }
+    .lesion-char-tag {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 4px; padding: 1px 6px;
+      font-size: .68rem; font-family: var(--font-mono);
+    }
+    .lesion-char-tag.cto { background: rgba(220,38,38,.12); border-color: rgba(220,38,38,.3); color: #f87171; }
+    .lesion-char-tag.bifurc { background: rgba(251,191,36,.1); border-color: rgba(251,191,36,.2); color: #fbbf24; }
+    .lesion-card-remove {
+      background: none; border: none; cursor: pointer;
+      color: var(--muted-foreground); padding: 2px 4px;
+      transition: color .15s; font-size: 1rem; line-height: 1;
+    }
+    .lesion-card-remove:hover { color: #f87171; }
+
+    /* ── SYNTAX I SCORE BANNER ───────────────────────────────────── */
+    .score-banner {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px); padding: 1.25rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;
+    }
+    .score-banner-val {
+      display: flex; align-items: baseline; gap: 6px;
+    }
+    .score-big {
+      font-family: var(--font-mono); font-size: 2.8rem; font-weight: 700;
+      color: var(--teal); line-height: 1; transition: all .25s;
+    }
+    .score-label { font-size: .78rem; color: var(--muted-foreground); }
+    .score-cat {
+      display: inline-flex; align-items: center;
+      font-size: .75rem; font-weight: 700; padding: 4px 12px;
+      border-radius: 999px; margin-top: 4px;
+    }
+    .score-cat.low { background: rgba(0,211,189,.12); color: var(--teal); border: 1px solid rgba(0,211,189,.3); }
+    .score-cat.mid { background: rgba(251,191,36,.12); color: #fbbf24; border: 1px solid rgba(251,191,36,.25); }
+    .score-cat.high { background: rgba(220,38,38,.12); color: #f87171; border: 1px solid rgba(220,38,38,.25); }
+
+    /* ── SUB-FORM (CTO options inside add-panel) ─────────────────── */
+    .sub-form {
+      background: var(--muted); border-radius: var(--radius);
+      padding: 1rem; margin-top: .75rem;
+      border: 1px solid var(--border);
+    }
+    .sub-form-title {
+      font-size: .75rem; font-weight: 700; color: var(--muted-foreground);
+      text-transform: uppercase; letter-spacing: .06em; font-family: var(--font-mono);
+      margin-bottom: .75rem;
+    }
+    .sub-check-row {
+      display: flex; align-items: center; gap: 8px;
+      padding: 7px 10px; border-radius: 6px;
+      border: 1px solid var(--border); background: var(--card);
+      cursor: pointer; margin-bottom: .4rem;
+      transition: background .15s; user-select: none;
+    }
+    .sub-check-row:hover { background: var(--accent); }
+    .sub-check-row.checked { background: var(--teal-dim); border-color: rgba(0,211,189,.35); }
+    .sub-check-row input { display: none; }
+    .mini-box {
+      width: 14px; height: 14px; border-radius: 3px;
+      border: 1.5px solid var(--border); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: .6rem;
+      transition: all .15s;
+    }
+    .sub-check-row.checked .mini-box { background: var(--teal); border-color: var(--teal); color: #000; }
+    .sub-check-label { font-size: .78rem; line-height: 1.3; }
+    .sub-check-pts {
+      margin-left: auto; font-family: var(--font-mono); font-size: .72rem;
+      color: var(--teal); font-weight: 700;
+    }
+
+    /* ── LIVE SCORE PREVIEW ──────────────────────────────────────── */
+    .live-score {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 12px 16px;
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 1rem;
+    }
+    .live-score-val {
+      font-family: var(--font-mono); font-size: 1.6rem; font-weight: 700; color: var(--teal);
+    }
+    .live-score-label { font-size: .78rem; color: var(--muted-foreground); }
+
+    /* ── RESULT SECTION ──────────────────────────────────────────── */
+    .result-panel {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 4px); overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+    .result-header {
+      padding: 1.25rem 1.5rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .result-header.low { background: rgba(0,211,189,.08); border-bottom: 1px solid rgba(0,211,189,.2); }
+    .result-header.mid { background: rgba(251,191,36,.08); border-bottom: 1px solid rgba(251,191,36,.2); }
+    .result-header.high { background: rgba(220,38,38,.08); border-bottom: 1px solid rgba(220,38,38,.25); }
+    .result-icon { font-size: 2rem; line-height: 1; }
+    .result-title { font-size: 1.1rem; font-weight: 800; margin-bottom: 2px; }
+    .result-body { padding: 1.25rem 1.5rem; }
+
+    /* ── SYNTAX I GAUGE ──────────────────────────────────────────── */
+    .gauge-wrap { position: relative; margin: 1.5rem auto; max-width: 340px; }
+    .gauge-bar {
+      height: 18px; background: var(--muted);
+      border-radius: 999px; overflow: hidden;
+      border: 1px solid var(--border);
+      display: flex;
+    }
+    .gauge-low { background: rgba(0,211,189,.6); flex: 23 1 0; }
+    .gauge-mid { background: rgba(251,191,36,.6); flex: 10 1 0; }
+    .gauge-high { background: rgba(220,38,38,.6); flex: 32 1 0; }
+    .gauge-markers {
+      display: flex; justify-content: space-between;
+      font-size: .65rem; font-family: var(--font-mono); color: var(--muted-foreground);
+      margin-top: 4px; padding: 0 2px;
+    }
+    .gauge-pointer-wrap { position: relative; }
+    .gauge-pointer {
+      position: absolute; top: 50%; transform: translateY(-50%) translateX(-50%);
+      width: 4px; height: 28px; background: #fff;
+      border-radius: 2px; box-shadow: 0 0 8px rgba(0,0,0,.5);
+      transition: left .4s cubic-bezier(.34,1.56,.64,1);
+    }
+
+    /* ── MORTALITY BARS ──────────────────────────────────────────── */
+    .mortality-compare {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.25rem 0;
+    }
+    .mortality-bar-card {
+      background: var(--muted); border-radius: var(--radius);
+      padding: 1rem; border: 1px solid var(--border); text-align: center;
+    }
+    .mortality-bar-card.winner { border-color: var(--teal); background: var(--teal-dim); }
+    .mortality-bar-title { font-size: .75rem; font-weight: 700; margin-bottom: .5rem; text-transform: uppercase; letter-spacing: .06em; font-family: var(--font-mono); }
+    .mortality-val { font-size: 2rem; font-weight: 800; font-family: var(--font-mono); line-height: 1; }
+    .mortality-sub { font-size: .72rem; color: var(--muted-foreground); margin-top: 4px; }
+    .mortality-bar {
+      height: 8px; background: var(--border); border-radius: 999px; margin-top: .75rem; overflow: hidden;
+    }
+    .mortality-fill {
+      height: 100%; border-radius: 999px; transition: width .6s ease;
+    }
+    .mortality-fill.pci { background: var(--primary); }
+    .mortality-fill.cabg { background: #fbbf24; }
+
+    /* ── COMPARISON TABLE ────────────────────────────────────────── */
+    .compare-table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+    .compare-table th {
+      background: var(--muted); padding: 10px 14px;
+      text-align: left; font-weight: 700; font-size: .75rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted-foreground); letter-spacing: .03em;
+    }
+    .compare-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table tr:hover td { background: var(--accent); }
+
+    /* ── REFERENCES ──────────────────────────────────────────────── */
+    .ref-list { list-style: none; }
+    .ref-item {
+      padding: 10px 0; border-bottom: 1px solid var(--border);
+      font-size: .8rem; line-height: 1.6; display: flex; gap: 10px;
+    }
+    .ref-item:last-child { border-bottom: none; }
+    .ref-num { font-family: var(--font-mono); font-size: .7rem; font-weight: 700; color: var(--teal); min-width: 22px; }
+    .ref-title { font-weight: 600; margin-bottom: 2px; }
+    .ref-meta { color: var(--muted-foreground); font-size: .75rem; }
+
+    /* ── DISCLAIMER ──────────────────────────────────────────────── */
+    .disclaimer {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 12px 16px;
+      font-size: .75rem; color: var(--muted-foreground); line-height: 1.6; margin-top: 1.5rem;
+    }
+
+    /* ── TOGGLE SWITCH ───────────────────────────────────────────── */
+    .toggle-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 12px; border-radius: var(--radius);
+      border: 1px solid var(--border); background: var(--muted);
+      cursor: pointer; user-select: none; margin-bottom: .5rem;
+      transition: background .15s;
+    }
+    .toggle-row:hover { background: var(--accent); }
+    .toggle-row.on { background: var(--teal-dim); border-color: rgba(0,211,189,.4); }
+    .toggle-left { display: flex; align-items: center; gap: 8px; }
+    .toggle-icon { font-size: 1rem; }
+    .toggle-text { font-size: .82rem; font-weight: 600; }
+    .toggle-desc { font-size: .72rem; color: var(--muted-foreground); display: block; font-weight: 400; }
+    .toggle-pts { font-family: var(--font-mono); font-size: .75rem; color: var(--muted-foreground); }
+    .toggle-switch {
+      width: 36px; height: 20px; border-radius: 999px;
+      background: var(--border); position: relative; transition: background .2s;
+      flex-shrink: 0;
+    }
+    .toggle-switch::after {
+      content: ''; position: absolute; top: 3px; left: 3px;
+      width: 14px; height: 14px; border-radius: 50%; background: #fff;
+      transition: transform .2s;
+    }
+    .toggle-row.on .toggle-switch { background: var(--teal); }
+    .toggle-row.on .toggle-switch::after { transform: translateX(16px); }
+
+    /* ── FOOTER ──────────────────────────────────────────────────── */
+    footer { border-top: 1px solid var(--border); padding: 2rem 0; margin-top: 3rem; }
+    .footer-inner {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-copy { font-size: .75rem; color: var(--muted-foreground); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      .dominance-grid { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr 1fr; }
+      .mortality-compare { grid-template-columns: 1fr; }
+      .btn-row { flex-direction: column; }
+      .score-banner { flex-direction: column; }
+      .medina-picker { gap: 6px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#">
+    <div class="nav-brand-icon">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Z"/><path d="m12 8-2 4h4l-2 4"/>
+      </svg>
+    </div>
+    <div class="nav-brand-name">SYNTAX<span>Score</span></div>
+    <div class="nav-brand-sep"></div>
+    <div class="nav-brand-sub">Calculadora I &amp; II</div>
+  </a>
+  <div class="nav-actions">
+    <span class="nav-badge">DAC Complexa · PCI vs CABG</span>
+    <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      lucascardio.com.br
+    </a>
+  </div>
+</nav>
+
+<main>
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">Cardiologia Intervencionista · Estratificação de Risco</div>
+    <h1><em>SYNTAX Score</em> I & II<br>Calculadora Interativa</h1>
+    <p class="hero-sub">
+      Ferramenta para cálculo do SYNTAX Score I (complexidade angiográfica) e SYNTAX Score II (predição de mortalidade em 4 anos para PCI vs CABG) em doença arterial coronariana complexa. Algoritmo baseado em Sianos et al. (2005) e Farooq et al. (2013).
+    </p>
+    <div class="hero-tags">
+      <span class="tag">SYNTAX Trial</span>
+      <span class="tag">SYNTAX II</span>
+      <span class="tag">EXCEL Trial</span>
+      <span class="tag">TCE não-protegido</span>
+      <span class="tag">Doença Triarterial</span>
+      <span class="tag">ESC 2018/2023</span>
+      <span class="tag">Heart Team</span>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="timeline" style="margin-top:2rem;">
+    <div class="timeline-step active" onclick="goStep(1)">
+      <div class="step-num"><span class="dot">1</span>INÍCIO</div>
+      <div class="step-title">Dominância</div>
+      <div class="step-desc">Tipo de dominância coronariana — determina os pesos dos segmentos</div>
+    </div>
+    <div class="timeline-step" onclick="goStep(2)">
+      <div class="step-num"><span class="dot">2</span>SYNTAX I</div>
+      <div class="step-title">Lesões Coronárias</div>
+      <div class="step-desc">Entrada de lesões com características angiográficas</div>
+    </div>
+    <div class="timeline-step" onclick="goStep(3)">
+      <div class="step-num"><span class="dot">3</span>SYNTAX II</div>
+      <div class="step-title">Variáveis Clínicas</div>
+      <div class="step-desc">Dados para predição de mortalidade em 4 anos (PCI vs CABG)</div>
+    </div>
+    <div class="timeline-step" onclick="goStep(4)">
+      <div class="step-num"><span class="dot">★</span>RESULTADO</div>
+      <div class="step-title">Score e Estratégia</div>
+      <div class="step-desc">SYNTAX I + II com recomendação baseada em evidências</div>
+    </div>
+  </div>
+
+  <div class="progress-bar"><div class="progress-fill" id="progress" style="width:25%"></div></div>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       STEP 1 – DOMINÂNCIA
+  ═══════════════════════════════════════════════════════════════ -->
+  <div id="step1" class="step-section active">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
+        </div>
+        <div>
+          <div class="card-title">Dominância Coronariana</div>
+          <div class="card-subtitle">Define o território perfundido pela ACD e CX — impacta diretamente nos pesos de cada segmento no SYNTAX Score</div>
+        </div>
+      </div>
+
+      <div class="info-teal info-box">
+        <span class="info-box-icon">💡</span>
+        <div>A dominância define qual artéria origina a <strong>Artéria Descendente Posterior (DP)</strong> e os ramos póstero-laterais. Na dominância direita (~85% dos pacientes), a ACD irriga o território inferior; na esquerda (~8%), a CX; na co-dominante (~7%), ambas.</div>
+      </div>
+
+      <div class="dominance-grid">
+        <div class="dominance-opt active" id="dom_right" onclick="setDominance('right')">
+          <div class="dom-icon">➡️</div>
+          <div class="dom-label">Dominância Direita</div>
+          <div class="dom-pct">~85% dos pacientes</div>
+        </div>
+        <div class="dominance-opt" id="dom_left" onclick="setDominance('left')">
+          <div class="dom-icon">⬅️</div>
+          <div class="dom-label">Dominância Esquerda</div>
+          <div class="dom-pct">~8% dos pacientes</div>
+        </div>
+        <div class="dominance-opt" id="dom_co" onclick="setDominance('co')">
+          <div class="dom-icon">↔️</div>
+          <div class="dom-label">Co-dominante</div>
+          <div class="dom-pct">~7% dos pacientes</div>
+        </div>
+      </div>
+
+      <div class="info-gray info-box" style="margin-top:.75rem;">
+        <span class="info-box-icon">📌</span>
+        <div>
+          <strong>Pesos dos segmentos variam com dominância:</strong> Na dominância esquerda, o TCE e a CX recebem pesos maiores (maior território); na direita, a ACD e seus ramos têm maior relevância. O SYNTAX Score é recalibrado automaticamente ao alterar a dominância.
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary btn-lg" onclick="goStep(2)">
+          Inserir Lesões Coronárias
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Reference diagram for segments -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">🫀</div>
+        <div>
+          <div class="card-title">Referência de Segmentos Coronarianos</div>
+          <div class="card-subtitle">Numeração oficial do SYNTAX Score (adaptada de AHA 1975 / ACC/AHA 1999)</div>
+        </div>
+      </div>
+      <div style="overflow-x:auto;">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Seg.</th>
+              <th>Artéria</th>
+              <th>Descrição</th>
+              <th style="text-align:center;">Peso (Direita)</th>
+              <th style="text-align:center;">Peso (Esquerda)</th>
+            </tr>
+          </thead>
+          <tbody id="segment_ref_table"></tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       STEP 2 – LESÕES (SYNTAX I)
+  ═══════════════════════════════════════════════════════════════ -->
+  <div id="step2" class="step-section">
+
+    <div class="section-label">SYNTAX Score I</div>
+    <div class="section-title">Entrada de Lesões Coronárias</div>
+    <p style="color:var(--muted-foreground);font-size:.88rem;margin:.5rem 0 1.5rem;">
+      Adicione todas as lesões ≥50% de estenose em vasos ≥1,5 mm de diâmetro. O SYNTAX Score é calculado automaticamente a cada adição.
+    </p>
+
+    <!-- Running score -->
+    <div class="score-banner">
+      <div>
+        <div style="font-size:.7rem;color:var(--muted-foreground);font-family:var(--font-mono);font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px;">SYNTAX Score I</div>
+        <div class="score-banner-val">
+          <div class="score-big" id="live_s1">0</div>
+          <div>
+            <div class="score-label">pontos</div>
+            <div id="live_cat" class="score-cat low" style="margin-top:4px;">Baixo Risco</div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:.78rem;color:var(--muted-foreground);margin-bottom:4px;">Lesões registradas</div>
+        <div style="font-family:var(--font-mono);font-size:1.6rem;font-weight:700;" id="live_count">0</div>
+        <div id="live_lm_flag" style="display:none;margin-top:4px;">
+          <span class="badge badge-red">⚠ TCE envolvido</span>
+        </div>
+        <div id="live_3v_flag" style="display:none;margin-top:4px;">
+          <span class="badge badge-amber">3 vasos</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lesion list -->
+    <div id="lesion_list">
+      <div id="no_lesions_msg" style="text-align:center;padding:2rem;color:var(--muted-foreground);font-size:.88rem;border:1px dashed var(--border);border-radius:var(--radius);margin-bottom:1rem;">
+        Nenhuma lesão adicionada. Clique em "Adicionar Lesão" para começar.
+      </div>
+    </div>
+
+    <!-- ADD LESION BUTTON + FORM -->
+    <button class="btn btn-secondary" id="add_lesion_btn" onclick="toggleAddPanel()" style="width:100%;justify-content:center;border-style:dashed;margin-bottom:.5rem;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+      Adicionar Lesão
+    </button>
+
+    <!-- ADD PANEL -->
+    <div class="lesion-add-panel" id="add_panel">
+      <div style="font-size:.9rem;font-weight:700;margin-bottom:1.25rem;color:var(--teal);">
+        📍 Nova Lesão
+      </div>
+
+      <!-- Vessel + Segment -->
+      <div class="form-grid" style="margin-bottom:1rem;">
+        <div class="form-group">
+          <label class="form-label">Artéria</label>
+          <select class="form-select" id="new_vessel" onchange="updateSegmentSelect()">
+            <option value="">Selecione...</option>
+            <option value="TCE">TCE – Tronco</option>
+            <option value="DA">DA – Descendente Anterior</option>
+            <option value="CX">CX – Circunflexa</option>
+            <option value="ACD">ACD – Coronária Direita</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Segmento</label>
+          <select class="form-select" id="new_segment">
+            <option value="">Selecione a artéria primeiro</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Weight preview -->
+      <div id="seg_weight_preview" style="display:none;font-size:.8rem;color:var(--muted-foreground);margin-bottom:1rem;padding:8px 12px;background:var(--muted);border-radius:var(--radius);font-family:var(--font-mono);">
+        Peso do segmento: <span id="seg_weight_val" style="color:var(--teal);font-weight:700;">—</span>
+      </div>
+
+      <!-- ── CTO ────────────────────────────────────────── -->
+      <div class="toggle-row" id="toggle_cto" onclick="toggleFeature('cto')">
+        <div class="toggle-left">
+          <span class="toggle-icon">🔴</span>
+          <div>
+            <span class="toggle-text">Oclusão Total Crônica (CTO)</span>
+            <small class="toggle-desc">Multiplica peso do segmento × 5</small>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span class="toggle-pts">×5</span>
+          <div class="toggle-switch"></div>
+        </div>
+      </div>
+      <div class="sub-form" id="cto_sub" style="display:none;">
+        <div class="sub-form-title">Características da CTO (+1 ponto cada)</div>
+        <label class="sub-check-row" id="row_cto_dur" onclick="toggleSub('cto_dur','cto_dur')">
+          <input type="checkbox" id="cto_dur"/>
+          <div class="mini-box">✓</div>
+          <span class="sub-check-label">Duração >3 meses (ou desconhecida)</span>
+          <span class="sub-check-pts">+1</span>
+        </label>
+        <label class="sub-check-row" id="row_cto_blunt" onclick="toggleSub('cto_blunt','cto_blunt')">
+          <input type="checkbox" id="cto_blunt"/>
+          <div class="mini-box">✓</div>
+          <span class="sub-check-label">Coto rombo (blunt stump) ausente</span>
+          <span class="sub-check-pts">+1</span>
+        </label>
+        <label class="sub-check-row" id="row_cto_bridg" onclick="toggleSub('cto_bridg','cto_bridg')">
+          <input type="checkbox" id="cto_bridg"/>
+          <div class="mini-box">✓</div>
+          <span class="sub-check-label">Colaterais em ponte (bridging collaterals)</span>
+          <span class="sub-check-pts">+1</span>
+        </label>
+        <label class="sub-check-row" id="row_cto_vis" onclick="toggleSub('cto_vis','cto_vis')">
+          <input type="checkbox" id="cto_vis"/>
+          <div class="mini-box">✓</div>
+          <span class="sub-check-label">Primeiro segmento visível além da oclusão (≥2 planos)</span>
+          <span class="sub-check-pts">+1</span>
+        </label>
+        <label class="sub-check-row" id="row_cto_sb" onclick="toggleSub('cto_sb','cto_sb')">
+          <input type="checkbox" id="cto_sb"/>
+          <div class="mini-box">✓</div>
+          <span class="sub-check-label">Ramos laterais na oclusão (≥2 planos)</span>
+          <span class="sub-check-pts">+1</span>
+        </label>
+      </div>
+
+      <!-- ── TRIFURCATION ───────────────────────────────── -->
+      <div class="toggle-row" id="toggle_trif" onclick="toggleFeature('trif')" style="margin-top:.5rem;">
+        <div class="toggle-left">
+          <span class="toggle-icon">🔱</span>
+          <div>
+            <span class="toggle-text">Trifurcação</span>
+            <small class="toggle-desc">Lesão envolvendo uma trifurcação</small>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span class="toggle-pts">+3 a +6</span>
+          <div class="toggle-switch"></div>
+        </div>
+      </div>
+      <div class="sub-form" id="trif_sub" style="display:none;">
+        <div class="sub-form-title">N° de segmentos doentes na trifurcação</div>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+          <div id="trif_1" class="dominance-opt active" style="padding:.6rem 1rem;flex:1;min-width:60px;text-align:center;" onclick="setTrifDiseased(1)">
+            <div style="font-family:var(--font-mono);font-size:1.2rem;font-weight:700;">1</div>
+            <div style="font-size:.65rem;color:var(--muted-foreground);">+3 pts</div>
+          </div>
+          <div id="trif_2" class="dominance-opt" style="padding:.6rem 1rem;flex:1;min-width:60px;text-align:center;" onclick="setTrifDiseased(2)">
+            <div style="font-family:var(--font-mono);font-size:1.2rem;font-weight:700;">2</div>
+            <div style="font-size:.65rem;color:var(--muted-foreground);">+4 pts</div>
+          </div>
+          <div id="trif_3" class="dominance-opt" style="padding:.6rem 1rem;flex:1;min-width:60px;text-align:center;" onclick="setTrifDiseased(3)">
+            <div style="font-family:var(--font-mono);font-size:1.2rem;font-weight:700;">3</div>
+            <div style="font-size:.65rem;color:var(--muted-foreground);">+5 pts</div>
+          </div>
+          <div id="trif_4" class="dominance-opt" style="padding:.6rem 1rem;flex:1;min-width:60px;text-align:center;" onclick="setTrifDiseased(4)">
+            <div style="font-family:var(--font-mono);font-size:1.2rem;font-weight:700;">4</div>
+            <div style="font-size:.65rem;color:var(--muted-foreground);">+6 pts</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── BIFURCATION ────────────────────────────────── -->
+      <div class="toggle-row" id="toggle_bif" onclick="toggleFeature('bif')" style="margin-top:.5rem;">
+        <div class="toggle-left">
+          <span class="toggle-icon">🔀</span>
+          <div>
+            <span class="toggle-text">Bifurcação</span>
+            <small class="toggle-desc">Lesão envolvendo uma bifurcação (Classificação de Medina)</small>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span class="toggle-pts">+1 a +2</span>
+          <div class="toggle-switch"></div>
+        </div>
+      </div>
+      <div class="sub-form" id="bif_sub" style="display:none;">
+        <div class="sub-form-title">Classificação de Medina (1=doente; 0=sem lesão)</div>
+        <div class="medina-picker" style="margin-bottom:.75rem;">
+          <div class="medina-seg">
+            <span class="medina-seg-label">Vaso Principal Proximal</span>
+            <div class="medina-toggle">
+              <button class="medina-btn active" id="m1_0" onclick="setMedina(1,0)">0</button>
+              <button class="medina-btn" id="m1_1" onclick="setMedina(1,1)">1</button>
+            </div>
+          </div>
+          <span class="medina-sep">,</span>
+          <div class="medina-seg">
+            <span class="medina-seg-label">Vaso Principal Distal</span>
+            <div class="medina-toggle">
+              <button class="medina-btn active" id="m2_0" onclick="setMedina(2,0)">0</button>
+              <button class="medina-btn" id="m2_1" onclick="setMedina(2,1)">1</button>
+            </div>
+          </div>
+          <span class="medina-sep">,</span>
+          <div class="medina-seg">
+            <span class="medina-seg-label">Ramo Lateral</span>
+            <div class="medina-toggle">
+              <button class="medina-btn active" id="m3_0" onclick="setMedina(3,0)">0</button>
+              <button class="medina-btn" id="m3_1" onclick="setMedina(3,1)">1</button>
+            </div>
+          </div>
+          <div class="medina-result" id="medina_display">(0,0,0)</div>
+        </div>
+        <div id="medina_info" style="font-size:.75rem;color:var(--muted-foreground);margin-bottom:.75rem;"></div>
+        <label class="sub-check-row" id="row_bif_angle" onclick="toggleSub('bif_angle','bif_angle')">
+          <input type="checkbox" id="bif_angle"/>
+          <div class="mini-box">✓</div>
+          <span class="sub-check-label">Ângulo da bifurcação &lt;70° (bifurcação "fechada")</span>
+          <span class="sub-check-pts">+1</span>
+        </label>
+      </div>
+
+      <!-- ── OTHER CHARACTERISTICS ──────────────────────── -->
+      <div style="margin-top:.75rem;margin-bottom:.5rem;font-size:.7rem;font-weight:700;color:var(--muted-foreground);text-transform:uppercase;letter-spacing:.08em;font-family:var(--font-mono);">Outras Características</div>
+
+      <div class="toggle-row" id="toggle_aorto" onclick="toggleFeature('aorto')">
+        <div class="toggle-left">
+          <span class="toggle-icon">🩺</span>
+          <span class="toggle-text">Lesão Aorto-ostial</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;"><span class="toggle-pts">+1</span><div class="toggle-switch"></div></div>
+      </div>
+
+      <div class="toggle-row" id="toggle_tort" onclick="toggleFeature('tort')" style="margin-top:.4rem;">
+        <div class="toggle-left">
+          <span class="toggle-icon">〰️</span>
+          <div>
+            <span class="toggle-text">Tortuosidade Acentuada</span>
+            <small class="toggle-desc">Curvatura ≥90° proximal à lesão, ou ≥3 curvaturas ≥45°</small>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;"><span class="toggle-pts">+2</span><div class="toggle-switch"></div></div>
+      </div>
+
+      <div class="toggle-row" id="toggle_long" onclick="toggleFeature('long')" style="margin-top:.4rem;">
+        <div class="toggle-left">
+          <span class="toggle-icon">📏</span>
+          <span class="toggle-text">Comprimento da Lesão &gt;20 mm</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;"><span class="toggle-pts">+1</span><div class="toggle-switch"></div></div>
+      </div>
+
+      <div class="toggle-row" id="toggle_calc" onclick="toggleFeature('calc')" style="margin-top:.4rem;">
+        <div class="toggle-left">
+          <span class="toggle-icon">🪨</span>
+          <span class="toggle-text">Calcificação Intensa</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;"><span class="toggle-pts">+2</span><div class="toggle-switch"></div></div>
+      </div>
+
+      <div class="toggle-row" id="toggle_throm" onclick="toggleFeature('throm')" style="margin-top:.4rem;">
+        <div class="toggle-left">
+          <span class="toggle-icon">🩸</span>
+          <span class="toggle-text">Trombo Intracoronário</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;"><span class="toggle-pts">+1</span><div class="toggle-switch"></div></div>
+      </div>
+
+      <!-- Diffuse disease -->
+      <div class="toggle-row" id="toggle_diff" onclick="toggleFeature('diff')" style="margin-top:.4rem;">
+        <div class="toggle-left">
+          <span class="toggle-icon">🌐</span>
+          <div>
+            <span class="toggle-text">Doença Difusa / Pequeno Vaso</span>
+            <small class="toggle-desc">Lesão com extensão além de 20 mm (cada 10 mm adicionais = +1)</small>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;"><span class="toggle-pts">+1/10mm</span><div class="toggle-switch"></div></div>
+      </div>
+      <div class="sub-form" id="diff_sub" style="display:none;">
+        <div class="sub-form-title">Comprimento adicional além de 20mm</div>
+        <div class="form-group" style="max-width:200px;">
+          <label class="form-label">Segmentos adicionais de 10 mm <span>(1-5)</span></label>
+          <input type="number" id="diff_segs" class="form-input" min="1" max="5" value="1" oninput="updateLiveScore()"/>
+        </div>
+      </div>
+
+      <!-- Live score preview -->
+      <div class="live-score">
+        <div>
+          <div class="live-score-label">Score desta lesão</div>
+          <div class="live-score-val" id="live_lesion_score">0.0</div>
+        </div>
+        <div style="display:flex;gap:.75rem;flex-wrap:wrap;">
+          <button class="btn btn-secondary btn-sm" onclick="cancelAdd()">Cancelar</button>
+          <button class="btn btn-primary" onclick="addLesion()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+            Adicionar ao Score
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- END ADD PANEL -->
+
+    <div class="btn-row" style="margin-top:1.5rem;">
+      <button class="btn btn-secondary" onclick="goStep(1)">← Alterar Dominância</button>
+      <button class="btn btn-primary btn-lg" onclick="goStep(3)">
+        Calcular SYNTAX II
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </button>
+      <button class="btn btn-secondary btn-sm" onclick="goStep(4)" style="margin-left:auto;">
+        Pular para resultado (só SYNTAX I)
+      </button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       STEP 3 – SYNTAX II VARIÁVEIS CLÍNICAS
+  ═══════════════════════════════════════════════════════════════ -->
+  <div id="step3" class="step-section">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">🧬</div>
+        <div>
+          <div class="card-title">SYNTAX Score II — Variáveis Clínicas</div>
+          <div class="card-subtitle">Prediz mortalidade em 4 anos para PCI vs CABG (Farooq et al. JACC 2013; validado no EXCEL Trial)</div>
+        </div>
+      </div>
+
+      <div class="info-teal info-box">
+        <span class="info-box-icon">💡</span>
+        <div>O SYNTAX II integra o SYNTAX I angiográfico com variáveis clínicas para individualizar a predição de mortalidade. Útil especialmente em <strong>TCE não-protegido</strong> e <strong>doença triarterial</strong> para guiar a decisão PCI vs CABG com o Heart Team.</div>
+      </div>
+
+      <!-- SYNTAX I status -->
+      <div style="background:var(--muted);border-radius:var(--radius);padding:12px 16px;margin-bottom:1.25rem;display:flex;align-items:center;gap:1rem;">
+        <div>
+          <div style="font-size:.68rem;font-weight:700;color:var(--muted-foreground);font-family:var(--font-mono);letter-spacing:.08em;text-transform:uppercase;">SYNTAX I calculado</div>
+          <div style="font-family:var(--font-mono);font-size:1.8rem;font-weight:700;color:var(--teal);" id="s2_s1_display">0</div>
+        </div>
+        <div style="font-size:.8rem;color:var(--muted-foreground);">Será combinado com as variáveis clínicas abaixo para gerar o SYNTAX II.</div>
+      </div>
+
+      <div class="form-grid" style="gap:1rem;margin-bottom:1rem;">
+        <div class="form-group">
+          <label class="form-label">Idade <span>(anos)</span></label>
+          <input id="s2_age" class="form-input" type="number" min="18" max="100" placeholder="ex: 67" oninput="calcS2Preview()"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Sexo</label>
+          <select class="form-select" id="s2_sex" onchange="calcS2Preview()">
+            <option value="male">Masculino</option>
+            <option value="female">Feminino</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Peso <span>(kg)</span></label>
+          <input id="s2_weight" class="form-input" type="number" min="30" max="200" placeholder="ex: 80" oninput="calcS2Preview()"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Creatinina sérica <span>(mg/dL)</span></label>
+          <input id="s2_creat" class="form-input" type="number" min="0.3" max="15" step="0.1" placeholder="ex: 1.1" oninput="calcS2Preview()"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">ClCr Cockcroft-Gault <span>(mL/min)</span></label>
+          <input id="s2_crcl" class="form-input" type="number" min="5" max="180" placeholder="Auto-calc ou manual" oninput="calcS2Preview()"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Fração de Ejeção VE <span>(%)</span></label>
+          <input id="s2_lvef" class="form-input" type="number" min="10" max="80" placeholder="ex: 55" oninput="calcS2Preview()"/>
+        </div>
+      </div>
+
+      <div id="crcl_preview" style="font-size:.78rem;color:var(--muted-foreground);margin-bottom:1rem;padding:8px 12px;background:var(--muted);border-radius:var(--radius);font-family:var(--font-mono);display:none;">
+        ClCr calculado (C-G): <span id="crcl_val" style="color:var(--teal);font-weight:700;"></span> mL/min
+      </div>
+
+      <!-- Binary clinical variables -->
+      <div style="margin-bottom:.75rem;font-size:.78rem;font-weight:700;color:var(--muted-foreground);text-transform:uppercase;letter-spacing:.08em;font-family:var(--font-mono);">Comorbidades</div>
+
+      <div class="check-grid" style="grid-template-columns:1fr 1fr;gap:.5rem;">
+
+        <label class="check-item" id="wrap_pvd" onclick="toggleClinCheck('pvd','wrap_pvd')">
+          <input type="checkbox" id="pvd"/>
+          <div class="check-box"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <span class="check-label">
+            <strong>Doença Vascular Periférica</strong>
+            <small>Inclui doença arterial periférica ou aórtica</small>
+          </span>
+        </label>
+
+        <label class="check-item" id="wrap_copd" onclick="toggleClinCheck('copd','wrap_copd')">
+          <input type="checkbox" id="copd"/>
+          <div class="check-box"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <span class="check-label">
+            <strong>DPOC</strong>
+            <small>Doença pulmonar obstrutiva crônica</small>
+          </span>
+        </label>
+
+      </div>
+
+      <!-- Auto-detected from Step 2 -->
+      <div style="margin-top:.75rem;padding:10px 14px;background:var(--muted);border-radius:var(--radius);border:1px solid var(--border);font-size:.8rem;">
+        <div style="font-weight:700;margin-bottom:6px;color:var(--muted-foreground);">Auto-detectado das lesões inseridas:</div>
+        <div style="display:flex;gap:.75rem;flex-wrap:wrap;">
+          <span id="auto_lm" style="display:flex;align-items:center;gap:5px;">
+            <span id="auto_lm_dot" style="font-size:.9rem;">⬜</span>
+            <span id="auto_lm_text" style="font-size:.78rem;">TCE não envolvido</span>
+          </span>
+          <span id="auto_3v" style="display:flex;align-items:center;gap:5px;">
+            <span id="auto_3v_dot" style="font-size:.9rem;">⬜</span>
+            <span id="auto_3v_text" style="font-size:.78rem;">Doença não-triarterial</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- S2 Preview -->
+      <div id="s2_preview" style="display:none;margin-top:1.25rem;">
+        <div style="background:var(--muted);border:1px solid var(--border);border-radius:calc(var(--radius)+2px);padding:1rem 1.25rem;">
+          <div style="font-size:.7rem;font-weight:700;color:var(--muted-foreground);font-family:var(--font-mono);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem;">Pré-visualização SYNTAX II</div>
+          <div style="display:flex;gap:2rem;flex-wrap:wrap;">
+            <div>
+              <div style="font-size:.72rem;color:var(--muted-foreground);">Mortalidade 4 anos PCI</div>
+              <div style="font-family:var(--font-mono);font-size:1.6rem;font-weight:700;color:var(--primary);" id="prev_pci">—</div>
+            </div>
+            <div>
+              <div style="font-size:.72rem;color:var(--muted-foreground);">Mortalidade 4 anos CABG</div>
+              <div style="font-family:var(--font-mono);font-size:1.6rem;font-weight:700;color:#fbbf24;" id="prev_cabg">—</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-secondary" onclick="goStep(2)">← Rever Lesões</button>
+        <button class="btn btn-primary btn-lg" onclick="goStep(4)">
+          Ver Resultado Final
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       STEP 4 – RESULTADO
+  ═══════════════════════════════════════════════════════════════ -->
+  <div id="step4" class="step-section">
+
+    <div class="section-label">Resultado</div>
+    <div class="section-title">SYNTAX Score — Estratificação e Recomendação</div>
+
+    <!-- SYNTAX I RESULT -->
+    <div class="result-panel" id="res_syntax1">
+      <div class="result-header low" id="res1_header">
+        <div class="result-icon" id="res1_icon">🟢</div>
+        <div>
+          <div class="result-title" id="res1_title">SYNTAX Score I</div>
+          <div style="font-size:.82rem;color:var(--muted-foreground);" id="res1_sub">Calculando...</div>
+        </div>
+      </div>
+      <div class="result-body">
+        <!-- Score number + gauge -->
+        <div style="display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;margin-bottom:1.25rem;">
+          <div style="text-align:center;">
+            <div style="font-size:.68rem;font-weight:700;color:var(--muted-foreground);font-family:var(--font-mono);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;">SYNTAX I</div>
+            <div style="font-family:var(--font-mono);font-size:3.2rem;font-weight:800;line-height:1;" id="final_s1">0</div>
+            <div style="font-size:.75rem;color:var(--muted-foreground);">pontos</div>
+          </div>
+          <div style="flex:1;min-width:200px;">
+            <div class="gauge-wrap" style="margin:0;">
+              <div class="gauge-bar" style="position:relative;">
+                <div class="gauge-low"></div>
+                <div class="gauge-mid"></div>
+                <div class="gauge-high"></div>
+                <div class="gauge-pointer" id="gauge_ptr"></div>
+              </div>
+              <div class="gauge-markers">
+                <span>0</span>
+                <span style="position:relative;left:-2px;">Baixo</span>
+                <span>23</span>
+                <span>Interm.</span>
+                <span>33</span>
+                <span>Alto</span>
+                <span>65+</span>
+              </div>
+            </div>
+            <div style="margin-top:.75rem;" id="res1_cat_badge"></div>
+          </div>
+        </div>
+
+        <!-- Lesion breakdown -->
+        <div id="res_lesion_breakdown" style="margin-bottom:1rem;"></div>
+
+        <!-- Risk category explanation -->
+        <div id="res1_explanation"></div>
+      </div>
+    </div>
+
+    <!-- SYNTAX II RESULT (if available) -->
+    <div class="result-panel" id="res_syntax2" style="display:none;">
+      <div class="result-header low">
+        <div class="result-icon">🧬</div>
+        <div>
+          <div class="result-title">SYNTAX Score II — Predição de Mortalidade em 4 Anos</div>
+          <div style="font-size:.82rem;color:var(--muted-foreground);">Modelo de Farooq et al. JACC 2013 · Mortalidade por todas as causas</div>
+        </div>
+      </div>
+      <div class="result-body">
+        <div class="mortality-compare">
+          <div class="mortality-bar-card" id="pci_card">
+            <div class="mortality-bar-title" style="color:var(--primary);">⚙ PCI</div>
+            <div class="mortality-val" id="pci_mort" style="color:var(--primary);">—</div>
+            <div class="mortality-sub">Mortalidade estimada em 4 anos</div>
+            <div class="mortality-bar"><div class="mortality-fill pci" id="pci_fill" style="width:0%"></div></div>
+          </div>
+          <div class="mortality-bar-card" id="cabg_card">
+            <div class="mortality-bar-title" style="color:#fbbf24;">✂ CABG</div>
+            <div class="mortality-val" id="cabg_mort" style="color:#fbbf24;">—</div>
+            <div class="mortality-sub">Mortalidade estimada em 4 anos</div>
+            <div class="mortality-bar"><div class="mortality-fill cabg" id="cabg_fill" style="width:0%"></div></div>
+          </div>
+        </div>
+        <div id="s2_recommendation"></div>
+      </div>
+    </div>
+
+    <!-- STRATEGY RECOMMENDATION -->
+    <div id="strategy_box"></div>
+
+    <!-- Evidence context -->
+    <div style="margin-top:1.5rem;">
+      <div class="section-label" style="margin-bottom:.75rem;">Contexto Evidencial</div>
+      <div class="info-teal info-box">
+        <span class="info-box-icon">📊</span>
+        <div><strong>SYNTAX Trial (Mohr et al. NEJM 2013):</strong> Pacientes com SYNTAX I &lt;23 — outcomes similares PCI vs CABG. SYNTAX I 23–32 — resultados intermediários, favorecendo CABG em MACE. SYNTAX I ≥33 — CABG significativamente superior na redução de MACE e revascularização repetida.</div>
+      </div>
+      <div class="info-teal info-box">
+        <span class="info-box-icon">📊</span>
+        <div><strong>EXCEL Trial (Stone et al. NEJM 2016; 5 anos):</strong> Em TCE com SYNTAX I ≤32, PCI com everolimus-eluting stent foi não-inferior ao CABG na morte composta, IM ou AVC em 3 anos. Aos 5 anos, aumento de mortalidade com PCI (diferença não-significativa).</div>
+      </div>
+      <div class="info-amber info-box">
+        <span class="info-box-icon">⚠️</span>
+        <div><strong>Recomendação ESC 2018 (Revascularização):</strong> SYNTAX I ≥33 em doença triarterial — CABG Classe I, LOE A. TCE: decisão individualizada pelo Heart Team com SYNTAX I e SYNTAX II como ferramentas de suporte (não substituem avaliação clínica integrada).</div>
+      </div>
+    </div>
+
+    <!-- Lesion summary table -->
+    <div class="card" style="margin-top:1.5rem;">
+      <div class="card-header">
+        <div class="card-icon">📋</div>
+        <div>
+          <div class="card-title">Resumo das Lesões</div>
+          <div class="card-subtitle">Detalhamento do score por segmento</div>
+        </div>
+      </div>
+      <div style="overflow-x:auto;">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Segmento</th>
+              <th>Características</th>
+              <th style="text-align:center;">Peso base</th>
+              <th style="text-align:center;">Score Lesão</th>
+            </tr>
+          </thead>
+          <tbody id="res_lesion_table">
+            <tr><td colspan="4" style="color:var(--muted-foreground);text-align:center;padding:1.5rem;">Nenhuma lesão registrada.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="display:flex;justify-content:flex-end;padding-top:1rem;border-top:1px solid var(--border);margin-top:.5rem;">
+        <div style="text-align:right;">
+          <div style="font-size:.75rem;color:var(--muted-foreground);">TOTAL</div>
+          <div style="font-family:var(--font-mono);font-size:1.8rem;font-weight:800;color:var(--teal);" id="res_total">0</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="disclaimer">
+      <strong>⚠ Aviso Clínico:</strong> Esta ferramenta tem caráter educacional e de suporte à decisão. O SYNTAX Score é uma ferramenta de estratificação anatômica — não substitui a avaliação clínica integrada pelo Heart Team, incluindo viabilidade miocárdica, função ventricular, risco cirúrgico individual (EuroSCORE II), preferência do paciente e experiência do centro. Decida sempre com base no conjunto clínico-angiográfico do paciente.
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="goStep(1);resetAll()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+        Novo Cálculo
+      </button>
+      <button class="btn btn-secondary" onclick="goStep(2)">← Editar Lesões</button>
+      <button class="btn btn-secondary" onclick="goStep(3)">← Editar Clínico</button>
+    </div>
+  </div>
+
+  <!-- REFERENCES -->
+  <hr class="section-divider"/>
+  <div class="section-label">Referências</div>
+  <div class="section-title" style="margin-bottom:1.5rem;">Evidências e Fontes</div>
+  <ul class="ref-list">
+    <li class="ref-item">
+      <span class="ref-num">1</span>
+      <div>
+        <div class="ref-title">Sianos G, et al. The SYNTAX Score: an angiographic tool grading the complexity of coronary artery disease.</div>
+        <div class="ref-meta">EuroIntervention. 2005;1(2):219–227. <strong>Derivação do SYNTAX Score I.</strong></div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <span class="ref-num">2</span>
+      <div>
+        <div class="ref-title">Farooq V, et al. Anatomical and clinical characteristics to guide decision making between coronary artery bypass surgery and percutaneous coronary intervention for individual patients: development and validation of SYNTAX score II.</div>
+        <div class="ref-meta">JACC. 2013;61(9):1009–1024. <strong>Derivação do SYNTAX II.</strong></div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <span class="ref-num">3</span>
+      <div>
+        <div class="ref-title">Mohr FW, et al. Coronary artery bypass graft surgery versus percutaneous coronary intervention in patients with three-vessel disease and left main coronary disease: 5-year follow-up of the randomised, clinical SYNTAX trial.</div>
+        <div class="ref-meta">Lancet. 2013;381(9867):629–638. <strong>SYNTAX Trial 5 anos.</strong></div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <span class="ref-num">4</span>
+      <div>
+        <div class="ref-title">Stone GW, et al. Everolimus-Eluting Stents or Bypass Surgery for Left Main Coronary Artery Disease (EXCEL Trial).</div>
+        <div class="ref-meta">N Engl J Med. 2016;375(23):2223–2235. <strong>EXCEL Trial.</strong></div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <span class="ref-num">5</span>
+      <div>
+        <div class="ref-title">Neumann FJ, et al. 2018 ESC/EACTS Guidelines on myocardial revascularization.</div>
+        <div class="ref-meta">Eur Heart J. 2019;40(2):87–165. <strong>Diretrizes de Revascularização ESC 2018.</strong></div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <span class="ref-num">6</span>
+      <div>
+        <div class="ref-title">Serruys PW, et al. Percutaneous coronary intervention versus coronary-artery bypass grafting for severe coronary artery disease (SYNTAX Trial).</div>
+        <div class="ref-meta">N Engl J Med. 2009;360(10):961–972. <strong>SYNTAX Trial original.</strong></div>
+      </div>
+    </li>
+    <li class="ref-item">
+      <span class="ref-num">7</span>
+      <div>
+        <div class="ref-title">Campos CM, et al. Revisiting the SYNTAX Score Methodology: 15 years on.</div>
+        <div class="ref-meta">Interv Cardiol Clin. 2020;9(2):183–196. <strong>Metodologia SYNTAX revisitada.</strong></div>
+      </div>
+    </li>
+  </ul>
+
+</div><!-- end container -->
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-copy">
+        © 2025 Dr. Lucas Silva · Cardiologia Intervencionista<br>
+        <span style="opacity:.7;">Ferramenta educacional — não substitui julgamento clínico. Algoritmo baseado em Sianos 2005 &amp; Farooq 2013.</span>
+      </div>
+      <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener" style="font-size:.75rem;">lucascardio.com.br</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ╔══════════════════════════════════════════════════════════════╗
+     ║                    JAVASCRIPT                               ║
+     ╚══════════════════════════════════════════════════════════════╝ -->
+<script>
+/* ─────────────────────────────────────────────────────────────────
+   STATE
+──────────────────────────────────────────────────────────────────── */
+let dominance = 'right';
+let lesions = [];
+let nextId = 1;
+
+// New lesion form state
+let nwFeatures = { cto:false, trif:false, trifDis:1, bif:false, aorto:false, tort:false, long:false, calc:false, throm:false, diff:false, diffSegs:1 };
+let nwMedina = [0,0,0]; // proximal, distal, lateral
+let nwCTO = { dur:false, blunt:false, bridg:false, vis:false, sb:false };
+
+/* ─────────────────────────────────────────────────────────────────
+   SEGMENTS DATA
+──────────────────────────────────────────────────────────────────── */
+const ALL_SEGMENTS = [
+  { id:'5',   vessel:'TCE', label:'Seg. 5 – TCE (Tronco da Coronária Esquerda)', w:{right:5,   left:6,   co:6   } },
+  { id:'6',   vessel:'DA',  label:'Seg. 6 – DA Proximal',                         w:{right:3.5, left:3.5, co:3.5 } },
+  { id:'7',   vessel:'DA',  label:'Seg. 7 – DA Médio',                            w:{right:2.5, left:2.5, co:2.5 } },
+  { id:'8',   vessel:'DA',  label:'Seg. 8 – DA Apical',                           w:{right:1,   left:1,   co:1   } },
+  { id:'9',   vessel:'DA',  label:'Seg. 9 – 1ª Diagonal (D1)',                    w:{right:1,   left:1,   co:1   } },
+  { id:'9a',  vessel:'DA',  label:'Seg. 9a – 1ª Diagonal Ramo A',                 w:{right:1,   left:1,   co:1   } },
+  { id:'10',  vessel:'DA',  label:'Seg. 10 – 2ª Diagonal (D2)',                   w:{right:0.5, left:0.5, co:0.5 } },
+  { id:'10a', vessel:'DA',  label:'Seg. 10a – 2ª Diagonal Ramo A',               w:{right:0.5, left:0.5, co:0.5 } },
+  { id:'11',  vessel:'CX',  label:'Seg. 11 – CX Proximal',                        w:{right:1.5, left:2.5, co:2   } },
+  { id:'12',  vessel:'CX',  label:'Seg. 12 – 1ª Marginal Obtusa (OM1)',          w:{right:1,   left:1,   co:1   } },
+  { id:'12a', vessel:'CX',  label:'Seg. 12a – OM1 Ramo A',                       w:{right:1,   left:1,   co:1   } },
+  { id:'13',  vessel:'CX',  label:'Seg. 13 – CX Médio',                          w:{right:0.5, left:1.5, co:1   } },
+  { id:'13a', vessel:'CX',  label:'Seg. 13a – Ramo Intermediário (RI)',           w:{right:0.5, left:0.5, co:0.5 } },
+  { id:'14',  vessel:'CX',  label:'Seg. 14 – CX Distal',                         w:{right:0.5, left:1.5, co:1   } },
+  { id:'14a', vessel:'CX',  label:'Seg. 14a – Póstero-lateral CX Ramo A',        w:{right:0.5, left:0.5, co:0.5 } },
+  { id:'14b', vessel:'CX',  label:'Seg. 14b – Póstero-lateral CX Ramo B',        w:{right:0.5, left:0.5, co:0.5 } },
+  { id:'15',  vessel:'CX',  label:'Seg. 15 – DP (da CX) — válido em dominância esquerda', w:{right:0, left:1.5, co:0.75} },
+  { id:'1',   vessel:'ACD', label:'Seg. 1 – ACD Proximal',                        w:{right:1,   left:0.5, co:0.5 } },
+  { id:'2',   vessel:'ACD', label:'Seg. 2 – ACD Médio',                           w:{right:1,   left:0.5, co:0.5 } },
+  { id:'3',   vessel:'ACD', label:'Seg. 3 – ACD Distal',                          w:{right:1,   left:0.5, co:0.5 } },
+  { id:'4',   vessel:'ACD', label:'Seg. 4 – DP (da ACD) — válido em dominância direita', w:{right:1, left:0, co:0.5} },
+  { id:'16',  vessel:'ACD', label:'Seg. 16 – Póstero-lateral (da ACD)',           w:{right:0.5, left:0,   co:0.25} },
+  { id:'16a', vessel:'ACD', label:'Seg. 16a – Ramo Póstero-lat A (ACD)',         w:{right:0.5, left:0,   co:0.25} },
+  { id:'16b', vessel:'ACD', label:'Seg. 16b – Ramo Póstero-lat B (ACD)',         w:{right:0.5, left:0,   co:0.25} },
+  { id:'16c', vessel:'ACD', label:'Seg. 16c – Ramo Póstero-lat C (ACD)',         w:{right:0.5, left:0,   co:0.25} },
+];
+
+function getSegById(id) { return ALL_SEGMENTS.find(s => s.id === String(id)); }
+function getWeight(id) {
+  const s = getSegById(id);
+  if (!s) return 0;
+  return s.w[dominance] || 0;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   BUILD REFERENCE TABLE
+──────────────────────────────────────────────────────────────────── */
+function buildRefTable() {
+  const tbody = document.getElementById('segment_ref_table');
+  const vessels = ['TCE','DA','CX','ACD'];
+  let html = '';
+  vessels.forEach(v => {
+    const segs = ALL_SEGMENTS.filter(s => s.vessel === v);
+    segs.forEach((s, i) => {
+      html += `<tr>
+        <td><span style="font-family:var(--font-mono);font-weight:700;">${s.id}</span></td>
+        <td><span class="badge badge-teal" style="font-size:.65rem;">${v}</span></td>
+        <td style="font-size:.8rem;">${s.label.replace(/Seg\. \S+ – /, '')}</td>
+        <td style="text-align:center;font-family:var(--font-mono);font-weight:700;color:var(--teal);">${s.w.right}</td>
+        <td style="text-align:center;font-family:var(--font-mono);font-weight:700;color:#fbbf24;">${s.w.left}</td>
+      </tr>`;
+    });
+  });
+  tbody.innerHTML = html;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   DOMINANCE
+──────────────────────────────────────────────────────────────────── */
+function setDominance(d) {
+  dominance = d;
+  ['right','left','co'].forEach(k => {
+    document.getElementById('dom_'+k).classList.toggle('active', k === d);
+  });
+  updateLiveSyntaxI();
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   SEGMENT SELECT
+──────────────────────────────────────────────────────────────────── */
+function updateSegmentSelect() {
+  const vessel = document.getElementById('new_vessel').value;
+  const sel = document.getElementById('new_segment');
+  sel.innerHTML = '<option value="">Selecione o segmento...</option>';
+  if (!vessel) {
+    document.getElementById('seg_weight_preview').style.display = 'none';
+    return;
+  }
+  const segs = ALL_SEGMENTS.filter(s => s.vessel === vessel);
+  segs.forEach(s => {
+    const opt = document.createElement('option');
+    opt.value = s.id;
+    opt.textContent = s.label;
+    sel.appendChild(opt);
+  });
+  sel.onchange = function() {
+    const id = sel.value;
+    const preview = document.getElementById('seg_weight_preview');
+    if (id) {
+      const w = getWeight(id);
+      document.getElementById('seg_weight_val').textContent = w;
+      preview.style.display = 'block';
+    } else {
+      preview.style.display = 'none';
+    }
+    updateLiveScore();
+  };
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   FEATURE TOGGLES
+──────────────────────────────────────────────────────────────────── */
+function toggleFeature(key) {
+  nwFeatures[key] = !nwFeatures[key];
+  const row = document.getElementById('toggle_'+key);
+  if (row) row.classList.toggle('on', nwFeatures[key]);
+  // show/hide sub-forms
+  const sub = document.getElementById(key+'_sub');
+  if (sub) sub.style.display = nwFeatures[key] ? 'block' : 'none';
+  // mutual exclusion: trifurcation and bifurcation
+  if (key === 'trif' && nwFeatures.trif && nwFeatures.bif) {
+    nwFeatures.bif = false;
+    document.getElementById('toggle_bif').classList.remove('on');
+    document.getElementById('bif_sub').style.display = 'none';
+  }
+  if (key === 'bif' && nwFeatures.bif && nwFeatures.trif) {
+    nwFeatures.trif = false;
+    document.getElementById('toggle_trif').classList.remove('on');
+    document.getElementById('trif_sub').style.display = 'none';
+  }
+  updateLiveScore();
+}
+
+function setTrifDiseased(n) {
+  nwFeatures.trifDis = n;
+  [1,2,3,4].forEach(i => {
+    document.getElementById('trif_'+i).classList.toggle('active', i === n);
+  });
+  updateLiveScore();
+}
+
+function toggleSub(cbId, rowId) {
+  const cb = document.getElementById(cbId);
+  const row = document.getElementById('row_'+rowId) || document.getElementById(rowId+'_row');
+  cb.checked = !cb.checked;
+  // find parent row
+  const parentRow = cb.closest('.sub-check-row');
+  if (parentRow) parentRow.classList.toggle('checked', cb.checked);
+  // update state
+  if (cbId === 'cto_dur') nwCTO.dur = cb.checked;
+  else if (cbId === 'cto_blunt') nwCTO.blunt = cb.checked;
+  else if (cbId === 'cto_bridg') nwCTO.bridg = cb.checked;
+  else if (cbId === 'cto_vis') nwCTO.vis = cb.checked;
+  else if (cbId === 'cto_sb') nwCTO.sb = cb.checked;
+  updateLiveScore();
+}
+
+/* Medina */
+function setMedina(seg, val) {
+  nwMedina[seg-1] = val;
+  [0,1].forEach(v => {
+    document.getElementById('m'+seg+'_'+v).classList.toggle('active', v === val);
+  });
+  document.getElementById('medina_display').textContent = '('+nwMedina.join(',')+')';
+  const sum = nwMedina.reduce((a,b)=>a+b,0);
+  const infoEl = document.getElementById('medina_info');
+  if (sum === 0) infoEl.textContent = 'Classificação (0,0,0) — nenhum segmento doente: não é bifurcação verdadeira.';
+  else if (nwMedina[2] === 1) infoEl.textContent = 'Ramo lateral envolvido — bifurcação verdadeira. (+1 ponto base)';
+  else infoEl.textContent = 'Apenas vaso principal afetado. (+1 ponto)';
+  updateLiveScore();
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   LESION SCORE CALCULATION
+──────────────────────────────────────────────────────────────────── */
+function calcLesionScoreFromForm() {
+  const segId = document.getElementById('new_segment').value;
+  if (!segId) return 0;
+  return calcLesionScore({
+    segment: segId,
+    cto: nwFeatures.cto,
+    ctoDur: nwCTO.dur,
+    ctoBlunt: nwCTO.blunt,
+    ctoBridg: nwCTO.bridg,
+    ctoVis: nwCTO.vis,
+    ctoSB: nwCTO.sb,
+    trif: nwFeatures.trif,
+    trifDis: nwFeatures.trifDis,
+    bif: nwFeatures.bif,
+    medina: [...nwMedina],
+    bifAngle: document.getElementById('bif_angle') ? document.getElementById('bif_angle').checked : false,
+    aorto: nwFeatures.aorto,
+    tort: nwFeatures.tort,
+    long: nwFeatures.long,
+    calc: nwFeatures.calc,
+    throm: nwFeatures.throm,
+    diff: nwFeatures.diff,
+    diffSegs: parseInt(document.getElementById('diff_segs') ? document.getElementById('diff_segs').value : 1) || 1
+  });
+}
+
+function calcLesionScore(l) {
+  const w = getWeight(l.segment);
+  let score = l.cto ? w * 5 : w;
+
+  // CTO extras
+  if (l.cto) {
+    if (l.ctoDur)   score += 1;
+    if (l.ctoBlunt) score += 1;
+    if (l.ctoBridg) score += 1;
+    if (l.ctoVis)   score += 1;
+    if (l.ctoSB)    score += 1;
+  }
+
+  // Trifurcation: 1 diseased → +3, 2 → +4, 3 → +5, 4 → +6
+  if (l.trif) {
+    score += (parseInt(l.trifDis) || 1) + 2;
+  }
+
+  // Bifurcation: +1 if any component diseased (regardless of Medina)
+  if (l.bif) {
+    const hasDisease = l.medina && l.medina.some(v => v === 1);
+    if (hasDisease || !l.medina) score += 1;
+    if (l.bifAngle) score += 1; // angle <70° adds +1
+  }
+
+  // Single-point additions
+  if (l.aorto) score += 1;
+  if (l.tort)  score += 2;
+  if (l.long)  score += 1;
+  if (l.calc)  score += 2;
+  if (l.throm) score += 1;
+
+  // Diffuse disease: +1 per additional 10mm segment
+  if (l.diff) score += (parseInt(l.diffSegs) || 1);
+
+  return Math.round(score * 10) / 10;
+}
+
+function updateLiveScore() {
+  const sc = calcLesionScoreFromForm();
+  document.getElementById('live_lesion_score').textContent = sc.toFixed(1);
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   ADD / REMOVE LESIONS
+──────────────────────────────────────────────────────────────────── */
+function toggleAddPanel() {
+  const panel = document.getElementById('add_panel');
+  const isOpen = panel.classList.contains('open');
+  if (isOpen) {
+    panel.classList.remove('open');
+    document.getElementById('add_lesion_btn').innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg> Adicionar Lesão`;
+  } else {
+    resetNewLesionForm();
+    panel.classList.add('open');
+    document.getElementById('add_lesion_btn').innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg> Fechar`;
+    panel.scrollIntoView({ behavior:'smooth', block:'nearest' });
+  }
+}
+
+function cancelAdd() {
+  const panel = document.getElementById('add_panel');
+  panel.classList.remove('open');
+  document.getElementById('add_lesion_btn').innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg> Adicionar Lesão`;
+}
+
+function resetNewLesionForm() {
+  // Reset vessel/segment
+  document.getElementById('new_vessel').value = '';
+  document.getElementById('new_segment').innerHTML = '<option value="">Selecione a artéria primeiro</option>';
+  document.getElementById('seg_weight_preview').style.display = 'none';
+
+  // Reset all toggles
+  nwFeatures = { cto:false, trif:false, trifDis:1, bif:false, aorto:false, tort:false, long:false, calc:false, throm:false, diff:false, diffSegs:1 };
+  nwMedina = [0,0,0];
+  nwCTO = { dur:false, blunt:false, bridg:false, vis:false, sb:false };
+
+  ['cto','trif','bif','aorto','tort','long','calc','throm','diff'].forEach(k => {
+    const el = document.getElementById('toggle_'+k);
+    if (el) el.classList.remove('on');
+    const sub = document.getElementById(k+'_sub');
+    if (sub) sub.style.display = 'none';
+  });
+
+  // Reset CTO subs
+  ['cto_dur','cto_blunt','cto_bridg','cto_vis','cto_sb'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.checked = false;
+    const row = el ? el.closest('.sub-check-row') : null;
+    if (row) row.classList.remove('checked');
+  });
+
+  // Reset Medina
+  setMedina(1,0); setMedina(2,0); setMedina(3,0);
+
+  // Reset bif angle
+  const ba = document.getElementById('bif_angle');
+  if (ba) { ba.checked = false; const row = ba.closest('.sub-check-row'); if(row) row.classList.remove('checked'); }
+
+  // Reset trif buttons
+  [1,2,3,4].forEach(i => document.getElementById('trif_'+i).classList.toggle('active', i===1));
+
+  // Reset diff segs
+  const ds = document.getElementById('diff_segs');
+  if (ds) ds.value = 1;
+
+  document.getElementById('live_lesion_score').textContent = '0.0';
+}
+
+function addLesion() {
+  const vessel = document.getElementById('new_vessel').value;
+  const segId = document.getElementById('new_segment').value;
+  if (!vessel || !segId) {
+    alert('Por favor, selecione a artéria e o segmento da lesão.');
+    return;
+  }
+  const segData = getSegById(segId);
+  const bif_angle_checked = document.getElementById('bif_angle') ? document.getElementById('bif_angle').checked : false;
+  const diff_segs_val = document.getElementById('diff_segs') ? parseInt(document.getElementById('diff_segs').value)||1 : 1;
+
+  const lesion = {
+    id: nextId++,
+    segment: segId,
+    vessel: vessel,
+    label: segData ? segData.label : segId,
+    cto: nwFeatures.cto,
+    ctoDur: nwCTO.dur,
+    ctoBlunt: nwCTO.blunt,
+    ctoBridg: nwCTO.bridg,
+    ctoVis: nwCTO.vis,
+    ctoSB: nwCTO.sb,
+    trif: nwFeatures.trif,
+    trifDis: nwFeatures.trifDis,
+    bif: nwFeatures.bif,
+    medina: [...nwMedina],
+    bifAngle: bif_angle_checked,
+    aorto: nwFeatures.aorto,
+    tort: nwFeatures.tort,
+    long: nwFeatures.long,
+    calc: nwFeatures.calc,
+    throm: nwFeatures.throm,
+    diff: nwFeatures.diff,
+    diffSegs: diff_segs_val
+  };
+
+  lesions.push(lesion);
+  cancelAdd();
+  renderLesionList();
+  updateLiveSyntaxI();
+}
+
+function removeLesion(id) {
+  lesions = lesions.filter(l => l.id !== id);
+  renderLesionList();
+  updateLiveSyntaxI();
+}
+
+function getLesionChars(l) {
+  const tags = [];
+  if (l.cto) {
+    let ctoPts = 0;
+    if (l.ctoDur) ctoPts++;
+    if (l.ctoBlunt) ctoPts++;
+    if (l.ctoBridg) ctoPts++;
+    if (l.ctoVis) ctoPts++;
+    if (l.ctoSB) ctoPts++;
+    tags.push({ label: `CTO${ctoPts ? ' +'+ctoPts : ''}`, cls:'cto' });
+  }
+  if (l.trif) tags.push({ label:`Trifurc. (${l.trifDis}D)`, cls:'bifurc' });
+  if (l.bif) {
+    let bLabel = `Bif. (${l.medina.join(',')})`;
+    if (l.bifAngle) bLabel += ' <70°';
+    tags.push({ label: bLabel, cls:'bifurc' });
+  }
+  if (l.aorto) tags.push({ label:'Aorto-ostial', cls:'' });
+  if (l.tort)  tags.push({ label:'Tortuosidade', cls:'' });
+  if (l.long)  tags.push({ label:'>20mm', cls:'' });
+  if (l.calc)  tags.push({ label:'Calcificação', cls:'' });
+  if (l.throm) tags.push({ label:'Trombo', cls:'' });
+  if (l.diff)  tags.push({ label:`Difusa (+${l.diffSegs}×10mm)`, cls:'' });
+  return tags;
+}
+
+function renderLesionList() {
+  const noMsg = document.getElementById('no_lesions_msg');
+
+  // Get or create a dedicated cards container (never destroys noMsg)
+  let cardsDiv = document.getElementById('lesion_cards');
+  if (!cardsDiv) {
+    cardsDiv = document.createElement('div');
+    cardsDiv.id = 'lesion_cards';
+    const listEl = document.getElementById('lesion_list');
+    listEl.appendChild(cardsDiv);
+  }
+
+  if (lesions.length === 0) {
+    noMsg.style.display = 'block';
+    cardsDiv.innerHTML = '';
+    return;
+  }
+
+  noMsg.style.display = 'none';
+  let html = '';
+  lesions.forEach(l => {
+    const score = calcLesionScore(l);
+    const chars = getLesionChars(l);
+    const charTags = chars.map(c => `<span class="lesion-char-tag ${c.cls}">${c.label}</span>`).join('');
+    html += `
+      <div class="lesion-card">
+        <div class="lesion-card-score">${score.toFixed(1)}</div>
+        <div class="lesion-card-info">
+          <div class="lesion-card-name">${l.label.replace('Seg. '+l.segment+' – ','')}</div>
+          <div class="lesion-card-chars">${charTags || '<span style="color:var(--muted-foreground);font-size:.72rem;">Sem características adicionais</span>'}</div>
+        </div>
+        <button class="lesion-card-remove" onclick="removeLesion(${l.id})" title="Remover lesão">✕</button>
+      </div>`;
+  });
+  cardsDiv.innerHTML = html;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   SYNTAX I LIVE UPDATE
+──────────────────────────────────────────────────────────────────── */
+function calcSyntaxI() {
+  return lesions.reduce((sum, l) => sum + calcLesionScore(l), 0);
+}
+
+function updateLiveSyntaxI() {
+  const s1 = calcSyntaxI();
+  const rounded = Math.round(s1 * 10) / 10;
+  document.getElementById('live_s1').textContent = rounded;
+  document.getElementById('live_count').textContent = lesions.length;
+
+  // Risk category
+  const catEl = document.getElementById('live_cat');
+  if (s1 < 23) {
+    catEl.textContent = 'Baixo Risco'; catEl.className = 'score-cat low';
+  } else if (s1 < 33) {
+    catEl.textContent = 'Risco Intermediário'; catEl.className = 'score-cat mid';
+  } else {
+    catEl.textContent = 'Alto Risco'; catEl.className = 'score-cat high';
+  }
+
+  // LM flag
+  const hasLM = lesions.some(l => l.segment === '5');
+  document.getElementById('live_lm_flag').style.display = hasLM ? 'block' : 'none';
+
+  // 3V flag: check if lesions span ≥3 distinct vessels (excluding TCE)
+  const vessels = new Set(lesions.filter(l => l.segment !== '5').map(l => l.vessel));
+  document.getElementById('live_3v_flag').style.display = vessels.size >= 3 ? 'block' : 'none';
+
+  // Update S3 display
+  document.getElementById('s2_s1_display').textContent = rounded;
+  // Update auto-detected flags in S3
+  updateAutoDetected();
+}
+
+function updateAutoDetected() {
+  const hasLM = lesions.some(l => l.segment === '5');
+  const vessels = new Set(lesions.filter(l => l.segment !== '5').map(l => l.vessel));
+  const is3V = vessels.size >= 3;
+
+  const lmDot = document.getElementById('auto_lm_dot');
+  const lmText = document.getElementById('auto_lm_text');
+  if (lmDot) lmDot.textContent = hasLM ? '🔴' : '⬜';
+  if (lmText) lmText.textContent = hasLM ? 'TCE envolvido (LM+)' : 'TCE não envolvido';
+  if (lmText) lmText.style.color = hasLM ? '#f87171' : '';
+
+  const vDot = document.getElementById('auto_3v_dot');
+  const vText = document.getElementById('auto_3v_text');
+  if (vDot) vDot.textContent = is3V ? '🟡' : '⬜';
+  if (vText) vText.textContent = is3V ? 'Doença triarterial (3VD)' : 'Não triarterial ('+vessels.size+' vaso(s))';
+  if (vText) vText.style.color = is3V ? '#fbbf24' : '';
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   SYNTAX II
+──────────────────────────────────────────────────────────────────── */
+function calcCrCl(age, weight, creat, isFemale) {
+  if (!age || !weight || !creat) return null;
+  const crcl = ((140 - age) * weight) / (72 * creat) * (isFemale ? 0.85 : 1);
+  return Math.max(Math.round(crcl), 5);
+}
+
+function calcSyntaxII(ss1, age, crcl, lvef, lm, pvd, isFemale, copd) {
+  // PCI model — Farooq et al. JACC 2013 (Table 3)
+  const lp_pci = -9.4829
+    + 0.0539 * ss1
+    + 0.0376 * age
+    - 0.0148 * crcl
+    - 0.0197 * lvef
+    + 1.8527 * (lm ? 1 : 0)
+    + 0.7284 * (pvd ? 1 : 0)
+    + 0.6648 * (isFemale ? 1 : 0)
+    + 0.6282 * (copd ? 1 : 0);
+  const p_pci = 100 / (1 + Math.exp(-lp_pci));
+
+  // CABG model
+  const lp_cabg = -8.6841
+    + 0.0268 * ss1
+    + 0.0386 * age
+    - 0.0162 * crcl
+    - 0.0264 * lvef
+    + 0.9458 * (lm ? 1 : 0)
+    + 0.7282 * (pvd ? 1 : 0)
+    + 0.4440 * (isFemale ? 1 : 0)
+    + 0.8282 * (copd ? 1 : 0);
+  const p_cabg = 100 / (1 + Math.exp(-lp_cabg));
+
+  return {
+    pci: Math.round(p_pci * 10) / 10,
+    cabg: Math.round(p_cabg * 10) / 10
+  };
+}
+
+function calcS2Preview() {
+  const age = parseFloat(document.getElementById('s2_age').value);
+  const isFemale = document.getElementById('s2_sex').value === 'female';
+  const weight = parseFloat(document.getElementById('s2_weight').value);
+  const creat = parseFloat(document.getElementById('s2_creat').value);
+  const lvef = parseFloat(document.getElementById('s2_lvef').value);
+
+  // Auto-calc CrCl
+  let crcl = parseFloat(document.getElementById('s2_crcl').value);
+  if (!crcl && age && weight && creat) {
+    crcl = calcCrCl(age, weight, creat, isFemale);
+    if (crcl) {
+      document.getElementById('crcl_val').textContent = crcl;
+      document.getElementById('crcl_preview').style.display = 'block';
+      document.getElementById('s2_crcl').placeholder = crcl + ' (calculado)';
+    }
+  }
+
+  const pvd  = document.getElementById('pvd').checked;
+  const copd = document.getElementById('copd').checked;
+  const lm   = lesions.some(l => l.segment === '5');
+  const s1   = calcSyntaxI();
+
+  if (age && crcl && lvef) {
+    const res = calcSyntaxII(s1, age, crcl, lvef, lm, pvd, isFemale, copd);
+    document.getElementById('prev_pci').textContent  = res.pci.toFixed(1) + '%';
+    document.getElementById('prev_cabg').textContent = res.cabg.toFixed(1) + '%';
+    document.getElementById('s2_preview').style.display = 'block';
+  }
+}
+
+function toggleClinCheck(cbId, wrapId) {
+  const cb = document.getElementById(cbId);
+  const wrap = document.getElementById(wrapId);
+  cb.checked = !cb.checked;
+  wrap.classList.toggle('checked', cb.checked);
+  calcS2Preview();
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   RESULTS RENDERING
+──────────────────────────────────────────────────────────────────── */
+function renderResults() {
+  const s1 = calcSyntaxI();
+  const rounded = Math.round(s1 * 10) / 10;
+
+  // Score display
+  document.getElementById('final_s1').textContent = rounded;
+  document.getElementById('res_total').textContent = rounded;
+
+  // Gauge pointer position (0-65 mapped to 0-100%)
+  const pct = Math.min((s1 / 65) * 100, 100);
+  document.getElementById('gauge_ptr').style.left = pct + '%';
+
+  // Risk category
+  let catClass, catText, icon, headerClass, explanation;
+  if (s1 < 23) {
+    catClass = 'low'; catText = 'Baixo Risco Anatômico'; icon = '🟢'; headerClass = 'low';
+    explanation = `
+      <div class="info-teal info-box">
+        <span class="info-box-icon">✅</span>
+        <div><strong>SYNTAX I Baixo (&lt;23):</strong> Ambas as estratégias (PCI e CABG) são anatômicamente viáveis. Na doença triarterial com SYNTAX I baixo, o SYNTAX Trial demonstrou outcomes comparáveis entre PCI e CABG em 5 anos (MACE, sobrevivência). PCI pode ser considerada uma alternativa razoável se tecnicamente adequada e o risco cirúrgico for relevante.</div>
+      </div>`;
+  } else if (s1 < 33) {
+    catClass = 'mid'; catText = 'Risco Anatômico Intermediário'; icon = '🟡'; headerClass = 'mid';
+    explanation = `
+      <div class="info-amber info-box">
+        <span class="info-box-icon">⚠️</span>
+        <div><strong>SYNTAX I Intermediário (23–32):</strong> Zona de equipoise — nenhuma estratégia é claramente superior apenas pelo score anatômico. O <strong>SYNTAX II</strong> é especialmente útil nessa faixa para guiar a decisão com base no perfil clínico. Heart Team é mandatório (ESC 2018 Classe I). Em TCE, considerar EXCEL e NOBLE Trial como referência adicional.</div>
+      </div>`;
+  } else {
+    catClass = 'high'; catText = 'Alto Risco Anatômico'; icon = '🔴'; headerClass = 'high';
+    explanation = `
+      <div class="info-red info-box">
+        <span class="info-box-icon">🚫</span>
+        <div><strong>SYNTAX I Alto (≥33):</strong> CABG é a estratégia de revascularização preferencial com recomendação Classe I, LOE A (ESC 2018, ACC/AHA 2021) em doença triarterial. No SYNTAX Trial 5 anos, PCI nessa faixa apresentou MACE significativamente maior que CABG (26,8% vs 14,3%). Em TCE com SYNTAX I ≥33, CABG também é preferida.</div>
+      </div>`;
+  }
+
+  document.getElementById('res1_header').className = 'result-header ' + headerClass;
+  document.getElementById('res1_icon').textContent = icon;
+  document.getElementById('res1_title').textContent = `SYNTAX Score I — ${catText}`;
+  document.getElementById('res1_sub').textContent = `${rounded} pontos · ${lesions.length} lesão(ões) registrada(s) · Dominância ${dominance === 'right' ? 'Direita' : dominance === 'left' ? 'Esquerda' : 'Co-dominante'}`;
+
+  document.getElementById('res1_cat_badge').innerHTML = `<span class="score-cat ${catClass}">${catText}: ${rounded} pts</span>`;
+  document.getElementById('res1_explanation').innerHTML = explanation;
+
+  // Lesion breakdown
+  let brkHtml = '';
+  if (lesions.length > 0) {
+    brkHtml = `<div style="margin-bottom:.75rem;">
+      <div style="font-size:.72rem;font-weight:700;color:var(--muted-foreground);text-transform:uppercase;letter-spacing:.08em;font-family:var(--font-mono);margin-bottom:.5rem;">Contribuição por lesão</div>
+      <div style="display:flex;flex-wrap:wrap;gap:.4rem;">`;
+    lesions.forEach(l => {
+      const sc = calcLesionScore(l);
+      brkHtml += `<div style="background:var(--muted);border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-size:.75rem;">
+        <span style="font-family:var(--font-mono);font-weight:700;color:var(--teal);">${sc.toFixed(1)}</span>
+        <span style="color:var(--muted-foreground);margin-left:4px;">${l.label.replace(/Seg\. \S+ – /, '')}</span>
+      </div>`;
+    });
+    brkHtml += '</div></div>';
+  }
+  document.getElementById('res_lesion_breakdown').innerHTML = brkHtml;
+
+  // Lesion table
+  let tblHtml = '';
+  if (lesions.length === 0) {
+    tblHtml = '<tr><td colspan="4" style="color:var(--muted-foreground);text-align:center;padding:1.5rem;">Nenhuma lesão registrada.</td></tr>';
+  } else {
+    lesions.forEach(l => {
+      const w = getWeight(l.segment);
+      const sc = calcLesionScore(l);
+      const chars = getLesionChars(l);
+      tblHtml += `<tr>
+        <td style="font-weight:700;font-size:.85rem;">${l.label.replace(/Seg\. \S+ – /, '')}<br><span style="font-family:var(--font-mono);font-size:.68rem;color:var(--muted-foreground);">Seg. ${l.segment}</span></td>
+        <td style="font-size:.8rem;">${chars.map(c=>`<span class="lesion-char-tag ${c.cls}" style="margin-right:3px;">${c.label}</span>`).join('') || '<span style="color:var(--muted-foreground);">—</span>'}</td>
+        <td style="text-align:center;font-family:var(--font-mono);color:var(--muted-foreground);">${w}${l.cto ? ' ×5' : ''}</td>
+        <td style="text-align:center;font-family:var(--font-mono);font-weight:700;color:var(--teal);">${sc.toFixed(1)}</td>
+      </tr>`;
+    });
+  }
+  document.getElementById('res_lesion_table').innerHTML = tblHtml;
+
+  // SYNTAX II results
+  const age = parseFloat(document.getElementById('s2_age').value);
+  const isFemale = document.getElementById('s2_sex').value === 'female';
+  const weight = parseFloat(document.getElementById('s2_weight').value);
+  const creat = parseFloat(document.getElementById('s2_creat').value);
+  const lvef = parseFloat(document.getElementById('s2_lvef').value);
+  let crcl = parseFloat(document.getElementById('s2_crcl').value);
+  if (!crcl && age && weight && creat) crcl = calcCrCl(age, weight, creat, isFemale);
+  const pvd  = document.getElementById('pvd').checked;
+  const copd = document.getElementById('copd').checked;
+  const lm   = lesions.some(l => l.segment === '5');
+
+  const s2Panel = document.getElementById('res_syntax2');
+  const stratBox = document.getElementById('strategy_box');
+
+  if (age && crcl && lvef) {
+    const res = calcSyntaxII(s1, age, crcl, lvef, lm, pvd, isFemale, copd);
+    s2Panel.style.display = 'block';
+
+    document.getElementById('pci_mort').textContent  = res.pci.toFixed(1) + '%';
+    document.getElementById('cabg_mort').textContent = res.cabg.toFixed(1) + '%';
+
+    // Bar widths (normalize to max of the two)
+    const maxM = Math.max(res.pci, res.cabg, 1);
+    document.getElementById('pci_fill').style.width  = Math.min((res.pci  / maxM) * 100, 100) + '%';
+    document.getElementById('cabg_fill').style.width = Math.min((res.cabg / maxM) * 100, 100) + '%';
+
+    // Winner highlight
+    const diff = res.pci - res.cabg;
+    document.getElementById('pci_card').classList.toggle('winner', diff < -2);
+    document.getElementById('cabg_card').classList.toggle('winner', diff > 2);
+
+    // S2 recommendation
+    let s2Rec = '';
+    if (Math.abs(diff) <= 2) {
+      s2Rec = `<div class="info-amber info-box" style="margin-top:.75rem;">
+        <span class="info-box-icon">⚖️</span>
+        <div><strong>SYNTAX II: Equipoise (diferença &lt;2%).</strong> Ambas as estratégias têm predição de mortalidade similar. Decisão deve ser guiada por preferência do paciente, risco cirúrgico (EuroSCORE II), experiência do centro e características anatômicas adicionais.</div>
+      </div>`;
+    } else if (diff < -2) {
+      s2Rec = `<div class="info-teal info-box" style="margin-top:.75rem;">
+        <span class="info-box-icon">✅</span>
+        <div><strong>SYNTAX II favorece PCI</strong> (menor mortalidade estimada em 4 anos: PCI ${res.pci.toFixed(1)}% vs CABG ${res.cabg.toFixed(1)}%). Considerar PCI como estratégia preferencial se anatomicamente viável.</div>
+      </div>`;
+    } else {
+      s2Rec = `<div class="info-red info-box" style="margin-top:.75rem;">
+        <span class="info-box-icon">✂</span>
+        <div><strong>SYNTAX II favorece CABG</strong> (menor mortalidade estimada em 4 anos: CABG ${res.cabg.toFixed(1)}% vs PCI ${res.pci.toFixed(1)}%). CABG deve ser a estratégia preferencial, em concordância com o Heart Team.</div>
+      </div>`;
+    }
+    document.getElementById('s2_recommendation').innerHTML = s2Rec;
+
+    // Strategy box
+    const stratClass = Math.abs(diff) <= 2 ? 'mid' : (diff < -2 ? 'low' : 'high');
+    const stratIcon = Math.abs(diff) <= 2 ? '⚖️' : (diff < -2 ? '⚙️' : '✂');
+    const stratTitle = Math.abs(diff) <= 2 ? 'Decisão Equipoise — Heart Team' : (diff < -2 ? 'SYNTAX II Favorece PCI' : 'SYNTAX II Favorece CABG');
+    const stratText = Math.abs(diff) <= 2
+      ? `SYNTAX I de ${rounded} pontos (${catText}). SYNTAX II indica predições similares para ambas as estratégias. Discutir no Heart Team com risco cirúrgico (EuroSCORE II), completude de revascularização esperada e preferência do paciente.`
+      : diff < -2
+        ? `SYNTAX I de ${rounded} pontos. SYNTAX II prediz mortalidade em 4 anos menor com PCI (${res.pci.toFixed(1)}% vs ${res.cabg.toFixed(1)}%). Considerar PCI como estratégia de eleição se tecnicamente viável.`
+        : `SYNTAX I de ${rounded} pontos (${catText}). SYNTAX II prediz mortalidade em 4 anos menor com CABG (${res.cabg.toFixed(1)}% vs PCI ${res.pci.toFixed(1)}%). CABG é a estratégia recomendada.`;
+
+    stratBox.innerHTML = `
+      <div class="result-panel" style="margin-top:0;">
+        <div class="result-header ${stratClass}">
+          <div class="result-icon">${stratIcon}</div>
+          <div>
+            <div class="result-title">${stratTitle}</div>
+            <div style="font-size:.82rem;color:var(--muted-foreground);">Baseado em SYNTAX I + SYNTAX II + ESC 2018</div>
+          </div>
+        </div>
+        <div class="result-body">
+          <p style="font-size:.88rem;line-height:1.7;">${stratText}</p>
+          <div class="info-gray info-box" style="margin-top:.75rem;">
+            <span class="info-box-icon">📌</span>
+            <div>O SYNTAX II não substitui o julgamento do Heart Team. Avaliar sempre: completude de revascularização esperada, risco cirúrgico individual (EuroSCORE II), viabilidade miocárdica, comorbidades e preferência do paciente.</div>
+          </div>
+        </div>
+      </div>`;
+  } else {
+    s2Panel.style.display = 'none';
+    // Simple SYNTAX I strategy only
+    let stratHtml = '';
+    if (s1 < 23) {
+      stratHtml = `
+        <div class="result-panel" style="margin-top:0;">
+          <div class="result-header low">
+            <div class="result-icon">🟢</div>
+            <div>
+              <div class="result-title">SYNTAX I Baixo — PCI e CABG Anatômicamente Comparáveis</div>
+              <div style="font-size:.82rem;color:var(--muted-foreground);">Complete as variáveis clínicas (Passo 3) para o SYNTAX II</div>
+            </div>
+          </div>
+          <div class="result-body">
+            <div class="info-teal info-box">
+              <span class="info-box-icon">💡</span>
+              <div>Com SYNTAX I &lt;23, ambas as estratégias têm outcome comparável em ensaios clínicos. Decisão individualizada pelo Heart Team baseada em risco cirúrgico, preferência do paciente e experiência do centro.</div>
+            </div>
+          </div>
+        </div>`;
+    } else if (s1 < 33) {
+      stratHtml = `
+        <div class="result-panel" style="margin-top:0;">
+          <div class="result-header mid">
+            <div class="result-icon">🟡</div>
+            <div>
+              <div class="result-title">SYNTAX I Intermediário — Complete o SYNTAX II</div>
+              <div style="font-size:.82rem;color:var(--muted-foreground);">Insira as variáveis clínicas no Passo 3 para guiar a decisão PCI vs CABG</div>
+            </div>
+          </div>
+          <div class="result-body">
+            <div class="info-amber info-box">
+              <span class="info-box-icon">⚠️</span>
+              <div>Score na zona de equipoise. O SYNTAX II é especialmente relevante nessa faixa — insira as variáveis clínicas no Passo 3 para obter a predição de mortalidade em 4 anos para PCI vs CABG.</div>
+            </div>
+            <button class="btn btn-primary" onclick="goStep(3)">Inserir Variáveis Clínicas (SYNTAX II) →</button>
+          </div>
+        </div>`;
+    } else {
+      stratHtml = `
+        <div class="result-panel" style="margin-top:0;">
+          <div class="result-header high">
+            <div class="result-icon">🔴</div>
+            <div>
+              <div class="result-title">SYNTAX I Alto — CABG Recomendada</div>
+              <div style="font-size:.82rem;color:var(--muted-foreground);">Classe I, LOE A (ESC 2018) em doença triarterial</div>
+            </div>
+          </div>
+          <div class="result-body">
+            <div class="info-red info-box">
+              <span class="info-box-icon">✂</span>
+              <div>Com SYNTAX I ≥33, CABG é a estratégia de revascularização com melhor evidência de desfecho em doença triarterial. Mesmo em TCE, scores elevados favorecem CABG. Complete o SYNTAX II para confirmação individualizada.</div>
+            </div>
+            <button class="btn btn-primary" onclick="goStep(3)">Calcular SYNTAX II também →</button>
+          </div>
+        </div>`;
+    }
+    stratBox.innerHTML = stratHtml;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   NAVIGATION
+──────────────────────────────────────────────────────────────────── */
+const STEP_PROGRESS = { 1:'25%', 2:'50%', 3:'75%', 4:'100%' };
+
+function goStep(n) {
+  [1,2,3,4].forEach(i => {
+    document.getElementById('step'+i).classList.toggle('active', i === n);
+    const tls = document.querySelectorAll('.timeline-step');
+    if (tls[i-1]) {
+      tls[i-1].classList.toggle('active', i === n);
+      const dot = tls[i-1].querySelector('.dot');
+      if (dot) dot.style.background = i === n ? 'var(--teal)' : '';
+      if (dot) dot.style.color = i === n ? '#000' : '';
+    }
+  });
+  document.getElementById('progress').style.width = STEP_PROGRESS[n];
+  if (n === 4) renderResults();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function resetAll() {
+  lesions = [];
+  nextId = 1;
+  dominance = 'right';
+  setDominance('right');
+  resetNewLesionForm();
+  renderLesionList();
+  updateLiveSyntaxI();
+  // Reset S3 form
+  ['s2_age','s2_weight','s2_creat','s2_crcl','s2_lvef'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  document.getElementById('s2_sex').value = 'male';
+  ['pvd','copd'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.checked = false;
+      const wrap = document.getElementById('wrap_'+id);
+      if (wrap) wrap.classList.remove('checked');
+    }
+  });
+  document.getElementById('crcl_preview').style.display = 'none';
+  document.getElementById('s2_preview').style.display = 'none';
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   INIT
+──────────────────────────────────────────────────────────────────── */
+buildRefTable();
+updateLiveSyntaxI();
+</script>
+
+</body>
+</html>
