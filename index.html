@@ -704,6 +704,17 @@
                         </div>
                     </div>
 
+                    <div class="col-md-6 tool-item reveal" data-section="pac" data-cat="sistemas">
+                        <div class="tool-card h-100">
+                            <span class="cat-tag cat-sistemas"><i class="fas fa-network-wired"></i>Coração &amp; Outros Sistemas</span>
+                            <a class="btn-med-custom" href="Pacientes/doenca-renal-coracao.html" title="Doenças renais e coração">
+                                Qual a relação da doença renal e o coração?
+                            </a>
+                            <p class="small text-black-50 mt-3 mb-0">Aprenda que os rins regulam muito mais do que a pressão arterial</p>
+                            <span class="badge">Não é atoa que existe uma condição chamada Síndrome Cardiorrenal</span>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -1095,6 +1106,19 @@
                         </div>
                     </div>
 
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="educ">
+                        <div class="tool-card h-100">
+                            <span class="cat-tag cat-educ"><i class="fas fa-book-medical"></i>Educação &amp; Referência</span>
+                            <a class="btn-med-custom" href="Medicos/microcirculacao-invasiva.html" title="Tudo sobre avaliação microvascular coronariana invasiva">
+                                Tudo sobre avaliação microvascular coronariana invasiva
+                            </a>
+                            <p class="small text-black-50 mt-3">
+                                Referência interativa sobre a área que mais cresce no diagnóstico de dor torácica.
+                            </p>
+                            <span class="badge">CFR &amp; IMR e muito mais</span>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -1267,29 +1291,68 @@
 </script>
 
 <script>
-// ─── Tool Category Filter ───────────────────────────────────────────────────
+// ─── Atualiza automaticamente os números dos filtros ───────────────────────
+function updateFilterCounts(section) {
+    var items = document.querySelectorAll('.tool-item[data-section="' + section + '"]');
+    var buttons = document.querySelectorAll('.tool-filter-btn[data-section="' + section + '"]');
+
+    buttons.forEach(function(btn) {
+        var cat = btn.dataset.cat;
+        var countSpan = btn.querySelector('.filter-count');
+        if (!countSpan) return;
+
+        var count;
+        if (cat === 'all') {
+            count = items.length;
+        } else {
+            count = document.querySelectorAll(
+                '.tool-item[data-section="' + section + '"][data-cat="' + cat + '"]'
+            ).length;
+        }
+
+        countSpan.textContent = count;
+    });
+}
+
+// ─── Filtra os cards ────────────────────────────────────────────────────────
 function filterTools(section, cat) {
     document.querySelectorAll('.tool-filter-btn[data-section="' + section + '"]').forEach(function(btn) {
         btn.classList.toggle('active', btn.dataset.cat === cat);
     });
+
     document.querySelectorAll('.tool-item[data-section="' + section + '"]').forEach(function(item) {
         item.style.display = (cat === 'all' || item.dataset.cat === cat) ? '' : 'none';
     });
 }
+
 document.addEventListener('DOMContentLoaded', function() {
-    // Filter pill buttons
+    // Atualiza as contagens de todas as seções existentes
+    var sections = new Set();
+
+    document.querySelectorAll('.tool-filter-btn[data-section]').forEach(function(btn) {
+        sections.add(btn.dataset.section);
+    });
+
+    sections.forEach(function(section) {
+        updateFilterCounts(section);
+    });
+
+    // Clique nos botões de filtro
     document.querySelectorAll('.tool-filter-btn').forEach(function(btn) {
         btn.addEventListener('click', function() {
             filterTools(this.dataset.section, this.dataset.cat);
         });
     });
-    // Navbar dropdown links with data-section
+
+    // Links do dropdown da navbar
     document.querySelectorAll('.dropdown-item[data-section]').forEach(function(link) {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function() {
             var section = this.dataset.section;
-            var cat     = this.dataset.cat;
-            // Pequeno delay para a página rolar antes de filtrar
-            setTimeout(function() { filterTools(section, cat); }, 120);
+            var cat = this.dataset.cat;
+
+            setTimeout(function() {
+                filterTools(section, cat);
+            }, 120);
         });
     });
 });

@@ -1,0 +1,1581 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>Avaliação Invasiva da Microcirculação Coronariana – Guia Completo | Dr. Lucas Silva</title>
+  <meta name="description" content="Guia interativo completo para avaliação invasiva da microcirculação coronariana: patofisiologia, protocolo step-by-step com CoroFlow (Abbott), interpretação e tratamento baseado em evidências." />
+  <meta name="author" content="Dr. Lucas Silva" />
+  <link rel="canonical" href="https://lucascardio.com.br/Medicos/microcirculacao-invasiva.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    "name": "Avaliação Invasiva da Microcirculação Coronariana – Guia Completo",
+    "url": "https://lucascardio.com.br/Medicos/microcirculacao-invasiva.html",
+    "description": "Guia interativo para médicos sobre avaliação invasiva da microcirculação coronariana com protocolo CATH CMD e software CoroFlow.",
+    "author": {
+      "@type": "Person",
+      "name": "Dr. Lucas Silva",
+      "url": "https://lucascardio.com.br"
+    },
+    "isAccessibleForFree": true
+  }
+  </script>
+
+  <style>
+    :root {
+      --primary: oklch(65% .18 195);
+      --primary-foreground: oklch(98% 0 0);
+      --background: oklch(13% .018 250);
+      --foreground: oklch(93% .01 250);
+      --card: oklch(18.5% .018 250);
+      --card-foreground: oklch(93% .01 250);
+      --muted: oklch(22% .018 250);
+      --muted-foreground: oklch(62% .02 250);
+      --border: oklch(28% .025 250);
+      --input: oklch(22% .02 250);
+      --destructive: oklch(60% .22 25);
+      --secondary: oklch(22% .022 250);
+      --secondary-foreground: oklch(88% .01 250);
+      --accent: oklch(24% .025 250);
+      --accent-foreground: oklch(90% .01 250);
+      --teal: #00d3bd;
+      --teal-dim: rgba(0,211,189,.12);
+      --amber: oklch(82.8% .189 84.429);
+      --red: oklch(63.7% .237 25.331);
+      --green: oklch(79.2% .209 151.711);
+      --purple: #a78bfa;
+      --purple-dim: rgba(167,139,250,.12);
+      --blue: #60a5fa;
+      --blue-dim: rgba(96,165,250,.12);
+      --radius: 0.625rem;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--background);
+      color: var(--foreground);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(18,20,27,.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: .6rem;
+      text-decoration: none; color: var(--foreground);
+    }
+    .nav-brand-icon {
+      width: 28px; height: 28px; border-radius: 7px;
+      background: var(--teal); display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .nav-brand-icon svg { width: 16px; height: 16px; }
+    .nav-brand-name { font-weight: 800; font-size: 1rem; letter-spacing: -.025em; line-height: 1; }
+    .nav-brand-name span { color: var(--teal); }
+    .nav-brand-sep { width: 1px; height: 14px; background: var(--border); margin: 0 6px; }
+    .nav-brand-sub { font-size: .7rem; font-weight: 500; color: var(--muted-foreground); }
+    .nav-center { display: flex; align-items: center; gap: .25rem; }
+    .nav-center-btn {
+      background: none; border: none; cursor: pointer; font-family: var(--font-sans);
+      font-size: .8rem; font-weight: 500; color: var(--muted-foreground);
+      padding: 6px 12px; border-radius: 7px;
+      transition: background .15s, color .15s;
+    }
+    .nav-center-btn:hover { background: var(--accent); color: var(--foreground); }
+    .nav-actions { display: flex; align-items: center; gap: .5rem; }
+    .nav-badge {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 999px; background: var(--teal-dim);
+      color: var(--teal); border: 1px solid rgba(0,211,189,.25);
+      white-space: nowrap;
+    }
+
+    /* LAYOUT */
+    .container { max-width: 920px; margin: 0 auto; padding: 0 1.5rem; }
+    .section { padding: 3rem 0; }
+
+    /* HERO */
+    .hero { padding: 3.5rem 0 2.5rem; border-bottom: 1px solid var(--border); }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .7rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--teal); margin-bottom: 1rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 20px; height: 2px;
+      background: var(--teal); border-radius: 1px;
+    }
+    .hero h1 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 800; line-height: 1.2;
+      margin-bottom: .75rem; letter-spacing: -.02em;
+    }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero-sub {
+      color: var(--muted-foreground); font-size: .95rem;
+      max-width: 660px; margin-bottom: 1.5rem;
+    }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 6px; border: 1px solid var(--border);
+      color: var(--muted-foreground); background: var(--card);
+      font-family: var(--font-mono);
+    }
+
+    /* TABS NAV */
+    .tabs-nav {
+      display: flex; gap: 2px; overflow-x: auto;
+      background: var(--border); border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px);
+      margin: 2rem 0 0; padding: 0;
+    }
+    .tab-btn {
+      flex: 1; min-width: 0;
+      background: var(--card); border: none; cursor: pointer;
+      padding: 1rem .75rem; font-family: var(--font-sans);
+      font-size: .78rem; font-weight: 600; color: var(--muted-foreground);
+      transition: background .15s, color .15s;
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      text-align: center;
+    }
+    .tab-btn:first-child { border-radius: var(--radius) 0 0 var(--radius); }
+    .tab-btn:last-child { border-radius: 0 var(--radius) var(--radius) 0; }
+    .tab-btn:hover { background: var(--accent); color: var(--foreground); }
+    .tab-btn.active { background: var(--teal-dim); color: var(--teal); }
+    .tab-icon { font-size: 1.2rem; line-height: 1; }
+    .tab-label { font-size: .72rem; line-height: 1.2; }
+
+    .progress-bar { height: 3px; background: var(--border); border-radius: 2px; margin: 1.5rem 0; }
+    .progress-fill { height: 100%; background: var(--teal); border-radius: 2px; transition: width .4s ease; }
+
+    /* SECTIONS */
+    .tab-content { display: none; animation: fadeUp .3s ease; }
+    .tab-content.active { display: block; }
+
+    /* CARDS */
+    .card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px);
+      padding: 1.5rem; margin-bottom: 1.5rem;
+    }
+    .card-header {
+      display: flex; align-items: flex-start; gap: .75rem;
+      margin-bottom: 1.25rem; padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .card-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+      background: var(--teal-dim); color: var(--teal);
+    }
+    .card-icon.purple { background: var(--purple-dim); color: var(--purple); }
+    .card-icon.blue { background: var(--blue-dim); color: var(--blue); }
+    .card-icon.red { background: rgba(220,38,38,.12); color: #f87171; }
+    .card-icon.amber { background: rgba(251,191,36,.08); color: #fbbf24; }
+    .card-title { font-weight: 700; font-size: 1rem; margin-bottom: 2px; }
+    .card-subtitle { font-size: .78rem; color: var(--muted-foreground); }
+
+    .card-body { font-size: .88rem; line-height: 1.7; color: var(--foreground); }
+    .card-body p { margin-bottom: .75rem; }
+    .card-body p:last-child { margin-bottom: 0; }
+    .card-body strong { color: var(--teal); font-weight: 700; }
+    .card-body ul, .card-body ol { margin: .5rem 0 .75rem 1.2rem; }
+    .card-body li { margin-bottom: .35rem; font-size: .85rem; }
+    .card-body li::marker { color: var(--teal); }
+
+    /* SECTION TITLES */
+    .section-title { font-size: 1.3rem; font-weight: 800; margin-bottom: .25rem; letter-spacing: -.01em; }
+    .section-label {
+      font-size: .68rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--teal);
+      margin-bottom: .4rem; font-family: var(--font-mono);
+    }
+    .section-divider { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+
+    /* INFO BOXES */
+    .info-box {
+      border-radius: var(--radius); padding: 12px 16px;
+      font-size: .82rem; line-height: 1.6;
+      display: flex; gap: 10px; margin-bottom: .75rem;
+    }
+    .info-box-icon { flex-shrink: 0; font-size: 1rem; margin-top: 1px; }
+    .info-teal { background: var(--teal-dim); border-left: 3px solid var(--teal); }
+    .info-amber { background: rgba(251,191,36,.08); border-left: 3px solid rgba(251,191,36,.5); }
+    .info-red { background: rgba(220,38,38,.08); border-left: 3px solid rgba(220,38,38,.4); }
+    .info-gray { background: var(--muted); border-left: 3px solid var(--border); }
+    .info-purple { background: var(--purple-dim); border-left: 3px solid var(--purple); }
+    .info-blue { background: var(--blue-dim); border-left: 3px solid var(--blue); }
+
+    /* STEP CARDS (for cath lab procedure) */
+    .step-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px);
+      margin-bottom: 1.5rem; overflow: hidden;
+    }
+    .step-card-header {
+      padding: 1rem 1.5rem; display: flex; align-items: center; gap: 12px;
+      background: var(--muted); cursor: pointer;
+      transition: background .15s;
+      user-select: none;
+    }
+    .step-card-header:hover { background: var(--accent); }
+    .step-card-header.open { background: var(--teal-dim); }
+    .step-num-badge {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: var(--teal); color: #000;
+      font-family: var(--font-mono); font-weight: 800; font-size: .85rem;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .step-card-title { font-weight: 700; font-size: .95rem; }
+    .step-card-subtitle { font-size: .75rem; color: var(--muted-foreground); }
+    .step-chevron {
+      margin-left: auto; font-size: 1.2rem; color: var(--muted-foreground);
+      transition: transform .2s;
+    }
+    .step-card-header.open .step-chevron { transform: rotate(180deg); color: var(--teal); }
+    .step-card-body {
+      padding: 0 1.5rem; max-height: 0; overflow: hidden;
+      transition: max-height .35s ease, padding .35s ease;
+    }
+    .step-card-body.open { padding: 1.25rem 1.5rem; max-height: 3000px; }
+    .step-card-body .card-body { font-size: .85rem; }
+
+    /* TABLES */
+    .compare-table {
+      width: 100%; border-collapse: collapse;
+      font-size: .82rem; border-radius: var(--radius);
+      overflow: hidden; margin: 1rem 0;
+    }
+    .compare-table th {
+      background: var(--muted); padding: 10px 14px;
+      text-align: left; font-weight: 700; font-size: .75rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted-foreground); letter-spacing: .03em;
+    }
+    .compare-table td {
+      padding: 10px 14px; border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table tr:hover td { background: var(--accent); }
+
+    /* FORMULA */
+    .formula-box {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 16px 20px;
+      font-family: var(--font-mono); font-size: .9rem;
+      text-align: center; margin: 1rem 0;
+      color: var(--teal); font-weight: 600;
+    }
+    .formula-box small { display: block; font-size: .72rem; color: var(--muted-foreground); font-weight: 400; margin-top: 6px; }
+
+    /* BADGE */
+    .badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: .68rem; font-weight: 700; padding: 2px 8px;
+      border-radius: 999px; white-space: nowrap;
+    }
+    .badge-teal { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.2); }
+    .badge-red { background: rgba(220,38,38,.15); color: #f87171; border: 1px solid rgba(220,38,38,.25); }
+    .badge-amber { background: rgba(251,191,36,.12); color: #fbbf24; border: 1px solid rgba(251,191,36,.2); }
+    .badge-purple { background: var(--purple-dim); color: var(--purple); border: 1px solid rgba(167,139,250,.2); }
+
+    /* CUTOFF BOX */
+    .cutoff-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem; margin: 1rem 0;
+    }
+    .cutoff-item {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1rem;
+      text-align: center;
+    }
+    .cutoff-val {
+      font-family: var(--font-mono); font-size: 1.8rem; font-weight: 800;
+      color: var(--teal); line-height: 1;
+    }
+    .cutoff-label { font-size: .78rem; font-weight: 600; margin-top: .25rem; }
+    .cutoff-desc { font-size: .72rem; color: var(--muted-foreground); margin-top: .15rem; }
+
+    /* ERROR TABLE */
+    .error-table {
+      width: 100%; border-collapse: collapse; font-size: .8rem;
+      margin: 1rem 0;
+    }
+    .error-table th {
+      background: rgba(220,38,38,.08); padding: 8px 12px;
+      text-align: left; font-weight: 700; font-size: .72rem;
+      border-bottom: 1px solid var(--border);
+      color: #f87171; letter-spacing: .03em; text-transform: uppercase;
+    }
+    .error-table td {
+      padding: 8px 12px; border-bottom: 1px solid var(--border);
+      vertical-align: top; line-height: 1.5;
+    }
+    .error-table tr:last-child td { border-bottom: none; }
+    .error-table tr:hover td { background: var(--accent); }
+
+    /* REFERENCES */
+    .ref-list { list-style: none; }
+    .ref-item {
+      padding: 8px 0; border-bottom: 1px solid var(--border);
+      font-size: .78rem; line-height: 1.5;
+      display: flex; gap: 8px;
+    }
+    .ref-item:last-child { border-bottom: none; }
+    .ref-num {
+      font-family: var(--font-mono); font-size: .68rem; font-weight: 700;
+      color: var(--teal); min-width: 22px;
+    }
+    .ref-meta { color: var(--muted-foreground); font-size: .72rem; }
+    .ref-ev {
+      display: inline-block; font-size: .62rem; font-weight: 700;
+      padding: 1px 6px; border-radius: 4px; margin-left: 4px;
+      background: var(--teal-dim); color: var(--teal);
+    }
+
+    /* DISCLAIMER */
+    .disclaimer {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 12px 16px;
+      font-size: .75rem; color: var(--muted-foreground);
+      line-height: 1.6; margin-top: 1.5rem;
+    }
+
+    /* ACCORDION */
+    .accordion-group { margin: 1rem 0; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 0; margin-top: 3rem;
+    }
+    .footer-inner {
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-copy { font-size: .75rem; color: var(--muted-foreground); }
+
+    /* DECISION TREE */
+    .decision-node {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1rem 1.25rem;
+      margin-bottom: .75rem;
+    }
+    .decision-q { font-weight: 700; font-size: .9rem; margin-bottom: .5rem; }
+    .decision-options { display: flex; gap: .5rem; flex-wrap: wrap; }
+    .decision-btn {
+      padding: 6px 16px; border-radius: var(--radius);
+      border: 1.5px solid var(--border); background: var(--muted);
+      color: var(--foreground); font-family: var(--font-sans);
+      font-size: .8rem; font-weight: 600; cursor: pointer;
+      transition: all .15s;
+    }
+    .decision-btn:hover { border-color: var(--teal); background: var(--teal-dim); }
+    .decision-btn.selected { border-color: var(--teal); background: var(--teal-dim); color: var(--teal); }
+
+    /* TWO COLUMN */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 700px) {
+      .tabs-nav { flex-wrap: nowrap; overflow-x: auto; }
+      .tab-btn { min-width: 80px; padding: .75rem .5rem; }
+      .tab-label { font-size: .65rem; }
+      .two-col { grid-template-columns: 1fr; }
+      .cutoff-grid { grid-template-columns: 1fr 1fr; }
+      .nav-center { display: none; }
+    }
+    @media (max-width: 480px) {
+      .cutoff-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#">
+    <div class="nav-brand-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round"><path d="M12 21c-4.97 0-9-2.69-9-6s4.03-6 9-6 9 2.69 9 6-4.03 6-9 6z"/><path d="M12 3v6"/><circle cx="12" cy="12" r="2"/></svg>
+    </div>
+    <div>
+      <div class="nav-brand-name">Lucas<span>Cardio</span></div>
+    </div>
+    <div class="nav-brand-sep"></div>
+    <div class="nav-brand-sub">Microcirculação Coronariana</div>
+  </a>
+  <div class="nav-center">
+    <button class="nav-center-btn" onclick="goTab(0)">Patofisiologia</button>
+    <button class="nav-center-btn" onclick="goTab(1)">Diagnóstico</button>
+    <button class="nav-center-btn" onclick="goTab(2)">Procedimento</button>
+    <button class="nav-center-btn" onclick="goTab(3)">Interpretação</button>
+    <button class="nav-center-btn" onclick="goTab(4)">Tratamento</button>
+  </div>
+  <div class="nav-actions">
+    <span class="nav-badge">Evidence-Based 2024</span>
+  </div>
+</nav>
+
+<div class="container">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">Guia Interativo para Médicos</div>
+    <h1>Avaliação Invasiva da <em>Microcirculação Coronariana</em></h1>
+    <p class="hero-sub">
+      Da patofisiologia ao tratamento: protocolo detalhado passo a passo para avaliação da disfunção microvascular coronariana no laboratório de hemodinâmica, com foco no software <strong style="color:var(--teal)">CoroFlow</strong> (Coroventis/Abbott) e no algoritmo <strong style="color:var(--teal)">CATH CMD</strong>.
+    </p>
+    <div class="hero-tags">
+      <span class="tag">INOCA / ANOCA</span>
+      <span class="tag">CFR</span>
+      <span class="tag">IMR</span>
+      <span class="tag">CoroFlow</span>
+      <span class="tag">PressureWire X</span>
+      <span class="tag">CATH CMD</span>
+      <span class="tag">CorMicA</span>
+      <span class="tag">ChaMP-CMD</span>
+    </div>
+  </section>
+
+  <!-- TABS -->
+  <div class="tabs-nav" id="tabsNav">
+    <button class="tab-btn active" onclick="goTab(0)">
+      <span class="tab-icon">🔬</span>
+      <span class="tab-label">Patofisiologia</span>
+    </button>
+    <button class="tab-btn" onclick="goTab(1)">
+      <span class="tab-icon">🩺</span>
+      <span class="tab-label">Diagnóstico</span>
+    </button>
+    <button class="tab-btn" onclick="goTab(2)">
+      <span class="tab-icon">🏥</span>
+      <span class="tab-label">Procedimento<br>Invasivo</span>
+    </button>
+    <button class="tab-btn" onclick="goTab(3)">
+      <span class="tab-icon">📊</span>
+      <span class="tab-label">Interpretação<br>dos Dados</span>
+    </button>
+    <button class="tab-btn" onclick="goTab(4)">
+      <span class="tab-icon">💊</span>
+      <span class="tab-label">Tratamento</span>
+    </button>
+    <button class="tab-btn" onclick="goTab(5)">
+      <span class="tab-icon">📚</span>
+      <span class="tab-label">Referências</span>
+    </button>
+  </div>
+
+  <div class="progress-bar"><div class="progress-fill" id="progress" style="width:16.6%"></div></div>
+
+  <!-- ═══════════════════════════════════════════════
+       TAB 0 — PATOFISIOLOGIA
+  ═══════════════════════════════════════════════ -->
+  <div class="tab-content active" id="tab0">
+    <div class="section">
+      <div class="section-label">Módulo 01</div>
+      <div class="section-title">Patofisiologia da Disfunção Microvascular Coronariana</div>
+
+      <div class="card" style="margin-top:1.5rem">
+        <div class="card-header">
+          <div class="card-icon">🫀</div>
+          <div>
+            <div class="card-title">A Circulação Coronariana: Três Compartimentos</div>
+            <div class="card-subtitle">Taqueti & Di Carli, JACC 2018 · Ciaramella et al., Diagnostics 2024</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <p>A circulação coronariana é funcionalmente dividida em três compartimentos de tamanho decrescente e funções distintas:</p>
+          <ol>
+            <li><strong>Artérias epicárdicas (&gt;400 μm)</strong> — vasos de condução que oferecem resistência mínima ao fluxo (~5% da resistência total). Seu calibre é regulado por shear stress e função endotelial.</li>
+            <li><strong>Pré-arteríolas e arteríolas (100–400 μm e &lt;100 μm)</strong> — responsáveis pela maior parte da resistência coronariana (~80%). Regulam distribuição de fluxo através de mecanismos miogênicos e metabólicos.</li>
+            <li><strong>Capilares (&lt;10 μm)</strong> — vasos de troca responsáveis pela entrega de oxigênio ao miocárdio. Correspondem a ~15% da resistência total.</li>
+          </ol>
+          <p>Em condições normais, o fluxo sanguíneo coronariano permanece constante em ampla faixa de pressões de perfusão, graças à autorregulação mediada por alterações dinâmicas no tônus arteriolar. Como a extração miocárdica de oxigênio é quase máxima em repouso, qualquer aumento na demanda de O₂ deve ser compensado por aumento proporcional no fluxo coronariano — dependência que torna o miocárdio particularmente vulnerável à disfunção microvascular.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon purple">🧬</div>
+          <div>
+            <div class="card-title">Endótipos da CMD: Estrutural vs. Funcional</div>
+            <div class="card-subtitle">Spione et al., Front Cardiovasc Med 2022 · Collet et al., JSCAI 2024</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <p>A disfunção microvascular coronariana (CMD) possui dois endótipos patológicos principais, com implicações distintas na avaliação invasiva:</p>
+
+          <div class="two-col">
+            <div class="info-box info-purple" style="flex-direction:column">
+              <div style="font-weight:700;margin-bottom:.5rem">🔴 Endótipo Estrutural</div>
+              <div style="font-size:.82rem;line-height:1.6">
+                Alterações anatômicas (espessamento intimal, fibrose perivascular, rarefação capilar, microembolização) causam alta resistência microvascular <strong>tanto em repouso quanto sob estresse</strong>.<br><br>
+                <strong>Perfil hemodinâmico:</strong><br>
+                • Fluxo basal normal<br>
+                • Fluxo hiperêmico reduzido<br>
+                • CFR reduzido (&lt;2.5)<br>
+                • <strong>IMR elevado (&gt;25)</strong><br>
+                • Tmn hiperêmico prolongado
+              </div>
+            </div>
+            <div class="info-box info-blue" style="flex-direction:column">
+              <div style="font-weight:700;margin-bottom:.5rem">🔵 Endótipo Funcional</div>
+              <div style="font-size:.82rem;line-height:1.6">
+                Distúrbios vasomotores (disfunção endotelial, desequilíbrio NO, vasoconstrição adrenérgica) causam capacidade vasodilatadora esgotada com <strong>tônus basal já reduzido</strong>.<br><br>
+                <strong>Perfil hemodinâmico:</strong><br>
+                • Fluxo basal aumentado<br>
+                • Fluxo hiperêmico normal<br>
+                • CFR reduzido (&lt;2.5)<br>
+                • <strong>IMR normal (≤25)</strong><br>
+                • Tmn basal encurtado
+              </div>
+            </div>
+          </div>
+
+          <div class="info-teal info-box" style="margin-top:.75rem">
+            <span class="info-box-icon">💡</span>
+            <div><strong>Implicação clínica:</strong> CFR baixo com IMR normal sugere CMD funcional (capacidade vasodilatadora esgotada em repouso). CFR baixo com IMR elevado indica CMD estrutural (resistência microvascular patologicamente alta). Essa distinção é essencial para guiar a terapia. Em alguns pacientes, ambos os endótipos coexistem.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon red">⚡</div>
+          <div>
+            <div class="card-title">Mecanismos Moleculares</div>
+            <div class="card-subtitle">Taqueti & Di Carli, JACC 2018 · Ciaramella et al., 2024</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <p>Os principais mecanismos moleculares envolvidos na CMD incluem:</p>
+          <ul>
+            <li><strong>Disfunção endotelial:</strong> redução da produção e/ou degradação acelerada de NO, EDHF e prostaciclina, levando à vasodilatação prejudicada.</li>
+            <li><strong>Desequilíbrio endotelina/NO:</strong> aumento de ET-1 promovendo vasoconstrição arteriolar via receptores ET<sub>A</sub> e ET<sub>B</sub>.</li>
+            <li><strong>Disfunção de células musculares lisas (VSMCs):</strong> aumento da sensibilidade a estímulos vasoconstritores e comprometimento do relaxamento, envolvendo via Rho-kinase.</li>
+            <li><strong>Inflamação e estresse oxidativo:</strong> associação com PCR elevado, remodelamento perivascular e aterosclerose difusa.</li>
+            <li><strong>Vasoconstrição α-adrenérgica:</strong> em pacientes com disfunção endotelial, a ativação simpática (exercício, estresse mental) pode paradoxalmente causar vasoconstrição coronariana.</li>
+            <li><strong>Microembolização:</strong> durante manipulação intervencionista de placas epicárdicas, levando a microinfarto e reação inflamatória.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon amber">📈</div>
+          <div>
+            <div class="card-title">Epidemiologia e Prognóstico</div>
+            <div class="card-subtitle">Mileva et al., JAHA 2022 · Gdowski et al., 2020</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <p>Até <strong>50% dos pacientes com ANOCA</strong> apresentam CMD, com maior prevalência em mulheres (Mileva et al., 2022). Meta-análises demonstram que CMD está associada a aumento de ~4× na mortalidade e ~5× em MACE em seguimento mediano de 19 meses a 8,5 anos (Gdowski et al.).</p>
+          <p>A meta-análise de Kelshiker et al. (EHJ 2022) com mais de 44.000 pacientes confirmou que CFR reduzido está associado a eventos cardiovasculares adversos independentemente do cenário clínico, reforçando a importância de sua avaliação rotineira.</p>
+          <div class="info-amber info-box">
+            <span class="info-box-icon">⚠️</span>
+            <div><strong>Subdiagnóstico:</strong> CMD permanece subdiagnosticada, e a maioria dos pacientes permanece sem tratamento específico, com sintomas limitantes de qualidade de vida e custos elevados por hospitalizações e cateterismos repetidos.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       TAB 1 — DIAGNÓSTICO
+  ═══════════════════════════════════════════════ -->
+  <div class="tab-content" id="tab1">
+    <div class="section">
+      <div class="section-label">Módulo 02</div>
+      <div class="section-title">Abordagem Diagnóstica da CMD</div>
+
+      <div class="card" style="margin-top:1.5rem">
+        <div class="card-header">
+          <div class="card-icon">🎯</div>
+          <div>
+            <div class="card-title">Quando Suspeitar e Investigar CMD</div>
+            <div class="card-subtitle">EAPCI Expert Consensus 2021 · ESC CCS Guidelines 2019</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <p>A investigação invasiva da microcirculação deve ser considerada em pacientes com:</p>
+          <ul>
+            <li>Angina e/ou equivalentes isquêmicos com <strong>artérias coronárias sem doença obstrutiva</strong> (INOCA/ANOCA)</li>
+            <li>Evidência de isquemia em testes não invasivos na ausência de estenose epicárdica significativa</li>
+            <li>Sintomas persistentes após revascularização completa</li>
+            <li>Dispneia de esforço inexplicada com suspeita de ICFEp isquêmica</li>
+          </ul>
+          <div class="info-teal info-box">
+            <span class="info-box-icon">✅</span>
+            <div><strong>CorMicA Trial (Ford et al., JACC 2018):</strong> demonstrou que avaliação invasiva com termodiluição vinculada à terapia estratificada melhora significativamente a angina e qualidade de vida em pacientes com ANOCA, em comparação ao manejo usual. Benefício mantido em 1 ano de follow-up.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon blue">🔧</div>
+          <div>
+            <div class="card-title">Ferramentas Invasivas Disponíveis</div>
+            <div class="card-subtitle">Comparação de Métodos — Ciaramella et al., 2024</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th>Característica</th>
+                <th>Doppler (FloWire)</th>
+                <th>Termodiluição por Bolus</th>
+                <th>Termodiluição Contínua</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Índices obtidos</strong></td>
+                <td>CFR, HMR, mMR</td>
+                <td>CFR, IMR, FFR, RRR</td>
+                <td>Q absoluto, R, MRR</td>
+              </tr>
+              <tr>
+                <td><strong>Acurácia diagnóstica</strong></td>
+                <td>+</td>
+                <td>+</td>
+                <td>++</td>
+              </tr>
+              <tr>
+                <td><strong>Dependência do operador</strong></td>
+                <td>Alta</td>
+                <td>Baixa-moderada</td>
+                <td>Baixa</td>
+              </tr>
+              <tr>
+                <td><strong>Necessita hiperemia</strong></td>
+                <td>Sim (adenosina)</td>
+                <td>Sim (adenosina)</td>
+                <td>Não (salina induz)</td>
+              </tr>
+              <tr>
+                <td><strong>Reprodutibilidade</strong></td>
+                <td>Moderada</td>
+                <td>Boa</td>
+                <td>Excelente</td>
+              </tr>
+              <tr>
+                <td><strong>Disponibilidade</strong></td>
+                <td>Limitada</td>
+                <td>Ampla</td>
+                <td>Limitada</td>
+              </tr>
+              <tr>
+                <td><strong>Cutoffs validados</strong></td>
+                <td>HMR ≥1.9–2.5<br>CFR &lt;2.5</td>
+                <td>IMR &gt;25<br>CFR &lt;2.5</td>
+                <td>Q &lt;200 mL/min*<br>R &gt;500 WU*</td>
+              </tr>
+              <tr>
+                <td><strong>Material necessário</strong></td>
+                <td>FloWire + Console</td>
+                <td>PressureWire X + CoroFlow</td>
+                <td>PressureWire X + Rayflow + CoroFlow</td>
+              </tr>
+            </tbody>
+          </table>
+          <p style="font-size:.75rem;color:var(--muted-foreground)">* Cutoffs sob investigação. HMR = hyperemic microvascular resistance; mMR = microvascular minimal resistance; Q = fluxo absoluto; R = resistência; WU = Wood Units.</p>
+
+          <div class="info-gray info-box" style="margin-top:1rem">
+            <span class="info-box-icon">📌</span>
+            <div><strong>Método recomendado neste guia:</strong> Termodiluição por bolus com <strong>PressureWire X</strong> (Abbott) e software <strong>CoroFlow</strong> (Coroventis Research AB). É o método mais amplamente disponível, com cutoffs validados e reprodutibilidade satisfatória. É o foco do algoritmo CATH CMD descrito a seguir.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon purple">🧪</div>
+          <div>
+            <div class="card-title">Avaliação Não-Invasiva Complementar</div>
+            <div class="card-subtitle">Spione et al., 2022</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <p>Embora métodos invasivos representem o padrão-ouro, testes não invasivos podem ser usados para rastreamento:</p>
+          <ul>
+            <li><strong>PET cardíaco:</strong> gold-standard não invasivo para MBF e MFR. MFR &lt;1.5 sugere CMD.</li>
+            <li><strong>RMC de perfusão:</strong> quantifica perfusão miocárdica com gadolínio. Pesquisa de reserva de perfusão em pixel mapping.</li>
+            <li><strong>TC de perfusão miocárdica (CTP):</strong> semiquantitativa (estática) ou quantitativa (dinâmica). Uso ainda restrito à pesquisa.</li>
+            <li><strong>Eco-Doppler da ADA:</strong> CFVR (coronary flow velocity reserve) por Doppler transtorácico, como no estudo iPOWER.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       TAB 2 — PROCEDIMENTO INVASIVO (FOCO PRINCIPAL)
+  ═══════════════════════════════════════════════ -->
+  <div class="tab-content" id="tab2">
+    <div class="section">
+      <div class="section-label">Módulo 03 — Foco Principal</div>
+      <div class="section-title">Protocolo Invasivo Step-by-Step: Algoritmo CATH CMD</div>
+      <p style="color:var(--muted-foreground);font-size:.9rem;margin-top:.5rem;margin-bottom:1rem">Baseado em Collet et al., JSCAI 2024 e Ciaramella et al., Diagnostics 2024. Protocolo detalhado para avaliação da microcirculação com termodiluição por bolus usando <strong style="color:var(--teal)">PressureWire X</strong> e software <strong style="color:var(--teal)">CoroFlow</strong>.</p>
+
+      <div class="info-teal info-box">
+        <span class="info-box-icon">📋</span>
+        <div><strong>CATH CMD = Mnemônico do algoritmo:</strong> <strong>C</strong>atheter engagement → <strong>A</strong>dvance wire → <strong>T</strong>ransit time at rest → <strong>H</strong>yperemic transit time → <strong>C</strong>FR → <strong>M</strong>icrocirculatory resistance (IMR) → <strong>D</strong>iagnosis</div>
+      </div>
+
+      <!-- MATERIAL -->
+      <div class="card" style="margin-top:1.5rem">
+        <div class="card-header">
+          <div class="card-icon">📦</div>
+          <div>
+            <div class="card-title">Material Necessário</div>
+            <div class="card-subtitle">Checklist pré-procedimento</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <ul>
+            <li><strong>Cateter-guia 6 Fr</strong> — preferencialmente extra-backup para otimizar coaxialidade e engate</li>
+            <li><strong>PressureWire X (Abbott Vascular)</strong> — fio de pressão/temperatura 0.014" com sensor distal de pressão e temperatura (microsensor a 3 cm da ponta, acurácia de 0.02°C) e termistor proximal no shaft</li>
+            <li><strong>Software CoroFlow (Coroventis Research AB)</strong> — plataforma dedicada conectada à console para processamento online das curvas de termodiluição</li>
+            <li><strong>Seringas Luer Lock de 3 mL</strong> — para injeção de bolus de salina</li>
+            <li><strong>Salina em temperatura ambiente</strong> — indicador de termodiluição</li>
+            <li><strong>Adenosina IV</strong> — para indução de hiperemia (140 μg/kg/min); ou alternativas: papaverina, nicorandil, nicardipina, regadenoson</li>
+            <li><strong>Nitroglicerina intracoronária</strong> — 200 μg para vasodilatação epicárdica</li>
+            <li><strong>Manifold com stopcock de 3 vias</strong> — conectado ao cateter-guia para injeção de bolus</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- PRE-PROCEDIMENTO -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon amber">⚙️</div>
+          <div>
+            <div class="card-title">Preparação do Paciente</div>
+            <div class="card-subtitle">Collet et al., JSCAI 2024</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="info-amber info-box">
+            <span class="info-box-icon">⚠️</span>
+            <div><strong>Suspender drogas vasoativas</strong> (bloqueadores de canal de cálcio, β-bloqueadores) <strong>24–48h antes</strong> do procedimento para garantir avaliação acurada do tônus microvascular basal.</div>
+          </div>
+          <div class="info-amber info-box">
+            <span class="info-box-icon">☕</span>
+            <div><strong>Abstinência de cafeína</strong> e derivados no dia anterior à avaliação, especialmente quando adenosina for o agente hiperêmico (antagonismo competitivo nos receptores A<sub>2A</sub>).</div>
+          </div>
+          <div class="info-gray info-box">
+            <span class="info-box-icon">💉</span>
+            <div><strong>Anticoagulação sistêmica:</strong> administrar heparina com controle de ACT antes da instrumentação coronariana.</div>
+          </div>
+          <div class="info-gray info-box">
+            <span class="info-box-icon">📌</span>
+            <div><strong>Se teste com acetilcolina for planejado concomitantemente:</strong> considerar realizar teste de ACh primeiro (sem nitratos prévios e sem instrumentação do vaso), seguido da avaliação não-endotélio-dependente com termodiluição. Há ampla experiência com acesso radial e guias 6Fr para avaliação fisiológica completa.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ACCORDION STEPS -->
+      <h3 style="font-weight:800;font-size:1.1rem;margin:2rem 0 1rem;letter-spacing:-.01em">🔽 Protocolo Passo-a-Passo no Laboratório de Hemodinâmica</h3>
+
+      <div class="accordion-group">
+
+        <!-- STEP C -->
+        <div class="step-card">
+          <div class="step-card-header" onclick="toggleStep(this)">
+            <div class="step-num-badge">C</div>
+            <div>
+              <div class="step-card-title">Catheter Engagement</div>
+              <div class="step-card-subtitle">Engate coaxial do cateter-guia</div>
+            </div>
+            <div class="step-chevron">▼</div>
+          </div>
+          <div class="step-card-body">
+            <div class="card-body">
+              <p><strong>Objetivo:</strong> garantir engate coaxial estável do cateter-guia no óstio coronariano, condição essencial para que todo o volume injetado de salina atinja a circulação coronariana sem spill para a aorta.</p>
+
+              <p><strong>Técnica detalhada:</strong></p>
+              <ol>
+                <li>Posicionar cateter-guia <strong>6 Fr</strong> no óstio coronariano. Cateteres extra-backup (EBU, XB) são preferíveis por proporcionarem melhor suporte e coaxialidade.</li>
+                <li>Verificar <strong>morfologia da curva de pressão aórtica:</strong>
+                  <ul>
+                    <li>Presença do <strong>entalhe dicrótico</strong> = engate adequado ✅</li>
+                    <li>Ventricularização da curva = engate excessivo ❌ (recuar cateter)</li>
+                    <li>Amortecimento (damping) = engate seletivo/oclusivo ❌</li>
+                  </ul>
+                </li>
+                <li>Garantir que o cateter esteja <strong>sem damping</strong> — damping causa tempo de trânsito falsamente prolongado e IMR superestimado.</li>
+                <li>Lavar o cateter com salina para remover todo contraste e sangue.</li>
+              </ol>
+
+              <div class="info-red info-box">
+                <span class="info-box-icon">🚫</span>
+                <div><strong>Falta de coaxialidade</strong> é a causa mais comum de curvas inadequadas. Resulta em spillover de salina para a aorta → salina insuficiente alcançando o termistor distal → elevação errônea do Tmn → superestimação do IMR.</div>
+              </div>
+
+              <div class="info-gray info-box">
+                <span class="info-box-icon">💡</span>
+                <div><strong>Dica prática:</strong> Se a fluoroscopia mostrar refluxo de contraste para a aorta durante flush, a coaxialidade está inadequada. Considerar trocar para um cateter com curvatura diferente ou extra-backup.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP A -->
+        <div class="step-card">
+          <div class="step-card-header" onclick="toggleStep(this)">
+            <div class="step-num-badge">A</div>
+            <div>
+              <div class="step-card-title">Advance Wire</div>
+              <div class="step-card-subtitle">Posicionamento do fio de pressão-temperatura</div>
+            </div>
+            <div class="step-chevron">▼</div>
+          </div>
+          <div class="step-card-body">
+            <div class="card-body">
+              <p><strong>Vaso preferencial: Artéria Descendente Anterior (ADA/LAD)</strong></p>
+              <p>A maioria dos dados de fisiologia coronariana em ANOCA foram obtidos na ADA, que possui a maior massa miocárdica subservida. Porém, CMD pode se desenvolver em outros territórios, e a avaliação da ADA não é necessariamente representativa de outras circulações.</p>
+
+              <p><strong>Protocolo passo a passo:</strong></p>
+              <ol>
+                <li><strong>Administrar nitroglicerina intracoronária (200 μg)</strong> para vasodilatação epicárdica e eliminação de espasmo. Isso é mandatório antes de avançar o fio.</li>
+                <li><strong>Calibração e equalização de pressão:</strong>
+                  <ul>
+                    <li>Conectar o PressureWire X à console de pressão e calibrar fora do corpo</li>
+                    <li>Avançar até a ponta do cateter-guia</li>
+                    <li>Verificar igualdade entre Pd e Pa (aceitar diferença ≤2 mmHg)</li>
+                  </ul>
+                </li>
+                <li><strong>Equalização de temperatura:</strong> No CoroFlow, clicar em <span style="color:var(--teal);font-family:var(--font-mono);font-weight:600">"Zero Temperature"</span> para calibrar os termistores proximal e distal.</li>
+                <li><strong>Avançar o fio:</strong> posicionar o sensor na transição entre os <strong>segmentos médio e distal</strong> do vaso, a aproximadamente <strong>dois terços do comprimento do vaso</strong> (mínimo 6 cm distal ao cateter-guia).
+                  <ul>
+                    <li>Posição muito proximal → Tmn falsamente curto</li>
+                    <li>Posição muito distal → Tmn falsamente longo, menor amplitude de curva</li>
+                  </ul>
+                </li>
+              </ol>
+
+              <div class="info-teal info-box">
+                <span class="info-box-icon">✅</span>
+                <div><strong>Posição ideal do sensor:</strong> Na zona de transição entre o terço médio e o terço distal da ADA, ~2/3 do comprimento do vaso. Memorize a posição fluoroscópica para garantir que o fio não se mova durante as injeções.</div>
+              </div>
+
+              <div class="info-amber info-box">
+                <span class="info-box-icon">⚠️</span>
+                <div><strong>Contraindicações relativas para termodiluição:</strong> tortuosidade severa, vasos muito finos (&lt;2.0 mm), estenose suboclusiva (pode impedir a passagem de salina adequadamente).</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP T -->
+        <div class="step-card">
+          <div class="step-card-header" onclick="toggleStep(this)">
+            <div class="step-num-badge">T</div>
+            <div>
+              <div class="step-card-title">Transit Time at Rest</div>
+              <div class="step-card-subtitle">Medida do tempo de trânsito basal (Tmn rest)</div>
+            </div>
+            <div class="step-chevron">▼</div>
+          </div>
+          <div class="step-card-body">
+            <div class="card-body">
+              <p><strong>Princípio:</strong> A injeção de bolus de salina em temperatura ambiente funciona como indicador de termodiluição. A salina, mais fria que o sangue, causa curvas de temperatura em formato de "U" nos termistores proximal e distal. O tempo de trânsito médio (Tmn) é derivado dessas curvas, sendo inversamente proporcional ao fluxo coronariano.</p>
+
+              <p><strong>Procedimento detalhado no CoroFlow:</strong></p>
+              <ol>
+                <li><strong>Lavar o sistema</strong> com salina para eliminar sangue e contraste residual do cateter-guia.</li>
+                <li>No software CoroFlow, clicar em <span style="color:var(--teal);font-family:var(--font-mono);font-weight:600">"Start"</span>.</li>
+                <li>Aguardar a mensagem <span style="color:var(--teal);font-family:var(--font-mono);font-weight:600">"Inject now"</span> na tela.</li>
+                <li><strong>Injetar 3 mL de salina</strong> em temperatura ambiente, com movimento <strong>rápido e vigoroso</strong>, usando seringa de 3 mL Luer Lock conectada ao manifold/stopcock.
+                  <ul>
+                    <li>A injeção deve ser breve, uniforme, com término definido</li>
+                    <li>Evitar injeções lentas (erro "Slow inject" no software)</li>
+                  </ul>
+                </li>
+                <li>Observar a <strong>morfologia da curva de temperatura</strong> no CoroFlow — deve ser uma curva em "U" invertido, nítida e simétrica.</li>
+                <li><strong>Repetir 3×</strong> a injeção de 3 mL, sempre no mesmo padrão.</li>
+                <li>O Tmn de cada injeção aparecerá automaticamente na tela. Ao final de 3 injeções, a <strong>média dos 3 valores (Tmn rest)</strong> será exibida.</li>
+              </ol>
+
+              <div class="info-amber info-box">
+                <span class="info-box-icon">⏱️</span>
+                <div><strong>Intervalo entre injeções em repouso: 20–30 segundos.</strong> A própria injeção de salina pode induzir hiperemia transitória. Intervalos curtos demais → Tmn subsequente artificialmente reduzido.</div>
+              </div>
+
+              <div class="info-gray info-box">
+                <span class="info-box-icon">📐</span>
+                <div><strong>Critério de qualidade — variabilidade máxima entre as 3 medidas:</strong><br>
+                • Tmn médio ≥ 0.25s → variabilidade máxima aceitável de <strong>30%</strong><br>
+                • Tmn médio &lt; 0.25s → variabilidade máxima aceitável de <strong>50%</strong><br>
+                Se outlier: clicar sobre o valor discrepante no CoroFlow e realizar injeção adicional para substituí-lo.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP H -->
+        <div class="step-card">
+          <div class="step-card-header" onclick="toggleStep(this)">
+            <div class="step-num-badge">H</div>
+            <div>
+              <div class="step-card-title">Hyperemic Transit Times</div>
+              <div class="step-card-subtitle">Indução de hiperemia e medida do Tmn hiperêmico</div>
+            </div>
+            <div class="step-chevron">▼</div>
+          </div>
+          <div class="step-card-body">
+            <div class="card-body">
+              <p><strong>Após as 3 injeções em repouso,</strong> o sistema instrui a indução de hiperemia.</p>
+
+              <p><strong>Indução de hiperemia máxima:</strong></p>
+              <table class="compare-table">
+                <thead>
+                  <tr>
+                    <th>Agente</th>
+                    <th>Via</th>
+                    <th>Dose</th>
+                    <th>Início / Duração</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Adenosina</strong> (preferencial)</td>
+                    <td>IV contínua</td>
+                    <td>140 μg/kg/min</td>
+                    <td>~1-2 min / durante infusão</td>
+                  </tr>
+                  <tr>
+                    <td>Adenosina IC</td>
+                    <td>Intracoronária</td>
+                    <td>100-200 μg (ADA); 60-100 μg (ACD)</td>
+                    <td>Imediato / 10-20s</td>
+                  </tr>
+                  <tr>
+                    <td>Papaverina</td>
+                    <td>Intracoronária</td>
+                    <td>10-20 mg</td>
+                    <td>Rápido / 30-60s</td>
+                  </tr>
+                  <tr>
+                    <td>Regadenoson</td>
+                    <td>IV bolus</td>
+                    <td>0.4 mg</td>
+                    <td>~30s / ~10 min</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <p><strong>Confirmação de hiperemia:</strong></p>
+              <ul>
+                <li>Queda discreta na <strong>pressão aórtica média</strong></li>
+                <li>Redução no <strong>Pd/Pa</strong></li>
+                <li>Sintomas do paciente: dispneia, flushing, ondas de calor (quando adenosina IV)</li>
+              </ul>
+
+              <p><strong>Após confirmação da hiperemia:</strong></p>
+              <ol>
+                <li>Lavar novamente com salina para eliminar sangue e contraste.</li>
+                <li>Realizar <strong>3 novas injeções de 3 mL</strong> de salina no mesmo padrão.</li>
+                <li>Os Tmn hiperêmicos aparecerão automaticamente no CoroFlow.</li>
+                <li>Aplicar os mesmos critérios de qualidade (variabilidade ≤30% ou ≤50%).</li>
+                <li>Substituir outliers conforme necessário.</li>
+              </ol>
+
+              <div class="info-red info-box">
+                <span class="info-box-icon">🚫</span>
+                <div><strong>Hiperemia inadequada = resultados errôneos.</strong> Manter infusão de adenosina estável durante todas as 3 injeções hiperêmicas. CFR e IMR dependem de estado hiperêmico estável. Se a hiperemia não for estável (flutuações na Pa), os resultados não são confiáveis.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP C (CFR) -->
+        <div class="step-card">
+          <div class="step-card-header" onclick="toggleStep(this)">
+            <div class="step-num-badge" style="font-size:.7rem">C</div>
+            <div>
+              <div class="step-card-title">Coronary Flow Reserve (CFR)</div>
+              <div class="step-card-subtitle">Cálculo automático pelo CoroFlow</div>
+            </div>
+            <div class="step-chevron">▼</div>
+          </div>
+          <div class="step-card-body">
+            <div class="card-body">
+              <div class="formula-box">
+                CFR = Tmn<sub>rest</sub> / Tmn<sub>hyp</sub>
+                <small>Razão do tempo de trânsito médio em repouso sobre hiperemia (inversamente proporcional à razão de fluxo)</small>
+              </div>
+              <p>O CoroFlow calcula automaticamente o CFR a partir dos Tmn obtidos nas etapas T e H. Os valores CFR e CFR<sub>norm</sub> (normalizado pelo FFR) são exibidos no painel direito da tela.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP M (IMR) -->
+        <div class="step-card">
+          <div class="step-card-header" onclick="toggleStep(this)">
+            <div class="step-num-badge" style="font-size:.7rem">M</div>
+            <div>
+              <div class="step-card-title">Index of Microcirculatory Resistance (IMR)</div>
+              <div class="step-card-subtitle">Cálculo automático pelo CoroFlow</div>
+            </div>
+            <div class="step-chevron">▼</div>
+          </div>
+          <div class="step-card-body">
+            <div class="card-body">
+              <div class="formula-box">
+                IMR = Pd<sub>hyp</sub> × Tmn<sub>hyp</sub>
+                <small>Pressão distal × tempo de trânsito médio na hiperemia. Estima resistência microvascular mínima.</small>
+              </div>
+              <p>Quando há estenose epicárdica hemodinamicamente significativa (FFR ≤0.80), utiliza-se o <strong>IMR corrigido (IMRcorr)</strong>, que considera o fluxo colateral:</p>
+              <div class="formula-box">
+                IMRcorr = Pa × Tmn<sub>hyp</sub> × ([1.35 × Pd/Pa] – 0.32)
+                <small>Fórmula de Yong et al. — permite avaliação microvascular mesmo com estenose epicárdica.</small>
+              </div>
+              <p><strong>Resistive Reserve Ratio (RRR):</strong> calculado como a razão entre o índice de resistência basal e o IMR. Indica quantas vezes a resistência cai do repouso para a hiperemia. Tem demonstrado correlação com desfechos clínicos em SCA (Maznyczka et al., 2020).</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP D -->
+        <div class="step-card">
+          <div class="step-card-header" onclick="toggleStep(this)">
+            <div class="step-num-badge">D</div>
+            <div>
+              <div class="step-card-title">Diagnosis</div>
+              <div class="step-card-subtitle">Integração dos dados e diagnóstico de CMD</div>
+            </div>
+            <div class="step-chevron">▼</div>
+          </div>
+          <div class="step-card-body">
+            <div class="card-body">
+              <p>Após salvar o registro no CoroFlow, o diagnóstico é baseado na integração de FFR, CFR e IMR. <strong>É essencial registrar o vaso avaliado, a fase do procedimento e o agente hiperêmico utilizado</strong> — facilitado por campos específicos no canto inferior esquerdo da tela do CoroFlow.</p>
+              <p>A interpretação detalhada dos dados é apresentada no <strong>módulo de Interpretação (Aba 4)</strong>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TROUBLESHOOTING -->
+      <hr class="section-divider">
+      <div class="section-label">Troubleshooting</div>
+      <div class="section-title">Erros Comuns e Ações Corretivas no CoroFlow</div>
+      <p style="color:var(--muted-foreground);font-size:.85rem;margin:.5rem 0 1rem">Collet et al., JSCAI 2024 — Tabela de erros do software</p>
+
+      <div class="card">
+        <table class="error-table">
+          <thead>
+            <tr>
+              <th style="width:15%">Erro</th>
+              <th style="width:35%">Causa</th>
+              <th style="width:50%">Ações Corretivas</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="badge badge-red">Slow Inject</span></td>
+              <td>Injeção lenta demais: &gt;0.60s entre início do declínio e nadir de temperatura no termistor proximal</td>
+              <td>
+                • Usar seringa de <strong>3 mL</strong> (não maior)<br>
+                • Injetar com movimento rápido e vigoroso<br>
+                • Garantir injeção uniforme com término definido
+              </td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-red">Timeout</span></td>
+              <td>Temperatura não retornou ao baseline em tempo (&gt;8s) no termistor distal</td>
+              <td>
+                • Verificar se cateter-guia não está engajado profundamente<br>
+                • Confirmar que há fluxo adequado na artéria<br>
+                • Se estenose suboclusiva → caso pode ser inadequado para termodiluição<br>
+                • Verificar que baseline de temperatura = 0<br>
+                • Clicar "Zero Temperature" e repetir injeção
+              </td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-red">Low Amp</span></td>
+              <td>Resposta de temperatura não atingiu o limite mínimo durante injeção (&lt;–1°C) no termistor distal</td>
+              <td>
+                • Verificar engate do cateter-guia<br>
+                • Lavar guia com salina fresca em temperatura ambiente<br>
+                • Aumentar bolus ou usar salina levemente resfriada se necessário<br>
+                • Verificar que fio não está posicionado muito distalmente<br>
+                • "Zero Temperature" e repetir injeção
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       TAB 3 — INTERPRETAÇÃO DOS DADOS
+  ═══════════════════════════════════════════════ -->
+  <div class="tab-content" id="tab3">
+    <div class="section">
+      <div class="section-label">Módulo 04</div>
+      <div class="section-title">Interpretação dos Resultados da Termodiluição</div>
+
+      <div class="card" style="margin-top:1.5rem">
+        <div class="card-header">
+          <div class="card-icon">📐</div>
+          <div>
+            <div class="card-title">Cutoffs Diagnósticos Validados</div>
+            <div class="card-subtitle">Collet et al., JSCAI 2024 · Fearon et al., Circulation 2003</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="cutoff-grid">
+            <div class="cutoff-item">
+              <div class="cutoff-val">&lt;2.5</div>
+              <div class="cutoff-label">CFR anormal</div>
+              <div class="cutoff-desc">2.0–2.4 = zona cinzenta</div>
+            </div>
+            <div class="cutoff-item">
+              <div class="cutoff-val">&gt;25</div>
+              <div class="cutoff-label">IMR elevado</div>
+              <div class="cutoff-desc">Resistência microvascular alta</div>
+            </div>
+            <div class="cutoff-item">
+              <div class="cutoff-val">≤0.80</div>
+              <div class="cutoff-label">FFR significativo</div>
+              <div class="cutoff-desc">→ Usar IMRcorr</div>
+            </div>
+            <div class="cutoff-item">
+              <div class="cutoff-val">&gt;0.80</div>
+              <div class="cutoff-label">FFR não significativo</div>
+              <div class="cutoff-desc">→ Investigar CMD</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon purple">🧩</div>
+          <div>
+            <div class="card-title">Cenários Diagnósticos com Termodiluição por Bolus</div>
+            <div class="card-subtitle">Adaptado de Collet et al., JSCAI 2024 — Figuras 2 e 3</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th>Cenário</th>
+                <th>CFR</th>
+                <th>IMR</th>
+                <th>Tmn repouso</th>
+                <th>Tmn hiperemia</th>
+                <th>Interpretação</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="badge badge-teal">Normal</span></td>
+                <td>≥2.5</td>
+                <td>≤25</td>
+                <td>Normal</td>
+                <td>Curto</td>
+                <td>Microcirculação normal</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-purple">CMD Estrutural</span></td>
+                <td><strong>&lt;2.5</strong></td>
+                <td><strong>&gt;25</strong></td>
+                <td>Normal</td>
+                <td>Prolongado</td>
+                <td>Resistência microvascular elevada → remodelamento estrutural</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-amber">CMD Funcional</span></td>
+                <td><strong>&lt;2.5</strong></td>
+                <td>≤25</td>
+                <td><strong>Curto</strong></td>
+                <td>Normal</td>
+                <td>Fluxo basal aumentado → capacidade vasodilatadora esgotada</td>
+              </tr>
+              <tr>
+                <td><span class="badge badge-red">CMD Mista</span></td>
+                <td><strong>&lt;2.5</strong></td>
+                <td><strong>&gt;25</strong></td>
+                <td>Variável</td>
+                <td>Prolongado</td>
+                <td>Coexistência de ambos os endótipos</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="info-teal info-box" style="margin-top:1rem">
+            <span class="info-box-icon">💡</span>
+            <div><strong>Insight clínico:</strong> IMR elevado isolado com CFR normal <strong>NÃO</strong> demonstrou valor prognóstico aumentado em pacientes com ANOCA (Kelshiker et al., EHJ 2022). Em contraste, CFR reduzido está consistentemente associado a eventos, reforçando seu papel central como biomarcador de risco.</div>
+          </div>
+
+          <div class="info-gray info-box">
+            <span class="info-box-icon">📌</span>
+            <div><strong>Tela do CoroFlow:</strong> O painel direito exibe automaticamente Pd/Pa, FFR, CFR, CFR<sub>norm</sub>, IMR, IMR<sub>corr</sub> e RRR. Os valores são vinculados ao posicionamento de 2 cursores amarelos na gravação de pressão, dividida em 6 painéis (3 repouso à esquerda, 3 hiperemia à direita).</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon blue">📊</div>
+          <div>
+            <div class="card-title">Termodiluição Contínua: Índices Adicionais</div>
+            <div class="card-subtitle">Para centros com Rayflow (Hexacath) disponível</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <p>A termodiluição contínua fornece fluxo absoluto (Q, mL/min) e resistência microvascular (R, WU) com unidades de medida, usando microcateter de infusão Rayflow posicionado na porção proximal da artéria coronária:</p>
+          <div class="formula-box">
+            Q = 1.08 × (Ti / T) × Qi
+            <small>Q = fluxo hiperêmico (mL/min); Qi = fluxo de salina infundida; Ti = temperatura da salina; T = temperatura da mistura sangue+salina distal. Constante 1.08 corrige densidades e calor específico.</small>
+          </div>
+          <div class="formula-box">
+            R = Pd / Q
+            <small>R = resistência microvascular (mmHg/L/min ou Wood Units)</small>
+          </div>
+          <p>A salina infundida a 10–20 mL/min induz hiperemia máxima diretamente, dispensando adenosina. Validada contra PET com ¹⁵O-H₂O (Everaars et al., EHJ 2019). Segura com baixa taxa de eventos adversos — bradicardia transitória em ~2.6–8.1% dos casos, revertendo com interrupção da infusão.</p>
+        </div>
+      </div>
+
+      <!-- INTERACTIVE DIAGNOSTIC TOOL -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">🧮</div>
+          <div>
+            <div class="card-title">Ferramenta Diagnóstica Interativa</div>
+            <div class="card-subtitle">Insira os valores obtidos e obtenha a interpretação</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-bottom:1rem">
+            <div>
+              <label style="font-size:.78rem;font-weight:600;color:var(--muted-foreground);display:block;margin-bottom:4px">FFR</label>
+              <input type="number" step="0.01" min="0" max="1" placeholder="ex: 0.85" id="inp_ffr" style="background:var(--input);border:1px solid var(--border);border-radius:var(--radius);color:var(--foreground);font-family:var(--font-mono);font-size:.85rem;padding:8px 12px;outline:none;width:100%">
+            </div>
+            <div>
+              <label style="font-size:.78rem;font-weight:600;color:var(--muted-foreground);display:block;margin-bottom:4px">CFR</label>
+              <input type="number" step="0.1" min="0" max="10" placeholder="ex: 2.1" id="inp_cfr" style="background:var(--input);border:1px solid var(--border);border-radius:var(--radius);color:var(--foreground);font-family:var(--font-mono);font-size:.85rem;padding:8px 12px;outline:none;width:100%">
+            </div>
+            <div>
+              <label style="font-size:.78rem;font-weight:600;color:var(--muted-foreground);display:block;margin-bottom:4px">IMR</label>
+              <input type="number" step="1" min="0" max="200" placeholder="ex: 30" id="inp_imr" style="background:var(--input);border:1px solid var(--border);border-radius:var(--radius);color:var(--foreground);font-family:var(--font-mono);font-size:.85rem;padding:8px 12px;outline:none;width:100%">
+            </div>
+          </div>
+          <button onclick="interpretResults()" style="display:inline-flex;align-items:center;gap:8px;font-size:.85rem;font-weight:700;padding:10px 20px;border-radius:calc(var(--radius)+2px);border:none;cursor:pointer;background:var(--teal);color:#000;font-family:var(--font-sans);transition:opacity .15s">📊 Interpretar Resultados</button>
+          <button onclick="document.getElementById('diag_result').innerHTML='';document.getElementById('inp_ffr').value='';document.getElementById('inp_cfr').value='';document.getElementById('inp_imr').value=''" style="display:inline-flex;align-items:center;gap:8px;font-size:.85rem;font-weight:600;padding:10px 20px;border-radius:calc(var(--radius)+2px);border:1px solid var(--border);cursor:pointer;background:var(--muted);color:var(--foreground);font-family:var(--font-sans);margin-left:.5rem">Limpar</button>
+          <div id="diag_result" style="margin-top:1rem"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       TAB 4 — TRATAMENTO
+  ═══════════════════════════════════════════════ -->
+  <div class="tab-content" id="tab4">
+    <div class="section">
+      <div class="section-label">Módulo 05</div>
+      <div class="section-title">Estratégias Terapêuticas para CMD</div>
+
+      <div class="info-teal info-box" style="margin-top:1rem">
+        <span class="info-box-icon">🎯</span>
+        <div><strong>Princípio fundamental:</strong> O manejo deve ser centrado no paciente, focado em controle de fatores de risco, terapia antianginosa adequada e, idealmente, guiado pelo resultado da avaliação invasiva (terapia estratificada conforme demonstrado no CorMicA Trial).</div>
+      </div>
+
+      <div class="card" style="margin-top:1.5rem">
+        <div class="card-header">
+          <div class="card-icon">🏥</div>
+          <div>
+            <div class="card-title">Manejo de Fatores de Risco Cardiovasculares</div>
+            <div class="card-subtitle">Taqueti & Di Carli, JACC 2018</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <p>Devido à forte associação entre fatores de risco cardiovasculares, aterosclerose e CMD, o controle agressivo de comorbidades é um objetivo prioritário:</p>
+          <ul>
+            <li><strong>Cessação do tabagismo</strong> — melhora direta na função endotelial</li>
+            <li><strong>Perda de peso</strong> — cirurgia bariátrica associada a melhora da função microvascular</li>
+            <li><strong>Controle pressórico, glicêmico e lipídico</strong> — terapia médica otimizada reduziu isquemia em pacientes com DAC estável, excedendo a regressão de placa</li>
+            <li><strong>Exercício regular</strong> e nutrição adequada</li>
+            <li><strong>AAS em dose baixa</strong> (ou alternativa antiplaquetária) — componente importante mesmo em DAC não obstrutiva</li>
+            <li><strong>Estatinas</strong> — propriedades anti-inflamatórias melhoram CFR</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon purple">💊</div>
+          <div>
+            <div class="card-title">Terapia Antianginosa Estratificada</div>
+            <div class="card-subtitle">CorMicA Trial · ChaMP-CMD · EDIT-CMD · Spione et al., 2022</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th>Classe</th>
+                <th>Drogas</th>
+                <th>Mecanismo na CMD</th>
+                <th>Evidência</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>β-bloqueadores vasodilatadores</strong></td>
+                <td>Nebivolol, Carvedilol</td>
+                <td>Nebivolol: ativa síntese de NO, inibe ET-1 → melhora CFR. Carvedilol: melhora função microvascular endotélio-dependente.</td>
+                <td><span class="badge badge-teal">Primeira linha</span></td>
+              </tr>
+              <tr>
+                <td><strong>Bloqueadores de canal de cálcio</strong></td>
+                <td>Amlodipina, Verapamil, Diltiazem</td>
+                <td>Relaxamento de VSMC por bloqueio de influxo de cálcio. Reduzem consumo de O₂ miocárdico.</td>
+                <td><span class="badge badge-teal">ChaMP-CMD</span> demonstrou benefício clínico de amlodipina em CMD. <span class="badge badge-amber">EDIT-CMD:</span> diltiazem sem benefício em CMD (mas reduziu espasmo epicárdico).</td>
+              </tr>
+              <tr>
+                <td><strong>Ranolazina</strong></td>
+                <td>Ranolazina</td>
+                <td>Inibe corrente tardia de Na⁺ → reduz sobrecarga de Ca²⁺ e Na⁺ intracelular. Melhora capacidade de exercício.</td>
+                <td><span class="badge badge-teal">ChaMP-CMD</span> demonstrou benefício. Melhora CFR quando combinada com terapia de primeira linha.</td>
+              </tr>
+              <tr>
+                <td><strong>IECA/BRA</strong></td>
+                <td>IECA, BRA</td>
+                <td>Melhora CFR; pode ser combinado com β-bloqueadores e BCC.</td>
+                <td><span class="badge badge-teal">Recomendado</span></td>
+              </tr>
+              <tr>
+                <td><strong>Nitratos</strong></td>
+                <td>Nitroglicerina, ISMN</td>
+                <td>Ação predominantemente epicárdica. Efeito limitado na microcirculação.</td>
+                <td><span class="badge badge-amber">Uso cauteloso</span> — podem piorar sintomas se CMD funcional predominante</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="info-teal info-box" style="margin-top:1rem">
+            <span class="info-box-icon">✅</span>
+            <div><strong>ChaMP-CMD Trial (2024):</strong> Estudo que demonstrou benefício clínico de amlodipina e ranolazina em pacientes com CMD documentada, com melhora objetiva na capacidade de exercício, representando um marco na terapia personalizada.</div>
+          </div>
+
+          <hr class="section-divider">
+          <div class="section-label">Em investigação</div>
+
+          <div class="two-col">
+            <div class="info-gray info-box" style="flex-direction:column">
+              <div style="font-weight:700;margin-bottom:.25rem">Antagonistas do receptor de endotelina</div>
+              <div style="font-size:.8rem">Antagonizam efeitos de ET-1, aumentam biodisponibilidade de NO, melhoram função endotelial. Em investigação.</div>
+            </div>
+            <div class="info-gray info-box" style="flex-direction:column">
+              <div style="font-weight:700;margin-bottom:.25rem">Inibidores de Rho-kinase</div>
+              <div style="font-size:.8rem">Inibem via da endotelina via aumento de fosfatase de cadeia leve de miosina → dilatação de VSMC. Em investigação.</div>
+            </div>
+            <div class="info-gray info-box" style="flex-direction:column">
+              <div style="font-weight:700;margin-bottom:.25rem">Nicorandil</div>
+              <div style="font-size:.8rem">Ativador de canais K⁺-ATP mitocondrial. Alguns efeitos na melhora de sintomas. Evidência limitada.</div>
+            </div>
+            <div class="info-gray info-box" style="flex-direction:column">
+              <div style="font-weight:700;margin-bottom:.25rem">Trimetazidina / Ivabradina</div>
+              <div style="font-size:.8rem">Trimetazidina: modula metabolismo cardíaco (favorece glicose sobre ácidos graxos). Ivabradina: melhora angina mas sem efeito no CFR.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       TAB 5 — REFERÊNCIAS
+  ═══════════════════════════════════════════════ -->
+  <div class="tab-content" id="tab5">
+    <div class="section">
+      <div class="section-label">Referências</div>
+      <div class="section-title">Base de Evidência</div>
+      <div class="card" style="margin-top:1.5rem">
+        <ul class="ref-list">
+          <li class="ref-item"><span class="ref-num">1</span><div><strong>Collet C, Yong A, Di Serafino L, et al.</strong> A Systematic Approach to the Evaluation of the Coronary Microcirculation. <span class="ref-meta">J Soc Cardiovasc Angiogr Interv. 2024;3:101934.</span><span class="ref-ev">CATH CMD Algorithm</span></div></li>
+          <li class="ref-item"><span class="ref-num">2</span><div><strong>Ciaramella L, Di Serafino L, Mitrano L, et al.</strong> Invasive Assessment of Coronary Microcirculation: A State-of-the-Art Review. <span class="ref-meta">Diagnostics. 2024;14:86.</span><span class="ref-ev">Review</span></div></li>
+          <li class="ref-item"><span class="ref-num">3</span><div><strong>Spione F, et al.</strong> Coronary Microvascular Angina. <span class="ref-meta">Front Cardiovasc Med. 2022;9:800918.</span><span class="ref-ev">Review</span></div></li>
+          <li class="ref-item"><span class="ref-num">4</span><div><strong>Taqueti VR, Di Carli MF.</strong> Coronary Microvascular Disease: Pathogenic Mechanisms and Therapeutic Options. JACC State-of-the-Art Review. <span class="ref-meta">J Am Coll Cardiol. 2018;72:2625–41.</span><span class="ref-ev">State-of-the-Art</span></div></li>
+          <li class="ref-item"><span class="ref-num">5</span><div><strong>Ford TJ, Stanley B, Good R, et al.</strong> Stratified Medical Therapy Using Invasive Coronary Function Testing in Angina: The CorMicA Trial. <span class="ref-meta">J Am Coll Cardiol. 2018;72:2841–55.</span><span class="ref-ev">RCT</span></div></li>
+          <li class="ref-item"><span class="ref-num">6</span><div><strong>Ford TJ, et al.</strong> 1-Year Outcomes of Angina Management Guided by Invasive Coronary Function Testing (CorMicA). <span class="ref-meta">JACC Cardiovasc Interv. 2020;13:33–45.</span><span class="ref-ev">Follow-up</span></div></li>
+          <li class="ref-item"><span class="ref-num">7</span><div><strong>Fearon WF, Balsam LB, Farouque HM, et al.</strong> Novel Index for Invasively Assessing the Coronary Microcirculation. <span class="ref-meta">Circulation. 2003;107:3129–32.</span><span class="ref-ev">Landmark</span></div></li>
+          <li class="ref-item"><span class="ref-num">8</span><div><strong>Pijls NH, De Bruyne B, Smith L, et al.</strong> Coronary Thermodilution to Assess Flow Reserve: Validation in Humans. <span class="ref-meta">Circulation. 2002;105:2482–86.</span><span class="ref-ev">Validation</span></div></li>
+          <li class="ref-item"><span class="ref-num">9</span><div><strong>Mileva N, Nagumo S, Mizukami T, et al.</strong> Prevalence of CMD and Coronary Vasospasm in ANOCA: Systematic Review and Meta-analysis. <span class="ref-meta">J Am Heart Assoc. 2022;11:e023207.</span><span class="ref-ev">Meta-analysis</span></div></li>
+          <li class="ref-item"><span class="ref-num">10</span><div><strong>Kelshiker MA, Seligman H, Howard JP, et al.</strong> Coronary Flow Reserve and Cardiovascular Outcomes: Systematic Review and Meta-analysis. <span class="ref-meta">Eur Heart J. 2022;43:1582–93.</span><span class="ref-ev">Meta-analysis</span></div></li>
+          <li class="ref-item"><span class="ref-num">11</span><div><strong>Kunadian V, Chieffo A, Camici PG, et al.</strong> EAPCI Expert Consensus Document on INOCA. <span class="ref-meta">EuroIntervention. 2021;16:1049–69.</span><span class="ref-ev">Consensus</span></div></li>
+          <li class="ref-item"><span class="ref-num">12</span><div><strong>Candreva A, Gallinoro E, van 't Veer M, et al.</strong> Basics of Coronary Thermodilution. <span class="ref-meta">JACC Cardiovasc Interv. 2021;14:595–605.</span><span class="ref-ev">Review</span></div></li>
+          <li class="ref-item"><span class="ref-num">13</span><div><strong>De Bruyne B, Pijls NHJ, Gallinoro E, et al.</strong> Microvascular Resistance Reserve for Assessment of Coronary Microvascular Function. <span class="ref-meta">J Am Coll Cardiol. 2021;78:1541–49.</span><span class="ref-ev">Technology Corner</span></div></li>
+          <li class="ref-item"><span class="ref-num">14</span><div><strong>Everaars H, de Waard GA, et al.</strong> Continuous Thermodilution to Assess Absolute Flow and MVR: Validation with ¹⁵O-H₂O PET. <span class="ref-meta">Eur Heart J. 2019;40:2350–59.</span><span class="ref-ev">Validation</span></div></li>
+          <li class="ref-item"><span class="ref-num">15</span><div><strong>Maznyczka AM, Oldroyd KG, Greenwood JP, et al.</strong> Comparative Significance of Invasive Measures of Microvascular Injury in Acute MI. <span class="ref-meta">Circ Cardiovasc Interv. 2020;13:e008505.</span><span class="ref-ev">Original</span></div></li>
+          <li class="ref-item"><span class="ref-num">16</span><div><strong>ChaMP-CMD Trial.</strong> Characterizing Mechanisms in Patients with CMD to Stratify Therapy. <span class="ref-meta">2024.</span><span class="ref-ev">RCT</span></div></li>
+          <li class="ref-item"><span class="ref-num">17</span><div><strong>EDIT-CMD Trial.</strong> Efficacy of Diltiazem to Improve Coronary Microvascular Dysfunction. <span class="ref-meta">2024.</span><span class="ref-ev">RCT</span></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer">
+    <strong>⚠️ Aviso Legal:</strong> Este conteúdo é destinado exclusivamente a profissionais de saúde e tem caráter educacional. Não substitui o julgamento clínico individual. As recomendações são baseadas nas evidências disponíveis até 2024 e podem ser atualizadas. Condutas devem ser individualizadas para cada paciente. O autor declara relação com Abbott Vascular para fins educacionais.
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-copy">
+        © 2024 Dr. Lucas Silva · <a href="#" style="color:var(--teal);text-decoration:none">lucascardio.com.br</a>
+      </div>
+      <div style="font-size:.7rem;color:var(--muted-foreground)">
+        Baseado em: Collet et al. JSCAI 2024 · Ciaramella et al. Diagnostics 2024 · Taqueti & Di Carli JACC 2018
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ════════════════════════════════════════════
+   TAB NAVIGATION
+════════════════════════════════════════════ */
+const tabBtns = document.querySelectorAll('.tab-btn');
+const tabContents = document.querySelectorAll('.tab-content');
+const progressMap = {0:'16.6%',1:'33.3%',2:'50%',3:'66.6%',4:'83.3%',5:'100%'};
+
+function goTab(n) {
+  tabBtns.forEach((b,i) => b.classList.toggle('active', i===n));
+  tabContents.forEach((c,i) => c.classList.toggle('active', i===n));
+  document.getElementById('progress').style.width = progressMap[n];
+  document.querySelector('.tabs-nav').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* ════════════════════════════════════════════
+   ACCORDION STEPS
+════════════════════════════════════════════ */
+function toggleStep(header) {
+  const body = header.nextElementSibling;
+  const isOpen = header.classList.contains('open');
+  // Close all others
+  document.querySelectorAll('.step-card-header.open').forEach(h => {
+    h.classList.remove('open');
+    h.nextElementSibling.classList.remove('open');
+  });
+  if (!isOpen) {
+    header.classList.add('open');
+    body.classList.add('open');
+  }
+}
+
+/* ════════════════════════════════════════════
+   DIAGNOSTIC TOOL
+════════════════════════════════════════════ */
+function interpretResults() {
+  const ffr = parseFloat(document.getElementById('inp_ffr').value);
+  const cfr = parseFloat(document.getElementById('inp_cfr').value);
+  const imr = parseFloat(document.getElementById('inp_imr').value);
+  const area = document.getElementById('diag_result');
+
+  if (isNaN(cfr) || isNaN(imr)) {
+    area.innerHTML = '<div class="info-amber info-box"><span class="info-box-icon">⚠️</span><div>Por favor, preencha ao menos os valores de CFR e IMR para a interpretação.</div></div>';
+    return;
+  }
+
+  let ffrText = '';
+  if (!isNaN(ffr)) {
+    if (ffr <= 0.80) {
+      ffrText = `<div class="info-red info-box"><span class="info-box-icon">🩺</span><div><strong>FFR ${ffr.toFixed(2)} (≤0.80):</strong> Estenose epicárdica hemodinamicamente significativa. Considerar revascularização. Para avaliação microvascular, utilizar IMRcorr. Os valores de IMR podem estar falsamente elevados na presença de estenose epicárdica.</div></div>`;
+    } else {
+      ffrText = `<div class="info-teal info-box"><span class="info-box-icon">✅</span><div><strong>FFR ${ffr.toFixed(2)} (&gt;0.80):</strong> Sem doença epicárdica obstrutiva significativa. Prosseguir com avaliação da microcirculação com CFR e IMR.</div></div>`;
+    }
+  }
+
+  let diagnosis = '';
+  let color = '';
+  let icon = '';
+
+  if (cfr >= 2.5 && imr <= 25) {
+    diagnosis = 'Microcirculação Normal';
+    color = 'var(--teal)';
+    icon = '✅';
+  } else if (cfr < 2.5 && imr > 25) {
+    diagnosis = 'CMD Estrutural (CFR ↓ + IMR ↑)';
+    color = 'var(--purple)';
+    icon = '🔴';
+  } else if (cfr < 2.5 && imr <= 25) {
+    diagnosis = 'CMD Funcional (CFR ↓ + IMR normal)';
+    color = '#fbbf24';
+    icon = '🟡';
+  } else if (cfr >= 2.5 && imr > 25) {
+    diagnosis = 'IMR elevado isolado (significado clínico incerto em ANOCA)';
+    color = 'var(--muted-foreground)';
+    icon = '❓';
+  }
+
+  let grayZone = '';
+  if (cfr >= 2.0 && cfr < 2.5) {
+    grayZone = '<div class="info-amber info-box"><span class="info-box-icon">⚠️</span><div><strong>CFR na zona cinzenta (2.0–2.4):</strong> Consenso em evolução. Considerar contexto clínico, outros testes e correlação com sintomas. Alguns centros consideram anormal, outros usam cutoff de 2.0.</div></div>';
+  }
+
+  let therapeutic = '';
+  if (cfr < 2.5 && imr > 25) {
+    therapeutic = `<div class="info-purple info-box"><span class="info-box-icon">💊</span><div><strong>Sugestão terapêutica (CMD Estrutural):</strong> β-bloqueadores vasodilatadores (nebivolol), BCC (amlodipina — ChaMP-CMD), IECA/BRA, estatinas. Ranolazina como adjuvante. Controle agressivo de fatores de risco. Referir a guidelines e consenso (EAPCI 2021).</div></div>`;
+  } else if (cfr < 2.5 && imr <= 25) {
+    therapeutic = `<div class="info-amber info-box"><span class="info-box-icon">💊</span><div><strong>Sugestão terapêutica (CMD Funcional):</strong> β-bloqueadores vasodilatadores, amlodipina, ranolazina. Investigar e tratar vasoespasmo (considerar teste de ACh). Nitratos com cautela — podem agravar sintomas se a vasodilatação basal já está esgotada.</div></div>`;
+  }
+
+  area.innerHTML = `
+    ${ffrText}
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:calc(var(--radius)+2px);padding:1.25rem;margin-top:.75rem">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:1rem">
+        <span style="font-size:1.5rem">${icon}</span>
+        <div>
+          <div style="font-size:1.1rem;font-weight:800;color:${color}">${diagnosis}</div>
+          <div style="font-size:.82rem;color:var(--muted-foreground)">CFR ${cfr.toFixed(1)} · IMR ${imr.toFixed(0)}${!isNaN(ffr)?` · FFR ${ffr.toFixed(2)}`:''}</div>
+        </div>
+      </div>
+      ${grayZone}
+      ${therapeutic}
+    </div>
+  `;
+}
+</script>
+</body>
+</html>

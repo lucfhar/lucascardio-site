@@ -1,0 +1,1371 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>Doença Renal e o Coração – Entenda a Conexão | Dr. Lucas Silva</title>
+  <meta name="description" content="Saiba como as doenças renais crônicas afetam o coração. Entenda os mecanismos, os riscos e as formas de proteção cardiovascular. Conteúdo baseado nas evidências mais atuais." />
+  <meta name="author" content="Dr. Lucas Silva" />
+  <link rel="canonical" href="https://lucascardio.com.br/Pacientes/doenca-renal-coracao.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Lora:ital,wght@0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: oklch(65% .18 195);
+      --primary-foreground: oklch(98% 0 0);
+      --background: oklch(13% .018 250);
+      --foreground: oklch(93% .01 250);
+      --card: oklch(18.5% .018 250);
+      --card-foreground: oklch(93% .01 250);
+      --muted: oklch(22% .018 250);
+      --muted-foreground: oklch(62% .02 250);
+      --border: oklch(28% .025 250);
+      --input: oklch(22% .02 250);
+      --destructive: oklch(60% .22 25);
+      --secondary: oklch(22% .022 250);
+      --secondary-foreground: oklch(88% .01 250);
+      --accent: oklch(24% .025 250);
+      --accent-foreground: oklch(90% .01 250);
+      --teal: #00d3bd;
+      --teal-dim: rgba(0,211,189,.12);
+      --amber: oklch(82.8% .189 84.429);
+      --red: oklch(63.7% .237 25.331);
+      --green: oklch(79.2% .209 151.711);
+      --radius: 0.625rem;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-serif: 'Lora', Georgia, serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--background);
+      color: var(--foreground);
+      min-height: 100vh;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(18,20,27,.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--foreground); }
+    .nav-brand-icon {
+      width: 28px; height: 28px; border-radius: 7px;
+      background: var(--teal); display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .nav-brand-name { font-weight: 800; font-size: 1rem; letter-spacing: -.025em; line-height: 1; }
+    .nav-brand-name span { color: var(--teal); }
+    .nav-brand-sep { width: 1px; height: 14px; background: var(--border); margin: 0 6px; }
+    .nav-brand-sub { font-size: .7rem; font-weight: 500; color: var(--muted-foreground); }
+    .nav-actions { display: flex; align-items: center; gap: .5rem; }
+    .nav-badge {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 999px; background: var(--teal-dim);
+      color: var(--teal); border: 1px solid rgba(0,211,189,.25); white-space: nowrap;
+    }
+    .nav-link {
+      font-size: .75rem; font-weight: 600; padding: 5px 12px;
+      border-radius: 8px; border: 1.5px solid var(--primary);
+      color: var(--primary); background: transparent; text-decoration: none;
+      transition: background .15s, color .15s;
+      display: inline-flex; align-items: center; gap: 5px;
+    }
+    .nav-link:hover { background: var(--primary); color: var(--primary-foreground); }
+
+    /* TAB NAV */
+    .tab-nav-wrap {
+      position: sticky; top: 56px; z-index: 40;
+      background: rgba(18,20,27,.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    .tab-nav {
+      max-width: 900px; margin: 0 auto;
+      display: flex; overflow-x: auto; gap: 0;
+      padding: 0 1.5rem;
+      scrollbar-width: none;
+    }
+    .tab-nav::-webkit-scrollbar { display: none; }
+    .tab-btn {
+      flex-shrink: 0;
+      background: none; border: none; cursor: pointer;
+      font-family: var(--font-sans); font-size: .8rem; font-weight: 600;
+      color: var(--muted-foreground);
+      padding: 14px 16px;
+      border-bottom: 2px solid transparent;
+      transition: color .15s, border-color .15s;
+      white-space: nowrap;
+    }
+    .tab-btn:hover { color: var(--foreground); }
+    .tab-btn.active { color: var(--teal); border-bottom-color: var(--teal); }
+
+    /* LAYOUT */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+    .section { padding: 3rem 0; }
+
+    /* HERO */
+    .hero { padding: 3.5rem 0 2.5rem; border-bottom: 1px solid var(--border); }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .7rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--teal); margin-bottom: 1rem;
+    }
+    .hero-eyebrow::before { content: ''; display: block; width: 20px; height: 2px; background: var(--teal); border-radius: 1px; }
+    .hero h1 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 800; line-height: 1.2;
+      margin-bottom: .75rem; letter-spacing: -.02em;
+    }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero-sub { color: var(--muted-foreground); font-size: .95rem; max-width: 640px; margin-bottom: 1.5rem; line-height: 1.7; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 6px; border: 1px solid var(--border);
+      color: var(--muted-foreground); background: var(--card);
+      font-family: var(--font-mono);
+    }
+
+    /* STAT GRID */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius)+2px);
+      overflow: hidden; margin: 2rem 0;
+    }
+    .stat-cell {
+      background: var(--card); padding: 1.25rem;
+      display: flex; flex-direction: column; gap: .35rem;
+    }
+    .stat-val {
+      font-size: 2rem; font-weight: 800;
+      font-family: var(--font-mono); color: var(--teal); line-height: 1;
+    }
+    .stat-label { font-size: .78rem; color: var(--muted-foreground); line-height: 1.4; }
+    .stat-source { font-size: .65rem; color: var(--muted-foreground); opacity: .65; font-family: var(--font-mono); }
+
+    /* CARD */
+    .card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: calc(var(--radius)+2px); padding: 1.5rem; margin-bottom: 1.5rem;
+    }
+    .card-header {
+      display: flex; align-items: flex-start;
+      gap: .75rem; margin-bottom: 1.25rem;
+      padding-bottom: 1rem; border-bottom: 1px solid var(--border);
+    }
+    .card-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
+      background: var(--teal-dim); color: var(--teal);
+    }
+    .card-title { font-weight: 700; font-size: 1rem; margin-bottom: 2px; }
+    .card-subtitle { font-size: .78rem; color: var(--muted-foreground); }
+
+    /* PROSE */
+    .prose { font-size: .9rem; line-height: 1.8; color: var(--foreground); }
+    .prose p { margin-bottom: 1rem; }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose strong { font-weight: 700; color: var(--foreground); }
+    .prose em { font-style: italic; color: var(--teal); font-weight: 500; }
+
+    /* INFO BOXES */
+    .info-box {
+      border-radius: var(--radius); padding: 12px 16px;
+      font-size: .85rem; line-height: 1.65;
+      display: flex; gap: 10px; margin-bottom: .85rem;
+    }
+    .info-box-icon { flex-shrink: 0; font-size: 1.1rem; margin-top: 1px; }
+    .info-teal { background: var(--teal-dim); border-left: 3px solid var(--teal); }
+    .info-amber { background: rgba(251,191,36,.08); border-left: 3px solid rgba(251,191,36,.5); }
+    .info-red { background: rgba(220,38,38,.08); border-left: 3px solid rgba(220,38,38,.4); }
+    .info-gray { background: var(--muted); border-left: 3px solid var(--border); }
+    .info-green { background: rgba(34,197,94,.08); border-left: 3px solid rgba(34,197,94,.4); }
+
+    /* SECTION TITLES */
+    .section-label {
+      font-size: .68rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--teal);
+      margin-bottom: .4rem; font-family: var(--font-mono);
+    }
+    .section-title { font-size: 1.3rem; font-weight: 800; margin-bottom: .25rem; letter-spacing: -.01em; }
+    .section-sub { font-size: .9rem; color: var(--muted-foreground); margin-bottom: 1.5rem; line-height: 1.6; }
+    .section-divider { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+
+    /* KIDNEY STAGE TABLE */
+    .stage-table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+    .stage-table th {
+      background: var(--muted); padding: 9px 12px;
+      text-align: left; font-weight: 700; font-size: .72rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted-foreground); letter-spacing: .03em;
+    }
+    .stage-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+    .stage-table tr:last-child td { border-bottom: none; }
+    .stage-table tr:hover td { background: var(--accent); }
+
+    /* MECHANISM GRID */
+    .mech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem; margin: 1rem 0;
+    }
+    .mech-card {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1rem;
+      transition: border-color .15s;
+    }
+    .mech-card:hover { border-color: rgba(0,211,189,.3); }
+    .mech-icon { font-size: 1.6rem; margin-bottom: .5rem; display: block; }
+    .mech-title { font-weight: 700; font-size: .88rem; margin-bottom: .35rem; }
+    .mech-text { font-size: .8rem; color: var(--muted-foreground); line-height: 1.55; }
+
+    /* DISEASE TABS */
+    .disease-tabs { margin-bottom: 1.5rem; }
+    .disease-tab-buttons {
+      display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.25rem;
+    }
+    .disease-tab-btn {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: calc(var(--radius)+2px); padding: 7px 14px;
+      font-family: var(--font-sans); font-size: .78rem; font-weight: 600;
+      color: var(--muted-foreground); cursor: pointer;
+      transition: all .15s;
+    }
+    .disease-tab-btn:hover { border-color: rgba(0,211,189,.3); color: var(--foreground); }
+    .disease-tab-btn.active {
+      background: var(--teal-dim); border-color: rgba(0,211,189,.4); color: var(--teal);
+    }
+    .disease-panel { display: none; animation: fadeUp .25s ease; }
+    .disease-panel.active { display: block; }
+
+    /* RISK VISUAL */
+    .risk-row {
+      display: flex; align-items: center; gap: 12px; margin-bottom: .65rem;
+    }
+    .risk-label { font-size: .8rem; font-weight: 600; min-width: 200px; flex-shrink: 0; }
+    .risk-bar-wrap { flex: 1; background: var(--muted); border-radius: 4px; height: 22px; overflow: hidden; }
+    .risk-bar {
+      height: 100%; border-radius: 4px;
+      display: flex; align-items: center; padding-left: 8px;
+      font-size: .7rem; font-weight: 700; font-family: var(--font-mono);
+      color: #000; white-space: nowrap; transition: width 1s ease;
+    }
+    .risk-bar.low { background: var(--teal); }
+    .risk-bar.mod { background: var(--amber); }
+    .risk-bar.high { background: oklch(72% .18 50); }
+    .risk-bar.very-high { background: var(--red); color: #fff; }
+
+    /* TREATMENT ACCORDION */
+    .accord-item { margin-bottom: .75rem; }
+    .accord-header {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 13px 16px;
+      display: flex; align-items: center; justify-content: space-between;
+      cursor: pointer; transition: background .15s, border-color .15s;
+      user-select: none;
+    }
+    .accord-header:hover { background: var(--accent); border-color: rgba(0,211,189,.25); }
+    .accord-header.open { border-color: rgba(0,211,189,.35); background: var(--teal-dim); }
+    .accord-header-left { display: flex; align-items: center; gap: 10px; }
+    .accord-emoji { font-size: 1.1rem; }
+    .accord-title { font-weight: 700; font-size: .9rem; }
+    .accord-subtitle { font-size: .75rem; color: var(--muted-foreground); margin-top: 1px; }
+    .accord-chevron { transition: transform .2s; font-size: .8rem; color: var(--muted-foreground); }
+    .accord-header.open .accord-chevron { transform: rotate(180deg); }
+    .accord-body {
+      display: none; background: var(--card); border: 1px solid var(--border);
+      border-top: none; border-radius: 0 0 var(--radius) var(--radius);
+      padding: 1.25rem 1.25rem 1.25rem 1.5rem;
+      font-size: .85rem; line-height: 1.7;
+    }
+    .accord-body.open { display: block; animation: fadeUp .2s ease; }
+    .accord-body p { margin-bottom: .75rem; }
+    .accord-body p:last-child { margin-bottom: 0; }
+
+    /* BADGE */
+    .badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: .68rem; font-weight: 700; padding: 2px 8px;
+      border-radius: 999px; white-space: nowrap;
+    }
+    .badge-teal { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,211,189,.25); }
+    .badge-amber { background: rgba(251,191,36,.12); color: #fbbf24; border: 1px solid rgba(251,191,36,.2); }
+    .badge-red { background: rgba(220,38,38,.15); color: #f87171; border: 1px solid rgba(220,38,38,.25); }
+    .badge-gray { background: var(--muted); color: var(--muted-foreground); border: 1px solid var(--border); }
+
+    /* QUOTE / PULL */
+    .pull-quote {
+      border-left: 3px solid var(--teal); padding: .75rem 1rem;
+      background: var(--teal-dim); border-radius: 0 var(--radius) var(--radius) 0;
+      font-family: var(--font-serif); font-style: italic;
+      font-size: .95rem; color: var(--foreground);
+      margin: 1.25rem 0; line-height: 1.65;
+    }
+
+    /* REFERENCES */
+    .ref-list { list-style: none; }
+    .ref-item {
+      padding: 10px 0; border-bottom: 1px solid var(--border);
+      font-size: .8rem; line-height: 1.6; display: flex; gap: 10px;
+    }
+    .ref-item:last-child { border-bottom: none; }
+    .ref-num { font-family: var(--font-mono); font-size: .7rem; font-weight: 700; color: var(--teal); min-width: 22px; }
+    .ref-title { font-weight: 600; margin-bottom: 2px; }
+    .ref-meta { color: var(--muted-foreground); font-size: .75rem; }
+
+    /* TAB PANEL */
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; animation: fadeUp .3s ease; }
+
+    /* DISCLAIMER */
+    .disclaimer {
+      background: var(--muted); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 12px 16px;
+      font-size: .75rem; color: var(--muted-foreground);
+      line-height: 1.6; margin-top: 1.5rem;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 2rem 0; margin-top: 3rem; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-copy { font-size: .75rem; color: var(--muted-foreground); }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      .risk-label { min-width: 140px; font-size: .72rem; }
+      .stat-val { font-size: 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="https://lucascardio.com.br">
+    <div class="nav-brand-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+      </svg>
+    </div>
+    <div class="nav-brand-name">Lucas<span>Cardio</span></div>
+    <div class="nav-brand-sep"></div>
+    <div class="nav-brand-sub">Saúde Cardiovascular</div>
+  </a>
+  <div class="nav-actions">
+    <span class="nav-badge">Para Pacientes</span>
+    <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      lucascardio.com.br
+    </a>
+  </div>
+</nav>
+
+<!-- TAB NAV -->
+<div class="tab-nav-wrap">
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="showTab('tab-intro')">O Rim e o Coração</button>
+    <button class="tab-btn" onclick="showTab('tab-mechanism')">Como Acontece</button>
+    <button class="tab-btn" onclick="showTab('tab-diseases')">Doenças Renais</button>
+    <button class="tab-btn" onclick="showTab('tab-risk')">Quem Está em Maior Risco</button>
+    <button class="tab-btn" onclick="showTab('tab-treatment')">Proteção e Tratamento</button>
+    <button class="tab-btn" onclick="showTab('tab-refs')">Referências</button>
+  </div>
+</div>
+
+<main>
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">Saúde Renal &amp; Cardiovascular</div>
+    <h1>Doença Renal e o <em>Coração</em><br>Entenda a Conexão</h1>
+    <p class="hero-sub">
+      Os rins e o coração trabalham juntos em uma parceria vital. Quando os rins adoecem, o coração sofre as consequências — e vice-versa. Entender essa conexão é o primeiro passo para proteger sua saúde de forma completa.
+    </p>
+    <div class="hero-tags">
+      <span class="tag">Doença Renal Crônica</span>
+      <span class="tag">Risco Cardiovascular</span>
+      <span class="tag">Nefropatia Diabética</span>
+      <span class="tag">KDIGO 2024</span>
+      <span class="tag">ESC 2023</span>
+      <span class="tag">AHA 2023</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════
+       TAB 1 — O RIM E O CORAÇÃO
+  ═══════════════════════════════════════════════════ -->
+  <div id="tab-intro" class="tab-panel active section">
+
+    <div class="section-label">Visão Geral</div>
+    <div class="section-title">Uma parceria que não pode falhar</div>
+    <div class="section-sub">A doença renal crônica afeta quase 800 milhões de pessoas no mundo — e a principal causa de morte nessa população não é renal, mas cardiovascular.</div>
+
+    <!-- STAT GRID -->
+    <div class="stat-grid">
+      <div class="stat-cell">
+        <div class="stat-val">788M</div>
+        <div class="stat-label">adultos com doença renal crônica no mundo (2023)</div>
+        <div class="stat-source">GBD 2023 · Lancet 2025</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-val">14,2%</div>
+        <div class="stat-label">dos adultos no mundo têm algum grau de doença renal</div>
+        <div class="stat-source">GBD 2023 · Lancet 2025</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-val">11,5%</div>
+        <div class="stat-label">das mortes cardiovasculares no mundo têm a doença renal como fator contribuinte</div>
+        <div class="stat-source">GBD 2023 · Lancet 2025</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-val">57%</div>
+        <div class="stat-label">maior risco de morte cardiovascular quando o rim filtra menos do que deveria</div>
+        <div class="stat-source">Webster et al. · Lancet 2017</div>
+      </div>
+    </div>
+
+    <div class="info-teal info-box">
+      <span class="info-box-icon">💡</span>
+      <div>
+        <strong>Um dado surpreendente:</strong> apenas cerca de 10% das pessoas com doença renal crônica chegam a precisar de diálise. A grande maioria morre antes — principalmente de infarto ou AVC. Por isso, cuidar do coração é tão importante quanto cuidar dos rins.
+      </div>
+    </div>
+
+    <!-- WHAT ARE KIDNEYS -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">🫘</div>
+        <div>
+          <div class="card-title">O Que os Rins Fazem pelo Seu Corpo?</div>
+          <div class="card-subtitle">Muito além de filtrar o sangue</div>
+        </div>
+      </div>
+      <div class="prose">
+        <p>Os rins são dois órgãos em forma de feijão, localizados na região lombar. Cada um tem cerca de 12 cm e mais de um milhão de minúsculas unidades de filtragem chamadas <strong>néfrons</strong>. Juntos, filtram aproximadamente <strong>180 litros de sangue por dia</strong> — o equivalente a mais de 30 garrafas de 6 litros.</p>
+        <p>Mas os rins fazem muito mais do que apenas filtrar. Eles:</p>
+      </div>
+      <div class="mech-grid" style="margin-top:.75rem;">
+        <div class="mech-card">
+          <span class="mech-icon">🩸</span>
+          <div class="mech-title">Controlam a pressão arterial</div>
+          <div class="mech-text">Regulam o equilíbrio de sódio e água no sangue e produzem substâncias que controlam diretamente a pressão.</div>
+        </div>
+        <div class="mech-card">
+          <span class="mech-icon">🔴</span>
+          <div class="mech-title">Produzem eritropoietina</div>
+          <div class="mech-text">Um hormônio que estimula a medula óssea a produzir glóbulos vermelhos. Quando os rins falham, surge anemia.</div>
+        </div>
+        <div class="mech-card">
+          <span class="mech-icon">🦴</span>
+          <div class="mech-title">Regulam cálcio e fósforo</div>
+          <div class="mech-text">Ativam a vitamina D e excretam fósforo — equilíbrio essencial para ossos saudáveis e para os vasos sanguíneos.</div>
+        </div>
+        <div class="mech-card">
+          <span class="mech-icon">⚗️</span>
+          <div class="mech-title">Eliminam toxinas</div>
+          <div class="mech-text">Removem substâncias tóxicas produzidas pelo metabolismo, como ureia e creatinina, que acumulam no sangue quando os rins falham.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHAT IS CKD -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">📊</div>
+        <div>
+          <div class="card-title">O Que É Doença Renal Crônica?</div>
+          <div class="card-subtitle">Definição, diagnóstico e estadiamento</div>
+        </div>
+      </div>
+      <div class="prose">
+        <p>A <strong>doença renal crônica (DRC)</strong> é definida como qualquer alteração na estrutura ou função dos rins que persiste por <strong>mais de 3 meses</strong>. Ela pode ser identificada por dois parâmetros principais:</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin:1rem 0;">
+        <div class="info-teal info-box" style="margin-bottom:0;">
+          <span class="info-box-icon">🧪</span>
+          <div>
+            <strong>Taxa de Filtração Glomerular (TFG)</strong><br>
+            Mede a velocidade com que os rins filtram o sangue. É calculada a partir de um simples exame de creatinina no sangue. <em>Normal: acima de 60 mL/min/1,73 m².</em>
+          </div>
+        </div>
+        <div class="info-teal info-box" style="margin-bottom:0;">
+          <span class="info-box-icon">💧</span>
+          <div>
+            <strong>Albuminúria (proteína na urina)</strong><br>
+            A albumina é uma proteína que normalmente não passa pelo filtro renal. Sua presença na urina indica dano ao néfron, mesmo quando a TFG ainda é normal.
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:1.5rem;">
+        <div class="section-label" style="margin-bottom:.75rem;">Estadiamento pela TFG (KDIGO 2024)</div>
+        <div style="overflow-x:auto;border-radius:calc(var(--radius)+2px);border:1px solid var(--border);">
+          <table class="stage-table">
+            <thead>
+              <tr>
+                <th>Estágio</th>
+                <th>TFG (mL/min/1,73 m²)</th>
+                <th>O que significa</th>
+                <th>Risco cardiovascular</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>G1</strong></td>
+                <td><span style="font-family:var(--font-mono);color:var(--green);">≥ 90</span></td>
+                <td>Normal ou aumentada (com marcador de dano)</td>
+                <td><span class="badge badge-gray">Moderadamente elevado</span></td>
+              </tr>
+              <tr>
+                <td><strong>G2</strong></td>
+                <td><span style="font-family:var(--font-mono);color:var(--green);">60–89</span></td>
+                <td>Levemente reduzida</td>
+                <td><span class="badge badge-teal">Moderadamente elevado</span></td>
+              </tr>
+              <tr>
+                <td><strong>G3a</strong></td>
+                <td><span style="font-family:var(--font-mono);color:var(--amber);">45–59</span></td>
+                <td>Leve a moderadamente reduzida</td>
+                <td><span class="badge badge-amber">Alto</span></td>
+              </tr>
+              <tr>
+                <td><strong>G3b</strong></td>
+                <td><span style="font-family:var(--font-mono);color:var(--amber);">30–44</span></td>
+                <td>Moderada a severamente reduzida</td>
+                <td><span class="badge badge-amber">Alto a muito alto</span></td>
+              </tr>
+              <tr>
+                <td><strong>G4</strong></td>
+                <td><span style="font-family:var(--font-mono);color:var(--red);">15–29</span></td>
+                <td>Severamente reduzida</td>
+                <td><span class="badge badge-red">Muito alto</span></td>
+              </tr>
+              <tr>
+                <td><strong>G5</strong></td>
+                <td><span style="font-family:var(--font-mono);color:var(--red);">&lt; 15</span></td>
+                <td>Insuficiência renal</td>
+                <td><span class="badge badge-red">Extremamente alto</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:.75rem;color:var(--muted-foreground);margin-top:.5rem;">A albuminúria (proteína na urina) eleva ainda mais o risco em cada estágio. A combinação TFG baixa + proteína alta na urina = risco cardiovascular máximo.</p>
+      </div>
+    </div>
+
+    <div class="pull-quote">
+      "O risco cardiovascular começa a subir muito antes de a doença renal causar qualquer sintoma — já a partir de pequenas reduções na filtração ou de traços de proteína na urina."
+    </div>
+
+    <div class="info-amber info-box">
+      <span class="info-box-icon">⚠️</span>
+      <div>
+        <strong>Atenção: a DRC costuma ser silenciosa.</strong> Até estágios avançados, muitos pacientes não têm nenhum sintoma. O diagnóstico é feito por exames simples de sangue (creatinina, TFG) e urina (albumina). Peça ao seu médico para incluir esses exames no seu check-up anual — especialmente se você tiver diabetes, hipertensão ou histórico familiar de doença renal.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════════════
+       TAB 2 — COMO ACONTECE (MECANISMOS)
+  ═══════════════════════════════════════════════════ -->
+  <div id="tab-mechanism" class="tab-panel section">
+
+    <div class="section-label">Entendendo os Mecanismos</div>
+    <div class="section-title">Por que o rim doente prejudica o coração?</div>
+    <div class="section-sub">Quando os rins não funcionam bem, uma série de perturbações no organismo atinge diretamente o coração e os vasos sanguíneos. Esses mecanismos se somam e se amplificam.</div>
+
+    <div class="info-teal info-box">
+      <span class="info-box-icon">🔄</span>
+      <div>
+        <strong>Relação bidirecional:</strong> o coração e os rins dependem um do outro. Um coração fraco reduz o fluxo de sangue para os rins; rins doentes sobrecarregam o coração. Quando ambos adoecem juntos — muitas vezes junto com diabetes e obesidade — os médicos chamam isso de <em>Síndrome Cardio-Renal-Metabólica (CKM)</em>. Cada órgão agrava a doença do outro.
+      </div>
+    </div>
+
+    <div class="mech-grid" style="margin-top:1.5rem;">
+      <div class="mech-card">
+        <span class="mech-icon">💉</span>
+        <div class="mech-title">Hipertensão arterial</div>
+        <div class="mech-text">Os rins doentes retêm sódio e água, elevando a pressão. A pressão alta, por sua vez, danifica ainda mais os glomérulos renais — criando um ciclo vicioso. No longo prazo, a pressão elevada engrossa e endurece as paredes do coração (hipertrofia ventricular), aumentando drasticamente o risco de infarto e insuficiência cardíaca.</div>
+      </div>
+      <div class="mech-card">
+        <span class="mech-icon">🧲</span>
+        <div class="mech-title">Acúmulo de toxinas urêmicas</div>
+        <div class="mech-text">Substâncias como sulfato de indoxila e sulfato de p-cresila, que deveriam ser eliminadas pelos rins, acumulam-se no sangue. Essas toxinas agridem diretamente as paredes dos vasos sanguíneos (endotélio), estimulam a formação de placas de gordura (aterosclerose) e inflamam o músculo cardíaco.</div>
+      </div>
+      <div class="mech-card">
+        <span class="mech-icon">🦴</span>
+        <div class="mech-title">Desequilíbrio mineral e calcificação vascular</div>
+        <div class="mech-text">Com a função renal reduzida, o fósforo se acumula no sangue. Isso dispara a produção de FGF23 (um hormônio fosfatúrico) e paratormônio (PTH), que promovem depósito de cálcio nas paredes dos vasos — uma forma de calcificação vascular que os endurece como tubos de concreto. Resultado: hipertensão sistólica, hipertrofia cardíaca e maior risco de arritmias.</div>
+      </div>
+      <div class="mech-card">
+        <span class="mech-icon">🩸</span>
+        <div class="mech-title">Anemia</div>
+        <div class="mech-text">Os rins produzem eritropoietina, o hormônio que comanda a produção de glóbulos vermelhos. Com a doença renal, esse hormônio diminui e surge a anemia. O coração passa a trabalhar mais forte para compensar o menor transporte de oxigênio — o que, ao longo do tempo, promove hipertrofia e enfraquecimento do músculo cardíaco.</div>
+      </div>
+      <div class="mech-card">
+        <span class="mech-icon">🔥</span>
+        <div class="mech-title">Inflamação crônica</div>
+        <div class="mech-text">A DRC gera um estado de inflamação silenciosa e contínua. Proteínas inflamatórias circulantes, como PCR e interleucinas, contribuem para a formação de placas ateroscleróticas, instabilização dessas placas (risco de ruptura = infarto) e disfunção do músculo cardíaco.</div>
+      </div>
+      <div class="mech-card">
+        <span class="mech-icon">⚡</span>
+        <div class="mech-title">Sistema nervoso ativado em excesso</div>
+        <div class="mech-text">A DRC hiperestimula o sistema renina-angiotensina-aldosterona (SRAA) e o sistema nervoso simpático. Isso estreita os vasos, eleva a pressão e provoca remodelamento cardíaco — o coração fica mais espesso e menos eficiente, predispondo à insuficiência cardíaca e a arritmias como fibrilação atrial.</div>
+      </div>
+      <div class="mech-card">
+        <span class="mech-icon">💧</span>
+        <div class="mech-title">Sobrecarga de volume</div>
+        <div class="mech-text">Rins que filtram menos retêm sódio e água em excesso, aumentando o volume de sangue circulante. Isso sobrecarrega o coração, que precisa bombear mais sangue a cada batida. A longo prazo, a sobrecarga leva a dilatação e insuficiência cardíaca.</div>
+      </div>
+      <div class="mech-card">
+        <span class="mech-icon">🫀</span>
+        <div class="mech-title">Dislipidemia aterogênica</div>
+        <div class="mech-text">A DRC altera o metabolismo das gorduras: eleva triglicerídeos, reduz o HDL ("colesterol bom") e aumenta o LDL oxidado — a forma mais perigosa do LDL para as artérias. Esse perfil lipídico adverso acelera a aterosclerose e aumenta o risco de infarto e AVC.</div>
+      </div>
+    </div>
+
+    <div class="pull-quote">
+      "A doença renal crônica é um multiplicador de risco cardiovascular — não porque cause apenas uma perturbação, mas porque desencadeia ao mesmo tempo oito ou mais mecanismos que se reforçam mutuamente."
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">❤️</div>
+        <div>
+          <div class="card-title">Que problemas cardíacos a DRC provoca?</div>
+          <div class="card-subtitle">O espectro completo de complicações cardiovasculares</div>
+        </div>
+      </div>
+      <div class="prose">
+        <p>Pacientes com DRC têm risco aumentado praticamente de todos os tipos de doença cardiovascular:</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.75rem;margin-top:.75rem;">
+        <div class="info-box info-red" style="margin-bottom:0;align-items:center;">
+          <span class="info-box-icon">🫀</span>
+          <div><strong>Infarto do miocárdio</strong><br><span style="font-size:.78rem;color:var(--muted-foreground);">Risco 33% maior com TFG &lt;60</span></div>
+        </div>
+        <div class="info-box info-red" style="margin-bottom:0;align-items:center;">
+          <span class="info-box-icon">🧠</span>
+          <div><strong>AVC</strong><br><span style="font-size:.78rem;color:var(--muted-foreground);">+7% por cada 10 mL/min/1,73 m² a menos na TFG</span></div>
+        </div>
+        <div class="info-box info-amber" style="margin-bottom:0;align-items:center;">
+          <span class="info-box-icon">💓</span>
+          <div><strong>Insuficiência cardíaca</strong><br><span style="font-size:.78rem;color:var(--muted-foreground);">2–3× mais frequente que na população geral</span></div>
+        </div>
+        <div class="info-box info-amber" style="margin-bottom:0;align-items:center;">
+          <span class="info-box-icon">⚡</span>
+          <div><strong>Fibrilação atrial</strong><br><span style="font-size:.78rem;color:var(--muted-foreground);">Risco aumentado em todos os estágios</span></div>
+        </div>
+        <div class="info-box info-gray" style="margin-bottom:0;align-items:center;">
+          <span class="info-box-icon">🦵</span>
+          <div><strong>Doença arterial periférica</strong><br><span style="font-size:.78rem;color:var(--muted-foreground);">Calcificação arterial extensa</span></div>
+        </div>
+        <div class="info-box info-gray" style="margin-bottom:0;align-items:center;">
+          <span class="info-box-icon">💀</span>
+          <div><strong>Morte súbita cardíaca</strong><br><span style="font-size:.78rem;color:var(--muted-foreground);">Relacionada a arritmias e calcificação</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════════════
+       TAB 3 — DOENÇAS RENAIS ESPECÍFICAS
+  ═══════════════════════════════════════════════════ -->
+  <div id="tab-diseases" class="tab-panel section">
+
+    <div class="section-label">Doenças Renais Prevalentes</div>
+    <div class="section-title">Cada doença renal tem um perfil cardiovascular próprio</div>
+    <div class="section-sub">As causas mais comuns de doença renal crônica compartilham o mesmo destino cardiovascular, mas com intensidades e mecanismos distintos. Conheça cada uma delas.</div>
+
+    <div class="disease-tabs">
+      <div class="disease-tab-buttons">
+        <button class="disease-tab-btn active" onclick="showDisease('dis-dm')">🔴 Nefropatia Diabética</button>
+        <button class="disease-tab-btn" onclick="showDisease('dis-htn')">🔵 Nefroesclerose Hipertensiva</button>
+        <button class="disease-tab-btn" onclick="showDisease('dis-gn')">🟡 Glomerulonefrites</button>
+        <button class="disease-tab-btn" onclick="showDisease('dis-pkd')">🟢 Rim Policístico (DRPAD)</button>
+        <button class="disease-tab-btn" onclick="showDisease('dis-lupus')">🟣 Nefrite Lúpica</button>
+      </div>
+
+      <!-- NEFROPATIA DIABÉTICA -->
+      <div id="dis-dm" class="disease-panel active">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon" style="background:rgba(220,38,38,.12);color:#f87171;">🔴</div>
+            <div>
+              <div class="card-title">Nefropatia Diabética</div>
+              <div class="card-subtitle">Causa número 1 de DRC e insuficiência renal no mundo</div>
+            </div>
+          </div>
+          <div class="info-red info-box">
+            <span class="info-box-icon">⚠️</span>
+            <div><strong>O maior risco cardiovascular entre as doenças renais:</strong> pacientes com nefropatia diabética têm 2× mais risco de infarto e morte cardiovascular do que aqueles com nefrite por glomerulonefrite, mesmo com a mesma função renal.</div>
+          </div>
+          <div class="prose">
+            <p>A nefropatia diabética se desenvolve quando o diabetes descontrolado danifica os vasos sanguíneos minúsculos dos rins. O primeiro sinal costuma ser a presença de pequenas quantidades de proteína na urina (<strong>microalbuminúria</strong>) — que por si só já eleva o risco cardiovascular em 63%.</p>
+            <p>Com o tempo, os vasos renais engrossam e cicatrizam; a filtração cai progressivamente. O processo é insidioso: pode levar 10 a 20 anos do diagnóstico do diabetes até a instalação de insuficiência renal grave.</p>
+            <p>O que torna a nefropatia diabética tão perigosa para o coração é que o <strong>diabetes agrava todos os mecanismos</strong> já mencionados: inflamação, oxidação, disfunção endotelial, aterosclerose acelerada, e ainda adiciona toxicidade direta pela glicose nas células do coração. Três quartos de todos os casos de insuficiência renal nos EUA são causados por diabetes e hipertensão.</p>
+          </div>
+          <div style="margin-top:1rem;">
+            <div class="section-label" style="margin-bottom:.5rem;">Dados do estudo KNOW-CKD</div>
+            <div class="info-box info-teal">
+              <span class="info-box-icon">📊</span>
+              <div>Estudo prospectivo comparando desfechos segundo a causa da DRC: pacientes com nefropatia diabética tiveram <strong>hazard ratio de 2,07</strong> para o desfecho composto de morte cardiovascular + infarto + AVC, comparados a pacientes com glomerulonefrite — mesmo ajustando para idade, função renal e outros fatores de risco.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NEFROESCLEROSE HIPERTENSIVA -->
+      <div id="dis-htn" class="disease-panel">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon" style="background:rgba(59,130,246,.12);color:#60a5fa;">🔵</div>
+            <div>
+              <div class="card-title">Nefroesclerose Hipertensiva</div>
+              <div class="card-subtitle">Quando a pressão alta corrói os rins — e o coração paga o preço</div>
+            </div>
+          </div>
+          <div class="prose">
+            <p>A hipertensão arterial é simultaneamente uma <strong>causa e uma consequência</strong> da doença renal. Esse ciclo vicioso é um dos mais perigosos da medicina cardiovascular: pressão alta danifica os vasos do rim → os rins passam a regular pior a pressão → a pressão sobe ainda mais → os rins pioram.</p>
+            <p>A nefroesclerose hipertensiva é a lesão renal causada por pressão cronicamente elevada. Os vasos dentro dos rins ficam espessados e endurecidos, comprometendo a perfusão dos néfrons. O processo é silencioso por décadas.</p>
+            <p>No coração, o mecanismo mais importante é a <strong>hipertrofia ventricular esquerda</strong> — o engrossamento da parede do coração como resposta ao esforço de bombear contra uma pressão elevada. Quando a TFG cai abaixo de 30 mL/min/1,73m², cerca de 50% dos pacientes já desenvolveram hipertrofia ventricular, aumentando muito o risco de insuficiência cardíaca, infarto e morte súbita.</p>
+            <p>Além disso, a lesão das pequenas artérias (microangiopatia) que ocorre nos rins se reproduz no coração, cérebro e retina — trata-se de uma doença sistêmica dos pequenos vasos, não apenas renal.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- GLOMERULONEFRITES -->
+      <div id="dis-gn" class="disease-panel">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon" style="background:rgba(234,179,8,.12);color:#facc15;">🟡</div>
+            <div>
+              <div class="card-title">Glomerulonefrites</div>
+              <div class="card-subtitle">Inflamação no filtro renal com impacto cardiovascular significativo</div>
+            </div>
+          </div>
+          <div class="prose">
+            <p>As glomerulonefrites são doenças inflamatórias que atingem diretamente os glomérulos — as unidades de filtração dos rins. Podem ser causadas por doenças autoimunes (como lúpus), infecções, deposição de proteínas anormais ou surgir sem causa aparente (primárias).</p>
+            <p>O risco cardiovascular absoluto em pacientes com glomerulonefrite é <strong>aproximadamente 2,5 vezes</strong> maior do que na população geral. No entanto, quando se compara grupos com a mesma função renal (TFG) e a mesma quantidade de proteína na urina, o risco cardiovascular é semelhante ao de outras causas de DRC — o que sugere que o risco é impulsionado principalmente pela perda da função renal e pela albuminúria, não pela causa específica em si.</p>
+            <p>Um dado importante: estudos histopatológicos (análise do tecido renal por biópsia) mostram que certos padrões de lesão renal — como expansão do mesângio e esclerose arteriolar — são preditores independentes de infarto e morte cardiovascular, mesmo quando a TFG ainda está relativamente preservada. Ou seja, a estrutura microscópica do rim já diz muito sobre o risco cardíaco.</p>
+          </div>
+          <div class="info-amber info-box" style="margin-top:.75rem;">
+            <span class="info-box-icon">🔬</span>
+            <div>Publicado no JAMA Cardiology (Buckley et al., 2023): lesões histopatológicas renais específicas, como esclerose arteriolar e expansão mesangial, foram associadas independentemente a maior incidência de infarto e AVC — acrescentando informação prognóstica além da TFG e da albuminúria.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIM POLICÍSTICO -->
+      <div id="dis-pkd" class="disease-panel">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon" style="background:rgba(34,197,94,.12);color:#4ade80;">🟢</div>
+            <div>
+              <div class="card-title">Doença Renal Policística Autossômica Dominante (DRPAD)</div>
+              <div class="card-subtitle">A doença renal genética mais comum no mundo</div>
+            </div>
+          </div>
+          <div class="prose">
+            <p>A DRPAD é causada por mutações nos genes PKD1 ou PKD2, que levam ao crescimento progressivo de cistos (bolsas cheias de líquido) dentro dos rins, destruindo o tecido normal ao longo das décadas. É a doença renal hereditária mais comum, afetando cerca de 1 em cada 400–1.000 pessoas.</p>
+            <p>Em relação ao coração, a DRPAD tem um perfil diferente das demais doenças renais. A perda da função renal tende a ser mais lenta e tardia, e o risco cardiovascular, embora elevado, é <strong>menor do que na nefropatia diabética</strong>. No entanto, a hipertensão arterial aparece cedo — muitas vezes ainda na juventude, antes de qualquer redução perceptível na TFG — e é o principal fator de risco cardíaco nesses pacientes.</p>
+            <p>Manifestações cardiovasculares específicas da DRPAD incluem prolapso de válvula mitral (em até 25% dos casos), aneurismas intracranianos e dilatação de aorta — todas relacionadas ao defeito estrutural do tecido conjuntivo causado pelas mutações nos genes PKD.</p>
+          </div>
+          <div class="info-box info-teal" style="margin-top:.75rem;">
+            <span class="info-box-icon">💊</span>
+            <div><strong>Importante (KDIGO 2025):</strong> nas diretrizes mais recentes para DRPAD, o uso de inibidores SGLT2 ainda não está recomendado por falta de evidências suficientes nessa condição específica — diferentemente de outras causas de DRC, onde esses medicamentos já são tratamento padrão. O controle da pressão com medicamentos bloqueadores do sistema renina-angiotensina continua sendo a pedra angular do tratamento.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NEFRITE LÚPICA -->
+      <div id="dis-lupus" class="disease-panel">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon" style="background:rgba(168,85,247,.12);color:#c084fc;">🟣</div>
+            <div>
+              <div class="card-title">Nefrite Lúpica</div>
+              <div class="card-subtitle">Quando a autoimunidade ataca rins e coração ao mesmo tempo</div>
+            </div>
+          </div>
+          <div class="prose">
+            <p>O lúpus eritematoso sistêmico (LES) é uma doença autoimune em que o sistema de defesa do corpo ataca seus próprios tecidos. Os rins são o alvo mais frequente — a nefrite lúpica ocorre em 50–60% dos pacientes com lúpus.</p>
+            <p>O risco cardiovascular na nefrite lúpica é intermediário-alto — comparável ao risco de pacientes com DRC por diabetes ou hipertensão. Estudos recentes demonstram taxas de morte e de eventos cardiovasculares maiores (MACE) significativamente mais elevadas do que em glomerulonefrite primária.</p>
+            <p>O lúpus prejudica o coração por dois caminhos simultâneos: o próprio processo inflamatório sistêmico (vasculite, anticorpos antifosfolipídios que formam coágulos, pericardite) e o dano renal acumulado com todas as suas consequências já descritas. O tratamento, portanto, precisa ser duplo: <strong>controlar a atividade do lúpus</strong> (com imunossupressores) <strong>e tratar agressivamente os fatores de risco cardiovascular</strong> (pressão, colesterol, coagulação).</p>
+            <p>Mulheres jovens com lúpus e nefrite têm um risco de infarto desproporcionalmente alto para a sua faixa etária — algo que frequentemente é subestimado tanto por médicos quanto pelas próprias pacientes.</p>
+          </div>
+          <div class="info-red info-box" style="margin-top:.75rem;">
+            <span class="info-box-icon">⚠️</span>
+            <div>Mulheres com lúpus entre 35 e 44 anos têm até <strong>50 vezes mais chance de infarto</strong> do que mulheres da mesma idade sem lúpus. A inflamação crônica e os anticorpos que atacam os vasos explicam esse risco extremamente elevado para uma faixa etária jovem.</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end disease-tabs -->
+
+  </div>
+
+  <!-- ══════════════════════════════════════════════════
+       TAB 4 — QUEM ESTÁ EM MAIOR RISCO
+  ═══════════════════════════════════════════════════ -->
+  <div id="tab-risk" class="tab-panel section">
+
+    <div class="section-label">Populações de Alto Risco</div>
+    <div class="section-title">Nem todos correm o mesmo risco</div>
+    <div class="section-sub">Dentro do universo da doença renal, algumas populações têm riscos cardiovasculares ainda mais elevados. Conhecer esses grupos é fundamental para uma prevenção mais direcionada.</div>
+
+    <!-- RISK BARS -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">📈</div>
+        <div>
+          <div class="card-title">Risco de Morte Cardiovascular por Estágio de DRC</div>
+          <div class="card-subtitle">O risco cresce de forma gradual e implacável conforme a função renal cai</div>
+        </div>
+      </div>
+      <div style="margin-top:.5rem;">
+        <div class="risk-row">
+          <div class="risk-label">Sem DRC (referência)</div>
+          <div class="risk-bar-wrap"><div class="risk-bar low" style="width:15%;">Base</div></div>
+        </div>
+        <div class="risk-row">
+          <div class="risk-label">TFG 60–90 (Estágio G2)</div>
+          <div class="risk-bar-wrap"><div class="risk-bar low" style="width:30%;">+20%</div></div>
+        </div>
+        <div class="risk-row">
+          <div class="risk-label">TFG 45–60 (Estágio G3a)</div>
+          <div class="risk-bar-wrap"><div class="risk-bar mod" style="width:45%;">+45%</div></div>
+        </div>
+        <div class="risk-row">
+          <div class="risk-label">TFG &lt;60 + Microalbuminúria</div>
+          <div class="risk-bar-wrap"><div class="risk-bar high" style="width:65%;">+57 a 63%</div></div>
+        </div>
+        <div class="risk-row">
+          <div class="risk-label">TFG &lt;30 (Estágio G4)</div>
+          <div class="risk-bar-wrap"><div class="risk-bar very-high" style="width:80%;">+115%</div></div>
+        </div>
+        <div class="risk-row">
+          <div class="risk-label">DRC + Diabetes mellitus</div>
+          <div class="risk-bar-wrap"><div class="risk-bar very-high" style="width:90%;">Máximo</div></div>
+        </div>
+        <p style="font-size:.72rem;color:var(--muted-foreground);margin-top:.75rem;">Valores aproximados baseados em meta-análises de coorte. Webster et al., Lancet 2017; Matsushita et al., Nature Reviews Nephrology 2022.</p>
+      </div>
+    </div>
+
+    <!-- SPECIFIC RISK GROUPS -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">👥</div>
+        <div>
+          <div class="card-title">Diabéticos com Doença Renal</div>
+          <div class="card-subtitle">A combinação mais perigosa</div>
+        </div>
+      </div>
+      <div class="prose">
+        <p>Pessoas com diabetes e doença renal acumulam praticamente todos os mecanismos de dano cardiovascular ao mesmo tempo: hiperglicemia, hipertensão, dislipidemia, inflamação crônica, toxinas urêmicas e calcificação vascular. As principais causas de morte nesse grupo são <strong>insuficiência cardíaca e doença coronariana aterosclerótica</strong>.</p>
+        <p>Taxas ajustadas de morte chegam a <strong>170 por 1.000 pacientes por ano</strong> nos estágios avançados de DRC com diabetes — um número extraordinariamente alto, que coloca esses pacientes em uma classe de risco equivalente à de pessoas que já tiveram um infarto prévio.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">⚧</div>
+        <div>
+          <div class="card-title">Mulheres com Doença Renal</div>
+          <div class="card-subtitle">Um risco subestimado e pouco discutido</div>
+        </div>
+      </div>
+      <div class="prose">
+        <p>Em geral, as mulheres têm menor risco cardiovascular do que os homens na população saudável. Porém, a doença renal crônica <strong>elimina essa proteção natural</strong>. Estudos recentes demonstram que a DRC confere um risco cardiovascular excessivo proporcionalmente maior em mulheres do que em homens: a DRC praticamente equipara o risco cardiovascular entre os sexos.</p>
+        <p>Além disso, em estágios menos avançados de DRC, mulheres podem ter uma aparente proteção em eventos ateroscleróticos; mas conforme a TFG cai abaixo de 16 mL/min/1,73m², essa vantagem desaparece completamente. E quando há hipertensão grave, a proteção feminina é abolida em todos os estágios.</p>
+      </div>
+      <div class="info-amber info-box" style="margin-top:.75rem;">
+        <span class="info-box-icon">⚠️</span>
+        <div>Estudo de 2025 (Tian et al., NDT): a DRC conferiu riscos excessivos de morte e eventos cardiovasculares <strong>significativamente maiores em mulheres do que em homens</strong> — a diferença de risco entre os sexos praticamente desapareceu na presença de DRC.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">👴</div>
+        <div>
+          <div class="card-title">Adultos Mais Velhos</div>
+          <div class="card-subtitle">Maior risco absoluto, mesmo quando o risco relativo parece menor</div>
+        </div>
+      </div>
+      <div class="prose">
+        <p>Entre maiores de 65 anos com DRC, <strong>65% já têm doença cardiovascular estabelecida</strong> — contra apenas 32% dos idosos sem DRC. A presença de DRC reduz drasticamente a sobrevida em todos os tipos de doença cardíaca: pacientes com DRC e insuficiência cardíaca têm sobrevida de 2 anos de apenas 65%, contra 76% sem DRC.</p>
+        <p>Nos adultos idosos, os riscos relativos da DRC sobre mortalidade são proporcionalmente menores — mas o risco absoluto (número de mortes a mais por 1.000 pessoas) é na verdade <strong>maior do que em jovens</strong>, porque a linha de base já é mais alta. Isso significa que a DRC mata ainda mais adultos idosos em termos absolutos.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">🧑</div>
+        <div>
+          <div class="card-title">Jovens com Doença Renal</div>
+          <div class="card-subtitle">Risco relativo altíssimo em uma faixa etária inesperada</div>
+        </div>
+      </div>
+      <div class="prose">
+        <p>Embora a DRC seja menos comum em jovens, quando ocorre, seus efeitos cardiovasculares são proporcionalmente devastadores. Um estudo publicado no JACC em 2023 (Hussain et al.) mostrou que adultos entre 18 e 39 anos com TFG de 50–59 mL/min/1,73m² e proteinúria acentuada têm <strong>quase 3 vezes mais eventos cardiovasculares maiores</strong> do que jovens da mesma idade sem DRC — um risco relativo muito maior do que o observado em adultos mais velhos com a mesma função renal.</p>
+        <p>Isso significa que um jovem com DRC tem um coração que envelhece muito mais rápido do que deveria.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">🌍</div>
+        <div>
+          <div class="card-title">Desigualdades Sociais e Acesso à Saúde</div>
+          <div class="card-subtitle">Fatores sociais amplificam o risco cardiovascular na DRC</div>
+        </div>
+      </div>
+      <div class="prose">
+        <p>O risco cardiovascular na doença renal não é distribuído igualmente na sociedade. Pessoas de baixa renda, com menor escolaridade, sem plano de saúde e em situação de insegurança alimentar têm desfechos muito piores. Uma análise publicada no JAMA Network Open (2024) mostrou que pessoas com dois ou mais <strong>determinantes sociais desfavoráveis</strong> têm muito mais chance de atingir estágios avançados da síndrome cardio-renal-metabólica.</p>
+        <p>Renda familiar, emprego, acesso a cobertura de saúde e alimentação adequada foram os fatores sociais mais diretamente associados aos piores desfechos — lembrando que esses não são determinados apenas por escolhas individuais, mas por condições estruturais da sociedade.</p>
+      </div>
+      <div class="info-box info-gray" style="margin-top:.75rem;">
+        <span class="info-box-icon">💡</span>
+        <div>Para cada <strong>10% de aumento em um escore socioeconômico composto</strong> (renda + educação), o risco de morte ou evento cardiovascular em pacientes com DRC aumenta em 25% — demonstrando que as condições de vida são um determinante tão importante quanto os fatores biológicos.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════════════
+       TAB 5 — PROTEÇÃO E TRATAMENTO
+  ═══════════════════════════════════════════════════ -->
+  <div id="tab-treatment" class="tab-panel section">
+
+    <div class="section-label">Prevenção e Tratamento</div>
+    <div class="section-title">Como proteger seu coração quando você tem doença renal</div>
+    <div class="section-sub">A medicina avançou muito. Hoje temos tratamentos que simultaneamente protegem os rins e o coração. O tratamento precoce faz toda a diferença — não espere os sintomas aparecerem.</div>
+
+    <div class="info-green info-box">
+      <span class="info-box-icon">✅</span>
+      <div>
+        <strong>Mensagem central:</strong> tratar a doença renal <em>é</em> tratar a doença cardiovascular. As intervenções que desaceleram a progressão da DRC também reduzem infarto, AVC e insuficiência cardíaca — muitas vezes de forma simultânea. O acompanhamento conjunto de nefrologista e cardiologista é cada vez mais recomendado.
+      </div>
+    </div>
+
+    <!-- ACCORDION TREATMENTS -->
+    <div style="margin-top:1.5rem;">
+
+      <div class="accord-item">
+        <div class="accord-header" onclick="toggleAccord(this)">
+          <div class="accord-header-left">
+            <span class="accord-emoji">🩺</span>
+            <div>
+              <div class="accord-title">Controle da Pressão Arterial</div>
+              <div class="accord-subtitle">Meta &lt;130/80 mmHg para a maioria dos pacientes com DRC</div>
+            </div>
+          </div>
+          <span class="accord-chevron">▾</span>
+        </div>
+        <div class="accord-body">
+          <p>O controle rigoroso da pressão arterial é a intervenção mais antiga e ainda uma das mais eficazes na DRC. As diretrizes mais atuais (KDIGO 2024, AHA) recomendam meta de pressão <strong>abaixo de 130/80 mmHg</strong> para a maioria dos pacientes, com evidências do estudo SPRINT mostrando que metas ainda mais agressivas (abaixo de 120 mmHg sistólica) podem reduzir eventos cardiovasculares maiores em 25% — quando toleradas.</p>
+          <p>Os medicamentos de primeira escolha são os bloqueadores do sistema renina-angiotensina: os <strong>inibidores da ECA</strong> (como enalapril, ramipril) ou os <strong>bloqueadores dos receptores da angiotensina (BRAs)</strong> (como losartana, valsartana). Eles têm duplo benefício: controlam a pressão E reduzem a perda de proteína na urina, protegendo tanto o rim quanto o coração. Importante: nunca use os dois tipos ao mesmo tempo — isso aumenta o risco de complicações.</p>
+        </div>
+      </div>
+
+      <div class="accord-item">
+        <div class="accord-header" onclick="toggleAccord(this)">
+          <div class="accord-header-left">
+            <span class="accord-emoji">💊</span>
+            <div>
+              <div class="accord-title">Inibidores SGLT2 — A Revolução no Tratamento</div>
+              <div class="accord-subtitle">Protegem rim e coração ao mesmo tempo, com ou sem diabetes</div>
+            </div>
+          </div>
+          <span class="accord-chevron">▾</span>
+        </div>
+        <div class="accord-body">
+          <p>Os inibidores SGLT2 (empagliflozina, dapagliflozina, canagliflozina) são, sem dúvida, o maior avanço no tratamento da DRC dos últimos 20 anos. Originalmente desenvolvidos para tratar diabetes, descobriu-se que eles protegem os rins e o coração independentemente de ser ou não diabético.</p>
+          <p>Uma grande meta-análise de 13 estudos clínicos envolvendo mais de 90.000 pacientes com DRC mostrou que esses medicamentos:</p>
+          <p>— Reduziram a progressão da doença renal em <strong>37%</strong> (de 3,16% para 1,97% por ano)<br>
+          — Reduziram hospitalização por insuficiência cardíaca e morte cardiovascular em <strong>23%</strong><br>
+          — Beneficiaram igualmente diabéticos e não diabéticos</p>
+          <p>Hoje, os inibidores SGLT2 são recomendados para todos os pacientes com DRC e TFG acima de 20 mL/min/1,73m², independentemente do diabetes. Pergunte ao seu médico se você já está recebendo esse tratamento.</p>
+        </div>
+      </div>
+
+      <div class="accord-item">
+        <div class="accord-header" onclick="toggleAccord(this)">
+          <div class="accord-header-left">
+            <span class="accord-emoji">🧬</span>
+            <div>
+              <div class="accord-title">Finerenona — Proteção Adicional para o Rim e o Coração</div>
+              <div class="accord-subtitle">Um novo tipo de bloqueador hormonal com dupla ação</div>
+            </div>
+          </div>
+          <span class="accord-chevron">▾</span>
+        </div>
+        <div class="accord-body">
+          <p>A finerenona é um medicamento de uma nova classe chamada antagonista não esteroidal do receptor mineralocorticoide. Ela bloqueia um hormônio (aldosterona) que, em excesso, causa inflamação e fibrose nos rins e no coração.</p>
+          <p>Aprovada para pacientes com DRC associada a diabetes tipo 2, a finerenona demonstrou em grandes estudos clínicos a capacidade de reduzir simultaneamente: a perda de função renal, hospitalizações por insuficiência cardíaca, infarto do miocárdio e morte cardiovascular. Ela pode ser usada em combinação com os inibidores SGLT2 — e essa combinação mostrou ser mais eficaz do que cada medicamento separado (estudo CONFIDENCE).</p>
+        </div>
+      </div>
+
+      <div class="accord-item">
+        <div class="accord-header" onclick="toggleAccord(this)">
+          <div class="accord-header-left">
+            <span class="accord-emoji">💉</span>
+            <div>
+              <div class="card-title">Agonistas GLP-1 — Para Diabéticos com DRC</div>
+              <div class="accord-subtitle">Semaglutida, liraglutida e outros com benefício renal e cardiovascular</div>
+            </div>
+          </div>
+          <span class="accord-chevron">▾</span>
+        </div>
+        <div class="accord-body">
+          <p>Os agonistas do receptor GLP-1 (semaglutida, liraglutida, dulaglutida) são medicamentos para diabetes que, além de controlar a glicemia e promover perda de peso, demonstraram em grandes estudos proteger os rins e reduzir eventos cardiovasculares em pacientes diabéticos com DRC. As diretrizes da Associação Americana de Diabetes de 2026 os recomendam especificamente para proteção cardiovascular nesse grupo.</p>
+          <p>Tirzepatida, um medicamento mais novo que age em dois receptores (GLP-1 e GIP), também mostrou redução importante de albuminúria em estudos recentes, com resultados de longo prazo ainda sendo avaliados.</p>
+        </div>
+      </div>
+
+      <div class="accord-item">
+        <div class="accord-header" onclick="toggleAccord(this)">
+          <div class="accord-header-left">
+            <span class="accord-emoji">🫀</span>
+            <div>
+              <div class="accord-title">Estatinas — Colesterol sob Controle</div>
+              <div class="accord-subtitle">Recomendadas para praticamente todos os pacientes com DRC acima de 50 anos</div>
+            </div>
+          </div>
+          <span class="accord-chevron">▾</span>
+        </div>
+        <div class="accord-body">
+          <p>As estatinas (atorvastatina, rosuvastatina, sinvastatina) são medicamentos que reduzem o LDL, o "colesterol ruim". Para pacientes com DRC, as diretrizes recomendam estatinas para <strong>todos com 50 anos ou mais</strong>, independentemente dos níveis de colesterol — simplesmente porque a DRC já confere risco cardiovascular suficientemente alto para justificar o tratamento.</p>
+          <p>Nos estágios mais avançados de DRC (estágio 4), a meta é reduzir o LDL abaixo de 55 mg/dL, com redução de pelo menos 50% do valor inicial. Quando as estatinas sozinhas não são suficientes, ezetimiba ou inibidores de PCSK9 podem ser adicionados.</p>
+          <p>Uma observação importante: em pacientes em diálise, as estatinas não demonstraram os mesmos benefícios que em estágios anteriores — provavelmente porque o perfil de risco cardiovascular nessa fase é dominado por outros mecanismos (calcificação, inflamação). O tratamento deve ser individualizado.</p>
+        </div>
+      </div>
+
+      <div class="accord-item">
+        <div class="accord-header" onclick="toggleAccord(this)">
+          <div class="accord-header-left">
+            <span class="accord-emoji">🥗</span>
+            <div>
+              <div class="accord-title">Mudanças no Estilo de Vida</div>
+              <div class="accord-subtitle">Alimentação, atividade física e cessação do tabagismo</div>
+            </div>
+          </div>
+          <span class="accord-chevron">▾</span>
+        </div>
+        <div class="accord-body">
+          <p><strong>Alimentação:</strong> a dieta mediterrânea — rica em vegetais, frutas, leguminosas, peixes, azeite de oliva e pobre em carnes processadas e alimentos ultraprocessados — é a que tem maior evidência de benefício cardiovascular e renal. Nos estágios mais avançados de DRC, pode ser necessário limitar fósforo, potássio e proteína de acordo com a orientação do médico ou nutricionista especializado.</p>
+          <p><strong>Exercício físico:</strong> a atividade física regular reduz pressão arterial, melhora o metabolismo da glicose, combate a inflamação e fortalece o coração. Mesmo 150 minutos por semana de caminhada moderada já trazem benefícios mensuráveis. Converse com seu médico sobre o nível de atividade mais adequado para o seu estágio de DRC.</p>
+          <p><strong>Cessação do tabagismo:</strong> fumar acelera diretamente tanto a progressão da DRC quanto a aterosclerose. É uma das intervenções de maior impacto que qualquer paciente pode fazer. Existem várias opções de tratamento para ajudar a parar de fumar — não precisa fazer isso sozinho.</p>
+          <p><strong>Controle do peso:</strong> a obesidade amplifica quase todos os mecanismos de dano renal e cardiovascular. Perda de peso, mesmo modesta (5–10%), já melhora pressão, glicemia e proteinúria.</p>
+        </div>
+      </div>
+
+      <div class="accord-item">
+        <div class="accord-header" onclick="toggleAccord(this)">
+          <div class="accord-header-left">
+            <span class="accord-emoji">🔬</span>
+            <div>
+              <div class="accord-title">Novos Tratamentos em Investigação</div>
+              <div class="accord-subtitle">O que está chegando nos próximos anos</div>
+            </div>
+          </div>
+          <span class="accord-chevron">▾</span>
+        </div>
+        <div class="accord-body">
+          <p>A ciência avança rapidamente nessa área. Diversas novas classes de medicamentos estão em fases avançadas de estudo:</p>
+          <p><strong>Antagonistas da endotelina (atrasentan, sparsentan):</strong> reduzem a pressão dentro dos glomérulos e diminuem a proteinúria, com potencial benefício cardiovascular.</p>
+          <p><strong>Inibidores da aldosterona sintase (baxdrostat):</strong> um mecanismo diferente de bloquear a aldosterona, com resultados promissores em redução da pressão e da albuminúria.</p>
+          <p><strong>Combinações terapêuticas:</strong> o estudo CONFIDENCE demonstrou que iniciar simultaneamente finerenona + inibidor SGLT2 é mais eficaz do que cada um isolado. A tendência é que o tratamento combinado com múltiplos medicamentos se torne o padrão de cuidado, assim como já é no tratamento da insuficiência cardíaca.</p>
+          <p>Esses avanços representam uma nova era para pacientes com doença renal crônica — com maior esperança de preservar tanto a função renal quanto a saúde cardiovascular por mais tempo.</p>
+        </div>
+      </div>
+
+    </div><!-- end accordion -->
+
+    <div class="card" style="margin-top:2rem;">
+      <div class="card-header">
+        <div class="card-icon">📅</div>
+        <div>
+          <div class="card-title">O Que Fazer a Partir de Agora</div>
+          <div class="card-subtitle">Passos práticos para proteger seu coração e seus rins</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.75rem;">
+        <div class="info-box info-teal" style="margin-bottom:0;flex-direction:column;gap:.35rem;">
+          <span style="font-size:1.2rem;">1️⃣</span>
+          <strong>Faça exames regularmente</strong>
+          <span style="font-size:.8rem;color:var(--muted-foreground);">Creatinina, TFG estimada e albumina na urina — pelo menos uma vez por ano se você tem diabetes ou hipertensão.</span>
+        </div>
+        <div class="info-box info-teal" style="margin-bottom:0;flex-direction:column;gap:.35rem;">
+          <span style="font-size:1.2rem;">2️⃣</span>
+          <strong>Conheça seus números</strong>
+          <span style="font-size:.8rem;color:var(--muted-foreground);">Pressão arterial, TFG, albumina na urina, colesterol LDL e glicemia. Esses são seus marcadores de risco cardiovascular renal.</span>
+        </div>
+        <div class="info-box info-teal" style="margin-bottom:0;flex-direction:column;gap:.35rem;">
+          <span style="font-size:1.2rem;">3️⃣</span>
+          <strong>Pergunte sobre os novos tratamentos</strong>
+          <span style="font-size:.8rem;color:var(--muted-foreground);">Se você tem DRC, pergunte ao seu médico se deve usar inibidor SGLT2 — é uma das intervenções com melhor evidência disponível.</span>
+        </div>
+        <div class="info-box info-teal" style="margin-bottom:0;flex-direction:column;gap:.35rem;">
+          <span style="font-size:1.2rem;">4️⃣</span>
+          <strong>Busque cuidado integrado</strong>
+          <span style="font-size:.8rem;color:var(--muted-foreground);">Rins e coração precisam ser cuidados juntos. Considere ter acompanhamento de nefrologista e cardiologista em diálogo.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="disclaimer">
+      ⚕️ <strong>Aviso importante:</strong> este conteúdo tem finalidade exclusivamente educativa e não substitui a consulta médica. Cada paciente é único, e as decisões de tratamento devem ser tomadas em conjunto com seu médico, levando em conta seu histórico completo e exames individuais. Os medicamentos citados têm indicações, contraindicações e efeitos colaterais que precisam ser avaliados individualmente.
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════════════
+       TAB 6 — REFERÊNCIAS
+  ═══════════════════════════════════════════════════ -->
+  <div id="tab-refs" class="tab-panel section">
+
+    <div class="section-label">Base Científica</div>
+    <div class="section-title">Referências Bibliográficas</div>
+    <div class="section-sub">Todo o conteúdo desta página é baseado nas publicações científicas mais recentes e nas principais diretrizes internacionais.</div>
+
+    <ul class="ref-list">
+      <li class="ref-item">
+        <div class="ref-num">1</div>
+        <div>
+          <div class="ref-title">Global, Regional, and National Burden of Chronic Kidney Disease, 1990–2023: GBD 2023 Analysis</div>
+          <div class="ref-meta">GBD 2023 CKD Collaborators. <em>Lancet.</em> 2025;406(10518):2461–2482. doi:10.1016/S0140-6736(25)01853-7</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <div class="ref-num">2</div>
+        <div>
+          <div class="ref-title">Chronic Kidney Disease (seminar — most comprehensive 2026 update)</div>
+          <div class="ref-meta">Herrington WG, Judge PK, Grams ME, Wanner C. <em>Lancet.</em> 2026;407(10523):90–104. doi:10.1016/S0140-6736(25)01942-7</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <div class="ref-num">3</div>
+        <div>
+          <div class="ref-title">Epidemiology and Risk of Cardiovascular Disease in Populations With CKD</div>
+          <div class="ref-meta">Matsushita K, Ballew SH, Wang AY, et al. <em>Nature Reviews Nephrology.</em> 2022;18(11):696–707. doi:10.1038/s41581-022-00616-6</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <div class="ref-num">4</div>
+        <div>
+          <div class="ref-title">KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease</div>
+          <div class="ref-meta"><em>Kidney International.</em> 2024;105(4S):S117–S314. doi:10.1016/j.kint.2023.10.018</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <div class="ref-num">5</div>
+        <div>
+          <div class="ref-title">A Synopsis of the Evidence for the Science and Clinical Management of CKM Syndrome: AHA Scientific Statement</div>
+          <div class="ref-meta">Ndumele CE, Neeland IJ, Tuttle KR, et al. <em>Circulation.</em> 2023;148(20):1636–1664. doi:10.1161/CIR.0000000000001186</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <div class="ref-num">6</div>
+        <div>
+          <div class="ref-title">Chronic Kidney Disease (seminal Lancet seminar)</div>
+          <div class="ref-meta">Webster AC, Nagler EV, Morton RL, Masson P. <em>Lancet.</em> 2017;389(10075):1238–1252. doi:10.1016/S0140-6736(16)32064-5</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <div class="ref-num">7</div>
+        <div>
+          <div class="ref-title">Chronic Kidney Disease Diagnosis and Management: A Review</div>
+          <div class="ref-meta">Chen TK, Knicely DH, Grams ME. <em>JAMA.</em> 2019;322(13):1294–1304. doi:10.1001/jama.2019.14745</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <div class="ref-num">8</div>
+        <div>
+          <div class="ref-title">SGLT2 inhibitors and CKD outcomes: meta-analysis of 13 RCTs (90,409 patients)</div>
+          <div class="ref-meta">Song RM, Alexander JT, Prochaska M. <em>JAMA.</em> 2025;334(7):629–630. doi:10.1001/jama.2025.9532</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <div class="ref-num">9</div>
+        <div>
+          <div class="ref-title">Associations Between Kidney Histopathologic Lesions and Incident Cardiovascular Disease in Adults With CKD</div>
+          <div class="ref-meta">Buckley LF, Schmidt IM, Verma A, et al. <em>JAMA Cardiology.</em> 2023;8(4):357–365. doi:10.1001/jamacardio.2023.0056</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <div class="ref-num">10</div>
+        <div>
+          <div class="ref-title">Impaired Renal Function and Major Cardiovascular Events in Young Adults</div>
+          <div class="ref-meta">Hussain J, Imsirovic H, Canney M, et al. <em>JACC.</em> 2023;82(13):1316–1327. doi:10.1016/j.jacc.2023.07.012</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <div class="ref-num">11</div>
+        <div>
+          <div class="ref-title">Sex and the Risk of Atheromatous and Nonatheromatous Cardiovascular Disease in CKD: CKD-REIN Cohort Study</div>
+          <div class="ref-meta">Faucon AL, Lambert O, Massy Z, et al. <em>AJKD.</em> 2024;84(5):546–556. doi:10.1053/j.ajkd.2024.04.013</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <div class="ref-num">12</div>
+        <div>
+          <div class="ref-title">Chronic Kidney Disease Confers Increased Excess Risks of Mortality and Cardiovascular Events in Women Compared to Men</div>
+          <div class="ref-meta">Tian Z, Hillebrand UC, Casper J, et al. <em>NDT.</em> 2025. doi:10.1093/ndt/gfaf217</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <div class="ref-num">13</div>
+        <div>
+          <div class="ref-title">Comparison of Outcomes of CKD Based on Etiology: KNOW-CKD Prospective Cohort</div>
+          <div class="ref-meta">Ryu H, Hong Y, Kang E, et al. <em>Scientific Reports.</em> 2023;13(1):3570. doi:10.1038/s41598-023-29844-x</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <div class="ref-num">14</div>
+        <div>
+          <div class="ref-title">KDIGO 2025 Clinical Practice Guideline for ADPKD: Executive Summary</div>
+          <div class="ref-meta">Torres VE, Ahn C, Barten TRM, et al. <em>Kidney International.</em> 2025;107(2):234–254. doi:10.1016/j.kint.2024.07.010</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <div class="ref-num">15</div>
+        <div>
+          <div class="ref-title">Novel Prediction Equations for Absolute Risk Assessment of CVD Incorporating CKM Health: AHA Scientific Statement (PREVENT equations)</div>
+          <div class="ref-meta">Khan SS, Coresh J, Pencina MJ, et al. <em>Circulation.</em> 2023;148(24):1982–2004. doi:10.1161/CIR.0000000000001191</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <div class="ref-num">16</div>
+        <div>
+          <div class="ref-title">Prevalence of CKM Syndrome Stages by Social Determinants of Health</div>
+          <div class="ref-meta">Zhu R, Wang R, He J, et al. <em>JAMA Network Open.</em> 2024;7(11):e2445309. doi:10.1001/jamanetworkopen.2024.45309</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <div class="ref-num">17</div>
+        <div>
+          <div class="ref-title">Combination Therapy as a New Standard of Care in Diabetic and Non-Diabetic CKD</div>
+          <div class="ref-meta">Neuen BL, Yeung EK, Rangaswami J, Vaduganathan M. <em>NDT.</em> 2025;40(Suppl_1):i59–i69. doi:10.1093/ndt/gfae258</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <div class="ref-num">18</div>
+        <div>
+          <div class="ref-title">Chronic Kidney Disease and Risk Management: Standards of Care in Diabetes-2026 (ADA)</div>
+          <div class="ref-meta">American Diabetes Association. <em>Diabetes Care.</em> 2026;49(Suppl_1):S246–S260. doi:10.2337/dc26-S011</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <div class="ref-num">19</div>
+        <div>
+          <div class="ref-title">2025 VA/DoD Clinical Practice Guideline for the Primary Care Management of Chronic Kidney Disease</div>
+          <div class="ref-meta">Schwartz AR, Sosnov J, Brown J, et al. <em>Annals of Internal Medicine.</em> 2026;179(3):411–424. doi:10.7326/ANNALS-25-03499</div>
+        </div>
+      </li>
+      <li class="ref-item">
+        <div class="ref-num">20</div>
+        <div>
+          <div class="ref-title">Long-Term Outcomes of Lupus Nephritis in Comparison to Other CKD Etiologies</div>
+          <div class="ref-meta">Chrysostomou C, Faustini F, Gunnarsson I, et al. <em>Kidney International Reports.</em> 2025;10(1):157–168. doi:10.1016/j.ekir.2024.10.021</div>
+        </div>
+      </li>
+    </ul>
+
+  </div>
+  <!-- end tabs -->
+
+</div><!-- end container -->
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-copy">
+        &copy; 2025 Dr. Lucas Silva — Cardiologia Intervencionista<br>
+        Conteúdo educativo baseado em evidências. Não substitui consulta médica.
+      </div>
+      <a class="nav-link" href="https://lucascardio.com.br" target="_blank" rel="noopener">lucascardio.com.br</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Tab switching
+  function showTab(id) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    const idx = ['tab-intro','tab-mechanism','tab-diseases','tab-risk','tab-treatment','tab-refs'].indexOf(id);
+    document.querySelectorAll('.tab-btn')[idx].classList.add('active');
+    window.scrollTo({top: 56, behavior: 'smooth'});
+  }
+
+  // Disease panel switching
+  function showDisease(id) {
+    document.querySelectorAll('.disease-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.disease-tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  // Accordion
+  function toggleAccord(header) {
+    const body = header.nextElementSibling;
+    const isOpen = header.classList.contains('open');
+    // close all
+    document.querySelectorAll('.accord-header.open').forEach(h => {
+      h.classList.remove('open');
+      h.nextElementSibling.classList.remove('open');
+    });
+    if (!isOpen) {
+      header.classList.add('open');
+      body.classList.add('open');
+    }
+  }
+
+  // Animate risk bars when risk tab becomes visible
+  const _origShowTab = showTab;
+  window.showTab = function(id) {
+    _origShowTab(id);
+    if (id === 'tab-risk') {
+      setTimeout(() => {
+        document.querySelectorAll('.risk-bar').forEach(b => {
+          const w = b.style.width;
+          b.style.width = '0';
+          requestAnimationFrame(() => { b.style.width = w; });
+        });
+      }, 100);
+    }
+  };
+</script>
+</body>
+</html>
