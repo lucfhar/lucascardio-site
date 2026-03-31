@@ -677,7 +677,7 @@
 
       <div class="info-teal info-box">
         <span class="info-box-icon">💡</span>
-        <div>A dominância define qual artéria origina a <strong>Artéria Descendente Posterior (DP)</strong> e os ramos póstero-laterais. Na dominância direita (~85% dos pacientes), a ACD irriga o território inferior; na esquerda (~8%), a CX; na co-dominante (~7%), ambas.</div>
+        <div>A dominância define qual artéria origina a <strong>Artéria Descendente Posterior (DP)</strong> e os ramos póstero-laterais. Na dominância direita (~85%), a ACD irriga o território inferior; na esquerda (~8%), a CX; na co-dominante (~7%), ambas. <strong>Na dominância esquerda, todos os segmentos da ACD (1–4, 16–16c) recebem peso 0.</strong></div>
       </div>
 
       <div class="dominance-grid">
@@ -701,7 +701,7 @@
       <div class="info-gray info-box" style="margin-top:.75rem;">
         <span class="info-box-icon">📌</span>
         <div>
-          <strong>Pesos dos segmentos variam com dominância:</strong> Na dominância esquerda, o TCE e a CX recebem pesos maiores (maior território); na direita, a ACD e seus ramos têm maior relevância. O SYNTAX Score é recalibrado automaticamente ao alterar a dominância.
+          <strong>Pesos variam com dominância (Leaman modificado, Sianos 2005).</strong> Na dominância esquerda: TCE ×6, CX prox ×2,5, CX distal ×1,5, DP da CX ×1,5 — todos os segmentos da ACD recebem peso 0. Lesões obstrutivas (50–99%): score = peso × 2. CTO: peso × 5. O SYNTAX Score é recalibrado automaticamente.
         </div>
       </div>
 
@@ -735,6 +735,18 @@
           </thead>
           <tbody id="segment_ref_table"></tbody>
         </table>
+      </div>
+
+      <div class="info-amber info-box" style="margin-top:1.25rem;">
+        <span class="info-box-icon">⚠️</span>
+        <div>
+          <strong>Limitação conhecida — pesos uniformes por vaso (não por posição no segmento).</strong>
+          Os pesos dos segmentos da ACD (Segs 1, 2 e 3 = 1,0 cada em dominância direita) são idênticos entre si, independentemente de sua posição proximal ou distal. Isso viola a <em>lei de conservação de fluxo</em>: fisiologicamente, uma oclusão proximal da ACD põe em risco o miocárdio suprido por <em>todos</em> os seus ramos distais (DP + póstero-laterais), resultando em jeopardized myocardium substancialmente maior do que uma lesão distal pré-DP. O mesmo paradoxo ocorre na DA e CX, mas é mais evidente na ACD em dominância direita, onde o Seg 4 (DP, peso 1,0) e os ramos 16/16a/16b/16c (soma até 2,0) superam os segmentos "pai" em peso total — uma inconsistência estrutural do modelo original de Leaman/Sianos.
+          <br><br>
+          <strong>Por que não corrigimos os pesos?</strong> Todos os limiares clínicos validados (baixo &lt;23 · intermediário 23–32 · alto ≥33) e as recomendações ESC 2018/2023 Classe I/IIa foram calibrados com esses pesos originais. Alterar os pesos tornaria os scores desta calculadora incomparáveis com a literatura e com os ensaios SYNTAX, EXCEL e NOBLE. Os pesos desta calculadora replicam fielmente o algoritmo de Sianos et al. (EuroIntervention 2005).
+          <br><br>
+          <em>Referência: He YM et al. Fallacies and Possible Remedies of the SYNTAX Score. J Interv Cardiol. 2020;2020:8822308.</em>
+        </div>
       </div>
     </div>
 
@@ -825,7 +837,7 @@
           <span class="toggle-icon">🔴</span>
           <div>
             <span class="toggle-text">Oclusão Total Crônica (CTO)</span>
-            <small class="toggle-desc">Multiplica peso do segmento × 5</small>
+            <small class="toggle-desc">Lesão obstrutiva: ×2 | CTO: ×5 do peso do segmento</small>
           </div>
         </div>
         <div style="display:flex;align-items:center;gap:10px;">
@@ -1380,6 +1392,13 @@
         <div class="ref-meta">Interv Cardiol Clin. 2020;9(2):183–196. <strong>Metodologia SYNTAX revisitada.</strong></div>
       </div>
     </li>
+    <li class="ref-item">
+      <span class="ref-num">8</span>
+      <div>
+        <div class="ref-title">He YM, Shen L, Ge JB. Fallacies and Possible Remedies of the SYNTAX Score.</div>
+        <div class="ref-meta">J Interv Cardiol. 2020;2020:8822308. doi:10.1155/2020/8822308. <strong>Crítica sistemática às limitações do modelo de pesos do SYNTAX Score, incluindo violação da lei de conservação de fluxo.</strong></div>
+      </div>
+    </li>
   </ul>
 
 </div><!-- end container -->
@@ -1417,31 +1436,37 @@ let nwCTO = { dur:false, blunt:false, bridg:false, vis:false, sb:false };
    SEGMENTS DATA
 ──────────────────────────────────────────────────────────────────── */
 const ALL_SEGMENTS = [
-  { id:'5',   vessel:'TCE', label:'Seg. 5 – TCE (Tronco da Coronária Esquerda)', w:{right:5,   left:6,   co:6   } },
-  { id:'6',   vessel:'DA',  label:'Seg. 6 – DA Proximal',                         w:{right:3.5, left:3.5, co:3.5 } },
-  { id:'7',   vessel:'DA',  label:'Seg. 7 – DA Médio',                            w:{right:2.5, left:2.5, co:2.5 } },
-  { id:'8',   vessel:'DA',  label:'Seg. 8 – DA Apical',                           w:{right:1,   left:1,   co:1   } },
-  { id:'9',   vessel:'DA',  label:'Seg. 9 – 1ª Diagonal (D1)',                    w:{right:1,   left:1,   co:1   } },
-  { id:'9a',  vessel:'DA',  label:'Seg. 9a – 1ª Diagonal Ramo A',                 w:{right:1,   left:1,   co:1   } },
-  { id:'10',  vessel:'DA',  label:'Seg. 10 – 2ª Diagonal (D2)',                   w:{right:0.5, left:0.5, co:0.5 } },
-  { id:'10a', vessel:'DA',  label:'Seg. 10a – 2ª Diagonal Ramo A',               w:{right:0.5, left:0.5, co:0.5 } },
-  { id:'11',  vessel:'CX',  label:'Seg. 11 – CX Proximal',                        w:{right:1.5, left:2.5, co:2   } },
-  { id:'12',  vessel:'CX',  label:'Seg. 12 – 1ª Marginal Obtusa (OM1)',          w:{right:1,   left:1,   co:1   } },
-  { id:'12a', vessel:'CX',  label:'Seg. 12a – OM1 Ramo A',                       w:{right:1,   left:1,   co:1   } },
-  { id:'13',  vessel:'CX',  label:'Seg. 13 – CX Médio',                          w:{right:0.5, left:1.5, co:1   } },
-  { id:'13a', vessel:'CX',  label:'Seg. 13a – Ramo Intermediário (RI)',           w:{right:0.5, left:0.5, co:0.5 } },
-  { id:'14',  vessel:'CX',  label:'Seg. 14 – CX Distal',                         w:{right:0.5, left:1.5, co:1   } },
-  { id:'14a', vessel:'CX',  label:'Seg. 14a – Póstero-lateral CX Ramo A',        w:{right:0.5, left:0.5, co:0.5 } },
-  { id:'14b', vessel:'CX',  label:'Seg. 14b – Póstero-lateral CX Ramo B',        w:{right:0.5, left:0.5, co:0.5 } },
-  { id:'15',  vessel:'CX',  label:'Seg. 15 – DP (da CX) — válido em dominância esquerda', w:{right:0, left:1.5, co:0.75} },
-  { id:'1',   vessel:'ACD', label:'Seg. 1 – ACD Proximal',                        w:{right:1,   left:0.5, co:0.5 } },
-  { id:'2',   vessel:'ACD', label:'Seg. 2 – ACD Médio',                           w:{right:1,   left:0.5, co:0.5 } },
-  { id:'3',   vessel:'ACD', label:'Seg. 3 – ACD Distal',                          w:{right:1,   left:0.5, co:0.5 } },
-  { id:'4',   vessel:'ACD', label:'Seg. 4 – DP (da ACD) — válido em dominância direita', w:{right:1, left:0, co:0.5} },
-  { id:'16',  vessel:'ACD', label:'Seg. 16 – Póstero-lateral (da ACD)',           w:{right:0.5, left:0,   co:0.25} },
-  { id:'16a', vessel:'ACD', label:'Seg. 16a – Ramo Póstero-lat A (ACD)',         w:{right:0.5, left:0,   co:0.25} },
-  { id:'16b', vessel:'ACD', label:'Seg. 16b – Ramo Póstero-lat B (ACD)',         w:{right:0.5, left:0,   co:0.25} },
-  { id:'16c', vessel:'ACD', label:'Seg. 16c – Ramo Póstero-lat C (ACD)',         w:{right:0.5, left:0,   co:0.25} },
+  // ── TCE ─────────────────────────────────────────────────────────────
+  { id:'5',   vessel:'TCE', label:'Seg. 5 – TCE (Tronco da Coronária Esquerda)',               w:{right:5,   left:6,   co:5.5 } },
+  // ── DA ──────────────────────────────────────────────────────────────
+  { id:'6',   vessel:'DA',  label:'Seg. 6 – DA Proximal',                                      w:{right:3.5, left:3.5, co:3.5 } },
+  { id:'7',   vessel:'DA',  label:'Seg. 7 – DA Médio',                                         w:{right:2.5, left:2.5, co:2.5 } },
+  { id:'8',   vessel:'DA',  label:'Seg. 8 – DA Apical',                                        w:{right:1,   left:1,   co:1   } },
+  { id:'9',   vessel:'DA',  label:'Seg. 9 – 1ª Diagonal (D1)',                                 w:{right:1,   left:1,   co:1   } },
+  { id:'9a',  vessel:'DA',  label:'Seg. 9a – 1ª Diagonal Ramo A',                              w:{right:1,   left:1,   co:1   } },
+  { id:'10',  vessel:'DA',  label:'Seg. 10 – 2ª Diagonal (D2)',                                w:{right:0.5, left:0.5, co:0.5 } },
+  { id:'10a', vessel:'DA',  label:'Seg. 10a – 2ª Diagonal Ramo A',                            w:{right:0.5, left:0.5, co:0.5 } },
+  // ── CX ──────────────────────────────────────────────────────────────
+  { id:'11',  vessel:'CX',  label:'Seg. 11 – CX Proximal',                                     w:{right:1.5, left:2.5, co:2   } },
+  // Seg 12 = Ramus Intermediário (só presente em trifurcação do TCE — 5/6/11/12)
+  { id:'12',  vessel:'CX',  label:'Seg. 12 – Ramus Intermediário (RI) — trifurcação do TCE',  w:{right:1,   left:1,   co:1   } },
+  { id:'12a', vessel:'CX',  label:'Seg. 12a – 1ª Marginal Obtusa (OM1)',                       w:{right:1,   left:1,   co:1   } },
+  { id:'12b', vessel:'CX',  label:'Seg. 12b – 2ª Marginal Obtusa (OM2)',                       w:{right:0.5, left:0.5, co:0.5 } },
+  { id:'13',  vessel:'CX',  label:'Seg. 13 – CX Distal',                                       w:{right:0.5, left:1.5, co:1   } },
+  { id:'14',  vessel:'CX',  label:'Seg. 14 – Póstero-lateral Esquerda (da CX)',                w:{right:0.5, left:0.5, co:0.5 } },
+  { id:'14a', vessel:'CX',  label:'Seg. 14a – Póstero-lateral CX Ramo A',                     w:{right:0.5, left:0.5, co:0.5 } },
+  { id:'14b', vessel:'CX',  label:'Seg. 14b – Póstero-lateral CX Ramo B',                     w:{right:0.5, left:0.5, co:0.5 } },
+  { id:'15',  vessel:'CX',  label:'Seg. 15 – DP (da CX) — válido em dominância esquerda',     w:{right:0,   left:1.5, co:0.75} },
+  // ── ACD ─────────────────────────────────────────────────────────────
+  // Na dominância esquerda a ACD não supre o VE → peso = 0
+  { id:'1',   vessel:'ACD', label:'Seg. 1 – ACD Proximal',                                     w:{right:1,   left:0,   co:0.5 } },
+  { id:'2',   vessel:'ACD', label:'Seg. 2 – ACD Médio',                                        w:{right:1,   left:0,   co:0.5 } },
+  { id:'3',   vessel:'ACD', label:'Seg. 3 – ACD Distal',                                       w:{right:1,   left:0,   co:0.5 } },
+  { id:'4',   vessel:'ACD', label:'Seg. 4 – DP (da ACD) — válido em dominância direita',      w:{right:1,   left:0,   co:0.5 } },
+  { id:'16',  vessel:'ACD', label:'Seg. 16 – Póstero-lateral (da ACD)',                        w:{right:0.5, left:0,   co:0.25} },
+  { id:'16a', vessel:'ACD', label:'Seg. 16a – Ramo Póstero-lat A (ACD)',                      w:{right:0.5, left:0,   co:0.25} },
+  { id:'16b', vessel:'ACD', label:'Seg. 16b – Ramo Póstero-lat B (ACD)',                      w:{right:0.5, left:0,   co:0.25} },
+  { id:'16c', vessel:'ACD', label:'Seg. 16c – Ramo Póstero-lat C (ACD)',                      w:{right:0.5, left:0,   co:0.25} },
 ];
 
 function getSegById(id) { return ALL_SEGMENTS.find(s => s.id === String(id)); }
@@ -1573,9 +1598,9 @@ function setMedina(seg, val) {
   document.getElementById('medina_display').textContent = '('+nwMedina.join(',')+')';
   const sum = nwMedina.reduce((a,b)=>a+b,0);
   const infoEl = document.getElementById('medina_info');
-  if (sum === 0) infoEl.textContent = 'Classificação (0,0,0) — nenhum segmento doente: não é bifurcação verdadeira.';
-  else if (nwMedina[2] === 1) infoEl.textContent = 'Ramo lateral envolvido — bifurcação verdadeira. (+1 ponto base)';
-  else infoEl.textContent = 'Apenas vaso principal afetado. (+1 ponto)';
+  if (sum === 0) infoEl.textContent = 'Classificação (0,0,0) — nenhum segmento doente: não é bifurcação verdadeira (0 pontos).';
+  else if (nwMedina[2] === 1) infoEl.textContent = 'Ramo lateral envolvido (tipos D/E/F/G) → +2 pontos base de bifurcação.';
+  else infoEl.textContent = 'Apenas vaso principal afetado (tipos A/B/C) → +1 ponto base de bifurcação.';
   updateLiveScore();
 }
 
@@ -1610,7 +1635,8 @@ function calcLesionScoreFromForm() {
 
 function calcLesionScore(l) {
   const w = getWeight(l.segment);
-  let score = l.cto ? w * 5 : w;
+  // Algoritmo oficial SYNTAX: ×2 para lesão obstrutiva (50–99%), ×5 para CTO (Sianos 2005)
+  let score = l.cto ? w * 5 : w * 2;
 
   // CTO extras
   if (l.cto) {
@@ -1626,11 +1652,15 @@ function calcLesionScore(l) {
     score += (parseInt(l.trifDis) || 1) + 2;
   }
 
-  // Bifurcation: +1 if any component diseased (regardless of Medina)
+  // Bifurcation scoring (Sianos 2005, Medina classification):
+  // Side branch NOT involved (X,X,0) = tipos A/B/C → +1
+  // Side branch involved     (X,X,1) = tipos D/E/F/G → +2
+  // Angle <70° → additional +1
   if (l.bif) {
-    const hasDisease = l.medina && l.medina.some(v => v === 1);
-    if (hasDisease || !l.medina) score += 1;
-    if (l.bifAngle) score += 1; // angle <70° adds +1
+    const anyDisease  = l.medina && l.medina.some(v => v === 1);
+    const sideInvolved = l.medina && l.medina[2] === 1;
+    if (anyDisease || !l.medina) score += sideInvolved ? 2 : 1;
+    if (l.bifAngle) score += 1;
   }
 
   // Single-point additions
