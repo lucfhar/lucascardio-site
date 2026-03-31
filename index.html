@@ -180,6 +180,7 @@
     .cat-ecg       { background:rgba(40,110,220,.1);  color:#1e55a0; border-color:#286edc; }
     .cat-estrutural{ background:rgba(130,80,200,.12); color:#6a3898; border-color:#8250c8; }
     .cat-educ      { background:rgba(40,155,90,.12);  color:#1e6e42; border-color:#289b5a; }
+    .cat-diag      { background:rgba(0,180,180,.1);   color:#0a7878; border-color:#00b4b4; }
     /* dark mode ── cat-tags */
     .dark-mode .cat-proc      { background:rgba(201,169,110,.22); color:#c9a96e; }
     .dark-mode .cat-condicoes { background:rgba(220,80,80,.22);   color:#e06060; }
@@ -191,6 +192,7 @@
     .dark-mode .cat-ecg       { background:rgba(70,150,240,.2);   color:#70aaff; }
     .dark-mode .cat-estrutural{ background:rgba(160,110,220,.22); color:#c090ff; }
     .dark-mode .cat-educ      { background:rgba(50,180,110,.2);   color:#50d090; }
+    .dark-mode .cat-diag      { background:rgba(0,211,189,.18);   color:#00d3bd; }
     /* dark mode ── filter pills */
     .dark-mode .tool-filter-btn { border-color:#444; color:#aaa; }
     .dark-mode .tool-filter-btn:hover { border-color:var(--lc-accent,#c9a96e); color:var(--lc-accent,#c9a96e); }
@@ -217,28 +219,67 @@
             float: none;
             box-shadow: none !important;
             border: none !important;
-            border-left: 2px solid rgba(201,169,110,.35) !important;
-            border-radius: 0 !important;
-            background: transparent !important;
-            padding: .2rem 0 .4rem .5rem;
-            margin: 0 0 .25rem 1rem;
+            border-left: 3px solid rgba(201,169,110,.6) !important;
+            border-radius: .35rem !important;
+            background: rgba(15,17,28,.97) !important;
+            padding: .35rem 0 .5rem .3rem;
+            margin: .25rem 0 .4rem 1rem;
         }
         #mainNav .dropdown-menu .dropdown-item {
             font-size: .82rem;
-            padding: .38rem .8rem;
-            color: rgba(255,255,255,.75);
+            padding: .4rem .9rem;
+            color: rgba(255,255,255,.84) !important;
         }
         #mainNav .dropdown-menu .dropdown-item:hover,
         #mainNav .dropdown-menu .dropdown-item:focus {
-            background: rgba(201,169,110,.14) !important;
+            background: rgba(201,169,110,.16) !important;
             color: var(--lc-accent, #c9a96e) !important;
         }
-        #mainNav .dropdown-divider { border-color: rgba(255,255,255,.1); }
+        #mainNav .dropdown-divider { border-color: rgba(255,255,255,.15); }
     }
     .dark-mode #mainNav .dropdown-menu { background:#1c1e2a; border-color:#333; }
     .dark-mode #mainNav .dropdown-item { color:#ccc; }
     .dark-mode #mainNav .dropdown-item:hover { background:rgba(201,169,110,.15); color:var(--lc-accent,#c9a96e); }
+    /* ─── Back to Top ──────────────────────────────────────────── */
+    #back-to-top {
+        position: fixed;
+        bottom: 5rem;
+        right: 1.25rem;
+        width: 2.6rem;
+        height: 2.6rem;
+        border-radius: 50%;
+        border: none;
+        background: var(--lc-accent, #c9a96e);
+        color: #fff;
+        font-size: 1rem;
+        cursor: pointer;
+        box-shadow: 0 3px 12px rgba(0,0,0,.28);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(8px);
+        transition: opacity .3s, transform .3s, visibility .3s;
+        z-index: 1031;
+    }
+    #back-to-top.visible {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    #back-to-top:hover {
+        background: #b08a50;
+        transform: translateY(-2px);
+    }
     </style>
+    <!-- Dark mode: aplica imediatamente para evitar flash -->
+    <script>
+    (function(){
+      try {
+        var s = localStorage.getItem('lc-dark-mode');
+        // Se não explicitamente claro, aplica escuro no HTML para evitar FOUC
+        if (s !== '0') document.documentElement.style.colorScheme = 'dark';
+      } catch(e){}
+    })();
+    </script>
 </head>
 
 <body id="page-top">
@@ -288,14 +329,14 @@
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="#medicos" data-section="med" data-cat="calc">
                             <i class="fas fa-calculator"></i> Calculadoras &amp; Scores</a></li>
+                        <li><a class="dropdown-item" href="#medicos" data-section="med" data-cat="diag">
+                            <i class="fas fa-microscope"></i> Diagnóstico &amp; Fisiologia</a></li>
                         <li><a class="dropdown-item" href="#medicos" data-section="med" data-cat="coronaria">
                             <i class="fas fa-heart-pulse"></i> Intervenção Coronária</a></li>
-                        <li><a class="dropdown-item" href="#medicos" data-section="med" data-cat="ecg">
-                            <i class="fas fa-wave-square"></i> ECG</a></li>
                         <li><a class="dropdown-item" href="#medicos" data-section="med" data-cat="estrutural">
                             <i class="fas fa-heart-circle-plus"></i> Cardiologia Estrutural</a></li>
                         <li><a class="dropdown-item" href="#medicos" data-section="med" data-cat="educ">
-                            <i class="fas fa-book-medical"></i> Educação &amp; Referência</a></li>
+                            <i class="fas fa-book-medical"></i> Educação &amp; MBE</a></li>
                     </ul>
                 </li>
 
@@ -480,7 +521,7 @@
                 <div class="row g-4" id="pac-tool-grid">
 
                     <!-- ─ PROCEDIMENTOS & EXAMES ──────────────── -->
-                    <div class="col-md-6 tool-item reveal" data-section="pac" data-cat="proc">
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="pac" data-cat="proc">
                         <div class="tool-card h-100">
                             <span class="cat-tag cat-proc"><i class="fas fa-stethoscope"></i>Procedimentos &amp; Exames</span>
                             <a class="btn-med-custom" href="Pacientes/pacientes-exames.html" title="Guia completo de exames cardiológicos">
@@ -491,7 +532,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 tool-item reveal" data-section="pac" data-cat="proc">
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="pac" data-cat="proc">
                         <div class="tool-card h-100">
                             <span class="cat-tag cat-proc"><i class="fas fa-stethoscope"></i>Procedimentos &amp; Exames</span>
                             <a class="btn-med-custom" href="cateinfo/cateterismo-info.html" title="Informativo sobre cateterismo cardíaco">
@@ -502,7 +543,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 tool-item reveal" data-section="pac" data-cat="proc">
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="pac" data-cat="proc">
                         <div class="tool-card h-100">
                             <span class="cat-tag cat-proc"><i class="fas fa-stethoscope"></i>Procedimentos &amp; Exames</span>
                             <a class="btn-med-custom" href="faq/hemodinamica-faq.html" title="FAQ sobre cardiologia intervencionista">
@@ -513,7 +554,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 tool-item reveal" data-section="pac" data-cat="proc">
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="pac" data-cat="proc">
                         <div class="tool-card h-100">
                             <span class="cat-tag cat-proc"><i class="fas fa-stethoscope"></i>Procedimentos &amp; Exames</span>
                             <a class="btn-med-custom" href="Pacientes/periodicolucas.html" title="Exame periódico de saúde baseado em evidências">
@@ -525,7 +566,7 @@
                     </div>
 
                     <!-- ─ CONDIÇÕES CARDIOLÓGICAS ─────────────── -->
-                    <div class="col-md-6 tool-item reveal" data-section="pac" data-cat="condicoes">
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="pac" data-cat="condicoes">
                         <div class="tool-card h-100">
                             <span class="cat-tag cat-condicoes"><i class="fas fa-heart"></i>Condições Cardiológicas</span>
                             <a class="btn-med-custom" href="Pacientes/condicoes-cardiologicas.html" title="Ferramenta interativa sobre as condições cardiológicas mais comuns">
@@ -536,7 +577,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 tool-item reveal" data-section="pac" data-cat="condicoes">
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="pac" data-cat="condicoes">
                         <div class="tool-card h-100">
                             <span class="cat-tag cat-condicoes"><i class="fas fa-heart"></i>Condições Cardiológicas</span>
                             <a class="btn-med-custom" href="Pacientes/sinais-alarme-cardiologico.html" title="Emergências e urgências cardiológicas: sinais de alarme">
@@ -547,7 +588,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 tool-item reveal" data-section="pac" data-cat="condicoes">
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="pac" data-cat="condicoes">
                         <div class="tool-card h-100">
                             <span class="cat-tag cat-condicoes"><i class="fas fa-heart"></i>Condições Cardiológicas</span>
                             <a class="btn-med-custom" href="Pacientes/diabetes-doenca-cardiovascular.html" title="Diabetes e doença cardiovascular">
@@ -559,7 +600,7 @@
                     </div>
 
                     <!-- ─ MEDICAMENTOS ────────────────────────── -->
-                    <div class="col-md-6 tool-item reveal" data-section="pac" data-cat="meds">
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="pac" data-cat="meds">
                         <div class="tool-card h-100">
                             <span class="cat-tag cat-meds"><i class="fas fa-pills"></i>Medicamentos</span>
                             <a class="btn-med-custom" href="Pacientes/guia-medicamentos-cardiologicos.html" title="Manual de medicamentos cardiológicos para pacientes">
@@ -570,7 +611,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 tool-item reveal" data-section="pac" data-cat="meds">
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="pac" data-cat="meds">
                         <div class="tool-card h-100">
                             <span class="cat-tag cat-meds"><i class="fas fa-pills"></i>Medicamentos</span>
                             <a class="btn-med-custom" href="Pacientes/medicamentos-otc-cardio.html" title="Medicamentos sem receita e riscos cardiovasculares">
@@ -582,7 +623,7 @@
                     </div>
 
                     <!-- ─ ESTILO DE VIDA ──────────────────────── -->
-                    <div class="col-md-6 tool-item reveal" data-section="pac" data-cat="estilo">
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="pac" data-cat="estilo">
                         <div class="tool-card h-100">
                             <span class="cat-tag cat-estilo"><i class="fas fa-dumbbell"></i>Estilo de Vida</span>
                             <a class="btn-med-custom" href="Pacientes/atividade-fisica-cardiovascular.html" title="Atividade física e saúde cardiovascular">
@@ -593,7 +634,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 tool-item reveal" data-section="pac" data-cat="estilo">
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="pac" data-cat="estilo">
                         <div class="tool-card h-100">
                             <span class="cat-tag cat-estilo"><i class="fas fa-dumbbell"></i>Estilo de Vida</span>
                             <a class="btn-med-custom" href="Pacientes/dieta-cardiovascular.html" title="Dietas e saúde cardiovascular">
@@ -604,7 +645,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 tool-item reveal" data-section="pac" data-cat="estilo">
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="pac" data-cat="estilo">
                         <div class="tool-card h-100">
                             <span class="cat-tag cat-estilo"><i class="fas fa-dumbbell"></i>Estilo de Vida</span>
                             <a class="btn-med-custom" href="Pacientes/drogas-risco-cardiovascular.html" title="Drogas lícitas e ilícitas e risco cardiovascular">
@@ -615,7 +656,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 tool-item reveal" data-section="pac" data-cat="estilo">
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="pac" data-cat="estilo">
                         <div class="tool-card h-100">
                             <span class="cat-tag cat-estilo"><i class="fas fa-dumbbell"></i>Estilo de Vida</span>
                             <a class="btn-med-custom" href="Pacientes/obesidade-sindrome-metabolica.html" title="Obesidade e síndrome metabólica">
@@ -626,7 +667,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 tool-item reveal" data-section="pac" data-cat="estilo">
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="pac" data-cat="estilo">
                         <div class="tool-card h-100">
                             <span class="cat-tag cat-estilo"><i class="fas fa-dumbbell"></i>Estilo de Vida</span>
                             <a class="btn-med-custom" href="Pacientes/eaa-risco-cardiovascular.html" title="Anabolizantes e risco cardiovascular">
@@ -637,7 +678,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 tool-item reveal" data-section="pac" data-cat="estilo">
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="pac" data-cat="estilo">
                         <div class="tool-card h-100">
                             <span class="cat-tag cat-estilo"><i class="fas fa-dumbbell"></i>Estilo de Vida</span>
                             <a class="btn-med-custom" href="Pacientes/cafe-coracao.html" title="Café, energéticos e estimulantes: efeitos cardiovasculares">
@@ -649,7 +690,7 @@
                     </div>
 
                     <!-- ─ CORAÇÃO & OUTROS SISTEMAS ──────────── -->
-                    <div class="col-md-6 tool-item reveal" data-section="pac" data-cat="sistemas">
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="pac" data-cat="sistemas">
                         <div class="tool-card h-100">
                             <span class="cat-tag cat-sistemas"><i class="fas fa-network-wired"></i>Coração &amp; Outros Sistemas</span>
                             <a class="btn-med-custom" href="Pacientes/autoimune_cardiovascular.html" title="Doenças autoimunes e saúde cardiovascular">
@@ -660,7 +701,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 tool-item reveal" data-section="pac" data-cat="sistemas">
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="pac" data-cat="sistemas">
                         <div class="tool-card h-100">
                             <span class="cat-tag cat-sistemas"><i class="fas fa-network-wired"></i>Coração &amp; Outros Sistemas</span>
                             <a class="btn-med-custom" href="Pacientes/humor-cardiovascular.html" title="Saúde mental e coração">
@@ -671,7 +712,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 tool-item reveal" data-section="pac" data-cat="sistemas">
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="pac" data-cat="sistemas">
                         <div class="tool-card h-100">
                             <span class="cat-tag cat-sistemas"><i class="fas fa-network-wired"></i>Coração &amp; Outros Sistemas</span>
                             <a class="btn-med-custom" href="Pacientes/figado-coracao.html" title="Doenças hepáticas e coração">
@@ -682,7 +723,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 tool-item reveal" data-section="pac" data-cat="sistemas">
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="pac" data-cat="sistemas">
                         <div class="tool-card h-100">
                             <span class="cat-tag cat-sistemas"><i class="fas fa-network-wired"></i>Coração &amp; Outros Sistemas</span>
                             <a class="btn-med-custom" href="Pacientes/pele-cardiovascular.html" title="Doenças de pele e coração">
@@ -693,7 +734,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 tool-item reveal" data-section="pac" data-cat="sistemas">
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="pac" data-cat="sistemas">
                         <div class="tool-card h-100">
                             <span class="cat-tag cat-sistemas"><i class="fas fa-network-wired"></i>Coração &amp; Outros Sistemas</span>
                             <a class="btn-med-custom" href="Pacientes/pulmo-cardio.html" title="Doenças pulmonares e coração">
@@ -704,7 +745,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 tool-item reveal" data-section="pac" data-cat="sistemas">
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="pac" data-cat="sistemas">
                         <div class="tool-card h-100">
                             <span class="cat-tag cat-sistemas"><i class="fas fa-network-wired"></i>Coração &amp; Outros Sistemas</span>
                             <a class="btn-med-custom" href="Pacientes/doenca-renal-coracao.html" title="Doenças renais e coração">
@@ -755,22 +796,22 @@
                 <div class="d-flex flex-wrap justify-content-center gap-2 mt-5 mb-4"
                      aria-label="Filtrar por categoria">
                     <button class="tool-filter-btn active" data-section="med" data-cat="all">
-                        <i class="fas fa-th-large"></i> Todos <span class="filter-count">22</span>
+                        <i class="fas fa-th-large"></i> Todos <span class="filter-count">0</span>
                     </button>
                     <button class="tool-filter-btn" data-section="med" data-cat="calc">
-                        <i class="fas fa-calculator"></i> Calculadoras &amp; Scores <span class="filter-count">5</span>
+                        <i class="fas fa-calculator"></i> Calculadoras &amp; Scores <span class="filter-count">0</span>
+                    </button>
+                    <button class="tool-filter-btn" data-section="med" data-cat="diag">
+                        <i class="fas fa-microscope"></i> Diagnóstico &amp; Fisiologia <span class="filter-count">0</span>
                     </button>
                     <button class="tool-filter-btn" data-section="med" data-cat="coronaria">
-                        <i class="fas fa-heart-pulse"></i> Intervenção Coronária <span class="filter-count">9</span>
-                    </button>
-                    <button class="tool-filter-btn" data-section="med" data-cat="ecg">
-                        <i class="fas fa-wave-square"></i> ECG <span class="filter-count">2</span>
+                        <i class="fas fa-heart-pulse"></i> Intervenção Coronária <span class="filter-count">0</span>
                     </button>
                     <button class="tool-filter-btn" data-section="med" data-cat="estrutural">
-                        <i class="fas fa-heart-circle-plus"></i> Cardiologia Estrutural <span class="filter-count">3</span>
+                        <i class="fas fa-heart-circle-plus"></i> Cardiologia Estrutural <span class="filter-count">0</span>
                     </button>
                     <button class="tool-filter-btn" data-section="med" data-cat="educ">
-                        <i class="fas fa-book-medical"></i> Educação &amp; Referência <span class="filter-count">3</span>
+                        <i class="fas fa-book-medical"></i> Educação &amp; MBE <span class="filter-count">0</span>
                     </button>
                 </div>
                 
@@ -834,9 +875,9 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="calc">
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="diag">
                         <div class="tool-card h-100">
-                            <span class="cat-tag cat-calc"><i class="fas fa-calculator"></i>Calculadoras &amp; Scores</span>
+                            <span class="cat-tag cat-diag"><i class="fas fa-microscope"></i>Diagnóstico &amp; Fisiologia</span>
                             <a class="btn-med-custom" href="Medicos/diagnostico-iam-exame-racional.html" title="Página interativa para entender sobre o diagnóstico do IAM com exame físico baseado em evidência">
                                 Página interativa para entender sobre o diagnóstico do IAM com exame físico baseado em evidência
                             </a>
@@ -845,9 +886,9 @@
                         </div>
                     </div>
 
-                     <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="calc">
+                     <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="coronaria">
                         <div class="tool-card h-100">
-                            <span class="cat-tag cat-calc"><i class="fas fa-calculator"></i>Calculadoras &amp; Scores</span>
+                            <span class="cat-tag cat-coronaria"><i class="fas fa-heart-pulse"></i>Intervenção Coronária</span>
                             <a class="btn-med-custom" href="Medicos/balao-intra-aortico.html" title="Página interativa para entender sobre indicações, configuração e limitações do balão intraaórtico">
                                 Página interativa para entender sobre indicações, configuração e limitações do balão intraaórtico
                             </a>
@@ -901,9 +942,9 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="coronaria">
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="diag">
                         <div class="tool-card h-100">
-                            <span class="cat-tag cat-coronaria"><i class="fas fa-heart-pulse"></i>Intervenção Coronária</span>
+                            <span class="cat-tag cat-diag"><i class="fas fa-microscope"></i>Diagnóstico &amp; Fisiologia</span>
                             <a class="btn-med-custom" href="Medicos/intravascular-imaging-atlas.html" title="IVUS e OCT: algoritmo e calculadora interativa">
                                 Imagem Intravascular (IVUS/OCT): algoritmo e calculadora interativa
                             </a>
@@ -912,9 +953,9 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="coronaria">
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="diag">
                         <div class="tool-card h-100">
-                            <span class="cat-tag cat-coronaria"><i class="fas fa-heart-pulse"></i>Intervenção Coronária</span>
+                            <span class="cat-tag cat-diag"><i class="fas fa-microscope"></i>Diagnóstico &amp; Fisiologia</span>
                             <a class="btn-med-custom" href="Medicos/fisio-coronariana.html" title="Fisiologia coronariana e microvascular">
                                 Fisiologia Coronariana e Microvascular: ferramenta interativa
                             </a>
@@ -923,9 +964,9 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="coronaria">
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="diag">
                         <div class="tool-card h-100">
-                            <span class="cat-tag cat-coronaria"><i class="fas fa-heart-pulse"></i>Intervenção Coronária</span>
+                            <span class="cat-tag cat-diag"><i class="fas fa-microscope"></i>Diagnóstico &amp; Fisiologia</span>
                             <a class="btn-med-custom" href="Medicos/probabilidade-pre-teste-dor-toracica.html" title="Probabilidade pré-teste em dor torácica: emergência e consultório">
                                 Probabilidade pré-teste na dor torácica: emergência e consultório
                             </a>
@@ -968,9 +1009,9 @@
                     </div>
 
                     <!-- ─ ECG ─────────────────────────────────── -->
-                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="ecg">
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="diag">
                         <div class="tool-card h-100">
-                            <span class="cat-tag cat-ecg"><i class="fas fa-wave-square"></i>ECG</span>
+                            <span class="cat-tag cat-diag"><i class="fas fa-microscope"></i>Diagnóstico &amp; Fisiologia</span>
                             <a class="btn-med-custom" href="Medicos/ecg-interpretacao.html" title="ECG: interpretação pragmática e sistematizada">
                                 ECG: interpretação pragmática e sistematizada em repouso
                             </a>
@@ -979,9 +1020,9 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="ecg">
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="diag">
                         <div class="tool-card h-100">
-                            <span class="cat-tag cat-ecg"><i class="fas fa-wave-square"></i>ECG</span>
+                            <span class="cat-tag cat-diag"><i class="fas fa-microscope"></i>Diagnóstico &amp; Fisiologia</span>
                             <a class="btn-med-custom" href="Medicos/ecg-sca.html" title="ECG em SCA: oclusão arterial aguda e indicação de cate urgente">
                                 ECG em SCA: oclusão arterial aguda e indicação de cate urgente
                             </a>
@@ -1027,7 +1068,7 @@
                     <!-- ─ EDUCAÇÃO & REFERÊNCIA ───────────────── -->
                     <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="educ">
                         <div class="tool-card h-100">
-                            <span class="cat-tag cat-educ"><i class="fas fa-book-medical"></i>Educação &amp; Referência</span>
+                            <span class="cat-tag cat-educ"><i class="fas fa-book-medical"></i>Educação &amp; MBE</span>
                             <a class="btn-med-custom" href="Medicos/paramedicos.html" title="Análises críticas de artigos para médicos">
                                 Análises críticas de artigos
                             </a>
@@ -1038,7 +1079,7 @@
 
                     <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="educ">
                         <div class="tool-card h-100">
-                            <span class="cat-tag cat-educ"><i class="fas fa-book-medical"></i>Educação &amp; Referência</span>
+                            <span class="cat-tag cat-educ"><i class="fas fa-book-medical"></i>Educação &amp; MBE</span>
                             <a class="btn-med-custom" href="Manual/manual_hemodinamica.html" title="Ebook: Hemodinâmica e Evidências">
                                 <strong>Ebook:</strong> Hemodinâmica — Evidências
                             </a>
@@ -1049,7 +1090,7 @@
 
                     <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="educ">
                         <div class="tool-card h-100">
-                            <span class="cat-tag cat-educ"><i class="fas fa-book-medical"></i>Educação &amp; Referência</span>
+                            <span class="cat-tag cat-educ"><i class="fas fa-book-medical"></i>Educação &amp; MBE</span>
                             <a class="btn-med-custom" href="quiz/index.html" title="Banco de questões comentadas de cardiologia intervencionista">
                                 Banco de questões comentadas: mais de 1000 perguntas com referências
                             </a>
@@ -1060,7 +1101,7 @@
 
                     <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="educ">
                         <div class="tool-card h-100">
-                            <span class="cat-tag cat-educ"><i class="fas fa-book-medical"></i>Educação &amp; Referência</span>
+                            <span class="cat-tag cat-educ"><i class="fas fa-book-medical"></i>Educação &amp; MBE</span>
                             <a class="btn-med-custom" href="Medicos/analise-artigo-cientifico.html" title="Manual para avaliação de trials/estudo científicos">
                                 Manual para avaliação de trials/artigos científicos com metodologia avançada.
                             </a>
@@ -1071,7 +1112,7 @@
 
                     <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="educ">
                         <div class="tool-card h-100">
-                            <span class="cat-tag cat-educ"><i class="fas fa-book-medical"></i>Educação &amp; Referência</span>
+                            <span class="cat-tag cat-educ"><i class="fas fa-book-medical"></i>Educação &amp; MBE</span>
                             <a class="btn-med-custom" href="Medicos/mbe_cardiologia.html" title="Análise crítica dos limites da medicina baseada em evidências">
                                 Análise crítica dos limites da medicina baseada em evidências
                             </a>
@@ -1082,7 +1123,7 @@
 
                     <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="educ">
                         <div class="tool-card h-100">
-                            <span class="cat-tag cat-educ"><i class="fas fa-book-medical"></i>Educação &amp; Referência</span>
+                            <span class="cat-tag cat-educ"><i class="fas fa-book-medical"></i>Educação &amp; MBE</span>
                             <a class="btn-med-custom" href="Medicos/nnt-cardiologia.html" title="NNT em Cardiologia – Referência Clínica">
                                 NNT em Cardiologia – Referência Clínica
                             </a>
@@ -1093,9 +1134,9 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="educ">
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="diag">
                         <div class="tool-card h-100">
-                            <span class="cat-tag cat-educ"><i class="fas fa-book-medical"></i>Educação &amp; Referência</span>
+                            <span class="cat-tag cat-diag"><i class="fas fa-microscope"></i>Diagnóstico &amp; Fisiologia</span>
                             <a class="btn-med-custom" href="Medicos/diagnostico-isquemia.html" title="Diagnóstico de Isquemia Miocárdica – Métodos e Evidências">
                                 Diagnóstico de Isquemia Miocárdica – Métodos e Evidências
                             </a>
@@ -1106,9 +1147,9 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="educ">
+                    <div class="col-md-6 col-lg-4 tool-item reveal" data-section="med" data-cat="diag">
                         <div class="tool-card h-100">
-                            <span class="cat-tag cat-educ"><i class="fas fa-book-medical"></i>Educação &amp; Referência</span>
+                            <span class="cat-tag cat-diag"><i class="fas fa-microscope"></i>Diagnóstico &amp; Fisiologia</span>
                             <a class="btn-med-custom" href="Medicos/microcirculacao-invasiva.html" title="Tudo sobre avaliação microvascular coronariana invasiva">
                                 Tudo sobre avaliação microvascular coronariana invasiva
                             </a>
@@ -1181,11 +1222,13 @@
             <div class="col-md-4 mb-3 mb-md-0 reveal">
                 <div class="card py-4 h-100">
                     <div class="card-body text-center">
-                        <i class="fas fa-envelope text-primary mb-2" aria-hidden="true"></i>
+                         <i class="fas fa-envelope text-primary mb-2" aria-hidden="true"></i>
                         <h3 class="text-uppercase m-0">Email</h3>
                         <hr class="my-4 mx-auto" />
                         <div class="small text-black-50">
-                            <a href="/cdn-cgi/l/email-protection#c2a6b0eca1a3b0a6abadecaeb7a1a3b182a5afa3abaeeca1adaf" title="Enviar email"><span class="__cf_email__" data-cfemail="7a1e0854191b081e131554160f191b093a1d171b131654191517">[email&#160;protected]</span></a>
+                            <a href="mailto:dr.cardio.lucas@gmail.com" title="Enviar email">
+                    dr.cardio.lucas@gmail.com
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -1233,18 +1276,25 @@
   <i class="fas fa-moon" id="dark-icon"></i>
 </button>
 
+<!-- Back to Top -->
+<button id="back-to-top" aria-label="Voltar ao topo" title="Voltar ao topo">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
 <!-- Scripts (deferred) -->
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" defer></script>
 <script src="js/scripts.js" defer></script>
 <script>
 (function() {
-  var btn  = document.getElementById('dark-toggle');
-  var icon = document.getElementById('dark-icon');
-  var key  = 'lc-dark-mode';
+  var btn = document.getElementById('dark-toggle');
+  var key = 'lc-dark-mode';
   function applyMode(dark) {
     document.body.classList.toggle('dark-mode', dark);
-    icon.className = dark ? 'fas fa-sun' : 'fas fa-moon';
+    // Rewrite innerHTML — evita conflito com substituição de SVG pelo FontAwesome
+    btn.innerHTML = dark
+      ? '<i class="fas fa-sun"></i>'
+      : '<i class="fas fa-moon"></i>';
     try { localStorage.setItem(key, dark ? '1' : '0'); } catch(e){}
   }
   var saved = null;
@@ -1252,7 +1302,7 @@
   if (saved !== null) {
     applyMode(saved === '1');
   } else {
-    applyMode(false);
+    applyMode(true); // Padrão: modo escuro
   }
   btn.addEventListener('click', function() {
     applyMode(!document.body.classList.contains('dark-mode'));
@@ -1356,6 +1406,19 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+</script>
+<script>
+// ─── Back to Top ─────────────────────────────────────────────────────────────
+(function () {
+    var btn = document.getElementById('back-to-top');
+    var threshold = 400;
+    window.addEventListener('scroll', function () {
+        btn.classList.toggle('visible', window.scrollY > threshold);
+    }, { passive: true });
+    btn.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+})();
 </script>
 
 </body>
