@@ -4,7 +4,7 @@
   <!-- ═══════════════════════════════════════════════════════════
        PÁGINA PRINCIPAL
        Canonical: lucascardio.com.br (sem www)
-       Gerado em: 2026-03-22
+       Gerado em: 2026-03-31
        ═══════════════════════════════════════════════════════════ -->
   <url>
     <loc>https://lucascardio.com.br/</loc>
@@ -152,6 +152,13 @@
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
+  <url>
+    <!-- ADICIONADO: 2026-03-31 -->
+    <loc>https://lucascardio.com.br/Pacientes/doenca-renal-coracao.html</loc>
+    <lastmod>2026-03-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
 
   <!-- ═══════════════════════════════════════════════════════════
        SEÇÃO PARA MÉDICOS — Calculadoras & Scores
@@ -169,7 +176,6 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <!-- CORRIGIDO: era calculadora-risco-cv/index.html — URL inexistente -->
     <loc>https://lucascardio.com.br/Medicos/calculadora-risco-cv.html</loc>
     <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
@@ -188,16 +194,21 @@
     <priority>0.80</priority>
   </url>
   <url>
-    <!-- ADICIONADO: página presente no site mas ausente no sitemap anterior -->
     <loc>https://lucascardio.com.br/Medicos/diagnostico-iam-exame-racional.html</loc>
     <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <!-- ADICIONADO: página presente no site mas ausente no sitemap anterior -->
     <loc>https://lucascardio.com.br/Medicos/balao-intra-aortico.html</loc>
     <lastmod>2026-03-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <!-- ADICIONADO: 2026-03-31 -->
+    <loc>https://lucascardio.com.br/Medicos/syntax-score.html</loc>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
@@ -258,6 +269,13 @@
     <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
+  </url>
+  <url>
+    <!-- ADICIONADO: 2026-03-31 -->
+    <loc>https://lucascardio.com.br/Medicos/microcirculacao-invasiva.html</loc>
+    <lastmod>2026-03-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
   </url>
 
   <!-- ═══════════════════════════════════════════════════════════
@@ -332,14 +350,12 @@
     <priority>0.80</priority>
   </url>
   <url>
-    <!-- ADICIONADO: página presente no site mas ausente no sitemap anterior -->
     <loc>https://lucascardio.com.br/Medicos/nnt-cardiologia.html</loc>
     <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <!-- ADICIONADO: página presente no site mas ausente no sitemap anterior -->
     <loc>https://lucascardio.com.br/Medicos/diagnostico-isquemia.html</loc>
     <lastmod>2026-03-22</lastmod>
     <changefreq>monthly</changefreq>
