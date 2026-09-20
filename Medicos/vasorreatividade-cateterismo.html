@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>Teste de Vasorreatividade Pulmonar no Cateterismo Direito | Dr. Lucas Silva</title>
+  <meta name="description" content="Guia clínico sobre o teste de vasorreatividade pulmonar no cateterismo cardíaco direito: indicações, contraindicações e interpretação hemodinâmica por pressões quando o débito cardíaco não está disponível. Inclui calculadora de infusão de nitroprussiato (nipride)." />
+  <meta name="author" content="Dr. Lucas Silva" />
+  <link rel="canonical" href="https://lucascardio.com.br/Medicos/vasorreatividade-cateterismo.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Teste de Vasorreatividade Pulmonar - Guia e Calculadora de Nitroprussiato",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Web Browser",
+    "url": "https://lucascardio.com.br/Medicos/vasorreatividade-cateterismo.html",
+    "description": "Guia clínico e calculadora interativa para o teste de vasorreatividade pulmonar no cateterismo cardíaco direito, com cálculo de infusão de nitroprussiato de sódio (mL/h) por peso.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "BRL" },
+    "author": { "@type": "Person", "name": "Dr. Lucas Silva", "url": "https://lucascardio.com.br" },
+    "isAccessibleForFree": true,
+    "featureList": "Indicações e contraindicações do teste de vasorreatividade, interpretação hemodinâmica por pressões sem RVP calculada, calculadora de infusão de nitroprussiato por peso"
+  }
+  </script>
+
+  <style>
+    :root {
+      --primary: oklch(65% .18 195);
+      --primary-foreground: oklch(98% 0 0);
+      --background: oklch(13% .018 250);
+      --foreground: oklch(93% .01 250);
+      --card: oklch(18.5% .018 250);
+      --card-foreground: oklch(93% .01 250);
+      --muted: oklch(22% .018 250);
+      --muted-foreground: oklch(62% .02 250);
+      --border: oklch(28% .025 250);
+      --input: oklch(22% .02 250);
+      --destructive: oklch(60% .22 25);
+      --secondary: oklch(22% .022 250);
+      --secondary-foreground: oklch(88% .01 250);
+      --accent: oklch(24% .025 250);
+      --accent-foreground: oklch(90% .01 250);
+      --teal: #00d3bd;
+      --teal-dim: rgba(0,211,189,.12);
+      --amber: oklch(82.8% .189 84.429);
+      --red: oklch(63.7% .237 25.331);
+      --green: oklch(79.2% .209 151.711);
+      --radius: 0.625rem;
+      --spacing: 4px;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--background);
+      color: var(--foreground);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(18,20,27,.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--foreground); }
+    .nav-brand-icon {
+      width: 28px; height: 28px; border-radius: 7px;
+      background: var(--teal); display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-weight: 700; font-size: .9rem; color: #000;
+    }
+    .nav-brand-name { font-weight: 800; font-size: 1rem; letter-spacing: -.025em; line-height: 1; }
+    .nav-brand-name span { color: var(--teal); }
+    .nav-brand-sub { font-size: .7rem; font-weight: 500; color: var(--muted-foreground); }
+    .nav-actions { display: flex; align-items: center; gap: .5rem; }
+    .nav-badge {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 999px; background: var(--teal-dim);
+      color: var(--teal); border: 1px solid rgba(0,211,189,.25);
+      white-space: nowrap;
+    }
+
+    .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+    .section { padding: 3rem 0; }
+
+    .hero { padding: 3.5rem 0 2.5rem; border-bottom: 1px solid var(--border); }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .7rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--teal);
+      margin-bottom: 1rem;
+    }
+    .hero-eyebrow::before { content: ''; display: block; width: 20px; height: 2px; background: var(--teal); border-radius: 1px; }
+    .hero h1 { font-size: clamp(1.5rem, 4vw, 2.3rem); font-weight: 800; line-height: 1.2; margin-bottom: .75rem; letter-spacing: -.02em; }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero-sub { color: var(--muted-foreground); font-size: .95rem; max-width: 660px; margin-bottom: 1.5rem; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag { font-size: .7rem; font-weight: 600; padding: 3px 10px; border-radius: 6px; border: 1px solid var(--border); color: var(--muted-foreground); background: var(--card); font-family: var(--font-mono); }
+
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: calc(var(--radius) + 2px); padding: 1.5rem; margin-bottom: 1.5rem; }
+    .card-header { display: flex; align-items: flex-start; gap: .75rem; margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+    .card-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; background: var(--teal-dim); color: var(--teal); }
+    .card-title { font-weight: 700; font-size: 1rem; margin-bottom: 2px; }
+    .card-subtitle { font-size: .78rem; color: var(--muted-foreground); }
+    .card p { font-size: .88rem; color: var(--foreground); margin-bottom: .9rem; }
+    .card p:last-child { margin-bottom: 0; }
+    .card h3 { font-size: .95rem; margin: 1.25rem 0 .75rem; color: var(--foreground); }
+    .card h3:first-child { margin-top: 0; }
+    .card ul, .card ol { margin-left: 1.4rem; font-size: .85rem; color: var(--foreground); }
+    .card ul li, .card ol li { margin-bottom: .5rem; }
+
+    .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-label { font-size: .78rem; font-weight: 600; color: var(--muted-foreground); }
+    .form-label span { font-size: .7rem; font-weight: 400; opacity: .7; }
+    .form-input {
+      background: var(--input); border: 1px solid var(--border); border-radius: var(--radius);
+      color: var(--foreground); font-family: var(--font-mono); font-size: .85rem; padding: 8px 12px;
+      transition: border-color .15s, box-shadow .15s; outline: none; width: 100%;
+    }
+    .form-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(0,211,189,.15); }
+
+    .result-box { background: var(--teal-dim); border: 1px solid rgba(0,211,189,.3); border-radius: calc(var(--radius) + 2px); padding: 1.25rem; }
+    .result-label { font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--teal); margin-bottom: .4rem; }
+    .result-value { font-size: 1.7rem; font-weight: 800; color: var(--teal); font-family: var(--font-mono); margin-bottom: .3rem; }
+    .result-unit { font-size: .78rem; color: var(--muted-foreground); }
+    .result-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+
+    .drug-table { width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: .85rem; }
+    .drug-table th { background: var(--muted); border: 1px solid var(--border); padding: 10px; text-align: left; font-size: .78rem; font-weight: 600; color: var(--muted-foreground); }
+    .drug-table td { border: 1px solid var(--border); padding: 10px; font-size: .85rem; }
+    .drug-table tr:nth-child(even) { background: rgba(0, 211, 189, .05); }
+    .drug-table .highlight-row { background: rgba(0, 211, 189, .12) !important; }
+    .drug-dose { font-family: var(--font-mono); color: var(--teal); font-weight: 600; }
+
+    .badge-class { display: inline-flex; align-items: center; font-size: .68rem; font-weight: 700; padding: 2px 8px; border-radius: 5px; font-family: var(--font-mono); white-space: nowrap; }
+    .badge-classI { background: rgba(34, 197, 94, .15); color: var(--green); }
+    .badge-classIIa { background: rgba(79, 172, 254, .15); color: #4facfe; }
+    .badge-classIII { background: rgba(239, 68, 68, .15); color: var(--red); }
+
+    .info-box, .warning-box, .danger-box { margin-top: 1.25rem; padding: 1rem 1.1rem; border-radius: var(--radius); font-size: .84rem; line-height: 1.65; }
+    .info-box { background: var(--muted); color: var(--muted-foreground); border: 1px solid var(--border); }
+    .warning-box { background: rgba(251, 191, 36, .1); color: var(--foreground); border: 1px solid rgba(251, 191, 36, .3); }
+    .danger-box { background: rgba(239, 68, 68, .1); color: var(--foreground); border: 1px solid rgba(239, 68, 68, .3); }
+    .info-box strong, .warning-box strong, .danger-box strong { color: var(--foreground); }
+
+    .algo-list { counter-reset: algo; list-style: none; margin-left: 0; margin-top: 1rem; }
+    .algo-list li { counter-increment: algo; position: relative; padding-left: 2.2rem; margin-bottom: .9rem; font-size: .85rem; }
+    .algo-list li::before {
+      content: counter(algo); position: absolute; left: 0; top: -1px;
+      width: 1.5rem; height: 1.5rem; border-radius: 50%; background: var(--teal-dim); color: var(--teal);
+      font-family: var(--font-mono); font-weight: 700; font-size: .75rem; display: flex; align-items: center; justify-content: center;
+    }
+
+    .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+    .compare-card { border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; background: var(--muted); }
+    .compare-card h4 { font-size: .82rem; color: var(--teal); margin-bottom: .6rem; }
+    .compare-card dl { font-size: .8rem; }
+    .compare-card dt { color: var(--muted-foreground); margin-top: .5rem; }
+    .compare-card dd { color: var(--foreground); font-weight: 600; }
+
+    .tabs { display: flex; gap: .5rem; border-bottom: 1px solid var(--border); margin-bottom: 1.5rem; overflow-x: auto; }
+    .tab-btn { background: none; border: none; cursor: pointer; padding: 12px 16px; font-size: .85rem; font-weight: 600; color: var(--muted-foreground); border-bottom: 2px solid transparent; transition: color .15s, border-color .15s; white-space: nowrap; }
+    .tab-btn:hover { color: var(--foreground); }
+    .tab-btn.active { color: var(--teal); border-bottom-color: var(--teal); }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    @media (max-width: 640px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .result-grid { grid-template-columns: 1fr; }
+      .drug-table { font-size: .75rem; }
+      .drug-table th, .drug-table td { padding: 6px; }
+      .compare-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="#" class="nav-brand">
+      <div class="nav-brand-icon">🫀</div>
+      <div>
+        <div class="nav-brand-name">Vaso<span>Reativ</span></div>
+        <div class="nav-brand-sub">Dr. Lucas Silva</div>
+      </div>
+    </a>
+    <div class="nav-actions">
+      <span class="nav-badge">Baseado em Evidências</span>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-eyebrow">Guia Clínico + Calculadora</div>
+      <h1>Teste de <em>Vasorreatividade</em> Pulmonar no Cateterismo Direito</h1>
+      <p class="hero-sub">Indicações, contraindicações e interpretação hemodinâmica do teste de vasorreatividade/reversibilidade — com foco na leitura de pressões (PAPm, PCP, PAS) quando o débito cardíaco ainda não foi medido e a RVP não pode ser calculada. Inclui calculadora de infusão de nitroprussiato de sódio por peso.</p>
+      <div class="hero-tags">
+        <span class="tag">ISHLT 2024</span>
+        <span class="tag">AHA 2026 (Belkin et al.)</span>
+        <span class="tag">ESC/ERS 2022</span>
+        <span class="tag">Nitroprussiato IV</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('indicacoes')">Indicações</button>
+        <button class="tab-btn" onclick="switchTab('contraindicacoes')">Contraindicações</button>
+        <button class="tab-btn" onclick="switchTab('pressoes')">Pressões sem RVP</button>
+        <button class="tab-btn" onclick="switchTab('calculadora')">Calculadora Nipride</button>
+      </div>
+
+      <!-- TAB: INDICAÇÕES -->
+      <div id="indicacoes" class="tab-content active">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">🫁</div>
+            <div>
+              <div class="card-title">O que é o teste e por que existem dois protocolos diferentes</div>
+              <div class="card-subtitle">"Teste de vasorreatividade" não é um teste único</div>
+            </div>
+          </div>
+          <p>Sob o mesmo nome genérico, a literatura descreve <strong>duas finalidades clínicas distintas</strong>, com agentes, populações e critérios de resposta diferentes. Confundi-las é a principal fonte de erro na prática — inclusive o uso indevido de vasodilatador pulmonar seletivo em paciente com hipertensão pulmonar (HP) de causa esquerda, discutido na aba de contraindicações.</p>
+          <div class="compare-grid">
+            <div class="compare-card">
+              <h4>1. Teste de vasorreatividade para HAP (seleção de BCC)</h4>
+              <dl>
+                <dt>População</dt><dd>HAP idiopática, hereditária ou induzida por fármacos/toxinas (Grupo 1)</dd>
+                <dt>Agente</dt><dd>Óxido nítrico inalado ou iloprosta inalada (preferidos); epoprostenol IV é alternativa mais lenta</dd>
+                <dt>Resposta positiva</dt><dd>Queda da PAPm ≥10 mmHg até valor absoluto ≤40 mmHg, com débito cardíaco mantido ou aumentado (critério de Sitbon)</dd>
+                <dt>Objetivo</dt><dd>Selecionar candidatos a bloqueador de canal de cálcio (BCC) em altas doses</dd>
+              </dl>
+            </div>
+            <div class="compare-card">
+              <h4>2. Teste de reversibilidade pré-transplante cardíaco</h4>
+              <dl>
+                <dt>População</dt><dd>Candidatos a transplante cardíaco com HP secundária à cardiopatia esquerda</dd>
+                <dt>Agente</dt><dd>Nitroprussiato de sódio IV (ou milrinona) — vasodilatador sistêmico, não seletivo pulmonar</dd>
+                <dt>Resposta positiva</dt><dd>Queda do GTP para ≤12-15 mmHg e/ou RVP ≤2,5-3 UW, mantendo PAS ≥85 mmHg</dd>
+                <dt>Objetivo</dt><dd>Estratificar risco de falência de ventrículo direito pós-transplante</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">✅</div>
+            <div>
+              <div class="card-title">Indicação 1 — Hipertensão Arterial Pulmonar (Grupo 1)</div>
+              <div class="card-subtitle">Diretrizes ESC/ERS 2022 <span class="badge-class badge-classI">Classe I</span></div>
+            </div>
+          </div>
+          <p>O teste é recomendado <strong>apenas</strong> em pacientes com HAP idiopática (HAPI), hereditária (HAPH) ou associada a fármacos/toxinas (HAP-induzida), com finalidade de identificar "respondedores agudos" candidatos a terapia com BCC em monoterapia (nifedipino, diltiazem, amlodipino).</p>
+          <p>Menos de 10% dos pacientes com HAPI apresentam resposta positiva ao teste, e apenas uma fração desses mantém resposta favorável a longo prazo com BCC isolado — a maioria evolui para terapia específica combinada independentemente do resultado do teste (Sitbon O et al., Circulation 2005).</p>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">🫀</div>
+            <div>
+              <div class="card-title">Indicação 2 — Avaliação pré-transplante cardíaco</div>
+              <div class="card-subtitle">ISHLT 2024 · AHA 2026 (Belkin et al., <em>Circ Heart Fail</em>)</div>
+            </div>
+          </div>
+          <p>As diretrizes ISHLT 2024 para avaliação de candidatos a transplante cardíaco — incorporadas ao documento de padronização hemodinâmica da AHA de 2026 — definem entrada e alvo do teste inteiramente em termos de <strong>pressões</strong>, o que é relevante mesmo antes de qualquer cálculo de RVP:</p>
+          <table class="drug-table">
+            <thead><tr><th>Parâmetro</th><th>Critério de entrada (indica o teste)</th><th>Alvo terapêutico pós-teste</th></tr></thead>
+            <tbody>
+              <tr><td>PSAP (pressão sistólica de artéria pulmonar)</td><td class="drug-dose">&gt; 50 mmHg</td><td>—</td></tr>
+              <tr><td>GTP (gradiente transpulmonar = PAPm − PCP)</td><td class="drug-dose">≥ 15 mmHg</td><td class="drug-dose">≤ 12–15 mmHg</td></tr>
+              <tr><td>RVP</td><td class="drug-dose">≥ 3 UW</td><td class="drug-dose">≤ 2,5–3 UW</td></tr>
+              <tr><td>PAS sistêmica durante o teste</td><td>—</td><td class="drug-dose">deve permanecer ≥ 85 mmHg</td></tr>
+            </tbody>
+          </table>
+          <p style="margin-top:1rem;">A indicação de entrada é satisfeita por PSAP &gt;50 mmHg <strong>associada a</strong> GTP ≥15 mmHg <strong>ou</strong> RVP ≥3 UW. O agente de escolha é o nitroprussiato IV (ou milrinona), por ser vasodilatador sistêmico: reduz a pós-carga do ventrículo esquerdo e a pressão de enchimento (PCP), diminuindo passivamente a pressão pulmonar quando o componente é reativo/funcional — diferente do NO/iloprosta, que atuam diretamente na vasculatura pulmonar.</p>
+          <div class="info-box"><strong>Nuance importante (AHA 2026):</strong> pacientes com débito cardíaco baixo podem não conseguir gerar PSAP &gt;50 mmHg mesmo com doença pulmonar vascular relevante. Nesses casos, o teste deve ser considerado mesmo com PSAP &lt;50 mmHg, desde que GTP ou RVP estejam elevados.</div>
+        </div>
+      </div>
+
+      <!-- TAB: CONTRAINDICAÇÕES -->
+      <div id="contraindicacoes" class="tab-content">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">🚫</div>
+            <div>
+              <div class="card-title">Contraindicação formal: teste para BCC fora do Grupo 1</div>
+              <div class="card-subtitle">ESC/ERS 2022 <span class="badge-class badge-classIII">Classe III</span> para Grupos 2, 3, 4 e 5</div>
+            </div>
+          </div>
+          <p>A HP associada à valvopatia, à disfunção ventricular esquerda ou a qualquer outra cardiopatia esquerda é, por definição, <strong>HP de Grupo 2</strong>. As diretrizes ESC/ERS 2022 são explícitas: o teste de vasorreatividade com finalidade de indicar BCC <strong>não deve ser realizado</strong> nos Grupos 2 a 5 — o benefício é restrito a HAPI/HAPH/HAP-induzida.</p>
+          <p>Há dois riscos concretos ao aplicar esse teste fora do contexto correto:</p>
+          <ul>
+            <li><strong>Risco terapêutico:</strong> pacientes de Grupo 2 raramente respondem, e o BCC em altas doses pode causar hipotensão sistêmica e piora da função ventricular sem qualquer benefício pulmonar.</li>
+            <li><strong>Risco do próprio teste:</strong> vasodilatadores pulmonares seletivos (NO inalado, iloprosta) em paciente com pressão capilar pulmonar (PCP) elevada podem precipitar <strong>edema pulmonar agudo</strong>, pois aumentam o fluxo sanguíneo pulmonar sem que o átrio esquerdo consiga escoá-lo.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">❤️‍🩹</div>
+            <div>
+              <div class="card-title">O que fazer, então, na valvopatia</div>
+              <div class="card-subtitle">2025 ESC/EACTS Guidelines for the Management of Valvular Heart Disease</div>
+            </div>
+          </div>
+          <p>O papel do cateterismo direito na valvopatia não é a vasorreatividade — é a <strong>caracterização hemodinâmica</strong>: medir débito cardíaco e RVP, diferenciar HP pré- de pós-capilar, e quantificar a repercussão da valvopatia sobre a circulação pulmonar. A diretriz de 2025 recomenda RHC:</p>
+          <ul>
+            <li>Em achados ecocardiográficos <strong>equívocos ou discordantes</strong>, particularmente na doença da valva mitral;</li>
+            <li>Em <strong>todos os candidatos ao tratamento de insuficiência tricúspide grave</strong> — para calcular a RVP e desmascarar doença vascular pulmonar que o ecocardiograma pode subestimar (por disfunção sistólica do VD ou pela própria regurgitação tricúspide);</li>
+            <li>Na <strong>estenose aórtica com gravidade incerta</strong>, combinando-se com gradientes transaórticos para estimar a área valvar.</li>
+          </ul>
+          <p>Se, em um caso complexo de valvopatia com HP desproporcional, houver necessidade real de testar reversibilidade (por exemplo, antes de intervenção valvar em paciente limítrofe para falência de VD), o protocolo cabível é o de <strong>reversibilidade sistêmica com nitroprussiato</strong> (mesmo raciocínio pré-transplante) — nunca o protocolo de NO/iloprosta voltado a BCC.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">⚠️</div>
+            <div>
+              <div class="card-title">Contraindicações e cuidados específicos ao nitroprussiato</div>
+              <div class="card-subtitle">Bula (Nitropress®/FDA) e revisões de farmacologia clínica</div>
+            </div>
+          </div>
+          <h3>Contraindicações</h3>
+          <ul>
+            <li>Hipersensibilidade conhecida ao nitroprussiato;</li>
+            <li>Hipertensão compensatória (coarctação de aorta, shunts arteriovenosos) — nesses casos a queda de pressão é o próprio mecanismo compensatório;</li>
+            <li>Deficiência de vitamina B12/atrofia óptica de Leber (relativa — risco teórico de toxicidade por cianeto).</li>
+          </ul>
+          <h3>Cuidados durante a infusão</h3>
+          <ul>
+            <li><strong>Toxicidade por cianeto/tiocianato:</strong> risco aumenta com doses próximas do máximo e infusões prolongadas; disfunção renal ou hepática reduz o clearance de tiocianato. Monitorizar lactato e, em infusões prolongadas (a partir do 2º–3º dia), nível de tiocianato;</li>
+            <li><strong>Fotossensibilidade:</strong> a solução diluída deve ser protegida da luz (equipo e frasco); se não exposta à luz, é estável por 24 horas após o preparo;</li>
+            <li><strong>Efeito hemodinâmico rápido e reversível:</strong> meia-vida de ação de minutos — pequenas variações na taxa de infusão geram grandes variações pressóricas; reavaliar a PAS após cada incremento antes de titular novamente;</li>
+            <li><strong>Bomba de infusão obrigatória:</strong> nunca administrar por gravidade;</li>
+            <li><strong>Critérios práticos de interrupção do teste:</strong> PAS &lt;85–90 mmHg, hipotensão sintomática, taquicardia significativa, ou platô hemodinâmico sem queda adicional de GTP/PAPm.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- TAB: PRESSÕES SEM RVP -->
+      <div id="pressoes" class="tab-content">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">📐</div>
+            <div>
+              <div class="card-title">Por que a RVP exige débito cardíaco</div>
+              <div class="card-subtitle">RVP (UW) = (PAPm − PCP) / DC</div>
+            </div>
+          </div>
+          <p>A resistência vascular pulmonar não pode ser calculada sem uma medida de débito cardíaco (termodiluição ou Fick) — algo nem sempre disponível no momento em que as decisões precisam ser tomadas à beira do leito, durante a titulação do vasodilatador. É por isso que interpretar o teste <strong>apenas por pressões</strong> é uma habilidade prática relevante, e não um substituto de segunda linha para a RVP.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">📉</div>
+            <div>
+              <div class="card-title">Alternativas hemodinâmicas por pressão</div>
+              <div class="card-subtitle">O que usar quando o DC ainda não foi medido</div>
+            </div>
+          </div>
+          <h3>Gradiente transpulmonar (GTP = PAPm − PCP)</h3>
+          <p>Não exige débito cardíaco para ser calculado — e é justamente por isso que os próprios critérios de entrada e de alvo do ISHLT 2024/AHA 2026 já são expressos em GTP (entrada ≥15 mmHg; alvo ≤12–15 mmHg pós-teste). Ou seja, o protocolo pré-transplante foi desenhado para ser aplicável à beira do leito com pressões isoladas. A limitação do GTP é ser <strong>fluxo-dependente</strong>: se o débito cardíaco se altera durante o teste, o GTP pode subestimar ou superestimar a verdadeira variação da RVP.</p>
+          <h3>Gradiente diastólico (GTPd = PAP diastólica − PCP)</h3>
+          <p>Menos sensível a variações de fluxo que o GTP, por comparar duas pressões diastólicas. Um GTPd ≥7 mmHg sugere componente de remodelamento vascular pulmonar fixo, e valores mais baixos favorecem HP predominantemente passiva/reativa (Naeije R et al., <em>Eur Respir J</em> 2013). <strong>Limitação a declarar com honestidade:</strong> o valor prognóstico do GTPd é heterogêneo entre populações — há associação com mortalidade em HAP de Grupo 1 (Mazimba S et al., <em>Respir Med</em> 2016), mas um estudo dedicado não encontrou valor preditivo independente de sobrevida especificamente em HP por cardiopatia esquerda (Tampakakis E et al., <em>JACC Heart Fail</em> 2015). Use o GTPd como dado complementar, não como critério isolado de decisão.</p>
+          <h3>Pressão sistêmica (PAS) — o critério que valida o teste</h3>
+          <p>Como o nitroprussiato é vasodilatador sistêmico, toda queda de GTP/PAPm precisa ser interpretada <strong>junto</strong> com o comportamento da PAS. Os dados clássicos de Costard-Jäckle e Fowler (<em>J Am Coll Cardiol</em> 1992, 293 pacientes) mostram por que isso muda a conduta:</p>
+          <table class="drug-table">
+            <thead><tr><th>Cenário hemodinâmico no teste</th><th>Mortalidade em 3 meses pós-transplante</th></tr></thead>
+            <tbody>
+              <tr><td>RVP basal ≤ 2,5 UW (sem necessidade de teste)</td><td class="drug-dose">6,9%</td></tr>
+              <tr><td>RVP basal &gt; 2,5 UW, geral</td><td class="drug-dose">17,9%</td></tr>
+              <tr class="highlight-row"><td>RVP reduzida a ≤ 2,5 UW <strong>com PAS mantida ≥ 85 mmHg</strong> ("respondedor verdadeiro")</td><td class="drug-dose">3,8%</td></tr>
+              <tr><td>RVP reduzida a ≤ 2,5 UW, mas <strong>às custas de PAS ≤ 85 mmHg</strong></td><td class="drug-dose">27,5%</td></tr>
+              <tr><td>RVP <strong>não</strong> reduzida a ≤ 2,5 UW</td><td class="drug-dose">40,6%</td></tr>
+            </tbody>
+          </table>
+          <div class="warning-box"><strong>Leitura clínica:</strong> uma queda "bonita" do GTP/PAPm obtida à custa de hipotensão sistêmica não equivale a uma resposta favorável — o prognóstico desse grupo (27,5%) é quase tão ruim quanto o dos não respondedores (40,6%), muito distante dos verdadeiros respondedores (3,8%). Todos os 10 óbitos por falência de VD do estudo original ocorreram nesses dois grupos de pior prognóstico.</div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">🧭</div>
+            <div>
+              <div class="card-title">Algoritmo prático à beira do leito (sem DC disponível)</div>
+            </div>
+          </div>
+          <ol class="algo-list">
+            <li>Medir PAPm, PAP diastólica, PCP e PAS basais. Calcular GTP basal (PAPm − PCP).</li>
+            <li>Se PSAP &gt;50 mmHg e (GTP ≥15 mmHg ou suspeita de RVP elevada) → paciente elegível para o teste.</li>
+            <li>Iniciar nitroprussiato IV em 0,5 mcg/kg/min; reavaliar a PAS antes de cada incremento de 0,5 mcg/kg/min, a cada poucos minutos.</li>
+            <li>A cada incremento, registrar PAPm, PCP e PAS; recalcular o GTP corrente (e o GTPd, se possível).</li>
+            <li>Considerar resposta favorável quando o GTP cair para ≤12–15 mmHg <strong>mantendo PAS ≥85 mmHg</strong> — idealmente confirmando depois com RVP ≤2,5–3 UW assim que o DC estiver disponível.</li>
+            <li>Interromper a titulação se PAS &lt;85 mmHg, sinais de hipoperfusão, taquicardia significativa, ou platô sem queda adicional do GTP.</li>
+            <li>Se a meta de GTP só foi atingida às custas de PAS &lt;85 mmHg, classificar como resposta desfavorável/de alto risco — não como respondedor verdadeiro.</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- TAB: CALCULADORA -->
+      <div id="calculadora" class="tab-content">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">💉</div>
+            <div>
+              <div class="card-title">Calculadora de Infusão de Nitroprussiato (Nipride)</div>
+              <div class="card-subtitle">Diluição: 1 ampola (50 mg) em 250 mL de SF 0,9% = 200 mcg/mL</div>
+            </div>
+          </div>
+          <p>Fórmula: <strong>mL/h = (dose em mcg/kg/min × peso em kg × 60) / 200</strong>. Informe o peso do paciente para gerar a taxa de infusão em cada incremento de 0,5 mcg/kg/min do protocolo de teste (0,5 a 3,0 mcg/kg/min).</p>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Peso do Paciente <span>(kg)</span></label>
+              <input type="number" id="patientWeight" class="form-input" min="20" max="200" step="0.5" placeholder="Ex: 70" oninput="calculateNipride()" onchange="calculateNipride()">
+            </div>
+          </div>
+
+          <div class="result-grid">
+            <div class="result-box">
+              <div class="result-label">Dose Mínima (0,5 mcg/kg/min)</div>
+              <div class="result-value" id="doseMin">—</div>
+              <div class="result-unit">mL/h</div>
+            </div>
+            <div class="result-box" style="background: rgba(79, 172, 254, .15); border-color: rgba(79, 172, 254, .3);">
+              <div class="result-label" style="color:#4facfe;">Dose Intermediária (1,5 mcg/kg/min)</div>
+              <div class="result-value" id="doseMid" style="color:#4facfe;">—</div>
+              <div class="result-unit">mL/h</div>
+            </div>
+            <div class="result-box" style="background: rgba(239, 68, 68, .1); border-color: rgba(239, 68, 68, .3);">
+              <div class="result-label" style="color: var(--red);">Dose Máxima do Teste (3,0 mcg/kg/min)</div>
+              <div class="result-value" id="doseMax" style="color: var(--red);">—</div>
+              <div class="result-unit">mL/h</div>
+            </div>
+          </div>
+
+          <h3>Tabela completa de titulação (0,5 em 0,5 mcg/kg/min)</h3>
+          <table class="drug-table">
+            <thead><tr><th>Dose (mcg/kg/min)</th><th>Taxa de infusão (mL/h)</th></tr></thead>
+            <tbody id="nipriteTableBody">
+              <tr><td>0,5 (dose inicial)</td><td class="drug-dose" id="row-0.5">—</td></tr>
+              <tr><td>1,0</td><td class="drug-dose" id="row-1.0">—</td></tr>
+              <tr><td>1,5</td><td class="drug-dose" id="row-1.5">—</td></tr>
+              <tr><td>2,0</td><td class="drug-dose" id="row-2.0">—</td></tr>
+              <tr><td>2,5</td><td class="drug-dose" id="row-2.5">—</td></tr>
+              <tr><td>3,0 (dose máxima do teste)</td><td class="drug-dose" id="row-3.0">—</td></tr>
+            </tbody>
+          </table>
+
+          <div class="info-box">
+            <strong>Protocolo de titulação:</strong> iniciar em 0,5 mcg/kg/min; reavaliar a resposta pressórica antes de cada incremento de 0,5 mcg/kg/min, a cada poucos minutos; interromper por hipotensão sintomática, PAS &lt;85 mmHg, ou ao atingir a meta de GTP/RVP. O limite de 3 mcg/kg/min aqui é o teto do <em>protocolo de teste</em> — inferior ao máximo de bula do nitroprussiato para outras indicações (10 mcg/kg/min), pois o objetivo não é redução máxima da pressão arterial, e sim avaliar a reversibilidade da hipertensão pulmonar.
+          </div>
+          <div class="warning-box">
+            <strong>Antes de usar:</strong> confirme a diluição efetivamente preparada na sua instituição — concentrações diferentes de 200 mcg/mL (por ex. 50 mg/500 mL = 100 mcg/mL) exigem recalcular a taxa. A solução deve ser protegida da luz e é estável por 24 h após o preparo; use sempre bomba de infusão volumétrica. Esta calculadora é uma ferramenta de apoio e não substitui o julgamento clínico à beira do leito.
+          </div>
+        </div>
+      </div>
+
+      <!-- REFERÊNCIAS -->
+      <div class="card" style="margin-top: 3rem;">
+        <div class="card-header">
+          <div class="card-icon">📚</div>
+          <div>
+            <div class="card-title">Referências Científicas</div>
+            <div class="card-subtitle">Diretrizes e literatura primária</div>
+          </div>
+        </div>
+        <div style="font-size: .82rem; color: var(--muted-foreground); line-height: 1.8;">
+          <p><strong style="color: var(--foreground);">Protocolo pré-transplante (histórico):</strong> Costanzo MR, Augustine S, Bourge R, et al. Selection and Treatment of Candidates for Heart Transplantation. A Statement for Health Professionals From the Committee on Heart Failure and Cardiac Transplantation, American Heart Association. Circulation. 1995;92(12):3593-3612. doi:10.1161/01.CIR.92.12.3593</p>
+          <p style="margin-top:1rem;"><strong style="color: var(--foreground);">Dados de mortalidade por PAS/RVP no teste:</strong> Costard-Jäckle A, Fowler MB. Influence of preoperative pulmonary artery pressure on mortality after heart transplantation: testing of potential reversibility of pulmonary hypertension with nitroprusside is useful in defining a high risk group. J Am Coll Cardiol. 1992;19(1):48-54. doi:10.1016/0735-1097(92)90050-W</p>
+          <p style="margin-top:1rem;"><strong style="color: var(--foreground);">Padronização hemodinâmica atual (protocolo, critérios ISHLT 2024):</strong> Belkin MN, Fudim M, Baratto C, et al. Standardization of Baseline and Provocative Invasive Hemodynamic Protocols for the Evaluation of Heart Failure and Pulmonary Hypertension: A Scientific Statement From the American Heart Association. Circ Heart Fail. 2026;19(2):e000088. doi:10.1161/HHF.0000000000000088</p>
+          <p style="margin-top:1rem;"><strong style="color: var(--foreground);">Critérios de listagem para transplante:</strong> Peled Y, Ducharme A, Kittleson M, et al. International Society for Heart and Lung Transplantation Guidelines for the Evaluation and Care of Cardiac Transplant Candidates—2024. J Heart Lung Transplant. 2024.</p>
+          <p style="margin-top:1rem;"><strong style="color: var(--foreground);">Indicações/contraindicações do teste para BCC:</strong> Humbert M, Kovacs G, Hoeper MM, et al. 2022 ESC/ERS Guidelines for the diagnosis and treatment of pulmonary hypertension. Eur Respir J. 2023;61(1):2200879. doi:10.1183/13993003.00879-2022</p>
+          <p style="margin-top:1rem;"><strong style="color: var(--foreground);">Critério de resposta positiva (Sitbon):</strong> Sitbon O, Humbert M, Jaïs X, et al. Long-term response to calcium channel blockers in idiopathic pulmonary arterial hypertension. Circulation. 2005;111(23):3105-3111. doi:10.1161/CIRCULATIONAHA.104.488486</p>
+          <p style="margin-top:1rem;"><strong style="color: var(--foreground);">Indicação de cateterismo direito na valvopatia:</strong> Praz F, Borger MA, Lanz J, et al. 2025 ESC/EACTS Guidelines for the Management of Valvular Heart Disease. Eur Heart J. 2025;46(44):4635-4736. doi:10.1093/eurheartj/ehaf194</p>
+          <p style="margin-top:1rem;"><strong style="color: var(--foreground);">Gradiente transpulmonar/diastólico (conceito):</strong> Naeije R, Vachiery JL, Yerly P, Vanderpool R. The transpulmonary pressure gradient for the diagnosis of pulmonary vascular disease. Eur Respir J. 2013;41(1):217-223. doi:10.1183/09031936.00074312</p>
+          <p style="margin-top:1rem;"><strong style="color: var(--foreground);">GTPd em HAP (Grupo 1):</strong> Mazimba S, Mejia-Lopez E, Black G, et al. Diastolic pulmonary gradient predicts outcomes in group 1 pulmonary hypertension (analysis of the NIH primary pulmonary hypertension registry). Respir Med. 2016.</p>
+          <p style="margin-top:1rem;"><strong style="color: var(--foreground);">GTPd sem valor preditivo independente em HP por cardiopatia esquerda:</strong> Tampakakis E, Leary PJ, Selby VN, et al. The diastolic pulmonary gradient does not predict survival in patients with pulmonary hypertension due to left heart disease. JACC Heart Fail. 2015;3(1):9-16. doi:10.1016/j.jchf.2014.07.010</p>
+          <p style="margin-top:1rem;"><strong style="color: var(--foreground);">Nitroprussiato — dose, estabilidade, toxicidade:</strong> Nitropress® (sodium nitroprusside) Prescribing Information, U.S. Food and Drug Administration; StatPearls — Sodium Nitroprusside, NCBI Bookshelf.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    function switchTab(tabName) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(tabName).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    const CONCENTRATION_MCG_ML = 200; // 50 mg / 250 mL
+
+    function mlPerHour(doseMcgKgMin, weightKg) {
+      return (doseMcgKgMin * weightKg * 60) / CONCENTRATION_MCG_ML;
+    }
+
+    function fmt(value) {
+      // Mostra 1 casa decimal apenas quando necessário
+      const rounded = Math.round(value * 10) / 10;
+      return (rounded % 1 === 0 ? rounded.toFixed(0) : rounded.toFixed(1)).replace('.', ',');
+    }
+
+    function calculateNipride() {
+      const weight = parseFloat(document.getElementById('patientWeight').value);
+      const doses = [0.5, 1.0, 1.5, 2.0, 2.5, 3.0];
+
+      if (!weight || weight < 20 || weight > 200) {
+        document.getElementById('doseMin').textContent = '—';
+        document.getElementById('doseMid').textContent = '—';
+        document.getElementById('doseMax').textContent = '—';
+        doses.forEach(d => { document.getElementById('row-' + d.toFixed(1)).textContent = '—'; });
+        return;
+      }
+
+      document.getElementById('doseMin').textContent = fmt(mlPerHour(0.5, weight));
+      document.getElementById('doseMid').textContent = fmt(mlPerHour(1.5, weight));
+      document.getElementById('doseMax').textContent = fmt(mlPerHour(3.0, weight));
+
+      doses.forEach(d => {
+        document.getElementById('row-' + d.toFixed(1)).textContent = fmt(mlPerHour(d, weight)) + ' mL/h';
+      });
+    }
+
+    calculateNipride();
+  </script>
+</body>
+</html>

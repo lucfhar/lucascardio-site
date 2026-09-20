@@ -1,0 +1,1944 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>Calculadora de Diluição e Infusão — Drogas Vasoativas e Sedativas | Dr. Lucas Silva</title>
+  <meta name="description" content="Ferramenta interativa para diluição e cálculo de infusão contínua (mL/h ↔ mcg/kg/min e outras unidades) de vasopressores, inotrópicos, sedativos e antiarrítmicos usados em UTI e pós-procedimento hemodinâmico, com apresentações comerciais comuns no Brasil." />
+  <meta name="author" content="Dr. Lucas Silva" />
+  <link rel="canonical" href="https://lucascardio.com.br/Medicos/calculadora_drogas_vasoativas.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Calculadora de Diluição e Infusão de Drogas Vasoativas e Sedativas",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Web Browser",
+    "url": "https://lucascardio.com.br/Medicos/calculadora_drogas_vasoativas.html",
+    "description": "Ferramenta interativa para diluição e cálculo bidirecional de infusão contínua de vasopressores, inotrópicos, sedativos e antiarrítmicos.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "BRL" },
+    "author": { "@type": "Person", "name": "Dr. Lucas Silva", "url": "https://lucascardio.com.br" },
+    "isAccessibleForFree": true,
+    "featureList": "Diluição de drogas vasoativas, Conversão mL/h para mcg/kg/min, Conversão de dose para mL/h, Cálculo de bolus/ataque"
+  }
+  </script>
+
+  <style>
+    /* ── DESIGN TOKENS ────────────────────────────────────── */
+    :root {
+      --primary: oklch(65% .18 195);
+      --primary-foreground: oklch(98% 0 0);
+      --background: oklch(13% .018 250);
+      --foreground: oklch(93% .01 250);
+      --card: oklch(18.5% .018 250);
+      --card-foreground: oklch(93% .01 250);
+      --muted: oklch(22% .018 250);
+      --muted-foreground: oklch(62% .02 250);
+      --border: oklch(28% .025 250);
+      --input: oklch(22% .02 250);
+      --destructive: oklch(60% .22 25);
+      --secondary: oklch(22% .022 250);
+      --secondary-foreground: oklch(88% .01 250);
+      --accent: oklch(24% .025 250);
+      --accent-foreground: oklch(90% .01 250);
+      --teal: #00d3bd;
+      --teal-dim: rgba(0,211,189,.12);
+      --amber: oklch(82.8% .189 84.429);
+      --red: oklch(63.7% .237 25.331);
+      --green: oklch(79.2% .209 151.711);
+      --radius: 0.625rem;
+      --spacing: 4px;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--background);
+      color: var(--foreground);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ───────────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(18,20,27,.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: .6rem;
+      text-decoration: none; color: var(--foreground);
+    }
+    .nav-brand-icon {
+      width: 28px; height: 28px; border-radius: 7px;
+      background: var(--teal); display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-weight: 700; font-size: .9rem; color: #000;
+    }
+    .nav-brand-name { font-weight: 800; font-size: 1rem; letter-spacing: -.025em; line-height: 1; }
+    .nav-brand-name span { color: var(--teal); }
+    .nav-brand-sep { width: 1px; height: 14px; background: var(--border); margin: 0 6px; }
+    .nav-brand-sub { font-size: .7rem; font-weight: 500; color: var(--muted-foreground); }
+    .nav-actions { display: flex; align-items: center; gap: .5rem; }
+    .nav-badge {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 999px; background: var(--teal-dim);
+      color: var(--teal); border: 1px solid rgba(0,211,189,.25);
+      white-space: nowrap;
+    }
+
+    /* ── LAYOUT ────────────────────────────────────────────── */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+    .section { padding: 3rem 0; }
+
+    /* ── HERO ──────────────────────────────────────────────── */
+    .hero {
+      padding: 3.5rem 0 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .7rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--teal);
+      margin-bottom: 1rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 20px; height: 2px;
+      background: var(--teal); border-radius: 1px;
+    }
+    .hero h1 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 800; line-height: 1.2;
+      margin-bottom: .75rem; letter-spacing: -.02em;
+    }
+    .hero h1 em { font-style: normal; color: var(--teal); }
+    .hero-sub {
+      color: var(--muted-foreground); font-size: .95rem;
+      max-width: 620px; margin-bottom: 1.5rem;
+    }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag {
+      font-size: .7rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 6px; border: 1px solid var(--border);
+      color: var(--muted-foreground); background: var(--card);
+      font-family: var(--font-mono);
+    }
+
+    /* ── CARDS ─────────────────────────────────────────────── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 2px);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .card-header {
+      display: flex; align-items: flex-start;
+      gap: .75rem; margin-bottom: 1.25rem;
+      padding-bottom: 1rem; border-bottom: 1px solid var(--border);
+    }
+    .card-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+      background: var(--teal-dim); color: var(--teal);
+    }
+    .card-title {
+      font-weight: 700; font-size: 1rem; margin-bottom: 2px;
+    }
+    .card-subtitle { font-size: .78rem; color: var(--muted-foreground); }
+
+    /* ── FORM ELEMENTS ─────────────────────────────────────── */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-label {
+      font-size: .78rem; font-weight: 600; color: var(--muted-foreground);
+    }
+    .form-label span {
+      font-size: .7rem; font-weight: 400; opacity: .7;
+    }
+    .form-input {
+      background: var(--input);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--foreground);
+      font-family: var(--font-mono);
+      font-size: .85rem;
+      padding: 8px 12px;
+      transition: border-color .15s, box-shadow .15s;
+      outline: none;
+      width: 100%;
+    }
+    .form-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(0,211,189,.15);
+    }
+    .form-input::-webkit-inner-spin-button { opacity: .4; }
+    .form-select {
+      background: var(--input);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--foreground);
+      font-family: var(--font-sans);
+      font-size: .85rem;
+      padding: 8px 12px;
+      outline: none; width: 100%;
+      cursor: pointer;
+      transition: border-color .15s;
+    }
+    .form-select:focus { border-color: var(--primary); }
+
+    /* Checkbox group */
+    .check-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: .5rem;
+    }
+    .check-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 10px 12px; border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--muted);
+      cursor: pointer; transition: background .15s, border-color .15s;
+      user-select: none;
+    }
+    .check-item:hover { background: var(--accent); border-color: var(--primary); }
+    .check-item.checked {
+      background: var(--teal-dim);
+      border-color: rgba(0,211,189,.4);
+    }
+    .check-item input { display: none; }
+    .check-box {
+      width: 16px; height: 16px; border-radius: 4px;
+      border: 1.5px solid var(--border);
+      flex-shrink: 0; margin-top: 1px;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .15s;
+    }
+    .check-item.checked .check-box {
+      background: var(--teal);
+      border-color: var(--teal);
+    }
+    .check-item.checked .check-box::after {
+      content: '✓'; color: #000; font-size: .7rem; font-weight: 700;
+    }
+    .check-label { font-size: .85rem; font-weight: 500; }
+
+    /* ── RESULT SECTION ────────────────────────────────────── */
+    .result-box {
+      background: var(--teal-dim);
+      border: 1px solid rgba(0,211,189,.3);
+      border-radius: calc(var(--radius) + 2px);
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
+    .result-label {
+      font-size: .75rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--teal);
+      margin-bottom: .5rem;
+    }
+    .result-value {
+      font-size: 2rem; font-weight: 800;
+      color: var(--teal); font-family: var(--font-mono);
+      margin-bottom: .5rem;
+    }
+    .result-unit {
+      font-size: .85rem; color: var(--muted-foreground);
+    }
+
+    /* ── DRUG TABLE ────────────────────────────────────────── */
+    .drug-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    .drug-table th {
+      background: var(--muted);
+      border: 1px solid var(--border);
+      padding: 10px;
+      text-align: left;
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--muted-foreground);
+    }
+    .drug-table td {
+      border: 1px solid var(--border);
+      padding: 10px;
+      font-size: .85rem;
+    }
+    .drug-table tr:nth-child(even) {
+      background: rgba(0, 211, 189, .05);
+    }
+    .drug-name {
+      font-weight: 600;
+      color: var(--foreground);
+    }
+    .drug-dose {
+      font-family: var(--font-mono);
+      color: var(--teal);
+      font-weight: 600;
+    }
+    .drug-note {
+      font-size: .75rem;
+      color: var(--muted-foreground);
+      font-style: italic;
+    }
+    .warning-badge {
+      display: inline-block;
+      background: rgba(239, 68, 68, .15);
+      color: var(--red);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: .7rem;
+      font-weight: 600;
+      margin-left: 4px;
+    }
+
+    /* ── RISK BADGE ────────────────────────────────────────── */
+    .risk-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 12px; border-radius: var(--radius);
+      font-size: .8rem; font-weight: 600;
+      margin-top: 1rem;
+    }
+    .risk-low { background: rgba(79, 172, 254, .15); color: #4facfe; }
+    .risk-medium { background: rgba(251, 191, 36, .15); color: var(--amber); }
+    .risk-high { background: rgba(239, 68, 68, .15); color: var(--red); }
+
+    /* ── BUTTON ────────────────────────────────────────────── */
+    .btn {
+      background: var(--primary);
+      color: var(--primary-foreground);
+      border: none;
+      border-radius: var(--radius);
+      padding: 10px 20px;
+      font-size: .85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity .15s;
+    }
+    .btn:hover { opacity: .9; }
+
+    /* ── TABS ──────────────────────────────────────────────── */
+    .tabs {
+      display: flex; gap: .5rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1.5rem;
+      overflow-x: auto;
+    }
+    .tab-btn {
+      background: none; border: none; cursor: pointer;
+      padding: 12px 16px; font-size: .85rem; font-weight: 600;
+      color: var(--muted-foreground);
+      border-bottom: 2px solid transparent;
+      transition: color .15s, border-color .15s;
+      white-space: nowrap;
+    }
+    .tab-btn:hover { color: var(--foreground); }
+    .tab-btn.active {
+      color: var(--teal);
+      border-bottom-color: var(--teal);
+    }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* ── RESPONSIVE ────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .check-grid { grid-template-columns: 1fr; }
+      .drug-table { font-size: .75rem; }
+      .drug-table th, .drug-table td { padding: 8px; }
+    }
+  
+    /* ── CONTEXT BAR (peso global) ─────────────────────────── */
+    .context-bar {
+      position: sticky; top: 56px; z-index: 40;
+      background: rgba(18,20,27,.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: .65rem 1.5rem;
+      display: flex; align-items: center; gap: .9rem; flex-wrap: wrap;
+    }
+    .context-bar label { font-size: .78rem; font-weight: 600; color: var(--muted-foreground); }
+    .context-bar input {
+      width: 100px; background: var(--input); border: 1px solid var(--border);
+      border-radius: var(--radius); color: var(--foreground); font-family: var(--font-mono);
+      font-size: .9rem; padding: 6px 10px; outline: none;
+    }
+    .context-bar input:focus { border-color: var(--primary); }
+    .context-bar .context-hint { font-size: .72rem; color: var(--muted-foreground); opacity: .8; }
+
+    /* ── DISCLAIMER ────────────────────────────────────────── */
+    .alert { border-radius: calc(var(--radius) + 2px); padding: 1rem 1.25rem; margin-bottom: 1.5rem; font-size: .85rem; line-height: 1.6; border: 1px solid; }
+    .alert-info { background: var(--teal-dim); border-color: rgba(0,211,189,.3); color: var(--foreground); }
+    .alert-warning { background: rgba(251,191,36,.10); border-color: rgba(251,191,36,.35); color: var(--foreground); }
+    .alert-danger { background: rgba(239,68,68,.10); border-color: rgba(239,68,68,.35); color: var(--foreground); }
+    .alert strong { color: var(--foreground); }
+
+    /* ── DRUG NAV PILLS (scrollable) ───────────────────────── */
+    .drug-tabs { display: flex; gap: .4rem; overflow-x: auto; padding-bottom: .5rem; margin-bottom: 1.5rem; }
+    .drug-tab-btn {
+      background: var(--card); border: 1px solid var(--border); cursor: pointer;
+      padding: 8px 14px; font-size: .8rem; font-weight: 600; color: var(--muted-foreground);
+      border-radius: 999px; white-space: nowrap; transition: all .15s; flex-shrink: 0;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .drug-tab-btn:hover { border-color: var(--primary); color: var(--foreground); }
+    .drug-tab-btn.active { background: var(--teal-dim); border-color: rgba(0,211,189,.4); color: var(--teal); }
+
+    /* ── BADGES ────────────────────────────────────────────── */
+    .badge-row { display: flex; flex-wrap: wrap; gap: .4rem; margin: .75rem 0 0; }
+    .badge { font-size: .7rem; font-weight: 700; padding: 4px 10px; border-radius: 999px; display: inline-flex; align-items: center; gap: 4px; }
+    .badge-photo { background: rgba(239,68,68,.15); color: var(--red); }
+    .badge-pvc { background: rgba(251,191,36,.15); color: var(--amber); }
+    .badge-central { background: rgba(79,172,254,.15); color: #4facfe; }
+    .badge-salt { background: rgba(251,191,36,.15); color: var(--amber); }
+
+    /* ── DILUTION SELECT (radio cards) ─────────────────────── */
+    .dilution-grid { display: grid; gap: .6rem; margin-top: .75rem; }
+    .dilution-card {
+      display: flex; align-items: flex-start; gap: 10px; padding: 12px 14px;
+      border: 1px solid var(--border); border-radius: var(--radius); background: var(--muted);
+      cursor: pointer; transition: background .15s, border-color .15s;
+    }
+    .dilution-card:hover { border-color: var(--primary); }
+    .dilution-card.selected { background: var(--teal-dim); border-color: rgba(0,211,189,.4); }
+    .dilution-card input { display: none; }
+    .dilution-radio {
+      width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--border);
+      flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center;
+    }
+    .dilution-card.selected .dilution-radio { border-color: var(--teal); }
+    .dilution-card.selected .dilution-radio::after { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--teal); }
+    .dilution-title { font-weight: 700; font-size: .85rem; }
+    .dilution-desc { font-size: .78rem; color: var(--muted-foreground); margin-top: 2px; }
+    .dilution-conc { font-family: var(--font-mono); color: var(--teal); font-weight: 700; font-size: .78rem; margin-top: 4px; }
+    .dilution-source { font-size: .62rem; font-weight: 700; letter-spacing: .03em; text-transform: uppercase; color: var(--muted-foreground); background: var(--accent); border: 1px solid var(--border); border-radius: 999px; padding: 1px 7px; margin-left: 4px; vertical-align: middle; }
+
+    /* ── UNIT TOGGLE ───────────────────────────────────────── */
+    .unit-toggle { display: flex; gap: .4rem; margin-top: .75rem; flex-wrap: wrap; }
+    .unit-btn {
+      background: var(--muted); border: 1px solid var(--border); color: var(--muted-foreground);
+      padding: 7px 14px; font-size: .78rem; font-weight: 600; border-radius: var(--radius); cursor: pointer;
+    }
+    .unit-btn.active { background: var(--teal-dim); border-color: rgba(0,211,189,.4); color: var(--teal); }
+
+    /* ── CALC GRID ─────────────────────────────────────────── */
+    .calc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 1rem; margin-top: 1.25rem; }
+    .calc-box { background: var(--muted); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; }
+    .calc-box-label { font-size: .75rem; font-weight: 700; color: var(--muted-foreground); text-transform: uppercase; letter-spacing: .05em; margin-bottom: .6rem; }
+    .calc-arrow { text-align: center; color: var(--teal); font-size: 1.1rem; margin: 0 .25rem; }
+    .calc-row { display: flex; align-items: center; gap: .6rem; }
+    .calc-result { font-family: var(--font-mono); font-weight: 800; font-size: 1.35rem; color: var(--teal); margin-top: .5rem; }
+    .calc-result-unit { font-size: .72rem; color: var(--muted-foreground); font-weight: 500; }
+
+    /* ── RANGE BADGE ───────────────────────────────────────── */
+    .range-badge { display: inline-flex; align-items: center; gap: 5px; font-size: .7rem; font-weight: 700; padding: 3px 9px; border-radius: 999px; margin-top: .5rem; }
+    .range-usual { background: rgba(121,208,120,.15); color: var(--green); }
+    .range-extreme { background: rgba(251,191,36,.15); color: var(--amber); }
+    .range-out { background: rgba(239,68,68,.15); color: var(--red); }
+    .range-none { background: var(--accent); color: var(--muted-foreground); }
+
+    /* ── MINI REF-RANGE TABLE ──────────────────────────────── */
+    .mini-table-wrap { overflow-x: auto; margin-top: .5rem; }
+
+    /* ── NOTES LIST ────────────────────────────────────────── */
+    .notes-list { margin-top: .75rem; padding-left: 1.1rem; font-size: .82rem; color: var(--muted-foreground); }
+    .notes-list li { margin-bottom: .5rem; }
+    .ref-sup { font-family: var(--font-mono); color: var(--teal); font-size: .7rem; margin-left: 2px; }
+
+    /* ── BOLUS BOX ─────────────────────────────────────────── */
+    .bolus-box { background: rgba(79,172,254,.08); border: 1px solid rgba(79,172,254,.25); border-radius: var(--radius); padding: 1rem; margin-top: 1.25rem; }
+
+    @media (max-width: 640px) {
+      .context-bar { top: 56px; }
+      .calc-grid { grid-template-columns: 1fr; }
+    }
+
+  </style>
+
+<body>
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-brand">
+      <div class="nav-brand-icon">💉</div>
+      <div>
+        <div class="nav-brand-name">Infusão<span>Calc</span></div>
+        <div class="nav-brand-sub">Dr. Lucas Silva</div>
+      </div>
+    </a>
+    <div class="nav-actions">
+      <span class="nav-badge">Baseado em Evidências</span>
+    </div>
+  </nav>
+
+  <!-- CONTEXT BAR: PESO GLOBAL -->
+  <div class="context-bar">
+    <label for="globalWeight">Peso do paciente</label>
+    <input type="number" id="globalWeight" step="0.1" min="1" placeholder="kg">
+    <span class="context-hint">usado em todas as drogas com dose por kg (mcg/kg/min, mcg/kg/h, mg/kg/h)</span>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-eyebrow">Calculadora Clínica</div>
+      <h1>Diluição e Infusão de <em>Drogas Vasoativas</em></h1>
+      <p class="hero-sub">Diluição padronizada, conversão bidirecional mL/h ↔ dose (mcg/kg/min e outras unidades) e cálculo de bolus para vasopressores, inotrópicos, sedativos, antiarrítmicos e vasodilatadores de uso frequente em UTI e pós-procedimento hemodinâmico.</p>
+      <div class="hero-tags">
+        <span class="tag">11 drogas</span>
+        <span class="tag">mL/h ↔ dose</span>
+        <span class="tag">Diluições comuns no Brasil</span>
+        <span class="tag">Fotossensibilidade</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="alert alert-warning">
+        <strong>⚠️ Aviso importante:</strong> esta ferramenta é um auxílio educacional de cálculo e não substitui o julgamento clínico. As concentrações de diluição aqui apresentadas refletem apresentações comerciais e práticas comuns no Brasil, mas <strong>podem variar entre fabricantes e instituições</strong>. Confirme sempre a concentração no rótulo da ampola/frasco efetivamente disponível em sua farmácia antes de preparar ou infundir qualquer diluição. Faixas de dose citadas têm referência numerada — consulte a seção de Referências ao final da página.
+      </div>
+
+      <div class="drug-tabs">
+<button class="drug-tab-btn active" onclick="switchDrugTab('fentanil', this)">💉 Fentanila</button>
+<button class="drug-tab-btn " onclick="switchDrugTab('propofol', this)">🥛 Propofol</button>
+<button class="drug-tab-btn " onclick="switchDrugTab('midazolam', this)">😴 Midazolam</button>
+<button class="drug-tab-btn " onclick="switchDrugTab('noradrenalina', this)">🩸 Noradrenalina</button>
+<button class="drug-tab-btn " onclick="switchDrugTab('adrenalina', this)">⚡ Adrenalina</button>
+<button class="drug-tab-btn " onclick="switchDrugTab('dopamina', this)">🧠 Dopamina</button>
+<button class="drug-tab-btn " onclick="switchDrugTab('dobutamina', this)">❤️ Dobutamina</button>
+<button class="drug-tab-btn " onclick="switchDrugTab('milrinona', this)">🫁 Milrinona</button>
+<button class="drug-tab-btn " onclick="switchDrugTab('amiodarona', this)">💓 Amiodarona</button>
+<button class="drug-tab-btn " onclick="switchDrugTab('dexmedetomidina', this)">🌙 Dexmedetomidina</button>
+<button class="drug-tab-btn " onclick="switchDrugTab('nitroglicerina', this)">🫀 Nitroglicerina</button>
+<button class="drug-tab-btn " onclick="switchDrugTab('nitroprussiato', this)">☢️ Nitroprussiato de Sódio</button>
+<button class="drug-tab-btn " onclick="switchDrugTab('vasopressina', this)">💧 Vasopressina</button>
+      </div>
+
+      <div id="tab-fentanil" class="tab-content active">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">💉</div>
+            <div>
+              <div class="card-title">Fentanila</div>
+              <div class="card-subtitle">Opioide sintético — analgesia/sedação</div>
+            </div>
+          </div>
+          
+          <p style="font-size:.85rem;color:var(--muted-foreground);margin-top:.5rem;">Apresentação comum no Brasil: ampola 50 mcg/mL (2, 5 ou 10 mL — a de 10 mL/500 mcg é a mais usada em CTI).</p>
+
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">1. Escolha a diluição</h3>
+          <div class="dilution-grid">
+          <label class="dilution-card selected" data-drug="fentanil" onclick="selectDilution('fentanil','puro',this)">
+            <input type="radio" name="fentanil_dilution" value="puro" checked>
+            <div class="dilution-radio"></div>
+            <div>
+              <div class="dilution-title">Puro (sem diluição)</div>
+              <div class="dilution-desc">Direto da ampola, sem diluir — 50 mcg/mL.</div>
+              <div class="dilution-conc">→ 50 mcg/mL</div>
+            </div>
+          </label>
+          <label class="dilution-card " data-drug="fentanil" onclick="selectDilution('fentanil','padrao',this)">
+            <input type="radio" name="fentanil_dilution" value="padrao" >
+            <div class="dilution-radio"></div>
+            <div>
+              <div class="dilution-title">Padrão</div>
+              <div class="dilution-desc">1 ampola (500 mcg / 10 mL) + SF 0,9% 40 mL = 50 mL.</div>
+              <div class="dilution-conc">→ 10 mcg/mL</div>
+            </div>
+          </label>
+          <label class="dilution-card " data-drug="fentanil" onclick="selectDilution('fentanil','concentrada',this)">
+            <input type="radio" name="fentanil_dilution" value="concentrada" >
+            <div class="dilution-radio"></div>
+            <div>
+              <div class="dilution-title">Concentrada (dobrada)</div>
+              <div class="dilution-desc">2 ampolas (1000 mcg / 20 mL) + SF 0,9% 30 mL = 50 mL.</div>
+              <div class="dilution-conc">→ 20 mcg/mL</div>
+            </div>
+          </label></div>
+
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">2. Unidade de dose</h3>
+          <div class="unit-toggle"><button type="button" class="unit-btn active" disabled>mcg/kg/h</button></div>
+          <p style="font-size:.8rem;color:var(--muted-foreground);margin-top:.6rem;" id="fentanil_rangenote"></p>
+          <div class="context-hint" style="margin-top:.4rem;">Usa o peso definido no topo da página.</div>
+
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">3. Calculadora</h3>
+          
+      <div class="calc-grid">
+        <div class="calc-box">
+          <div class="calc-box-label">mL/h → Dose</div>
+          <div class="calc-row">
+            <input type="number" step="0.1" min="0" class="form-input" id="fentanil_mlh_input" placeholder="Ex: 5" oninput="recalcDrug('fentanil')">
+            <span class="calc-arrow">→</span>
+          </div>
+          <div class="calc-result" id="fentanil_mlh_result">—</div>
+          <div class="calc-result-unit" id="fentanil_mlh_result_unit"></div>
+          <div id="fentanil_mlh_badge"></div>
+        </div>
+        <div class="calc-box">
+          <div class="calc-box-label">Dose desejada → mL/h</div>
+          <div class="calc-row">
+            <input type="number" step="0.01" min="0" class="form-input" id="fentanil_dose_input" placeholder="Ex: 0.1" oninput="recalcDrug('fentanil')">
+            <span class="calc-arrow">→</span>
+          </div>
+          <div class="calc-result" id="fentanil_dose_result">—</div>
+          <div class="calc-result-unit">mL/h</div>
+          <div id="fentanil_dose_badge"></div>
+        </div>
+      </div>
+          
+      <div class="bolus-box">
+        <div class="card-subtitle" style="margin-bottom:.5rem;"><strong style="color:var(--foreground);">Bolus (analgesia em UTI)</strong> — 1–2 mcg/kg</div>
+        <div style="font-size:.8rem;color:var(--muted-foreground);">1–2 mcg/kg para analgesia em UTI. Outros contextos: 25–100 mcg IV pós-operatório (repetir 1–2h) ou 2–50 mcg/kg em anestesia — fora do escopo deste cálculo padrão.</div>
+        
+            <div class="form-group" style="margin-top:.6rem; max-width:200px;">
+              <label class="form-label">Peso <span>(kg)</span></label>
+              <input type="number" step="0.1" class="form-input" id="fentanil_bolus_weight" placeholder="usa peso global" oninput="recalcBolus('fentanil')">
+            </div>
+        <div class="calc-result" id="fentanil_bolus_result" style="font-size:1.1rem;margin-top:.6rem;">—</div>
+      </div>
+          
+      <h3 style="margin-top:1.75rem;margin-bottom:.6rem;font-size:.95rem;">Tabela de referência — mL/h × dose</h3>
+      <div class="mini-table-wrap">
+        <table class="drug-table" id="fentanil_table"><thead><tr><th>mL/h</th><th>Dose</th></tr></thead><tbody></tbody></table>
+      </div>
+      <h3 style="margin-top:1.5rem;margin-bottom:.6rem;font-size:.95rem;">Faixa de referência convertida em mL/h</h3>
+      <div class="mini-table-wrap">
+        <table class="drug-table" id="fentanil_range_table"><thead><tr><th>Ponto da faixa</th><th>Dose</th><th>mL/h necessário</th></tr></thead><tbody></tbody></table>
+      </div>
+          
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">Observações importantes</h3><ul class="notes-list"><li>Concentração de diluição não é fixada em bula — 10–50 mcg/mL é comumente usada; confirme o padrão da sua instituição.</li><li>Sem antagonismo direto com luz; proteção especial não é rotineiramente exigida.</li></ul>
+          <div style="font-size:.72rem;color:var(--muted-foreground);margin-top:1rem;">Faixas de dose e diluições: referências [2], [3].</div>
+        </div>
+      </div>
+
+      <div id="tab-propofol" class="tab-content">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">🥛</div>
+            <div>
+              <div class="card-title">Propofol</div>
+              <div class="card-subtitle">Anestésico/sedativo hipnótico não-opioide</div>
+            </div>
+          </div>
+          
+          <p style="font-size:.85rem;color:var(--muted-foreground);margin-top:.5rem;">Apresentação comum no Brasil: emulsão lipídica 10 mg/mL (1%), frascos de 20, 50 ou 100 mL.</p>
+
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">1. Escolha a diluição</h3>
+          <div class="dilution-grid">
+          <label class="dilution-card selected" data-drug="propofol" onclick="selectDilution('propofol','puro',this)">
+            <input type="radio" name="propofol_dilution" value="puro" checked>
+            <div class="dilution-radio"></div>
+            <div>
+              <div class="dilution-title">Puro (1% = 10 mg/mL)</div>
+              <div class="dilution-desc">Uso direto do frasco, sem diluir — forma habitual de administração.</div>
+              <div class="dilution-conc">→ 10 mg/mL</div>
+            </div>
+          </label></div>
+
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">2. Unidade de dose</h3>
+          <div class="unit-toggle"><button type="button" class="unit-btn active" disabled>mcg/kg/min</button></div>
+          <p style="font-size:.8rem;color:var(--muted-foreground);margin-top:.6rem;" id="propofol_rangenote"></p>
+          <div class="context-hint" style="margin-top:.4rem;">Usa o peso definido no topo da página.</div>
+
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">3. Calculadora</h3>
+          
+      <div class="calc-grid">
+        <div class="calc-box">
+          <div class="calc-box-label">mL/h → Dose</div>
+          <div class="calc-row">
+            <input type="number" step="0.1" min="0" class="form-input" id="propofol_mlh_input" placeholder="Ex: 5" oninput="recalcDrug('propofol')">
+            <span class="calc-arrow">→</span>
+          </div>
+          <div class="calc-result" id="propofol_mlh_result">—</div>
+          <div class="calc-result-unit" id="propofol_mlh_result_unit"></div>
+          <div id="propofol_mlh_badge"></div>
+        </div>
+        <div class="calc-box">
+          <div class="calc-box-label">Dose desejada → mL/h</div>
+          <div class="calc-row">
+            <input type="number" step="0.01" min="0" class="form-input" id="propofol_dose_input" placeholder="Ex: 0.1" oninput="recalcDrug('propofol')">
+            <span class="calc-arrow">→</span>
+          </div>
+          <div class="calc-result" id="propofol_dose_result">—</div>
+          <div class="calc-result-unit">mL/h</div>
+          <div id="propofol_dose_badge"></div>
+        </div>
+      </div>
+          
+      <div class="bolus-box">
+        <div class="card-subtitle" style="margin-bottom:.5rem;"><strong style="color:var(--foreground);">Bolus (indução/sedação)</strong> — 0.5–2.5 mg/kg</div>
+        <div style="font-size:.8rem;color:var(--muted-foreground);">Indução: 1–2,5 mg/kg (1–1,5 mg/kg em idosos); bolus de sedação: 0,5–3 mg/kg.</div>
+        
+            <div class="form-group" style="margin-top:.6rem; max-width:200px;">
+              <label class="form-label">Peso <span>(kg)</span></label>
+              <input type="number" step="0.1" class="form-input" id="propofol_bolus_weight" placeholder="usa peso global" oninput="recalcBolus('propofol')">
+            </div>
+        <div class="calc-result" id="propofol_bolus_result" style="font-size:1.1rem;margin-top:.6rem;">—</div>
+      </div>
+          
+      <h3 style="margin-top:1.75rem;margin-bottom:.6rem;font-size:.95rem;">Tabela de referência — mL/h × dose</h3>
+      <div class="mini-table-wrap">
+        <table class="drug-table" id="propofol_table"><thead><tr><th>mL/h</th><th>Dose</th></tr></thead><tbody></tbody></table>
+      </div>
+      <h3 style="margin-top:1.5rem;margin-bottom:.6rem;font-size:.95rem;">Faixa de referência convertida em mL/h</h3>
+      <div class="mini-table-wrap">
+        <table class="drug-table" id="propofol_range_table"><thead><tr><th>Ponto da faixa</th><th>Dose</th><th>mL/h necessário</th></tr></thead><tbody></tbody></table>
+      </div>
+          
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">Observações importantes</h3><ul class="notes-list"><li>Não diluir rotineiramente. Se necessário, apenas em SG5%, concentração mínima de 2 mg/mL, e usar em até 6h por risco de contaminação da emulsão lipídica.</li><li>Trocar equipo e frasco a cada 12h (risco de crescimento bacteriano na emulsão lipídica).</li></ul>
+          <div style="font-size:.72rem;color:var(--muted-foreground);margin-top:1rem;">Faixas de dose e diluições: referências [2], [4].</div>
+        </div>
+      </div>
+
+      <div id="tab-midazolam" class="tab-content">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">😴</div>
+            <div>
+              <div class="card-title">Midazolam</div>
+              <div class="card-subtitle">Benzodiazepínico — sedação</div>
+            </div>
+          </div>
+          
+          <p style="font-size:.85rem;color:var(--muted-foreground);margin-top:.5rem;">Apresentações comuns no Brasil: 5 mg/mL, ampolas de 3 mL (15 mg) ou 10 mL (50 mg).</p>
+
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">1. Escolha a diluição</h3>
+          <div class="dilution-grid">
+          <label class="dilution-card selected" data-drug="midazolam" onclick="selectDilution('midazolam','padrao',this)">
+            <input type="radio" name="midazolam_dilution" value="padrao" checked>
+            <div class="dilution-radio"></div>
+            <div>
+              <div class="dilution-title">Padrão</div>
+              <div class="dilution-desc">1 ampola (50 mg / 10 mL) + SF 0,9% 40 mL = 50 mL.</div>
+              <div class="dilution-conc">→ 1 mg/mL</div>
+            </div>
+          </label>
+          <label class="dilution-card " data-drug="midazolam" onclick="selectDilution('midazolam','concentrada',this)">
+            <input type="radio" name="midazolam_dilution" value="concentrada" >
+            <div class="dilution-radio"></div>
+            <div>
+              <div class="dilution-title">Concentrada (dobrada)</div>
+              <div class="dilution-desc">2 ampolas (100 mg / 20 mL) + SF 0,9% 30 mL = 50 mL.</div>
+              <div class="dilution-conc">→ 2 mg/mL</div>
+            </div>
+          </label>
+          <label class="dilution-card " data-drug="midazolam" onclick="selectDilution('midazolam','diluida',this)">
+            <input type="radio" name="midazolam_dilution" value="diluida" >
+            <div class="dilution-radio"></div>
+            <div>
+              <div class="dilution-title">Diluída (grande volume)</div>
+              <div class="dilution-desc">1 ampola (50 mg / 10 mL) + SF 0,9%/SG5% 240 mL = 250 mL.</div>
+              <div class="dilution-conc">→ 0.2 mg/mL</div>
+            </div>
+          </label></div>
+
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">2. Unidade de dose</h3>
+          <div class="unit-toggle"><button type="button" class="unit-btn active" data-drug="midazolam" data-unit="mgkgh" onclick="selectUnit('midazolam','mgkgh',this)">mg/kg/h</button><button type="button" class="unit-btn " data-drug="midazolam" data-unit="mgh" onclick="selectUnit('midazolam','mgh',this)">mg/h (dose fixa)</button></div>
+          <p style="font-size:.8rem;color:var(--muted-foreground);margin-top:.6rem;" id="midazolam_rangenote"></p>
+          <div class="context-hint" style="margin-top:.4rem;">Usa o peso definido no topo da página.</div>
+
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">3. Calculadora</h3>
+          
+      <div class="calc-grid">
+        <div class="calc-box">
+          <div class="calc-box-label">mL/h → Dose</div>
+          <div class="calc-row">
+            <input type="number" step="0.1" min="0" class="form-input" id="midazolam_mlh_input" placeholder="Ex: 5" oninput="recalcDrug('midazolam')">
+            <span class="calc-arrow">→</span>
+          </div>
+          <div class="calc-result" id="midazolam_mlh_result">—</div>
+          <div class="calc-result-unit" id="midazolam_mlh_result_unit"></div>
+          <div id="midazolam_mlh_badge"></div>
+        </div>
+        <div class="calc-box">
+          <div class="calc-box-label">Dose desejada → mL/h</div>
+          <div class="calc-row">
+            <input type="number" step="0.01" min="0" class="form-input" id="midazolam_dose_input" placeholder="Ex: 0.1" oninput="recalcDrug('midazolam')">
+            <span class="calc-arrow">→</span>
+          </div>
+          <div class="calc-result" id="midazolam_dose_result">—</div>
+          <div class="calc-result-unit">mL/h</div>
+          <div id="midazolam_dose_badge"></div>
+        </div>
+      </div>
+          
+      <div class="bolus-box">
+        <div class="card-subtitle" style="margin-bottom:.5rem;"><strong style="color:var(--foreground);">Bolus (carga)</strong> — 0.01–0.05 mg/kg</div>
+        <div style="font-size:.8rem;color:var(--muted-foreground);">0,01–0,05 mg/kg (≈0,5–4 mg), podendo repetir a cada 10–15 min.</div>
+        
+            <div class="form-group" style="margin-top:.6rem; max-width:200px;">
+              <label class="form-label">Peso <span>(kg)</span></label>
+              <input type="number" step="0.1" class="form-input" id="midazolam_bolus_weight" placeholder="usa peso global" oninput="recalcBolus('midazolam')">
+            </div>
+        <div class="calc-result" id="midazolam_bolus_result" style="font-size:1.1rem;margin-top:.6rem;">—</div>
+      </div>
+          
+      <h3 style="margin-top:1.75rem;margin-bottom:.6rem;font-size:.95rem;">Tabela de referência — mL/h × dose</h3>
+      <div class="mini-table-wrap">
+        <table class="drug-table" id="midazolam_table"><thead><tr><th>mL/h</th><th>Dose</th></tr></thead><tbody></tbody></table>
+      </div>
+      <h3 style="margin-top:1.5rem;margin-bottom:.6rem;font-size:.95rem;">Faixa de referência convertida em mL/h</h3>
+      <div class="mini-table-wrap">
+        <table class="drug-table" id="midazolam_range_table"><thead><tr><th>Ponto da faixa</th><th>Dose</th><th>mL/h necessário</th></tr></thead><tbody></tbody></table>
+      </div>
+          
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">Observações importantes</h3><ul class="notes-list"><li>Diluir em SF 0,9% ou SG5%.</li><li>Acúmulo de metabólito ativo (α-hidroxi-midazolam) em insuficiência renal — risco de sedação prolongada.</li></ul>
+          <div style="font-size:.72rem;color:var(--muted-foreground);margin-top:1rem;">Faixas de dose e diluições: referências [2], [5].</div>
+        </div>
+      </div>
+
+      <div id="tab-noradrenalina" class="tab-content">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">🩸</div>
+            <div>
+              <div class="card-title">Noradrenalina</div>
+              <div class="card-subtitle">Vasopressor catecolaminérgico (agonista α1 predominante)</div>
+            </div>
+          </div>
+          <div class="badge-row"><span class="badge badge-salt">⚠️ Rótulo sal × base</span><span class="badge badge-central">Preferir acesso venoso central</span></div>
+          <p style="font-size:.85rem;color:var(--muted-foreground);margin-top:.5rem;">⚠️ Ampolas de noradrenalina no Brasil podem trazer no rótulo dois números diferentes para o MESMO conteúdo real de fármaco: algumas já expressam a concentração em norepinefrina base (ex.: 4 mg/4 mL), outras expressam o peso do sal hemitartarato (ex.: 8 mg/4 mL) — que equivale a apenas 4 mg/4 mL de norepinefrina base, ou seja, à mesma quantidade de fármaco ativo [27]. Um alerta de farmacovigilância institucional já destacou explicitamente que a informação de maior destaque na ampola (o peso do sal) não deve ser usada para o cálculo de dose — o que importa é a base [27]. TODAS as diluições abaixo já estão calculadas em norepinefrina BASE: se a ampola da sua farmácia traz "8 mg/4 mL" de hemitartarato no rótulo, ela é a mesma ampola-base de 4 mg/4 mL usada nas contas a seguir — não dobre a quantidade de ampolas pensando que é preciso compensar, e não presuma; confira sempre o teor de base declarado na bula/rótulo do produto da sua instituição.</p>
+
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">1. Escolha a diluição</h3>
+          <div class="dilution-grid">
+          <label class="dilution-card selected" data-drug="noradrenalina" onclick="selectDilution('noradrenalina','diluida_250ml',this)">
+            <input type="radio" name="noradrenalina_dilution" value="diluida_250ml" checked>
+            <div class="dilution-radio"></div>
+            <div>
+              <div class="dilution-title">Diluída em bolsa de 250 mL</div>
+              <div class="dilution-desc">4 ampolas (16 mg de norepinefrina base) + SG 5% qsp 250 mL.</div>
+              <div class="dilution-conc">→ 64 mcg/mL</div>
+            </div>
+          </label>
+          <label class="dilution-card " data-drug="noradrenalina" onclick="selectDilution('noradrenalina','padrao_200ml',this)">
+            <input type="radio" name="noradrenalina_dilution" value="padrao_200ml" >
+            <div class="dilution-radio"></div>
+            <div>
+              <div class="dilution-title">Padrão em bolsa de 200 mL</div>
+              <div class="dilution-desc">5 ampolas (20 mg de norepinefrina base) + SG 5% qsp 200 mL.</div>
+              <div class="dilution-conc">→ 100 mcg/mL</div>
+            </div>
+          </label>
+          <label class="dilution-card " data-drug="noradrenalina" onclick="selectDilution('noradrenalina','concentrada_200ml',this)">
+            <input type="radio" name="noradrenalina_dilution" value="concentrada_200ml" >
+            <div class="dilution-radio"></div>
+            <div>
+              <div class="dilution-title">Concentrada (dobrada) em bolsa de 200 mL</div>
+              <div class="dilution-desc">10 ampolas (40 mg de norepinefrina base) + SG 5% qsp 200 mL.</div>
+              <div class="dilution-conc">→ 200 mcg/mL</div>
+            </div>
+          </label>
+          <label class="dilution-card " data-drug="noradrenalina" onclick="selectDilution('noradrenalina','pura',this)">
+            <input type="radio" name="noradrenalina_dilution" value="pura" >
+            <div class="dilution-radio"></div>
+            <div>
+              <div class="dilution-title">Pura — bomba de seringa (acesso central)</div>
+              <div class="dilution-desc">Sem diluir — direto da ampola (norepinefrina base 4 mg/4 mL = 1 mg/mL).</div>
+              <div class="dilution-conc">→ 1000 mcg/mL</div>
+            </div>
+          </label></div>
+
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">2. Unidade de dose</h3>
+          <div class="unit-toggle"><button type="button" class="unit-btn active" data-drug="noradrenalina" data-unit="mcgkgmin" onclick="selectUnit('noradrenalina','mcgkgmin',this)">mcg/kg/min</button><button type="button" class="unit-btn " data-drug="noradrenalina" data-unit="mcgmin" onclick="selectUnit('noradrenalina','mcgmin',this)">mcg/min (dose fixa)</button></div>
+          <p style="font-size:.8rem;color:var(--muted-foreground);margin-top:.6rem;" id="noradrenalina_rangenote"></p>
+          <div class="context-hint" style="margin-top:.4rem;">Usa o peso definido no topo da página.</div>
+
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">3. Calculadora</h3>
+          
+      <div class="calc-grid">
+        <div class="calc-box">
+          <div class="calc-box-label">mL/h → Dose</div>
+          <div class="calc-row">
+            <input type="number" step="0.1" min="0" class="form-input" id="noradrenalina_mlh_input" placeholder="Ex: 5" oninput="recalcDrug('noradrenalina')">
+            <span class="calc-arrow">→</span>
+          </div>
+          <div class="calc-result" id="noradrenalina_mlh_result">—</div>
+          <div class="calc-result-unit" id="noradrenalina_mlh_result_unit"></div>
+          <div id="noradrenalina_mlh_badge"></div>
+        </div>
+        <div class="calc-box">
+          <div class="calc-box-label">Dose desejada → mL/h</div>
+          <div class="calc-row">
+            <input type="number" step="0.01" min="0" class="form-input" id="noradrenalina_dose_input" placeholder="Ex: 0.1" oninput="recalcDrug('noradrenalina')">
+            <span class="calc-arrow">→</span>
+          </div>
+          <div class="calc-result" id="noradrenalina_dose_result">—</div>
+          <div class="calc-result-unit">mL/h</div>
+          <div id="noradrenalina_dose_badge"></div>
+        </div>
+      </div>
+          
+          
+      <h3 style="margin-top:1.75rem;margin-bottom:.6rem;font-size:.95rem;">Tabela de referência — mL/h × dose</h3>
+      <div class="mini-table-wrap">
+        <table class="drug-table" id="noradrenalina_table"><thead><tr><th>mL/h</th><th>Dose</th></tr></thead><tbody></tbody></table>
+      </div>
+      <h3 style="margin-top:1.5rem;margin-bottom:.6rem;font-size:.95rem;">Faixa de referência convertida em mL/h</h3>
+      <div class="mini-table-wrap">
+        <table class="drug-table" id="noradrenalina_range_table"><thead><tr><th>Ponto da faixa</th><th>Dose</th><th>mL/h necessário</th></tr></thead><tbody></tbody></table>
+      </div>
+          
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">Observações importantes</h3><ul class="notes-list"><li>A ambiguidade sal×base na rotulagem de noradrenalina é uma fonte reconhecida de erro de diluição em UTI — não presuma; confira o teor de base declarado no rótulo/bula da ampola física antes de preparar [27].</li><li>Infundir preferencialmente em acesso venoso central e veia calibrosa — risco de necrose tecidual grave por extravasamento.</li><li>Desmame gradual ao suspender.</li></ul>
+          <div style="font-size:.72rem;color:var(--muted-foreground);margin-top:1rem;">Faixas de dose e diluições: referências [6], [7], [8], [25], [26], [27].</div>
+        </div>
+      </div>
+
+      <div id="tab-adrenalina" class="tab-content">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">⚡</div>
+            <div>
+              <div class="card-title">Adrenalina</div>
+              <div class="card-subtitle">Catecolamina — agonista α e β adrenérgico</div>
+            </div>
+          </div>
+          <div class="badge-row"><span class="badge badge-central">Preferir acesso venoso central</span></div>
+          <p style="font-size:.85rem;color:var(--muted-foreground);margin-top:.5rem;">Apresentação comum no Brasil: epinefrina 1 mg/mL (1:1000), ampola de 1 mL.</p>
+
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">1. Escolha a diluição</h3>
+          <div class="dilution-grid">
+          <label class="dilution-card selected" data-drug="adrenalina" onclick="selectDilution('adrenalina','padrao',this)">
+            <input type="radio" name="adrenalina_dilution" value="padrao" checked>
+            <div class="dilution-radio"></div>
+            <div>
+              <div class="dilution-title">Padrão</div>
+              <div class="dilution-desc">10 ampolas (10 mg / 10 mL) + SG 5% qsp 250 mL.</div>
+              <div class="dilution-conc">→ 40 mcg/mL</div>
+            </div>
+          </label>
+          <label class="dilution-card " data-drug="adrenalina" onclick="selectDilution('adrenalina','baixa',this)">
+            <input type="radio" name="adrenalina_dilution" value="baixa" >
+            <div class="dilution-radio"></div>
+            <div>
+              <div class="dilution-title">Diluída (dose baixa)</div>
+              <div class="dilution-desc">1 mg (1 ampola / 1 mL) + SF 0,9% 249 mL = 250 mL.</div>
+              <div class="dilution-conc">→ 4 mcg/mL</div>
+            </div>
+          </label></div>
+
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">2. Unidade de dose</h3>
+          <div class="unit-toggle"><button type="button" class="unit-btn active" data-drug="adrenalina" data-unit="mcgkgmin_choque" onclick="selectUnit('adrenalina','mcgkgmin_choque',this)">mcg/kg/min — ICC/choque cardiogênico</button><button type="button" class="unit-btn " data-drug="adrenalina" data-unit="mcgmin_choque" onclick="selectUnit('adrenalina','mcgmin_choque',this)">mcg/min — ICC/choque (dose fixa)</button><button type="button" class="unit-btn " data-drug="adrenalina" data-unit="mcgkgmin_anafilaxia" onclick="selectUnit('adrenalina','mcgkgmin_anafilaxia',this)">mcg/kg/min — anafilaxia</button><button type="button" class="unit-btn " data-drug="adrenalina" data-unit="mcgmin_anafilaxia" onclick="selectUnit('adrenalina','mcgmin_anafilaxia',this)">mcg/min — anafilaxia (dose fixa)</button></div>
+          <p style="font-size:.8rem;color:var(--muted-foreground);margin-top:.6rem;" id="adrenalina_rangenote"></p>
+          <div class="context-hint" style="margin-top:.4rem;">Usa o peso definido no topo da página.</div>
+
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">3. Calculadora</h3>
+          
+      <div class="calc-grid">
+        <div class="calc-box">
+          <div class="calc-box-label">mL/h → Dose</div>
+          <div class="calc-row">
+            <input type="number" step="0.1" min="0" class="form-input" id="adrenalina_mlh_input" placeholder="Ex: 5" oninput="recalcDrug('adrenalina')">
+            <span class="calc-arrow">→</span>
+          </div>
+          <div class="calc-result" id="adrenalina_mlh_result">—</div>
+          <div class="calc-result-unit" id="adrenalina_mlh_result_unit"></div>
+          <div id="adrenalina_mlh_badge"></div>
+        </div>
+        <div class="calc-box">
+          <div class="calc-box-label">Dose desejada → mL/h</div>
+          <div class="calc-row">
+            <input type="number" step="0.01" min="0" class="form-input" id="adrenalina_dose_input" placeholder="Ex: 0.1" oninput="recalcDrug('adrenalina')">
+            <span class="calc-arrow">→</span>
+          </div>
+          <div class="calc-result" id="adrenalina_dose_result">—</div>
+          <div class="calc-result-unit">mL/h</div>
+          <div id="adrenalina_dose_badge"></div>
+        </div>
+      </div>
+          
+      <div class="bolus-box">
+        <div class="card-subtitle" style="margin-bottom:.5rem;"><strong style="color:var(--foreground);">Bolus (RCP)</strong> — 1 mg (dose fixa)</div>
+        <div style="font-size:.8rem;color:var(--muted-foreground);">RCP: 1 mg IV a cada 3–5 min (dose fixa, não ponderal).</div>
+        
+        <div class="calc-result" id="adrenalina_bolus_result" style="font-size:1.1rem;margin-top:.6rem;">—</div>
+      </div>
+          
+      <h3 style="margin-top:1.75rem;margin-bottom:.6rem;font-size:.95rem;">Tabela de referência — mL/h × dose</h3>
+      <div class="mini-table-wrap">
+        <table class="drug-table" id="adrenalina_table"><thead><tr><th>mL/h</th><th>Dose</th></tr></thead><tbody></tbody></table>
+      </div>
+      <h3 style="margin-top:1.5rem;margin-bottom:.6rem;font-size:.95rem;">Faixa de referência convertida em mL/h</h3>
+      <div class="mini-table-wrap">
+        <table class="drug-table" id="adrenalina_range_table"><thead><tr><th>Ponto da faixa</th><th>Dose</th><th>mL/h necessário</th></tr></thead><tbody></tbody></table>
+      </div>
+          
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">Observações importantes</h3><ul class="notes-list"><li>⚠️ ATENÇÃO À INDICAÇÃO: as doses de anafilaxia são muito menores que as de choque cardiogênico/ICC — confirme qual unidade está selecionada acima antes de titular.</li><li>Infundir preferencialmente em acesso venoso central — risco de necrose tecidual por extravasamento.</li><li>Desmame gradual ao suspender.</li></ul>
+          <div style="font-size:.72rem;color:var(--muted-foreground);margin-top:1rem;">Faixas de dose e diluições: referências [7], [8], [25].</div>
+        </div>
+      </div>
+
+      <div id="tab-dopamina" class="tab-content">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">🧠</div>
+            <div>
+              <div class="card-title">Dopamina</div>
+              <div class="card-subtitle">Catecolamina precursora imediata da noradrenalina — efeito dose-dependente (dopaminérgico → β1 → α1)</div>
+            </div>
+          </div>
+          
+          <p style="font-size:.85rem;color:var(--muted-foreground);margin-top:.5rem;">Apresentação comum no Brasil: ampola 5 mg/mL, 10 mL (50 mg/ampola).</p>
+
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">1. Escolha a diluição</h3>
+          <div class="dilution-grid">
+          <label class="dilution-card selected" data-drug="dopamina" onclick="selectDilution('dopamina','padrao',this)">
+            <input type="radio" name="dopamina_dilution" value="padrao" checked>
+            <div class="dilution-radio"></div>
+            <div>
+              <div class="dilution-title">Padrão (1000 mcg/mL)</div>
+              <div class="dilution-desc">5 ampolas (250 mg / 50 mL) + SF 0,9% ou SG 5% qsp 250 mL.</div>
+              <div class="dilution-conc">→ 1000 mcg/mL</div>
+            </div>
+          </label>
+          <label class="dilution-card " data-drug="dopamina" onclick="selectDilution('dopamina','concentrada',this)">
+            <input type="radio" name="dopamina_dilution" value="concentrada" >
+            <div class="dilution-radio"></div>
+            <div>
+              <div class="dilution-title">Concentrada (1600 mcg/mL)</div>
+              <div class="dilution-desc">400 mg (≈8 ampolas / 80 mL) + SG 5% qsp 250 mL.</div>
+              <div class="dilution-conc">→ 1600 mcg/mL</div>
+            </div>
+          </label></div>
+
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">2. Unidade de dose</h3>
+          <div class="unit-toggle"><button type="button" class="unit-btn active" disabled>mcg/kg/min</button></div>
+          <p style="font-size:.8rem;color:var(--muted-foreground);margin-top:.6rem;" id="dopamina_rangenote"></p>
+          <div class="context-hint" style="margin-top:.4rem;">Usa o peso definido no topo da página.</div>
+
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">3. Calculadora</h3>
+          
+      <div class="calc-grid">
+        <div class="calc-box">
+          <div class="calc-box-label">mL/h → Dose</div>
+          <div class="calc-row">
+            <input type="number" step="0.1" min="0" class="form-input" id="dopamina_mlh_input" placeholder="Ex: 5" oninput="recalcDrug('dopamina')">
+            <span class="calc-arrow">→</span>
+          </div>
+          <div class="calc-result" id="dopamina_mlh_result">—</div>
+          <div class="calc-result-unit" id="dopamina_mlh_result_unit"></div>
+          <div id="dopamina_mlh_badge"></div>
+        </div>
+        <div class="calc-box">
+          <div class="calc-box-label">Dose desejada → mL/h</div>
+          <div class="calc-row">
+            <input type="number" step="0.01" min="0" class="form-input" id="dopamina_dose_input" placeholder="Ex: 0.1" oninput="recalcDrug('dopamina')">
+            <span class="calc-arrow">→</span>
+          </div>
+          <div class="calc-result" id="dopamina_dose_result">—</div>
+          <div class="calc-result-unit">mL/h</div>
+          <div id="dopamina_dose_badge"></div>
+        </div>
+      </div>
+          
+          
+      <h3 style="margin-top:1.75rem;margin-bottom:.6rem;font-size:.95rem;">Tabela de referência — mL/h × dose</h3>
+      <div class="mini-table-wrap">
+        <table class="drug-table" id="dopamina_table"><thead><tr><th>mL/h</th><th>Dose</th></tr></thead><tbody></tbody></table>
+      </div>
+      <h3 style="margin-top:1.5rem;margin-bottom:.6rem;font-size:.95rem;">Faixa de referência convertida em mL/h</h3>
+      <div class="mini-table-wrap">
+        <table class="drug-table" id="dopamina_range_table"><thead><tr><th>Ponto da faixa</th><th>Dose</th><th>mL/h necessário</th></tr></thead><tbody></tbody></table>
+      </div>
+          
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">Observações importantes</h3><ul class="notes-list"><li>Efeito natriurético na faixa dopaminérgica baixa, mas não aumenta a taxa de filtração glomerular — uso nesta faixa é controverso [26].</li><li>Indicações: choque cardiogênico/séptico, ICC, bradicardia sintomática [26].</li><li>Considerar acesso central em doses α1-predominantes (&gt;10 mcg/kg/min) pelo risco de extravasamento/vasoconstrição periférica.</li></ul>
+          <div style="font-size:.72rem;color:var(--muted-foreground);margin-top:1rem;">Faixas de dose e diluições: referências [25], [26].</div>
+        </div>
+      </div>
+
+      <div id="tab-dobutamina" class="tab-content">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">❤️</div>
+            <div>
+              <div class="card-title">Dobutamina</div>
+              <div class="card-subtitle">Inotrópico — agonista β1 predominante</div>
+            </div>
+          </div>
+          
+          <p style="font-size:.85rem;color:var(--muted-foreground);margin-top:.5rem;">Apresentação comum no Brasil: frasco-ampola 250 mg / 20 mL (12,5 mg/mL).</p>
+
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">1. Escolha a diluição</h3>
+          <div class="dilution-grid">
+          <label class="dilution-card selected" data-drug="dobutamina" onclick="selectDilution('dobutamina','padrao',this)">
+            <input type="radio" name="dobutamina_dilution" value="padrao" checked>
+            <div class="dilution-radio"></div>
+            <div>
+              <div class="dilution-title">Padrão</div>
+              <div class="dilution-desc">250 mg (1 frasco / 20 mL) + SF 0,9% ou SG 5% qsp 250 mL.</div>
+              <div class="dilution-conc">→ 1000 mcg/mL</div>
+            </div>
+          </label>
+          <label class="dilution-card " data-drug="dobutamina" onclick="selectDilution('dobutamina','concentrada',this)">
+            <input type="radio" name="dobutamina_dilution" value="concentrada" >
+            <div class="dilution-radio"></div>
+            <div>
+              <div class="dilution-title">Concentrada (dobrada)</div>
+              <div class="dilution-desc">500 mg (2 frascos / 40 mL) + SF 0,9%/SG 5% qsp 250 mL.</div>
+              <div class="dilution-conc">→ 2000 mcg/mL</div>
+            </div>
+          </label></div>
+
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">2. Unidade de dose</h3>
+          <div class="unit-toggle"><button type="button" class="unit-btn active" disabled>mcg/kg/min</button></div>
+          <p style="font-size:.8rem;color:var(--muted-foreground);margin-top:.6rem;" id="dobutamina_rangenote"></p>
+          <div class="context-hint" style="margin-top:.4rem;">Usa o peso definido no topo da página.</div>
+
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">3. Calculadora</h3>
+          
+      <div class="calc-grid">
+        <div class="calc-box">
+          <div class="calc-box-label">mL/h → Dose</div>
+          <div class="calc-row">
+            <input type="number" step="0.1" min="0" class="form-input" id="dobutamina_mlh_input" placeholder="Ex: 5" oninput="recalcDrug('dobutamina')">
+            <span class="calc-arrow">→</span>
+          </div>
+          <div class="calc-result" id="dobutamina_mlh_result">—</div>
+          <div class="calc-result-unit" id="dobutamina_mlh_result_unit"></div>
+          <div id="dobutamina_mlh_badge"></div>
+        </div>
+        <div class="calc-box">
+          <div class="calc-box-label">Dose desejada → mL/h</div>
+          <div class="calc-row">
+            <input type="number" step="0.01" min="0" class="form-input" id="dobutamina_dose_input" placeholder="Ex: 0.1" oninput="recalcDrug('dobutamina')">
+            <span class="calc-arrow">→</span>
+          </div>
+          <div class="calc-result" id="dobutamina_dose_result">—</div>
+          <div class="calc-result-unit">mL/h</div>
+          <div id="dobutamina_dose_badge"></div>
+        </div>
+      </div>
+          
+          
+      <h3 style="margin-top:1.75rem;margin-bottom:.6rem;font-size:.95rem;">Tabela de referência — mL/h × dose</h3>
+      <div class="mini-table-wrap">
+        <table class="drug-table" id="dobutamina_table"><thead><tr><th>mL/h</th><th>Dose</th></tr></thead><tbody></tbody></table>
+      </div>
+      <h3 style="margin-top:1.5rem;margin-bottom:.6rem;font-size:.95rem;">Faixa de referência convertida em mL/h</h3>
+      <div class="mini-table-wrap">
+        <table class="drug-table" id="dobutamina_range_table"><thead><tr><th>Ponto da faixa</th><th>Dose</th><th>mL/h necessário</th></tr></thead><tbody></tbody></table>
+      </div>
+          
+      <div class="card" style="margin-top:1.75rem;border-color:rgba(0,211,189,.4);background:linear-gradient(180deg, rgba(0,211,189,.06), var(--card));">
+        <h3 style="font-size:1rem;margin-bottom:.4rem;">🎯 Diluição otimizada by Lucas — 1 mL/h = 1 mcg/kg/min</h3>
+        <p style="font-size:.82rem;color:var(--muted-foreground);">Ajusta a concentração final ao peso do paciente para que a velocidade de infusão em mL/h seja numericamente igual à dose em mcg/kg/min, eliminando a conversão à beira-leito. Concentração-alvo = 60 × peso (mcg/mL); com essa concentração, dose(mcg/kg/min) = mL/h × concentração / 60 / peso = mL/h, por construção, para qualquer peso.</p>
+        <div class="form-grid" style="margin-top:.9rem;max-width:320px;">
+          <div class="form-group">
+            <label class="form-label">Nº de ampolas <span>(250 mg/20 mL cada)</span></label>
+            <input type="number" min="1" step="1" class="form-input" id="dobutamina_opt_ampoules" value="1" oninput="recalcOptimized('dobutamina')">
+          </div>
+        </div>
+        <div id="dobutamina_opt_result" style="margin-top:1rem;"></div>
+        <div class="mini-table-wrap" style="margin-top:1rem;">
+          <table class="drug-table"><thead><tr><th>mL/h</th><th>mcg/kg/min resultante</th></tr></thead><tbody id="dobutamina_opt_table"></tbody></table>
+        </div>
+      </div>
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">Observações importantes</h3><ul class="notes-list"><li>Solução pode adquirir leve coloração rosada por oxidação — não indica necessariamente perda de potência clinicamente relevante, mas descarte se houver precipitação ou turvação.</li><li>Não se usa bolus.</li></ul>
+          <div style="font-size:.72rem;color:var(--muted-foreground);margin-top:1rem;">Faixas de dose e diluições: referências [7], [9], [25], [26].</div>
+        </div>
+      </div>
+
+      <div id="tab-milrinona" class="tab-content">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">🫁</div>
+            <div>
+              <div class="card-title">Milrinona</div>
+              <div class="card-subtitle">Inibidor da fosfodiesterase-3 — inotrópico e vasodilatador ("inodilatador")</div>
+            </div>
+          </div>
+          
+          <p style="font-size:.85rem;color:var(--muted-foreground);margin-top:.5rem;">Apresentação comum no Brasil: ampola 1 mg/mL, 20 mL (20 mg/ampola).</p>
+
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">1. Escolha a diluição</h3>
+          <div class="dilution-grid">
+          <label class="dilution-card selected" data-drug="milrinona" onclick="selectDilution('milrinona','padrao',this)">
+            <input type="radio" name="milrinona_dilution" value="padrao" checked>
+            <div class="dilution-radio"></div>
+            <div>
+              <div class="dilution-title">Padrão</div>
+              <div class="dilution-desc">20 mg (1 ampola / 20 mL) + SG 5% qsp 100 mL.</div>
+              <div class="dilution-conc">→ 200 mcg/mL</div>
+            </div>
+          </label></div>
+
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">2. Unidade de dose</h3>
+          <div class="unit-toggle"><button type="button" class="unit-btn active" data-drug="milrinona" data-unit="mcgkgmin" onclick="selectUnit('milrinona','mcgkgmin',this)">mcg/kg/min</button><button type="button" class="unit-btn " data-drug="milrinona" data-unit="mcgkgmin_renal" onclick="selectUnit('milrinona','mcgkgmin_renal',this)">mcg/kg/min — ajuste renal (ClCr 10–50 mL/min)</button></div>
+          <p style="font-size:.8rem;color:var(--muted-foreground);margin-top:.6rem;" id="milrinona_rangenote"></p>
+          <div class="context-hint" style="margin-top:.4rem;">Usa o peso definido no topo da página.</div>
+
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">3. Calculadora</h3>
+          
+      <div class="calc-grid">
+        <div class="calc-box">
+          <div class="calc-box-label">mL/h → Dose</div>
+          <div class="calc-row">
+            <input type="number" step="0.1" min="0" class="form-input" id="milrinona_mlh_input" placeholder="Ex: 5" oninput="recalcDrug('milrinona')">
+            <span class="calc-arrow">→</span>
+          </div>
+          <div class="calc-result" id="milrinona_mlh_result">—</div>
+          <div class="calc-result-unit" id="milrinona_mlh_result_unit"></div>
+          <div id="milrinona_mlh_badge"></div>
+        </div>
+        <div class="calc-box">
+          <div class="calc-box-label">Dose desejada → mL/h</div>
+          <div class="calc-row">
+            <input type="number" step="0.01" min="0" class="form-input" id="milrinona_dose_input" placeholder="Ex: 0.1" oninput="recalcDrug('milrinona')">
+            <span class="calc-arrow">→</span>
+          </div>
+          <div class="calc-result" id="milrinona_dose_result">—</div>
+          <div class="calc-result-unit">mL/h</div>
+          <div id="milrinona_dose_badge"></div>
+        </div>
+      </div>
+          
+          
+      <h3 style="margin-top:1.75rem;margin-bottom:.6rem;font-size:.95rem;">Tabela de referência — mL/h × dose</h3>
+      <div class="mini-table-wrap">
+        <table class="drug-table" id="milrinona_table"><thead><tr><th>mL/h</th><th>Dose</th></tr></thead><tbody></tbody></table>
+      </div>
+      <h3 style="margin-top:1.5rem;margin-bottom:.6rem;font-size:.95rem;">Faixa de referência convertida em mL/h</h3>
+      <div class="mini-table-wrap">
+        <table class="drug-table" id="milrinona_range_table"><thead><tr><th>Ponto da faixa</th><th>Dose</th><th>mL/h necessário</th></tr></thead><tbody></tbody></table>
+      </div>
+          
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">Observações importantes</h3><ul class="notes-list"><li>⚠️ Corrigir a dose pela função renal (ClCr 10–50 mL/min: reduzir para 0,0625–0,125 mcg/kg/min) — eliminação predominantemente renal [25].</li><li>Dose de ataque (bolus, classicamente 50 mcg/kg em 10 min) é frequentemente omitida na prática atual pelo risco de hipotensão significativa — avaliar caso a caso.</li><li>Efeito vasodilatador pode causar hipotensão, sobretudo em hipovolemia — considerar associação precoce com vasopressor.</li></ul>
+          <div style="font-size:.72rem;color:var(--muted-foreground);margin-top:1rem;">Faixas de dose e diluições: referências [25].</div>
+        </div>
+      </div>
+
+      <div id="tab-amiodarona" class="tab-content">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">💓</div>
+            <div>
+              <div class="card-title">Amiodarona</div>
+              <div class="card-subtitle">Antiarrítmico classe III</div>
+            </div>
+          </div>
+          <div class="badge-row"><span class="badge badge-central">Acesso central p/ diluição concentrada</span></div>
+          <p style="font-size:.85rem;color:var(--muted-foreground);margin-top:.5rem;">Apresentação comum no Brasil: ampola 50 mg/mL, 3 mL (150 mg/ampola).</p>
+
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">1. Escolha a diluição</h3>
+          <div class="dilution-grid">
+          <label class="dilution-card selected" data-drug="amiodarona" onclick="selectDilution('amiodarona','ataque',this)">
+            <input type="radio" name="amiodarona_dilution" value="ataque" checked>
+            <div class="dilution-radio"></div>
+            <div>
+              <div class="dilution-title">Ataque (150 mg em 10 min)</div>
+              <div class="dilution-desc">150 mg (1 ampola / 3 mL) + SG5% 97 mL = 100 mL.</div>
+              <div class="dilution-conc">→ 1.5 mg/mL</div>
+            </div>
+          </label>
+          <label class="dilution-card " data-drug="amiodarona" onclick="selectDilution('amiodarona','manutencao_padrao',this)">
+            <input type="radio" name="amiodarona_dilution" value="manutencao_padrao" >
+            <div class="dilution-radio"></div>
+            <div>
+              <div class="dilution-title">Manutenção — padrão</div>
+              <div class="dilution-desc">900 mg (6 ampolas / 18 mL) + SG5% qsp 500 mL.</div>
+              <div class="dilution-conc">→ 1.8 mg/mL</div>
+            </div>
+          </label>
+          <label class="dilution-card " data-drug="amiodarona" onclick="selectDilution('amiodarona','manutencao_concentrada',this)">
+            <input type="radio" name="amiodarona_dilution" value="manutencao_concentrada" >
+            <div class="dilution-radio"></div>
+            <div>
+              <div class="dilution-title">Manutenção — concentrada (acesso central obrigatório)</div>
+              <div class="dilution-desc">900 mg (6 ampolas / 18 mL) + SG5% qsp 250 mL.</div>
+              <div class="dilution-conc">→ 3.6 mg/mL</div>
+            </div>
+          </label></div>
+
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">2. Unidade de dose</h3>
+          <div class="unit-toggle"><button type="button" class="unit-btn active" disabled>mg/min (dose fixa)</button></div>
+          <p style="font-size:.8rem;color:var(--muted-foreground);margin-top:.6rem;" id="amiodarona_rangenote"></p>
+          
+
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">3. Calculadora</h3>
+          
+      <div class="calc-grid">
+        <div class="calc-box">
+          <div class="calc-box-label">mL/h → Dose</div>
+          <div class="calc-row">
+            <input type="number" step="0.1" min="0" class="form-input" id="amiodarona_mlh_input" placeholder="Ex: 5" oninput="recalcDrug('amiodarona')">
+            <span class="calc-arrow">→</span>
+          </div>
+          <div class="calc-result" id="amiodarona_mlh_result">—</div>
+          <div class="calc-result-unit" id="amiodarona_mlh_result_unit"></div>
+          <div id="amiodarona_mlh_badge"></div>
+        </div>
+        <div class="calc-box">
+          <div class="calc-box-label">Dose desejada → mL/h</div>
+          <div class="calc-row">
+            <input type="number" step="0.01" min="0" class="form-input" id="amiodarona_dose_input" placeholder="Ex: 0.1" oninput="recalcDrug('amiodarona')">
+            <span class="calc-arrow">→</span>
+          </div>
+          <div class="calc-result" id="amiodarona_dose_result">—</div>
+          <div class="calc-result-unit">mL/h</div>
+          <div id="amiodarona_dose_badge"></div>
+        </div>
+      </div>
+          
+      <div class="bolus-box">
+        <div class="card-subtitle" style="margin-bottom:.5rem;"><strong style="color:var(--foreground);">Ataque (carga)</strong> — 150 mg (dose fixa, em 10 min)</div>
+        <div style="font-size:.8rem;color:var(--muted-foreground);">150 mg em 10 min (15 mg/min). Episódios de FV/TV refratária: 150 mg suplementar em 100 mL SG5%, também em 10 min.</div>
+        
+        <div class="calc-result" id="amiodarona_bolus_result" style="font-size:1.1rem;margin-top:.6rem;">—</div>
+      </div>
+          
+      <h3 style="margin-top:1.75rem;margin-bottom:.6rem;font-size:.95rem;">Tabela de referência — mL/h × dose</h3>
+      <div class="mini-table-wrap">
+        <table class="drug-table" id="amiodarona_table"><thead><tr><th>mL/h</th><th>Dose</th></tr></thead><tbody></tbody></table>
+      </div>
+      <h3 style="margin-top:1.5rem;margin-bottom:.6rem;font-size:.95rem;">Faixa de referência convertida em mL/h</h3>
+      <div class="mini-table-wrap">
+        <table class="drug-table" id="amiodarona_range_table"><thead><tr><th>Ponto da faixa</th><th>Dose</th><th>mL/h necessário</th></tr></thead><tbody></tbody></table>
+      </div>
+          
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">Observações importantes</h3><ul class="notes-list"><li>Doses médias diárias &gt;2100 mg nas primeiras 24h associam-se a maior risco de hipotensão.</li><li>Usar acesso venoso central para concentrações &gt;2 mg/mL.</li><li>Preferir equipos não-PVC para soluções concentradas (risco de lixiviação de DEHP).</li><li>Não exceder 30 mg/min mesmo durante a fase de ataque.</li></ul>
+          <div style="font-size:.72rem;color:var(--muted-foreground);margin-top:1rem;">Faixas de dose e diluições: referências [10], [11], [12], [13].</div>
+        </div>
+      </div>
+
+      <div id="tab-dexmedetomidina" class="tab-content">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">🌙</div>
+            <div>
+              <div class="card-title">Dexmedetomidina</div>
+              <div class="card-subtitle">Agonista α2-adrenérgico — sedação</div>
+            </div>
+          </div>
+          
+          <p style="font-size:.85rem;color:var(--muted-foreground);margin-top:.5rem;">Apresentação comum no Brasil: ampola 100 mcg/mL, 2 mL (200 mcg/ampola).</p>
+
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">1. Escolha a diluição</h3>
+          <div class="dilution-grid">
+          <label class="dilution-card selected" data-drug="dexmedetomidina" onclick="selectDilution('dexmedetomidina','padrao',this)">
+            <input type="radio" name="dexmedetomidina_dilution" value="padrao" checked>
+            <div class="dilution-radio"></div>
+            <div>
+              <div class="dilution-title">Padrão (4 mcg/mL)</div>
+              <div class="dilution-desc">200 mcg (1 ampola / 2 mL) + SF 0,9% 48 mL = 50 mL. Bolsas prontas comerciais já vêm nesta concentração (4 mcg/mL).</div>
+              <div class="dilution-conc">→ 4 mcg/mL</div>
+            </div>
+          </label></div>
+
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">2. Unidade de dose</h3>
+          <div class="unit-toggle"><button type="button" class="unit-btn active" disabled>mcg/kg/h</button></div>
+          <p style="font-size:.8rem;color:var(--muted-foreground);margin-top:.6rem;" id="dexmedetomidina_rangenote"></p>
+          <div class="context-hint" style="margin-top:.4rem;">Usa o peso definido no topo da página.</div>
+
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">3. Calculadora</h3>
+          
+      <div class="calc-grid">
+        <div class="calc-box">
+          <div class="calc-box-label">mL/h → Dose</div>
+          <div class="calc-row">
+            <input type="number" step="0.1" min="0" class="form-input" id="dexmedetomidina_mlh_input" placeholder="Ex: 5" oninput="recalcDrug('dexmedetomidina')">
+            <span class="calc-arrow">→</span>
+          </div>
+          <div class="calc-result" id="dexmedetomidina_mlh_result">—</div>
+          <div class="calc-result-unit" id="dexmedetomidina_mlh_result_unit"></div>
+          <div id="dexmedetomidina_mlh_badge"></div>
+        </div>
+        <div class="calc-box">
+          <div class="calc-box-label">Dose desejada → mL/h</div>
+          <div class="calc-row">
+            <input type="number" step="0.01" min="0" class="form-input" id="dexmedetomidina_dose_input" placeholder="Ex: 0.1" oninput="recalcDrug('dexmedetomidina')">
+            <span class="calc-arrow">→</span>
+          </div>
+          <div class="calc-result" id="dexmedetomidina_dose_result">—</div>
+          <div class="calc-result-unit">mL/h</div>
+          <div id="dexmedetomidina_dose_badge"></div>
+        </div>
+      </div>
+          
+      <div class="bolus-box">
+        <div class="card-subtitle" style="margin-bottom:.5rem;"><strong style="color:var(--foreground);">Ataque (carga, opcional)</strong> — 1 mcg/kg em 10 min</div>
+        <div style="font-size:.8rem;color:var(--muted-foreground);">1 mcg/kg em 10 min — pode ser omitida se o paciente estiver em conversão de outro sedativo.</div>
+        
+            <div class="form-group" style="margin-top:.6rem; max-width:200px;">
+              <label class="form-label">Peso <span>(kg)</span></label>
+              <input type="number" step="0.1" class="form-input" id="dexmedetomidina_bolus_weight" placeholder="usa peso global" oninput="recalcBolus('dexmedetomidina')">
+            </div>
+        <div class="calc-result" id="dexmedetomidina_bolus_result" style="font-size:1.1rem;margin-top:.6rem;">—</div>
+      </div>
+          
+      <h3 style="margin-top:1.75rem;margin-bottom:.6rem;font-size:.95rem;">Tabela de referência — mL/h × dose</h3>
+      <div class="mini-table-wrap">
+        <table class="drug-table" id="dexmedetomidina_table"><thead><tr><th>mL/h</th><th>Dose</th></tr></thead><tbody></tbody></table>
+      </div>
+      <h3 style="margin-top:1.5rem;margin-bottom:.6rem;font-size:.95rem;">Faixa de referência convertida em mL/h</h3>
+      <div class="mini-table-wrap">
+        <table class="drug-table" id="dexmedetomidina_range_table"><thead><tr><th>Ponto da faixa</th><th>Dose</th><th>mL/h necessário</th></tr></thead><tbody></tbody></table>
+      </div>
+          
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">Observações importantes</h3><ul class="notes-list"><li>Não indicada para infusão contínua por mais de 24h conforme bula.</li><li>Reduzir dose em idosos e hepatopatas.</li></ul>
+          <div style="font-size:.72rem;color:var(--muted-foreground);margin-top:1rem;">Faixas de dose e diluições: referências [14], [15].</div>
+        </div>
+      </div>
+
+      <div id="tab-nitroglicerina" class="tab-content">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">🫀</div>
+            <div>
+              <div class="card-title">Nitroglicerina</div>
+              <div class="card-subtitle">Vasodilatador — doador de óxido nítrico</div>
+            </div>
+          </div>
+          <div class="badge-row"><span class="badge badge-pvc">⚠️ Adsorção em PVC</span></div>
+          <p style="font-size:.85rem;color:var(--muted-foreground);margin-top:.5rem;">Apresentação comum no Brasil: ampola 5 mg/mL, 5 mL (25 mg/ampola).</p>
+
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">1. Escolha a diluição</h3>
+          <div class="dilution-grid">
+          <label class="dilution-card selected" data-drug="nitroglicerina" onclick="selectDilution('nitroglicerina','padrao',this)">
+            <input type="radio" name="nitroglicerina_dilution" value="padrao" checked>
+            <div class="dilution-radio"></div>
+            <div>
+              <div class="dilution-title">Padrão</div>
+              <div class="dilution-desc">25 mg (1 ampola / 5 mL) + SF 0,9%/SG5% 245 mL = 250 mL.</div>
+              <div class="dilution-conc">→ 100 mcg/mL</div>
+            </div>
+          </label>
+          <label class="dilution-card " data-drug="nitroglicerina" onclick="selectDilution('nitroglicerina','concentrada',this)">
+            <input type="radio" name="nitroglicerina_dilution" value="concentrada" >
+            <div class="dilution-radio"></div>
+            <div>
+              <div class="dilution-title">Concentrada (dobrada)</div>
+              <div class="dilution-desc">50 mg (2 ampolas / 10 mL) + SF 0,9%/SG5% 240 mL = 250 mL.</div>
+              <div class="dilution-conc">→ 200 mcg/mL</div>
+            </div>
+          </label></div>
+
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">2. Unidade de dose</h3>
+          <div class="unit-toggle"><button type="button" class="unit-btn active" disabled>mcg/min (dose fixa)</button></div>
+          <p style="font-size:.8rem;color:var(--muted-foreground);margin-top:.6rem;" id="nitroglicerina_rangenote"></p>
+          
+
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">3. Calculadora</h3>
+          
+      <div class="calc-grid">
+        <div class="calc-box">
+          <div class="calc-box-label">mL/h → Dose</div>
+          <div class="calc-row">
+            <input type="number" step="0.1" min="0" class="form-input" id="nitroglicerina_mlh_input" placeholder="Ex: 5" oninput="recalcDrug('nitroglicerina')">
+            <span class="calc-arrow">→</span>
+          </div>
+          <div class="calc-result" id="nitroglicerina_mlh_result">—</div>
+          <div class="calc-result-unit" id="nitroglicerina_mlh_result_unit"></div>
+          <div id="nitroglicerina_mlh_badge"></div>
+        </div>
+        <div class="calc-box">
+          <div class="calc-box-label">Dose desejada → mL/h</div>
+          <div class="calc-row">
+            <input type="number" step="0.01" min="0" class="form-input" id="nitroglicerina_dose_input" placeholder="Ex: 0.1" oninput="recalcDrug('nitroglicerina')">
+            <span class="calc-arrow">→</span>
+          </div>
+          <div class="calc-result" id="nitroglicerina_dose_result">—</div>
+          <div class="calc-result-unit">mL/h</div>
+          <div id="nitroglicerina_dose_badge"></div>
+        </div>
+      </div>
+          
+          
+      <h3 style="margin-top:1.75rem;margin-bottom:.6rem;font-size:.95rem;">Tabela de referência — mL/h × dose</h3>
+      <div class="mini-table-wrap">
+        <table class="drug-table" id="nitroglicerina_table"><thead><tr><th>mL/h</th><th>Dose</th></tr></thead><tbody></tbody></table>
+      </div>
+      <h3 style="margin-top:1.5rem;margin-bottom:.6rem;font-size:.95rem;">Faixa de referência convertida em mL/h</h3>
+      <div class="mini-table-wrap">
+        <table class="drug-table" id="nitroglicerina_range_table"><thead><tr><th>Ponto da faixa</th><th>Dose</th><th>mL/h necessário</th></tr></thead><tbody></tbody></table>
+      </div>
+          
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">Observações importantes</h3><ul class="notes-list"><li>Adsorve significativamente em equipos de PVC comum, reduzindo a dose efetivamente entregue — usar equipo não-PVC (poliolefina) quando disponível, ou considerar dose inicial mais alta (10 mcg/min) se usar PVC padrão.</li><li>Não requer proteção da luz (ao contrário do nitroprussiato).</li><li>Concentração máxima recomendada: 400 mcg/mL.</li></ul>
+          <div style="font-size:.72rem;color:var(--muted-foreground);margin-top:1rem;">Faixas de dose e diluições: referências [16], [17].</div>
+        </div>
+      </div>
+
+      <div id="tab-nitroprussiato" class="tab-content">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">☢️</div>
+            <div>
+              <div class="card-title">Nitroprussiato de Sódio</div>
+              <div class="card-subtitle">Vasodilatador arterial e venoso direto</div>
+            </div>
+          </div>
+          <div class="badge-row"><span class="badge badge-photo">☀️🚫 Fotossensível — proteger da luz</span></div>
+          <p style="font-size:.85rem;color:var(--muted-foreground);margin-top:.5rem;">Apresentação comum no Brasil: frasco-ampola liofilizado de 50 mg para reconstituição.</p>
+
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">1. Escolha a diluição</h3>
+          <div class="dilution-grid">
+          <label class="dilution-card selected" data-drug="nitroprussiato" onclick="selectDilution('nitroprussiato','padrao',this)">
+            <input type="radio" name="nitroprussiato_dilution" value="padrao" checked>
+            <div class="dilution-radio"></div>
+            <div>
+              <div class="dilution-title">Padrão</div>
+              <div class="dilution-desc">50 mg + SG5% qsp 250 mL.</div>
+              <div class="dilution-conc">→ 200 mcg/mL</div>
+            </div>
+          </label>
+          <label class="dilution-card " data-drug="nitroprussiato" onclick="selectDilution('nitroprussiato','diluida',this)">
+            <input type="radio" name="nitroprussiato_dilution" value="diluida" >
+            <div class="dilution-radio"></div>
+            <div>
+              <div class="dilution-title">Diluída</div>
+              <div class="dilution-desc">50 mg + SG5% qsp 500 mL.</div>
+              <div class="dilution-conc">→ 100 mcg/mL</div>
+            </div>
+          </label>
+          <label class="dilution-card " data-drug="nitroprussiato" onclick="selectDilution('nitroprussiato','rtu',this)">
+            <input type="radio" name="nitroprussiato_dilution" value="rtu" >
+            <div class="dilution-radio"></div>
+            <div>
+              <div class="dilution-title">Concentrada (equivalente a RTU comercial)</div>
+              <div class="dilution-desc">50 mg + SG5% qsp 100 mL — mesma concentração da apresentação pronta para uso (RTU), 0,5 mg/mL.</div>
+              <div class="dilution-conc">→ 500 mcg/mL</div>
+            </div>
+          </label></div>
+
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">2. Unidade de dose</h3>
+          <div class="unit-toggle"><button type="button" class="unit-btn active" disabled>mcg/kg/min</button></div>
+          <p style="font-size:.8rem;color:var(--muted-foreground);margin-top:.6rem;" id="nitroprussiato_rangenote"></p>
+          <div class="context-hint" style="margin-top:.4rem;">Usa o peso definido no topo da página.</div>
+
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">3. Calculadora</h3>
+          
+      <div class="calc-grid">
+        <div class="calc-box">
+          <div class="calc-box-label">mL/h → Dose</div>
+          <div class="calc-row">
+            <input type="number" step="0.1" min="0" class="form-input" id="nitroprussiato_mlh_input" placeholder="Ex: 5" oninput="recalcDrug('nitroprussiato')">
+            <span class="calc-arrow">→</span>
+          </div>
+          <div class="calc-result" id="nitroprussiato_mlh_result">—</div>
+          <div class="calc-result-unit" id="nitroprussiato_mlh_result_unit"></div>
+          <div id="nitroprussiato_mlh_badge"></div>
+        </div>
+        <div class="calc-box">
+          <div class="calc-box-label">Dose desejada → mL/h</div>
+          <div class="calc-row">
+            <input type="number" step="0.01" min="0" class="form-input" id="nitroprussiato_dose_input" placeholder="Ex: 0.1" oninput="recalcDrug('nitroprussiato')">
+            <span class="calc-arrow">→</span>
+          </div>
+          <div class="calc-result" id="nitroprussiato_dose_result">—</div>
+          <div class="calc-result-unit">mL/h</div>
+          <div id="nitroprussiato_dose_badge"></div>
+        </div>
+      </div>
+          
+          
+      <h3 style="margin-top:1.75rem;margin-bottom:.6rem;font-size:.95rem;">Tabela de referência — mL/h × dose</h3>
+      <div class="mini-table-wrap">
+        <table class="drug-table" id="nitroprussiato_table"><thead><tr><th>mL/h</th><th>Dose</th></tr></thead><tbody></tbody></table>
+      </div>
+      <h3 style="margin-top:1.5rem;margin-bottom:.6rem;font-size:.95rem;">Faixa de referência convertida em mL/h</h3>
+      <div class="mini-table-wrap">
+        <table class="drug-table" id="nitroprussiato_range_table"><thead><tr><th>Ponto da faixa</th><th>Dose</th><th>mL/h necessário</th></tr></thead><tbody></tbody></table>
+      </div>
+          
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">Observações importantes</h3><ul class="notes-list"><li>⚠️ PROTEGER DA LUZ: frasco e equipo devem ser envolvidos em material opaco (papel-alumínio ou equipo fotoprotetor) — a exposição à luz acelera a degradação e a liberação de cianeto.</li><li>Risco de toxicidade por cianeto em taxas &gt;2 mcg/kg/min ou uso prolongado; a dose máxima (10 mcg/kg/min) nunca deve ser mantida por mais de 10 minutos.</li><li>Reduzir dose em disfunção renal (acúmulo de tiocianato).</li></ul>
+          <div style="font-size:.72rem;color:var(--muted-foreground);margin-top:1rem;">Faixas de dose e diluições: referências [18], [19].</div>
+        </div>
+      </div>
+
+      <div id="tab-vasopressina" class="tab-content">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-icon">💧</div>
+            <div>
+              <div class="card-title">Vasopressina</div>
+              <div class="card-subtitle">Hormônio antidiurético — vasopressor não catecolaminérgico</div>
+            </div>
+          </div>
+          
+          <p style="font-size:.85rem;color:var(--muted-foreground);margin-top:.5rem;">Apresentação comum no Brasil: ampola 20 U/mL, 1 mL (20 U/ampola).</p>
+
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">1. Escolha a diluição</h3>
+          <div class="dilution-grid">
+          <label class="dilution-card selected" data-drug="vasopressina" onclick="selectDilution('vasopressina','padrao',this)">
+            <input type="radio" name="vasopressina_dilution" value="padrao" checked>
+            <div class="dilution-radio"></div>
+            <div>
+              <div class="dilution-title">Padrão (0,1 U/mL)</div>
+              <div class="dilution-desc">1 ampola (20 U / 1 mL) + SF 0,9%/SG 5% qsp 200 mL.</div>
+              <div class="dilution-conc">→ 0.1 U/mL</div>
+            </div>
+          </label>
+          <label class="dilution-card " data-drug="vasopressina" onclick="selectDilution('vasopressina','concentrada',this)">
+            <input type="radio" name="vasopressina_dilution" value="concentrada" >
+            <div class="dilution-radio"></div>
+            <div>
+              <div class="dilution-title">Concentrada (1 U/mL)</div>
+              <div class="dilution-desc">100 U (5 ampolas / 5 mL) + SF 0,9%/SG5% qsp 100 mL.</div>
+              <div class="dilution-conc">→ 1 U/mL</div>
+            </div>
+          </label></div>
+
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">2. Unidade de dose</h3>
+          <div class="unit-toggle"><button type="button" class="unit-btn active" data-drug="vasopressina" data-unit="usepse" onclick="selectUnit('vasopressina','usepse',this)">U/min — choque séptico</button><button type="button" class="unit-btn " data-drug="vasopressina" data-unit="upostcardio" onclick="selectUnit('vasopressina','upostcardio',this)">U/min — pós-cardiotomia</button></div>
+          <p style="font-size:.8rem;color:var(--muted-foreground);margin-top:.6rem;" id="vasopressina_rangenote"></p>
+          
+
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">3. Calculadora</h3>
+          
+      <div class="calc-grid">
+        <div class="calc-box">
+          <div class="calc-box-label">mL/h → Dose</div>
+          <div class="calc-row">
+            <input type="number" step="0.1" min="0" class="form-input" id="vasopressina_mlh_input" placeholder="Ex: 5" oninput="recalcDrug('vasopressina')">
+            <span class="calc-arrow">→</span>
+          </div>
+          <div class="calc-result" id="vasopressina_mlh_result">—</div>
+          <div class="calc-result-unit" id="vasopressina_mlh_result_unit"></div>
+          <div id="vasopressina_mlh_badge"></div>
+        </div>
+        <div class="calc-box">
+          <div class="calc-box-label">Dose desejada → mL/h</div>
+          <div class="calc-row">
+            <input type="number" step="0.01" min="0" class="form-input" id="vasopressina_dose_input" placeholder="Ex: 0.1" oninput="recalcDrug('vasopressina')">
+            <span class="calc-arrow">→</span>
+          </div>
+          <div class="calc-result" id="vasopressina_dose_result">—</div>
+          <div class="calc-result-unit">mL/h</div>
+          <div id="vasopressina_dose_badge"></div>
+        </div>
+      </div>
+          
+          
+      <h3 style="margin-top:1.75rem;margin-bottom:.6rem;font-size:.95rem;">Tabela de referência — mL/h × dose</h3>
+      <div class="mini-table-wrap">
+        <table class="drug-table" id="vasopressina_table"><thead><tr><th>mL/h</th><th>Dose</th></tr></thead><tbody></tbody></table>
+      </div>
+      <h3 style="margin-top:1.5rem;margin-bottom:.6rem;font-size:.95rem;">Faixa de referência convertida em mL/h</h3>
+      <div class="mini-table-wrap">
+        <table class="drug-table" id="vasopressina_range_table"><thead><tr><th>Ponto da faixa</th><th>Dose</th><th>mL/h necessário</th></tr></thead><tbody></tbody></table>
+      </div>
+          
+          <h3 style="margin-top:1.5rem;margin-bottom:.4rem;font-size:.95rem;">Observações importantes</h3><ul class="notes-list"><li>Não se usa em bolus no manejo do choque.</li><li>Doses acima da faixa recomendada associam-se a isquemia cardíaca, digital e esplâncnica [20].</li><li>No choque séptico, usar como adjuvante à noradrenalina já em curso — não como agente de primeira linha [25].</li></ul>
+          <div style="font-size:.72rem;color:var(--muted-foreground);margin-top:1rem;">Faixas de dose e diluições: referências [20], [21], [22], [23], [25].</div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:3rem;">
+        <div class="card-header">
+          <div class="card-icon">📚</div>
+          <div>
+            <div class="card-title">Referências</div>
+            <div class="card-subtitle">Faixas de dose e diluição citadas nas bulas FDA/ANVISA e diretrizes (SSC, ESC/AHA-ACC-HFSA)</div>
+          </div>
+        </div>
+        <div style="font-size:.82rem;color:var(--muted-foreground);line-height:1.7;">
+          <p style="margin-top:.75rem;"><span style="color:var(--teal);font-family:var(--font-mono);font-weight:700;">[1]</span> Erstad BL, Barletta JF. Drug dosing in the critically ill obese patient—a focus on sedation, analgesia, and delirium. Critical Care (London, England). 2020;24(1):315. doi:10.1186/s13054-020-03040-z.</p><p style="margin-top:.75rem;"><span style="color:var(--teal);font-family:var(--font-mono);font-weight:700;">[2]</span> Zhou Y, Jin X, Kang Y, et al. Midazolam and propofol used alone or sequentially for long-term sedation in critically ill, mechanically ventilated patients: a prospective, randomized study. Critical Care (London, England). 2014;18(3):R122. doi:10.1186/cc13922.</p><p style="margin-top:.75rem;"><span style="color:var(--teal);font-family:var(--font-mono);font-weight:700;">[3]</span> Fentanyl Citrate. Food and Drug Administration. Atualização: 2026-08-24.</p><p style="margin-top:.75rem;"><span style="color:var(--teal);font-family:var(--font-mono);font-weight:700;">[4]</span> Diprivan. Food and Drug Administration. Atualização: 2025-02-20.</p><p style="margin-top:.75rem;"><span style="color:var(--teal);font-family:var(--font-mono);font-weight:700;">[5]</span> Midazolam in Sodium Chloride. Food and Drug Administration. Atualização: 2025-07-31.</p><p style="margin-top:.75rem;"><span style="color:var(--teal);font-family:var(--font-mono);font-weight:700;">[6]</span> Norepinephrine Bitartrate in Sodium Chloride. Food and Drug Administration. Atualização: 2026-02-17.</p><p style="margin-top:.75rem;"><span style="color:var(--teal);font-family:var(--font-mono);font-weight:700;">[7]</span> McDonagh TA, Metra M, Adamo M, et al. 2021 ESC Guidelines for the Diagnosis and Treatment of Acute and Chronic Heart Failure. European Heart Journal. 2021;42(36):3599-3726. doi:10.1093/eurheartj/ehab368.</p><p style="margin-top:.75rem;"><span style="color:var(--teal);font-family:var(--font-mono);font-weight:700;">[8]</span> Heidenreich PA, Bozkurt B, Aguilar D, et al. 2022 AHA/ACC/HFSA Guideline for the Management of Heart Failure. Journal of the American College of Cardiology. 2022;79(17):e263-e421. doi:10.1016/j.jacc.2021.12.012.</p><p style="margin-top:.75rem;"><span style="color:var(--teal);font-family:var(--font-mono);font-weight:700;">[9]</span> Henry TD, Tomey MI, Tamis-Holland JE, et al. Invasive Management of Acute Myocardial Infarction Complicated by Cardiogenic Shock: A Scientific Statement From the American Heart Association. Circulation. 2021;143(15):e815-e829. doi:10.1161/CIR.0000000000000959.</p><p style="margin-top:.75rem;"><span style="color:var(--teal);font-family:var(--font-mono);font-weight:700;">[10]</span> Salem JE, El-Aissaoui M, Alazard M, et al. Modeling of Amiodarone Effect on Heart Rate Control in Critically Ill Patients with Atrial Tachyarrhythmias. Clinical Pharmacokinetics. 2016;55(8):991-1002. doi:10.1007/s40262-016-0372-9.</p><p style="margin-top:.75rem;"><span style="color:var(--teal);font-family:var(--font-mono);font-weight:700;">[11]</span> Amiodarone Hydrochloride. Food and Drug Administration. Atualização: 2024-09-11.</p><p style="margin-top:.75rem;"><span style="color:var(--teal);font-family:var(--font-mono);font-weight:700;">[12]</span> Amiodarone Hydrochloride. Food and Drug Administration. Atualização: 2021-12-08.</p><p style="margin-top:.75rem;"><span style="color:var(--teal);font-family:var(--font-mono);font-weight:700;">[13]</span> Amiodarone hydrochloride. Food and Drug Administration. Atualização: 2021-08-26.</p><p style="margin-top:.75rem;"><span style="color:var(--teal);font-family:var(--font-mono);font-weight:700;">[14]</span> Dexmedetomidine. Food and Drug Administration. Atualização: 2026-06-02.</p><p style="margin-top:.75rem;"><span style="color:var(--teal);font-family:var(--font-mono);font-weight:700;">[15]</span> Dexmedetomidine Hydrochloride. Food and Drug Administration. Atualização: 2026-03-04.</p><p style="margin-top:.75rem;"><span style="color:var(--teal);font-family:var(--font-mono);font-weight:700;">[16]</span> Nitroglycerin. Food and Drug Administration. Atualização: 2021-07-22.</p><p style="margin-top:.75rem;"><span style="color:var(--teal);font-family:var(--font-mono);font-weight:700;">[17]</span> Anderson JL, Adams CD, Antman EM, et al. ACC/AHA 2007 Guidelines for the Management of Patients With Unstable Angina/Non-ST-Elevation Myocardial Infarction. Journal of the American College of Cardiology. 2007;50(7):e1-e157. doi:10.1016/j.jacc.2007.02.013.</p><p style="margin-top:.75rem;"><span style="color:var(--teal);font-family:var(--font-mono);font-weight:700;">[18]</span> Sodium Nitroprusside. Food and Drug Administration. Atualização: 2021-07-22.</p><p style="margin-top:.75rem;"><span style="color:var(--teal);font-family:var(--font-mono);font-weight:700;">[19]</span> NIPRIDE RTU. Food and Drug Administration. Atualização: 2018-07-20.</p><p style="margin-top:.75rem;"><span style="color:var(--teal);font-family:var(--font-mono);font-weight:700;">[20]</span> Evans L, Rhodes A, Alhazzani W, et al. Surviving Sepsis Campaign: International Guidelines for Management of Sepsis and Septic Shock 2021. Critical Care Medicine. 2021;49(11):e1063-e1143. doi:10.1097/CCM.0000000000005337.</p><p style="margin-top:.75rem;"><span style="color:var(--teal);font-family:var(--font-mono);font-weight:700;">[21]</span> Prescott HC, Antonelli M, Alhazzani W, et al. Surviving Sepsis Campaign: International Guidelines for Management of Sepsis and Septic Shock 2026. Critical Care Medicine. 2026;54(4):725-812. doi:10.1097/CCM.0000000000007075.</p><p style="margin-top:.75rem;"><span style="color:var(--teal);font-family:var(--font-mono);font-weight:700;">[22]</span> Vasopressin. Food and Drug Administration. Atualização: 2024-11-09.</p><p style="margin-top:.75rem;"><span style="color:var(--teal);font-family:var(--font-mono);font-weight:700;">[23]</span> VASOPRESSIN. Food and Drug Administration. Atualização: 2023-11-07.</p><p style="margin-top:.75rem;"><span style="color:var(--teal);font-family:var(--font-mono);font-weight:700;">[24]</span> Kotani Y, Di Gioia A, Landoni G, Belletti A, Khanna AK. An updated “norepinephrine equivalent” score in intensive care as a marker of shock severity. Critical Care (London, England). 2023;27(1):29. doi:10.1186/s13054-023-04322-y.</p><p style="margin-top:.75rem;"><span style="color:var(--teal);font-family:var(--font-mono);font-weight:700;">[25]</span> CUREM. Diluições e doses (infusões contínuas) — drogas vasoativas. Material de protocolo institucional fornecido pelo usuário; dados de dose atribuídos pela fonte a UpToDate, 2022.</p><p style="margin-top:.75rem;"><span style="color:var(--teal);font-family:var(--font-mono);font-weight:700;">[26]</span> Gali LG, Miranda CH. Vasopressores e inotrópicos na Sala de Urgência. Revista QualidadeHC, HCFMRP-USP. Divisão de Cardiologia / Divisão de Emergências Clínicas, Departamento de Clínica Médica, FMRP-USP. Última alteração: 24 jul 2017; validade da versão até 27 jan 2019. Material fornecido pelo usuário.</p><p style="margin-top:.75rem;"><span style="color:var(--teal);font-family:var(--font-mono);font-weight:700;">[27]</span> Comissão de Farmácia e Terapêutica. Alerta sobre uso de Hemitartarato de Norepinefrina em substituição ao Norepine. Centro de Informações de Medicamentos (CIM), Hospital Sírio-Libanês, São Paulo. 14 jun 2013. Material fornecido pelo usuário.</p>
+          <p style="margin-top:1.25rem;padding-top:1rem;border-top:1px solid var(--border);">As apresentações comerciais e diluições marcadas como "comum no Brasil" refletem os padrões de ampola mais frequentemente encontrados na prática e no ensino de farmacologia clínica no Brasil, e não constam nas referências numeradas acima (que tratam das faixas de dose). Concentrações de ampola podem variar entre fabricantes — confirme sempre no rótulo do produto disponível em sua farmácia/instituição antes de preparar ou infundir qualquer diluição.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const DRUGS = [{"id": "fentanil", "name": "Fentanila", "emoji": "💉", "classe": "Opioide sintético — analgesia/sedação", "concMassUnit": "mcg", "photosensitive": false, "ampoule_desc": "Apresentação comum no Brasil: ampola 50 mcg/mL (2, 5 ou 10 mL — a de 10 mL/500 mcg é a mais usada em CTI).", "dilutions": [{"id": "puro", "label": "Puro (sem diluição)", "desc": "Direto da ampola, sem diluir — 50 mcg/mL.", "totalAmount": 50, "totalVolume": 1, "concentration": 50.0}, {"id": "padrao", "label": "Padrão", "desc": "1 ampola (500 mcg / 10 mL) + SF 0,9% 40 mL = 50 mL.", "totalAmount": 500, "totalVolume": 50, "concentration": 10.0}, {"id": "concentrada", "label": "Concentrada (dobrada)", "desc": "2 ampolas (1000 mcg / 20 mL) + SF 0,9% 30 mL = 50 mL.", "totalAmount": 1000, "totalVolume": 50, "concentration": 20.0}], "units": [{"id": "mcgkgh", "label": "mcg/kg/h", "perKg": true, "perMinute": false, "rangeLow": 0.1, "rangeHigh": 10, "usualLow": 1, "usualHigh": 2, "rangeNote": "0,1–10 mcg/kg/h relatado na literatura; manutenção usual em UTI: 1–2 mcg/kg/h."}], "bolus": {"label": "Bolus (analgesia em UTI)", "doseLow": 1, "doseHigh": 2, "doseUnit": "mcg/kg", "useConc": 50, "note": "1–2 mcg/kg para analgesia em UTI. Outros contextos: 25–100 mcg IV pós-operatório (repetir 1–2h) ou 2–50 mcg/kg em anestesia — fora do escopo deste cálculo padrão."}, "tableMlhMin": 1, "tableMlhMax": 30, "tableMlhStep": 1, "notes": ["Concentração de diluição não é fixada em bula — 10–50 mcg/mL é comumente usada; confirme o padrão da sua instituição.", "Sem antagonismo direto com luz; proteção especial não é rotineiramente exigida."], "refs": [2, 3]}, {"id": "propofol", "name": "Propofol", "emoji": "🥛", "classe": "Anestésico/sedativo hipnótico não-opioide", "concMassUnit": "mg", "photosensitive": false, "ampoule_desc": "Apresentação comum no Brasil: emulsão lipídica 10 mg/mL (1%), frascos de 20, 50 ou 100 mL.", "dilutions": [{"id": "puro", "label": "Puro (1% = 10 mg/mL)", "desc": "Uso direto do frasco, sem diluir — forma habitual de administração.", "totalAmount": 10, "totalVolume": 1, "concentration": 10.0}], "units": [{"id": "mcgkgmin", "label": "mcg/kg/min", "perKg": true, "perMinute": true, "rangeLow": 5, "rangeHigh": 50, "usualLow": 5, "usualHigh": 50, "rangeNote": "Sedação em UTI: iniciar em 5 mcg/kg/min, manutenção habitual 5–50 mcg/kg/min (relatos de 2,8–130 mcg/kg/min; doses de anestesia geral, 100–200 mcg/kg/min, estão fora do escopo de sedação em UTI)."}], "bolus": {"label": "Bolus (indução/sedação)", "doseLow": 0.5, "doseHigh": 2.5, "doseUnit": "mg/kg", "useConc": 10, "note": "Indução: 1–2,5 mg/kg (1–1,5 mg/kg em idosos); bolus de sedação: 0,5–3 mg/kg."}, "tableMlhMin": 2, "tableMlhMax": 60, "tableMlhStep": 2, "notes": ["Não diluir rotineiramente. Se necessário, apenas em SG5%, concentração mínima de 2 mg/mL, e usar em até 6h por risco de contaminação da emulsão lipídica.", "Trocar equipo e frasco a cada 12h (risco de crescimento bacteriano na emulsão lipídica)."], "refs": [2, 4]}, {"id": "midazolam", "name": "Midazolam", "emoji": "😴", "classe": "Benzodiazepínico — sedação", "concMassUnit": "mg", "photosensitive": false, "ampoule_desc": "Apresentações comuns no Brasil: 5 mg/mL, ampolas de 3 mL (15 mg) ou 10 mL (50 mg).", "dilutions": [{"id": "padrao", "label": "Padrão", "desc": "1 ampola (50 mg / 10 mL) + SF 0,9% 40 mL = 50 mL.", "totalAmount": 50, "totalVolume": 50, "concentration": 1.0}, {"id": "concentrada", "label": "Concentrada (dobrada)", "desc": "2 ampolas (100 mg / 20 mL) + SF 0,9% 30 mL = 50 mL.", "totalAmount": 100, "totalVolume": 50, "concentration": 2.0}, {"id": "diluida", "label": "Diluída (grande volume)", "desc": "1 ampola (50 mg / 10 mL) + SF 0,9%/SG5% 240 mL = 250 mL.", "totalAmount": 50, "totalVolume": 250, "concentration": 0.2}], "units": [{"id": "mgkgh", "label": "mg/kg/h", "perKg": true, "perMinute": false, "rangeLow": 0.02, "rangeHigh": 0.1, "usualLow": 0.02, "usualHigh": 0.1, "rangeNote": "0,02–0,10 mg/kg/h; doses maiores ocasionalmente necessárias (tolerância)."}, {"id": "mgh", "label": "mg/h (dose fixa)", "perKg": false, "perMinute": false, "rangeLow": 1, "rangeHigh": 7, "usualLow": 1, "usualHigh": 7, "rangeNote": "Equivalente absoluto usual: 1–7 mg/h (paciente adulto médio)."}], "bolus": {"label": "Bolus (carga)", "doseLow": 0.01, "doseHigh": 0.05, "doseUnit": "mg/kg", "useConc": 5, "note": "0,01–0,05 mg/kg (≈0,5–4 mg), podendo repetir a cada 10–15 min."}, "tableMlhMin": 1, "tableMlhMax": 30, "tableMlhStep": 1, "notes": ["Diluir em SF 0,9% ou SG5%.", "Acúmulo de metabólito ativo (α-hidroxi-midazolam) em insuficiência renal — risco de sedação prolongada."], "refs": [2, 5]}, {"id": "noradrenalina", "name": "Noradrenalina", "emoji": "🩸", "classe": "Vasopressor catecolaminérgico (agonista α1 predominante)", "concMassUnit": "mcg", "photosensitive": false, "saltWarning": true, "ampoule_desc": "⚠️ Ampolas de noradrenalina no Brasil podem trazer no rótulo dois números diferentes para o MESMO conteúdo real de fármaco: algumas já expressam a concentração em norepinefrina base (ex.: 4 mg/4 mL), outras expressam o peso do sal hemitartarato (ex.: 8 mg/4 mL) — que equivale a apenas 4 mg/4 mL de norepinefrina base, ou seja, à mesma quantidade de fármaco ativo [27]. Um alerta de farmacovigilância institucional já destacou explicitamente que a informação de maior destaque na ampola (o peso do sal) não deve ser usada para o cálculo de dose — o que importa é a base [27]. TODAS as diluições abaixo já estão calculadas em norepinefrina BASE: se a ampola da sua farmácia traz \"8 mg/4 mL\" de hemitartarato no rótulo, ela é a mesma ampola-base de 4 mg/4 mL usada nas contas a seguir — não dobre a quantidade de ampolas pensando que é preciso compensar, e não presuma; confira sempre o teor de base declarado na bula/rótulo do produto da sua instituição.", "dilutions": [{"id": "diluida_250ml", "label": "Diluída em bolsa de 250 mL", "desc": "4 ampolas (16 mg de norepinefrina base) + SG 5% qsp 250 mL.", "totalAmount": 16000, "totalVolume": 250, "concentration": 64.0}, {"id": "padrao_200ml", "label": "Padrão em bolsa de 200 mL", "desc": "5 ampolas (20 mg de norepinefrina base) + SG 5% qsp 200 mL.", "totalAmount": 20000, "totalVolume": 200, "concentration": 100.0}, {"id": "concentrada_200ml", "label": "Concentrada (dobrada) em bolsa de 200 mL", "desc": "10 ampolas (40 mg de norepinefrina base) + SG 5% qsp 200 mL.", "totalAmount": 40000, "totalVolume": 200, "concentration": 200.0}, {"id": "pura", "label": "Pura — bomba de seringa (acesso central)", "desc": "Sem diluir — direto da ampola (norepinefrina base 4 mg/4 mL = 1 mg/mL).", "totalAmount": 4000, "totalVolume": 4, "concentration": 1000.0}], "units": [{"id": "mcgkgmin", "label": "mcg/kg/min", "perKg": true, "perMinute": true, "rangeLow": 0.01, "rangeHigh": 3, "usualLow": 0.01, "usualHigh": 1, "rangeNote": "0,01–1,0 mcg/kg/min na faixa usual (bula/diretrizes [6-8]); uma fonte institucional brasileira cita 0,15–3 mcg/kg/min [25]. Faixa reunida: 0,01–3 mcg/kg/min."}, {"id": "mcgmin", "label": "mcg/min (dose fixa)", "perKg": false, "perMinute": true, "rangeLow": 2, "rangeHigh": 4, "usualLow": 8, "usualHigh": 12, "rangeNote": "Bula: iniciar em 8–12 mcg/min, manutenção usual 2–4 mcg/min [6-8]."}], "bolus": null, "tableMlhMin": 1, "tableMlhMax": 40, "tableMlhStep": 1, "notes": ["A ambiguidade sal×base na rotulagem de noradrenalina é uma fonte reconhecida de erro de diluição em UTI — não presuma; confira o teor de base declarado no rótulo/bula da ampola física antes de preparar [27].", "Infundir preferencialmente em acesso venoso central e veia calibrosa — risco de necrose tecidual grave por extravasamento.", "Desmame gradual ao suspender."], "refs": [6, 7, 8, 25, 26, 27]}, {"id": "adrenalina", "name": "Adrenalina", "emoji": "⚡", "classe": "Catecolamina — agonista α e β adrenérgico", "concMassUnit": "mcg", "photosensitive": false, "ampoule_desc": "Apresentação comum no Brasil: epinefrina 1 mg/mL (1:1000), ampola de 1 mL.", "dilutions": [{"id": "padrao", "label": "Padrão", "desc": "10 ampolas (10 mg / 10 mL) + SG 5% qsp 250 mL.", "totalAmount": 10000, "totalVolume": 250, "concentration": 40.0}, {"id": "baixa", "label": "Diluída (dose baixa)", "desc": "1 mg (1 ampola / 1 mL) + SF 0,9% 249 mL = 250 mL.", "totalAmount": 1000, "totalVolume": 250, "concentration": 4.0}], "units": [{"id": "mcgkgmin_choque", "label": "mcg/kg/min — ICC/choque cardiogênico", "perKg": true, "perMinute": true, "rangeLow": 0.05, "rangeHigh": 0.5, "usualLow": 0.05, "usualHigh": 0.5, "rangeNote": "0,05–0,5 mcg/kg/min em ICC/choque cardiogênico [7,8]."}, {"id": "mcgmin_choque", "label": "mcg/min — ICC/choque (dose fixa)", "perKg": false, "perMinute": true, "rangeLow": 5, "rangeHigh": 20, "usualLow": 5, "usualHigh": 20, "rangeNote": "Alternativa em bomba de dose fixa: 5–20 mcg/min [7,8]."}, {"id": "mcgkgmin_anafilaxia", "label": "mcg/kg/min — anafilaxia", "perKg": true, "perMinute": true, "rangeLow": 0.01, "rangeHigh": 0.2, "usualLow": 0.01, "usualHigh": 0.2, "rangeNote": "0,01–0,2 mcg/kg/min em anafilaxia [25]."}, {"id": "mcgmin_anafilaxia", "label": "mcg/min — anafilaxia (dose fixa)", "perKg": false, "perMinute": true, "rangeLow": 1, "rangeHigh": 15, "usualLow": 1, "usualHigh": 15, "rangeNote": "1–15 mcg/min em anafilaxia [25]. Dose inicial usual: 5 mL/h na diluição padrão ≈ 3 mcg/min [25]."}], "bolus": {"label": "Bolus (RCP)", "doseLow": 1, "doseHigh": 1, "doseUnit": "mg (dose fixa)", "useConc": 1000, "fixedDose": true, "note": "RCP: 1 mg IV a cada 3–5 min (dose fixa, não ponderal)."}, "tableMlhMin": 1, "tableMlhMax": 40, "tableMlhStep": 1, "notes": ["⚠️ ATENÇÃO À INDICAÇÃO: as doses de anafilaxia são muito menores que as de choque cardiogênico/ICC — confirme qual unidade está selecionada acima antes de titular.", "Infundir preferencialmente em acesso venoso central — risco de necrose tecidual por extravasamento.", "Desmame gradual ao suspender."], "refs": [7, 8, 25]}, {"id": "dopamina", "name": "Dopamina", "emoji": "🧠", "classe": "Catecolamina precursora imediata da noradrenalina — efeito dose-dependente (dopaminérgico → β1 → α1)", "concMassUnit": "mcg", "photosensitive": false, "ampoule_desc": "Apresentação comum no Brasil: ampola 5 mg/mL, 10 mL (50 mg/ampola).", "dilutions": [{"id": "padrao", "label": "Padrão (1000 mcg/mL)", "desc": "5 ampolas (250 mg / 50 mL) + SF 0,9% ou SG 5% qsp 250 mL.", "totalAmount": 250000, "totalVolume": 250, "concentration": 1000.0}, {"id": "concentrada", "label": "Concentrada (1600 mcg/mL)", "desc": "400 mg (≈8 ampolas / 80 mL) + SG 5% qsp 250 mL.", "totalAmount": 400000, "totalVolume": 250, "concentration": 1600.0}], "units": [{"id": "mcgkgmin", "label": "mcg/kg/min", "perKg": true, "perMinute": true, "rangeLow": 0.5, "rangeHigh": 20, "usualLow": 3, "usualHigh": 10, "rangeNote": "Dose-dependente por faixa de receptor: 0,5–3 mcg/kg/min — dopaminérgico D1/D2, vasodilatação renal/mesentérica/coronariana, uso nesta faixa é controverso [26] (uma fonte institucional brasileira descreve a faixa \"renal\" como 1–5 mcg/kg/min [25]); 3–10 mcg/kg/min — β1 predominante, inotropismo/cronotropismo positivos [25,26]; 10–20 mcg/kg/min — α1 predominante, vasoconstrição periférica [25,26]."}], "bolus": null, "tableMlhMin": 1, "tableMlhMax": 60, "tableMlhStep": 2, "notes": ["Efeito natriurético na faixa dopaminérgica baixa, mas não aumenta a taxa de filtração glomerular — uso nesta faixa é controverso [26].", "Indicações: choque cardiogênico/séptico, ICC, bradicardia sintomática [26].", "Considerar acesso central em doses α1-predominantes (>10 mcg/kg/min) pelo risco de extravasamento/vasoconstrição periférica."], "refs": [25, 26]}, {"id": "dobutamina", "name": "Dobutamina", "emoji": "❤️", "classe": "Inotrópico — agonista β1 predominante", "concMassUnit": "mcg", "photosensitive": false, "ampoule_desc": "Apresentação comum no Brasil: frasco-ampola 250 mg / 20 mL (12,5 mg/mL).", "dilutions": [{"id": "padrao", "label": "Padrão", "desc": "250 mg (1 frasco / 20 mL) + SF 0,9% ou SG 5% qsp 250 mL.", "totalAmount": 250000, "totalVolume": 250, "concentration": 1000.0}, {"id": "concentrada", "label": "Concentrada (dobrada)", "desc": "500 mg (2 frascos / 40 mL) + SF 0,9%/SG 5% qsp 250 mL.", "totalAmount": 500000, "totalVolume": 250, "concentration": 2000.0}], "units": [{"id": "mcgkgmin", "label": "mcg/kg/min", "perKg": true, "perMinute": true, "rangeLow": 2, "rangeHigh": 20, "usualLow": 2, "usualHigh": 20, "rangeNote": "2–20 mcg/kg/min [7,9,25,26]."}], "bolus": null, "tableMlhMin": 1, "tableMlhMax": 60, "tableMlhStep": 2, "optimizedDilution": {"ampouleMassMg": 250, "ampouleVolumeMl": 20, "title": "🎯 Diluição otimizada by Lucas — 1 mL/h = 1 mcg/kg/min", "explanation": "Ajusta a concentração final ao peso do paciente para que a velocidade de infusão em mL/h seja numericamente igual à dose em mcg/kg/min, eliminando a conversão à beira-leito. Concentração-alvo = 60 × peso (mcg/mL); com essa concentração, dose(mcg/kg/min) = mL/h × concentração / 60 / peso = mL/h, por construção, para qualquer peso."}, "notes": ["Solução pode adquirir leve coloração rosada por oxidação — não indica necessariamente perda de potência clinicamente relevante, mas descarte se houver precipitação ou turvação.", "Não se usa bolus."], "refs": [7, 9, 25, 26]}, {"id": "milrinona", "name": "Milrinona", "emoji": "🫁", "classe": "Inibidor da fosfodiesterase-3 — inotrópico e vasodilatador (\"inodilatador\")", "concMassUnit": "mcg", "photosensitive": false, "ampoule_desc": "Apresentação comum no Brasil: ampola 1 mg/mL, 20 mL (20 mg/ampola).", "dilutions": [{"id": "padrao", "label": "Padrão", "desc": "20 mg (1 ampola / 20 mL) + SG 5% qsp 100 mL.", "totalAmount": 20000, "totalVolume": 100, "concentration": 200.0}], "units": [{"id": "mcgkgmin", "label": "mcg/kg/min", "perKg": true, "perMinute": true, "rangeLow": 0.125, "rangeHigh": 0.75, "usualLow": 0.125, "usualHigh": 0.75, "rangeNote": "0,125–0,75 mcg/kg/min; dose inicial usual ≈ 8 mL/h na diluição padrão ≈ 0,4 mcg/kg/min para paciente de 70 kg [25]."}, {"id": "mcgkgmin_renal", "label": "mcg/kg/min — ajuste renal (ClCr 10–50 mL/min)", "perKg": true, "perMinute": true, "rangeLow": 0.0625, "rangeHigh": 0.125, "usualLow": 0.0625, "usualHigh": 0.125, "rangeNote": "0,0625–0,125 mcg/kg/min em disfunção renal (ClCr 10–50 mL/min) — a milrinona tem eliminação predominantemente renal [25]."}], "bolus": null, "tableMlhMin": 1, "tableMlhMax": 30, "tableMlhStep": 1, "notes": ["⚠️ Corrigir a dose pela função renal (ClCr 10–50 mL/min: reduzir para 0,0625–0,125 mcg/kg/min) — eliminação predominantemente renal [25].", "Dose de ataque (bolus, classicamente 50 mcg/kg em 10 min) é frequentemente omitida na prática atual pelo risco de hipotensão significativa — avaliar caso a caso.", "Efeito vasodilatador pode causar hipotensão, sobretudo em hipovolemia — considerar associação precoce com vasopressor."], "refs": [25]}, {"id": "amiodarona", "name": "Amiodarona", "emoji": "💓", "classe": "Antiarrítmico classe III", "concMassUnit": "mg", "photosensitive": false, "ampoule_desc": "Apresentação comum no Brasil: ampola 50 mg/mL, 3 mL (150 mg/ampola).", "dilutions": [{"id": "ataque", "label": "Ataque (150 mg em 10 min)", "desc": "150 mg (1 ampola / 3 mL) + SG5% 97 mL = 100 mL.", "totalAmount": 150, "totalVolume": 100, "concentration": 1.5}, {"id": "manutencao_padrao", "label": "Manutenção — padrão", "desc": "900 mg (6 ampolas / 18 mL) + SG5% qsp 500 mL.", "totalAmount": 900, "totalVolume": 500, "concentration": 1.8}, {"id": "manutencao_concentrada", "label": "Manutenção — concentrada (acesso central obrigatório)", "desc": "900 mg (6 ampolas / 18 mL) + SG5% qsp 250 mL.", "totalAmount": 900, "totalVolume": 250, "concentration": 3.6}], "units": [{"id": "mgmin", "label": "mg/min (dose fixa)", "perKg": false, "perMinute": true, "rangeLow": 0.5, "rangeHigh": 1, "usualLow": 0.5, "usualHigh": 1, "rangeNote": "1 mg/min nas primeiras 6h (360 mg) → 0,5 mg/min nas 18h seguintes (540 mg); manutenção 0,5 mg/min (720 mg/24h) por até 2–3 semanas. Não exceder 30 mg/min mesmo na carga inicial."}], "bolus": {"label": "Ataque (carga)", "doseLow": 150, "doseHigh": 150, "doseUnit": "mg (dose fixa, em 10 min)", "useConc": 50, "fixedDose": true, "note": "150 mg em 10 min (15 mg/min). Episódios de FV/TV refratária: 150 mg suplementar em 100 mL SG5%, também em 10 min."}, "tableMlhMin": 5, "tableMlhMax": 60, "tableMlhStep": 5, "notes": ["Doses médias diárias >2100 mg nas primeiras 24h associam-se a maior risco de hipotensão.", "Usar acesso venoso central para concentrações >2 mg/mL.", "Preferir equipos não-PVC para soluções concentradas (risco de lixiviação de DEHP).", "Não exceder 30 mg/min mesmo durante a fase de ataque."], "refs": [10, 11, 12, 13]}, {"id": "dexmedetomidina", "name": "Dexmedetomidina", "emoji": "🌙", "classe": "Agonista α2-adrenérgico — sedação", "concMassUnit": "mcg", "photosensitive": false, "ampoule_desc": "Apresentação comum no Brasil: ampola 100 mcg/mL, 2 mL (200 mcg/ampola).", "dilutions": [{"id": "padrao", "label": "Padrão (4 mcg/mL)", "desc": "200 mcg (1 ampola / 2 mL) + SF 0,9% 48 mL = 50 mL. Bolsas prontas comerciais já vêm nesta concentração (4 mcg/mL).", "totalAmount": 200, "totalVolume": 50, "concentration": 4.0}], "units": [{"id": "mcgkgh", "label": "mcg/kg/h", "perKg": true, "perMinute": false, "rangeLow": 0.2, "rangeHigh": 0.7, "usualLow": 0.2, "usualHigh": 0.7, "rangeNote": "Manutenção: 0,2–0,7 mcg/kg/h (até 1 mcg/kg/h em sedação para procedimento)."}], "bolus": {"label": "Ataque (carga, opcional)", "doseLow": 1, "doseHigh": 1, "doseUnit": "mcg/kg em 10 min", "useConc": 100, "note": "1 mcg/kg em 10 min — pode ser omitida se o paciente estiver em conversão de outro sedativo."}, "tableMlhMin": 1, "tableMlhMax": 20, "tableMlhStep": 1, "notes": ["Não indicada para infusão contínua por mais de 24h conforme bula.", "Reduzir dose em idosos e hepatopatas."], "refs": [14, 15]}, {"id": "nitroglicerina", "name": "Nitroglicerina", "emoji": "🫀", "classe": "Vasodilatador — doador de óxido nítrico", "concMassUnit": "mcg", "photosensitive": false, "pvcWarning": true, "ampoule_desc": "Apresentação comum no Brasil: ampola 5 mg/mL, 5 mL (25 mg/ampola).", "dilutions": [{"id": "padrao", "label": "Padrão", "desc": "25 mg (1 ampola / 5 mL) + SF 0,9%/SG5% 245 mL = 250 mL.", "totalAmount": 25000, "totalVolume": 250, "concentration": 100.0}, {"id": "concentrada", "label": "Concentrada (dobrada)", "desc": "50 mg (2 ampolas / 10 mL) + SF 0,9%/SG5% 240 mL = 250 mL.", "totalAmount": 50000, "totalVolume": 250, "concentration": 200.0}], "units": [{"id": "mcgmin", "label": "mcg/min (dose fixa)", "perKg": false, "perMinute": true, "rangeLow": 5, "rangeHigh": 200, "usualLow": 5, "usualHigh": 200, "rangeNote": "Iniciar em 5 mcg/min (10 mcg/min se equipo de PVC comum), titular +5 mcg/min a cada 3–5 min; teto usual ~200 mcg/min."}], "bolus": null, "tableMlhMin": 1, "tableMlhMax": 60, "tableMlhStep": 2, "notes": ["Adsorve significativamente em equipos de PVC comum, reduzindo a dose efetivamente entregue — usar equipo não-PVC (poliolefina) quando disponível, ou considerar dose inicial mais alta (10 mcg/min) se usar PVC padrão.", "Não requer proteção da luz (ao contrário do nitroprussiato).", "Concentração máxima recomendada: 400 mcg/mL."], "refs": [16, 17]}, {"id": "nitroprussiato", "name": "Nitroprussiato de Sódio", "emoji": "☢️", "classe": "Vasodilatador arterial e venoso direto", "concMassUnit": "mcg", "photosensitive": true, "ampoule_desc": "Apresentação comum no Brasil: frasco-ampola liofilizado de 50 mg para reconstituição.", "dilutions": [{"id": "padrao", "label": "Padrão", "desc": "50 mg + SG5% qsp 250 mL.", "totalAmount": 50000, "totalVolume": 250, "concentration": 200.0}, {"id": "diluida", "label": "Diluída", "desc": "50 mg + SG5% qsp 500 mL.", "totalAmount": 50000, "totalVolume": 500, "concentration": 100.0}, {"id": "rtu", "label": "Concentrada (equivalente a RTU comercial)", "desc": "50 mg + SG5% qsp 100 mL — mesma concentração da apresentação pronta para uso (RTU), 0,5 mg/mL.", "totalAmount": 50000, "totalVolume": 100, "concentration": 500.0}], "units": [{"id": "mcgkgmin", "label": "mcg/kg/min", "perKg": true, "perMinute": true, "rangeLow": 0.3, "rangeHigh": 10, "usualLow": 0.5, "usualHigh": 3, "rangeNote": "Iniciar em 0,3 mcg/kg/min, titular até máximo de 10 mcg/kg/min (uso habitual 0,5–3 mcg/kg/min); a dose máxima só pode ser mantida por até 10 minutos."}], "bolus": null, "tableMlhMin": 1, "tableMlhMax": 40, "tableMlhStep": 1, "notes": ["⚠️ PROTEGER DA LUZ: frasco e equipo devem ser envolvidos em material opaco (papel-alumínio ou equipo fotoprotetor) — a exposição à luz acelera a degradação e a liberação de cianeto.", "Risco de toxicidade por cianeto em taxas >2 mcg/kg/min ou uso prolongado; a dose máxima (10 mcg/kg/min) nunca deve ser mantida por mais de 10 minutos.", "Reduzir dose em disfunção renal (acúmulo de tiocianato)."], "refs": [18, 19]}, {"id": "vasopressina", "name": "Vasopressina", "emoji": "💧", "classe": "Hormônio antidiurético — vasopressor não catecolaminérgico", "concMassUnit": "U", "photosensitive": false, "ampoule_desc": "Apresentação comum no Brasil: ampola 20 U/mL, 1 mL (20 U/ampola).", "dilutions": [{"id": "padrao", "label": "Padrão (0,1 U/mL)", "desc": "1 ampola (20 U / 1 mL) + SF 0,9%/SG 5% qsp 200 mL.", "totalAmount": 20, "totalVolume": 200, "concentration": 0.1}, {"id": "concentrada", "label": "Concentrada (1 U/mL)", "desc": "100 U (5 ampolas / 5 mL) + SF 0,9%/SG5% qsp 100 mL.", "totalAmount": 100, "totalVolume": 100, "concentration": 1.0}], "units": [{"id": "usepse", "label": "U/min — choque séptico", "perKg": false, "perMinute": true, "rangeLow": 0.01, "rangeHigh": 0.07, "usualLow": 0.01, "usualHigh": 0.04, "rangeNote": "Diretriz Surviving Sepsis Campaign: 0,01–0,07 U/min (início 0,01; ensaios usaram até 0,06) [20,21]. Uma fonte institucional brasileira adota um teto mais conservador — 0,01 a 0,04 U/min (≈ máx. 24 mL/h na diluição padrão) — a associar apenas no choque séptico refratário (já em uso de catecolamina), com meta de PAM ≥ 65 mmHg [25]."}, {"id": "upostcardio", "label": "U/min — pós-cardiotomia", "perKg": false, "perMinute": true, "rangeLow": 0.03, "rangeHigh": 0.1, "usualLow": 0.03, "usualHigh": 0.1, "rangeNote": "Choque vasoplégico pós-cardiotomia: 0,03–0,1 U/min [22,23]."}], "bolus": null, "tableMlhMin": 1, "tableMlhMax": 30, "tableMlhStep": 1, "notes": ["Não se usa em bolus no manejo do choque.", "Doses acima da faixa recomendada associam-se a isquemia cardíaca, digital e esplâncnica [20].", "No choque séptico, usar como adjuvante à noradrenalina já em curso — não como agente de primeira linha [25]."], "refs": [20, 21, 22, 23, 25]}];
+    // ── ESTADO ──────────────────────────────────────────────
+    const state = {}; // state[drugId] = { dilutionId, unitId }
+    DRUGS.forEach(d => {
+      state[d.id] = { dilutionId: d.dilutions[0].id, unitId: d.units[0].id };
+    });
+
+    function getDrug(id) { return DRUGS.find(d => d.id === id); }
+    function getDilution(d, dilutionId) { return d.dilutions.find(x => x.id === dilutionId); }
+    function getUnit(d, unitId) { return d.units.find(x => x.id === unitId); }
+
+    function getWeight() {
+      const w = parseFloat(document.getElementById('globalWeight').value);
+      return (w && w > 0) ? w : null;
+    }
+
+    function fmt(n, digits) {
+      if (n === null || n === undefined || isNaN(n) || !isFinite(n)) return '—';
+      digits = (digits === undefined) ? 3 : digits;
+      let r = Number(n.toFixed(digits));
+      return r.toString().replace('.', ',');
+    }
+
+    // dose = f(mlh, concentration, unit, weight)
+    function doseFromRate(mlh, concentration, unit, weight) {
+      if (unit.perKg && !weight) return null;
+      const amountPerHour = mlh * concentration;
+      const amountPerBase = unit.perMinute ? amountPerHour / 60 : amountPerHour;
+      return unit.perKg ? amountPerBase / weight : amountPerBase;
+    }
+
+    // mlh = f(dose, concentration, unit, weight)
+    function rateFromDose(dose, concentration, unit, weight) {
+      if (unit.perKg && !weight) return null;
+      const amountPerBase = unit.perKg ? dose * weight : dose;
+      const amountPerHour = unit.perMinute ? amountPerBase * 60 : amountPerBase;
+      return amountPerHour / concentration;
+    }
+
+    function rangeClass(dose, unit) {
+      if (dose === null || dose === undefined || isNaN(dose)) return null;
+      if (dose < unit.rangeLow) return 'below';
+      if (dose > unit.rangeHigh) return 'above';
+      if (dose >= unit.usualLow && dose <= unit.usualHigh) return 'usual';
+      return 'extreme';
+    }
+
+    function rangeBadgeHtml(dose, unit) {
+      const cls = rangeClass(dose, unit);
+      if (cls === null) return '';
+      const map = {
+        usual: ['range-usual', '✓ Dentro da faixa usual'],
+        extreme: ['range-extreme', '⚠ Dentro da faixa (extremo)'],
+        below: ['range-out', '↓ Abaixo da faixa de referência'],
+        above: ['range-out', '↑ Acima da faixa de referência'],
+      };
+      const [css, label] = map[cls];
+      return `<span class="range-badge ${css}">${label}</span>`;
+    }
+
+    function selectDilution(drugId, dilutionId, el) {
+      state[drugId].dilutionId = dilutionId;
+      document.querySelectorAll(`.dilution-card[data-drug="${drugId}"]`).forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
+      recalcDrug(drugId);
+    }
+
+    function selectUnit(drugId, unitId, el) {
+      state[drugId].unitId = unitId;
+      document.querySelectorAll(`.unit-btn[data-drug="${drugId}"]`).forEach(b => b.classList.remove('active'));
+      el.classList.add('active');
+      recalcDrug(drugId);
+    }
+
+    function buildTables(d, dilution, unit, weight) {
+      // Tabela mL/h -> dose
+      const tbody = document.querySelector(`#${d.id}_table tbody`);
+      if (tbody) {
+        let rows = '';
+        for (let mlh = d.tableMlhMin; mlh <= d.tableMlhMax; mlh += d.tableMlhStep) {
+          const dose = doseFromRate(mlh, dilution.concentration, unit, weight);
+          const cls = rangeClass(dose, unit);
+          const rowClass = cls === 'usual' ? 'style="background:rgba(121,208,120,.08);"' : '';
+          rows += `<tr ${rowClass}><td class="drug-dose">${fmt(mlh, 1)}</td><td>${dose === null ? 'informe o peso' : fmt(dose) + ' ' + unit.label}</td></tr>`;
+        }
+        tbody.innerHTML = rows;
+      }
+      // Tabela faixa de referência -> mL/h
+      const rtbody = document.querySelector(`#${d.id}_range_table tbody`);
+      if (rtbody) {
+        const points = [
+          ['Mínimo da faixa', unit.rangeLow],
+          ['Usual (mín.)', unit.usualLow],
+          ['Usual (máx.)', unit.usualHigh],
+          ['Máximo da faixa', unit.rangeHigh],
+        ];
+        const seen = new Set();
+        let rows = '';
+        points.forEach(([label, val]) => {
+          const key = label + '|' + val;
+          if (seen.has(val) && (label.includes('Usual'))) { /* still show but avoid dup identical rows */ }
+          const mlh = rateFromDose(val, dilution.concentration, unit, weight);
+          rows += `<tr><td>${label}</td><td class="drug-dose">${fmt(val, 3)} ${unit.label}</td><td>${mlh === null ? 'informe o peso' : fmt(mlh, 2) + ' mL/h'}</td></tr>`;
+        });
+        rtbody.innerHTML = rows;
+      }
+    }
+
+    function recalcDrug(drugId) {
+      const d = getDrug(drugId);
+      const s = state[drugId];
+      const dilution = getDilution(d, s.dilutionId);
+      const unit = getUnit(d, s.unitId);
+      const weight = getWeight();
+
+      const noteEl = document.getElementById(`${drugId}_rangenote`);
+      if (noteEl) noteEl.textContent = unit.rangeNote || '';
+
+      // mL/h -> dose
+      const mlhInput = document.getElementById(`${drugId}_mlh_input`);
+      const mlhResult = document.getElementById(`${drugId}_mlh_result`);
+      const mlhUnitEl = document.getElementById(`${drugId}_mlh_result_unit`);
+      const mlhBadge = document.getElementById(`${drugId}_mlh_badge`);
+      if (mlhInput) {
+        const mlh = parseFloat(mlhInput.value);
+        if (!isNaN(mlh) && mlh >= 0) {
+          if (unit.perKg && !weight) {
+            mlhResult.textContent = '—';
+            mlhUnitEl.textContent = 'informe o peso do paciente acima';
+            mlhBadge.innerHTML = '';
+          } else {
+            const dose = doseFromRate(mlh, dilution.concentration, unit, weight);
+            mlhResult.textContent = fmt(dose);
+            mlhUnitEl.textContent = unit.label;
+            mlhBadge.innerHTML = rangeBadgeHtml(dose, unit);
+          }
+        } else {
+          mlhResult.textContent = '—';
+          mlhUnitEl.textContent = '';
+          mlhBadge.innerHTML = '';
+        }
+      }
+
+      // dose -> mL/h
+      const doseInput = document.getElementById(`${drugId}_dose_input`);
+      const doseResult = document.getElementById(`${drugId}_dose_result`);
+      const doseBadge = document.getElementById(`${drugId}_dose_badge`);
+      if (doseInput) {
+        const dose = parseFloat(doseInput.value);
+        if (!isNaN(dose) && dose >= 0) {
+          if (unit.perKg && !weight) {
+            doseResult.textContent = '—';
+            doseBadge.innerHTML = '<span class="range-badge range-out">Informe o peso do paciente acima</span>';
+          } else {
+            const mlh = rateFromDose(dose, dilution.concentration, unit, weight);
+            doseResult.textContent = fmt(mlh, 2);
+            doseBadge.innerHTML = rangeBadgeHtml(dose, unit);
+          }
+        } else {
+          doseResult.textContent = '—';
+          doseBadge.innerHTML = '';
+        }
+      }
+
+      buildTables(d, dilution, unit, weight);
+      recalcBolus(drugId);
+      if (d.optimizedDilution) recalcOptimized(drugId);
+    }
+
+    // ── DILUIÇÃO OTIMIZADA BY LUCAS (1 mL/h = 1 mcg/kg/min) ──
+    function recalcOptimized(drugId) {
+      const d = getDrug(drugId);
+      const cfg = d.optimizedDilution;
+      if (!cfg) return;
+      const resultEl = document.getElementById(`${drugId}_opt_result`);
+      const tableEl = document.getElementById(`${drugId}_opt_table`);
+      if (!resultEl || !tableEl) return;
+
+      const weight = getWeight();
+      const ampInput = document.getElementById(`${drugId}_opt_ampoules`);
+      const n = (ampInput && parseFloat(ampInput.value) > 0) ? parseFloat(ampInput.value) : 1;
+
+      if (!weight) {
+        resultEl.innerHTML = '<span class="range-badge range-out">Informe o peso do paciente no topo da página</span>';
+        tableEl.innerHTML = '';
+        return;
+      }
+
+      const targetConcMcgMl = 60 * weight; // mcg/mL, por construção
+      const totalMassMg = n * cfg.ampouleMassMg;
+      const totalMassMcg = totalMassMg * 1000;
+      const finalVolume = totalMassMcg / targetConcMcgMl; // mL
+      const ampouleVolume = n * cfg.ampouleVolumeMl;
+      const diluent = finalVolume - ampouleVolume;
+
+      if (diluent < 0) {
+        resultEl.innerHTML = `<span class="range-badge range-out">Peso muito alto para ${fmt(n,0)} ampola(s) nesta técnica (o volume final ficaria menor que o volume da própria ampola) — aumente o número de ampolas.</span>`;
+        tableEl.innerHTML = '';
+        return;
+      }
+
+      resultEl.innerHTML = `
+        <div class="calc-grid">
+          <div class="calc-box">
+            <div class="calc-box-label">Concentração-alvo</div>
+            <div class="calc-result" style="font-size:1.15rem;">${fmt(targetConcMcgMl/1000,3)} mg/mL</div>
+            <div class="calc-result-unit">(${fmt(targetConcMcgMl,0)} mcg/mL)</div>
+          </div>
+          <div class="calc-box">
+            <div class="calc-box-label">Volume final da solução</div>
+            <div class="calc-result" style="font-size:1.15rem;">${fmt(finalVolume,1)} mL</div>
+          </div>
+          <div class="calc-box">
+            <div class="calc-box-label">Dobutamina pura a aspirar</div>
+            <div class="calc-result" style="font-size:1.15rem;">${fmt(ampouleVolume,1)} mL</div>
+            <div class="calc-result-unit">${fmt(n,0)} ampola(s) inteira(s) — ${fmt(totalMassMg,0)} mg</div>
+          </div>
+          <div class="calc-box">
+            <div class="calc-box-label">Diluente (SF 0,9% ou SG 5%) a completar</div>
+            <div class="calc-result" style="font-size:1.15rem;">${fmt(diluent,1)} mL</div>
+          </div>
+        </div>
+        <p style="font-size:.8rem;color:var(--muted-foreground);margin-top:.85rem;">Com esta diluição, cada <strong style="color:var(--teal);">1 mL/h</strong> infundido equivale a exatamente <strong style="color:var(--teal);">1 mcg/kg/min</strong> para este paciente (${fmt(weight,1)} kg) — confirmado na tabela abaixo.</p>
+      `;
+
+      let rows = '';
+      [1, 2, 3, 5, 8, 10, 12, 15, 20].forEach(mlh => {
+        const dose = doseFromRate(mlh, targetConcMcgMl, { perKg: true, perMinute: true }, weight);
+        rows += `<tr><td class="drug-dose">${mlh}</td><td class="drug-dose">${fmt(dose, 2)}</td></tr>`;
+      });
+      tableEl.innerHTML = rows;
+    }
+
+    function recalcBolus(drugId) {
+      const d = getDrug(drugId);
+      if (!d.bolus) return;
+      const b = d.bolus;
+      const resultEl = document.getElementById(`${drugId}_bolus_result`);
+      if (!resultEl) return;
+
+      if (b.fixedDose) {
+        // Dose fixa (não ponderal), doseLow numérico já é a dose total
+        const totalLow = b.doseLow;
+        const vol = totalLow / b.useConc;
+        resultEl.innerHTML = `${fmt(totalLow,2)} → volume a aspirar: <strong>${fmt(vol,2)} mL</strong> (concentração da ampola pura)`;
+        return;
+      }
+
+      const wInput = document.getElementById(`${drugId}_bolus_weight`);
+      const weight = (wInput && parseFloat(wInput.value) > 0) ? parseFloat(wInput.value) : getWeight();
+      if (!weight) {
+        resultEl.textContent = 'Informe o peso do paciente (acima ou no campo global) para calcular.';
+        return;
+      }
+      const doseLowTotal = b.doseLow * weight;
+      const doseHighTotal = b.doseHigh * weight;
+      const volLow = doseLowTotal / b.useConc;
+      const volHigh = doseHighTotal / b.useConc;
+      if (b.doseLow === b.doseHigh) {
+        resultEl.innerHTML = `Dose total: <strong>${fmt(doseLowTotal,2)}</strong> — volume a aspirar: <strong>${fmt(volLow,2)} mL</strong> (concentração da ampola pura)`;
+      } else {
+        resultEl.innerHTML = `Dose total: <strong>${fmt(doseLowTotal,2)} – ${fmt(doseHighTotal,2)}</strong> — volume a aspirar: <strong>${fmt(volLow,2)} – ${fmt(volHigh,2)} mL</strong> (concentração da ampola pura)`;
+      }
+    }
+
+    function recalcAll() {
+      DRUGS.forEach(d => recalcDrug(d.id));
+    }
+
+    function switchDrugTab(drugId, btn) {
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.drug-tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(`tab-${drugId}`).classList.add('active');
+      btn.classList.add('active');
+      recalcDrug(drugId);
+    }
+
+    document.getElementById('globalWeight').addEventListener('input', recalcAll);
+
+    // Inicialização
+    recalcAll();
+
+  </script>
+</body>
+</html>

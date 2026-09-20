@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Bloco de Notas — Lucas</title>
+<style>
+  :root {
+    --bg: #0f1115;
+    --panel: #171a21;
+    --border: #2a2e38;
+    --text: #e6e8eb;
+    --muted: #8a8f98;
+    --accent: #4f8cff;
+    --ok: #3ecf8e;
+    --err: #ff5c5c;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0; height: 100%;
+    background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  .wrap { display: flex; flex-direction: column; height: 100vh; }
+  header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 18px; border-bottom: 1px solid var(--border);
+    background: var(--panel);
+  }
+  .brand { font-size: 14px; color: var(--muted); }
+  .brand b { color: var(--text); }
+  .status { font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+  .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--muted); transition: background .2s;
+  }
+  .dot.saving { background: var(--accent); }
+  .dot.saved { background: var(--ok); }
+  .dot.error { background: var(--err); }
+  textarea {
+    flex: 1; width: 100%; border: none; outline: none; resize: none;
+    background: var(--bg); color: var(--text);
+    font-family: "SF Mono", Consolas, Menlo, monospace;
+    font-size: 16px; line-height: 1.6; padding: 24px 18px;
+  }
+  footer {
+    display: flex; gap: 8px; align-items: center; justify-content: space-between;
+    padding: 8px 18px; border-top: 1px solid var(--border);
+    background: var(--panel); font-size: 12px; color: var(--muted);
+  }
+  button {
+    background: transparent; border: 1px solid var(--border); color: var(--text);
+    padding: 6px 12px; border-radius: 6px; font-size: 13px; cursor: pointer;
+  }
+  button:hover { border-color: var(--accent); }
+  button.active { border-color: var(--accent); color: var(--accent); }
+
+  .overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,.75);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 50;
+  }
+  .modal {
+    background: var(--panel); border: 1px solid var(--border);
+    border-radius: 10px; padding: 24px; width: 320px;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .modal h3 { margin: 0; font-size: 15px; }
+  .modal p { margin: 0; font-size: 13px; color: var(--muted); }
+  .modal input {
+    background: var(--bg); border: 1px solid var(--border); color: var(--text);
+    padding: 8px 10px; border-radius: 6px; font-size: 14px; outline: none;
+  }
+  .modal input:focus { border-color: var(--accent); }
+  .modal .row { display: flex; gap: 8px; justify-content: flex-end; }
+  .modal .err { color: var(--err); font-size: 12px; min-height: 14px; }
+  .modal button.primary { border-color: var(--accent); color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">lucascardio.com.br · <b id="noteId">notepad</b></div>
+    <div style="display:flex; align-items:center; gap:14px;">
+      <button id="lockBtn" title="Proteger com senha">🔒 Proteger com senha</button>
+      <div class="status"><span class="dot" id="dot"></span><span id="statusText">carregando…</span></div>
+    </div>
+  </header>
+
+  <textarea id="editor" placeholder="Digite aqui. O texto é salvo automaticamente e fica disponível neste mesmo link em qualquer dispositivo." spellcheck="false" disabled></textarea>
+
+  <footer>
+    <span id="charCount">0 caracteres</span>
+    <div style="display:flex; gap:8px;">
+      <button id="copyBtn">Copiar</button>
+      <button id="clearBtn">Limpar</button>
+    </div>
+  </footer>
+</div>
+
+<div class="overlay" id="overlay" style="display:none;">
+  <div class="modal">
+    <h3 id="modalTitle">Senha</h3>
+    <p id="modalDesc"></p>
+    <input type="password" id="pwInput" placeholder="Senha" autocomplete="off">
+    <input type="password" id="pwInput2" placeholder="Confirmar senha" autocomplete="off" style="display:none;">
+    <div class="err" id="modalErr"></div>
+    <div class="row">
+      <button id="modalCancel">Cancelar</button>
+      <button id="modalOk" class="primary">OK</button>
+    </div>
+  </div>
+</div>
+
+<!-- Firebase SDK (modular, via CDN) -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+  getFirestore, doc, getDoc, setDoc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+/* ============================================================
+   1) COLE AQUI a configuração do SEU projeto Firebase.
+      (Firebase Console > Configurações do projeto > Seus apps > SDK config)
+   ============================================================ */
+const firebaseConfig = {
+  apiKey: "AIzaSyCp9BASTcOb6x8ia0mledaatrhVyEDbKUI",
+  authDomain: "lucasnotas.firebaseapp.com",
+  projectId: "lucasnotas",
+  storageBucket: "lucasnotas.firebasestorage.app",
+  messagingSenderId: "863958991600",
+  appId: "1:863958991600:web:5d0630f4f5031b29763835"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+function getNoteId() {
+  const parts = window.location.pathname.split("/").filter(Boolean);
+  const last = parts[parts.length - 1] || "lucas";
+  return last.replace(/\.html?$/i, "") || "lucas";
+}
+const noteId = getNoteId();
+document.getElementById("noteId").textContent = "/" + noteId;
+
+const editor = document.getElementById("editor");
+const dot = document.getElementById("dot");
+const statusText = document.getElementById("statusText");
+const charCount = document.getElementById("charCount");
+const lockBtn = document.getElementById("lockBtn");
+const docRef = doc(db, "notepads", noteId);
+
+let isProtected = false;   // documento salvo está criptografado?
+let cryptoKey = null;      // chave derivada da senha, em memória (nunca é salva)
+let currentSalt = null;    // salt (base64) usado no documento
+
+function setStatus(state, msg) {
+  dot.className = "dot " + state;
+  statusText.textContent = msg;
+}
+function updateCount() {
+  charCount.textContent = editor.value.length + " caracteres";
+}
+
+// ---------- Base64 helpers ----------
+function bufToB64(buf) {
+  return btoa(String.fromCharCode(...new Uint8Array(buf)));
+}
+function b64ToBuf(b64) {
+  return Uint8Array.from(atob(b64), c => c.charCodeAt(0)).buffer;
+}
+
+// ---------- Crypto ----------
+async function deriveKey(password, saltB64) {
+  const salt = new Uint8Array(b64ToBuf(saltB64));
+  const enc = new TextEncoder();
+  const baseKey = await crypto.subtle.importKey(
+    "raw", enc.encode(password), "PBKDF2", false, ["deriveKey"]
+  );
+  return crypto.subtle.deriveKey(
+    { name: "PBKDF2", salt, iterations: 200000, hash: "SHA-256" },
+    baseKey,
+    { name: "AES-GCM", length: 256 },
+    false,
+    ["encrypt", "decrypt"]
+  );
+}
+
+async function encryptText(text, key) {
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const enc = new TextEncoder();
+  const ciphertext = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, enc.encode(text));
+  return { iv: bufToB64(iv), data: bufToB64(ciphertext) };
+}
+
+async function decryptText(ivB64, dataB64, key) {
+  const iv = new Uint8Array(b64ToBuf(ivB64));
+  const dec = new TextDecoder();
+  const plain = await crypto.subtle.decrypt({ name: "AES-GCM", iv }, key, b64ToBuf(dataB64));
+  return dec.decode(plain);
+}
+
+function randomSaltB64() {
+  return bufToB64(crypto.getRandomValues(new Uint8Array(16)));
+}
+
+// ---------- Modal ----------
+const overlay = document.getElementById("overlay");
+const modalTitle = document.getElementById("modalTitle");
+const modalDesc = document.getElementById("modalDesc");
+const pwInput = document.getElementById("pwInput");
+const pwInput2 = document.getElementById("pwInput2");
+const modalErr = document.getElementById("modalErr");
+const modalOk = document.getElementById("modalOk");
+const modalCancel = document.getElementById("modalCancel");
+
+function askPassword({ title, desc, confirmMode, allowCancel = true }) {
+  return new Promise((resolve) => {
+    modalTitle.textContent = title;
+    modalDesc.textContent = desc;
+    pwInput.value = ""; pwInput2.value = ""; modalErr.textContent = "";
+    pwInput2.style.display = confirmMode ? "block" : "none";
+    modalCancel.style.display = allowCancel ? "inline-block" : "none";
+    overlay.style.display = "flex";
+    pwInput.focus();
+
+    function cleanup() {
+      overlay.style.display = "none";
+      modalOk.removeEventListener("click", onOk);
+      modalCancel.removeEventListener("click", onCancel);
+      pwInput.removeEventListener("keydown", onKey);
+    }
+    function onOk() {
+      const p1 = pwInput.value;
+      const p2 = pwInput2.value;
+      if (!p1) { modalErr.textContent = "Digite uma senha."; return; }
+      if (confirmMode && p1 !== p2) { modalErr.textContent = "As senhas não coincidem."; return; }
+      cleanup();
+      resolve(p1);
+    }
+    function onCancel() { cleanup(); resolve(null); }
+    function onKey(e) { if (e.key === "Enter") onOk(); }
+    modalOk.addEventListener("click", onOk);
+    modalCancel.addEventListener("click", onCancel);
+    pwInput.addEventListener("keydown", onKey);
+  });
+}
+
+function showModalError(msg) { modalErr.textContent = msg; }
+
+// ---------- Carregamento inicial ----------
+(async () => {
+  try {
+    const snap = await getDoc(docRef);
+    if (snap.exists()) {
+      const data = snap.data();
+      if (data.encrypted) {
+        isProtected = true;
+        currentSalt = data.salt;
+        lockBtn.textContent = "🔒 Protegido";
+        lockBtn.classList.add("active");
+        await unlockFlow(data);
+      } else {
+        editor.value = data.text || "";
+        editor.disabled = false;
+        updateCount();
+        setStatus("saved", "sincronizado");
+      }
+    } else {
+      editor.disabled = false;
+      updateCount();
+      setStatus("saved", "nota nova");
+    }
+  } catch (e) {
+    console.error(e);
+    setStatus("error", "erro ao carregar — verifique a configuração do Firebase");
+  }
+})();
+
+async function unlockFlow(data) {
+  while (true) {
+    const pw = await askPassword({
+      title: "Nota protegida",
+      desc: "Digite a senha para abrir esta nota.",
+      confirmMode: false,
+      allowCancel: false
+    });
+    setStatus("saving", "verificando senha…");
+    try {
+      const key = await deriveKey(pw, data.salt);
+      const text = await decryptText(data.iv, data.data, key);
+      cryptoKey = key;
+      editor.value = text;
+      editor.disabled = false;
+      updateCount();
+      setStatus("saved", "desbloqueado");
+      return;
+    } catch (e) {
+      showModalError("Senha incorreta. Tente novamente.");
+      overlay.style.display = "flex";
+      setStatus("error", "senha incorreta");
+    }
+  }
+}
+
+// ---------- Autosave ----------
+let saveTimer = null;
+editor.addEventListener("input", () => {
+  updateCount();
+  setStatus("saving", "salvando…");
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(saveNow, 700);
+});
+
+async function saveNow() {
+  try {
+    if (isProtected && cryptoKey) {
+      const { iv, data } = await encryptText(editor.value, cryptoKey);
+      await setDoc(docRef, {
+        encrypted: true, salt: currentSalt, iv, data,
+        updatedAt: new Date().toISOString()
+      });
+    } else {
+      await setDoc(docRef, {
+        encrypted: false, text: editor.value,
+        updatedAt: new Date().toISOString()
+      });
+    }
+    setStatus("saved", "salvo");
+  } catch (e) {
+    console.error(e);
+    setStatus("error", "erro ao salvar");
+  }
+}
+
+// ---------- Ativar/desativar proteção ----------
+lockBtn.addEventListener("click", async () => {
+  if (!isProtected) {
+    const pw = await askPassword({
+      title: "Proteger com senha",
+      desc: "Defina uma senha. Sem ela, ninguém consegue ler o conteúdo salvo — inclusive você, se esquecer.",
+      confirmMode: true
+    });
+    if (!pw) return;
+    currentSalt = randomSaltB64();
+    cryptoKey = await deriveKey(pw, currentSalt);
+    isProtected = true;
+    lockBtn.textContent = "🔒 Protegido";
+    lockBtn.classList.add("active");
+    await saveNow();
+  } else {
+    const ok = confirm("Remover a proteção por senha? A nota voltará a ficar legível sem senha no banco de dados.");
+    if (!ok) return;
+    isProtected = false;
+    cryptoKey = null;
+    currentSalt = null;
+    lockBtn.textContent = "🔒 Proteger com senha";
+    lockBtn.classList.remove("active");
+    await saveNow();
+  }
+});
+
+document.getElementById("copyBtn").addEventListener("click", async () => {
+  await navigator.clipboard.writeText(editor.value);
+  setStatus("saved", "copiado para a área de transferência");
+  setTimeout(() => setStatus("saved", "salvo"), 1500);
+});
+
+document.getElementById("clearBtn").addEventListener("click", () => {
+  if (confirm("Limpar todo o texto desta nota?")) {
+    editor.value = "";
+    updateCount();
+    editor.dispatchEvent(new Event("input"));
+  }
+});
+</script>
+</body>
+</html>
