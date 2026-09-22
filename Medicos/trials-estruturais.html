@@ -1,0 +1,1205 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+<title>Trials Pivotais em Intervenção Estrutural — Estudo &amp; Treino | Dr. Lucas Silva</title>
+<meta name="description" content="Guia de estudo dos ensaios clínicos pivotais em cardiologia intervencionista estrutural: TAVI, mitral, tricúspide, oclusão de apêndice atrial esquerdo e forame oval patente. Com jogo de treino." />
+<meta name="author" content="Dr. Lucas Silva" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+/* ── DESIGN TOKENS (herdados de pele-cardiovascular.html) ── */
+:root{
+  --primary: oklch(65% .18 195);
+  --primary-foreground: oklch(98% 0 0);
+  --background: oklch(13% .018 250);
+  --foreground: oklch(93% .01 250);
+  --card: oklch(18.5% .018 250);
+  --muted: oklch(22% .018 250);
+  --muted-foreground: oklch(62% .02 250);
+  --border: oklch(28% .025 250);
+  --accent: oklch(24% .025 250);
+  --teal: #ece934;
+  --teal-dim: rgba(0,211,189,.12);
+  --amber: oklch(82.8% .189 84.429);
+  --red: oklch(63.7% .237 25.331);
+  --green: oklch(79.2% .209 151.711);
+  --radius: 0.625rem;
+  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-sans);background:var(--background);color:var(--foreground);min-height:100vh;line-height:1.65;-webkit-font-smoothing:antialiased}
+
+/* ── NAV ── */
+nav{position:sticky;top:0;z-index:50;background:rgba(18,20,27,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 1.5rem;height:56px;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:var(--foreground)}
+.nav-brand-icon{width:28px;height:28px;border-radius:7px;background:var(--teal);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.nav-brand-name{font-weight:800;font-size:1rem;letter-spacing:-.025em;line-height:1}
+.nav-brand-name span{color:var(--teal)}
+.nav-brand-sep{width:1px;height:14px;background:var(--border);margin:0 6px}
+.nav-brand-sub{font-size:.7rem;font-weight:500;color:var(--muted-foreground)}
+.nav-actions{display:flex;align-items:center;gap:.5rem}
+.nav-badge{font-size:.7rem;font-weight:600;padding:3px 10px;border-radius:999px;background:var(--teal-dim);color:var(--teal);border:1px solid rgba(0,211,189,.25)}
+
+/* ── LAYOUT ── */
+.container{max-width:960px;margin:0 auto;padding:0 1.5rem}
+
+/* ── HERO ── */
+.hero{padding:3.5rem 0 2.5rem;border-bottom:1px solid var(--border)}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:6px;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin-bottom:1rem}
+.hero-eyebrow::before{content:'';display:block;width:20px;height:2px;background:var(--teal);border-radius:1px}
+.hero h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;line-height:1.2;margin-bottom:.75rem;letter-spacing:-.02em}
+.hero h1 em{font-style:normal;color:var(--teal)}
+.hero-sub{color:var(--muted-foreground);font-size:.95rem;max-width:680px;margin-bottom:1.5rem}
+.hero-tags{display:flex;flex-wrap:wrap;gap:.5rem}
+.tag{font-size:.7rem;font-weight:600;padding:3px 10px;border-radius:6px;border:1px solid var(--border);color:var(--muted-foreground);background:var(--card);font-family:var(--font-mono)}
+
+/* ── SECTION ── */
+.section-label{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:.4rem;font-family:var(--font-mono)}
+.section-title{font-size:1.3rem;font-weight:800;margin-bottom:.25rem;letter-spacing:-.01em}
+.section-desc{color:var(--muted-foreground);font-size:.88rem;margin-bottom:1.5rem;max-width:680px}
+.section-divider{border:none;border-top:1px solid var(--border);margin:2.5rem 0}
+
+/* ── TABS ── */
+.tab-bar{display:flex;gap:.25rem;flex-wrap:wrap;margin:2rem 0 1.5rem;background:var(--card);border:1px solid var(--border);border-radius:calc(var(--radius) + 4px);padding:5px;position:sticky;top:56px;z-index:40}
+.tab-btn{background:none;border:none;cursor:pointer;font-family:var(--font-sans);font-size:.78rem;font-weight:600;color:var(--muted-foreground);padding:7px 14px;border-radius:var(--radius);transition:background .15s,color .15s;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.tab-btn:hover{background:var(--accent);color:var(--foreground)}
+.tab-btn.active{background:var(--teal-dim);color:var(--teal)}
+.tab-emoji{font-size:1rem}
+.tab-panel{display:none;animation:fadeUp .3s ease}
+.tab-panel.active{display:block}
+
+/* ── CARDS ── */
+.card{background:var(--card);border:1px solid var(--border);border-radius:calc(var(--radius) + 2px);padding:1.5rem;margin-bottom:1.5rem}
+.card-header{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:1px solid var(--border)}
+.card-icon{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;background:var(--teal-dim);color:var(--teal);font-family:var(--font-mono);font-weight:700;font-size:.7rem}
+.card-title{font-weight:700;font-size:1.05rem;margin-bottom:2px}
+.card-subtitle{font-size:.78rem;color:var(--muted-foreground)}
+.card-badges{display:flex;gap:.35rem;flex-wrap:wrap;margin-top:.45rem}
+
+/* ── RISK GRID ── */
+.risk-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:calc(var(--radius) + 2px);overflow:hidden;margin:1.1rem 0}
+.risk-cell{background:var(--card);padding:.85rem 1rem;display:flex;flex-direction:column;gap:4px}
+.risk-cell-label{font-size:.63rem;font-weight:700;color:var(--muted-foreground);letter-spacing:.06em;text-transform:uppercase;font-family:var(--font-mono)}
+.risk-cell-desc{font-size:.78rem;line-height:1.45}
+
+/* ── BADGES ── */
+.badge{display:inline-flex;align-items:center;gap:4px;font-size:.65rem;font-weight:700;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.badge-high{background:rgba(220,38,38,.15);color:#f87171;border:1px solid rgba(220,38,38,.25)}
+.badge-mod{background:rgba(251,191,36,.12);color:#fbbf24;border:1px solid rgba(251,191,36,.2)}
+.badge-low{background:rgba(132,204,22,.1);color:#a3e635;border:1px solid rgba(132,204,22,.2)}
+.badge-info{background:var(--teal-dim);color:var(--teal);border:1px solid rgba(0,211,189,.2)}
+.badge-purple{background:rgba(139,92,246,.12);color:#c4b5fd;border:1px solid rgba(139,92,246,.2)}
+.badge-gray{background:var(--muted);color:var(--muted-foreground);border:1px solid var(--border)}
+
+/* ── INFO BOXES ── */
+.info-box{border-radius:var(--radius);padding:13px 16px;font-size:.83rem;line-height:1.65;display:flex;gap:10px;margin-bottom:.85rem}
+.info-box-icon{flex-shrink:0;font-size:1rem;margin-top:1px}
+.info-teal{background:var(--teal-dim);border-left:3px solid var(--teal)}
+.info-amber{background:rgba(251,191,36,.08);border-left:3px solid rgba(251,191,36,.5)}
+.info-red{background:rgba(220,38,38,.08);border-left:3px solid rgba(220,38,38,.4)}
+.info-gray{background:var(--muted);border-left:3px solid var(--border)}
+.info-purple{background:rgba(139,92,246,.08);border-left:3px solid rgba(139,92,246,.4)}
+
+/* ── ACCORDION ── */
+.accordion{margin-bottom:.5rem}
+.accordion-btn{width:100%;background:var(--muted);border:1px solid var(--border);border-radius:var(--radius);padding:10px 14px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-family:var(--font-sans);font-size:.82rem;font-weight:600;color:var(--foreground);transition:background .15s;text-align:left}
+.accordion-btn:hover{background:var(--accent)}
+.accordion-btn.open{border-bottom-left-radius:0;border-bottom-right-radius:0;border-color:var(--primary);color:var(--teal)}
+.accordion-chevron{transition:transform .25s;font-size:.7rem;flex-shrink:0;margin-left:8px}
+.accordion-btn.open .accordion-chevron{transform:rotate(180deg)}
+.accordion-body{display:none;background:var(--card);border:1px solid var(--primary);border-top:none;border-radius:0 0 var(--radius) var(--radius);padding:.9rem 1.15rem;font-size:.83rem;line-height:1.7}
+.accordion-body.open{display:block;animation:fadeUp .2s ease}
+.accordion-body ul{list-style:none}
+.accordion-body li{padding:5px 0 5px 16px;position:relative}
+.accordion-body li::before{content:'–';position:absolute;left:0;color:var(--teal)}
+
+/* ── TABLE ── */
+.table-wrap{overflow-x:auto;margin:1.25rem 0;border-radius:var(--radius);border:1px solid var(--border)}
+.compare-table{width:100%;border-collapse:collapse;font-size:.78rem}
+.compare-table th{background:var(--muted);padding:10px 12px;text-align:left;font-weight:700;font-size:.7rem;border-bottom:1px solid var(--border);color:var(--muted-foreground);letter-spacing:.03em;white-space:nowrap}
+.compare-table td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+.compare-table tr:last-child td{border-bottom:none}
+.compare-table tr:hover td{background:var(--accent)}
+.compare-table .hr-val{font-family:var(--font-mono);font-weight:700;color:var(--teal)}
+
+/* ── STATS ── */
+.stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.6rem;margin:1rem 0}
+.stat-card{background:var(--muted);border:1px solid var(--border);border-radius:var(--radius);padding:.8rem;text-align:center}
+.stat-card .stat-num{font-size:1.35rem;font-weight:800;color:var(--teal);font-family:var(--font-mono);line-height:1.15}
+.stat-card .stat-label{font-size:.68rem;color:var(--muted-foreground);margin-top:4px;line-height:1.4}
+
+/* ── FILTER ── */
+.filter-row{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;margin-bottom:1.25rem}
+.input{background:var(--muted);border:1px solid var(--border);border-radius:var(--radius);padding:8px 12px;color:var(--foreground);font-family:var(--font-sans);font-size:.82rem;flex:1;min-width:200px}
+.input:focus{outline:none;border-color:var(--primary)}
+
+/* ── BUTTONS ── */
+.btn{background:var(--teal);color:#12141b;border:none;border-radius:var(--radius);padding:10px 18px;font-family:var(--font-sans);font-size:.85rem;font-weight:700;cursor:pointer;transition:opacity .15s}
+.btn:hover{opacity:.85}
+.btn-ghost{background:transparent;border:1.5px solid var(--border);color:var(--foreground)}
+.btn-ghost:hover{background:var(--accent);opacity:1}
+.btn-sm{padding:6px 12px;font-size:.75rem}
+.chip{background:var(--muted);border:1px solid var(--border);border-radius:999px;padding:6px 14px;font-size:.76rem;font-weight:600;cursor:pointer;color:var(--muted-foreground);transition:all .15s;user-select:none}
+.chip.on{background:var(--teal-dim);border-color:rgba(0,211,189,.35);color:var(--teal)}
+
+/* ── QUIZ ── */
+.quiz-opt{width:100%;text-align:left;background:var(--muted);border:1.5px solid var(--border);border-radius:var(--radius);padding:12px 15px;margin-bottom:.55rem;font-family:var(--font-sans);font-size:.85rem;line-height:1.5;color:var(--foreground);cursor:pointer;transition:all .15s;display:flex;gap:10px;align-items:flex-start}
+.quiz-opt:hover:not(:disabled){background:var(--accent);border-color:var(--primary)}
+.quiz-opt:disabled{cursor:default}
+.quiz-opt .opt-key{font-family:var(--font-mono);font-weight:700;color:var(--muted-foreground);flex-shrink:0}
+.quiz-opt.right{border-color:rgba(132,204,22,.6);background:rgba(132,204,22,.1)}
+.quiz-opt.wrong{border-color:rgba(220,38,38,.5);background:rgba(220,38,38,.1)}
+.quiz-meta{display:flex;justify-content:space-between;align-items:center;font-size:.75rem;color:var(--muted-foreground);font-family:var(--font-mono);margin-bottom:.7rem;flex-wrap:wrap;gap:.5rem}
+.bar-track{height:6px;background:var(--muted);border-radius:4px;overflow:hidden;margin-bottom:1.1rem}
+.bar-fill{height:100%;border-radius:4px;background:var(--teal);transition:width .35s ease}
+.q-stem{font-size:.95rem;font-weight:700;line-height:1.5;margin-bottom:.35rem}
+.q-sub{font-size:.75rem;color:var(--muted-foreground);margin-bottom:1rem;font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.05em}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--border);padding:2rem 0;margin-top:3rem}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-copy{font-size:.75rem;color:var(--muted-foreground)}
+.disclaimer{background:var(--muted);border:1px solid var(--border);border-radius:var(--radius);padding:12px 16px;font-size:.75rem;color:var(--muted-foreground);line-height:1.6;margin-top:1.5rem}
+a{color:var(--teal)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@media (max-width:640px){
+  .tab-bar{gap:.15rem}
+  .tab-btn{font-size:.7rem;padding:6px 9px}
+  .stat-row{grid-template-columns:1fr 1fr}
+  .nav-brand-sub{display:none}
+  .container{padding:0 1rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="#">
+    <div class="nav-brand-icon">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 12h8M12 8v8"/>
+      </svg>
+    </div>
+    <div class="nav-brand-name">Lucas<span>Cardio</span></div>
+    <div class="nav-brand-sep"></div>
+    <div class="nav-brand-sub">Trials Estruturais</div>
+  </a>
+  <div class="nav-actions">
+    <span class="nav-badge" id="navCount">— trials</span>
+  </div>
+</nav>
+
+<main>
+<div class="container">
+
+<div class="hero">
+  <div class="hero-eyebrow">Material de estudo · Intervenção estrutural</div>
+  <h1>Os trials que <em>construíram</em><br>a cardiologia estrutural</h1>
+  <p class="hero-sub">
+    Ficha técnica, resultado numérico, motivo da relevância, limitações metodológicas e recepção da crítica especializada — de PARTNER 1B (2010) a CHAMPION-AF (2026). Ao final, um modo de treino para verificar se você realmente sabe qual trial estudou o quê.
+  </p>
+  <div class="hero-tags">
+    <span class="tag">TAVI</span>
+    <span class="tag">M-TEER / TMVR</span>
+    <span class="tag">T-TEER / TTVR</span>
+    <span class="tag">LAAC</span>
+    <span class="tag">FOP</span>
+    <span class="tag" id="tagCount">—</span>
+  </div>
+</div>
+
+<div class="tab-bar" id="tabBar">
+  <button class="tab-btn active" data-tab="tavi"><span class="tab-emoji">🫀</span>Aorta / TAVI</button>
+  <button class="tab-btn" data-tab="mitral"><span class="tab-emoji">🔗</span>Mitral</button>
+  <button class="tab-btn" data-tab="tricuspide"><span class="tab-emoji">🔺</span>Tricúspide</button>
+  <button class="tab-btn" data-tab="laac"><span class="tab-emoji">🧬</span>LAAC</button>
+  <button class="tab-btn" data-tab="fop"><span class="tab-emoji">🕳️</span>FOP</button>
+  <button class="tab-btn" data-tab="resumo"><span class="tab-emoji">📋</span>Resumo</button>
+  <button class="tab-btn" data-tab="treino"><span class="tab-emoji">🎯</span>Treino</button>
+</div>
+
+<div class="tab-panel active" id="tab-tavi"></div>
+<div class="tab-panel" id="tab-mitral"></div>
+<div class="tab-panel" id="tab-tricuspide"></div>
+<div class="tab-panel" id="tab-laac"></div>
+<div class="tab-panel" id="tab-fop"></div>
+
+<div class="tab-panel" id="tab-resumo">
+  <div class="section-label">Visão geral</div>
+  <div class="section-title">Tabela-resumo de todos os trials</div>
+  <p class="section-desc">Uma linha por estudo — ano, população, desenho e o achado principal em uma frase. Útil para revisão rápida antes de uma discussão de caso ou aula.</p>
+  <div class="filter-row">
+    <input class="input" id="tblFilter" placeholder="Filtrar por nome, população ou palavra-chave…" />
+  </div>
+  <div class="table-wrap">
+    <table class="compare-table">
+      <thead><tr><th>Trial</th><th>Ano</th><th>Domínio</th><th>N</th><th>População</th><th>Achado principal</th></tr></thead>
+      <tbody id="tblBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<div class="tab-panel" id="tab-treino">
+  <div class="section-label">Modo treino</div>
+  <div class="section-title">Você sabe qual trial estudou o quê?</div>
+  <p class="section-desc">
+    Quatro formatos de pergunta gerados a partir da mesma base de dados das fichas: identificar o trial pela descrição, acertar o resultado, reconhecer a limitação característica e reconhecer a população estudada. Os distratores vêm de trials reais do mesmo domínio — é exatamente onde a memória costuma falhar.
+  </p>
+
+  <div class="card" id="quizSetup">
+    <div class="card-header">
+      <div class="card-icon">⚙</div>
+      <div><div class="card-title">Configurar sessão</div><div class="card-subtitle">Escolha domínios, formatos e número de questões</div></div>
+    </div>
+
+    <div class="risk-cell-label" style="margin-bottom:.5rem">Domínios</div>
+    <div class="filter-row" id="domChips">
+      <span class="chip on" data-dom="tavi">Aorta / TAVI</span>
+      <span class="chip on" data-dom="mitral">Mitral</span>
+      <span class="chip on" data-dom="tricuspide">Tricúspide</span>
+      <span class="chip on" data-dom="laac">LAAC</span>
+      <span class="chip on" data-dom="fop">FOP</span>
+    </div>
+
+    <div class="risk-cell-label" style="margin-bottom:.5rem">Formatos de questão</div>
+    <div class="filter-row" id="typeChips">
+      <span class="chip on" data-type="qual">Qual é o trial?</span>
+      <span class="chip on" data-type="res">Qual foi o resultado?</span>
+      <span class="chip on" data-type="lim">Qual a limitação?</span>
+      <span class="chip on" data-type="pop">Qual a população?</span>
+    </div>
+
+    <div class="risk-cell-label" style="margin-bottom:.5rem">Número de questões</div>
+    <div class="filter-row" id="nChips">
+      <span class="chip" data-n="5">5</span>
+      <span class="chip on" data-n="10">10</span>
+      <span class="chip" data-n="20">20</span>
+      <span class="chip" data-n="0">Todas</span>
+    </div>
+
+    <div style="margin-top:1.2rem"><button class="btn" id="startQuiz">Iniciar treino</button></div>
+  </div>
+
+  <div class="card" id="quizPlay" style="display:none">
+    <div class="quiz-meta">
+      <span id="qProgress">1 / 10</span>
+      <span>Acertos: <span id="qScore" style="color:var(--teal)">0</span> · Sequência: <span id="qStreak" style="color:var(--teal)">0</span></span>
+    </div>
+    <div class="bar-track"><div class="bar-fill" id="qBar" style="width:0%"></div></div>
+    <div class="q-sub" id="qType">—</div>
+    <div class="q-stem" id="qStem">—</div>
+    <div id="qOpts"></div>
+    <div id="qFeedback"></div>
+    <div style="margin-top:1rem;display:flex;gap:.5rem;flex-wrap:wrap">
+      <button class="btn" id="qNext" style="display:none">Próxima →</button>
+      <button class="btn btn-ghost btn-sm" id="qAbort">Encerrar sessão</button>
+    </div>
+  </div>
+
+  <div class="card" id="quizEnd" style="display:none">
+    <div class="card-header">
+      <div class="card-icon">🏁</div>
+      <div><div class="card-title">Resultado da sessão</div><div class="card-subtitle" id="endSub">—</div></div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-card"><div class="stat-num" id="endScore">—</div><div class="stat-label">Acertos</div></div>
+      <div class="stat-card"><div class="stat-num" id="endPct">—</div><div class="stat-label">Aproveitamento</div></div>
+      <div class="stat-card"><div class="stat-num" id="endBest">—</div><div class="stat-label">Melhor sequência</div></div>
+    </div>
+    <div id="endReview"></div>
+    <div style="margin-top:1rem;display:flex;gap:.5rem;flex-wrap:wrap">
+      <button class="btn" id="againSame">Repetir com a mesma configuração</button>
+      <button class="btn btn-ghost" id="againNew">Nova configuração</button>
+    </div>
+  </div>
+</div>
+
+<div class="disclaimer">
+  <strong>Procedência dos dados.</strong> As fichas foram construídas a partir da literatura primária e das coberturas oficiais de ACC/TCTMD/PCR. Cada trial traz um selo de confiança:
+  <span class="badge badge-low">verificado</span> = números conferidos por busca ativa durante a produção deste material;
+  <span class="badge badge-mod">consolidado</span> = dados de conhecimento estabelecido, não reconferidos linha a linha nesta produção;
+  <span class="badge badge-high">checar antes de citar</span> = estudo sem publicação plena localizada ou cujos números não foram confirmados — <em>não use em manuscrito, aula ou prontuário sem conferência na fonte primária</em>.
+  Nenhum número foi estimado ou inferido: onde o dado não foi confirmado, ele está declarado como ausente em vez de preenchido.
+  Material educacional; não substitui a leitura do artigo original nem as diretrizes vigentes.
+</div>
+
+</div>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-copy">
+        © 2026 Dr. Lucas Silva · Cardiologia Intervencionista · São Paulo, Brasil<br>
+        Trials pivotais em intervenção estrutural · Base fechada em agosto de 2026
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ═══════════════ BASE DE DADOS ═══════════════
+   d   = domínio | conf: alta (verificado nesta produção) | media (consolidado) | checar
+   res = métricas-chave  |  sum = achado em uma frase (usado no jogo)
+   pearl = descrição sem citar o nome (usada na pergunta "qual é o trial?")
+*/
+const TRIALS = [
+/* ─────────── AORTA / TAVI ─────────── */
+{id:"p1b",nm:"PARTNER 1B",y:2010,d:"tavi",conf:"media",
+ ref:"Leon MB et al. NEJM 2010;363:1597–607",doi:"10.1056/NEJMoa1008232",
+ des:"ECR aberto, TAVI (SAPIEN, 22–24F) vs. terapia padrão (incluindo valvuloplastia)",
+ N:"358",
+ pop:"Estenose aórtica grave sintomática considerada INOPERÁVEL por dois cirurgiões",
+ pri:"Mortalidade por todas as causas em 1 ano",
+ res:[{l:"Morte 1 ano",v:"30,7% vs 50,7%"},{l:"HR",v:"0,55"},{l:"NNT",v:"≈5"},{l:"AVC maior 30d",v:"5,0% vs 1,1%"}],
+ sum:"Reduziu mortalidade em 20 pontos absolutos em 1 ano contra terapia clínica em inoperáveis (NNT ≈ 5), ao custo de mais AVC e complicações vasculares.",
+ pearl:"Primeiro ECR a demonstrar redução de mortalidade com implante valvar percutâneo, em pacientes sem alternativa cirúrgica.",
+ rel:"Prova de conceito definitiva da terapia transcateter: um dos maiores efeitos absolutos já demonstrados em cardiologia. Criou a categoria regulatória do TAVI e viabilizou toda a agenda estrutural subsequente.",
+ lim:["Braço-controle era essencialmente cuidado paliativo — comparador de baixa exigência","Excesso de AVC maior e de complicações vasculares maiores (16,2% vs 1,1%) com dispositivo de 1ª geração e introdutores calibrosos","Sem cegamento; desfechos de qualidade de vida vulneráveis a viés","Cerca de um terço dos pacientes morreu apesar do procedimento — questão de futilidade"],
+ cri:"Recebido como divisor de águas, mas com ressalva persistente: mostrar superioridade sobre 'nada eficaz' é diferente de mostrar superioridade sobre cirurgia. O sinal de AVC dominou o debate por anos e motivou o desenvolvimento de proteção embólica."},
+
+{id:"p1a",nm:"PARTNER 1A",y:2011,d:"tavi",conf:"media",
+ ref:"Smith CR et al. NEJM 2011;364:2187–98",doi:"10.1056/NEJMoa1103510",
+ des:"ECR de não-inferioridade, TAVI (transfemoral ou transapical) vs. cirurgia (SAVR)",
+ N:"699",
+ pop:"EAo grave sintomática de ALTO risco cirúrgico (STS ≥ 10% ou risco estimado de morte ≥ 15%)",
+ pri:"Mortalidade por todas as causas em 1 ano",
+ res:[{l:"Morte 1 ano",v:"24,2% vs 26,8%"},{l:"AVC 30d",v:"5,5% vs 2,4%"},{l:"Compl. vascular maior",v:"11,0% vs 3,2%"},{l:"Sangramento maior",v:"9,3% vs 19,5%"}],
+ sum:"TAVI foi não-inferior à cirurgia em mortalidade de 1 ano em alto risco, com mais AVC e complicação vascular e menos sangramento e fibrilação atrial.",
+ pearl:"Primeiro ECR head-to-head entre valva transcateter e cirurgia convencional, em população de alto risco cirúrgico.",
+ rel:"Estabeleceu o TAVI como alternativa legítima à cirurgia e não apenas como resgate de inoperáveis. Base da aprovação regulatória para alto risco e do conceito de Heart Team.",
+ lim:["Margem de não-inferioridade ampla (7,5 pontos percentuais) para um desfecho de mortalidade","Cerca de um terço dos casos por via transapical — pior prognóstico do que a via transfemoral moderna","Leak paravalvar moderado/grave mais frequente com TAVI e associado a mortalidade tardia","Dispositivo de 1ª geração; achados de segurança pouco extrapoláveis para plataformas atuais"],
+ cri:"Aceito como marco, mas a comunidade cirúrgica questionou a margem de não-inferioridade e a interpretação de 'equivalência'. O leak paravalvar tornou-se o principal alvo de engenharia da década seguinte."},
+
+{id:"cvex",nm:"CoreValve US Extreme Risk",y:2014,d:"tavi",conf:"media",
+ ref:"Popma JJ et al. JACC 2014;63:1972–81",doi:"10.1016/j.jacc.2014.02.556",
+ des:"Estudo pivotal de braço único comparado a meta de desempenho pré-especificada",
+ N:"489 (coorte iliofemoral)",
+ pop:"EAo grave sintomática de risco extremo, sem opção cirúrgica",
+ pri:"Morte por todas as causas ou AVC maior em 12 meses",
+ res:[{l:"Desfecho 12 meses",v:"26,0%"},{l:"Meta de desempenho",v:"43,0%"},{l:"p",v:"<0,001"}],
+ sum:"Braço único com valva autoexpansível superou amplamente a meta de desempenho histórica em risco extremo, viabilizando a aprovação da plataforma.",
+ pearl:"Estudo pivotal de braço único que aprovou a plataforma autoexpansível em pacientes de risco extremo, usando meta de desempenho como comparador.",
+ rel:"Abriu a era das plataformas autoexpansíveis nos EUA e consolidou a meta de desempenho objetiva como via regulatória aceitável em populações sem alternativa terapêutica.",
+ lim:["Ausência de randomização — não é evidência comparativa","Meta de desempenho derivada de dados históricos, sujeita a viés de época e de seleção","Taxa alta de marcapasso definitivo e de leak paravalvar com a plataforma de 1ª geração"],
+ cri:"Bem recebido pelo desfecho impressionante, mas metodologistas lembram que uma meta de desempenho é uma âncora frágil: qualquer melhora no cuidado de base infla artificialmente o benefício aparente."},
+
+{id:"cvhr",nm:"CoreValve US High Risk",y:2014,d:"tavi",conf:"media",
+ ref:"Adams DH et al. NEJM 2014;370:1790–8",doi:"10.1056/NEJMoa1400590",
+ des:"ECR de não-inferioridade, TAVI autoexpansível vs. cirurgia",
+ N:"795",
+ pop:"EAo grave sintomática de alto risco cirúrgico",
+ pri:"Mortalidade por todas as causas em 1 ano",
+ res:[{l:"Morte 1 ano",v:"14,2% vs 19,1%"},{l:"Diferença absoluta",v:"4,9 pontos"},{l:"NNT",v:"≈20"},{l:"Marcapasso",v:"19,8% vs 7,1%"}],
+ sum:"Primeira demonstração de SUPERIORIDADE de mortalidade do TAVI sobre a cirurgia, em alto risco, com preço de marcapasso definitivo em um a cada cinco pacientes.",
+ pearl:"Primeiro ECR em que a via transcateter foi superior — e não apenas não-inferior — à cirurgia em mortalidade de 1 ano.",
+ rel:"Mudou a retórica do campo: de 'alternativa aceitável' para 'possivelmente melhor'. Consolidou a valva supra-anular autoexpansível como plataforma competitiva.",
+ lim:["Mortalidade cirúrgica observada acima da prevista pelo STS — comparador com desempenho abaixo do esperado","Marcapasso definitivo em ~20% (vs 7% na cirurgia): morbidade relevante em população idosa","Leak paravalvar mais frequente com TAVI","Aberto, com desfecho de mortalidade robusto mas desfechos secundários vulneráveis"],
+ cri:"Recebido com entusiasmo pelos intervencionistas e ceticismo pelos cirurgiões, que atribuíram parte do resultado ao desempenho cirúrgico abaixo do previsto. A taxa de marcapasso permanece o calcanhar de Aquiles da plataforma."},
+
+{id:"p2a",nm:"PARTNER 2A",y:2016,d:"tavi",conf:"media",
+ ref:"Leon MB et al. NEJM 2016;374:1609–20",doi:"10.1056/NEJMoa1514616",
+ des:"ECR de não-inferioridade, TAVI (SAPIEN XT) vs. cirurgia",
+ N:"2.032",
+ pop:"EAo grave sintomática de risco INTERMEDIÁRIO (STS médio ≈ 5,8%)",
+ pri:"Morte por todas as causas ou AVC incapacitante em 2 anos",
+ res:[{l:"Desfecho 2 anos",v:"19,3% vs 21,1%"},{l:"HR",v:"0,89 (p=0,25 superioridade)"},{l:"Coorte transfemoral",v:"HR 0,79 (p=0,05)"},{l:"Leak mod/grave",v:"3,7% vs 0,6%"}],
+ sum:"Não-inferioridade do TAVI em risco intermediário, com sinal favorável restrito à coorte transfemoral.",
+ pearl:"Expandiu a indicação transcateter para o risco cirúrgico intermediário, com benefício concentrado na via transfemoral.",
+ rel:"Primeiro passo para fora do alto risco. Junto com SURTAVI, mudou diretrizes para permitir TAVI em risco intermediário e reposicionou o Heart Team como decisor.",
+ lim:["Usou SAPIEN XT, já substituído pelo SAPIEN 3 no momento da publicação — validade de época limitada","Análise transfemoral favorável é de subgrupo pré-especificado, não confirmatória","Leak paravalvar moderado/grave seis vezes mais frequente com TAVI","Margem de não-inferioridade generosa para desfecho duro"],
+ cri:"Amplamente aceito, mas com a crítica recorrente de que a evidência sempre chega uma geração de dispositivo atrasada. A leitura pragmática que prevaleceu foi 'transfemoral sim, transapical não'."},
+
+{id:"surtavi",nm:"SURTAVI",y:2017,d:"tavi",conf:"media",
+ ref:"Reardon MJ et al. NEJM 2017;376:1321–31",doi:"10.1056/NEJMoa1700456",
+ des:"ECR de não-inferioridade com análise bayesiana, TAVI autoexpansível vs. cirurgia",
+ N:"1.746",
+ pop:"EAo grave sintomática de risco intermediário",
+ pri:"Morte por todas as causas ou AVC incapacitante em 24 meses",
+ res:[{l:"Desfecho 24 meses",v:"12,6% vs 14,0%"},{l:"Marcapasso",v:"25,9% vs 6,6%"},{l:"Reintervenção",v:"1,4% vs 0,4%"},{l:"IRA / FA / transfusão",v:"maiores na cirurgia"}],
+ sum:"Confirmou não-inferioridade em risco intermediário com a plataforma autoexpansível, à custa de marcapasso em um quarto dos pacientes.",
+ pearl:"Confirmou a expansão ao risco intermediário com valva autoexpansível, com taxa de marcapasso de aproximadamente 26%.",
+ rel:"Junto com PARTNER 2A, sustentou a recomendação de TAVI em risco intermediário nas diretrizes americanas e europeias.",
+ lim:["Marcapasso definitivo em ~26% — desvantagem competitiva persistente da plataforma","Análise bayesiana com margem pré-especificada, menos intuitiva para o leitor clínico","Seguimento de 24 meses insuficiente para durabilidade","Aberto, financiado pelo fabricante"],
+ cri:"Recepção positiva, mas o campo passou a discutir abertamente que a escolha entre plataformas é feita mais por anatomia e risco de marcapasso do que por eficácia comparativa."},
+
+{id:"p3",nm:"PARTNER 3",y:2019,d:"tavi",conf:"alta",
+ ref:"Mack MJ et al. NEJM 2019;380:1695–705 · 5 anos: NEJM 2023;389:1949–60 · 7 anos: Leon MB et al. NEJM 2026;394:773–83",doi:"10.1056/NEJMoa1814052",
+ des:"ECR de superioridade, TAVI transfemoral (SAPIEN 3) vs. cirurgia",
+ N:"1.000",
+ pop:"EAo grave sintomática de BAIXO risco cirúrgico (STS < 4%); idade média 73 anos, apenas ~7% abaixo de 65 anos",
+ pri:"Morte, AVC ou re-hospitalização (procedimento, valva ou IC) em 1 ano",
+ res:[{l:"1 ano",v:"8,5% vs 15,1% (HR 0,54)"},{l:"NNT 1 ano",v:"≈15"},{l:"5 anos",v:"22,8% vs 27,2% (IC cruza 1)"},{l:"7 anos",v:"sem diferença nos co-primários"},{l:"Falência bioprotética 7a",v:"6,9% vs 7,3%"},{l:"Reintervenção 7a",v:"6,0% vs 6,7%"}],
+ sum:"Superioridade marcante em 1 ano que se atenua progressivamente até desaparecer aos 5–7 anos, sem sinal de falência valvar precoce do dispositivo balão-expansível.",
+ pearl:"Mostrou superioridade em 1 ano no baixo risco cirúrgico, mas com convergência completa das curvas ao longo de sete anos de seguimento.",
+ rel:"Levou o TAVI ao baixo risco e provocou a reescrita das diretrizes em 2020–2021. O seguimento de 7 anos é hoje o dado de durabilidade mais robusto disponível para valva balão-expansível em baixo risco.",
+ lim:["Benefício de 1 ano fortemente dirigido por re-hospitalização, componente mais brando do composto","Apenas ~7% dos incluídos tinham menos de 65 anos — não responde à pergunta do paciente jovem","Bicúspide, doença coronariana complexa e anatomias desfavoráveis foram excluídas","Aos 5 anos houve tendência numérica de maior mortalidade com TAVI, hoje atribuída a ruído, mas que gerou alarme legítimo","Sete anos ainda é curto diante da expectativa de vida de um paciente de baixo risco"],
+ cri:"O resultado de 1 ano foi celebrado como o fim da era cirúrgica; a atenuação aos 5 anos gerou uma reavaliação pública notável, com editorialistas cobrando prudência na indicação para pacientes jovens. Aos 7 anos o próprio investigador principal declarou que os dados não justificam expandir a indicação para menores de 65 anos."},
+
+{id:"evolr",nm:"Evolut Low Risk",y:2019,d:"tavi",conf:"alta",
+ ref:"Popma JJ et al. NEJM 2019;380:1706–15 · 6 anos: Forrest JK et al. JACC 2026",doi:"10.1056/NEJMoa1816885",
+ des:"ECR de não-inferioridade bayesiano, TAVI autoexpansível vs. cirurgia",
+ N:"1.414",
+ pop:"EAo grave sintomática de baixo risco cirúrgico",
+ pri:"Morte por todas as causas ou AVC incapacitante em 24 meses (estimativa bayesiana)",
+ res:[{l:"24 meses",v:"5,3% vs 6,7% (NI atingida)"},{l:"4 anos",v:"10,7% vs 14,1%"},{l:"Reintervenção 6 anos",v:"5,5% vs 3,3%"},{l:"Marcapasso",v:"~17% vs ~6%"}],
+ sum:"Não-inferioridade sustentada no baixo risco, mas o seguimento de 6 anos revelou maior necessidade de reintervenção valvar com a estratégia transcateter.",
+ pearl:"Trial de baixo risco com plataforma autoexpansível cujo seguimento tardio expôs excesso de reintervenção valvar em relação à cirurgia.",
+ rel:"Junto com PARTNER 3, sustentou a mudança de diretriz para baixo risco. O dado de 6 anos é o primeiro sinal randomizado consistente de que durabilidade pode diferir entre plataformas e estratégias.",
+ lim:["Marcapasso definitivo em cerca de um em cada seis pacientes","Excesso de reintervenção emergindo entre 5 e 7 anos — implicação direta para pacientes jovens","Leak paravalvar leve frequente, de significado prognóstico ainda debatido","Análise bayesiana e desenho aberto; seguimento além de 6 anos ainda incompleto"],
+ cri:"O dado de 6 anos foi o mais desconfortável do campo em 2026: parte dos operadores europeus relata não reconhecer esse sinal na prática, enquanto editorialistas argumentam que a curva 'dobra' após o quinto ano e cobram vigilância de longo prazo antes de expandir a indicação a pacientes com longa expectativa de vida."},
+
+{id:"notion",nm:"NOTION",y:2015,d:"tavi",conf:"media",
+ ref:"Thyregod HGH et al. JACC 2015 · 5 anos: Circulation 2019;139:2714–23 · 10 anos: EHJ 2024;45:1116–24",doi:"10.1161/CIRCULATIONAHA.118.036606",
+ des:"ECR investigador-iniciado, TAVI autoexpansível vs. cirurgia, nórdico",
+ N:"280",
+ pop:"Pacientes ≥ 70 anos com EAo grave, a maioria de BAIXO risco cirúrgico (STS médio ≈ 3%)",
+ pri:"Composto de morte, AVC ou infarto em 1 ano",
+ res:[{l:"1 ano",v:"13,1% vs 16,3% (p=0,43)"},{l:"10 anos",v:"mortalidade semelhante entre estratégias"},{l:"Durabilidade 10a",v:"deterioração estrutural menor com TAVI"}],
+ sum:"Estudo independente e pequeno que não mostrou diferença entre estratégias, e cujo seguimento de 10 anos é hoje a evidência randomizada mais longa sobre durabilidade valvar.",
+ pearl:"Primeiro ensaio a randomizar predominantemente pacientes de baixo risco, e o único com seguimento randomizado de dez anos.",
+ rel:"Antecipou em quatro anos a discussão do baixo risco e forneceu o horizonte temporal que PARTNER 3 e Evolut Low Risk ainda não alcançaram.",
+ lim:["Amostra pequena (n=280), gravemente subpoderada para desfechos duros","Dispositivo de 1ª geração — extrapolação para plataformas modernas é limitada","Idade média elevada mesmo sendo população de baixo risco cirúrgico","Comparação de durabilidade prejudicada pela mortalidade competitiva em dez anos"],
+ cri:"Valorizado justamente por ser independente da indústria e por ter mantido o seguimento. É citado como contraponto ao sinal de reintervenção do Evolut Low Risk, embora seu tamanho amostral não permita resolver a controvérsia."},
+
+{id:"notion2",nm:"NOTION-2",y:2024,d:"tavi",conf:"media",
+ ref:"Jørgensen TH et al. Eur Heart J 2024;45:3804–14",doi:"10.1093/eurheartj/ehae331",
+ des:"ECR investigador-iniciado, TAVI vs. cirurgia em pacientes jovens de baixo risco",
+ N:"370",
+ pop:"Pacientes com IDADE ≤ 75 anos, baixo risco cirúrgico, incluindo valva BICÚSPIDE",
+ pri:"Composto de morte, AVC ou infarto em 1 ano",
+ res:[{l:"1 ano",v:"10,2% vs 7,1% (diferença 3,1 pontos, IC cruza zero)"},{l:"Bicúspide",v:"desempenho numericamente pior com TAVI"}],
+ sum:"Em pacientes jovens de baixo risco não houve benefício da estratégia transcateter, com sinal desfavorável em valva bicúspide.",
+ pearl:"O único ensaio randomizado dedicado a pacientes jovens de baixo risco, incluindo anatomia bicúspide.",
+ rel:"É o contraponto direto ao entusiasmo de PARTNER 3 e Evolut Low Risk: o grupo etário em que a decisão realmente importa é justamente aquele em que a evidência não apoia o transcateter.",
+ lim:["Subpoderado (n=370) para desfecho composto de baixa incidência","Análise em bicúspide é de subgrupo, com poucos eventos","Seguimento de 1 ano, insuficiente para a pergunta central que é durabilidade","Aberto, sem cegamento de desfechos brandos"],
+ cri:"Recebido como um freio necessário à expansão indiscriminada da indicação. Frequentemente citado em conjunto com o dado de reintervenção de 6 anos do Evolut Low Risk para argumentar contra TAVI de rotina em menores de 70 anos."},
+
+{id:"uktavi",nm:"UK TAVI",y:2022,d:"tavi",conf:"media",
+ ref:"UK TAVI Investigators. JAMA 2022;327:1875",doi:"10.1001/jama.2022.5776",
+ des:"ECR pragmático de não-inferioridade, TAVI (múltiplos dispositivos) vs. cirurgia",
+ N:"913",
+ pop:"Pacientes ≥ 70 anos com EAo grave e risco cirúrgico intermediário a alto, no sistema público britânico",
+ pri:"Mortalidade por todas as causas em 1 ano",
+ res:[{l:"Morte 1 ano",v:"4,6% vs 6,6% (NI atingida)"},{l:"Marcapasso e leak",v:"maiores com TAVI"}],
+ sum:"Ensaio pragmático de mundo real que confirmou não-inferioridade do TAVI com dispositivos e operadores heterogêneos.",
+ pearl:"Ensaio pragmático britânico, com escolha livre de dispositivo, feito para testar a validade externa dos resultados dos trials industriais.",
+ rel:"Responde à crítica de que os resultados dos trials pivotais dependem de centros e operadores selecionados: em condições de prática habitual, o efeito se manteve.",
+ lim:["Heterogeneidade de dispositivos impede conclusões por plataforma","Mortalidade observada baixa em ambos os braços, reduzindo o poder","Aberto; seguimento de 1 ano curto para durabilidade","Marcapasso e leak paravalvar consistentemente maiores com TAVI"],
+ cri:"Bem recebido como evidência pragmática de qualidade, financiada com recursos públicos. Reforçou o argumento de que a discussão relevante deixou de ser 'TAVI funciona?' e passou a ser 'em quem e com qual valva?'."},
+
+{id:"dedicate",nm:"DEDICATE-DZHK6",y:2024,d:"tavi",conf:"media",
+ ref:"Blankenberg S et al. NEJM 2024;390:1572–83",doi:"10.1056/NEJMoa2400685",
+ des:"ECR investigador-iniciado, independente da indústria, TAVI vs. cirurgia",
+ N:"1.414",
+ pop:"Pacientes ≥ 65 anos com EAo grave e risco cirúrgico BAIXO ou intermediário, na Alemanha",
+ pri:"Morte por todas as causas ou AVC em 1 ano",
+ res:[{l:"1 ano",v:"5,4% vs 10,0%"},{l:"HR",v:"0,53"},{l:"Não-inferioridade",v:"atingida"}],
+ sum:"Primeiro grande ensaio independente da indústria a confirmar o desempenho do TAVI em risco baixo a intermediário.",
+ pearl:"Grande ensaio acadêmico alemão, sem financiamento da indústria, que replicou os achados dos trials pivotais patrocinados.",
+ rel:"Neutraliza a crítica mais persistente da área — a de que toda a base de evidência do TAVI é patrocinada pelos fabricantes. A concordância com PARTNER 3 e Evolut Low Risk é o principal argumento a favor da validade dos resultados originais.",
+ lim:["Seguimento de 1 ano; nada informa sobre durabilidade","Atrasos e crossovers no braço cirúrgico levantam dúvida sobre o desempenho do comparador","Escolha de dispositivo a critério do operador","Aberto, com adjudicação cega apenas de parte dos desfechos"],
+ cri:"Recebido com alívio pelos entusiastas e com desconfiança pontual dos cirurgiões, que apontaram o tempo de espera até a cirurgia como fonte potencial de viés a favor do braço transcateter."},
+
+{id:"earlytavr",nm:"EARLY TAVR",y:2025,d:"tavi",conf:"media",
+ ref:"Généreux P et al. NEJM 2025;392:217–27",doi:"10.1056/NEJMoa2405880",
+ des:"ECR aberto, TAVI precoce vs. vigilância clínica",
+ N:"901",
+ pop:"EAo grave ASSINTOMÁTICA com função ventricular preservada e teste de esforço normal",
+ pri:"Composto de morte, AVC ou hospitalização cardiovascular não planejada",
+ res:[{l:"Desfecho primário",v:"26,8% vs 45,3%"},{l:"HR",v:"0,50"},{l:"NNT",v:"≈5"},{l:"Mortalidade isolada",v:"sem diferença"}],
+ sum:"Intervenção precoce reduziu de forma marcante o composto em estenose aórtica assintomática, mas o efeito foi dirigido por hospitalizações, sem ganho de mortalidade.",
+ pearl:"Testou intervir antes dos sintomas em estenose aórtica grave, contra a estratégia clássica de vigilância.",
+ rel:"Desafia o dogma de que o gatilho da intervenção deve ser o sintoma. Tende a reconfigurar o seguimento ambulatorial da estenose aórtica grave e já pressiona a próxima revisão das diretrizes.",
+ lim:["Composto dirigido por hospitalização não planejada — desfecho brando e não cegado, com forte potencial de viés em estudo aberto","Sem diferença em mortalidade","Cerca de um quarto do braço de vigilância cruzou para intervenção em seis meses e a maioria em dois anos — a comparação real acabou sendo 'agora' vs 'daqui a pouco'","Vigilância no mundo real costuma ser menos rigorosa que a do protocolo, o que pode subestimar o risco do braço conservador na prática"],
+ cri:"Positivo na recepção intervencionista e alvo de crítica metodológica dura por parte de céticos: quando o componente que carrega o resultado é hospitalização decidida por médicos não cegos, o efeito pode refletir comportamento e não biologia. A ausência de sinal de mortalidade é o argumento central dos dois lados."},
+
+{id:"acurate",nm:"ACURATE IDE",y:2025,d:"tavi",conf:"alta",
+ ref:"Reardon MJ et al. Lancet 2025 (apresentado no TCT 2024)",doi:null,dst:"Publicação plena no Lancet em 2025; DOI não confirmado nesta produção",
+ des:"ECR de não-inferioridade, ACURATE neo2 vs. valvas comerciais (SAPIEN 3/3 Ultra ou Evolut R/PRO/PRO+/FX)",
+ N:"1.500",
+ pop:"EAo grave sintomática em todo o espectro de risco cirúrgico",
+ pri:"Morte por todas as causas, AVC ou re-hospitalização em 1 ano",
+ res:[{l:"Desfecho 1 ano",v:"14,8% vs 9,1%"},{l:"Diferença mediana posterior",v:"6,6% (margem 8,0%)"},{l:"Conclusão",v:"NÃO-inferioridade não atingida"},{l:"Subexpansão da valva",v:"21,6% dos implantes"}],
+ sum:"A valva testada FALHOU em demonstrar não-inferioridade frente às plataformas comerciais, e o produto foi retirado do mercado global.",
+ pearl:"Ensaio comparativo entre dispositivos em que a valva investigacional falhou a não-inferioridade e acabou descontinuada comercialmente.",
+ rel:"Demonstração rara e valiosa de que nem toda plataforma transcateter é equivalente — e de que ensaios comparativos entre dispositivos são indispensáveis, não formalidade regulatória.",
+ lim:["Experiência do operador muito baixa: cerca de 72% dos implantadores fizeram cinco casos ou menos durante o estudo","Subexpansão valvar identificada em 21,6% dos implantes em análise post hoc — confundidor de execução, não necessariamente de conceito","Recrutamento durante a pandemia, com impacto em fluxo e equipe","Análise explicativa de subexpansão é post hoc e não redime o resultado primário"],
+ cri:"Recebido como lição de humildade pelo campo. A tentativa dos investigadores de explicar o resultado pela subexpansão foi vista como plausível, porém tardia: o fabricante encerrou a comercialização do dispositivo antes que a hipótese pudesse ser testada prospectivamente."},
+
+{id:"smart",nm:"SMART",y:2024,d:"tavi",conf:"alta",
+ ref:"Herrmann HC, Mehran R, Blackman DJ et al. NEJM 2024",doi:null,dst:"DOI não confirmado nesta produção",
+ des:"ECR pós-mercado, valva autoexpansível supra-anular vs. balão-expansível",
+ N:"716",
+ pop:"EAo grave com ÂNULO PEQUENO (área ≤ 430 mm²); 87% mulheres",
+ pri:"Co-primários: composto clínico (morte, AVC incapacitante, hospitalização por IC) e disfunção biprotética em 12 meses",
+ res:[{l:"Composto clínico",v:"9,4% vs 10,6% (NI)"},{l:"Disfunção biprotética",v:"9,4% vs 41,6% (superioridade)"},{l:"Gradientes",v:"menores com a autoexpansível"}],
+ sum:"Desfechos clínicos equivalentes entre as duas plataformas, com hemodinâmica claramente superior da valva supra-anular em ânulos pequenos.",
+ pearl:"Primeiro ensaio randomizado head-to-head entre as duas plataformas dominantes, dedicado a ânulos pequenos e majoritariamente feminino.",
+ rel:"Preencheu uma lacuna histórica: mulheres com ânulo pequeno estavam sub-representadas em todos os trials pivotais. Passou a orientar a escolha de plataforma por anatomia.",
+ lim:["O desfecho de 'disfunção biprotética' é dominado por mismatch protético-paciente medido por Doppler, cuja tradução clínica é incerta","Gradientes por Doppler superestimam a diferença entre plataformas em relação a medidas invasivas","Seguimento curto (12–24 meses) para um desfecho que só importa se afetar durabilidade","Aberto, patrocinado pelo fabricante da plataforma favorecida"],
+ cri:"Recebido como estudo bem desenhado e clinicamente útil, mas com ressalva quase unânime: hemodinâmica superior não é o mesmo que benefício clínico, e a diferença de 9,4% vs 41,6% impressiona mais do que informa até que se demonstre impacto em desfechos duros."},
+
+/* ─────────── MITRAL ─────────── */
+{id:"everest2",nm:"EVEREST II",y:2011,d:"mitral",conf:"media",
+ ref:"Feldman T et al. NEJM 2011;364:1395–406",doi:"10.1056/NEJMoa1009355",
+ des:"ECR 2:1, reparo borda-a-borda percutâneo (MitraClip) vs. cirurgia mitral",
+ N:"279",
+ pop:"Insuficiência mitral moderada-grave a grave, predominantemente PRIMÁRIA (degenerativa), com risco cirúrgico aceitável",
+ pri:"Composto de eficácia em 1 ano: livre de morte, de cirurgia por disfunção valvar e de IM 3–4+",
+ res:[{l:"Eficácia 1 ano",v:"55% vs 73% (p=0,007)"},{l:"Evento adverso maior 30d",v:"15% vs 48%"},{l:"Cirurgia por IM em 5 anos",v:"27,9% vs 8,9%"}],
+ sum:"O reparo percutâneo foi menos eficaz que a cirurgia na redução da insuficiência, porém mais seguro no periprocedimento.",
+ pearl:"Primeiro ensaio randomizado de reparo mitral percutâneo, que perdeu para a cirurgia em eficácia e ganhou em segurança.",
+ rel:"Fundou o campo do reparo mitral transcateter e definiu seu nicho correto: o paciente em que a cirurgia é arriscada demais, não o paciente cirúrgico padrão.",
+ lim:["Vantagem de segurança inflada pela inclusão de transfusão sanguínea na definição de evento adverso maior","População mista (primária e secundária), com poder insuficiente para cada uma","Dispositivo de 1ª geração e curva de aprendizado inicial","Necessidade de cirurgia subsequente três vezes maior no braço percutâneo em 5 anos"],
+ cri:"Recepção ambivalente: cirurgiões leram como prova da superioridade do reparo cirúrgico; intervencionistas, como prova de viabilidade de uma terapia menos invasiva. Ambas as leituras estavam corretas, e a indicação regulatória acabou restrita a alto risco cirúrgico."},
+
+{id:"mitrafr",nm:"MITRA-FR",y:2018,d:"mitral",conf:"media",
+ ref:"Obadia JF et al. NEJM 2018;379:2297–306",doi:"10.1056/NEJMoa1805374",
+ des:"ECR aberto, M-TEER + terapia médica vs. terapia médica isolada",
+ N:"304",
+ pop:"Insuficiência mitral SECUNDÁRIA grave com IC sintomática; IM menos grave e ventrículo mais dilatado que no COAPT",
+ pri:"Morte por todas as causas ou hospitalização por IC em 12 meses",
+ res:[{l:"Desfecho 12 meses",v:"54,6% vs 51,3%"},{l:"OR",v:"1,16 (NS)"},{l:"IM residual ≥3+",v:"~17%"}],
+ sum:"Resultado NEGATIVO: o clipe não reduziu morte nem hospitalização por IC na insuficiência mitral secundária.",
+ pearl:"Ensaio francês neutro na insuficiência mitral secundária, cujo contraste com um estudo positivo publicado no mesmo mês originou o conceito de regurgitação proporcional.",
+ rel:"Publicado simultaneamente ao COAPT com resultado oposto, forçou o campo a explicar a discordância — nasceu daí o conceito de IM desproporcional ao volume ventricular como critério de seleção.",
+ lim:["Terapia médica não otimizada de forma centralizada antes da randomização","Insuficiência menos grave em relação a ventrículos mais dilatados — regurgitação 'proporcional', em que o problema dominante é a miocardiopatia","IM residual significativa em cerca de 17%, sugerindo resultado técnico subótimo","Amostra pequena e aberto"],
+ cri:"Inicialmente lido como o fim do clipe na IM secundária, hoje é lido como a definição de quem NÃO deve ser tratado. A explicação da regurgitação proporcional foi aceita, mas críticos lembram que ela é post hoc e nunca foi testada prospectivamente de forma direta."},
+
+{id:"coapt",nm:"COAPT",y:2018,d:"mitral",conf:"media",
+ ref:"Stone GW et al. NEJM 2018;379:2307–18 · 5 anos: NEJM 2023",doi:"10.1056/NEJMoa1806640",
+ des:"ECR aberto, M-TEER + terapia médica otimizada vs. terapia médica otimizada isolada",
+ N:"614",
+ pop:"IM secundária moderada-grave a grave com IC sintomática APESAR de terapia médica máxima auditada por comitê central; ventrículo não excessivamente dilatado",
+ pri:"Hospitalizações por IC em 24 meses",
+ res:[{l:"Hospitalização por IC",v:"35,8% vs 67,9% por paciente-ano (HR 0,53)"},{l:"Morte 24 meses",v:"29,1% vs 46,1% (HR 0,62)"},{l:"NNT morte",v:"≈6 em 2 anos"},{l:"5 anos",v:"benefício mantido"}],
+ sum:"Reduziu hospitalização por IC e mortalidade na insuficiência mitral secundária quando a terapia médica já estava maximizada e o ventrículo não estava excessivamente dilatado.",
+ pearl:"Ensaio que estabeleceu o benefício de mortalidade do clipe mitral na insuficiência secundária, com seleção rigorosa de terapia médica e de tamanho ventricular.",
+ rel:"Um dos maiores efeitos absolutos já demonstrados em insuficiência cardíaca. Mudou diretrizes na Europa e nos EUA e definiu o fenótipo COAPT como critério prático de indicação.",
+ lim:["Seleção extremamente rigorosa: terapia médica auditada por comitê central e exclusão de ventrículos muito dilatados — o efeito não é transportável para populações não selecionadas","Aberto, sem cegamento e com desfecho de hospitalização decidido por médicos não cegos","Financiado pelo fabricante","Braço-controle recebeu terapia médica que, embora otimizada no início, não foi sistematicamente atualizada ao longo do seguimento"],
+ cri:"Aclamado como marco, mas com a advertência constante de que 'COAPT-like' é uma condição estreita: fora dela, o resultado esperado é o do MITRA-FR. Metodologistas apontam que parte do efeito sobre hospitalização é vulnerável ao viés de estudo aberto, ainda que o sinal de mortalidade seja difícil de explicar apenas por viés."},
+
+{id:"matterhorn",nm:"MATTERHORN",y:2024,d:"mitral",conf:"media",
+ ref:"Baldus S et al. NEJM 2024;391:1787–98",doi:"10.1056/NEJMoa2408739",
+ des:"ECR de não-inferioridade, M-TEER vs. cirurgia mitral",
+ N:"210",
+ pop:"IM SECUNDÁRIA com indicação de intervenção e risco cirúrgico aceitável",
+ pri:"Composto de morte, hospitalização por IC, reintervenção, assistência ventricular ou AVC em 1 ano",
+ res:[{l:"Desfecho 1 ano",v:"16,7% vs 22,5% (NI atingida)"},{l:"Eventos adversos maiores",v:"14,9% vs 54,8%"}],
+ sum:"Reparo percutâneo foi não-inferior à cirurgia na insuficiência mitral secundária em 1 ano, com perfil de segurança muito melhor.",
+ pearl:"Ensaio alemão que comparou o clipe diretamente com a cirurgia — e não com terapia médica — na insuficiência mitral secundária.",
+ rel:"Preenche a lacuna deixada por COAPT e MITRA-FR, que compararam o clipe apenas com tratamento clínico. Sustenta a via percutânea como primeira escolha em IM secundária mesmo quando a cirurgia é tecnicamente possível.",
+ lim:["Amostra pequena (n=210) com poder limitado e margem de não-inferioridade correspondentemente permissiva","Desfecho composto de 1 ano; nada informa sobre durabilidade do reparo","Vantagem de segurança novamente influenciada pela definição de evento adverso maior","População altamente selecionada por Heart Team em centros de excelência"],
+ cri:"Bem recebido, com a ressalva de que 'não-inferior em um ano' com 210 pacientes não é o mesmo que equivalência de longo prazo — a durabilidade do reparo borda-a-borda em IM secundária permanece a pergunta em aberto."},
+
+{id:"reshape2",nm:"RESHAPE-HF2",y:2024,d:"mitral",conf:"media",
+ ref:"Anker SD et al. NEJM 2024;391:1799–809",doi:"10.1056/NEJMoa2314328",
+ des:"ECR aberto, M-TEER + terapia médica vs. terapia médica isolada",
+ N:"505",
+ pop:"IM secundária MODERADA-grave a grave com IC — espectro de gravidade intermediário entre MITRA-FR e COAPT",
+ pri:"Três desfechos primários hierárquicos, incluindo hospitalizações recorrentes por IC e morte cardiovascular",
+ res:[{l:"Hosp. IC recorrente + morte CV",v:"HR 0,64 (p=0,002)"},{l:"Morte CV isolada",v:"sem diferença"},{l:"KCCQ",v:"melhora significativa"}],
+ sum:"Reduziu hospitalizações recorrentes por IC e melhorou qualidade de vida, sem benefício isolado de mortalidade cardiovascular.",
+ pearl:"Ensaio que testou o clipe em insuficiência mitral secundária de gravidade intermediária, com desfechos primários hierárquicos e sem sinal de mortalidade.",
+ rel:"Amplia o fenótipo elegível para além do critério estrito do COAPT, mas rebaixa a expectativa: o ganho é sintomático e de hospitalização, não de sobrevida.",
+ lim:["Três desfechos primários hierárquicos — estrutura estatística que dilui a interpretação de 'o' resultado","Ausência de benefício em mortalidade cardiovascular, em contraste direto com COAPT","Terapia médica menos rigorosamente auditada que no COAPT","Aberto, com desfechos de hospitalização e qualidade de vida vulneráveis a viés"],
+ cri:"Recepção morna e realista: consolidou o clipe como terapia de sintomas e hospitalizações na IM secundária, deixando o benefício de mortalidade como propriedade do fenótipo COAPT — e não da terapia em si."},
+
+{id:"encircle",nm:"ENCIRCLE",y:2025,d:"mitral",conf:"alta",
+ ref:"Guerrero ME, Daniels DV, Makkar RR et al. Lancet 2025;406:2541–50",doi:"10.1016/S0140-6736(25)02073-2",
+ des:"Estudo pivotal prospectivo, multinacional, de BRAÇO ÚNICO, com meta de desempenho pré-especificada",
+ N:"299 (287 implantados; 1.171 triados)",
+ pop:"IM ≥ 3+ sintomática em pacientes considerados INADEQUADOS para cirurgia e para reparo borda-a-borda",
+ pri:"Morte por todas as causas ou hospitalização por IC em 1 ano vs. meta de desempenho de 45%",
+ res:[{l:"Desfecho 1 ano",v:"25,2% (IC 20,6–30,6; p<0,0001)"},{l:"Mortalidade 1 ano",v:"12,9%"},{l:"Hospitalização por IC",v:"16,7%"},{l:"IM ≤1+ em 1 ano",v:"~95–96%"}],
+ sum:"Substituição mitral transcateter por via transeptal eliminou a insuficiência em quase todos os pacientes e superou amplamente a meta de desempenho, levando à aprovação regulatória.",
+ pearl:"Estudo pivotal de braço único que aprovou a primeira substituição mitral transcateter por via transeptal, em pacientes sem opção cirúrgica nem de clipe.",
+ rel:"Resolve o problema central do reparo borda-a-borda — a insuficiência residual — em anatomias hostis (calcificação anular, múltiplos jatos, área valvar pequena). Abriu formalmente a era da substituição mitral percutânea.",
+ lim:["Braço único: não há comparador randomizado; a meta de desempenho de 45% foi derivada dos braços de terapia médica de ensaios de M-TEER, o que é comparação indireta e vulnerável a diferenças de população","Alta taxa de exclusão na triagem (1.171 triados para 299 incluídos) — validade externa restrita a anatomias favoráveis","Necessidade de anticoagulação após a substituição valvar","Sem dados de durabilidade além de 1 ano"],
+ cri:"Recepção entusiasmada quanto ao desempenho técnico e cautelosa quanto ao nível de evidência: a comunidade reconhece que uma meta de desempenho importada de outro contexto terapêutico é o ponto frágil do estudo, e cobra comparação randomizada nas populações em que o clipe também seria viável."},
+
+{id:"claspiid",nm:"CLASP IID",y:2023,d:"mitral",conf:"checar",
+ ref:"Lim DS et al. JACC Cardiovasc Interv 2023;16:2820–32",doi:null,dst:"DOI não confirmado — conferir antes de citar",
+ des:"ECR de não-inferioridade entre dispositivos (PASCAL vs. MitraClip)",
+ N:"300 (coorte primária)",
+ pop:"IM PRIMÁRIA (degenerativa) significativa em pacientes de alto risco cirúrgico",
+ pri:"Co-primários: eventos adversos maiores em 30 dias e IM ≤ 2+ em 6 meses",
+ res:[{l:"Segurança 30d",v:"não-inferioridade atingida"},{l:"IM ≤2+ em 6 meses",v:"não-inferioridade atingida"},{l:"IM ≤1+ em 1 ano",v:"mais sustentada com PASCAL"}],
+ sum:"Os dois sistemas de reparo borda-a-borda foram equivalentes em segurança e eficácia, com redução residual da insuficiência mais durável em um deles.",
+ pearl:"Único ensaio randomizado head-to-head entre os dois sistemas de reparo mitral borda-a-borda disponíveis.",
+ rel:"Estabeleceu a existência de um segundo sistema clinicamente equivalente, quebrando o monopólio técnico do campo e ampliando as opções por anatomia.",
+ lim:["Desfechos primários ecocardiográficos e de curto prazo, não clínicos","Não-inferioridade entre dispositivos não informa sobre benefício sobre terapia médica","Amostra e seguimento limitados; sem cegamento","Números específicos desta ficha não foram reconferidos na fonte primária durante esta produção"],
+ cri:"Recepção pragmática: útil para a decisão de sala, irrelevante para a pergunta de indicação. A superioridade de durabilidade da redução da IM é vista como hipótese a confirmar, não como diferencial estabelecido."},
+
+{id:"summit",nm:"SUMMIT",y:2024,d:"mitral",conf:"checar",noq:true,
+ ref:"Apresentado no TCT 2024 — publicação plena não localizada nesta produção",doi:null,dst:"NÃO VERIFICADO — sem publicação plena localizada",
+ des:"Estudo controlado multicêntrico com quatro coortes, incluindo uma coorte RANDOMIZADA 1:1 de substituição mitral transapical (Tendyne) vs. reparo borda-a-borda",
+ N:"não confirmado nesta produção",
+ pop:"IM sintomática moderada-grave a grave, incluindo coortes de valva não reparável e de calcificação anular grave",
+ pri:"não confirmado nesta produção",
+ res:[{l:"Resultados numéricos",v:"não confirmados — conferir na fonte primária"}],
+ sum:"Comparação randomizada entre substituição mitral transcateter e reparo borda-a-borda cujos resultados numéricos não foram confirmados nesta produção.",
+ pearl:"Estudo com coorte randomizada comparando substituição mitral transcateter com reparo borda-a-borda, ainda sem publicação plena localizada.",
+ rel:"É a única tentativa randomizada direta de responder à pergunta central da era pós-ENCIRCLE: substituir ou reparar, quando ambos são possíveis.",
+ lim:["Sem publicação plena em revista revisada por pares localizada até o fechamento deste material","Desenho com múltiplas coortes não randomizadas além da coorte randomizada, dificultando interpretação conjunta","Via transapical, mais invasiva que as plataformas transeptais atuais","Dados apresentados apenas em congresso — não devem ser citados como evidência publicada"],
+ cri:"Aguardando publicação plena. Qualquer afirmação sobre seus resultados numéricos deve ser conferida diretamente na fonte antes de uso acadêmico ou clínico."},
+
+{id:"apollo",nm:"APOLLO",y:2023,d:"mitral",conf:"checar",noq:true,
+ ref:"Zahr F et al. JACC Cardiovasc Interv 2023;16:2868–79 (coorte de viabilidade)",doi:null,dst:"NÃO VERIFICADO — DOI não confirmado",
+ des:"Estudo pivotal de substituição mitral transcateter (Intrepid); dados publicados correspondem a coorte inicial de viabilidade transfemoral/transeptal",
+ N:"coorte de viabilidade, N pequeno",
+ pop:"IM sintomática grave em pacientes de alto risco cirúrgico",
+ pri:"Segurança e desempenho do dispositivo (coorte de viabilidade); desfecho pivotal ainda não publicado",
+ res:[{l:"Desfecho pivotal",v:"não publicado até o fechamento deste material"}],
+ sum:"Programa pivotal de substituição mitral transcateter cujo desfecho primário ainda não foi publicado; disponível apenas a experiência inicial de viabilidade.",
+ pearl:"Programa de substituição mitral transcateter cujos dados disponíveis se restringem à coorte inicial de viabilidade.",
+ rel:"Representa a segunda via de substituição mitral percutânea em desenvolvimento, relevante para o mapa competitivo do campo.",
+ lim:["Sem desfecho pivotal publicado","Coorte de viabilidade pequena e sem comparador","Alta taxa de exclusão anatômica, como em todo o campo da substituição mitral","Referência e números não verificados nesta produção"],
+ cri:"Ainda em fase pré-conclusiva. Deve figurar em revisões como programa em andamento, e não como evidência."},
+
+/* ─────────── TRICÚSPIDE ─────────── */
+{id:"triluminate",nm:"TRILUMINATE Pivotal",y:2023,d:"tricuspide",conf:"alta",
+ ref:"Sorajja P et al. NEJM 2023;388:1833–42 · 2 anos: Kar S et al. Circulation 2025;151:1630–8",doi:"10.1056/NEJMoa2300525",
+ des:"ECR aberto, T-TEER (TriClip) vs. terapia médica",
+ N:"350 (coorte primária); 572 no total com a extensão adaptativa",
+ pop:"Insuficiência TRICÚSPIDE grave sintomática apesar de terapia médica",
+ pri:"Composto hierárquico (win ratio) de morte ou cirurgia tricúspide, hospitalização por IC e melhora de ≥15 pontos no KCCQ em 1 ano",
+ res:[{l:"Win ratio",v:"1,48 (p=0,02)"},{l:"KCCQ ≥15 pontos",v:"~50% vs ~26%"},{l:"IT ≤ moderada 30d",v:"87,0% vs 4,8%"},{l:"Morte / cirurgia / hosp. IC",v:"sem diferença em 1 ano"}],
+ sum:"Melhorou qualidade de vida e reduziu drasticamente a insuficiência tricúspide, sem qualquer benefício em mortalidade ou hospitalização por IC no primeiro ano.",
+ pearl:"Primeiro ensaio randomizado de reparo tricúspide percutâneo, cujo desfecho positivo foi carregado inteiramente pelo escore de qualidade de vida.",
+ rel:"Fundou a terapia tricúspide transcateter e sustentou a aprovação regulatória do dispositivo. Também inaugurou um debate metodológico duradouro sobre desfechos hierárquicos dirigidos por qualidade de vida.",
+ lim:["O componente que carrega o win ratio é o KCCQ — desfecho subjetivo em estudo ABERTO, altamente suscetível a efeito placebo","Nenhum benefício em mortalidade, cirurgia ou hospitalização por IC em 1 ano","Terapia médica do braço-controle não padronizada nem auditada","Crossover permitido após o primeiro ano, contaminando o seguimento tardio"],
+ cri:"A aprovação regulatória baseada essencialmente em qualidade de vida foi criticada em editoriais de peso — inclusive em JAMA Cardiology — precisamente por ser um desfecho vulnerável a viés em ensaio não cego. O campo aceita o benefício sintomático e continua cobrando um ensaio com desfecho duro."},
+
+{id:"triscend2",nm:"TRISCEND II",y:2025,d:"tricuspide",conf:"media",
+ ref:"Hahn RT et al. NEJM 2025;392:115–26",doi:"10.1056/NEJMoa2401918",
+ des:"ECR aberto, substituição tricúspide transcateter (EVOQUE) + terapia médica vs. terapia médica",
+ N:"400",
+ pop:"Insuficiência tricúspide grave sintomática",
+ pri:"Composto hierárquico (win ratio) incluindo mortalidade, implante de dispositivo, hospitalização por IC, KCCQ, NYHA e teste de caminhada",
+ res:[{l:"Win ratio",v:"2,02 (p<0,001)"},{l:"Eliminação da IT",v:"praticamente completa"},{l:"Mortalidade / hosp. IC",v:"sem redução em 1 ano"},{l:"Marcapasso novo",v:"~1 em cada 4"}],
+ sum:"Substituição tricúspide eliminou a insuficiência e melhorou muito sintomas e qualidade de vida, sem reduzir morte ou hospitalização por IC em 1 ano.",
+ pearl:"Ensaio de substituição — e não reparo — da valva tricúspide, com eliminação quase completa da regurgitação e alto índice de marcapasso.",
+ rel:"Demonstra que é possível abolir a insuficiência tricúspide por via percutânea. Junto com o reparo, define um algoritmo por anatomia e gravidade.",
+ lim:["Desfecho hierárquico novamente dominado por componentes subjetivos em estudo aberto","Ausência de benefício em desfechos duros no primeiro ano","Alta taxa de marcapasso definitivo e necessidade de anticoagulação","Sangramento maior mais frequente no braço intervenção"],
+ cri:"Impressionou pelo desempenho anatômico e repetiu a controvérsia do TRILUMINATE: o ganho é inequívoco em sintomas e ausente em desfechos duros. A pergunta que a comunidade repete é se o remodelamento ventricular direito eventualmente traduzirá isso em sobrevida."},
+
+{id:"trifr",nm:"Tri.Fr",y:2025,d:"tricuspide",conf:"alta",
+ ref:"Donal E et al. JAMA 2025;333:124–32 · 2 anos apresentados no ACC.26",doi:null,dst:"DOI não confirmado nesta produção",
+ des:"ECR investigador-iniciado, aberto, T-TEER + terapia médica otimizada vs. terapia médica otimizada isolada, SEM crossover permitido",
+ N:"300 (24 centros na França e Bélgica)",
+ pop:"Insuficiência tricúspide SECUNDÁRIA grave e sintomática; idade média 78 anos, 64% mulheres",
+ pri:"Escore composto clínico de Packer em 1 ano (classe NYHA, avaliação global do paciente e eventos cardiovasculares maiores)",
+ res:[{l:"Escore de Packer melhorado",v:"74,1% vs 40,6% (p<0,0001)"},{l:"KCCQ 1 ano",v:"69,9 vs 55,4"},{l:"Win ratio composto",v:"2,06 (IC 1,38–3,08)"},{l:"2 anos — composto",v:"19,7% vs 34,5%"},{l:"2 anos — hosp. IC",v:"redução relativa ~40%"}],
+ sum:"Reparo tricúspide somado a manejo clínico multidisciplinar rigoroso melhorou o escore clínico composto e, aos 2 anos, reduziu hospitalizações por IC, sem crossover contaminando o controle.",
+ pearl:"Ensaio acadêmico francês de reparo tricúspide que proibiu crossover e mostrou, aos dois anos, redução de hospitalizações por insuficiência cardíaca.",
+ rel:"É o ensaio tricúspide metodologicamente mais limpo: independente da indústria, com terapia médica realmente otimizada e sem crossover — o que permitiu, pela primeira vez, um sinal em desfecho não subjetivo aos 2 anos.",
+ lim:["O desfecho primário de 1 ano é parcialmente subjetivo (NYHA e avaliação global do paciente) em estudo aberto","Sem poder para mortalidade","Amostra de 300 pacientes; centros de alta experiência em dois países","O sinal de hospitalização aos 2 anos é secundário e requer confirmação"],
+ cri:"Bem recebido justamente pelo rigor: os próprios investigadores destacaram que o manejo clínico multidisciplinar rigoroso produziu taxa de eventos baixa mesmo no braço-controle — um lembrete de que boa parte do benefício aparente em outros ensaios pode vir de terapia médica insuficiente no comparador."},
+
+{id:"clasp2tr",nm:"CLASP II TR",y:null,d:"tricuspide",conf:"checar",noq:true,
+ ref:"Em andamento (NCT04097145) — sem desfecho primário publicado",doi:null,dst:"Sem publicação de desfecho primário",
+ des:"ECR de reparo tricúspide borda-a-borda com sistema PASCAL vs. terapia médica",
+ N:"em andamento",
+ pop:"Insuficiência tricúspide grave sintomática, em recrutamento para reparo borda-a-borda com sistema alternativo",
+ pri:"Desfecho primário ainda não publicado",
+ res:[{l:"Status",v:"em andamento"}],
+ sum:"Ensaio em andamento de reparo tricúspide com sistema alternativo, ainda sem desfecho primário publicado.",
+ pearl:"Ensaio tricúspide em andamento com o segundo sistema de reparo borda-a-borda, ainda sem resultados publicados.",
+ rel:"Deve responder se o efeito observado com o primeiro sistema de reparo tricúspide é propriedade da terapia ou do dispositivo.",
+ lim:["Sem resultados publicados — não deve ser citado como evidência","Mesmo desafio metodológico dos anteriores: desfechos de qualidade de vida em estudo aberto"],
+ cri:"Aguardado como teste de consistência do campo."},
+
+{id:"tricihf",nm:"TRICI-HF",y:null,d:"tricuspide",conf:"checar",noq:true,
+ ref:"Em andamento (NCT04634266) — sem desfecho primário publicado",doi:null,dst:"Sem publicação de desfecho primário",
+ des:"ECR de intervenção tricúspide transcateter em pacientes com insuficiência cardíaca",
+ N:"em andamento",
+ pop:"Insuficiência tricúspide grave com IC",
+ pri:"Desfecho primário ainda não publicado",
+ res:[{l:"Status",v:"em andamento"}],
+ sum:"Ensaio europeu em andamento sobre intervenção tricúspide na insuficiência cardíaca, sem resultados publicados.",
+ pearl:"Ensaio tricúspide europeu em andamento, desenhado com foco em desfechos de insuficiência cardíaca.",
+ rel:"Pode fornecer o desfecho duro que falta ao campo tricúspide.",
+ lim:["Desfecho primário ainda não publicado — não citável como evidência","Recrutamento em população heterogênea de IC"],
+ cri:"Aguardado."},
+
+/* ─────────── LAAC ─────────── */
+{id:"protectaf",nm:"PROTECT AF",y:2009,d:"laac",conf:"media",
+ ref:"Holmes DR et al. Lancet 2009;374:534–42 · Seguimento estendido: Reddy VY et al. JAMA 2014;312:1988–98",doi:"10.1016/S0140-6736(09)61343-X",
+ des:"ECR de não-inferioridade 2:1, oclusão do apêndice atrial esquerdo (Watchman) vs. varfarina",
+ N:"707",
+ pop:"Fibrilação atrial não valvar com CHADS₂ ≥ 1, ELEGÍVEIS para anticoagulação",
+ pri:"Composto de AVC, embolia sistêmica e morte cardiovascular",
+ res:[{l:"Eficácia",v:"3,0 vs 4,9 eventos/100 pac-ano (RR 0,62; NI atingida)"},{l:"Segurança",v:"7,4 vs 4,4 eventos/100 pac-ano"},{l:"Derrame pericárdico",v:"4,8%"},{l:"3,8 anos (JAMA 2014)",v:"superioridade no composto e menor morte CV"}],
+ sum:"Primeiro ensaio a mostrar não-inferioridade da oclusão do apêndice frente à varfarina, ao custo de complicações periprocedimento frequentes.",
+ pearl:"Primeiro ensaio randomizado de oclusão do apêndice atrial esquerdo, testado contra varfarina em pacientes elegíveis para anticoagulação.",
+ rel:"Fundou o campo e produziu, no seguimento estendido, o único dado randomizado de redução de mortalidade cardiovascular da terapia — sustentado sobretudo pela prevenção de AVC hemorrágico.",
+ lim:["Comparador é varfarina, hoje substituída pelos anticoagulantes diretos — a pergunta clínica atual não foi testada","Margem de não-inferioridade generosa e taxa de eventos baixa","Complicações periprocedimento altas, com derrame pericárdico em quase 5%, refletindo curva de aprendizado","Benefício dirigido por AVC hemorrágico e não por AVC isquêmico"],
+ cri:"Recepção dividida desde o início. Céticos apontam que o resultado significa 'evitar o sangramento da varfarina', não 'prevenir melhor o AVC' — argumento que se tornou mais forte com a chegada dos anticoagulantes diretos."},
+
+{id:"prevail",nm:"PREVAIL",y:2014,d:"laac",conf:"media",
+ ref:"Holmes DR et al. JACC 2014;64:1–12 · Meta-análise de 5 anos: Reddy VY et al. JACC 2017;70:2964–75",doi:"10.1016/j.jacc.2014.04.029",
+ des:"ECR de não-inferioridade 2:1 confirmatório, Watchman vs. varfarina",
+ N:"407",
+ pop:"FA não valvar com risco elevado de AVC, elegíveis para anticoagulação",
+ pri:"Co-primários: composto de AVC/embolia/morte CV em 18 meses e AVC/embolia após 7 dias",
+ res:[{l:"1º co-primário",v:"NÃO atingiu não-inferioridade"},{l:"2º co-primário",v:"não-inferioridade atingida"},{l:"Complicações em 7 dias",v:"2,2% (melhora vs PROTECT AF)"},{l:"5 anos (meta-análise)",v:"menos AVC hemorrágico e morte; mais AVC isquêmico com o dispositivo"}],
+ sum:"Ensaio confirmatório que FALHOU o primeiro desfecho co-primário, com segurança periprocedimento claramente melhor que a do estudo anterior.",
+ pearl:"Ensaio confirmatório de oclusão do apêndice que não atingiu o primeiro desfecho co-primário, mas demonstrou queda expressiva das complicações do procedimento.",
+ rel:"É a peça incômoda do dossiê regulatório: a aprovação americana apoiou-se em uma base de evidência que inclui um ensaio confirmatório formalmente negativo em seu desfecho principal.",
+ lim:["Taxa de eventos no braço varfarina foi excepcionalmente baixa, tornando a não-inferioridade matematicamente difícil","Amostra pequena e subpoderada","Excesso numérico de AVC isquêmico com o dispositivo na análise combinada de 5 anos","Comparador varfarina, novamente"],
+ cri:"Frequentemente citado por críticos do campo como demonstração de que a base de evidência da oclusão do apêndice é mais frágil do que sua adoção clínica sugere."},
+
+{id:"prague17",nm:"PRAGUE-17",y:2020,d:"laac",conf:"media",
+ ref:"Osmancik P et al. JACC 2020;75:3122–35",doi:"10.1016/j.jacc.2020.04.067",
+ des:"ECR de não-inferioridade investigador-iniciado, LAAC vs. anticoagulante oral direto",
+ N:"402",
+ pop:"FA de alto risco com história de sangramento, sangramento sob anticoagulação ou evento cardioembólico em uso de anticoagulante",
+ pri:"Composto de AVC, AIT, embolia sistêmica, sangramento clinicamente relevante, morte CV e complicações do procedimento",
+ res:[{l:"Composto anual",v:"10,99% vs 13,42% (sHR 0,84; NI atingida)"},{l:"Complicações maiores",v:"4,5%"},{l:"4 anos",v:"não-inferioridade mantida"}],
+ sum:"Primeiro ensaio a comparar oclusão do apêndice diretamente com anticoagulante direto, atingindo não-inferioridade em população de alto risco de sangramento.",
+ pearl:"Primeiro ensaio randomizado a usar anticoagulante oral direto — e não varfarina — como comparador da oclusão do apêndice.",
+ rel:"Atualizou a pergunta clínica do campo para o comparador contemporâneo e sustentou a indicação em pacientes com sangramento prévio.",
+ lim:["Amostra pequena (n=402) com poder muito limitado para um desfecho composto amplo","Aberto, investigador-iniciado, com dois dispositivos diferentes","Composto mistura eficácia, segurança e complicações do procedimento, o que facilita a não-inferioridade","Complicações maiores do procedimento em 4,5%"],
+ cri:"Valorizado pela independência e pela pergunta correta, mas amplamente reconhecido como insuficiente para fundamentar prática — foi explicitamente concebido como estudo de sinal, não como definitivo."},
+
+{id:"pinnacleflx",nm:"PINNACLE FLX",y:2021,d:"laac",conf:"media",
+ ref:"Kar S et al. Circulation 2021;143:1754–62",doi:"10.1161/CIRCULATIONAHA.120.050117",
+ des:"Estudo pivotal de BRAÇO ÚNICO do dispositivo Watchman FLX",
+ N:"400",
+ pop:"FA não valvar com indicação de alternativa à anticoagulação oral",
+ pri:"Fechamento efetivo do apêndice (leak ≤ 5 mm) em 12 meses e segurança em 7 dias",
+ res:[{l:"Fechamento efetivo",v:"100%"},{l:"Eventos de segurança em 7 dias",v:"0,5%"}],
+ sum:"Estudo de braço único que demonstrou fechamento anatômico completo e segurança periprocedimento muito melhor que a das gerações anteriores.",
+ pearl:"Estudo de braço único que aprovou a segunda geração do dispositivo de oclusão do apêndice com base em desfecho anatômico e segurança.",
+ rel:"Documentou a maturação técnica do procedimento: a queda das complicações entre as gerações do dispositivo é o principal argumento contra extrapolar a segurança dos ensaios antigos.",
+ lim:["Braço único e desfecho substituto anatômico — não avalia prevenção de AVC","Sem comparador","População selecionada, operadores experientes","Não responde à pergunta clínica de eficácia comparativa"],
+ cri:"Aceito como estudo de dispositivo e criticado quando usado como argumento de eficácia clínica — fechamento anatômico não é desfecho de paciente."},
+
+{id:"amuletide",nm:"Amulet IDE",y:2021,d:"laac",conf:"media",
+ ref:"Lakkireddy D et al. Circulation 2021;144:1543–52",doi:"10.1161/CIRCULATIONAHA.121.057063",
+ des:"ECR de não-inferioridade entre dispositivos (Amulet vs. Watchman)",
+ N:"1.878",
+ pop:"FA não valvar com indicação de oclusão do apêndice",
+ pri:"Co-primários de segurança, eficácia e fechamento do apêndice",
+ res:[{l:"Segurança/eficácia",v:"não-inferioridade atingida"},{l:"Fechamento completo",v:"maior com Amulet (~63% vs ~46% sem leak)"},{l:"Complicações periprocedimento",v:"maiores com Amulet (~4,5% vs ~2,5%)"}],
+ sum:"Os dois dispositivos foram clinicamente equivalentes, com melhor fechamento anatômico e mais complicações para um deles.",
+ pearl:"Maior comparação randomizada direta entre os dois dispositivos de oclusão do apêndice atrial esquerdo.",
+ rel:"Definiu que a escolha entre dispositivos é de anatomia e de perfil de risco procedimental, não de eficácia clínica.",
+ lim:["Desfechos de fechamento são anatômicos e não clínicos","Excesso de complicações periprocedimento com o dispositivo de melhor selamento","Aberto, patrocinado pelo fabricante do dispositivo em teste","Seguimento insuficiente para trombo tardio e leak evolutivo"],
+ cri:"Bem recebido como estudo comparativo honesto; a leitura consensual é que melhor selamento anatômico ainda não se traduziu em menos AVC."},
+
+{id:"swissapero",nm:"SWISS-APERO",y:2022,d:"laac",conf:"media",
+ ref:"Galea R et al. Circulation 2022;145:724–38",doi:"10.1161/CIRCULATIONAHA.121.057859",
+ des:"ECR acadêmico entre dispositivos, com desfecho por tomografia computadorizada",
+ N:"221",
+ pop:"FA não valvar com indicação clínica de oclusão do apêndice",
+ pri:"Leak peridispositivo avaliado por tomografia aos 45 dias",
+ res:[{l:"Leak por TC",v:"67,6% vs 70,0% (sem superioridade)"},{l:"Complicações do procedimento",v:"maiores com Amulet"}],
+ sum:"Estudo acadêmico que NÃO confirmou a superioridade anatômica de um dispositivo sobre o outro quando a avaliação foi feita por tomografia.",
+ pearl:"Ensaio acadêmico suíço que contradisse, por tomografia, a suposta vantagem de selamento de um dos dispositivos de oclusão do apêndice.",
+ rel:"Mostra como a modalidade de imagem escolhida determina a conclusão: por ecocardiografia, os leaks parecem raros; por tomografia, são a regra em ambos os dispositivos.",
+ lim:["Desfecho substituto de imagem, sem correlação clínica estabelecida","Amostra pequena","Significado clínico do leak detectado apenas por tomografia permanece indefinido","Aberto"],
+ cri:"Muito citado como alerta metodológico: o campo da oclusão do apêndice construiu boa parte de sua narrativa sobre desfechos de imagem cuja relevância clínica nunca foi demonstrada."},
+
+{id:"option",nm:"OPTION",y:2025,d:"laac",conf:"media",
+ ref:"Wazni OM et al. NEJM 2025;392:1277–87",doi:"10.1056/NEJMoa2408308",
+ des:"ECR de não-inferioridade, LAAC após ablação de FA vs. anticoagulação oral",
+ N:"1.600",
+ pop:"Pacientes submetidos a ABLAÇÃO de fibrilação atrial com risco de AVC elevado",
+ pri:"Composto de morte por todas as causas, AVC ou embolia sistêmica em 36 meses",
+ res:[{l:"Desfecho primário",v:"5,3% vs 5,8% (NI atingida)"},{l:"Sangramento maior não relacionado ao procedimento",v:"8,5% vs 18,1% (superioridade)"}],
+ sum:"Após ablação de FA, a oclusão do apêndice foi não-inferior à anticoagulação para eventos tromboembólicos e reduziu pela metade o sangramento não procedimental.",
+ pearl:"Ensaio dedicado à estratégia de oclusão do apêndice logo após ablação de fibrilação atrial.",
+ rel:"Define um nicho clínico concreto e crescente: o paciente que já está na sala de eletrofisiologia e deseja abandonar a anticoagulação.",
+ lim:["Aberto, com desfecho composto dominado por morte por todas as causas — o que dilui o sinal específico de AVC","População pós-ablação é selecionada e mais jovem que a média dos pacientes com FA","Sangramento no braço anticoagulado inclui período de terapia mais intensa","Seguimento de 36 meses insuficiente para trombo tardio de dispositivo"],
+ cri:"Recepção positiva na eletrofisiologia e cética entre metodologistas, pela composição do desfecho primário. A crítica central é que 'não-inferioridade em um composto liderado por mortalidade' não demonstra equivalência na prevenção de AVC."},
+
+{id:"championaf",nm:"CHAMPION-AF",y:2026,d:"laac",conf:"alta",
+ ref:"Doshi SK, Kar S, Nair DG et al. NEJM 2026 (apresentado no ACC.26)",doi:"10.1056/NEJMoa2517213",
+ des:"ECR aberto de não-inferioridade, Watchman FLX vs. anticoagulante oral direto, 141 centros",
+ N:"3.000 (1.499 dispositivo / 1.501 anticoagulante)",
+ pop:"FA não valvar com CHA₂DS₂-VASc ≥2 (homens) ou ≥3 (mulheres) ELEGÍVEIS para anticoagulação de longo prazo; idade média 72 anos, HAS-BLED médio 1,3",
+ pri:"Composto de AVC isquêmico ou hemorrágico, morte cardiovascular e embolia sistêmica em 3 anos (não-inferioridade, margem ABSOLUTA de 4,8 pontos percentuais)",
+ res:[{l:"Desfecho primário",v:"5,7% vs 4,8% (NI atingida; IC da diferença -0,8 a +2,6)"},{l:"Sangramento não procedimental",v:"10,9% vs 19,0% (superioridade)"},{l:"Benefício clínico líquido",v:"15,1% vs 21,8%"},{l:"AVC isquêmico anualizado",v:"1,1% vs 0,7%"},{l:"Sangramento ISTH incluindo procedimento",v:"12,8% vs 19,0%"}],
+ sum:"Em pacientes que PODIAM tomar anticoagulante, a oclusão do apêndice foi não-inferior no composto e superior em sangramento — mas com AVC isquêmico numericamente mais frequente.",
+ pearl:"Maior ensaio de oclusão do apêndice já feito, testando o dispositivo como alternativa de primeira linha em pacientes sem contraindicação a anticoagulante.",
+ rel:"É a tentativa de mover a terapia do nicho de contraindicação para a primeira linha, com potencial impacto sobre milhões de pacientes. Também é o caso didático mais atual sobre desenho de não-inferioridade.",
+ lim:["Margem de não-inferioridade ABSOLUTA de 4,8 pontos percentuais desenhada para taxas de evento muito maiores que as observadas (5,7% e 4,8%) — a margem chega a ser da ordem de grandeza do próprio evento","Composto inclui morte cardiovascular, que dilui e pode mascarar diferença em AVC isquêmico","AVC isquêmico anualizado numericamente maior com o dispositivo (1,1% vs 0,7%) — direção oposta à hipótese terapêutica","Quando o sangramento do próprio procedimento é contabilizado, a vantagem de segurança encolhe","Aberto, patrocinado pelo fabricante; seguimento de 3 anos em terapia destinada a durar décadas"],
+ cri:"A recepção foi de 'vitória desconfortável'. Editoriais em Heart Rhythm e análises independentes argumentaram que o desenho quebra boa parte das convenções de ensaios de não-inferioridade — margem fixa desproporcional às taxas observadas e composto que inclui mortalidade — e que o excesso numérico de AVC isquêmico é exatamente o desfecho que a terapia deveria prevenir. A leitura prudente é decisão compartilhada, não substituição rotineira da anticoagulação."},
+
+{id:"closureaf",nm:"CLOSURE-AF",y:2026,d:"laac",conf:"alta",
+ ref:"Landmesser U et al. Apresentado no AHA 2025; publicação plena em 2026",doi:null,dst:"DOI não confirmado nesta produção",
+ des:"ECR PROBE (aberto com adjudicação cega) investigador-iniciado, 46 centros na Alemanha, LAAC vs. terapia médica dirigida pelo médico",
+ N:"912",
+ pop:"FA não valvar com CHA₂DS₂-VASc ≥2 e ALTO RISCO DE SANGRAMENTO (HAS-BLED ≥3, sangramento maior prévio ou doença renal crônica com TFG 15–29); idade média ≈79 anos",
+ pri:"Composto de AVC, embolia sistêmica, morte cardiovascular ou não explicada e sangramento maior (BARC ≥3), mediana de 3 anos",
+ res:[{l:"Desfecho primário",v:"16,83 vs 13,27 eventos/100 pac-ano"},{l:"HR",v:"1,28 (IC 1,01–1,62)"},{l:"Não-inferioridade",v:"NÃO atingida (p=0,44)"},{l:"AVC",v:"2,65 vs 2,66/100 pac-ano"},{l:"Tamponamento",v:"1,12%"},{l:"Sangramento com transfusão",v:"4,04%"},{l:"Morte relacionada ao procedimento",v:"0,44%"}],
+ sum:"Primeiro ensaio randomizado em que a oclusão do apêndice NÃO foi não-inferior à terapia médica, com eventos numericamente favorecendo o tratamento clínico.",
+ pearl:"Ensaio acadêmico alemão em pacientes de alto risco de sangramento que falhou a não-inferioridade e contrariou a prática corrente de oclusão do apêndice.",
+ rel:"É o contraponto mais forte já publicado a um procedimento com centenas de milhares de casos realizados. Justamente na população em que a terapia é mais indicada na prática, o resultado foi desfavorável.",
+ lim:["Uso de quatro dispositivos diferentes, alguns de geração antiga","Regime antitrombótico pós-procedimento com dupla antiagregação por até 3 meses — apontado por muitos como causa plausível do excesso de sangramento","Taxa de complicações periprocedimento relativamente alta (~5,7% no conjunto), com eventos precoces dominando as curvas","População muito idosa e multimórbida, com alta mortalidade competitiva","Terapia médica do braço-controle heterogênea, incluindo pacientes sem antitrombótico"],
+ cri:"Resultado descrito pelos próprios investigadores como inesperado, com o pesquisador principal declarando que mudaria sua prática. A crítica principal veio de defensores da terapia, apontando dispositivos antigos e esquema antitrombótico inadequado; a contra-crítica é que estes são exatamente os fatores que compõem o procedimento no mundo real. Lido em conjunto com CHAMPION-AF, sugere que o benefício da terapia depende criticamente de seleção — e não é propriedade universal do procedimento."},
+
+{id:"catalyst",nm:"CATALYST",y:null,d:"laac",conf:"checar",noq:true,
+ ref:"Em andamento — sem desfecho primário publicado",doi:null,dst:"Sem publicação de desfecho primário",
+ des:"ECR de oclusão do apêndice com dispositivo Amulet vs. anticoagulante oral direto",
+ N:"em andamento",
+ pop:"FA não valvar elegível para anticoagulação",
+ pri:"Desfecho primário ainda não publicado",
+ res:[{l:"Status",v:"em andamento"}],
+ sum:"Ensaio em andamento que testa o segundo dispositivo de oclusão do apêndice contra anticoagulante direto.",
+ pearl:"Ensaio em andamento que replicará, com outro dispositivo, a pergunta de primeira linha contra anticoagulante direto.",
+ rel:"Será o teste de consistência externa do resultado do maior ensaio da área.",
+ lim:["Sem resultados publicados","Sujeito às mesmas críticas de desenho de não-inferioridade do campo"],
+ cri:"Aguardado como árbitro da controvérsia atual."},
+
+/* ─────────── FOP ─────────── */
+{id:"closure1",nm:"CLOSURE I",y:2012,d:"fop",conf:"media",
+ ref:"Furlan AJ et al. NEJM 2012;366:991–9",doi:"10.1056/NEJMoa1009639",
+ des:"ECR aberto, fechamento percutâneo do forame oval (STARFlex) vs. terapia médica",
+ N:"909",
+ pop:"AVC ou AIT criptogênico em pacientes de 18 a 60 anos com forame oval patente",
+ pri:"Composto de AVC ou AIT em 2 anos, morte precoce e morte neurológica",
+ res:[{l:"AVC/AIT em 2 anos",v:"5,5% vs 6,8% (p=0,37)"},{l:"FA nova",v:"5,7% vs 0,7%"}],
+ sum:"Resultado NEGATIVO: o fechamento não reduziu recorrência de AVC ou AIT, com excesso de fibrilação atrial associada ao dispositivo.",
+ pearl:"Primeiro ensaio randomizado de fechamento de forame oval, negativo, realizado com um dispositivo posteriormente abandonado.",
+ rel:"Freou por anos a adoção do fechamento percutâneo e ensinou lições de desenho que os ensaios positivos posteriores incorporaram: seleção anatômica e desfecho restrito a AVC.",
+ lim:["Dispositivo específico com alta taxa de trombo e de fibrilação atrial, retirado do mercado — resultado pode refletir o dispositivo, não o conceito","Inclusão de AIT no desfecho primário, diagnóstico impreciso e sujeito a erro de classificação","Inclusão de pacientes com causas alternativas plausíveis de AVC, diluindo o efeito","Sem seleção por características anatômicas de alto risco (shunt grande, aneurisma septal)"],
+ cri:"Interpretado inicialmente como sepultamento da terapia. Em retrospecto, a leitura consensual é que o estudo respondeu à pergunta errada com o dispositivo errado — e que sua principal contribuição foi metodológica."},
+
+{id:"pctrial",nm:"PC Trial",y:2013,d:"fop",conf:"media",
+ ref:"Meier B et al. NEJM 2013;368:1083–91",doi:"10.1056/NEJMoa1211716",
+ des:"ECR aberto, fechamento com Amplatzer PFO Occluder vs. terapia médica",
+ N:"414",
+ pop:"AVC ou embolia periférica criptogênicos em pacientes com menos de 60 anos e forame oval patente",
+ pri:"Composto de morte, AVC não fatal, AIT e embolia periférica",
+ res:[{l:"Desfecho composto",v:"3,4% vs 5,2% (HR 0,63; p=0,34)"}],
+ sum:"Resultado NEGATIVO por falta de poder: tendência favorável ao fechamento que não atingiu significância.",
+ pearl:"Ensaio europeu de fechamento de forame oval com recrutamento arrastado por quase uma década, negativo por falta de poder estatístico.",
+ rel:"Compõe, junto com CLOSURE I e RESPECT, a tríade de ensaios inicialmente 'negativos' cuja releitura conjunta e cujos seguimentos longos acabaram invertendo a conclusão do campo.",
+ lim:["Recrutamento extremamente lento ao longo de cerca de dez anos, com mudança do padrão de cuidado durante o estudo","Amostra pequena e taxa de eventos muito baixa — poder insuficiente","Desfecho composto incluindo AIT","Sem enriquecimento por anatomia de alto risco"],
+ cri:"Lido como estudo subpoderado mais do que como estudo negativo. Contribuiu para a percepção de que a pergunta exigia seleção anatômica e seguimento longo."},
+
+{id:"respect",nm:"RESPECT",y:2013,d:"fop",conf:"media",
+ ref:"Carroll JD et al. NEJM 2013;368:1092–100 · Longo prazo: Saver JL et al. NEJM 2017;377:1022–32",doi:"10.1056/NEJMoa1301440",
+ des:"ECR aberto, fechamento com Amplatzer vs. terapia médica, com seguimento estendido",
+ N:"980",
+ pop:"AVC criptogênico em pacientes de 18 a 60 anos com forame oval patente",
+ pri:"AVC isquêmico recorrente não fatal, AVC fatal ou morte precoce",
+ res:[{l:"Análise primária por ITT",v:"9 vs 16 eventos (HR 0,49; p=0,08 — negativo)"},{l:"Longo prazo (mediana 5,9 anos)",v:"0,58 vs 1,07 eventos/100 pac-ano (HR 0,55; p=0,046)"},{l:"Maior benefício",v:"shunt grande e aneurisma do septo"},{l:"TVP / embolia pulmonar",v:"mais frequentes com dispositivo"}],
+ sum:"Negativo na análise primária e positivo no seguimento de quase seis anos, com benefício concentrado nas anatomias de alto risco.",
+ pearl:"Ensaio de fechamento de forame oval que só se tornou positivo com quase seis anos de seguimento, revelando que o efeito precisa de tempo para se acumular.",
+ rel:"Ensinou a lição temporal do campo: em uma doença com taxa de eventos de cerca de 1% ao ano, dois anos de seguimento são insuficientes para demonstrar benefício.",
+ lim:["Análise primária formalmente negativa — o resultado positivo vem de seguimento estendido, não pré-especificado como confirmatório","Perdas de seguimento desiguais entre os braços","Excesso de trombose venosa profunda e embolia pulmonar no braço do dispositivo","Aberto"],
+ cri:"Recepção que evoluiu de decepção para reabilitação. Críticos advertem que conclusões extraídas de seguimento estendido carregam menor grau de certeza que as do desfecho primário original."},
+
+{id:"close",nm:"CLOSE",y:2017,d:"fop",conf:"media",
+ ref:"Mas JL et al. NEJM 2017;377:1011–21",doi:"10.1056/NEJMoa1705915",
+ des:"ECR aberto de TRÊS braços: fechamento + antiagregante vs. antiagregante isolado vs. anticoagulante",
+ N:"663",
+ pop:"AVC criptogênico em pacientes de 16 a 60 anos com forame oval de ALTO RISCO — shunt grande ou aneurisma do septo interatrial",
+ pri:"AVC recorrente",
+ res:[{l:"AVC recorrente",v:"0% (0/238) vs 6% (14/235)"},{l:"HR",v:"0,03"},{l:"NNT em ~5 anos",v:"≈17"},{l:"FA",v:"4,6% vs 0,9%"}],
+ sum:"Nenhum AVC recorrente no braço de fechamento contra 14 no braço de antiagregante isolado — o resultado mais extremo da literatura de forame oval.",
+ pearl:"Ensaio francês que selecionou apenas anatomias de alto risco e não registrou nenhum AVC recorrente no braço do dispositivo.",
+ rel:"Junto com REDUCE e o seguimento do RESPECT, inverteu definitivamente as diretrizes: o fechamento passou a ser recomendado em pacientes jovens com AVC criptogênico e anatomia de risco.",
+ lim:["Aberto, com braço de anticoagulação subpoderado e inconclusivo","Seleção anatômica muito rigorosa — o efeito não se aplica a forames pequenos sem aneurisma","Excesso de fibrilação atrial associada ao dispositivo","Efeito de magnitude improvável de se reproduzir fora de população tão selecionada"],
+ cri:"Aclamado, com a ressalva de que o resultado de zero eventos é tão extremo que funciona melhor como demonstração de princípio do que como estimativa de efeito. O consenso é que a seleção anatômica foi o ingrediente decisivo."},
+
+{id:"reduce",nm:"Gore REDUCE",y:2017,d:"fop",conf:"media",
+ ref:"Søndergaard L et al. NEJM 2017;377:1033–42",doi:"10.1056/NEJMoa1707404",
+ des:"ECR 2:1, fechamento + antiagregante vs. antiagregante isolado, com ressonância magnética seriada",
+ N:"664",
+ pop:"AVC criptogênico em pacientes com menos de 60 anos e forame oval patente",
+ pri:"Co-primários: AVC clínico recorrente e novo infarto cerebral por ressonância",
+ res:[{l:"AVC recorrente",v:"1,4% vs 5,4% (HR 0,23; p=0,002)"},{l:"Novo infarto cerebral silencioso",v:"5,7% vs 11,3%"},{l:"FA",v:"6,6% vs 0,4% (majoritariamente transitória)"}],
+ sum:"Reduziu tanto o AVC clínico quanto os novos infartos cerebrais silenciosos detectados por ressonância.",
+ pearl:"Ensaio de fechamento de forame oval que incorporou ressonância seriada e demonstrou redução também de infartos cerebrais silenciosos.",
+ rel:"O componente de imagem elevou a plausibilidade biológica do efeito: o dispositivo não apenas reduziu eventos clínicos, mas também a carga isquêmica subclínica.",
+ lim:["Comparador restrito a antiagregante — não testa fechamento contra anticoagulação","Excesso de fibrilação atrial pós-implante, embora predominantemente transitória","População jovem e altamente selecionada","Aberto, patrocinado pelo fabricante"],
+ cri:"Bem recebido e considerado, junto com CLOSE, o par que consolidou a indicação. A pergunta remanescente que a crítica mantém em aberto é fechamento versus anticoagulação, nunca respondida com poder adequado."},
+
+{id:"defensepfo",nm:"DEFENSE-PFO",y:2018,d:"fop",conf:"media",
+ ref:"Lee PH et al. JACC 2018;71:2335–42",doi:"10.1016/j.jacc.2018.02.046",
+ des:"ECR aberto, fechamento vs. terapia médica, coreano",
+ N:"120",
+ pop:"AVC criptogênico com forame oval de ALTO RISCO ANATÔMICO (septo hipermóvel, shunt grande ou aneurisma)",
+ pri:"Composto de AVC, morte vascular e sangramento maior em 2 anos",
+ res:[{l:"Desfecho composto",v:"0% vs 12,9% (p=0,013)"}],
+ sum:"Nenhum evento no braço de fechamento contra 12,9% no braço clínico, em população selecionada por anatomia de alto risco.",
+ pearl:"Pequeno ensaio asiático que restringiu a inclusão a características anatômicas de alto risco e não registrou eventos no braço intervencionista.",
+ rel:"Reforça a mensagem central do campo: o efeito é grande, porém só na anatomia certa. Contribuiu para incorporar critérios morfológicos às diretrizes.",
+ lim:["Amostra muito pequena (n=120), com poucos eventos e intervalos de confiança amplos","Aberto, unicêntrico em termos de rede e étnicamente homogêneo","Desfecho composto inclui sangramento maior, o que favorece o braço sem antitrombótico intensivo","Estimativa de efeito instável"],
+ cri:"Aceito como confirmação direcional, não como estimativa confiável de magnitude. Costuma ser citado em conjunto com CLOSE pela mesma mensagem sobre seleção anatômica."}
+];
+
+const DOM_LABEL = {tavi:"Aorta / TAVI",mitral:"Mitral",tricuspide:"Tricúspide",laac:"LAAC",fop:"FOP"};
+const DOM_INTRO = {
+ tavi:{lab:"Estenose aórtica",tit:"Da inoperabilidade ao baixo risco — e de volta à cautela",desc:"Quinze anos de evidência que levaram o implante valvar transcateter do paciente sem alternativa até o paciente de baixo risco cirúrgico. Os dados de 6 e 7 anos são o novo campo de batalha: o que está em jogo não é mais eficácia, é durabilidade."},
+ mitral:{lab:"Insuficiência mitral",tit:"O campo em que a seleção do paciente define o resultado",desc:"Dois ensaios com desenho semelhante publicados no mesmo mês chegaram a conclusões opostas. Entender por quê é entender toda a terapia mitral transcateter — e agora a substituição valvar entrou no jogo."},
+ tricuspide:{lab:"Insuficiência tricúspide",tit:"Eficácia anatômica inquestionável, desfecho duro ainda pendente",desc:"Todos os ensaios eliminam a regurgitação e melhoram sintomas. Nenhum reduziu mortalidade em um ano. O debate metodológico sobre desfechos hierárquicos dirigidos por qualidade de vida nasceu aqui."},
+ laac:{lab:"Apêndice atrial esquerdo",tit:"Meio milhão de procedimentos sobre uma base de evidência instável",desc:"De PROTECT AF contra varfarina até CHAMPION-AF e CLOSURE-AF em 2026 — dois ensaios contemporâneos, resultados opostos, e uma discussão franca sobre margens de não-inferioridade."},
+ fop:{lab:"Forame oval patente",tit:"Como três ensaios negativos viraram uma recomendação de diretriz",desc:"A história didática mais elegante da cardiologia intervencionista: o efeito sempre existiu, mas só apareceu quando corrigiram a seleção anatômica, o desfecho e o tempo de seguimento."}
+};
+
+/* ═══════════════ RENDER DAS FICHAS ═══════════════ */
+function confBadge(t){
+  if(t.conf==="alta") return '<span class="badge badge-low">verificado</span>';
+  if(t.conf==="media") return '<span class="badge badge-mod">consolidado</span>';
+  return '<span class="badge badge-high">checar antes de citar</span>';
+}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+function trialCard(t,i){
+  const stats = t.res.map(r=>'<div class="stat-card"><div class="stat-num" style="font-size:'+(r.v.length>18?'.85rem':'1.15rem')+'">'+esc(r.v)+'</div><div class="stat-label">'+esc(r.l)+'</div></div>').join("");
+  const lims = t.lim.map(l=>"<li>"+esc(l)+"</li>").join("");
+  const doiLine = t.doi
+    ? '<a href="https://doi.org/'+t.doi+'" target="_blank" rel="noopener">'+esc(t.doi)+'</a>'
+    : '<span style="color:#fbbf24">'+esc(t.dst||"DOI não confirmado")+'</span>';
+  return `
+  <div class="card" id="trial-${t.id}">
+    <div class="card-header">
+      <div class="card-icon">${String(i+1).padStart(2,"0")}</div>
+      <div style="flex:1">
+        <div class="card-title">${esc(t.nm)}</div>
+        <div class="card-subtitle">${esc(t.ref)}</div>
+        <div class="card-badges">
+          <span class="badge badge-info">${t.y?t.y:"em andamento"}</span>
+          <span class="badge badge-purple">${DOM_LABEL[t.d]}</span>
+          ${confBadge(t)}
+        </div>
+      </div>
+    </div>
+
+    <div class="risk-grid">
+      <div class="risk-cell"><div class="risk-cell-label">Desenho</div><div class="risk-cell-desc">${esc(t.des)}</div></div>
+      <div class="risk-cell"><div class="risk-cell-label">N</div><div class="risk-cell-desc">${esc(t.N)}</div></div>
+      <div class="risk-cell"><div class="risk-cell-label">População</div><div class="risk-cell-desc">${esc(t.pop)}</div></div>
+      <div class="risk-cell"><div class="risk-cell-label">Desfecho primário</div><div class="risk-cell-desc">${esc(t.pri)}</div></div>
+    </div>
+
+    <div class="stat-row">${stats}</div>
+
+    <div class="info-box info-teal"><span class="info-box-icon">◆</span><div><strong>Achado principal.</strong> ${esc(t.sum)}</div></div>
+
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAcc(this)"><span>Por que este trial importa</span><span class="accordion-chevron">▼</span></button>
+      <div class="accordion-body">${esc(t.rel)}</div>
+    </div>
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAcc(this)"><span>Limitações metodológicas</span><span class="accordion-chevron">▼</span></button>
+      <div class="accordion-body"><ul>${lims}</ul></div>
+    </div>
+    <div class="accordion">
+      <button class="accordion-btn" onclick="toggleAcc(this)"><span>Recepção da crítica especializada</span><span class="accordion-chevron">▼</span></button>
+      <div class="accordion-body">${esc(t.cri)}</div>
+    </div>
+
+    <div style="font-size:.72rem;color:var(--muted-foreground);margin-top:.9rem;font-family:var(--font-mono)">DOI: ${doiLine}</div>
+  </div>`;
+}
+
+function renderDomains(){
+  Object.keys(DOM_LABEL).forEach(dom=>{
+    const meta = DOM_INTRO[dom];
+    const list = TRIALS.filter(t=>t.d===dom);
+    const head = `<div class="section-label">${meta.lab}</div>
+      <div class="section-title">${meta.tit}</div>
+      <p class="section-desc">${meta.desc}</p>
+      <div class="filter-row"><input class="input" data-dom="${dom}" placeholder="Filtrar trials deste domínio…" oninput="filterDom(this)"/></div>
+      <div id="list-${dom}">`;
+    document.getElementById("tab-"+dom).innerHTML = head + list.map(trialCard).join("") + "</div>";
+  });
+}
+function filterDom(inp){
+  const q = inp.value.toLowerCase().trim();
+  document.querySelectorAll("#list-"+inp.dataset.dom+" .card").forEach(c=>{
+    c.style.display = c.textContent.toLowerCase().includes(q) ? "" : "none";
+  });
+}
+function toggleAcc(btn){
+  const body = btn.nextElementSibling, open = btn.classList.contains("open");
+  btn.classList.toggle("open",!open); body.classList.toggle("open",!open);
+}
+
+function renderTable(){
+  document.getElementById("tblBody").innerHTML = TRIALS.map(t=>`
+    <tr><td><strong>${esc(t.nm)}</strong></td><td class="hr-val">${t.y||"—"}</td><td>${DOM_LABEL[t.d]}</td>
+    <td class="hr-val">${esc(t.N)}</td><td style="max-width:230px">${esc(t.pop)}</td><td style="max-width:340px">${esc(t.sum)}</td></tr>`).join("");
+}
+document.addEventListener("input",e=>{
+  if(e.target.id==="tblFilter"){
+    const q=e.target.value.toLowerCase();
+    document.querySelectorAll("#tblBody tr").forEach(r=>r.style.display=r.textContent.toLowerCase().includes(q)?"":"none");
+  }
+});
+
+/* ═══════════════ TABS ═══════════════ */
+document.getElementById("tabBar").addEventListener("click",e=>{
+  const b = e.target.closest(".tab-btn"); if(!b) return;
+  document.querySelectorAll(".tab-btn").forEach(x=>x.classList.remove("active"));
+  document.querySelectorAll(".tab-panel").forEach(x=>x.classList.remove("active"));
+  b.classList.add("active");
+  document.getElementById("tab-"+b.dataset.tab).classList.add("active");
+  window.scrollTo({top:0,behavior:"smooth"});
+});
+
+/* ═══════════════ JOGO ═══════════════ */
+let QUIZ={list:[],i:0,score:0,streak:0,best:0,wrong:[],cfg:null};
+
+function shuffle(a){const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
+function pick(arr,k){return shuffle(arr).slice(0,k);}
+
+function buildBank(doms,types){
+  const pool = TRIALS.filter(t=>doms.includes(t.d) && !t.noq);
+  const qs=[];
+  pool.forEach(t=>{
+    // distratores: mesmo domínio primeiro, completa com outros domínios do pool
+    const same = pool.filter(o=>o.id!==t.id && o.d===t.d);
+    // fallback: se o domínio tem poucos trials, busca distratores em toda a base elegível
+    const other = TRIALS.filter(o=>!o.noq && o.id!==t.id && !same.some(x=>x.id===o.id));
+    const distr = n => { const s=pick(same,n); return s.length===n ? s : s.concat(pick(other,n-s.length)); };
+
+    if(types.includes("qual")){
+      const d = distr(3);
+      qs.push({tipo:"Identifique o trial",stem:t.pearl,correct:t.nm,opts:shuffle(d.map(o=>o.nm).concat(t.nm)),
+        exp:"<strong>"+t.nm+"</strong> ("+(t.y||"em andamento")+"). "+t.sum,tid:t.id});
+    }
+    if(types.includes("res") && t.sum){
+      const d = distr(3);
+      qs.push({tipo:"Qual foi o resultado?",stem:"Qual foi o achado principal do "+t.nm+"?",correct:t.sum,opts:shuffle(d.map(o=>o.sum).concat(t.sum)),
+        exp:"Desfecho primário: "+t.pri+". Métricas: "+t.res.map(r=>r.l+" "+r.v).join(" · ")+".",tid:t.id});
+    }
+    if(types.includes("lim") && t.lim.length){
+      const d = distr(3);
+      qs.push({tipo:"Limitação característica",stem:"Qual destas é uma limitação metodológica reconhecida do "+t.nm+"?",correct:t.lim[0],
+        opts:shuffle(d.map(o=>o.lim[0]).concat(t.lim[0])),
+        exp:"Outras limitações do "+t.nm+": "+t.lim.slice(1).join(" · ")+".",tid:t.id});
+    }
+    if(types.includes("pop")){
+      const d = distr(3);
+      qs.push({tipo:"População estudada",stem:"Qual população foi randomizada no "+t.nm+"?",correct:t.pop,opts:shuffle(d.map(o=>o.pop).concat(t.pop)),
+        exp:"Desenho: "+t.des+" · N = "+t.N+".",tid:t.id});
+    }
+  });
+  return shuffle(qs);
+}
+
+function chipGroup(id){return [...document.querySelectorAll("#"+id+" .chip")];}
+["domChips","typeChips"].forEach(id=>{
+  document.getElementById(id).addEventListener("click",e=>{
+    const c=e.target.closest(".chip"); if(!c) return; c.classList.toggle("on");
+  });
+});
+document.getElementById("nChips").addEventListener("click",e=>{
+  const c=e.target.closest(".chip"); if(!c) return;
+  chipGroup("nChips").forEach(x=>x.classList.remove("on")); c.classList.add("on");
+});
+
+document.getElementById("startQuiz").addEventListener("click",()=>{
+  const doms=chipGroup("domChips").filter(c=>c.classList.contains("on")).map(c=>c.dataset.dom);
+  const types=chipGroup("typeChips").filter(c=>c.classList.contains("on")).map(c=>c.dataset.type);
+  const nSel=chipGroup("nChips").find(c=>c.classList.contains("on"));
+  const n=parseInt(nSel?nSel.dataset.n:"10",10);
+  if(!doms.length||!types.length){alert("Selecione pelo menos um domínio e um formato de questão.");return;}
+  let bank=buildBank(doms,types);
+  if(bank.length<4){alert("Seleção muito restrita para gerar questões com distratores. Amplie os domínios.");return;}
+  if(n>0) bank=bank.slice(0,n);
+  QUIZ={list:bank,i:0,score:0,streak:0,best:0,answered:0,wrong:[],cfg:{doms,types,n}};
+  document.getElementById("quizSetup").style.display="none";
+  document.getElementById("quizEnd").style.display="none";
+  document.getElementById("quizPlay").style.display="block";
+  showQ();
+});
+
+function showQ(){
+  const q=QUIZ.list[QUIZ.i];
+  document.getElementById("qProgress").textContent=(QUIZ.i+1)+" / "+QUIZ.list.length;
+  document.getElementById("qScore").textContent=QUIZ.score;
+  document.getElementById("qStreak").textContent=QUIZ.streak;
+  document.getElementById("qBar").style.width=((QUIZ.i)/QUIZ.list.length*100)+"%";
+  document.getElementById("qType").textContent=q.tipo;
+  document.getElementById("qStem").textContent=q.stem;
+  document.getElementById("qFeedback").innerHTML="";
+  document.getElementById("qNext").style.display="none";
+  const keys=["A","B","C","D"];
+  document.getElementById("qOpts").innerHTML=q.opts.map((o,i)=>
+    '<button class="quiz-opt" data-i="'+i+'"><span class="opt-key">'+keys[i]+'</span><span>'+esc(o)+'</span></button>').join("");
+  document.querySelectorAll("#qOpts .quiz-opt").forEach(b=>b.addEventListener("click",()=>answer(b,q)));
+}
+
+function answer(btn,q){
+  const chosen=q.opts[parseInt(btn.dataset.i,10)];
+  const ok=chosen===q.correct;
+  document.querySelectorAll("#qOpts .quiz-opt").forEach(b=>{
+    b.disabled=true;
+    const val=q.opts[parseInt(b.dataset.i,10)];
+    if(val===q.correct) b.classList.add("right");
+    else if(b===btn) b.classList.add("wrong");
+  });
+  QUIZ.answered++;
+  if(ok){QUIZ.score++;QUIZ.streak++;QUIZ.best=Math.max(QUIZ.best,QUIZ.streak);}
+  else{QUIZ.streak=0;QUIZ.wrong.push({q,chosen});}
+  document.getElementById("qScore").textContent=QUIZ.score;
+  document.getElementById("qStreak").textContent=QUIZ.streak;
+  document.getElementById("qFeedback").innerHTML=
+    '<div class="info-box '+(ok?"info-teal":"info-red")+'" style="margin-top:.9rem"><span class="info-box-icon">'+(ok?"✓":"✕")+'</span><div>'+
+    '<strong>'+(ok?"Correto.":"Resposta correta: "+esc(q.correct))+'</strong><br>'+q.exp+
+    ' <a href="#trial-'+q.tid+'" onclick="goTrial(\''+q.tid+'\')">ver ficha completa →</a></div></div>';
+  document.getElementById("qNext").style.display="inline-block";
+  document.getElementById("qNext").textContent = (QUIZ.i===QUIZ.list.length-1)?"Ver resultado →":"Próxima →";
+}
+
+function goTrial(id){
+  const t=TRIALS.find(x=>x.id===id); if(!t) return;
+  document.querySelectorAll(".tab-btn").forEach(x=>x.classList.toggle("active",x.dataset.tab===t.d));
+  document.querySelectorAll(".tab-panel").forEach(x=>x.classList.remove("active"));
+  document.getElementById("tab-"+t.d).classList.add("active");
+  setTimeout(()=>document.getElementById("trial-"+id).scrollIntoView({behavior:"smooth",block:"start"}),60);
+}
+
+document.getElementById("qNext").addEventListener("click",()=>{
+  QUIZ.i++;
+  if(QUIZ.i>=QUIZ.list.length) endQuiz(); else showQ();
+});
+document.getElementById("qAbort").addEventListener("click",()=>{ if(QUIZ.i>0) endQuiz(); else resetQuiz(); });
+
+function endQuiz(){
+  document.getElementById("quizPlay").style.display="none";
+  document.getElementById("quizEnd").style.display="block";
+  const done = Math.max(QUIZ.answered,1);
+  document.getElementById("endScore").textContent=QUIZ.score+"/"+done;
+  document.getElementById("endPct").textContent=Math.round(QUIZ.score/done*100)+"%";
+  document.getElementById("endBest").textContent=QUIZ.best;
+  document.getElementById("endSub").textContent=QUIZ.wrong.length?("Revise os "+QUIZ.wrong.length+" itens abaixo"):"Sessão sem erros";
+  document.getElementById("endReview").innerHTML = QUIZ.wrong.length
+    ? '<div class="risk-cell-label" style="margin:1rem 0 .6rem">Itens a revisar</div>'+QUIZ.wrong.map(w=>
+        '<div class="info-box info-amber"><span class="info-box-icon">!</span><div><strong>'+esc(w.q.stem)+'</strong><br>'+
+        'Você marcou: '+esc(w.chosen)+'<br>Correto: <strong>'+esc(w.q.correct)+'</strong><br>'+w.q.exp+
+        ' <a href="#" onclick="goTrial(\''+w.q.tid+'\');return false;">ver ficha →</a></div></div>').join("")
+    : '<div class="info-box info-teal"><span class="info-box-icon">✓</span><div>Nenhum erro nesta sessão. Aumente o número de questões ou inclua os formatos de limitação e população — costumam ser os mais difíceis.</div></div>';
+}
+function resetQuiz(){
+  document.getElementById("quizPlay").style.display="none";
+  document.getElementById("quizEnd").style.display="none";
+  document.getElementById("quizSetup").style.display="block";
+}
+document.getElementById("againNew").addEventListener("click",resetQuiz);
+document.getElementById("againSame").addEventListener("click",()=>{document.getElementById("startQuiz").click();});
+
+/* ═══════════════ INIT ═══════════════ */
+renderDomains();
+renderTable();
+document.getElementById("navCount").textContent=TRIALS.length+" trials";
+document.getElementById("tagCount").textContent=TRIALS.length+" fichas · 2009–2026";
+</script>
+</body>
+</html>
