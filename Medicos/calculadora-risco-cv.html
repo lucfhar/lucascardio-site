@@ -736,14 +736,14 @@ function getStatinRec(age, egfr, tc, hdl, risks, dm) {
   if (dm && age > 75) return { cat:'intermediate', scenario:'Diabetes >75a', badge:'Moderada · ADA 2026', intensity:'Moderada ≥30%', ldlTarget:'Individualizado', body:'Decisão compartilhada (expectativa de vida, fragilidade).', adj:[], ref:'ADA 2026; NLA/AGS 2025' };
   if (egfr > 0 && egfr < 60 && age >= 50) return { cat:'intermediate', scenario:'DRC não dialítica', badge:'Classe IIa · ACC/AHA 2026', intensity:'Moderada ≥30%', ldlTarget:'< 100 mg/dL', body:'Estatina/ezetimiba (SHARP). Atorvastatina preferida em DRC avançada.', adj:['Ezetimiba (TFGe<30)'], ref:'ACC/AHA 2026; KDIGO 2022; SHARP' };
 
-  var pRisk=null, sc=null;
-  if (risks.prevent!==null){pRisk=risks.prevent;sc='PREVENT 2023';}
-  else if (risks.ascvd!==null){pRisk=risks.ascvd;sc='ASCVD PCE';}
-  else if (risks.globorisk!==null){pRisk=risks.globorisk;sc='GloboRisk';}
+  var pRisk=null, sc=null, preventOnly=false;
+  if (risks.ascvd!==null){pRisk=risks.ascvd;sc='ASCVD PCE 2013';}
+  else if (risks.globorisk!==null){pRisk=risks.globorisk;sc='GloboRisk-LAC';}
+  else if (risks.prevent!==null){pRisk=risks.prevent;sc='PREVENT 2023';preventOnly=true;}
 
-  if (pRisk===null) return { cat:'borderline', scenario:'Calcule o risco', badge:'Aguardando', intensity:'—', ldlTarget:'—', body:'Preencha os dados e clique Calcular Risco.', adj:[], ref:'' };
+  if (pRisk===null) return { cat:'borderline', scenario:'Calcule o risco', badge:'Aguardando', intensity:'—', ldlTarget:'—', body:'Preencha os dados e calcule o ASCVD PCE (ou GloboRisk-LAC) para obter a indicação de estatina.', adj:[], ref:'' };
 
-  var rs=pRisk.toFixed(1)+'% ('+sc+')';
+  var rs=pRisk.toFixed(1)+'% ('+sc+')'+(preventOnly?' ⚠ PREVENT estima risco combinado de DCV total (ASCVD + insuficiência cardíaca), não o risco aterosclerótico isolado. A indicação de estatina segue o risco ASCVD — calcule o ASCVD PCE (ou GloboRisk-LAC) para uma indicação precisa.':'');
   if (age>75) return { cat:pRisk>=10?'intermediate':'borderline', scenario:'Prevenção 1ª >75a', badge:'Classe IIb · USPSTF insuf.', intensity:'Moderada — individualizado', ldlTarget:'Individualizado', body:'Risco: '+rs+'. Decisão compartilhada (~2,5a p/ benefício).', adj:[], ref:'ACC/AHA 2026; USPSTF 2022' };
   if (pRisk<3) return { cat:'low', scenario:'Risco Baixo (<3%)', badge:'Não indicada · ACC/AHA 2026', intensity:'—', ldlTarget:'—', body:'Risco: '+rs+'. Estilo de vida.', adj:[], ref:'ACC/AHA 2026' };
   if (pRisk<5) return { cat:'borderline', scenario:'Risco Borderline (3–5%)', badge:'Considerar Classe IIb', intensity:'Moderada ≥30%', ldlTarget:'< 100 mg/dL', body:'Risco: '+rs+'. Avaliar PCR-as, Lp(a), sínd. metabólica. CAC: 0→diferir; ≥100→iniciar.', adj:[], ref:'ACC/AHA 2026' };
@@ -1000,10 +1000,430 @@ function injectSBCCard(){
   card.appendChild(div);
 }
 
+/* ═══ SBC STEP-BY-STEP ALGORITHM (Fluxograma de Estratificação do Risco CV) ═══ */
+/* Fonte: Diretriz Brasileira de Dislipidemias e Prevenção da Aterosclerose – 2025
+   (Rached et al., Arq Bras Cardiol. 2025;122(9):e20250640) — Figura 4.1, Tabelas 4.1–4.3,
+   4.5–4.8 e 5.1. */
+
+/* Tabela 5.1 — Metas recomendadas de acordo com o risco cardiovascular. */
+var WZ_CAT_INFO = {
+  extremo:       { label:'Risco Extremo',       color:'#a855f7', ldl:'< 40 mg/dL',  nonHdl:'< 70 mg/dL',  apoB:'< 45 mg/dL', reduction:'≥ 50%', therapy:'Estatina de alta intensidade + ezetimiba; considerar terapia anti-PCSK9 precocemente, sobretudo com risco residual elevado (2+ eventos maiores, ou 1 evento maior + ≥2 condições de alto risco).' },
+  muitoalto:     { label:'Risco Muito Alto',     color:'#ef4444', ldl:'< 50 mg/dL',  nonHdl:'< 80 mg/dL',  apoB:'< 55 mg/dL', reduction:'≥ 50%', therapy:'Estatina de alta potência (ou estatina de moderada potência + ezetimiba, opção não inferior conforme IMPROVE-IT); acrescentar terapia anti-PCSK9 se meta não atingida em uso de estatina + ezetimiba.' },
+  alto:          { label:'Risco Alto',           color:'#f97316', ldl:'< 70 mg/dL',  nonHdl:'< 100 mg/dL', apoB:'< 70 mg/dL', reduction:'≥ 50%', therapy:'Estatina de alta potência ou terapia combinada (estatina + ezetimiba).' },
+  intermediario: { label:'Risco Intermediário',  color:'#eab308', ldl:'< 100 mg/dL', nonHdl:'< 130 mg/dL', apoB:'< 90 mg/dL', reduction:'≥ 30%', therapy:'Terapia hipolipemiante conforme necessário para atingir a meta; considerar fatores agravantes e CAC para refinar a decisão.' },
+  baixo:         { label:'Risco Baixo',          color:'#22c55e', ldl:'< 115 mg/dL', nonHdl:'< 145 mg/dL', apoB:'< 100 mg/dL', reduction:'≥ 30%', therapy:'Ênfase em estilo de vida. Terapia farmacológica indicada se LDL-c persistir ≥ 145 mg/dL apesar de mudanças no estilo de vida (afastadas causas secundárias).' }
+};
+
+/* Tabela 4.2 — Critérios para risco cardiovascular extremo. */
+var WZ_EMAR_ITEMS = [
+  'Síndrome coronária aguda recente (nos últimos 12 meses)',
+  'Histórico de infarto do miocárdio',
+  'Histórico de AVC isquêmico',
+  'Doença arterial periférica sintomática (histórico de claudicação com índice tornozelo-braquial < 0,85 ou revascularização ou amputação prévia)'
+];
+var WZ_EAR_ITEMS = [
+  'Idade ≥ 65 anos',
+  'Hipercolesterolemia familiar',
+  'Histórico de cirurgia de revascularização do miocárdio anterior ou intervenção coronária percutânea fora do(s) evento(s) cardiovascular(es) aterosclerótico(s) maior(es)',
+  'DM',
+  'Hipertensão arterial',
+  'Doença renal crônica (TFGe 15–59 mL/min/1,73 m²)',
+  'Tabagismo atual',
+  'LDL-c persistentemente elevado (≥ 100 mg/dL) apesar de terapia com estatina em dose máxima tolerada e ezetimiba',
+  'Evento agudo aterosclerótico com menos de 2 anos'
+];
+
+/* Tabela 4.6 — Estratificadores de alto risco no diabetes mellitus (EAR).
+   O item renal é avaliado à parte, pelo miniquadro TFG × albuminúria (Tabela 4.7). */
+var WZ_DM_EAR_ITEMS = [
+  'DM2 há mais de 10 anos',
+  'História familiar de doença arterial coronária prematura',
+  'Síndrome metabólica (definida pelo IDF)',
+  'Hipertensão arterial tratada ou não',
+  'Tabagismo ativo',
+  'Neuropatia autonômica cardiovascular incipiente',
+  'Retinopatia diabética não proliferativa leve',
+  'Escore de cálcio coronário entre 10–300 UA',
+  'Placa carotídea < 50%',
+  'Angiotomografia coronária com placa aterosclerótica < 50%',
+  'Aneurisma da aorta abdominal'
+];
+/* Tabela 4.8 — Estratificadores de muito alto risco no diabetes mellitus (EMAR-1,
+   sem evento aterosclerótico manifesto prévio — os itens de evento manifesto prévio,
+   EMAR-2, já foram descartados pelas perguntas anteriores do fluxograma). */
+var WZ_DM_EMAR_ITEMS = [
+  'Estenose maior do que 50% em qualquer território vascular',
+  'Hipercolesterolemia grave: CT > 310 mg/dL ou LDL-c > 190 mg/dL',
+  'Neuropatia autonômica cardiovascular instalada (dois testes autonômicos cardiovasculares alterados)',
+  'Retinopatia diabética não proliferativa moderada-severa ou severa, proliferativa, ou evidência de progressão'
+];
+
+/* Tabela 4.7 — Risco renal de acordo com estágio de TFG e categoria de albuminúria. */
+var WZ_RENAL_TABLE = {
+  g1: { normal:null,   micro:'ear', macro:'emar' },
+  g2: { normal:null,   micro:'ear', macro:'emar' },
+  g3a:{ normal:'ear',  micro:'ear', macro:'emar' },
+  g3b:{ normal:'ear',  micro:'emar',macro:'emar' },
+  g45:{ normal:'emar', micro:'emar',macro:'emar' }
+};
+var WZ_RENAL_STAGES = [
+  { id:'g1',  label:'G1 — TFG ≥ 90 (normal ou alta)' },
+  { id:'g2',  label:'G2 — TFG 60–89 (levemente reduzida)' },
+  { id:'g3a', label:'G3a — TFG 45–59 (leve a moderadamente reduzida)' },
+  { id:'g3b', label:'G3b — TFG 30–44 (moderadamente reduzida)' },
+  { id:'g45', label:'G4–G5 — TFG < 30 (muito reduzida / falência renal)' }
+];
+var WZ_RENAL_ALB = [
+  { id:'normal', label:'Normal (< 30 mg/g)' },
+  { id:'micro',  label:'Moderadamente aumentada — microalbuminúria (30–299 mg/g)' },
+  { id:'macro',  label:'Muito aumentada — macroalbuminúria (≥ 300 mg/g)' }
+];
+
+/* Tabela 4.3 — Fatores agravantes do risco cardiovascular. */
+var WZ_AGRAVANTE_ITEMS = [
+  'História familiar de doença cardiovascular prematura (parente de 1º grau: evento < 55 anos se homem, < 65 anos se mulher)',
+  'Adiposidade e suas manifestações (adiposidade central, esteatose hepática, síndrome metabólica)',
+  'Condição inflamatória crônica (artrite reumatoide, psoríase, lúpus, doença inflamatória intestinal, infecção crônica por HIV)',
+  'Transplante de órgãos (ex.: coração, fígado, rim)',
+  'Fator específico de risco em mulheres (menarca <12 ou ≥17 anos; distúrbio hipertensivo da gestação ou diabetes gestacional; parto prematuro; restrição de crescimento intrauterino; ≥3 abortos espontâneos; menopausa < 40 anos)',
+  'Lipoproteína(a) ≥ 50 mg/dL (≥ 125 nmol/L)',
+  'Proteína C-reativa ultrassensível ≥ 2,0 mg/L'
+];
+
+var WZ_NODES = {
+  ev_cvat: {
+    q:'Evento cardiovascular aterosclerótico (CVAt) prévio?',
+    yes:'crit_extremo', no:'dcvat_sint'
+  },
+  crit_extremo: {
+    checklist:true,
+    q:'Critérios para risco cardiovascular extremo (Tabela 4.2)',
+    groups:[
+      { label:'Eventos cardiovasculares ateroscleróticos maiores', items:WZ_EMAR_ITEMS },
+      { label:'Condições de alto risco', items:WZ_EAR_ITEMS }
+    ],
+    info:'AVC: acidente vascular cerebral · DM: diabetes mellitus · LDL-c: colesterol da lipoproteína de baixa densidade · TFGe: taxa de filtração glomerular estimada. Risco extremo = histórico de múltiplos eventos maiores (≥2), OU 1 evento maior associado a ≥2 condições de alto risco (Tabela 4.2, Diretriz SBC 2025).',
+    compute:function(majorCount, highCount){ return (majorCount>=2 || (majorCount>=1 && highCount>=2)) ? 'CAT:extremo' : 'CAT:muitoalto'; }
+  },
+  dcvat_sint: {
+    q:'DCVAt sintomática, revascularização arterial, obstrução arterial ≥50% ou CAC > 300 UA?',
+    yes:'CAT:muitoalto', no:'dm2'
+  },
+  dm2: {
+    q:'Diabetes mellitus tipo 2 (DM2)?',
+    yes:'dm2_sel', no:'atero_sub'
+  },
+  dm2_sel: {
+    diabetesStrat:true,
+    q:'Estratificação de risco do paciente com DM2',
+    info:'EAR = estratificador de alto risco (Tabela 4.6) · EMAR = estratificador de muito alto risco (Tabela 4.8, itens sem evento aterosclerótico manifesto prévio — o evento manifesto já foi descartado nas perguntas anteriores). A função renal é avaliada à parte pela Tabela 4.7.',
+    earItems:WZ_DM_EAR_ITEMS, emarItems:WZ_DM_EMAR_ITEMS,
+    compute:function(sex, age, earCount, emarCount){
+      if (emarCount>=1 || earCount>=3) return 'CAT:muitoalto';
+      var cutoff = sex==='female' ? 56 : 50;
+      if (earCount>=1) return 'CAT:alto';
+      return age>=cutoff ? 'CAT:alto' : 'CAT:intermediario';
+    }
+  },
+  atero_sub: {
+    q:'Aterosclerose subclínica, aneurisma de aorta abdominal (AAA), LDL-c ≥190 mg/dL, ou Lp(a) >180 mg/dL (>390 nmol/L)?',
+    yes:'CAT:alto', no:'risco_calc'
+  },
+  risco_calc: {
+    riskLive:true,
+    q:'Risco cardiovascular aterosclerótico calculado em 10 anos, em %:',
+    branch:function(v){ if (v>=20) return 'CAT:alto'; if (v>=5) return 'fator_agr_1'; return 'ldl_160'; }
+  },
+  fator_agr_1: {
+    agravante:true,
+    q:'Fatores agravantes de risco (Tabela 4.3)',
+    info:'A diretriz não fixa um número mínimo: quanto maior o número e a intensidade dos fatores, maior a recomendação de reclassificar o risco para cima. Marcar qualquer item já direciona para Risco Alto nesta etapa.',
+    items:WZ_AGRAVANTE_ITEMS,
+    yes:'CAT:alto', no:'CAT:intermediario'
+  },
+  ldl_160: {
+    q:'LDL-c entre 160–189 mg/dL?',
+    info:'Essa faixa de LDL-c costuma ser, por si só, um dos elementos considerados na avaliação do fator agravante a seguir.',
+    yes:'fator_agr_2', no:'fator_agr_2'
+  },
+  fator_agr_2: {
+    agravante:true,
+    q:'Fatores agravantes de risco (Tabela 4.3)',
+    items:WZ_AGRAVANTE_ITEMS,
+    yes:'CAT:intermediario', no:'CAT:baixo'
+  }
+};
+
+var WZ_STATE = { node:'ev_cvat', history:[] };
+
+function wzGo(next){ WZ_STATE.history.push(WZ_STATE.node); WZ_STATE.node=next; wzRender(); }
+function wzBack(){ if (!WZ_STATE.history.length) return; WZ_STATE.node=WZ_STATE.history.pop(); wzRender(); }
+function wzReset(){ WZ_STATE.node='ev_cvat'; WZ_STATE.history=[]; wzRender(); }
+
+function wzBtnStyle(primary){
+  return 'padding:.5rem 1rem;border-radius:.4rem;font-size:.83rem;font-weight:600;cursor:pointer;border:1px solid var(--border);'
+    + (primary?'background:var(--primary);color:var(--primary-foreground);border-color:var(--primary)':'background:var(--muted);color:var(--foreground)');
+}
+function wzOptStyle(){
+  return 'display:block;width:100%;text-align:left;padding:.55rem .7rem;border-radius:.4rem;font-size:.8rem;margin-bottom:.4rem;border:1px solid var(--border);background:var(--muted);color:var(--foreground);cursor:pointer;line-height:1.4';
+}
+function wzHeader(){
+  var step = WZ_STATE.history.length + 1;
+  return '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.5rem;padding-bottom:.5rem;border-bottom:1px dashed color-mix(in oklab,var(--border)70%,transparent)">'
+    + '<div style="display:flex;align-items:center;gap:.4rem">'
+    + '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" stroke="var(--primary)" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>'
+    + '<span style="font-weight:700;font-size:.85rem">Fluxograma de Estratificação de Risco CV — SBC</span>'
+    + '</div>'
+    + '<div style="display:flex;align-items:center;gap:.6rem">'
+    + '<span style="font-size:.65rem;color:var(--muted-foreground);white-space:nowrap">Etapa '+step+'</span>'
+    + '<button onclick="window.lcWzCollapse()" style="background:none;border:none;color:var(--muted-foreground);cursor:pointer;font-size:.68rem;text-decoration:underline;padding:0">cancelar</button>'
+    + '</div></div>';
+}
+
+function wzRender(){
+  var box=document.getElementById('lc-wizard-entry'); if (!box) return;
+  box.className='lc-wz-card';
+  box.style.cssText='background:var(--card);border:1px solid var(--border);border-radius:calc(var(--radius,10px)*1.5);padding:.9rem 1rem;margin:0 0 .85rem;animation:lcFd .2s ease';
+  var nodeId=WZ_STATE.node;
+
+  if (nodeId.indexOf('CAT:')===0){
+    var cat=nodeId.slice(4);
+    var info=WZ_CAT_INFO[cat]||WZ_CAT_INFO.intermediario;
+    box.innerHTML = wzHeader()
+      + '<div style="text-align:center;padding:1rem 0 .6rem">'
+      + '<div style="font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted-foreground);margin-bottom:.5rem">Resultado do Fluxograma</div>'
+      + '<div style="font-size:1.5rem;font-weight:800;color:'+info.color+'">'+info.label+'</div>'
+      + '</div>'
+      + '<div style="background:var(--muted);border-radius:.5rem;padding:.7rem .8rem;margin-bottom:.7rem">'
+      + '<div style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--muted-foreground);margin-bottom:.45rem">Indicação de estatina (Tabela 5.1)</div>'
+      + '<div style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem;font-size:.78rem;margin-bottom:.5rem">'
+      + '<div><div style="color:var(--muted-foreground);font-size:.68rem">Meta LDL-c (primária)</div><div style="font-weight:700">'+info.ldl+'</div></div>'
+      + '<div><div style="color:var(--muted-foreground);font-size:.68rem">Redução mínima do LDL-c</div><div style="font-weight:700">'+info.reduction+'</div></div>'
+      + '<div><div style="color:var(--muted-foreground);font-size:.68rem">Meta não-HDL-c (coprimária)</div><div style="font-weight:700">'+info.nonHdl+'</div></div>'
+      + '<div><div style="color:var(--muted-foreground);font-size:.68rem">Meta ApoB (secundária)</div><div style="font-weight:700">'+info.apoB+'</div></div>'
+      + '</div>'
+      + '<div style="font-size:.76rem;line-height:1.5">'+info.therapy+'</div>'
+      + '</div>'
+      + '<div style="display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-top:.3rem">'
+      + '<button onclick="window.lcWzBack()" style="'+wzBtnStyle(false)+'">← Voltar</button>'
+      + '<button onclick="window.lcWzStart()" style="'+wzBtnStyle(false)+'">Recomeçar</button>'
+      + '<button onclick="window.lcWzCollapse()" style="'+wzBtnStyle(true)+'">Concluir</button>'
+      + '</div>';
+    return;
+  }
+
+  var node=WZ_NODES[nodeId];
+  if (!node){ box.innerHTML=wzHeader()+'<p style="font-size:.8rem;color:var(--muted-foreground)">Erro ao carregar o fluxograma.</p>'; return; }
+
+  var body='';
+  if (node.checklist){
+    body = node.groups.map(function(g, gi){
+      return '<div style="margin-bottom:.6rem">'
+        + '<div style="font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--muted-foreground);margin-bottom:.3rem">'+g.label+'</div>'
+        + g.items.map(function(it, ii){
+            var id='lc-wz-chk-'+gi+'-'+ii;
+            return '<label for="'+id+'" style="display:flex;align-items:flex-start;gap:.5rem;padding:.3rem 0;font-size:.78rem;line-height:1.45;cursor:pointer">'
+              + '<input type="checkbox" id="'+id+'" data-group="'+gi+'" style="margin-top:.22rem;flex-shrink:0;width:15px;height:15px;accent-color:var(--primary)">'
+              + '<span>'+it+'</span></label>';
+          }).join('')
+        + '</div>';
+    }).join('')
+    + '<button onclick="window.lcWzChecklist()" style="'+wzBtnStyle(true)+';width:100%;margin-top:.3rem">Calcular</button>';
+  } else if (node.agravante){
+    body = node.items.map(function(it, ii){
+        var id='lc-wz-agr-'+ii;
+        return '<label for="'+id+'" style="display:flex;align-items:flex-start;gap:.5rem;padding:.3rem 0;font-size:.78rem;line-height:1.45;cursor:pointer">'
+          + '<input type="checkbox" id="'+id+'" data-agr style="margin-top:.22rem;flex-shrink:0;width:15px;height:15px;accent-color:var(--primary)">'
+          + '<span>'+it+'</span></label>';
+      }).join('')
+    + '<button onclick="window.lcWzAgravante()" style="'+wzBtnStyle(true)+';width:100%;margin-top:.5rem">Continuar</button>';
+  } else if (node.diabetesStrat){
+    body = '<div style="display:flex;gap:.5rem;margin-bottom:.7rem">'
+      + '<div style="flex:1">'
+      + '<div style="font-size:.65rem;font-weight:700;text-transform:uppercase;color:var(--muted-foreground);margin-bottom:.25rem">Sexo</div>'
+      + '<select id="lc-wz-sex" style="width:100%;padding:.45rem .5rem;border-radius:.4rem;border:1px solid var(--border);background:var(--background);color:var(--foreground);font-size:.85rem;box-sizing:border-box">'
+      + '<option value="male">Masculino</option><option value="female">Feminino</option></select>'
+      + '</div>'
+      + '<div style="flex:1">'
+      + '<div style="font-size:.65rem;font-weight:700;text-transform:uppercase;color:var(--muted-foreground);margin-bottom:.25rem">Idade</div>'
+      + '<input id="lc-wz-age" type="number" min="0" max="120" placeholder="Anos" style="width:100%;padding:.45rem .5rem;border-radius:.4rem;border:1px solid var(--border);background:var(--background);color:var(--foreground);font-size:.85rem;box-sizing:border-box">'
+      + '</div></div>'
+      + '<div style="margin-bottom:.65rem;padding:.55rem .6rem;background:var(--muted);border-radius:.4rem">'
+      + '<div style="font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--muted-foreground);margin-bottom:.35rem">Função renal (Tabela 4.7)</div>'
+      + '<div style="display:flex;gap:.4rem;margin-bottom:.35rem">'
+      + '<select id="lc-wz-renal-stage" style="flex:1;padding:.4rem .45rem;border-radius:.35rem;border:1px solid var(--border);background:var(--background);color:var(--foreground);font-size:.74rem;box-sizing:border-box">'
+      + WZ_RENAL_STAGES.map(function(s){ return '<option value="'+s.id+'">'+s.label+'</option>'; }).join('')
+      + '</select></div>'
+      + '<select id="lc-wz-renal-alb" style="width:100%;padding:.4rem .45rem;border-radius:.35rem;border:1px solid var(--border);background:var(--background);color:var(--foreground);font-size:.74rem;box-sizing:border-box">'
+      + WZ_RENAL_ALB.map(function(a){ return '<option value="'+a.id+'">'+a.label+'</option>'; }).join('')
+      + '</select>'
+      + '<div style="font-size:.68rem;color:var(--muted-foreground);margin-top:.3rem">Sem doença renal / TFG e albuminúria normais? Deixe nas opções padrão (não conta como estratificador).</div>'
+      + '</div>'
+      + '<div style="margin-bottom:.6rem">'
+      + '<div style="font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--muted-foreground);margin-bottom:.3rem">EAR — estratificador de alto risco (Tabela 4.6)</div>'
+      + node.earItems.map(function(it, ii){
+          var id='lc-wz-ear-'+ii;
+          return '<label for="'+id+'" style="display:flex;align-items:flex-start;gap:.5rem;padding:.3rem 0;font-size:.78rem;line-height:1.45;cursor:pointer">'
+            + '<input type="checkbox" id="'+id+'" data-ear style="margin-top:.22rem;flex-shrink:0;width:15px;height:15px;accent-color:var(--primary)">'
+            + '<span>'+it+'</span></label>';
+        }).join('')
+      + '</div>'
+      + '<div style="margin-bottom:.5rem">'
+      + '<div style="font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--muted-foreground);margin-bottom:.3rem">EMAR — estratificador de muito alto risco (Tabela 4.8)</div>'
+      + node.emarItems.map(function(it, ii){
+          var id='lc-wz-emar-'+ii;
+          return '<label for="'+id+'" style="display:flex;align-items:flex-start;gap:.5rem;padding:.3rem 0;font-size:.78rem;line-height:1.45;cursor:pointer">'
+            + '<input type="checkbox" id="'+id+'" data-emar style="margin-top:.22rem;flex-shrink:0;width:15px;height:15px;accent-color:var(--primary)">'
+            + '<span>'+it+'</span></label>';
+        }).join('')
+      + '</div>'
+      + '<button onclick="window.lcWzDiabetes()" style="'+wzBtnStyle(true)+';width:100%;margin-top:.3rem">Calcular</button>';
+  } else if (node.riskLive){
+    var risks = readRisks();
+    var liveVal = null, liveLabel = null, liveNote = null;
+    if (risks.ascvd!==null){ liveVal=risks.ascvd; liveLabel='ASCVD PCE 2013'; }
+    else if (risks.globorisk!==null){ liveVal=risks.globorisk; liveLabel='GloboRisk-LAC'; }
+    else if (risks.prevent!==null){ liveVal=risks.prevent; liveLabel='PREVENT 2023'; liveNote='⚠ ASCVD PCE e GloboRisk-LAC ainda não calculados. O PREVENT desta calculadora estima o risco combinado de DCV total (ASCVD + insuficiência cardíaca) — usado aqui apenas como aproximação; calcule o ASCVD PCE ao lado para o valor correto desta etapa.'; }
+    if (liveVal!==null){
+      body = '<div style="background:var(--muted);border-radius:.4rem;padding:.65rem .7rem;margin-bottom:.5rem">'
+        + '<div style="font-size:.65rem;color:var(--muted-foreground);margin-bottom:.15rem">Calculado automaticamente pela calculadora ('+liveLabel+')</div>'
+        + '<div style="font-size:1.15rem;font-weight:800">'+liveVal.toFixed(1)+'%</div>'
+        + (liveNote ? '<div style="font-size:.66rem;color:var(--muted-foreground);margin-top:.3rem">'+liveNote+'</div>' : '')
+        + '</div>'
+        + '<button onclick="window.lcWzPreventContinue('+liveVal+')" style="'+wzBtnStyle(true)+';width:100%">Continuar com '+liveVal.toFixed(1)+'%</button>'
+        + '<div style="text-align:center;margin-top:.5rem"><button onclick="window.lcWzPreventManual()" style="background:none;border:none;color:var(--muted-foreground);cursor:pointer;font-size:.68rem;text-decoration:underline;padding:0">usar outro valor manualmente</button></div>';
+    } else {
+      body = '<div style="font-size:.76rem;line-height:1.5;margin-bottom:.6rem">Nenhum escore foi calculado ainda. <strong>Calcule o risco ASCVD ao lado</strong> — preencha idade, sexo, pressão arterial sistólica, colesterol total, HDL e TFGe na calculadora e clique em "Calcular Risco" — que o valor entra aqui automaticamente.</div>'
+        + '<div style="font-size:.68rem;color:var(--muted-foreground);margin-bottom:.5rem">Ou, se preferir, informe o risco manualmente:</div>'
+        + '<input id="lc-wz-num" type="number" step="0.1" min="0" max="100" placeholder="Ex: 8.5" style="width:100%;padding:.5rem .6rem;border-radius:.4rem;border:1px solid var(--border);background:var(--background);color:var(--foreground);font-size:.95rem;margin-bottom:.55rem;box-sizing:border-box">'
+        + '<button onclick="window.lcWzNumeric()" style="'+wzBtnStyle(true)+';width:100%">Continuar</button>';
+    }
+  } else if (node.numeric){
+    body = '<input id="lc-wz-num" type="number" step="0.1" min="0" max="100" placeholder="Ex: 8.5" style="width:100%;padding:.5rem .6rem;border-radius:.4rem;border:1px solid var(--border);background:var(--background);color:var(--foreground);font-size:.95rem;margin-bottom:.55rem;box-sizing:border-box">'
+      + '<button onclick="window.lcWzNumeric()" style="'+wzBtnStyle(true)+';width:100%">Continuar</button>';
+  } else {
+    body = '<div style="display:flex;gap:.6rem;justify-content:center;margin-top:.8rem">'
+      + '<button onclick="window.lcWzYesNo(true)" style="'+wzBtnStyle(true)+'">Sim</button>'
+      + '<button onclick="window.lcWzYesNo(false)" style="'+wzBtnStyle(false)+'">Não</button>'
+      + '</div>';
+  }
+
+  box.innerHTML = wzHeader()
+    + '<div style="font-size:.9rem;font-weight:600;line-height:1.5;margin-bottom:.35rem">'+node.q+'</div>'
+    + (node.info?'<div style="font-size:.7rem;color:var(--muted-foreground);line-height:1.5;margin-bottom:.6rem">ℹ '+node.info+'</div>':'')
+    + body
+    + (WZ_STATE.history.length?'<div style="margin-top:.85rem;text-align:center"><button onclick="window.lcWzBack()" style="'+wzBtnStyle(false)+';font-size:.75rem">← Voltar</button></div>':'');
+}
+
+window.lcWzYesNo = function(v){ var node=WZ_NODES[WZ_STATE.node]; wzGo(v?node.yes:node.no); };
+window.lcWzSelect = function(to){ wzGo(to); };
+window.lcWzNumeric = function(){
+  var el=document.getElementById('lc-wz-num');
+  var v=parseFloat(el&&el.value);
+  if (isNaN(v)){ if (el) el.style.borderColor='#ef4444'; return; }
+  var node=WZ_NODES[WZ_STATE.node];
+  wzGo(node.branch(v));
+};
+window.lcWzChecklist = function(){
+  var node=WZ_NODES[WZ_STATE.node];
+  var counts=[0,0];
+  document.querySelectorAll('#lc-wizard-entry input[type=checkbox][data-group]').forEach(function(cb){
+    if (cb.checked) counts[parseInt(cb.getAttribute('data-group'),10)]++;
+  });
+  wzGo(node.compute(counts[0], counts[1]));
+};
+window.lcWzDiabetes = function(){
+  var node=WZ_NODES[WZ_STATE.node];
+  var sexEl=document.getElementById('lc-wz-sex'), ageEl=document.getElementById('lc-wz-age');
+  var age=parseFloat(ageEl&&ageEl.value);
+  if (isNaN(age)){ if (ageEl) ageEl.style.borderColor='#ef4444'; return; }
+  var sex = sexEl ? sexEl.value : 'male';
+  var emarCount=0, earCount=0;
+  document.querySelectorAll('#lc-wizard-entry input[type=checkbox][data-emar]').forEach(function(cb){ if (cb.checked) emarCount++; });
+  document.querySelectorAll('#lc-wizard-entry input[type=checkbox][data-ear]').forEach(function(cb){ if (cb.checked) earCount++; });
+  var stageEl=document.getElementById('lc-wz-renal-stage'), albEl=document.getElementById('lc-wz-renal-alb');
+  if (stageEl && albEl){
+    var renalCat = (WZ_RENAL_TABLE[stageEl.value]||{})[albEl.value];
+    if (renalCat==='ear') earCount++;
+    else if (renalCat==='emar') emarCount++;
+  }
+  wzGo(node.compute(sex, age, earCount, emarCount));
+};
+window.lcWzAgravante = function(){
+  var node=WZ_NODES[WZ_STATE.node];
+  var any=false;
+  document.querySelectorAll('#lc-wizard-entry input[type=checkbox][data-agr]').forEach(function(cb){ if (cb.checked) any=true; });
+  wzGo(any?node.yes:node.no);
+};
+window.lcWzPreventContinue = function(v){
+  var node=WZ_NODES[WZ_STATE.node];
+  wzGo(node.branch(v));
+};
+window.lcWzPreventManual = function(){
+  var node=WZ_NODES[WZ_STATE.node];
+  var box=document.getElementById('lc-wizard-entry'); if (!box) return;
+  var bodyDiv = box.querySelector('div[style*="background:var(--muted)"]');
+  box.innerHTML = wzHeader()
+    + '<div style="font-size:.9rem;font-weight:600;line-height:1.5;margin-bottom:.35rem">'+node.q+'</div>'
+    + '<input id="lc-wz-num" type="number" step="0.1" min="0" max="100" placeholder="Ex: 8.5" style="width:100%;padding:.5rem .6rem;border-radius:.4rem;border:1px solid var(--border);background:var(--background);color:var(--foreground);font-size:.95rem;margin-bottom:.55rem;box-sizing:border-box">'
+    + '<button onclick="window.lcWzNumeric()" style="'+wzBtnStyle(true)+';width:100%">Continuar</button>'
+    + (WZ_STATE.history.length?'<div style="margin-top:.85rem;text-align:center"><button onclick="window.lcWzBack()" style="'+wzBtnStyle(false)+';font-size:.75rem">← Voltar</button></div>':'');
+};
+window.lcWzBack = function(){ wzBack(); };
+window.lcWzStart = function(){ wzReset(); };
+window.lcWzCollapse = function(){
+  var box=document.getElementById('lc-wizard-entry'); if (!box) return;
+  box.className='lc-wz-card lc-wz-card-prompt';
+  box.style.cssText='background:var(--card);border:1px solid var(--border);border-radius:calc(var(--radius,10px)*1.5);padding:.85rem 1rem;margin:0 0 .85rem';
+  box.innerHTML = wzEntryPromptHTML();
+};
+
+function wzEntryPromptHTML(){
+  return '<div style="display:flex;align-items:center;gap:.55rem;min-width:0">'
+    + '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="var(--primary)" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>'
+    + '<div><div style="font-weight:700;font-size:.83rem">Prefere seguir o fluxograma direto, sem preencher a calculadora?</div>'
+    + '<div style="font-size:.7rem;color:var(--muted-foreground)">Algoritmo passo a passo — Diretriz Brasileira de Dislipidemias (SBC)</div></div>'
+    + '</div>'
+    + '<button onclick="window.lcWzStart()" style="'+wzBtnStyle(true)+';white-space:nowrap">Iniciar algoritmo →</button>';
+}
+
+/* Finds the card that wraps the input form (via the "Fatores de risco" fieldset),
+   so the wizard entry can sit above the calculator — no data entry required. */
+function getFormCard(){
+  var lgds = document.querySelectorAll('legend');
+  for (var i=0;i<lgds.length;i++){
+    if (lgds[i].textContent.toLowerCase().indexOf('fatores de risco')>=0){
+      var el = lgds[i].closest('fieldset');
+      for (var j=0;j<8 && el;j++){
+        el = el.parentElement;
+        if (!el) break;
+        var cls = el.className || '';
+        if (cls.indexOf('rounded-xl')>=0 || cls.indexOf('bg-card')>=0) return el;
+      }
+    }
+  }
+  return null;
+}
+
+function ensureWizardEntry(){
+  if (document.getElementById('lc-wizard-entry')) return;
+  var anchor = getFormCard(), before = true;
+  if (!anchor){ anchor = getResultsCard(); before = false; }
+  if (!anchor || !anchor.parentElement) return;
+  var d=document.createElement('div');
+  d.id='lc-wizard-entry';
+  d.className='lc-wz-card lc-wz-card-prompt';
+  d.style.cssText='background:var(--card);border:1px solid var(--border);border-radius:calc(var(--radius,10px)*1.5);padding:.85rem 1rem;margin:0 0 .85rem';
+  d.innerHTML = wzEntryPromptHTML();
+  if (before) anchor.parentElement.insertBefore(d, anchor);
+  else anchor.appendChild(d);
+}
+
 /* ═══ MAIN UPDATE ══════════════════════════════════════════════════ */
 function updateAll(){
   var card=getResultsCard(); if(!card) return;
   ensureStatinPanel(card);
+  ensureWizardEntry();
   var inner=document.getElementById('lc-inner'); if(!inner) return;
   var age=getNum('age'), egfr=getNum('egfr'), tc=getNum('tc'), hdl=getNum('hdl');
   var dm=readSwitch('Diabetes'), risks=readRisks();
@@ -1024,7 +1444,10 @@ document.addEventListener('click', function(e){
 
 /* ═══ CSS ══════════════════════════════════════════════════════════ */
 var _s=document.createElement('style');
-_s.textContent='@keyframes lcFd{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}';
+_s.textContent='@keyframes lcFd{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}'
+  + '.lc-wz-card{grid-column:1/-1!important;grid-row:1!important;flex:1 0 100%!important;width:100%!important;max-width:100%!important;box-sizing:border-box!important;margin-left:0!important;margin-right:0!important}'
+  + '.lc-wz-card-prompt{display:flex;align-items:center;justify-content:space-between;gap:.7rem;flex-wrap:wrap}'
+  + '@media (max-width:560px){.lc-wz-card-prompt{flex-direction:column;align-items:stretch;text-align:center}.lc-wz-card-prompt button{width:100%}}';
 document.head.appendChild(_s);
 
 /* ═══ BOOT ═════════════════════════════════════════════════════════ */
@@ -1032,7 +1455,7 @@ var _t=0, _iv=setInterval(function(){
   var lgds=document.querySelectorAll('legend');
   for(var i=0;i<lgds.length;i++)
     if(lgds[i].textContent.toLowerCase().indexOf('fatores de risco')>=0){
-      clearInterval(_iv); injectToggles(); return;
+      clearInterval(_iv); injectToggles(); ensureWizardEntry(); return;
     }
   if(++_t>80) clearInterval(_iv);
 },100);
