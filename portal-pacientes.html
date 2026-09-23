@@ -1,0 +1,1668 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0d1118">
+  <meta name="color-scheme" content="dark light">
+  <script>
+  (() => {
+    try {
+      if (localStorage.getItem('lc-portal-theme') === 'light') {
+        document.documentElement.dataset.theme = 'light';
+      }
+    } catch (_) {}
+  })();
+  </script>
+  <title>Portal do Paciente | Dr. Lucas Silva</title>
+  <meta name="description" content="Portal educativo de cardiologia para pacientes: exames, condições cardiológicas, medicamentos, estilo de vida e sinais de alarme, com conteúdo baseado em evidências científicas.">
+  <meta name="author" content="Dr. Lucas Silva">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <link rel="canonical" href="https://lucascardio.com.br/pacientes.html">
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"CollectionPage","name":"Portal do Paciente — Dr. Lucas Silva","url":"https://lucascardio.com.br/pacientes.html","description":"Conteúdo educativo de cardiologia para pacientes: exames, condições cardiológicas, medicamentos, estilo de vida e sinais de alarme, baseado em evidências científicas.","mainEntity":{"@type":"ItemList","numberOfItems":21,"itemListElement":[{"@type":"ListItem","position":1,"name":"Guia de Exames Cardiológicos","url":"https://lucascardio.com.br/Pacientes/pacientes-exames.html"},{"@type":"ListItem","position":2,"name":"Tudo Sobre o Cateterismo Cardíaco","url":"https://lucascardio.com.br/cateinfo/cateterismo-info.html"},{"@type":"ListItem","position":3,"name":"FAQ de Cardiologia Intervencionista","url":"https://lucascardio.com.br/faq/hemodinamica-faq.html"},{"@type":"ListItem","position":4,"name":"Check-up: Quais Exames Você Realmente Precisa?","url":"https://lucascardio.com.br/Pacientes/periodicolucas.html"},{"@type":"ListItem","position":5,"name":"Condições Cardiológicas Mais Comuns","url":"https://lucascardio.com.br/Pacientes/condicoes-cardiologicas.html"},{"@type":"ListItem","position":6,"name":"Sinais de Alarme: Quando Procurar Ajuda","url":"https://lucascardio.com.br/Pacientes/sinais-alarme-cardiologico.html"},{"@type":"ListItem","position":7,"name":"Diabetes e Doença Cardiovascular","url":"https://lucascardio.com.br/Pacientes/diabetes-doenca-cardiovascular.html"},{"@type":"ListItem","position":8,"name":"Guia de Medicamentos Cardiológicos","url":"https://lucascardio.com.br/Pacientes/guia-medicamentos-cardiologicos.html"},{"@type":"ListItem","position":9,"name":"Remédios Sem Receita: Quais os Riscos?","url":"https://lucascardio.com.br/Pacientes/medicamentos-otc-cardio.html"},{"@type":"ListItem","position":10,"name":"Atividade Física e Saúde Cardiovascular","url":"https://lucascardio.com.br/Pacientes/atividade-fisica-cardiovascular.html"},{"@type":"ListItem","position":11,"name":"Dietas e Saúde Cardiovascular","url":"https://lucascardio.com.br/Pacientes/dieta-cardiovascular.html"},{"@type":"ListItem","position":12,"name":"Álcool, Cigarro e Outras Drogas","url":"https://lucascardio.com.br/Pacientes/drogas-risco-cardiovascular.html"},{"@type":"ListItem","position":13,"name":"Obesidade e Síndrome Metabólica","url":"https://lucascardio.com.br/Pacientes/obesidade-sindrome-metabolica.html"},{"@type":"ListItem","position":14,"name":"Anabolizantes e Risco Cardiovascular","url":"https://lucascardio.com.br/Pacientes/eaa-risco-cardiovascular.html"},{"@type":"ListItem","position":15,"name":"Café, Energéticos e o Coração","url":"https://lucascardio.com.br/Pacientes/cafe-coracao.html"},{"@type":"ListItem","position":16,"name":"Doenças Autoimunes e o Coração","url":"https://lucascardio.com.br/Pacientes/autoimune_cardiovascular.html"},{"@type":"ListItem","position":17,"name":"Saúde Mental e Coração","url":"https://lucascardio.com.br/Pacientes/humor-cardiovascular.html"},{"@type":"ListItem","position":18,"name":"Fígado e Coração","url":"https://lucascardio.com.br/Pacientes/figado-coracao.html"},{"@type":"ListItem","position":19,"name":"Pele e Coração","url":"https://lucascardio.com.br/Pacientes/pele-cardiovascular.html"},{"@type":"ListItem","position":20,"name":"Pulmão e Coração","url":"https://lucascardio.com.br/Pacientes/pulmo-cardio.html"},{"@type":"ListItem","position":21,"name":"Rins e Coração","url":"https://lucascardio.com.br/Pacientes/doenca-renal-coracao.html"}]}}
+  </script>
+
+<style>
+:root {
+  --bg: #0c1017;
+  --bg-2: #111721;
+  --surface: rgba(23,30,41,.82);
+  --surface-solid: #171e29;
+  --surface-2: #1d2633;
+  --surface-3: #232f3d;
+  --text: #eef3f6;
+  --text-2: #a8b3bf;
+  --text-3: #748290;
+  --border: rgba(164,181,198,.14);
+  --border-strong: rgba(164,181,198,.24);
+  --teal: #00d3bd;
+  --teal-2: #56e6d5;
+  --teal-dim: rgba(0,211,189,.11);
+  --gold: #c9a96e;
+  --gold-dim: rgba(201,169,110,.11);
+  --red: #f36a6a;
+  --purple: #b98cf4;
+  --green: #61d79a;
+  --blue: #72a7ff;
+  --shadow: 0 22px 65px rgba(0,0,0,.28);
+  --radius: 18px;
+  --radius-sm: 11px;
+  --sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+  --header-h: 66px;
+}
+
+[data-theme="light"] {
+  --bg: #f3f6f8;
+  --bg-2: #eaf0f4;
+  --surface: rgba(255,255,255,.84);
+  --surface-solid: #fff;
+  --surface-2: #f5f8fa;
+  --surface-3: #edf2f5;
+  --text: #17202b;
+  --text-2: #526170;
+  --text-3: #7a8996;
+  --border: rgba(24,45,61,.12);
+  --border-strong: rgba(24,45,61,.2);
+  --teal: #008f82;
+  --teal-2: #00a896;
+  --teal-dim: rgba(0,143,130,.09);
+  --gold: #9b7741;
+  --gold-dim: rgba(155,119,65,.09);
+  --shadow: 0 20px 55px rgba(28,47,61,.12);
+}
+
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; color-scheme:dark; scrollbar-gutter:stable; }
+html[data-theme="light"] { color-scheme:light; }
+body {
+  margin:0;
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 18% -10%, rgba(0,211,189,.14), transparent 28rem),
+    radial-gradient(circle at 90% 8%, rgba(201,169,110,.10), transparent 25rem),
+    linear-gradient(180deg, var(--bg), var(--bg-2));
+  color:var(--text);
+  font-family:var(--sans);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+body::before {
+  content:"";
+  position:fixed; inset:0;
+  pointer-events:none; z-index:-1;
+  opacity:.24;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size:44px 44px;
+  mask-image:linear-gradient(to bottom, #000 0%, transparent 72%);
+}
+a { color:inherit; }
+button,input,select { font:inherit; }
+button { color:inherit; }
+::selection { background:rgba(0,211,189,.26); color:var(--text); }
+.container { width:min(1180px, calc(100% - 36px)); margin-inline:auto; }
+
+.skip-link {
+  position:fixed; left:1rem; top:-5rem; z-index:9999;
+  background:var(--teal); color:#041412; padding:.65rem 1rem; border-radius:10px;
+  font-weight:800; text-decoration:none; transition:top .2s ease;
+}
+.skip-link:focus { top:1rem; }
+
+/* Header */
+.site-header {
+  position:sticky; top:0; z-index:100;
+  height:var(--header-h);
+  border-bottom:1px solid var(--border);
+  background:color-mix(in srgb, var(--bg) 76%, transparent);
+  backdrop-filter:blur(18px) saturate(150%);
+}
+.header-inner {
+  height:100%;
+  display:flex; align-items:center; justify-content:space-between; gap:18px;
+}
+.brand {
+  display:flex; align-items:center; gap:11px; min-width:0;
+  text-decoration:none;
+}
+.brand-mark {
+  width:34px; height:34px; border-radius:10px;
+  display:grid; place-items:center;
+  color:#051816;
+  background:linear-gradient(135deg,var(--teal),#6bf1df);
+  box-shadow:0 0 0 1px rgba(255,255,255,.16), 0 8px 25px rgba(0,211,189,.16);
+}
+.brand-text { display:flex; flex-direction:column; min-width:0; line-height:1.05; }
+.brand-text strong { font-size:.88rem; letter-spacing:-.02em; white-space:nowrap; }
+.brand-text span { color:var(--text-3); font:500 .64rem/1.2 var(--mono); margin-top:4px; white-space:nowrap; }
+.brand-text em { color:var(--teal); font-style:normal; }
+.nav-links { display:flex; align-items:center; gap:4px; }
+.nav-links a {
+  color:var(--text-2); text-decoration:none; font-size:.76rem; font-weight:650;
+  padding:8px 11px; border-radius:9px; transition:.18s ease;
+}
+.nav-links a:hover { color:var(--text); background:var(--surface-2); }
+.header-actions { display:flex; align-items:center; gap:8px; }
+.icon-btn {
+  width:36px; height:36px; display:grid; place-items:center;
+  border:1px solid var(--border); border-radius:10px; background:var(--surface);
+  cursor:pointer; transition:.18s ease;
+}
+.icon-btn:hover { border-color:rgba(0,211,189,.36); color:var(--teal); transform:translateY(-1px); }
+.home-btn {
+  display:inline-flex; align-items:center; gap:7px; padding:8px 11px; border-radius:10px;
+  border:1px solid var(--border); color:var(--text-2); text-decoration:none; font-size:.75rem; font-weight:650;
+  background:var(--surface); transition:.18s ease;
+}
+.home-btn:hover { border-color:rgba(0,211,189,.36); color:var(--teal); }
+
+/* Hero */
+.hero { position:relative; overflow:hidden; padding:68px 0 38px; }
+.hero::after {
+  content:""; position:absolute; width:420px; height:420px; border-radius:50%;
+  right:-160px; top:-160px; border:1px solid rgba(0,211,189,.11);
+  box-shadow:0 0 0 54px rgba(0,211,189,.025),0 0 0 108px rgba(0,211,189,.018);
+  pointer-events:none;
+}
+.hero-grid {
+  display:grid; grid-template-columns:minmax(0,1.32fr) minmax(320px,.68fr);
+  gap:44px; align-items:center;
+}
+.eyebrow {
+  display:inline-flex; align-items:center; gap:9px;
+  color:var(--teal); font:700 .69rem/1 var(--mono);
+  letter-spacing:.12em; text-transform:uppercase;
+  margin-bottom:17px;
+}
+.eyebrow::before { content:""; width:28px; height:2px; border-radius:999px; background:var(--teal); }
+.hero h1 {
+  max-width:800px; margin:0; letter-spacing:-.045em;
+  font-size:clamp(2.25rem,5.5vw,4.65rem); line-height:.98; font-weight:800;
+}
+.hero h1 span {
+  background:linear-gradient(100deg,var(--teal),#78e6dc 45%,var(--gold));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.hero-lead {
+  color:var(--text-2); font-size:clamp(.95rem,1.7vw,1.08rem); line-height:1.75;
+  max-width:760px; margin:24px 0 26px;
+}
+.hero-tags { display:flex; flex-wrap:wrap; gap:8px; }
+.hero-chip {
+  border:1px solid var(--border); background:rgba(255,255,255,.025);
+  color:var(--text-2); border-radius:999px; padding:6px 10px; font:600 .69rem/1 var(--mono);
+}
+.hero-visual {
+  position:relative; min-height:280px;
+  border:1px solid var(--border); border-radius:26px; overflow:hidden;
+  background:
+    linear-gradient(180deg, rgba(0,211,189,.055), transparent 60%),
+    var(--surface);
+  box-shadow:var(--shadow);
+}
+.hero-visual::before {
+  content:""; position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(0,211,189,.055) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,211,189,.055) 1px,transparent 1px);
+  background-size:28px 28px;
+}
+.monitor-head {
+  position:absolute; left:18px; right:18px; top:16px;
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  font:600 .63rem/1 var(--mono); color:var(--text-3); letter-spacing:.08em;
+}
+.live-dot { display:inline-flex; align-items:center; gap:6px; color:var(--teal); }
+.live-dot i {
+  display:block; width:7px; height:7px; border-radius:50%; background:var(--teal);
+  box-shadow:0 0 0 5px rgba(0,211,189,.08);
+  animation:pulseDot 2s ease-in-out infinite;
+}
+.ecg-wrap { position:absolute; inset:54px 18px 82px; display:grid; place-items:center; }
+.ecg-svg { width:100%; height:110px; overflow:visible; filter:drop-shadow(0 0 8px rgba(0,211,189,.2)); }
+.ecg-path {
+  fill:none; stroke:var(--teal); stroke-width:2.3; stroke-linecap:round; stroke-linejoin:round;
+  stroke-dasharray:720; stroke-dashoffset:720; animation:drawEcg 3.4s cubic-bezier(.45,.1,.16,1) .2s forwards, glowEcg 2.6s ease-in-out 3.7s infinite;
+}
+.monitor-stats {
+  position:absolute; left:18px; right:18px; bottom:16px;
+  display:grid; grid-template-columns:repeat(3,1fr); gap:8px;
+}
+.monitor-stat {
+  padding:10px 11px; border:1px solid var(--border); border-radius:12px;
+  background:rgba(10,15,22,.56); backdrop-filter:blur(10px);
+}
+[data-theme="light"] .monitor-stat { background:rgba(255,255,255,.7); }
+.monitor-stat strong { display:block; font:700 .96rem/1.15 var(--mono); color:var(--text); }
+.monitor-stat span { display:block; margin-top:5px; color:var(--text-3); font-size:.62rem; line-height:1.2; }
+
+/* Search */
+.search-zone { padding:4px 0 26px; }
+.search-shell {
+  position:relative; display:grid; grid-template-columns:1fr auto;
+  gap:12px; align-items:center; padding:12px;
+  border:1px solid var(--border); border-radius:18px;
+  background:var(--surface); backdrop-filter:blur(16px);
+  box-shadow:0 12px 38px rgba(0,0,0,.12);
+}
+.search-main { position:relative; display:flex; align-items:center; }
+.search-icon { position:absolute; left:15px; color:var(--text-3); pointer-events:none; }
+.search-input {
+  width:100%; height:50px; border:1px solid transparent; border-radius:13px;
+  padding:0 128px 0 46px; outline:none;
+  background:var(--surface-2); color:var(--text);
+  font-size:.92rem; font-weight:520; transition:.2s ease;
+}
+.search-input::placeholder { color:var(--text-3); }
+.search-input:focus {
+  border-color:rgba(0,211,189,.48);
+  box-shadow:0 0 0 4px rgba(0,211,189,.08);
+  background:var(--surface-solid);
+}
+.search-kbd {
+  position:absolute; right:11px; display:flex; gap:4px; align-items:center;
+  color:var(--text-3); font:500 .62rem/1 var(--mono); pointer-events:none;
+}
+.search-kbd kbd {
+  border:1px solid var(--border-strong); border-bottom-width:2px;
+  background:var(--surface-solid); border-radius:6px; padding:4px 6px; color:var(--text-2);
+}
+.clear-search {
+  position:absolute; right:92px; width:28px; height:28px; border:0; border-radius:8px;
+  background:transparent; color:var(--text-3); cursor:pointer; display:none; place-items:center;
+}
+.clear-search.visible { display:grid; }
+.clear-search:hover { background:var(--surface-3); color:var(--text); }
+.fav-filter {
+  min-width:138px; height:50px; border:1px solid var(--border); border-radius:13px;
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  padding:0 14px; background:var(--surface-2); color:var(--text-2); cursor:pointer;
+  font-size:.78rem; font-weight:700; transition:.18s ease;
+}
+.fav-filter:hover,.fav-filter.active { color:var(--gold); border-color:rgba(201,169,110,.34); background:var(--gold-dim); }
+.fav-count {
+  min-width:20px; height:20px; padding:0 6px; display:grid; place-items:center;
+  border-radius:999px; background:var(--surface-3); color:var(--text-3);
+  font:700 .6rem/1 var(--mono); transition:.18s ease;
+}
+.fav-filter.active .fav-count,.fav-filter:hover .fav-count { color:var(--gold); background:var(--gold-dim); }
+.quick-searches {
+  display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-top:11px;
+  color:var(--text-3); font-size:.68rem;
+}
+.quick-searches button {
+  border:0; border-radius:999px; padding:4px 9px; background:transparent;
+  color:var(--text-2); cursor:pointer; font:600 .68rem/1.2 var(--mono); transition:.15s ease;
+}
+.quick-searches button:hover { background:var(--teal-dim); color:var(--teal); }
+
+/* Featured */
+.section-kicker { color:var(--teal); font:700 .66rem/1 var(--mono); letter-spacing:.11em; text-transform:uppercase; }
+.section-title-row {
+  display:flex; align-items:end; justify-content:space-between; gap:20px; margin:10px 0 18px;
+}
+.section-title-row h2 { margin:0; font-size:clamp(1.3rem,2vw,1.75rem); letter-spacing:-.025em; }
+.section-title-row p { margin:0; max-width:610px; color:var(--text-3); font-size:.78rem; text-align:right; }
+.featured-section { padding:16px 0 40px; }
+.feature-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
+.feature-card {
+  position:relative; display:grid; grid-template-columns:auto 1fr auto; gap:14px; align-items:center;
+  min-height:126px; padding:18px; overflow:hidden; text-decoration:none;
+  border:1px solid var(--border); border-radius:var(--radius); background:var(--surface);
+  transition:transform .22s ease,border-color .22s ease,background .22s ease,box-shadow .22s ease;
+}
+.feature-card::before {
+  content:""; position:absolute; inset:auto -70px -80px auto; width:180px; height:180px;
+  border-radius:50%; background:radial-gradient(circle,rgba(0,211,189,.09),transparent 70%);
+  transition:transform .35s ease;
+}
+.feature-card:hover { transform:translateY(-3px); border-color:rgba(0,211,189,.3); background:color-mix(in srgb,var(--surface-solid) 92%,var(--teal) 8%); box-shadow:0 18px 40px rgba(0,0,0,.13); }
+.feature-card:hover::before { transform:scale(1.22); }
+.feature-icon {
+  width:43px; height:43px; display:grid; place-items:center; border-radius:13px;
+  background:var(--teal-dim); color:var(--teal); border:1px solid rgba(0,211,189,.16);
+}
+.feature-copy { min-width:0; }
+.feature-copy span { display:block; color:var(--teal); font:700 .62rem/1.2 var(--mono); text-transform:uppercase; letter-spacing:.07em; margin-bottom:5px; }
+.feature-copy strong { display:block; font-size:.9rem; line-height:1.35; letter-spacing:-.01em; }
+.feature-copy small { display:block; margin-top:6px; color:var(--text-3); font-size:.71rem; line-height:1.45; }
+.feature-arrow { color:var(--text-3); transition:.2s ease; }
+.feature-card:hover .feature-arrow { color:var(--teal); transform:translateX(4px); }
+
+/* Filters */
+.library { padding:26px 0 86px; }
+.filter-panel {
+  position:sticky; top:calc(var(--header-h) + 10px); z-index:30;
+  border:1px solid var(--border); border-radius:16px; background:color-mix(in srgb,var(--bg) 76%,transparent);
+  backdrop-filter:blur(16px) saturate(140%);
+  padding:10px; margin-bottom:18px;
+}
+.filter-row { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.category-tabs { display:flex; gap:7px; overflow:auto; scrollbar-width:none; padding:1px; }
+.category-tabs::-webkit-scrollbar { display:none; }
+.filter-btn {
+  flex:none; display:inline-flex; align-items:center; gap:7px;
+  border:1px solid transparent; border-radius:11px; padding:8px 11px;
+  background:transparent; color:var(--text-2); cursor:pointer; font-size:.72rem; font-weight:700;
+  white-space:nowrap; transition:.18s ease;
+}
+.filter-btn .count {
+  min-width:20px; height:20px; padding:0 5px; display:grid; place-items:center;
+  border-radius:999px; background:var(--surface-3); color:var(--text-3); font:600 .6rem/1 var(--mono);
+}
+.filter-btn:hover { color:var(--text); background:var(--surface-2); }
+.filter-btn.active { color:var(--teal); background:var(--teal-dim); border-color:rgba(0,211,189,.18); }
+.filter-btn.active .count { color:var(--teal); background:rgba(0,211,189,.12); }
+.view-tools { display:flex; align-items:center; gap:7px; flex:none; }
+.type-select {
+  height:36px; max-width:150px; border:1px solid var(--border); border-radius:10px;
+  background:var(--surface-2); color:var(--text-2); padding:0 28px 0 10px; outline:none;
+  font-size:.68rem; font-weight:650;
+}
+.view-btn {
+  width:36px; height:36px; border:1px solid var(--border); border-radius:10px; background:var(--surface-2);
+  color:var(--text-3); display:grid; place-items:center; cursor:pointer;
+}
+.view-btn.active,.view-btn:hover { color:var(--teal); border-color:rgba(0,211,189,.28); }
+.results-bar {
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  margin:12px 2px 14px; color:var(--text-3); font-size:.72rem;
+}
+.results-bar strong { color:var(--text-2); }
+.reset-btn { border:0; background:transparent; color:var(--teal); cursor:pointer; font-size:.7rem; font-weight:700; padding:4px 0; }
+
+/* Cards */
+.resource-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:13px; }
+.resource-card {
+  --mx:50%; --my:50%;
+  position:relative; min-width:0; min-height:310px; overflow:hidden; isolation:isolate;
+  contain:layout paint;
+  display:flex; flex-direction:column; padding:17px;
+  border:1px solid var(--border); border-radius:var(--radius);
+  background:var(--surface); transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease,opacity .2s ease;
+}
+.card-glow {
+  position:absolute; inset:0; pointer-events:none; opacity:0; transition:opacity .25s ease;
+  background:radial-gradient(260px circle at var(--mx) var(--my),rgba(0,211,189,.09),transparent 68%);
+}
+.resource-card:hover { transform:translateY(-4px); border-color:rgba(0,211,189,.28); box-shadow:0 20px 44px rgba(0,0,0,.15); }
+.resource-card:hover .card-glow { opacity:1; }
+.resource-top { position:relative; display:flex; align-items:flex-start; justify-content:space-between; gap:10px; }
+.category-badge {
+  display:inline-flex; align-items:center; gap:6px; max-width:calc(100% - 34px);
+  border:1px solid currentColor; border-radius:999px; padding:5px 8px;
+  font:700 .58rem/1.1 var(--mono); letter-spacing:.035em; text-transform:uppercase;
+}
+.cat-meds { color:var(--gold); background:var(--gold-dim); border-color:rgba(201,169,110,.2); }
+.cat-proc { color:var(--teal); background:var(--teal-dim); border-color:rgba(0,211,189,.2); }
+.cat-condicoes { color:var(--red); background:rgba(243,106,106,.09); border-color:rgba(243,106,106,.2); }
+.cat-sistemas { color:var(--purple); background:rgba(185,140,244,.09); border-color:rgba(185,140,244,.2); }
+.cat-estilo { color:var(--green); background:rgba(97,215,154,.09); border-color:rgba(97,215,154,.2); }
+.favorite-btn {
+  position:relative; z-index:2; width:30px; height:30px; flex:none; display:grid; place-items:center;
+  border:0; border-radius:9px; background:transparent; color:var(--text-3); cursor:pointer; transition:.18s ease;
+}
+.favorite-btn:hover { background:var(--gold-dim); color:var(--gold); }
+.favorite-btn.active { color:var(--gold); background:var(--gold-dim); }
+.favorite-btn.active svg { fill:currentColor; }
+.resource-meta {
+  position:relative; display:flex; align-items:center; gap:7px; margin:18px 0 8px;
+  color:var(--text-3); font:600 .6rem/1 var(--mono); text-transform:uppercase; letter-spacing:.055em;
+}
+.meta-dot { width:3px; height:3px; border-radius:50%; background:var(--border-strong); }
+.resource-card h3 { position:relative; margin:0; font-size:.94rem; line-height:1.42; letter-spacing:-.012em; }
+.resource-card h3 a { text-decoration:none; }
+.resource-card h3 a::after { content:""; position:absolute; inset:0; }
+.resource-card h3 a:focus-visible { outline:2px solid var(--teal); outline-offset:3px; border-radius:4px; }
+.resource-card p { position:relative; color:var(--text-3); font-size:.73rem; line-height:1.58; margin:9px 0 16px; }
+.resource-footer { position:relative; z-index:2; margin-top:auto; padding-top:14px; border-top:1px solid var(--border); display:flex; align-items:end; justify-content:space-between; gap:12px; }
+.evidence-pill { color:var(--text-3); font-size:.62rem; line-height:1.35; max-width:68%; }
+.open-link {
+  flex:none; display:inline-flex; align-items:center; gap:5px; color:var(--teal);
+  text-decoration:none; font-size:.68rem; font-weight:800; transition:.18s ease;
+}
+.open-link:hover { color:var(--teal-2); }
+.open-link svg { transition:transform .18s ease; }
+.open-link:hover svg { transform:translateX(3px); }
+
+/* List view */
+.resource-grid.list-view { grid-template-columns:1fr; }
+.resource-grid.list-view .resource-card {
+  min-height:0; display:grid; grid-template-columns:180px 1fr auto; column-gap:18px; align-items:center; padding:15px 17px;
+}
+.resource-grid.list-view .resource-top { grid-column:1; }
+.resource-grid.list-view .resource-meta { grid-column:1; margin:10px 0 0; }
+.resource-grid.list-view h3 { grid-column:2; grid-row:1; padding-right:10px; }
+.resource-grid.list-view p { grid-column:2; grid-row:2; margin:3px 0 0; }
+.resource-grid.list-view .resource-footer { grid-column:3; grid-row:1 / span 2; border:0; padding:0; min-width:190px; justify-content:flex-end; }
+.resource-grid.list-view .evidence-pill { text-align:right; max-width:118px; }
+
+/* States */
+.resource-card.hidden { display:none; }
+.empty-state {
+  display:none; border:1px dashed var(--border-strong); border-radius:18px;
+  padding:56px 20px; text-align:center; color:var(--text-3); background:rgba(255,255,255,.015);
+}
+.empty-state.show { display:block; }
+.empty-icon {
+  width:48px; height:48px; margin:0 auto 12px; border-radius:14px; display:grid; place-items:center;
+  color:var(--teal); background:var(--teal-dim);
+}
+.empty-state strong { display:block; color:var(--text); font-size:.9rem; }
+.empty-state span { display:block; max-width:520px; margin:6px auto 0; font-size:.75rem; }
+
+/* Last viewed */
+.last-viewed {
+  display:none; align-items:center; gap:9px; margin-top:14px; width:max-content; max-width:100%;
+  border:1px solid var(--border); border-radius:999px; padding:6px 10px 6px 7px;
+  background:var(--surface); color:var(--text-2); font-size:.68rem;
+}
+.last-viewed.show { display:flex; }
+.last-viewed i { width:23px; height:23px; border-radius:50%; display:grid; place-items:center; background:var(--teal-dim); color:var(--teal); font-style:normal; }
+.last-viewed a { color:var(--teal); text-decoration:none; font-weight:700; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:390px; }
+
+/* Footer */
+.footer {
+  border-top:1px solid var(--border); padding:28px 0 38px; color:var(--text-3); font-size:.68rem;
+}
+.footer-inner { display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+.footer strong { color:var(--text-2); }
+.footer-links { display:flex; gap:14px; }
+.footer a { color:var(--text-3); text-decoration:none; }
+.footer a:hover { color:var(--teal); }
+
+/* Motion */
+@keyframes drawEcg { to { stroke-dashoffset:0; } }
+@keyframes glowEcg { 0%,100%{opacity:.75} 50%{opacity:1} }
+@keyframes pulseDot { 0%,100%{transform:scale(.82);opacity:.65} 50%{transform:scale(1);opacity:1} }
+@keyframes cardIn { from{opacity:0;transform:translateY(10px) scale(.985)} to{opacity:1;transform:none} }
+@keyframes introUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:none} }
+.hero-copy > * { animation:introUp .65s cubic-bezier(.2,.7,.2,1) both; }
+.hero-copy > :nth-child(2) { animation-delay:.06s; }
+.hero-copy > :nth-child(3) { animation-delay:.12s; }
+.hero-copy > :nth-child(4) { animation-delay:.18s; }
+.hero-copy > :nth-child(5) { animation-delay:.24s; }
+.hero-visual { animation:introUp .7s cubic-bezier(.2,.7,.2,1) .1s both; }
+.reveal-card { opacity:0; transform:translateY(14px); }
+.reveal-card.visible { opacity:1; transform:none; transition:opacity .45s ease,transform .45s cubic-bezier(.2,.75,.25,1); }
+
+/* Responsive */
+@media (max-width: 980px) {
+  .nav-links { display:none; }
+  .hero { padding-top:48px; }
+  .hero-grid { grid-template-columns:1fr; gap:28px; }
+  .hero-visual { min-height:250px; }
+  .resource-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .filter-row { align-items:flex-start; flex-direction:column; }
+  .category-tabs { width:100%; }
+  .view-tools { width:100%; justify-content:flex-end; }
+  .resource-grid.list-view .resource-card { grid-template-columns:150px 1fr; }
+  .resource-grid.list-view .resource-footer { grid-column:2; grid-row:3; margin-top:10px; justify-content:flex-start; }
+}
+@media (max-width: 680px) {
+  :root { --header-h:58px; }
+  .container { width:min(100% - 24px,1180px); }
+  .site-header { height:var(--header-h); }
+  .brand-text span,.home-btn span { display:none; }
+  .home-btn { width:36px; height:36px; padding:0; justify-content:center; }
+  .hero { padding:38px 0 24px; }
+  .hero h1 { font-size:clamp(2.08rem,12vw,3.25rem); }
+  .hero-lead { margin-top:18px; }
+  .hero-visual { min-height:225px; border-radius:20px; }
+  .monitor-stats { grid-template-columns:repeat(3,1fr); }
+  .monitor-stat { padding:8px; }
+  .monitor-stat strong { font-size:.8rem; }
+  .monitor-stat span { font-size:.54rem; }
+  .search-shell { grid-template-columns:1fr; gap:8px; }
+  .search-input { padding-right:88px; }
+  .search-kbd { right:9px; }
+  .search-kbd span { display:none; }
+  .clear-search { right:43px; }
+  .fav-filter { width:100%; }
+  .feature-grid,.resource-grid { grid-template-columns:1fr; }
+  .section-title-row { align-items:flex-start; flex-direction:column; gap:7px; }
+  .section-title-row p { text-align:left; }
+  .filter-panel { top:calc(var(--header-h) + 6px); margin-left:-2px; margin-right:-2px; }
+  .view-tools { justify-content:space-between; }
+  .type-select { max-width:none; flex:1; }
+  .resource-grid.list-view .resource-card { display:flex; min-height:0; }
+  .resource-grid.list-view .resource-meta { margin:18px 0 8px; }
+  .resource-grid.list-view .resource-footer { width:100%; border-top:1px solid var(--border); padding-top:14px; justify-content:space-between; }
+  .resource-grid.list-view .evidence-pill { text-align:left; max-width:68%; }
+  .footer-inner { align-items:flex-start; flex-direction:column; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior:auto; }
+  *,*::before,*::after { animation-duration:.01ms!important; animation-iteration-count:1!important; transition-duration:.01ms!important; }
+  .reveal-card { opacity:1; transform:none; }
+}
+
+/* Optimization & accessibility */
+[hidden] { display:none !important; }
+:where(a,button,input,select):focus-visible {
+  outline:2px solid var(--teal);
+  outline-offset:3px;
+}
+.favorite-btn[aria-pressed="true"] { color:var(--gold); background:var(--gold-dim); }
+.favorite-btn:active,.icon-btn:active,.view-btn:active,.filter-btn:active,.fav-filter:active {
+  transform:scale(.96);
+}
+.results-bar strong,.count,.fav-count { font-variant-numeric:tabular-nums; }
+.search-input { caret-color:var(--teal); }
+.filter-panel { box-shadow:0 10px 32px rgba(0,0,0,.08); }
+@supports (content-visibility:auto) {
+  .resource-card {
+    content-visibility:auto;
+    contain-intrinsic-size:auto 310px;
+  }
+}
+@media (hover:none), (pointer:coarse) {
+  .resource-card:hover,.feature-card:hover,.icon-btn:hover { transform:none; }
+  .resource-card:hover { box-shadow:none; }
+  .card-glow { display:none; }
+}
+
+</style>
+</head>
+
+<body>
+<a class="skip-link" href="#biblioteca">Pular para a biblioteca</a>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html" aria-label="Dr. Lucas Silva — página inicial">
+      <span class="brand-mark">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 8L9 4l-3 8H2"/></svg>
+      </span>
+      <span class="brand-text">
+        <strong>Dr. <em>Lucas</em> Silva</strong>
+        <span>PORTAL DO PACIENTE · CARDIOLOGIA</span>
+      </span>
+    </a>
+
+    <nav class="nav-links" aria-label="Navegação do portal">
+      <a href="#destaques">Destaques</a>
+      <a href="#biblioteca">Biblioteca</a>
+      <a href="Pacientes/sinais-alarme-cardiologico.html">Sinais de alarme</a>
+      <a href="index.html#contact">Contato</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-btn" id="themeToggle" type="button" aria-label="Alternar tema" title="Alternar tema">
+        <svg id="themeIcon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9"/></svg>
+      </button>
+      <a class="home-btn" href="index.html">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10 9-7 9 7"/><path d="M5 9v11h14V9"/><path d="M9 20v-6h6v6"/></svg>
+        <span>Site principal</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero" aria-labelledby="heroTitle">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow">Educação baseada em evidências</div>
+        <h1 id="heroTitle">Informação clara para <span>cuidar melhor.</span></h1>
+        <p class="hero-lead">
+          Um espaço para entender exames, condições cardiológicas, medicamentos e hábitos que afetam o seu coração,
+          com linguagem acessível e sempre baseada em ciência.
+        </p>
+        <div class="hero-tags" aria-label="Principais áreas">
+          <span class="hero-chip">Exames</span>
+          <span class="hero-chip">Condições do coração</span>
+          <span class="hero-chip">Medicamentos</span>
+          <span class="hero-chip">Estilo de vida</span>
+          <span class="hero-chip">Sinais de alarme</span>
+        </div>
+        <div class="last-viewed" id="lastViewed">
+          <i>↗</i><span>Último acesso:</span><a href="#" id="lastViewedLink"></a>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="monitor-head">
+          <span>GUIA DE SAÚDE CARDIOVASCULAR</span>
+          <span class="live-dot"><i></i>ATIVO</span>
+        </div>
+        <div class="ecg-wrap">
+          <svg class="ecg-svg" viewBox="0 0 600 120" preserveAspectRatio="none">
+            <path class="ecg-path" d="M0 68 H62 L73 68 L82 54 L91 83 L103 15 L117 98 L131 68 H186 L197 68 L206 57 L215 81 L227 23 L239 91 L253 68 H307 L318 68 L327 54 L336 83 L348 15 L362 98 L376 68 H431 L442 68 L451 57 L460 81 L472 23 L484 91 L498 68 H600"/>
+          </svg>
+        </div>
+        <div class="monitor-stats">
+          <div class="monitor-stat"><strong>21</strong><span>guias e ferramentas</span></div>
+          <div class="monitor-stat"><strong>5</strong><span>áreas organizadas</span></div>
+          <div class="monitor-stat"><strong>&lt;1s</strong><span>busca local</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="search-zone" aria-label="Busca de conteúdo">
+    <div class="container">
+      <div class="search-shell">
+        <div class="search-main">
+          <svg class="search-icon" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input class="search-input" id="searchInput" type="search" autocomplete="off" spellcheck="false"
+                 placeholder="Busque por exame, condição, medicamento ou sintoma…"
+                 aria-label="Buscar conteúdo para pacientes">
+          <button class="clear-search" id="clearSearch" type="button" aria-label="Limpar busca">×</button>
+          <span class="search-kbd"><span>atalho</span><kbd>Ctrl</kbd><kbd>K</kbd></span>
+        </div>
+        <button class="fav-filter" id="favFilter" type="button" aria-pressed="false">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2.7 2.8 5.7 6.3.9-4.6 4.4 1.1 6.3-5.6-3-5.6 3 1.1-6.3-4.6-4.4 6.3-.9Z"/></svg>
+          Meus favoritos <span class="fav-count" id="favCount" aria-hidden="true">0</span>
+        </button>
+      </div>
+      <div class="quick-searches">
+        <span>Busca rápida:</span>
+        <button type="button" data-query="cateterismo">Cateterismo</button>
+        <button type="button" data-query="sinais de alarme">Sinais de alarme</button>
+        <button type="button" data-query="medicamentos">Medicamentos</button>
+        <button type="button" data-query="diabetes">Diabetes</button>
+        <button type="button" data-query="dieta">Dieta</button>
+        <button type="button" data-query="anabolizantes">Anabolizantes</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="featured-section" id="destaques" aria-labelledby="featuredTitle">
+    <div class="container">
+      <span class="section-kicker">Acesso rápido</span>
+      <div class="section-title-row">
+        <h2 id="featuredTitle">Guias em destaque</h2>
+        <p>Atalhos para os temas mais buscados por quem quer entender melhor a saúde do coração.</p>
+      </div>
+      <div class="feature-grid">
+        
+      <a class="feature-card feature-1" href="Pacientes/pacientes-exames.html" data-track="Pacientes/pacientes-exames.html">
+        <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="8" y2="10"/><line x1="12" y1="10" x2="12" y2="10"/><line x1="16" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="8" y2="14"/><line x1="12" y1="14" x2="12" y2="14"/><line x1="16" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="8" y2="18"/><line x1="12" y1="18" x2="12" y2="18"/><line x1="16" y1="18" x2="16" y2="18"/></svg></div>
+        <div class="feature-copy">
+          <span>Procedimentos &amp; Exames</span>
+          <strong>Guia de Exames Cardiológicos</strong>
+          <small>18 exames explicados: indicações, como é feito, preparo e o que esperar — em um só lugar.</small>
+        </div>
+        <svg class="feature-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+      </a>
+      <a class="feature-card feature-2" href="Pacientes/sinais-alarme-cardiologico.html" data-track="Pacientes/sinais-alarme-cardiologico.html">
+        <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.5-1.5 3-3.5 3-6.5A5.5 5.5 0 0 0 16.5 2c-1.7 0-3.3.8-4.5 2-1.2-1.2-2.8-2-4.5-2A5.5 5.5 0 0 0 2 7.5c0 3 1.5 5 3 6.5l7 7Z"/></svg></div>
+        <div class="feature-copy">
+          <span>Condições Cardiológicas</span>
+          <strong>Sinais de Alarme: Quando Procurar Ajuda</strong>
+          <small>Os sinais de alerta mais importantes em cardiologia e o que fazer diante deles. Proteja sua família.</small>
+        </div>
+        <svg class="feature-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+      </a>
+      <a class="feature-card feature-3" href="Pacientes/guia-medicamentos-cardiologicos.html" data-track="Pacientes/guia-medicamentos-cardiologicos.html">
+        <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="9" width="18" height="6" rx="3"/><line x1="12" y1="9" x2="12" y2="15"/></svg></div>
+        <div class="feature-copy">
+          <span>Medicamentos</span>
+          <strong>Guia de Medicamentos Cardiológicos</strong>
+          <small>O manual mais completo sobre remédios de cardiologia para pacientes: para que servem e efeitos colaterais.</small>
+        </div>
+        <svg class="feature-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+      </a>
+      <a class="feature-card feature-4" href="Pacientes/dieta-cardiovascular.html" data-track="Pacientes/dieta-cardiovascular.html">
+        <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 8L9 4l-3 8H2"/></svg></div>
+        <div class="feature-copy">
+          <span>Estilo de Vida</span>
+          <strong>Dietas e Saúde Cardiovascular</strong>
+          <small>Quais dietas têm respaldo científico, quais têm benefício real e os riscos das dietas da moda.</small>
+        </div>
+        <svg class="feature-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+      </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="library" id="biblioteca" aria-labelledby="libraryTitle">
+    <div class="container">
+      <span class="section-kicker">Biblioteca do paciente</span>
+      <div class="section-title-row">
+        <h2 id="libraryTitle">Encontre a informação certa</h2>
+        <p>Combine busca e categoria. Favoritos ficam salvos neste navegador.</p>
+      </div>
+
+      <div class="filter-panel">
+        <div class="filter-row">
+          <div class="category-tabs" role="group" aria-label="Filtrar por área">
+            <button class="filter-btn active" type="button" data-cat="all" aria-pressed="true">
+              Todos <span class="count" data-count="all">21</span>
+            </button><button class="filter-btn" type="button" data-cat="proc" aria-pressed="false"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="8" y2="10"/><line x1="12" y1="10" x2="12" y2="10"/><line x1="16" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="8" y2="14"/><line x1="12" y1="14" x2="12" y2="14"/><line x1="16" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="8" y2="18"/><line x1="12" y1="18" x2="12" y2="18"/><line x1="16" y1="18" x2="16" y2="18"/></svg>Procedimentos &amp; Exames<span class="count" data-count="proc">4</span></button><button class="filter-btn" type="button" data-cat="condicoes" aria-pressed="false"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.5-1.5 3-3.5 3-6.5A5.5 5.5 0 0 0 16.5 2c-1.7 0-3.3.8-4.5 2-1.2-1.2-2.8-2-4.5-2A5.5 5.5 0 0 0 2 7.5c0 3 1.5 5 3 6.5l7 7Z"/></svg>Condições Cardiológicas<span class="count" data-count="condicoes">3</span></button><button class="filter-btn" type="button" data-cat="meds" aria-pressed="false"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="9" width="18" height="6" rx="3"/><line x1="12" y1="9" x2="12" y2="15"/></svg>Medicamentos<span class="count" data-count="meds">2</span></button><button class="filter-btn" type="button" data-cat="estilo" aria-pressed="false"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 8L9 4l-3 8H2"/></svg>Estilo de Vida<span class="count" data-count="estilo">6</span></button><button class="filter-btn" type="button" data-cat="sistemas" aria-pressed="false"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.8 4.5A5.4 5.4 0 0 0 2 9.8c0 3.1 2.1 5.2 4.1 7l5.9 5.2 2.4-2.1"/><path d="M12 6.2A5.2 5.2 0 0 1 16.2 4c2.7 0 4.9 2 5.2 4.6"/><circle cx="18" cy="16" r="5"/><path d="M18 13v6"/><path d="M15 16h6"/></svg>Coração &amp; Outros Sistemas<span class="count" data-count="sistemas">6</span></button>
+          </div>
+          <div class="view-tools">
+            <select class="type-select" id="typeSelect" aria-label="Filtrar por formato">
+              <option value="all">Todos os formatos</option>
+              <option>Guia interativo</option>
+              <option>FAQ</option>
+              <option>Referência</option>
+              <option>Manual</option>
+            </select>
+            <button class="view-btn active" id="gridView" type="button" aria-label="Visualização em grade" title="Grade">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+            </button>
+            <button class="view-btn" id="listView" type="button" aria-label="Visualização em lista" title="Lista">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13"/><path d="M3 6h.01M3 12h.01M3 18h.01"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="results-bar" aria-live="polite">
+        <span><strong id="resultCount">21</strong> guias encontrados <span id="activeContext"></span></span>
+        <button class="reset-btn" id="resetFilters" type="button">Limpar filtros</button>
+      </div>
+
+      <div class="resource-grid" id="resourceGrid">
+        
+      <article class="resource-card reveal-card" data-id="1" data-cat="proc" data-type="Guia interativo" data-search="Guia de Exames Cardiológicos 18 exames explicados: indicações, como é feito, preparo e o que esperar — em um só lugar. Todos os exames. Um só lugar. Procedimentos e Exames Guia interativo ecocardiograma holter mapa teste ergométrico ressonância tomografia exames cardiológicos preparo" data-order="1" data-key="Pacientes/pacientes-exames.html">
+        <div class="card-glow"></div>
+        <div class="resource-top">
+          <span class="category-badge cat-proc"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="8" y2="10"/><line x1="12" y1="10" x2="12" y2="10"/><line x1="16" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="8" y2="14"/><line x1="12" y1="14" x2="12" y2="14"/><line x1="16" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="8" y2="18"/><line x1="12" y1="18" x2="12" y2="18"/><line x1="16" y1="18" x2="16" y2="18"/></svg>Procedimentos &amp; Exames</span>
+          <button class="favorite-btn" type="button" aria-label="Adicionar aos favoritos" title="Favoritar" data-fav="Pacientes/pacientes-exames.html">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2.7 2.8 5.7 6.3.9-4.6 4.4 1.1 6.3-5.6-3-5.6 3 1.1-6.3-4.6-4.4 6.3-.9Z"/></svg>
+          </button>
+        </div>
+        <div class="resource-meta"><span>Guia interativo</span><span class="meta-dot"></span><span>Conteúdo para pacientes</span></div>
+        <h3><a href="Pacientes/pacientes-exames.html" data-track="Pacientes/pacientes-exames.html">Guia de Exames Cardiológicos</a></h3>
+        <p>18 exames explicados: indicações, como é feito, preparo e o que esperar — em um só lugar.</p>
+        <div class="resource-footer">
+          <span class="evidence-pill">Todos os exames. Um só lugar.</span>
+          <a class="open-link" href="Pacientes/pacientes-exames.html" data-track="Pacientes/pacientes-exames.html" aria-label="Abrir Guia de Exames Cardiológicos">
+            Abrir
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="resource-card reveal-card" data-id="2" data-cat="proc" data-type="Guia interativo" data-search="Tudo Sobre o Cateterismo Cardíaco O que é, quando é indicado, tempo de jejum, se dói e outras dúvidas frequentes sobre o exame. Tire todas as suas dúvidas Procedimentos e Exames Guia interativo cateterismo cardíaco coronariografia angiografia jejum dor procedimento invasivo" data-order="2" data-key="cateinfo/cateterismo-info.html">
+        <div class="card-glow"></div>
+        <div class="resource-top">
+          <span class="category-badge cat-proc"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="8" y2="10"/><line x1="12" y1="10" x2="12" y2="10"/><line x1="16" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="8" y2="14"/><line x1="12" y1="14" x2="12" y2="14"/><line x1="16" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="8" y2="18"/><line x1="12" y1="18" x2="12" y2="18"/><line x1="16" y1="18" x2="16" y2="18"/></svg>Procedimentos &amp; Exames</span>
+          <button class="favorite-btn" type="button" aria-label="Adicionar aos favoritos" title="Favoritar" data-fav="cateinfo/cateterismo-info.html">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2.7 2.8 5.7 6.3.9-4.6 4.4 1.1 6.3-5.6-3-5.6 3 1.1-6.3-4.6-4.4 6.3-.9Z"/></svg>
+          </button>
+        </div>
+        <div class="resource-meta"><span>Guia interativo</span><span class="meta-dot"></span><span>Conteúdo para pacientes</span></div>
+        <h3><a href="cateinfo/cateterismo-info.html" data-track="cateinfo/cateterismo-info.html">Tudo Sobre o Cateterismo Cardíaco</a></h3>
+        <p>O que é, quando é indicado, tempo de jejum, se dói e outras dúvidas frequentes sobre o exame.</p>
+        <div class="resource-footer">
+          <span class="evidence-pill">Tire todas as suas dúvidas</span>
+          <a class="open-link" href="cateinfo/cateterismo-info.html" data-track="cateinfo/cateterismo-info.html" aria-label="Abrir Tudo Sobre o Cateterismo Cardíaco">
+            Abrir
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="resource-card reveal-card" data-id="3" data-cat="proc" data-type="FAQ" data-search="FAQ de Cardiologia Intervencionista Perguntas frequentes sobre hemodinâmica e cardiologia intervencionista, com busca para achar rápido o que precisa. Pesquisa facilitada Procedimentos e Exames FAQ perguntas frequentes hemodinâmica dúvidas cardiologia intervencionista" data-order="3" data-key="faq/hemodinamica-faq.html">
+        <div class="card-glow"></div>
+        <div class="resource-top">
+          <span class="category-badge cat-proc"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="8" y2="10"/><line x1="12" y1="10" x2="12" y2="10"/><line x1="16" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="8" y2="14"/><line x1="12" y1="14" x2="12" y2="14"/><line x1="16" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="8" y2="18"/><line x1="12" y1="18" x2="12" y2="18"/><line x1="16" y1="18" x2="16" y2="18"/></svg>Procedimentos &amp; Exames</span>
+          <button class="favorite-btn" type="button" aria-label="Adicionar aos favoritos" title="Favoritar" data-fav="faq/hemodinamica-faq.html">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2.7 2.8 5.7 6.3.9-4.6 4.4 1.1 6.3-5.6-3-5.6 3 1.1-6.3-4.6-4.4 6.3-.9Z"/></svg>
+          </button>
+        </div>
+        <div class="resource-meta"><span>FAQ</span><span class="meta-dot"></span><span>Conteúdo para pacientes</span></div>
+        <h3><a href="faq/hemodinamica-faq.html" data-track="faq/hemodinamica-faq.html">FAQ de Cardiologia Intervencionista</a></h3>
+        <p>Perguntas frequentes sobre hemodinâmica e cardiologia intervencionista, com busca para achar rápido o que precisa.</p>
+        <div class="resource-footer">
+          <span class="evidence-pill">Pesquisa facilitada</span>
+          <a class="open-link" href="faq/hemodinamica-faq.html" data-track="faq/hemodinamica-faq.html" aria-label="Abrir FAQ de Cardiologia Intervencionista">
+            Abrir
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="resource-card reveal-card" data-id="4" data-cat="proc" data-type="Guia interativo" data-search="Check-up: Quais Exames Você Realmente Precisa? Nem todo exame pedido no check-up tem respaldo científico. Entenda o que realmente vale a pena. Avaliação periódica, não check-up Procedimentos e Exames Guia interativo check-up exame periódico de saúde rastreamento excesso de exames" data-order="4" data-key="Pacientes/periodicolucas.html">
+        <div class="card-glow"></div>
+        <div class="resource-top">
+          <span class="category-badge cat-proc"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="8" y2="10"/><line x1="12" y1="10" x2="12" y2="10"/><line x1="16" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="8" y2="14"/><line x1="12" y1="14" x2="12" y2="14"/><line x1="16" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="8" y2="18"/><line x1="12" y1="18" x2="12" y2="18"/><line x1="16" y1="18" x2="16" y2="18"/></svg>Procedimentos &amp; Exames</span>
+          <button class="favorite-btn" type="button" aria-label="Adicionar aos favoritos" title="Favoritar" data-fav="Pacientes/periodicolucas.html">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2.7 2.8 5.7 6.3.9-4.6 4.4 1.1 6.3-5.6-3-5.6 3 1.1-6.3-4.6-4.4 6.3-.9Z"/></svg>
+          </button>
+        </div>
+        <div class="resource-meta"><span>Guia interativo</span><span class="meta-dot"></span><span>Conteúdo para pacientes</span></div>
+        <h3><a href="Pacientes/periodicolucas.html" data-track="Pacientes/periodicolucas.html">Check-up: Quais Exames Você Realmente Precisa?</a></h3>
+        <p>Nem todo exame pedido no check-up tem respaldo científico. Entenda o que realmente vale a pena.</p>
+        <div class="resource-footer">
+          <span class="evidence-pill">Avaliação periódica, não check-up</span>
+          <a class="open-link" href="Pacientes/periodicolucas.html" data-track="Pacientes/periodicolucas.html" aria-label="Abrir Check-up: Quais Exames Você Realmente Precisa?">
+            Abrir
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="resource-card reveal-card" data-id="5" data-cat="condicoes" data-type="Guia interativo" data-search="Condições Cardiológicas Mais Comuns Um guia completo e baseado em evidências sobre as doenças do coração mais prevalentes. Completo e baseado em evidências Condições Cardiológicas Guia interativo hipertensão arritmia insuficiência cardíaca infarto doença coronariana condições" data-order="5" data-key="Pacientes/condicoes-cardiologicas.html">
+        <div class="card-glow"></div>
+        <div class="resource-top">
+          <span class="category-badge cat-condicoes"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.5-1.5 3-3.5 3-6.5A5.5 5.5 0 0 0 16.5 2c-1.7 0-3.3.8-4.5 2-1.2-1.2-2.8-2-4.5-2A5.5 5.5 0 0 0 2 7.5c0 3 1.5 5 3 6.5l7 7Z"/></svg>Condições Cardiológicas</span>
+          <button class="favorite-btn" type="button" aria-label="Adicionar aos favoritos" title="Favoritar" data-fav="Pacientes/condicoes-cardiologicas.html">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2.7 2.8 5.7 6.3.9-4.6 4.4 1.1 6.3-5.6-3-5.6 3 1.1-6.3-4.6-4.4 6.3-.9Z"/></svg>
+          </button>
+        </div>
+        <div class="resource-meta"><span>Guia interativo</span><span class="meta-dot"></span><span>Conteúdo para pacientes</span></div>
+        <h3><a href="Pacientes/condicoes-cardiologicas.html" data-track="Pacientes/condicoes-cardiologicas.html">Condições Cardiológicas Mais Comuns</a></h3>
+        <p>Um guia completo e baseado em evidências sobre as doenças do coração mais prevalentes.</p>
+        <div class="resource-footer">
+          <span class="evidence-pill">Completo e baseado em evidências</span>
+          <a class="open-link" href="Pacientes/condicoes-cardiologicas.html" data-track="Pacientes/condicoes-cardiologicas.html" aria-label="Abrir Condições Cardiológicas Mais Comuns">
+            Abrir
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="resource-card reveal-card" data-id="6" data-cat="condicoes" data-type="Referência" data-search="Sinais de Alarme: Quando Procurar Ajuda Os sinais de alerta mais importantes em cardiologia e o que fazer diante deles. Proteja sua família. Utilidade pública Condições Cardiológicas Referência emergência urgência sinais de alarme dor no peito falta de ar infarto avc" data-order="6" data-key="Pacientes/sinais-alarme-cardiologico.html">
+        <div class="card-glow"></div>
+        <div class="resource-top">
+          <span class="category-badge cat-condicoes"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.5-1.5 3-3.5 3-6.5A5.5 5.5 0 0 0 16.5 2c-1.7 0-3.3.8-4.5 2-1.2-1.2-2.8-2-4.5-2A5.5 5.5 0 0 0 2 7.5c0 3 1.5 5 3 6.5l7 7Z"/></svg>Condições Cardiológicas</span>
+          <button class="favorite-btn" type="button" aria-label="Adicionar aos favoritos" title="Favoritar" data-fav="Pacientes/sinais-alarme-cardiologico.html">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2.7 2.8 5.7 6.3.9-4.6 4.4 1.1 6.3-5.6-3-5.6 3 1.1-6.3-4.6-4.4 6.3-.9Z"/></svg>
+          </button>
+        </div>
+        <div class="resource-meta"><span>Referência</span><span class="meta-dot"></span><span>Conteúdo para pacientes</span></div>
+        <h3><a href="Pacientes/sinais-alarme-cardiologico.html" data-track="Pacientes/sinais-alarme-cardiologico.html">Sinais de Alarme: Quando Procurar Ajuda</a></h3>
+        <p>Os sinais de alerta mais importantes em cardiologia e o que fazer diante deles. Proteja sua família.</p>
+        <div class="resource-footer">
+          <span class="evidence-pill">Utilidade pública</span>
+          <a class="open-link" href="Pacientes/sinais-alarme-cardiologico.html" data-track="Pacientes/sinais-alarme-cardiologico.html" aria-label="Abrir Sinais de Alarme: Quando Procurar Ajuda">
+            Abrir
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="resource-card reveal-card" data-id="7" data-cat="condicoes" data-type="Guia interativo" data-search="Diabetes e Doença Cardiovascular Por que diabetes e coração andam tão juntos — para todos os tipos de diabetes. Coração e pâncreas, lado a lado Condições Cardiológicas Guia interativo diabetes tipo 1 tipo 2 glicemia risco cardiovascular" data-order="7" data-key="Pacientes/diabetes-doenca-cardiovascular.html">
+        <div class="card-glow"></div>
+        <div class="resource-top">
+          <span class="category-badge cat-condicoes"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.5-1.5 3-3.5 3-6.5A5.5 5.5 0 0 0 16.5 2c-1.7 0-3.3.8-4.5 2-1.2-1.2-2.8-2-4.5-2A5.5 5.5 0 0 0 2 7.5c0 3 1.5 5 3 6.5l7 7Z"/></svg>Condições Cardiológicas</span>
+          <button class="favorite-btn" type="button" aria-label="Adicionar aos favoritos" title="Favoritar" data-fav="Pacientes/diabetes-doenca-cardiovascular.html">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2.7 2.8 5.7 6.3.9-4.6 4.4 1.1 6.3-5.6-3-5.6 3 1.1-6.3-4.6-4.4 6.3-.9Z"/></svg>
+          </button>
+        </div>
+        <div class="resource-meta"><span>Guia interativo</span><span class="meta-dot"></span><span>Conteúdo para pacientes</span></div>
+        <h3><a href="Pacientes/diabetes-doenca-cardiovascular.html" data-track="Pacientes/diabetes-doenca-cardiovascular.html">Diabetes e Doença Cardiovascular</a></h3>
+        <p>Por que diabetes e coração andam tão juntos — para todos os tipos de diabetes.</p>
+        <div class="resource-footer">
+          <span class="evidence-pill">Coração e pâncreas, lado a lado</span>
+          <a class="open-link" href="Pacientes/diabetes-doenca-cardiovascular.html" data-track="Pacientes/diabetes-doenca-cardiovascular.html" aria-label="Abrir Diabetes e Doença Cardiovascular">
+            Abrir
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="resource-card reveal-card" data-id="8" data-cat="meds" data-type="Manual" data-search="Guia de Medicamentos Cardiológicos O manual mais completo sobre remédios de cardiologia para pacientes: para que servem e efeitos colaterais. Entenda o que você toma Medicamentos Manual medicamentos remédios cardiológicos estatina betabloqueador anticoagulante efeitos colaterais" data-order="8" data-key="Pacientes/guia-medicamentos-cardiologicos.html">
+        <div class="card-glow"></div>
+        <div class="resource-top">
+          <span class="category-badge cat-meds"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="9" width="18" height="6" rx="3"/><line x1="12" y1="9" x2="12" y2="15"/></svg>Medicamentos</span>
+          <button class="favorite-btn" type="button" aria-label="Adicionar aos favoritos" title="Favoritar" data-fav="Pacientes/guia-medicamentos-cardiologicos.html">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2.7 2.8 5.7 6.3.9-4.6 4.4 1.1 6.3-5.6-3-5.6 3 1.1-6.3-4.6-4.4 6.3-.9Z"/></svg>
+          </button>
+        </div>
+        <div class="resource-meta"><span>Manual</span><span class="meta-dot"></span><span>Conteúdo para pacientes</span></div>
+        <h3><a href="Pacientes/guia-medicamentos-cardiologicos.html" data-track="Pacientes/guia-medicamentos-cardiologicos.html">Guia de Medicamentos Cardiológicos</a></h3>
+        <p>O manual mais completo sobre remédios de cardiologia para pacientes: para que servem e efeitos colaterais.</p>
+        <div class="resource-footer">
+          <span class="evidence-pill">Entenda o que você toma</span>
+          <a class="open-link" href="Pacientes/guia-medicamentos-cardiologicos.html" data-track="Pacientes/guia-medicamentos-cardiologicos.html" aria-label="Abrir Guia de Medicamentos Cardiológicos">
+            Abrir
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="resource-card reveal-card" data-id="9" data-cat="meds" data-type="Guia interativo" data-search="Remédios Sem Receita: Quais os Riscos? Nem tudo que se compra sem receita é isento de risco para o coração. Cuidado com o balcão da farmácia Medicamentos Guia interativo medicamentos otc anti-inflamatório ibuprofeno sem receita risco cardiovascular" data-order="9" data-key="Pacientes/medicamentos-otc-cardio.html">
+        <div class="card-glow"></div>
+        <div class="resource-top">
+          <span class="category-badge cat-meds"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="9" width="18" height="6" rx="3"/><line x1="12" y1="9" x2="12" y2="15"/></svg>Medicamentos</span>
+          <button class="favorite-btn" type="button" aria-label="Adicionar aos favoritos" title="Favoritar" data-fav="Pacientes/medicamentos-otc-cardio.html">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2.7 2.8 5.7 6.3.9-4.6 4.4 1.1 6.3-5.6-3-5.6 3 1.1-6.3-4.6-4.4 6.3-.9Z"/></svg>
+          </button>
+        </div>
+        <div class="resource-meta"><span>Guia interativo</span><span class="meta-dot"></span><span>Conteúdo para pacientes</span></div>
+        <h3><a href="Pacientes/medicamentos-otc-cardio.html" data-track="Pacientes/medicamentos-otc-cardio.html">Remédios Sem Receita: Quais os Riscos?</a></h3>
+        <p>Nem tudo que se compra sem receita é isento de risco para o coração.</p>
+        <div class="resource-footer">
+          <span class="evidence-pill">Cuidado com o balcão da farmácia</span>
+          <a class="open-link" href="Pacientes/medicamentos-otc-cardio.html" data-track="Pacientes/medicamentos-otc-cardio.html" aria-label="Abrir Remédios Sem Receita: Quais os Riscos?">
+            Abrir
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="resource-card reveal-card" data-id="10" data-cat="estilo" data-type="Guia interativo" data-search="Atividade Física e Saúde Cardiovascular O que tem e o que não tem evidência sobre exercício físico e saúde do coração. Baseado em evidências, não em modismos Estilo de Vida Guia interativo atividade física exercício sedentarismo treino cardiovascular" data-order="10" data-key="Pacientes/atividade-fisica-cardiovascular.html">
+        <div class="card-glow"></div>
+        <div class="resource-top">
+          <span class="category-badge cat-estilo"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 8L9 4l-3 8H2"/></svg>Estilo de Vida</span>
+          <button class="favorite-btn" type="button" aria-label="Adicionar aos favoritos" title="Favoritar" data-fav="Pacientes/atividade-fisica-cardiovascular.html">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2.7 2.8 5.7 6.3.9-4.6 4.4 1.1 6.3-5.6-3-5.6 3 1.1-6.3-4.6-4.4 6.3-.9Z"/></svg>
+          </button>
+        </div>
+        <div class="resource-meta"><span>Guia interativo</span><span class="meta-dot"></span><span>Conteúdo para pacientes</span></div>
+        <h3><a href="Pacientes/atividade-fisica-cardiovascular.html" data-track="Pacientes/atividade-fisica-cardiovascular.html">Atividade Física e Saúde Cardiovascular</a></h3>
+        <p>O que tem e o que não tem evidência sobre exercício físico e saúde do coração.</p>
+        <div class="resource-footer">
+          <span class="evidence-pill">Baseado em evidências, não em modismos</span>
+          <a class="open-link" href="Pacientes/atividade-fisica-cardiovascular.html" data-track="Pacientes/atividade-fisica-cardiovascular.html" aria-label="Abrir Atividade Física e Saúde Cardiovascular">
+            Abrir
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="resource-card reveal-card" data-id="11" data-cat="estilo" data-type="Guia interativo" data-search="Dietas e Saúde Cardiovascular Quais dietas têm respaldo científico, quais têm benefício real e os riscos das dietas da moda. Dieta com evidência Estilo de Vida Guia interativo dieta alimentação mediterrânea low carb jejum intermitente nutrição coração" data-order="11" data-key="Pacientes/dieta-cardiovascular.html">
+        <div class="card-glow"></div>
+        <div class="resource-top">
+          <span class="category-badge cat-estilo"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 8L9 4l-3 8H2"/></svg>Estilo de Vida</span>
+          <button class="favorite-btn" type="button" aria-label="Adicionar aos favoritos" title="Favoritar" data-fav="Pacientes/dieta-cardiovascular.html">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2.7 2.8 5.7 6.3.9-4.6 4.4 1.1 6.3-5.6-3-5.6 3 1.1-6.3-4.6-4.4 6.3-.9Z"/></svg>
+          </button>
+        </div>
+        <div class="resource-meta"><span>Guia interativo</span><span class="meta-dot"></span><span>Conteúdo para pacientes</span></div>
+        <h3><a href="Pacientes/dieta-cardiovascular.html" data-track="Pacientes/dieta-cardiovascular.html">Dietas e Saúde Cardiovascular</a></h3>
+        <p>Quais dietas têm respaldo científico, quais têm benefício real e os riscos das dietas da moda.</p>
+        <div class="resource-footer">
+          <span class="evidence-pill">Dieta com evidência</span>
+          <a class="open-link" href="Pacientes/dieta-cardiovascular.html" data-track="Pacientes/dieta-cardiovascular.html" aria-label="Abrir Dietas e Saúde Cardiovascular">
+            Abrir
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="resource-card reveal-card" data-id="12" data-cat="estilo" data-type="Guia interativo" data-search="Álcool, Cigarro e Outras Drogas O efeito do álcool, cigarro, maconha e outras substâncias no coração. Existe dose segura? Existe dose segura de álcool? Estilo de Vida Guia interativo álcool cigarro tabagismo maconha drogas lícitas ilícitas risco cardiovascular" data-order="12" data-key="Pacientes/drogas-risco-cardiovascular.html">
+        <div class="card-glow"></div>
+        <div class="resource-top">
+          <span class="category-badge cat-estilo"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 8L9 4l-3 8H2"/></svg>Estilo de Vida</span>
+          <button class="favorite-btn" type="button" aria-label="Adicionar aos favoritos" title="Favoritar" data-fav="Pacientes/drogas-risco-cardiovascular.html">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2.7 2.8 5.7 6.3.9-4.6 4.4 1.1 6.3-5.6-3-5.6 3 1.1-6.3-4.6-4.4 6.3-.9Z"/></svg>
+          </button>
+        </div>
+        <div class="resource-meta"><span>Guia interativo</span><span class="meta-dot"></span><span>Conteúdo para pacientes</span></div>
+        <h3><a href="Pacientes/drogas-risco-cardiovascular.html" data-track="Pacientes/drogas-risco-cardiovascular.html">Álcool, Cigarro e Outras Drogas</a></h3>
+        <p>O efeito do álcool, cigarro, maconha e outras substâncias no coração. Existe dose segura?</p>
+        <div class="resource-footer">
+          <span class="evidence-pill">Existe dose segura de álcool?</span>
+          <a class="open-link" href="Pacientes/drogas-risco-cardiovascular.html" data-track="Pacientes/drogas-risco-cardiovascular.html" aria-label="Abrir Álcool, Cigarro e Outras Drogas">
+            Abrir
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="resource-card reveal-card" data-id="13" data-cat="estilo" data-type="Guia interativo" data-search="Obesidade e Síndrome Metabólica Entenda a doença obesidade e suas implicações clínicas, sem firulas. Décadas de conhecimento, direto ao ponto Estilo de Vida Guia interativo obesidade síndrome metabólica peso emagrecimento" data-order="13" data-key="Pacientes/obesidade-sindrome-metabolica.html">
+        <div class="card-glow"></div>
+        <div class="resource-top">
+          <span class="category-badge cat-estilo"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 8L9 4l-3 8H2"/></svg>Estilo de Vida</span>
+          <button class="favorite-btn" type="button" aria-label="Adicionar aos favoritos" title="Favoritar" data-fav="Pacientes/obesidade-sindrome-metabolica.html">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2.7 2.8 5.7 6.3.9-4.6 4.4 1.1 6.3-5.6-3-5.6 3 1.1-6.3-4.6-4.4 6.3-.9Z"/></svg>
+          </button>
+        </div>
+        <div class="resource-meta"><span>Guia interativo</span><span class="meta-dot"></span><span>Conteúdo para pacientes</span></div>
+        <h3><a href="Pacientes/obesidade-sindrome-metabolica.html" data-track="Pacientes/obesidade-sindrome-metabolica.html">Obesidade e Síndrome Metabólica</a></h3>
+        <p>Entenda a doença obesidade e suas implicações clínicas, sem firulas.</p>
+        <div class="resource-footer">
+          <span class="evidence-pill">Décadas de conhecimento, direto ao ponto</span>
+          <a class="open-link" href="Pacientes/obesidade-sindrome-metabolica.html" data-track="Pacientes/obesidade-sindrome-metabolica.html" aria-label="Abrir Obesidade e Síndrome Metabólica">
+            Abrir
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="resource-card reveal-card" data-id="14" data-cat="estilo" data-type="Guia interativo" data-search="Anabolizantes e Risco Cardiovascular Todo anabolizante faz mal? Existe dose segura? O coração volta ao normal depois de parar? Quem vê shape não vê coração Estilo de Vida Guia interativo anabolizantes esteroides eaa hipertrofia risco cardiovascular" data-order="14" data-key="Pacientes/eaa-risco-cardiovascular.html">
+        <div class="card-glow"></div>
+        <div class="resource-top">
+          <span class="category-badge cat-estilo"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 8L9 4l-3 8H2"/></svg>Estilo de Vida</span>
+          <button class="favorite-btn" type="button" aria-label="Adicionar aos favoritos" title="Favoritar" data-fav="Pacientes/eaa-risco-cardiovascular.html">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2.7 2.8 5.7 6.3.9-4.6 4.4 1.1 6.3-5.6-3-5.6 3 1.1-6.3-4.6-4.4 6.3-.9Z"/></svg>
+          </button>
+        </div>
+        <div class="resource-meta"><span>Guia interativo</span><span class="meta-dot"></span><span>Conteúdo para pacientes</span></div>
+        <h3><a href="Pacientes/eaa-risco-cardiovascular.html" data-track="Pacientes/eaa-risco-cardiovascular.html">Anabolizantes e Risco Cardiovascular</a></h3>
+        <p>Todo anabolizante faz mal? Existe dose segura? O coração volta ao normal depois de parar?</p>
+        <div class="resource-footer">
+          <span class="evidence-pill">Quem vê shape não vê coração</span>
+          <a class="open-link" href="Pacientes/eaa-risco-cardiovascular.html" data-track="Pacientes/eaa-risco-cardiovascular.html" aria-label="Abrir Anabolizantes e Risco Cardiovascular">
+            Abrir
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="resource-card reveal-card" data-id="15" data-cat="estilo" data-type="Guia interativo" data-search="Café, Energéticos e o Coração Café faz mal? E energético? E chá? Entenda de uma vez por todas. Cafeína sob a lupa Estilo de Vida Guia interativo café cafeína energético chá estimulantes coração arritmia" data-order="15" data-key="Pacientes/cafe-coracao.html">
+        <div class="card-glow"></div>
+        <div class="resource-top">
+          <span class="category-badge cat-estilo"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 8L9 4l-3 8H2"/></svg>Estilo de Vida</span>
+          <button class="favorite-btn" type="button" aria-label="Adicionar aos favoritos" title="Favoritar" data-fav="Pacientes/cafe-coracao.html">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2.7 2.8 5.7 6.3.9-4.6 4.4 1.1 6.3-5.6-3-5.6 3 1.1-6.3-4.6-4.4 6.3-.9Z"/></svg>
+          </button>
+        </div>
+        <div class="resource-meta"><span>Guia interativo</span><span class="meta-dot"></span><span>Conteúdo para pacientes</span></div>
+        <h3><a href="Pacientes/cafe-coracao.html" data-track="Pacientes/cafe-coracao.html">Café, Energéticos e o Coração</a></h3>
+        <p>Café faz mal? E energético? E chá? Entenda de uma vez por todas.</p>
+        <div class="resource-footer">
+          <span class="evidence-pill">Cafeína sob a lupa</span>
+          <a class="open-link" href="Pacientes/cafe-coracao.html" data-track="Pacientes/cafe-coracao.html" aria-label="Abrir Café, Energéticos e o Coração">
+            Abrir
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="resource-card reveal-card" data-id="16" data-cat="sistemas" data-type="Guia interativo" data-search="Doenças Autoimunes e o Coração O que lúpus, artrite reumatoide, psoríase e hipotireoidismo têm a ver com o coração. Com análise das drogas imunossupressoras Coração e Outros Sistemas Guia interativo lúpus artrite reumatoide psoríase hipotireoidismo autoimune coração" data-order="16" data-key="Pacientes/autoimune_cardiovascular.html">
+        <div class="card-glow"></div>
+        <div class="resource-top">
+          <span class="category-badge cat-sistemas"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.8 4.5A5.4 5.4 0 0 0 2 9.8c0 3.1 2.1 5.2 4.1 7l5.9 5.2 2.4-2.1"/><path d="M12 6.2A5.2 5.2 0 0 1 16.2 4c2.7 0 4.9 2 5.2 4.6"/><circle cx="18" cy="16" r="5"/><path d="M18 13v6"/><path d="M15 16h6"/></svg>Coração &amp; Outros Sistemas</span>
+          <button class="favorite-btn" type="button" aria-label="Adicionar aos favoritos" title="Favoritar" data-fav="Pacientes/autoimune_cardiovascular.html">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2.7 2.8 5.7 6.3.9-4.6 4.4 1.1 6.3-5.6-3-5.6 3 1.1-6.3-4.6-4.4 6.3-.9Z"/></svg>
+          </button>
+        </div>
+        <div class="resource-meta"><span>Guia interativo</span><span class="meta-dot"></span><span>Conteúdo para pacientes</span></div>
+        <h3><a href="Pacientes/autoimune_cardiovascular.html" data-track="Pacientes/autoimune_cardiovascular.html">Doenças Autoimunes e o Coração</a></h3>
+        <p>O que lúpus, artrite reumatoide, psoríase e hipotireoidismo têm a ver com o coração.</p>
+        <div class="resource-footer">
+          <span class="evidence-pill">Com análise das drogas imunossupressoras</span>
+          <a class="open-link" href="Pacientes/autoimune_cardiovascular.html" data-track="Pacientes/autoimune_cardiovascular.html" aria-label="Abrir Doenças Autoimunes e o Coração">
+            Abrir
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="resource-card reveal-card" data-id="17" data-cat="sistemas" data-type="Guia interativo" data-search="Saúde Mental e Coração Por que depressão, ansiedade, bipolaridade e outras condições aumentam o risco cardiovascular. Mente e coração, tudo a ver Coração e Outros Sistemas Guia interativo depressão ansiedade bipolaridade saúde mental coração" data-order="17" data-key="Pacientes/humor-cardiovascular.html">
+        <div class="card-glow"></div>
+        <div class="resource-top">
+          <span class="category-badge cat-sistemas"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.8 4.5A5.4 5.4 0 0 0 2 9.8c0 3.1 2.1 5.2 4.1 7l5.9 5.2 2.4-2.1"/><path d="M12 6.2A5.2 5.2 0 0 1 16.2 4c2.7 0 4.9 2 5.2 4.6"/><circle cx="18" cy="16" r="5"/><path d="M18 13v6"/><path d="M15 16h6"/></svg>Coração &amp; Outros Sistemas</span>
+          <button class="favorite-btn" type="button" aria-label="Adicionar aos favoritos" title="Favoritar" data-fav="Pacientes/humor-cardiovascular.html">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2.7 2.8 5.7 6.3.9-4.6 4.4 1.1 6.3-5.6-3-5.6 3 1.1-6.3-4.6-4.4 6.3-.9Z"/></svg>
+          </button>
+        </div>
+        <div class="resource-meta"><span>Guia interativo</span><span class="meta-dot"></span><span>Conteúdo para pacientes</span></div>
+        <h3><a href="Pacientes/humor-cardiovascular.html" data-track="Pacientes/humor-cardiovascular.html">Saúde Mental e Coração</a></h3>
+        <p>Por que depressão, ansiedade, bipolaridade e outras condições aumentam o risco cardiovascular.</p>
+        <div class="resource-footer">
+          <span class="evidence-pill">Mente e coração, tudo a ver</span>
+          <a class="open-link" href="Pacientes/humor-cardiovascular.html" data-track="Pacientes/humor-cardiovascular.html" aria-label="Abrir Saúde Mental e Coração">
+            Abrir
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="resource-card reveal-card" data-id="18" data-cat="sistemas" data-type="Guia interativo" data-search="Fígado e Coração A relação entre a doença hepática e a doença cardíaca. O maior órgão sólido do corpo Coração e Outros Sistemas Guia interativo fígado esteatose hepática cirrose coração" data-order="18" data-key="Pacientes/figado-coracao.html">
+        <div class="card-glow"></div>
+        <div class="resource-top">
+          <span class="category-badge cat-sistemas"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.8 4.5A5.4 5.4 0 0 0 2 9.8c0 3.1 2.1 5.2 4.1 7l5.9 5.2 2.4-2.1"/><path d="M12 6.2A5.2 5.2 0 0 1 16.2 4c2.7 0 4.9 2 5.2 4.6"/><circle cx="18" cy="16" r="5"/><path d="M18 13v6"/><path d="M15 16h6"/></svg>Coração &amp; Outros Sistemas</span>
+          <button class="favorite-btn" type="button" aria-label="Adicionar aos favoritos" title="Favoritar" data-fav="Pacientes/figado-coracao.html">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2.7 2.8 5.7 6.3.9-4.6 4.4 1.1 6.3-5.6-3-5.6 3 1.1-6.3-4.6-4.4 6.3-.9Z"/></svg>
+          </button>
+        </div>
+        <div class="resource-meta"><span>Guia interativo</span><span class="meta-dot"></span><span>Conteúdo para pacientes</span></div>
+        <h3><a href="Pacientes/figado-coracao.html" data-track="Pacientes/figado-coracao.html">Fígado e Coração</a></h3>
+        <p>A relação entre a doença hepática e a doença cardíaca.</p>
+        <div class="resource-footer">
+          <span class="evidence-pill">O maior órgão sólido do corpo</span>
+          <a class="open-link" href="Pacientes/figado-coracao.html" data-track="Pacientes/figado-coracao.html" aria-label="Abrir Fígado e Coração">
+            Abrir
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="resource-card reveal-card" data-id="19" data-cat="sistemas" data-type="Guia interativo" data-search="Pele e Coração A pele, o maior órgão do corpo, também tem relação direta com o coração. Aposto que você não sabia Coração e Outros Sistemas Guia interativo pele psoríase doenças de pele coração cardiovascular" data-order="19" data-key="Pacientes/pele-cardiovascular.html">
+        <div class="card-glow"></div>
+        <div class="resource-top">
+          <span class="category-badge cat-sistemas"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.8 4.5A5.4 5.4 0 0 0 2 9.8c0 3.1 2.1 5.2 4.1 7l5.9 5.2 2.4-2.1"/><path d="M12 6.2A5.2 5.2 0 0 1 16.2 4c2.7 0 4.9 2 5.2 4.6"/><circle cx="18" cy="16" r="5"/><path d="M18 13v6"/><path d="M15 16h6"/></svg>Coração &amp; Outros Sistemas</span>
+          <button class="favorite-btn" type="button" aria-label="Adicionar aos favoritos" title="Favoritar" data-fav="Pacientes/pele-cardiovascular.html">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2.7 2.8 5.7 6.3.9-4.6 4.4 1.1 6.3-5.6-3-5.6 3 1.1-6.3-4.6-4.4 6.3-.9Z"/></svg>
+          </button>
+        </div>
+        <div class="resource-meta"><span>Guia interativo</span><span class="meta-dot"></span><span>Conteúdo para pacientes</span></div>
+        <h3><a href="Pacientes/pele-cardiovascular.html" data-track="Pacientes/pele-cardiovascular.html">Pele e Coração</a></h3>
+        <p>A pele, o maior órgão do corpo, também tem relação direta com o coração.</p>
+        <div class="resource-footer">
+          <span class="evidence-pill">Aposto que você não sabia</span>
+          <a class="open-link" href="Pacientes/pele-cardiovascular.html" data-track="Pacientes/pele-cardiovascular.html" aria-label="Abrir Pele e Coração">
+            Abrir
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="resource-card reveal-card" data-id="20" data-cat="sistemas" data-type="Guia interativo" data-search="Pulmão e Coração A relação entre a doença pulmonar e o coração — mais próximos do que parece. Vizinhos de peito Coração e Outros Sistemas Guia interativo pulmão dpoc hipertensão pulmonar apneia do sono coração" data-order="20" data-key="Pacientes/pulmo-cardio.html">
+        <div class="card-glow"></div>
+        <div class="resource-top">
+          <span class="category-badge cat-sistemas"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.8 4.5A5.4 5.4 0 0 0 2 9.8c0 3.1 2.1 5.2 4.1 7l5.9 5.2 2.4-2.1"/><path d="M12 6.2A5.2 5.2 0 0 1 16.2 4c2.7 0 4.9 2 5.2 4.6"/><circle cx="18" cy="16" r="5"/><path d="M18 13v6"/><path d="M15 16h6"/></svg>Coração &amp; Outros Sistemas</span>
+          <button class="favorite-btn" type="button" aria-label="Adicionar aos favoritos" title="Favoritar" data-fav="Pacientes/pulmo-cardio.html">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2.7 2.8 5.7 6.3.9-4.6 4.4 1.1 6.3-5.6-3-5.6 3 1.1-6.3-4.6-4.4 6.3-.9Z"/></svg>
+          </button>
+        </div>
+        <div class="resource-meta"><span>Guia interativo</span><span class="meta-dot"></span><span>Conteúdo para pacientes</span></div>
+        <h3><a href="Pacientes/pulmo-cardio.html" data-track="Pacientes/pulmo-cardio.html">Pulmão e Coração</a></h3>
+        <p>A relação entre a doença pulmonar e o coração — mais próximos do que parece.</p>
+        <div class="resource-footer">
+          <span class="evidence-pill">Vizinhos de peito</span>
+          <a class="open-link" href="Pacientes/pulmo-cardio.html" data-track="Pacientes/pulmo-cardio.html" aria-label="Abrir Pulmão e Coração">
+            Abrir
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="resource-card reveal-card" data-id="21" data-cat="sistemas" data-type="Guia interativo" data-search="Rins e Coração Os rins regulam muito mais do que a pressão arterial — entenda a síndrome cardiorrenal. Síndrome cardiorrenal Coração e Outros Sistemas Guia interativo rins doença renal crônica síndrome cardiorrenal coração" data-order="21" data-key="Pacientes/doenca-renal-coracao.html">
+        <div class="card-glow"></div>
+        <div class="resource-top">
+          <span class="category-badge cat-sistemas"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.8 4.5A5.4 5.4 0 0 0 2 9.8c0 3.1 2.1 5.2 4.1 7l5.9 5.2 2.4-2.1"/><path d="M12 6.2A5.2 5.2 0 0 1 16.2 4c2.7 0 4.9 2 5.2 4.6"/><circle cx="18" cy="16" r="5"/><path d="M18 13v6"/><path d="M15 16h6"/></svg>Coração &amp; Outros Sistemas</span>
+          <button class="favorite-btn" type="button" aria-label="Adicionar aos favoritos" title="Favoritar" data-fav="Pacientes/doenca-renal-coracao.html">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2.7 2.8 5.7 6.3.9-4.6 4.4 1.1 6.3-5.6-3-5.6 3 1.1-6.3-4.6-4.4 6.3-.9Z"/></svg>
+          </button>
+        </div>
+        <div class="resource-meta"><span>Guia interativo</span><span class="meta-dot"></span><span>Conteúdo para pacientes</span></div>
+        <h3><a href="Pacientes/doenca-renal-coracao.html" data-track="Pacientes/doenca-renal-coracao.html">Rins e Coração</a></h3>
+        <p>Os rins regulam muito mais do que a pressão arterial — entenda a síndrome cardiorrenal.</p>
+        <div class="resource-footer">
+          <span class="evidence-pill">Síndrome cardiorrenal</span>
+          <a class="open-link" href="Pacientes/doenca-renal-coracao.html" data-track="Pacientes/doenca-renal-coracao.html" aria-label="Abrir Rins e Coração">
+            Abrir
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+
+      </div>
+
+      <div class="empty-state" id="emptyState">
+        <div class="empty-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M8.5 11h5"/></svg>
+        </div>
+        <strong>Nenhum conteúdo encontrado</strong>
+        <span>Tente uma palavra diferente, remova um filtro ou busque por um termo mais amplo.</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div><strong>Dr. Lucas Silva</strong> · Cardiologia Intervencionista · Conteúdo educativo, não substitui consulta médica.</div>
+    <div class="footer-links">
+      <a href="index.html">Site principal</a>
+      <a href="portal-medicos.html">Portal Médico</a>
+      <a href="index.html#contact">Contato</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  'use strict';
+
+  const $ = (selector, scope = document) => scope.querySelector(selector);
+  const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];
+  const root = document.documentElement;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const finePointer = window.matchMedia('(pointer:fine)').matches;
+
+  const storage = {
+    get(key) {
+      try { return localStorage.getItem(key); } catch (_) { return null; }
+    },
+    set(key, value) {
+      try { localStorage.setItem(key, value); } catch (_) {}
+    }
+  };
+  const parseJSON = (value, fallback) => {
+    if (value == null) return fallback;
+    try { return JSON.parse(value); } catch (_) { return fallback; }
+  };
+
+  /* Theme: initialized in <head> to avoid flash. */
+  const themeToggle = $('#themeToggle');
+  const themeIcon = $('#themeIcon');
+  const themeColor = $('meta[name="theme-color"]');
+  const themeKey = 'lc-portal-theme';
+  const moon = '<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9"/>';
+  const sun = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>';
+
+  function syncThemeUI() {
+    const isLight = root.dataset.theme === 'light';
+    if (themeIcon) themeIcon.innerHTML = isLight ? sun : moon;
+    if (themeToggle) {
+      themeToggle.setAttribute('aria-pressed', String(isLight));
+      themeToggle.setAttribute('aria-label', isLight ? 'Ativar modo escuro' : 'Ativar modo claro');
+      themeToggle.title = isLight ? 'Modo escuro' : 'Modo claro';
+    }
+    if (themeColor) themeColor.content = isLight ? '#f3f6f8' : '#0d1118';
+  }
+  syncThemeUI();
+
+  themeToggle?.addEventListener('click', () => {
+    const isLight = root.dataset.theme === 'light';
+    if (isLight) delete root.dataset.theme;
+    else root.dataset.theme = 'light';
+    storage.set(themeKey, isLight ? 'dark' : 'light');
+    syncThemeUI();
+  });
+
+  /* DOM + immutable search cache. */
+  const grid = $('#resourceGrid');
+  const cards = $$('.resource-card', grid);
+  const searchInput = $('#searchInput');
+  const clearSearch = $('#clearSearch');
+  const typeSelect = $('#typeSelect');
+  const resultCount = $('#resultCount');
+  const activeContext = $('#activeContext');
+  const emptyState = $('#emptyState');
+  const filterButtons = $$('.filter-btn');
+  const favFilter = $('#favFilter');
+  const favCount = $('#favCount');
+  const resetFilters = $('#resetFilters');
+  const gridView = $('#gridView');
+  const listView = $('#listView');
+
+  const normalize = str => (str || '')
+    .toLocaleLowerCase('pt-BR')
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9+\/\- ]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  const absoluteHref = href => {
+    try { return new URL(href, document.baseURI).href; }
+    catch (_) { return href || ''; }
+  };
+
+  const seenKeys = new Set();
+  const cardMeta = new Map();
+  cards.forEach((card, index) => {
+    const titleNode = $('h3', card);
+    const anchor = $('h3 a', card);
+    const href = anchor?.getAttribute('href') || '';
+    let key = card.dataset.key || href || `resource-${index + 1}`;
+    if (seenKeys.has(key)) key = `${key}::${index + 1}`;
+    seenKeys.add(key);
+
+    card.dataset.key = key;
+    card.dataset.order ||= String(index + 1);
+    const favBtn = $('.favorite-btn', card);
+    if (favBtn) favBtn.dataset.fav = key;
+
+    const title = titleNode?.textContent.trim() || '';
+    cardMeta.set(card, {
+      key,
+      order: Number(card.dataset.order) || index + 1,
+      legacyId: String(card.dataset.legacyId || ''),
+      title,
+      href,
+      absHref: absoluteHref(href),
+      titleNorm: normalize(title),
+      searchNorm: normalize(card.dataset.search)
+    });
+  });
+
+  /* Favorites: stable href-based keys + migration from legacy numeric IDs. */
+  const favKey = 'lc-pac-favorites-v2';
+  const legacyFavKey = 'lc-pac-favorites';
+  const rawFavorites = storage.get(favKey);
+  let favorites = new Set(parseJSON(rawFavorites, []).map(String));
+
+  if (rawFavorites === null) {
+    const legacy = new Set(parseJSON(storage.get(legacyFavKey), []).map(String));
+    if (legacy.size) {
+      const legacyGroups = new Map();
+      cards.forEach(card => {
+        const meta = cardMeta.get(card);
+        if (!legacyGroups.has(meta.legacyId)) legacyGroups.set(meta.legacyId, []);
+        legacyGroups.get(meta.legacyId).push(meta);
+      });
+      legacy.forEach(id => {
+        const matches = legacyGroups.get(id) || [];
+        if (matches.length === 1) favorites.add(matches[0].key);
+      });
+    }
+  }
+
+  const validKeys = new Set([...cardMeta.values()].map(meta => meta.key));
+  favorites = new Set([...favorites].filter(key => validKeys.has(key)));
+
+  function persistFavorites() {
+    storage.set(favKey, JSON.stringify([...favorites]));
+  }
+
+  function syncFavoriteUI() {
+    cards.forEach(card => {
+      const meta = cardMeta.get(card);
+      const btn = $('.favorite-btn', card);
+      if (!btn) return;
+      const active = favorites.has(meta.key);
+      btn.classList.toggle('active', active);
+      btn.setAttribute('aria-pressed', String(active));
+      btn.setAttribute('aria-label', active ? 'Remover dos favoritos' : 'Adicionar aos favoritos');
+      btn.title = active ? 'Remover dos favoritos' : 'Favoritar';
+    });
+    if (favCount) favCount.textContent = String(favorites.size);
+  }
+
+  persistFavorites();
+  syncFavoriteUI();
+
+  let activeCat = 'all';
+  let favoriteOnly = false;
+
+  grid?.addEventListener('click', event => {
+    const btn = event.target.closest('.favorite-btn');
+    if (!btn || !grid.contains(btn)) return;
+    event.preventDefault();
+    event.stopPropagation();
+
+    const card = btn.closest('.resource-card');
+    const meta = card && cardMeta.get(card);
+    if (!meta) return;
+
+    if (favorites.has(meta.key)) favorites.delete(meta.key);
+    else favorites.add(meta.key);
+
+    persistFavorites();
+    syncFavoriteUI();
+    if (favoriteOnly) applyFilters();
+  });
+
+  /* Counters are derived from the DOM, so new cards cannot desynchronize them. */
+  $$('[data-count]').forEach(el => {
+    const cat = el.dataset.count;
+    el.textContent = cat === 'all'
+      ? String(cards.length)
+      : String(cards.filter(card => card.dataset.cat === cat).length);
+  });
+
+  let hasAppliedOnce = false;
+  const filterAnimations = new WeakMap();
+
+  function relevance(meta, query, tokens) {
+    if (!query) return 1;
+    if (!tokens.every(token => meta.searchNorm.includes(token))) return 0;
+
+    let score = 10;
+    if (meta.titleNorm.includes(query)) score += 80;
+    if (meta.searchNorm.includes(query)) score += 35;
+    for (const token of tokens) {
+      if (meta.titleNorm.includes(token)) score += 18;
+      else if (meta.searchNorm.includes(token)) score += 6;
+    }
+    return score;
+  }
+
+  function animateResults(items) {
+    if (!hasAppliedOnce || reduceMotion || !Element.prototype.animate) return;
+    items.slice(0, 12).forEach(({ card }, index) => {
+      filterAnimations.get(card)?.cancel();
+      const animation = card.animate(
+        [
+          { opacity: .58, transform: 'translateY(7px)' },
+          { opacity: 1, transform: 'translateY(0)' }
+        ],
+        {
+          duration: 220,
+          delay: Math.min(index * 16, 120),
+          easing: 'cubic-bezier(.22,.9,.32,1)',
+          fill: 'both'
+        }
+      );
+      filterAnimations.set(card, animation);
+      animation.finished.finally(() => {
+        if (filterAnimations.get(card) === animation) filterAnimations.delete(card);
+      }).catch(() => {});
+    });
+  }
+
+  function categoryLabel() {
+    const btn = $('.filter-btn.active');
+    if (!btn) return '';
+    return btn.textContent.replace(/\d+\s*$/, '').trim();
+  }
+
+  function applyFilters() {
+    const qRaw = searchInput.value.trim();
+    const query = normalize(qRaw);
+    const tokens = query ? query.split(' ').filter(Boolean) : [];
+    const type = typeSelect.value;
+    const visible = [];
+
+    for (const card of cards) {
+      const meta = cardMeta.get(card);
+      const score = relevance(meta, query, tokens);
+      const catOk = activeCat === 'all' || card.dataset.cat === activeCat;
+      const typeOk = type === 'all' || card.dataset.type === type;
+      const favOk = !favoriteOnly || favorites.has(meta.key);
+      const show = score > 0 && catOk && typeOk && favOk;
+
+      card.hidden = !show;
+      if (show) visible.push({ card, meta, score });
+    }
+
+    visible.sort((a, b) => query
+      ? (b.score - a.score || a.meta.order - b.meta.order)
+      : (a.meta.order - b.meta.order)
+    );
+
+    if (grid && visible.length) {
+      const fragment = document.createDocumentFragment();
+      visible.forEach(({ card }) => fragment.appendChild(card));
+      grid.appendChild(fragment);
+    }
+
+    animateResults(visible);
+
+    resultCount.textContent = String(visible.length);
+    emptyState.classList.toggle('show', visible.length === 0);
+    clearSearch.classList.toggle('visible', qRaw.length > 0);
+
+    const contexts = [];
+    if (qRaw) contexts.push(`para “${qRaw}”`);
+    if (activeCat !== 'all') contexts.push(`em ${categoryLabel()}`);
+    if (type !== 'all') contexts.push(`· ${type}`);
+    if (favoriteOnly) contexts.push('· favoritos');
+    activeContext.textContent = contexts.join(' ');
+
+    hasAppliedOnce = true;
+  }
+
+  function setCategory(cat) {
+    activeCat = cat;
+    filterButtons.forEach(btn => {
+      const active = btn.dataset.cat === cat;
+      btn.classList.toggle('active', active);
+      btn.setAttribute('aria-pressed', String(active));
+    });
+  }
+
+  function setFavoriteOnly(value) {
+    favoriteOnly = Boolean(value);
+    favFilter.classList.toggle('active', favoriteOnly);
+    favFilter.setAttribute('aria-pressed', String(favoriteOnly));
+  }
+
+  let searchTimer = 0;
+  searchInput?.addEventListener('input', () => {
+    window.clearTimeout(searchTimer);
+    searchTimer = window.setTimeout(() => requestAnimationFrame(applyFilters), 60);
+  });
+
+  clearSearch?.addEventListener('click', () => {
+    searchInput.value = '';
+    searchInput.focus();
+    applyFilters();
+  });
+
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      setCategory(btn.dataset.cat);
+      applyFilters();
+    });
+  });
+
+  typeSelect?.addEventListener('change', applyFilters);
+
+  favFilter?.addEventListener('click', () => {
+    setFavoriteOnly(!favoriteOnly);
+    applyFilters();
+  });
+
+  resetFilters?.addEventListener('click', () => {
+    searchInput.value = '';
+    typeSelect.value = 'all';
+    setCategory('all');
+    setFavoriteOnly(false);
+    applyFilters();
+  });
+
+  $$('[data-query]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      searchInput.value = btn.dataset.query || '';
+      typeSelect.value = 'all';
+      setCategory('all');
+      setFavoriteOnly(false);
+      applyFilters();
+      $('#biblioteca')?.scrollIntoView({
+        behavior: reduceMotion ? 'auto' : 'smooth',
+        block: 'start'
+      });
+    });
+  });
+
+  /* Keyboard: Ctrl/Cmd+K, /, Escape. */
+  document.addEventListener('keydown', event => {
+    const targetTag = (event.target.tagName || '').toLowerCase();
+    const typing = ['input', 'textarea', 'select'].includes(targetTag);
+
+    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {
+      event.preventDefault();
+      searchInput.focus();
+      searchInput.select();
+    } else if (!typing && event.key === '/') {
+      event.preventDefault();
+      searchInput.focus();
+    } else if (event.key === 'Escape' && document.activeElement === searchInput) {
+      searchInput.value = '';
+      searchInput.blur();
+      applyFilters();
+    }
+  });
+
+  /* Grid/list preference. */
+  function setView(mode, persist = true) {
+    const isList = mode === 'list';
+    grid.classList.toggle('list-view', isList);
+    gridView.classList.toggle('active', !isList);
+    listView.classList.toggle('active', isList);
+    gridView.setAttribute('aria-pressed', String(!isList));
+    listView.setAttribute('aria-pressed', String(isList));
+    if (persist) storage.set('lc-pac-view', isList ? 'list' : 'grid');
+  }
+  gridView?.addEventListener('click', () => setView('grid'));
+  listView?.addEventListener('click', () => setView('list'));
+  setView(storage.get('lc-pac-view') === 'list' ? 'list' : 'grid', false);
+
+  /* Last viewed: href/key based; legacy numeric IDs are migrated only when unambiguous. */
+  const lastKey = 'lc-pac-last-viewed';
+  const byKey = new Map([...cardMeta.values()].map(meta => [meta.key, meta]));
+  const byHref = new Map([...cardMeta.values()].map(meta => [meta.absHref, meta]));
+
+  function showLastViewed(meta) {
+    if (!meta) return;
+    const box = $('#lastViewed');
+    const link = $('#lastViewedLink');
+    if (!box || !link) return;
+    link.textContent = meta.title;
+    link.href = meta.href;
+    box.classList.add('show');
+  }
+
+  const last = parseJSON(storage.get(lastKey), null);
+  let lastMeta = null;
+  if (last?.key) lastMeta = byKey.get(String(last.key)) || null;
+  if (!lastMeta && last?.href) lastMeta = byHref.get(absoluteHref(last.href)) || null;
+  if (!lastMeta && last?.id != null) {
+    const legacyMatches = [...cardMeta.values()].filter(meta => meta.legacyId === String(last.id));
+    if (legacyMatches.length === 1) lastMeta = legacyMatches[0];
+  }
+  showLastViewed(lastMeta);
+
+  document.addEventListener('click', event => {
+    const link = event.target.closest('a[data-track]');
+    if (!link) return;
+    const href = link.getAttribute('href') || '';
+    const meta = byHref.get(absoluteHref(href));
+    if (!meta) return;
+    storage.set(lastKey, JSON.stringify({
+      key: meta.key,
+      href: meta.href,
+      title: meta.title,
+      at: Date.now()
+    }));
+  });
+
+  /* One throttled spotlight listener instead of one pointermove listener per card. */
+  if (grid && finePointer && !reduceMotion) {
+    let spotlightFrame = 0;
+    let pointer = null;
+
+    grid.addEventListener('pointermove', event => {
+      const card = event.target.closest('.resource-card');
+      if (!card || !grid.contains(card)) return;
+      pointer = { card, x: event.clientX, y: event.clientY };
+      if (spotlightFrame) return;
+
+      spotlightFrame = requestAnimationFrame(() => {
+        spotlightFrame = 0;
+        if (!pointer) return;
+        const rect = pointer.card.getBoundingClientRect();
+        pointer.card.style.setProperty('--mx', `${pointer.x - rect.left}px`);
+        pointer.card.style.setProperty('--my', `${pointer.y - rect.top}px`);
+      });
+    }, { passive: true });
+
+    grid.addEventListener('pointerleave', () => { pointer = null; }, { passive: true });
+  }
+
+  /* Reveal cards only as they approach the viewport. */
+  if (!reduceMotion && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    }, { threshold: .06, rootMargin: '80px 0px -20px 0px' });
+
+    cards.forEach((card, index) => {
+      card.style.transitionDelay = `${Math.min((index % 6) * 28, 140)}ms`;
+      observer.observe(card);
+    });
+  } else {
+    cards.forEach(card => card.classList.add('visible'));
+  }
+
+  setCategory('all');
+  setFavoriteOnly(false);
+  applyFilters();
+})();
+
+</script>
+</body>
+</html>
